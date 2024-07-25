@@ -2,7 +2,7 @@
 name: Deploy to WKND.site Production
 env:
   # Target repository
-  TARGET_REPO: https://git.cloudmanager.adobe.com/abbottlaboratories/Adobe65-Sandbox-Repo/
+  TARGET_REPO:'https://git.cloudmanager.adobe.com/abbottlaboratories/Adobe65-Sandbox-Repo/
   TARGET_BRANCH_DEV: dev
   #TARGET_BRANCH_PROD: ${{ secrets.WKND_BRANCH_PROD }}
   USER_EMAIL: virender.choudhary@abbott.com
@@ -27,12 +27,12 @@ jobs:
 
       - name: Add WKND remote
         run:
-          git remote add adobe https://${USER_EMAIL}:${USER_PWD}@${TARGET_REPO}
+          git remote add adobe https://${USER_NAME}:${USER_PWD}@${TARGET_REPO}
 
       - name: Set Git config
         run: |
           git config --global credential.helper cache
-          git config --global user.email ${USER_EMAIL}
+          git config --global user.email ${USER_NAME}
           git config --global user.name ${USER_NAME}
 
       - name: Push changes to ADOBE65_SANDBOX_REPO_BRANCH_DEV

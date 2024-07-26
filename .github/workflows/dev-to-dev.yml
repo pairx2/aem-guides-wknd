@@ -31,13 +31,14 @@ jobs:
 
       - name: Set Git config
         run: |
-          git config --global credential.helper cache
+          git config --global user.email ${USER_EMAIL}
           git config --global user.name ${USER_NAME}
           git config --global user.password ${USER_PWD}   
-
+          git config --global credential.helper cache
+          
       - name: Push changes to ADOBE65_SANDBOX_REPO_BRANCH_DEV
         run:
-          git push adobe dev
+          git push -u -v adobe ${TARGET_BRANCH_DEV}
 
       #- name: Push changes to WKND Production
       #  run:

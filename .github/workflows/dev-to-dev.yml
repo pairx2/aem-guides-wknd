@@ -7,7 +7,7 @@ env:
   #TARGET_BRANCH_PROD: ${{ secrets.WKND_BRANCH_PROD }}
   USER_EMAIL: virender.choudhary@abbott.com
   USER_NAME: virender-choudhary-abbott-com
-  USER_PWD: pj4j3dv2qysc4wt36hgejalrrdn276cyiq3suf7cgphzhjuvrnea
+  USER_PWD: 4paobwzjteq7csm7g2ziqt2ytuv4fhyhp5e4coelwks6ikywzo7a
 
 # Only run on a push to master branch
 on:
@@ -32,8 +32,9 @@ jobs:
       - name: Set Git config
         run: |
           git config --global credential.helper cache
-          git config --global user.email "${USER_EMAIL}"
-          git config --global user.name "${USER_NAME}"          
+          git config --global user.email ${USER_EMAIL}
+          git config --global user.name ${USER_NAME}
+          git config --global user.password ${USER_PWD}   
 
       - name: Push changes to ADOBE65_SANDBOX_REPO_BRANCH_DEV
         run:

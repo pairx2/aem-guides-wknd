@@ -1,0 +1,45 @@
+# This workflow mirrors the code to the wknd.site repository
+name: Deploy to WKND.site Production
+env:
+  # Target repository
+  TARGET_REPO: git.cloudmanager.adobe.com/abbottlaboratories/Adobe65-Sandbox-Repo/
+  TARGET_BRANCH_DEV: feature/github-workflow
+  #TARGET_BRANCH_PROD: ${{ secrets.WKND_BRANCH_PROD }}
+  USER_EMAIL: ramachandra.pai@abbott.com
+  USER_NAME: ramachandra-pai-abbott-com
+  USER_PWD: zhq6d7vmdlpb77vgglnx3vxmyuxlmehg23ouhflkcwuylxshhwma
+
+# Only run on a push to master branch
+on:
+  push:
+    branches: [ feature/github-workflow ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout Github project
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: '0'
+
+      - name: Add WKND remote
+        run:
+          git remote add adobe https://${USER_NAME}:${USER_PWD}@${TARGET_REPO}
+
+      - name: Set Git config
+        run: |
+          git config --global credential.helper cache
+          git config --global user.email ${USER_EMAIL}
+          git config --global user.name ${USER_NAME}   
+
+          
+      - name: Push changes to ADOBE65_SANDBOX_REPO_BRANCH_DEV
+        run:
+          git push -u adobe feature/github-workflow:${TARGET_BRANCH_DEV}
+
+      #- name: Push changes to WKND Production
+      #  run:
+      #    git push -u wknd master:${TARGET_BRANCH_PROD}

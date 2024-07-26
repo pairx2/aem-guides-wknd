@@ -7,6 +7,7 @@ env:
   #TARGET_BRANCH_PROD: ${{ secrets.WKND_BRANCH_PROD }}
   USER_EMAIL: ramachandra.pai@abbott.com
   USER_NAME: ramachandra-pai-abbott-com
+  USER_PWD: ${{secrets.USER_PWD}}
 
 # Only run on a push to master branch
 on:
@@ -26,7 +27,7 @@ jobs:
 
       - name: Add WKND remote
         run:
-          git remote add adobe https://${USER_NAME}:jzzraiu2bitdl2slya2t7ko6l53k4yl2n75oqccubagwwojtzh4q@${TARGET_REPO}
+          git remote add adobe https://${USER_NAME}:${USER_PWD}@${TARGET_REPO}
 
       - name: Set Git config
         run: |

@@ -12,7 +12,7 @@ env:
 # Only run on a push to master branch
 on:
   push:
-    branches: [ feature/github-workflow ]
+    branches: [feature/github-workflow]
   workflow_dispatch:
 
 jobs:
@@ -23,29 +23,54 @@ jobs:
       # Checkout Github project
       - uses: actions/checkout@v2
         with:
-          fetch-depth: '0'
+          fetch-depth: "0"
 
       - uses: actions/checkout@v4
       - name: Set up JDK 11 for x64
         uses: actions/setup-java@v4
         with:
-          java-version: '11'
-          distribution: 'temurin'
+          java-version: "11"
+          distribution: "temurin"
           architecture: x64
       - name: Build with Maven
-        run: mvn -B package --file pom.xml
+        run: mvn clean package
+      - name: Install AIO CLI
+        run: npm install -g @adobe/aio-cli
+      - name: Install AIO CLI Plugin for AEM RDE
+        run: aio plugins:install @adobe/aio-cli-plugin-aem-rde
+      - name: Setup AIO CLI Plugin for AEM RDE
+        run: |
+          aio config:set cloudmanager_orgid ${{ secrets.CLOUDMANAGER_ORGID }}
+          aio config:set cloudmanager_programid ${{ secrets.CLOUDMANAGER_PROGRAMID }}
+          aio config:set cloudmanager_environmentid ${{ secrets.CLOUDMANAGER_ENVIRONMENTID }}
+      - name: Deploy to AEM RDE
+        run: aio aem:rde:install aem-guides-wknd.all-3.2.1-SNAPSHOT.zip
+      # - name: Deploy with Maven
+      #   run: mvn -B deploy --file pom.xml
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # - name: Setup JFrog CLI
+      #   uses: jfrog/setup-jfrog-cli@v1
+      #   env:
+      #     JF_ARTIFACTORY: ${{ secrets.JF_ARTIFACTORY_SECRET }}
+      # - name: Deploy with Maven
+      #   run: |
+      #     jfrog rt mvn-config --repo-deploy-releases=${ARTIFACTORY_RELEASE} --repo-deploy-snapshots=${ARTIFACTORY_SNAPSHOT}
+      #     jfrog rt mvn deploy
+      #     jfrog rt bp
+      #   env:
+      #     ARTIFACTORY_RELEASE: ${{ secrets.ARTIFACTORY_RELEASE }}
+      #     ARTIFACTORY_SNAPSHOT: ${{ secrets.ARTIFACTORY_SNAPSHOT }}
 
       - name: Add WKND remote
-        run:
-          git remote add adobe https://${USER_NAME}:${USER_PWD}@${TARGET_REPO}
+        run: git remote add adobe https://${USER_NAME}:${USER_PWD}@${TARGET_REPO}
 
       - name: Set Git config
         run: |
           git config --global credential.helper cache
           git config --global user.email ${USER_EMAIL}
-          git config --global user.name ${USER_NAME}   
+          git config --global user.name ${USER_NAME}
 
-          
       - name: Push changes to ADOBE65_SANDBOX_REPO_BRANCH_DEV
         run: |
           git config pull.rebase true   # rebase

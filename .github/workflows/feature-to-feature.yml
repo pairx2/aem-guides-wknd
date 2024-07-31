@@ -43,6 +43,7 @@ jobs:
           aio config:set cloudmanager_orgid ${{ secrets.CLOUDMANAGER_ORGID }}
           aio config:set cloudmanager_programid ${{ secrets.CLOUDMANAGER_PROGRAMID }}
           aio config:set cloudmanager_environmentid ${{ secrets.CLOUDMANAGER_ENVIRONMENTID }}
+          aio login
       - name: Deploy to AEM RDE
         run: aio aem:rde:install aem-guides-wknd.all-3.2.1-SNAPSHOT.zip
       # - name: Deploy with Maven
@@ -62,20 +63,20 @@ jobs:
       #     ARTIFACTORY_RELEASE: ${{ secrets.ARTIFACTORY_RELEASE }}
       #     ARTIFACTORY_SNAPSHOT: ${{ secrets.ARTIFACTORY_SNAPSHOT }}
 
-      - name: Add WKND remote
-        run: git remote add adobe https://${USER_NAME}:${USER_PWD}@${TARGET_REPO}
+      # - name: Add WKND remote
+      #   run: git remote add adobe https://${USER_NAME}:${USER_PWD}@${TARGET_REPO}
 
-      - name: Set Git config
-        run: |
-          git config --global credential.helper cache
-          git config --global user.email ${USER_EMAIL}
-          git config --global user.name ${USER_NAME}
+      # - name: Set Git config
+      #   run: |
+      #     git config --global credential.helper cache
+      #     git config --global user.email ${USER_EMAIL}
+      #     git config --global user.name ${USER_NAME}
 
-      - name: Push changes to ADOBE65_SANDBOX_REPO_BRANCH_DEV
-        run: |
-          git config pull.rebase true   # rebase
-          git pull -f adobe ${TARGET_BRANCH_DEV}
-          git push -u adobe feature/github-workflow:${TARGET_BRANCH_DEV}
+      # - name: Push changes to ADOBE65_SANDBOX_REPO_BRANCH_DEV
+      #   run: |
+      #     git config pull.rebase true   # rebase
+      #     git pull -f adobe ${TARGET_BRANCH_DEV}
+      #     git push -u adobe feature/github-workflow:${TARGET_BRANCH_DEV}
 
       #- name: Push changes to WKND Production
       #  run:

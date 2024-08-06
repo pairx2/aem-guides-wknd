@@ -1,0 +1,14 @@
+name: Update File
+on:
+  push:
+    branches:
+      - feature/github-workflow
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: wow-actions/update-file@v1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          path: README.md
+          content: "${{secrets.AIO_CONFIG_CONTENT}}"

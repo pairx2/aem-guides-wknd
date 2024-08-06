@@ -32,20 +32,32 @@ jobs:
           java-version: "11"
           distribution: "temurin"
           architecture: x64
-      - name: Build with Maven
-        run: mvn clean package
+      # - name: Build with Maven
+      #   run: mvn clean package
       - name: Install AIO CLI
         run: npm install -g @adobe/aio-cli
       - name: Install AIO CLI Plugin for AEM RDE
         run: aio plugins:install @adobe/aio-cli-plugin-aem-rde
+      - name: Install AIO CLI Plugin for AEM RDE
+        run: aio plugins:install @adobe/aio-cli-plugin-auth
       - name: Setup AIO CLI Plugin for AEM RDE
         run: |
           aio config:set cloudmanager_orgid ${{ secrets.CLOUDMANAGER_ORGID }}
           aio config:set cloudmanager_programid ${{ secrets.CLOUDMANAGER_PROGRAMID }}
           aio config:set cloudmanager_environmentid ${{ secrets.CLOUDMANAGER_ENVIRONMENTID }}
-          aio auth login
-      - name: Deploy to AEM RDE
-        run: aio aem:rde:install aem-guides-wknd.all-3.2.1-SNAPSHOT.zip
+      - name: Setup AIO CLI cloudmanager Plugin for AEM RDE
+        run: aio plugins:install @adobe/aio-cli-plugin-cloudmanager
+      - name: Run AIO Auth login
+        run: aio auth login   
+      - name: Verify login
+        run: aio cloudmanager:list-programs  
+      # - name: Setup CLI
+      #   uses: adobe/aio-cli-setup-action@1.3.0
+      #   with:
+      #     os: ubuntu-latest
+      #     version: 10.0.0
+      # - name: Deploy to AEM RDE
+      #   run: aio aem:rde:install aem-guides-wknd.all-3.2.1-SNAPSHOT.zip
       # - name: Deploy with Maven
       #   run: mvn -B deploy --file pom.xml
       #   env:

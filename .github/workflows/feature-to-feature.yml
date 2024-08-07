@@ -43,9 +43,10 @@ jobs:
         run: aio plugins:install @adobe/aio-cli-plugin-auth
       - name: Create AIO config file
         run: |
-          echo "${{ secrets.AIO_CONFIG_CONTENT}}" > ~/.config/aio
+          echo "${{ secrets.AIO_CONFIG_CONTENT}}" > ~/config.json
       - name: Read contents of AIO config
         run: |
+          aio config:set ims.contexts.aio-cli-plugin-cloudmanager ~/config.json --file --json
           cat ~/.config/aio
       - name: Setup AIO CLI Plugin for AEM RDE
         run: |

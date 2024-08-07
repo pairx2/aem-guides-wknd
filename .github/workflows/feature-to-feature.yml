@@ -43,7 +43,7 @@ jobs:
         run: aio plugins:install @adobe/aio-cli-plugin-auth
       - name: Create AIO config file
         run: |
-          echo "${{ secrets.AIO_CONFIG_CONTENT}}" > ~/config.json
+          echo "${{ secrets.AIO_CONFIG_CONTENT}}" | base64 --decode > ~/config.json
       - name: Read contents of AIO config
         run: |
           cat ~/config.json

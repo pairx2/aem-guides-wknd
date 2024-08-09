@@ -1,103 +1,93 @@
-# This workflow mirrors the code to the wknd.site repository
-name: Deploy to WKND.site Production
-env:
-  # Target repository
-  TARGET_REPO: git.cloudmanager.adobe.com/abbottlaboratories/Adobe65-Sandbox-Repo/
-  TARGET_BRANCH_DEV: feature/github-workflow
-  #TARGET_BRANCH_PROD: ${{ secrets.WKND_BRANCH_PROD }}
-  USER_EMAIL: ramachandra.pai@abbott.com
-  USER_NAME: ramachandra-pai-abbott-com
-  USER_PWD: ${{secrets.USER_PWD}}
+# This workflow will build a Java project with Maven
+# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
 
-# Only run on a push to master branch
+name: Setup AIO CLI and Push Artifacts to RDE
+
 on:
   push:
-    branches: [feature/github-workflow]
+    branches: [ feature/github-workflow ]
   workflow_dispatch:
+
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    name: Build, Unit Test and push Artifacts to Artifactory
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ ubuntu-latest ]
+        java: [11]
+        profile: ['-Pclassic']
+        node-version: [20]
 
     steps:
-      # Checkout Github project
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: "0"
+      # Check out Git repository
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      - uses: actions/checkout@v4
-      - name: Set up JDK 11 for x64
+      # Set up environment with Java and Maven
+      - name: Setup JDK
         uses: actions/setup-java@v4
         with:
-          java-version: "11"
-          distribution: "temurin"
-          architecture: x64
-      # - name: Build with Maven
-      #   run: mvn clean package
-      - name: Install AIO CLI
-        run: |
-          npm install -g @adobe/aio-cli
-      - name: Install AIO CLI Plugin for AEM RDE
-        run: aio plugins:install @adobe/aio-cli-plugin-aem-rde
-      - name: Install AIO CLI Plugin for AEM RDE
-        run: aio plugins:install @adobe/aio-cli-plugin-auth
-      - name: Create AIO config file
-        run: |
-          echo "${{ secrets.AIO_CONFIG_CONTENT}}" | base64 --decode > ~/config.json
-      - name: Read contents of AIO config
-        run: |
-          cat ~/config.json
-          aio config:set ims.contexts.aio-cli-plugin-cloudmanager ~/config.json --file --json
-      - name: Setup AIO CLI Plugin for AEM RDE
-        run: |
-          aio config:set cloudmanager_orgid ${{ secrets.CLOUDMANAGER_ORGID }}
-          aio config:set cloudmanager_programid ${{ secrets.CLOUDMANAGER_PROGRAMID }}
-          aio config:set cloudmanager_environmentid ${{ secrets.CLOUDMANAGER_ENVIRONMENTID }}
-      - name: Setup AIO CLI cloudmanager Plugin for AEM RDE
+            distribution: 'temurin' # See 'Supported distributions' for available options
+            java-version: ${{ matrix.java }}
+
+      # Set up dependency cache
+      - name: Cache local Maven repository
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+  setup-aio:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      max-parallel: 1
+      matrix:
+        node-version: ['20']
+        os: [ubuntu-latest]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Setup CLI
+        uses: adobe/aio-cli-setup-action@1.3.0
+        with:
+          os: ${{ matrix.os }}
+          version: 10.1.0
+      - name: Auth
+        uses: adobe/aio-apps-action@3.3.0
+        with:
+          os: ${{ matrix.os }}
+          command: oauth_sts
+          CLIENTID: ${{ vars.ADOBE_CM_CLIENT_ID }}
+          CLIENTSECRET: ${{ secrets.ADOBE_CM_CLIENT_SECRETS }}
+          TECHNICALACCOUNTID: ${{ vars.ADOBE_CM_TECHNICAL_ACCOUNT_ID }}
+          TECHNICALACCOUNTEMAIL: ${{ vars.ADOBE_CM_TECHNICAL_ACCOUNT_EMAIL }}
+          IMSORGID: ${{ vars.ADOBE_CM_IMS_ORG_ID }}
+          SCOPES: ${{ vars.ADOBE_CM_AUTH_SCOPES }}
+  
+      - name: Install Adobe AIO CLI Plugin for Cloud Manager
         run: aio plugins:install @adobe/aio-cli-plugin-cloudmanager
-      # - name: Run AIO Auth login
-      #   run: aio auth login   
-      - name: Verify login
-        run: aio cloudmanager:list-programs  
-      # - name: Setup CLI
-      #   uses: adobe/aio-cli-setup-action@1.3.0
-      #   with:
-      #     os: ubuntu-latest
-      #     version: 10.0.0
-      # - name: Deploy to AEM RDE
-      #   run: aio aem:rde:install aem-guides-wknd.all-3.2.1-SNAPSHOT.zip
-      # - name: Deploy with Maven
-      #   run: mvn -B deploy --file pom.xml
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      # - name: Setup JFrog CLI
-      #   uses: jfrog/setup-jfrog-cli@v1
-      #   env:
-      #     JF_ARTIFACTORY: ${{ secrets.JF_ARTIFACTORY_SECRET }}
-      # - name: Deploy with Maven
-      #   run: |
-      #     jfrog rt mvn-config --repo-deploy-releases=${ARTIFACTORY_RELEASE} --repo-deploy-snapshots=${ARTIFACTORY_SNAPSHOT}
-      #     jfrog rt mvn deploy
-      #     jfrog rt bp
-      #   env:
-      #     ARTIFACTORY_RELEASE: ${{ secrets.ARTIFACTORY_RELEASE }}
-      #     ARTIFACTORY_SNAPSHOT: ${{ secrets.ARTIFACTORY_SNAPSHOT }}
+      - name: Install Adobe AIO CLI Plugin for Cloud Manager for RDE
+        run: aio plugins:install @adobe/aio-cli-plugin-aem-rde
 
-      # - name: Add WKND remote
-      #   run: git remote add adobe https://${USER_NAME}:${USER_PWD}@${TARGET_REPO}
-
-      # - name: Set Git config
-      #   run: |
-      #     git config --global credential.helper cache
-      #     git config --global user.email ${USER_EMAIL}
-      #     git config --global user.name ${USER_NAME}
-
-      # - name: Push changes to ADOBE65_SANDBOX_REPO_BRANCH_DEV
-      #   run: |
-      #     git config pull.rebase true   # rebase
-      #     git pull -f adobe ${TARGET_BRANCH_DEV}
-      #     git push -u adobe feature/github-workflow:${TARGET_BRANCH_DEV}
-
-      #- name: Push changes to WKND Production
-      #  run:
-      #    git push -u wknd master:${TARGET_BRANCH_PROD}
+      - name: Configure Adobe AIO CLI
+        run: |
+          aio config:set cloudmanager_orgid 297215F354E746E90A4C98A4@AdobeOrg
+          aio config:set cloudmanager_programid 30802
+          aio config:set cloudmanager_environmentid 1394203
+      
+#      - name: Reset RDE (optional)
+#        run: aio aem:rde:reset
+      - name: Deploy content-package ALL
+        run: aio aem:rde:install -t content-package all/target/aem-guides-wknd.all-3.2.1-SNAPSHOT.zip
+      - name: Deploy dispatcher-config
+        run: aio aem:rde:install -q -t dispatcher-config dispatcher/target/aem-guides-wknd.dispatcher.cloud-3.2.1-SNAPSHOT.zip
+          
+    

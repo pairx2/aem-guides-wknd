@@ -64,11 +64,24 @@ jobs:
           server-id: artifactory
           server-username: ARTIFACTORY_USERNAME_REF
           server-password: ARTIFACTORY_TOKEN_REF
-      - name: Build with Maven
-        run: mvn clean package
+      - name: Build adc module with Maven
+        run: mvn -pl aem65-adc-divisional-apps clean package
         env:
           ARTIFACTORY_TOKEN_REF: ${{secrets.ARTIFACTORY_TOKEN}}
           ARTIFACTORY_USERNAME_REF: ${{secrets.ARTIFACTORY_USERNAME}}
+        if: github.ref == 'refs/heads/feature/adc-div-deploy'
+      - name: Build cv module with Maven
+        run: mvn -pl aem65-cv-divisional-apps clean package
+        env:
+          ARTIFACTORY_TOKEN_REF: ${{secrets.ARTIFACTORY_TOKEN}}
+          ARTIFACTORY_USERNAME_REF: ${{secrets.ARTIFACTORY_USERNAME}}
+        if: github.ref == 'refs/heads/feature/cv-div-deploy'  
+      - name: Build cloudplatform module with Maven
+        run: mvn -pl aem65-cloudplatform-apps clean package
+        env:
+          ARTIFACTORY_TOKEN_REF: ${{secrets.ARTIFACTORY_TOKEN}}
+          ARTIFACTORY_USERNAME_REF: ${{secrets.ARTIFACTORY_USERNAME}}
+        if: github.ref == 'refs/heads/feature/cloudplatform-deploy'        
       - name: Setup CLI
         uses: adobe/aio-cli-setup-action@1.3.0
         with:
@@ -99,8 +112,17 @@ jobs:
       
 #      - name: Reset RDE (optional)
 #        run: aio aem:rde:reset
-      - name: Deploy content-package ALL
+
+      - name: Deploy content-package cloudplatform ALL
         run: aio aem:rde:install -t content-package aem65-cloudplatform-apps/all/target/aem-abbott-platform-cloud-apps.all-1.0.0-SNAPSHOT.zip
+        if: github.ref == 'refs/heads/feature/cloudplatform-deploy'
+      - name: Deploy content-package cv ALL
+        run: aio aem:rde:install -t content-package aem65-cv-divisional-apps/all/target/aem-cv-divisional-apps.all-1.0.0-SNAPSHOT.zip
+        if: github.ref == 'refs/heads/feature/cv-div-deploy'
+      - name: Deploy content-package adc ALL
+        run: aio aem:rde:install -t content-package aem65-adc-divisional-apps/all/target/aem-adc-divisional-apps.all-1.0.0-SNAPSHOT.zip
+        if: github.ref == 'refs/heads/feature/adc-div-deploy'        
+
 #     - name: Deploy dispatcher-config
 #      run: aio aem:rde:install -q -t dispatcher-config dispatcher/target/aem-guides-wknd.dispatcher.cloud-3.2.1-SNAPSHOT.zip
           

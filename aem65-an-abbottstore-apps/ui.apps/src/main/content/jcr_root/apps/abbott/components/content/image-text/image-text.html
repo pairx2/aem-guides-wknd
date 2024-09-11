@@ -1,0 +1,19 @@
+<sly data-sly-use.templates="core/wcm/components/commons/v1/templates.html"/>
+<sly data-sly-use.details="com.abbott.aem.an.abbottstore.models.ImageTextModel" />
+<sly data-sly-set.imageOrText=" ${details.imageRef || details.title || details.text}"/>
+<div class="marketing__container" style="background-color: ${details.bgColor @context='styleString'}">
+    <div class="row no-gutters">
+        <div class="col-12 col-lg-6 ${details.imageAlignment == 'right' ? 'order-lg-2' : ''}">
+            <div class="marketing-image-wrapper">
+                <img src="${details.imageRef}" alt="${details.imgAltText}" class="marketing-image">
+            </div>
+        </div>
+        <div class="col-12 col-lg-6 ${details.imageAlignment == 'right' ? 'align-left' : ''}">
+            <div class="marketing-text-wrapper">
+                <div class="marketing-title" style="color: ${details.titleColor @context='styleString'}">${details.title}</div>
+                <div class="marketing-content" style="color: ${details.textColor @context='styleString'}">${details.text}</div>
+            </div>
+        </div>
+    </div>
+</div>
+<sly data-sly-call="${templates.placeholder @ isEmpty = !imageOrText}"></sly>

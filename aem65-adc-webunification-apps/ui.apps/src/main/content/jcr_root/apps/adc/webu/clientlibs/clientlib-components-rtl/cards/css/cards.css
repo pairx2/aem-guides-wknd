@@ -1,0 +1,243 @@
+.card {
+  position: relative;
+  width: 100%;
+}
+.card .card__wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 100%;
+  -ms-flex-item-align: start;
+  align-self: flex-start;
+}
+.card:before {
+  content: " ";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  border: var(--card-border);
+  border-radius: var(--card-border-radius);
+  -webkit-box-shadow: var(--card-box-shadow);
+  box-shadow: var(--card-box-shadow);
+  z-index: 0;
+}
+.card__media {
+  height: var(--card-media-height-mobile);
+  border-radius: var(--card-media-border-radius);
+  overflow: hidden;
+  position: relative;
+}
+@media (min-width: 576px) {
+  .card__media {
+    height: var(--card-media-height);
+  }
+}
+.card__image,
+.card .cmp-image__image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+  -o-object-position: center center;
+  object-position: center center;
+}
+.card__body {
+  padding: var(--card-body-padding);
+  position: relative;
+  z-index: 2;
+  word-break: break-word;
+}
+.card__body .link a {
+  line-height: 1.5rem;
+}
+.card__body .a-button {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+.card__title {
+  line-height: var(--card-title-line-height);
+  color: var(--card-title-color-dark);
+  font-family: var(--card-title-font-family);
+}
+.card__description {
+  color: var(--card-description-color-light);
+  line-height: var(--card-description-line-height);
+  font-size: var(--card-description-font-size);
+  font-family: var(--card-description-font-family);
+  font-weight: normal;
+}
+.card--default .card__media {
+  border-radius: 8px;
+}
+.card--default .card__media .cmp-logo-image {
+  z-index: 99999;
+  position: absolute;
+  height: 42px;
+  top: 5px;
+}
+.card--default .card__body {
+  padding: 1rem 1rem 1rem 0;
+}
+.card--default .card__body .card__title {
+  font-size: var(--card-title-font-size);
+  margin-bottom: 1rem;
+}
+.card--default .card__body .card__description {
+  font-size: var(--card-description-font-size);
+  color: var(--card-default-color);
+  margin-bottom: 1.5rem;
+}
+.card--information {
+  border-radius: 8px;
+  border: 1px solid var(--card-border-light);
+}
+.card--information .card__media {
+  height: var(--card-information-media-height);
+}
+.card--information .card__media .cmp-image__image {
+  width: auto;
+  padding-left: 1rem;
+  padding-top: 0.625rem;
+}
+.card--information .card__body .card__title {
+  font-size: var(--card-into-title-font-size);
+  line-height: var(--card-info-title-line-height);
+  margin-bottom: 1rem;
+}
+.card--information .card__body .card__description {
+  color: var(--black-color);
+  font-size: var(--card-description-font-size);
+  margin-bottom: 1rem;
+}
+.card--support {
+  border-radius: 8px;
+  border: 1px solid var(--card-border-light);
+}
+.card--support .card__link {
+  text-decoration: none;
+}
+.card--support .card__wrapper {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  padding-left: 0.937rem;
+}
+.card--support .card__media {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 120px;
+  flex: 0 0 120px;
+  height: var(--card-support-media-height);
+  padding-top: 1rem;
+}
+.card--support .card__media .cmp-image__image {
+  height: 60px;
+  -o-object-fit: contain;
+  object-fit: contain;
+}
+.card--support .card__media .card__support-label--text {
+  position: absolute;
+  bottom: 0.6rem;
+  width: 100%;
+  text-align: center;
+  font-size: var(--card-label-font-size);
+  font-family: var(--card-title-font-family);
+  line-height: var(--card-label-line-height);
+  color: var(--black-color);
+}
+.card--support .card__body .card__title {
+  font-size: var(--card-title-font-size);
+  margin-bottom: 1rem;
+}
+.card--support .card__body .card__description {
+  color: var(--black-color);
+  font-size: var(--card-description-font-size-sm);
+  line-height: var(--card-support-description-line-height);
+}
+.card--logo .card__media {
+  border-radius: 0;
+  border: 1px solid var(--card-border-dark);
+}
+.card--logo .card__body {
+  padding-left: 10px;
+}
+.card--patient-story {
+  max-width: var(--card-patient-story-width-sm);
+  margin: auto;
+}
+.card--patient-story .card__wrapper .card__media {
+  overflow: visible;
+  height: var(--card-patient-story-media-height-sm);
+  width: 100%;
+  margin: auto;
+}
+.card--patient-story .card__wrapper .card__media .cmp-image__image {
+  border-radius: 50%;
+}
+.card--patient-story .card__wrapper .cmp-logo-image {
+  position: relative;
+  height: 100%;
+  max-height: var(--card-patient-story-logo-height);
+  top: 0;
+  display: block;
+}
+.card--patient-story .card__wrapper .card__body {
+  padding: 0;
+}
+.card--patient-story .card__wrapper .card__body .card__title {
+  position: relative;
+  padding-top: 1rem;
+  font-size: var(--card-patient-story-title-font-size-sm);
+}
+.card--patient-story .card__wrapper .card__body .card__title::after {
+  content: "";
+  height: 4px;
+  background-color: var(--cards-line-separator-yellow);
+  position: absolute;
+  width: 60px;
+  padding: 0;
+  bottom: -25px;
+  border-radius: 10px;
+  left: 0;
+}
+.card--patient-story .card__wrapper .card__body .link.button {
+  margin-top: 3rem;
+}
+@media (min-width: 768px) {
+  .card--patient-story {
+    max-width: 100%;
+  }
+  .card--patient-story .card__wrapper {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+  }
+  .card--patient-story .card__wrapper .card__media {
+    height: var(--card-patient-story-media-height);
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 420px;
+    flex: 0 0 420px;
+    margin: 0;
+  }
+  .card--patient-story .card__wrapper .card__body {
+    padding-left: 1.5rem;
+  }
+  .card--patient-story .card__wrapper .card__body .card__title {
+    font-size: var(--card-into-title-font-size);
+    line-height: var(--card-info-title-line-height);
+  }
+}

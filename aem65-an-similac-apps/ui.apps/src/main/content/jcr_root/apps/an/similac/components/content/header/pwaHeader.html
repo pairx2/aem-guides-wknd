@@ -1,0 +1,84 @@
+<sly data-sly-use.templates="an/similac/components/content/templates.html" />
+<sly data-sly-test="${wcmmode.edit || '/app/login' in currentPage.path}">
+   <header>
+      <div id="template" class="global-error">
+         <p>${inheritedPageProperties.cookieMsg @ context='html'}</p>
+         <svg viewBox="0 0 100 100" class="sim-icon">
+             <use href="#icon-basic-01"></use>
+          </svg>
+      </div>
+   </header>
+</sly>
+<sly data-sly-test="${wcmmode.edit || '/app/retailer-choice' in currentPage.path || '/app/account/' in currentPage.path}">
+   <sly data-sly-test="${properties.enableDisruptor}">
+      <div>
+         <sly data-sly-resource="${'disruptor' @ resourceType='an/similac/components/content/disruptor'}"></sly>
+      </div>
+   </sly>
+   <sly
+      data-sly-use.headerModel="${'com.abbott.aem.an.similac.core.models.HeaderModel' @ headerResourcePath=currentPage.path}" />
+   <sly data-sly-test="${resource.path}">
+      <header>
+         <sly data-sly-include="commonHeaderConfig.html"/>
+         <div class="show-rewards welcome-reward">
+            <!--Menu section start-->
+            <div>
+               <nav class="navbar navbar-expand-lg navbar-wrapper pwa-navbar-wrapper" aria-label="Primary Nav">
+                  <div class="container cotainer-padding">
+                     <div class="nav-wrapper d-flex">
+                        <div class="nav-bar-top nav-bar-pwa nav-bar d-flex justify-content-end">
+                        </div>
+                     </div>
+                  </div>
+               </nav>
+            </div>
+            <!--Menu section end-->
+
+            <!--Home button section start-->
+            <div class="pwa-home">
+                  <sly data-sly-test="${currentPage.path != '/content/an/similac/us/en/app/account/offers'}">
+                     <sly
+                        data-sly-call="${templates.includeResource @ relativeResourcePath=resource.path, nodeName='homeButton', slingResourceType='/apps/an/similac/components/content/list'}"
+                        data-sly-unwrap />
+                  </sly>
+            </div>
+            <!--Home button section end-->
+
+            <!--Welcome section start-->
+            <div class="col-12 welcome-user-text">
+               <sly data-sly-test="${currentPage.path == '/content/an/similac/us/en/app/account/offers'}">
+                  <span data-name-pattern="Welcome NAME,"> </span>
+               </sly>
+            </div>
+            <!--Welcome section end-->
+
+            <!--Rewards section start-->        
+            <sly data-sly-test="${wcmmode.edit || currentPage.path == '/content/an/similac/us/en/app/account/offers'}">
+               <sly
+                  data-sly-call="${templates.includeResource @ relativeResourcePath=resource.path, nodeName='myRewards', slingResourceType='an/similac/components/form/myRewards'}"
+                  data-sly-unwrap />
+            </sly>          
+            <!--Rewards section end-->   
+                   
+            <!--Text section start-->         
+               <sly
+                  data-sly-call="${templates.includeResource @ relativeResourcePath=resource.path, nodeName='pwaHeaderText', slingResourceType='an/similac/components/content/text'}"
+                  data-sly-unwrap />
+            <!--Text section end-->
+</sly>
+   </div>
+   </div>
+   </sly>
+   </header>
+   <sly data-sly-include="commonHeader.html"/>
+<div id="overlay">
+   <div class="pie">
+      <div class="text-overlay"></div>
+   </div>
+</div>
+<sly data-sly-test="${!headerModel.relativeHeaderPath}">
+   <sly
+      data-sly-call="${templates.placeholder @isEmpty = 'true', classAppend = '', emptyTextAppend = 'Please configure Header Component of the site.' }" />
+</sly>
+
+<div class="clearfix"></div>

@@ -1,0 +1,9 @@
+<sly data-sly-use.templates="abbott/components/content/templates.html"/>
+<sly data-sly-use.advertiseModel="com.abbott.aem.an.abbottstore.models.AdvertisementSectionModel">
+    <div class="abbott-home-ad text-center"  style="background-color: ${properties.bgColor @ context='styleString'};">
+    	<sly data-sly-test.addTitle = "${advertiseModel.title}" />
+        <h3 class="abbott-home-ad__title text-uppercase"style="background-color: ${properties.titleBgColor @ context='styleString'};">${advertiseModel.title}</h3>
+        <div class="px-3">${advertiseModel.text @context='html'}</div>
+    </div>
+</sly>
+ <sly data-sly-call="${templates.placeholder @ isEmpty= !addTitle}"></sly> 

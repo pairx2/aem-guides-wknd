@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Image"
+    sling:resourceType="cq/gui/components/authoring/dialog"
+    helpPath="https://www.adobe.com/go/aem_cmp_image_v2"
+    trackingFeature="core-components:image:v2"
+    extraClientlibs="[image.clientlibs,core.wcm.components.image.v2.editor]">
+    <content
+        granite:class="cmp-image__editor"
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                maximized="{Boolean}true">
+                <items jcr:primaryType="nt:unstructured">
+                    <metadata
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Metadata"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <captionGroup
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/well">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <displayPopupTitle
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                        checked="${not empty cqDesign.displayPopupTitle ? cqDesign.displayPopupTitle : false}"
+                                                        fieldDescription="When checked, the caption won't be displayed below the image, but as a pop-up displayed by some browsers when hovering over the image."
+                                                        name="./displayPopupTitle"
+                                                        text="Display caption as pop-up"
+                                                        uncheckedValue="false"
+                                                        value="{Boolean}true"/>
+                                                    <captionplacement
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                        fieldLabel="Caption Placement"
+                                                        name="./captionPlacement">
+                                                        <items jcr:primaryType="nt:unstructured">
+                                                            <bottom
+                                                                jcr:primaryType="nt:unstructured"
+                                                                text="Below"
+                                                                value="bottom"/>
+                                                            <top
+                                                                jcr:primaryType="nt:unstructured"
+                                                                name="./top"
+                                                                text="Above"
+                                                                value="top"/>
+                                                        </items>
+                                                    </captionplacement>
+                                                    <captionalignment
+                                                        granite:class="inlinealignment"
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                        fieldLabel="Caption Alignment"
+                                                        name="./captionAlignment">
+                                                        <items jcr:primaryType="nt:unstructured">
+                                                            <left
+                                                                jcr:primaryType="nt:unstructured"
+                                                                text="Left"
+                                                                value="left"/>
+                                                            <center
+                                                                jcr:primaryType="nt:unstructured"
+                                                                text="Center"
+                                                                value="center"/>
+                                                            <right
+                                                                jcr:primaryType="nt:unstructured"
+                                                                text="Right"
+                                                                value="right"/>
+                                                        </items>
+                                                    </captionalignment>
+                                                </items>
+                                            </captionGroup>
+                                            <external
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                name="./external"
+                                                text="Is External Link?"
+                                                uncheckedValue="false"
+                                                value="true"/>
+                                            <urlaction
+                                                granite:class="cq-dialog-dropdown-showhide"
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                fieldLabel="Image URL action"
+                                                name="./urlAction">
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    cq-dialog-dropdown-showhide-target=".urlaction-showhide-target"/>
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <option1
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="None"
+                                                        value="none"/>
+                                                    <option2
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="Open URL"
+                                                        value="openUrl"/>
+                                                    <option3
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="Go to Anchor"
+                                                        value="gotoAnchor"/>
+                                                    <option4
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="Download Asset"
+                                                        value="downloadAsset"/>
+                                                    <option5
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="Play Limelight Video"
+                                                        value="playLimelightVideo"/>
+                                                    <option6
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="Play YouTube Video"
+                                                        value="playYoutubeVideo"/>
+                                                </items>
+                                            </urlaction>
+                                            <target-url
+                                                granite:class="urlaction-showhide-target"
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    showhidetargetvalue="openUrl"/>
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <well
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/well">
+                                                        <items jcr:primaryType="nt:unstructured">
+                                                            <url
+                                                                jcr:primaryType="nt:unstructured"
+                                                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                                name="./checkbox"
+                                                                text="Open Target URL in new window?"
+                                                                uncheckedValue="_self"
+                                                                value="_blank"/>
+                                                            <target-url
+                                                                jcr:primaryType="nt:unstructured"
+                                                                sling:resourceType="/libs/granite/ui/components/coral/foundation/form/pathfield"
+                                                                fieldDescription="Internal page (or) external URL that needs to be redirected upon button click. Please mention required http or https followed by domain for external link."
+                                                                fieldLabel="Target URL"
+                                                                name="./url"
+                                                                rootPath="/content/cv"/>
+                                                        </items>
+                                                    </well>
+                                                </items>
+                                            </target-url>
+                                            <anchorname
+                                                granite:class="urlaction-showhide-target"
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    showhidetargetvalue="gotoAnchor"/>
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <well
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/well">
+                                                        <items jcr:primaryType="nt:unstructured">
+                                                            <anchor-name
+                                                                jcr:primaryType="nt:unstructured"
+                                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                fieldLabel="Anchor Name"
+                                                                id="getanchorname"
+                                                                name="./anchorName"/>
+                                                        </items>
+                                                    </well>
+                                                </items>
+                                            </anchorname>
+                                            <asset
+                                                granite:class="urlaction-showhide-target"
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    showhidetargetvalue="downloadAsset"/>
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <well
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/well">
+                                                        <items jcr:primaryType="nt:unstructured">
+                                                            <asset-url
+                                                                jcr:primaryType="nt:unstructured"
+                                                                sling:resourceType="/libs/granite/ui/components/coral/foundation/form/pathfield"
+                                                                fieldLabel="Asset"
+                                                                id="getasset"
+                                                                name="./assetUrl"
+                                                                rootPath="/content/dam/cv"/>
+                                                        </items>
+                                                    </well>
+                                                </items>
+                                            </asset>
+                                            <playlime-lightvideo
+                                                granite:class="urlaction-showhide-target"
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    showhidetargetvalue="playLimelightVideo"/>
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <well
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/well">
+                                                        <items jcr:primaryType="nt:unstructured">
+                                                            <playerid
+                                                                jcr:primaryType="nt:unstructured"
+                                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                fieldDescription="Please enter player ID of Limelight"
+                                                                fieldLabel="Limelight Player ID"
+                                                                name="./limelightPlayerId"/>
+                                                            <mediaid
+                                                                jcr:primaryType="nt:unstructured"
+                                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                fieldDescription="Please enter media ID of Limelight video"
+                                                                fieldLabel="Media ID"
+                                                                name="./limelightMediaId"/>
+                                                            <org-id
+                                                                jcr:primaryType="nt:unstructured"
+                                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                fieldDescription="Please enter organisation ID of Limelight video"
+                                                                fieldLabel="Organisation ID"
+                                                                name="./orgId"/>
+                                                        </items>
+                                                    </well>
+                                                </items>
+                                            </playlime-lightvideo>
+                                            <playyoutubevideo
+                                                granite:class="urlaction-showhide-target"
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    showhidetargetvalue="playYoutubeVideo"/>
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <well
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/well">
+                                                        <items jcr:primaryType="nt:unstructured">
+                                                            <video-url
+                                                                jcr:primaryType="nt:unstructured"
+                                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                emptyText="https://www.youtube.com/embed/{id_of_video}"
+                                                                fieldDescription="Please provide URL for the video. Youtube requires structure: https://www.youtube.com/embed/(id_of_video)"
+                                                                fieldLabel="Video URL"
+                                                                name="./youTubeUrl"/>
+                                                        </items>
+                                                    </well>
+                                                </items>
+                                            </playyoutubevideo>
+                                            <linkURL
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:hideResource="{Boolean}true"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                fieldDescription="Make the image a link to another resource."
+                                                fieldLabel="Link"
+                                                name="./linkURL"
+                                                nodeTypes="dam:Asset, nt:file, cq:Page"
+                                                rootPath="/content"
+                                                wrapperClass="cmp-image__editor-link"/>
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </metadata>
+                    <asset
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Asset"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <file
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="cq/gui/components/authoring/dialog/fileupload"
+                                                autoStart="{Boolean}false"
+                                                class="cq-droptarget"
+                                                fieldDescription="The location of the image to embed on the page"
+                                                fieldLabel="Asset"
+                                                fileNameParameter="./fileName"
+                                                fileReferenceParameter="./fileReference"
+                                                mimeTypes="[image/gif,image/jpeg,image/png,image/tiff,image/svg+xml]"
+                                                multiple="{Boolean}false"
+                                                name="./file"
+                                                title="Upload Image Asset"
+                                                uploadUrl="${suffix.path}"
+                                                useHTML5="{Boolean}true"/>
+                                            <imagewidth
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                                fieldDescription="Width of the image in pixels"
+                                                fieldLabel="Image Width"
+                                                name="./imageWidth"/>
+                                            <imageheight
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                                fieldDescription="Height of the image in pixels"
+                                                fieldLabel="Image Height"
+                                                name="./imageHeight"/>
+                                            <parallaxImageFile
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="cq/gui/components/authoring/dialog/fileupload"
+                                                autoStart="{Boolean}false"
+                                                class="cq-droptarget"
+                                                fieldDescription="This image appears behind the foreground image and has a parallax effect on scroll"
+                                                fieldLabel="Parallax background image"
+                                                fileNameParameter="./fileName"
+                                                fileReferenceParameter="./parallaxFileReference"
+                                                mimeTypes="[image/gif,image/jpeg,image/png,image/tiff,image/svg+xml]"
+                                                multiple="{Boolean}false"
+                                                name="./file"
+                                                title="Upload Image Asset"
+                                                uploadUrl="${suffix.path}"
+                                                useHTML5="{Boolean}true"/>
+                                            <displayOriginalImage
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                description="If checked, image will render in its original aspect ratio"
+                                                name="./displayOriginalImage"
+                                                text="Display image in original aspect ratio"
+                                                uncheckedValue="false"
+                                                value="true"/>
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </asset>
+                    <styles
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Styles"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <imagealignment
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                fieldLabel="Image Alignment"
+                                                name="./imageAlignment">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <none
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="None"
+                                                        value="none"/>
+                                                    <left
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="Left-aligned"
+                                                        value="left"/>
+                                                    <center
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="Center-aligned"
+                                                        value="center"/>
+                                                    <right
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="Right-aligned"
+                                                        value="right"/>
+                                                </items>
+                                            </imagealignment>
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </styles>
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>

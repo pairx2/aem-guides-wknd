@@ -1,0 +1,291 @@
+$gradient-blue-purple : linear-gradient(340.72deg,var(--mediumblue-color),var(--primary-color) 36.86%,var(--primary-110-color) 65.18%,var(--secondary-110-color));
+.o-header {
+    &__secondary-top-nav {
+        position: relative;
+
+        &:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: $gradient-blue-purple;
+        }
+    }
+    &__mob-options {
+        right: 0;
+        @include media-breakpoint-down(lg) {
+            .m-signup {
+                .abt-icon {
+                    display: inline-block;
+                    position: relative;
+                    margin-right: 0.25em;
+                }
+            }
+        }
+    }
+
+    &__logo-section {
+        border-bottom: none;
+        padding-bottom: 0;
+
+        .col-lg-3 {
+            @include media-breakpoint-up(lg) {
+                padding-left: 1rem;
+            }
+        }
+
+        & > .container {
+            border-bottom: var(--header-border-bottom);
+            padding-bottom: 0.75rem;
+        }
+
+    }
+    .m-signup {
+        @include media-breakpoint-down(sm) {
+            padding-right: 15px;
+            .a-link {
+                margin-right: 0;
+            }
+        }
+    }
+    &__utility-nav {
+        @include media-breakpoint-down(lg) {
+            .m-link-stack__country-select {
+                .a-link__text {
+                    &:before {
+                        content: "\e9c9";
+                        font-family: 'Abbott-icon' !important;
+                        speak: never;
+                        font-style: normal;
+                        font-weight: normal;
+                        font-variant: normal;
+                        text-transform: none;
+                        line-height: 1;
+                        display: inline-block;
+                        margin-right: 0.5em;
+                        font-size: 16px;
+                    }
+                }
+            }
+        }
+    }
+    &__user-activity {
+        width: 100%;
+        .m-link-stack {
+            margin-right: auto;
+        }
+        .m-link-stack__container {
+            .a-link__text {
+                color: var(--link-stack-link-color);
+
+                .abt-icon {
+                    color: var(--link-stack-link-color)
+                }
+            }
+        }
+        &__list {
+            li {
+                &:focus, &:hover {
+                    .a-link__text {
+                        color: var(--white-color);
+
+                        .abt-icon {
+                            color: var(--white-color)
+                        }
+                    }
+                }
+            }
+        }
+        .o-header__utility-nav {
+            justify-content: space-between;
+            width: 100%;
+            @include media-breakpoint-up(lg) {
+                padding-left: 1rem;
+            }
+            .m-link-stack__dropdown-wrapper {
+                left: 0;
+                right: auto;
+            }
+        }
+    }
+    .m-mega-menu__mobile {
+        .navbar .navbar-collapse {}
+            .m-mega-menu__mobile-header, .a-link__text {
+                text-transform: uppercase;
+                color: var(--mega-menu-link-color);
+            }
+            .m-mega-menu__mobile-header {
+                font-weight: bold;
+            }
+        @include media-breakpoint-down(md) {
+            .a-link__inner-text {
+                font-size: 14px;
+                text-transform: uppercase;
+            }
+        }
+    }
+
+
+    .m-mega-menu__mobile .navbar {
+        padding-right: 0;
+        @include media-breakpoint-down(md) {
+            background-color: var(--white-color);
+        }
+    }
+    .m-mega-menu__item a {
+        font-family: #{$base-font-family};
+    }
+
+    .m-mega-menu__mobile a,
+    .m-mega-menu__mobile-item-wrappe a,
+    .o-header__mob-options a {
+        font-size: var(--mega-menu-list-font-size);
+    }
+
+    .navbar-collapse-wrapper {
+        width: 100%;
+    }
+
+    .o-header__mega-menu .container {
+        @include media-breakpoint-up(lg) {
+            padding-left: 2rem;
+        }
+    }
+
+    /***
+    HEADER STATES: Not logged in, logged in, and employee
+     */
+    body:not(.logged-in) & {
+        .o-header__mega-menu {
+            .navbar-expand-lg .navbar-collapse {
+                display: none !important;
+            }
+        }
+        @include media-breakpoint-up(lg) {
+            .m-mega-menu__mobile .navbar {
+                min-height: 0;
+            }
+        }
+        .o-header__col-mega-menu-mobile {
+            display: none;
+        }
+    }
+
+    body.logged-in & {
+        .o-header__secondary-top-nav {
+            background: $gradient-blue-purple;
+        }
+        .o-header__user-activity {
+            .m-link-stack {
+                .a-link__text {
+                    color: var(--white-color);
+
+                    .abt-icon {
+                        color: var(--white-color)
+                    }
+                }
+
+                .m-link-stack__container {
+                    .a-link__text {
+                        color: var(--link-stack-link-color);
+
+                        .abt-icon {
+                            color: var(--link-stack-link-color)
+                        }
+                    }
+                }
+                &__list {
+                    li {
+                        &:focus, &:hover {
+                            .a-link__text {
+                                color: var(--white-color);
+
+                                .abt-icon {
+                                    color: var(--white-color)
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .m-signup {
+            @include media-breakpoint-up(lg) {
+                .a-link__text {
+                    color: var(--white-color);
+                    .abt-icon {
+                        color: var(--white-color);
+                    }
+                }
+            }
+        }
+    }
+    body.employee & {
+        .menu-root-myDashboard,
+        .menu-root-labProfile,
+        .menu-root-myAbbotTeam,
+        .menu-root-myInstruments {
+            display: none;
+        }
+    }
+    body.employee & {
+        #myAccountDropdown {
+            .m-link-stack__list-item {
+                display: none;
+            }
+
+            .m-link-stack__list-item:last-child {
+                display: block;
+            }
+        }
+    }
+	body:not(.distAdmin) & {
+		.menu-root-distributorAdmin {
+		    display: none;
+		}
+	}
+	body.distributor & {
+        .menu-root-myDashboard,
+        .menu-root-labProfile,
+        .menu-root-myAbbotTeam,
+        .menu-root-myInstruments {
+            display: none;
+        }
+    }
+    //showing first and last li for distributor
+    body.distributor & {
+        #myAccountDropdown,#myAccountMobileDropdown
+        {
+            .m-link-stack__list
+            {
+                .m-link-stack__list-item
+                {
+                    display: none;
+                }
+                .m-link-stack__list-item:first-child
+                {
+                    display: block;
+                }
+                .m-link-stack__list-item:last-child
+                {
+                    display: block;
+                }
+            }
+        }
+        
+    }
+    .m-link-stack__dropdown-wrapper::before {
+        @include media-breakpoint-up(lg) {
+            right: auto;
+            left: 29%;
+        }
+    }
+    .menu-root-mobileLoginLink {
+        @include media-breakpoint-up(lg) {
+            display: none;
+        }
+    }
+}
+

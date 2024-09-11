@@ -1,0 +1,20 @@
+# Country specific authoring groups
+-  DEF damSites=:
+      corp:
+      - brandtraining
+- DEF groupPrefixAll="APP-Adobe-AEM-DM-ALL"
+-  group_config:
+   -  FOR division IN ${keys(damSites)}:
+      -  FOR site IN ${damSites[division]}:
+            -  ${groupPrefixAll}-${division}-${site}-content-editor:
+               -  name: ${upperCase(division)} ${site} Content Editor
+                  description: ${upperCase(division)} ${upperCase(site)} Content Author Group
+                  isMemberOf: base-abbott
+                  externalId: ${groupPrefixAll}-${division}-${site}-content-editor;ims
+-  ace_config:
+   -  FOR division IN ${keys(damSites)}:
+      -  FOR site IN ${damSites[division]}:
+            -  ${groupPrefixAll}-${division}-${site}-content-editor:
+               -  path: /content/dam/${division}/${site}
+                  permission: allow
+                  actions: read,create,modify,delete,replicate

@@ -1,0 +1,205 @@
+@import "./global/mixins.less";
+@import './global/variables.less';
+
+#product-data-popup-xf {
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    top:0;
+    left:0;
+    z-index: 999999999;
+
+    .container {
+        padding-bottom: 0;
+        padding-top: 20px;
+    }
+}
+
+#product-data-popup {
+    border: 1px solid gray;
+    padding: 0 10px;
+    position: fixed;
+    top: 0;
+    z-index: 99999999;
+    background: #FFFFFF;
+    left: 50%;
+    transform: translate(-50%, 5%);
+    overflow: auto;
+    height: 90%;
+    width: 70%;
+    border-radius: 5px;
+
+    @media @lg-down {
+        width: 80%;
+    }
+
+    @media @md-down {
+        width: 90%;
+    }
+
+    .abt-icon-cancel {
+        color: @color-hcp-blue;
+        font-size: @font-size-base;
+    }
+
+    #product-data-info {
+        display: flex;
+        gap: 10px;
+        margin-top: 20px;
+
+        @media @md-down {
+            flex-direction: column;
+        }
+
+        h3 {
+            font-family: @base-font-family-black, Arial, Helvetica, sans-serif;
+            font-size: 38px;
+            font-weight: 500;
+            line-height: 42px;
+            letter-spacing: 0em;
+            text-align: left;
+            text-transform: uppercase;
+            margin: 0;
+        }
+
+        img {
+            width: auto;
+            height: 224px;
+
+            @media @md-down {
+                height: 260px;
+                align-self: center;
+            }
+        }
+
+        #product-data-info-text p {
+            font-family: @base-font-family-black, Arial, Helvetica, sans-serif;
+            font-size: 24px;
+            font-weight: 500;
+            line-height: 34px;
+            letter-spacing: 0em;
+            text-align: left;
+            text-transform: uppercase;
+            color: #009CDE;
+        }
+
+        #product-data-info-subtext p {
+            font-family: @base-font-family-black, Arial, Helvetica, sans-serif;
+            font-size: 24px;
+            font-weight: 500;
+            line-height: 34px;
+            letter-spacing: 0em;
+            text-align: left;
+            margin: 0;
+        }
+
+        .info-container-right {
+            margin: 0;
+            width: 100%;
+            justify-content: center;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #product-data-dl-pdf {
+            font-size: @font-size-20;
+        }
+    }
+
+    #product-data-tables-container {
+        padding: 0;
+        
+        table, th, td {
+            border: 1px solid #D9D9D6;
+            border-collapse: collapse;
+        }
+
+        td {
+            padding: 10px 16px;
+            @media @md-down {
+                padding: 6px 12px;
+            }
+        }
+
+        hr {
+        	margin-bottom: 2rem;
+        }
+
+        .product-data-header {
+            text-transform: uppercase;
+            font-family: @base-font-family-black, Arial, Helvetica, sans-serif;
+            font-size: @font-size-base;
+        }
+
+        .product-data-thead {
+			td {
+                background: #F2F2F2;
+                font-family: @base-font-family-bold, Arial, Helvetica, sans-serif;
+                font-size: 18px;
+                font-weight: 450;
+                line-height: 26px;
+                letter-spacing: 0em;
+                color: #002A3A;
+
+                @media @md-down {
+                    font-size: 14px;
+                    font-weight: 450;
+                    line-height: 20px;
+                }
+            }
+        }
+
+        .product-data-tbody {
+            td:first-child {
+                text-align: left;
+                font-family: @base-font-family-bold, Arial, Helvetica, sans-serif;
+                font-size: 18px;
+                font-weight: 450;
+                line-height: 26px;
+                letter-spacing: 0em;
+                color: #002A3A;
+                width: 40%;
+
+                @media @md-down {
+                    font-size: 14px;
+                    font-weight: 450;
+                    line-height: 20px;
+                    width: auto;
+                }
+            }
+        }
+    }
+}
+
+#product-no-data p {
+    text-transform: uppercase;
+    text-align: center;
+    margin-top: 40px;
+    font-family: @base-font-family-bold, Arial, Helvetica, sans-serif;
+    font-size: 16px;
+}
+
+#show-product-data-popup-btn-xf {
+    .container {
+        @media @md-down {
+            padding-top: 0;
+        }
+    }
+
+    #show-product-data-popup-btn {
+        padding: 20px;
+        width: 321px;
+
+        @media @md-down {
+            width: 100%;
+        }
+
+    }
+
+    .button:has(#show-product-data-popup-btn) {
+       justify-content: center;
+       display: flex;
+    }
+}

@@ -1,0 +1,39 @@
+<nav class="second-nav bg-cerulean {{secondNav_class}}">
+    <div class="container {{container_class}}">
+        <ul class="second-nav-list d-flex {{list_class}}">
+            {{#each secondNav}}
+            {{#if this.dropdown}}
+            <li class="nav-item dropdown d-none d-lg-block">
+                <ul class="sub-menu dropdown-menu" aria-labelledby="navbarDropdown">
+                    {{#each this.data}}
+                    <li class="d-block text-nowrap dropdown-item"><a href="#">{{this.title}}</a></li>
+                    {{/each}}
+                </ul>
+            </li>
+            <div class="sm-dropdown">
+                {{#each this.data}}
+                <li class="nav-item">
+                    <a href="#">{{this.title}}</a>
+                </li>
+                {{/each}}
+            </div>
+            {{else if image}}
+            <li  class="nav-item ">
+                <a href="{{this.href}}"><img src="{{this.src}}" alt="{{this.title}}"></a>
+            </li>
+            {{else}}
+            <li class="nav-item {{this.className}} {{#if this.loginShow}} d-none {{/if}}" {{#if this.loginShow}} data-login="{{this.loginShow}}" {{/if}}>
+                <a 
+                    href="{{this.href}}"
+                    {{#if this.fun}} data-fun="{{this.fun}}" {{/if}} 
+                    {{#if this.namePattern}} data-name-pattern="{{this.namePattern}}" {{/if}}
+                >
+                    {{this.title}}
+                </a>
+            </li>
+            {{/if}}
+            {{/each}}
+        </ul>
+
+    </div>
+</nav>

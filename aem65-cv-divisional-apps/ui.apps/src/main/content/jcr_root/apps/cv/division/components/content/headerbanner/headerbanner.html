@@ -1,0 +1,295 @@
+<sly data-sly-use.template="core/wcm/components/commons/v1/templates.html" />
+<sly data-sly-use.headerBanner="com.abbott.aem.cv.division.core.components.models.HeaderBanner"
+   data-sly-use.component="com.adobe.cq.wcm.core.components.models.Component">
+   <div
+      class="m-hbanner ${headerBanner.bannerHeight} ${headerBanner.topMargin ? 'm-hbanner-spacing--top' :''} ${headerBanner.bottomMargin ? 'm-hbanner-spacing--bottom' :''} ">
+      <input type="hidden" value="${headerBanner.stopCarouselAutoRotate ? 'true' : 'false'}"
+         name="m-hbanner-autoplay" />
+      <section class="m-hbanner-section" id="${component.id}">
+         <div class="m-hbanner-slider">
+            <sly data-sly-list.imageText="${headerBanner.imageTextList}">
+               <sly data-sly-test.bg="${headerBanner.backgroundType == 'imageBackground'}">
+                  <div
+                     class="m-hbanner-slider__wrapper m-hbanner__background-image m-hbanner__background-solid--${headerBanner.backgroundColor}">
+                     <div class="m-hbanner-container container ">
+                        <div class="m-hbanner__content  ${headerBanner.textContainerWidth} ">
+                           <sly data-sly-test.titleTagRemove="${imageText.titleTag}">
+                              <h2 class="m-hbanner__content--title m-hbanner__content--text-${imageText.titleColor} ">
+                                 ${imageText.title @context='html'}
+                              </h2>
+                           </sly>
+                           <sly data-sly-test="${!titleTagRemove}">
+                              <h1 class="m-hbanner__content--title m-hbanner__content--text-${imageText.titleColor}">
+                                 ${imageText.title @context='html'}
+                              </h1>
+                           </sly>
+                           <div class="m-hbanner__content-body ">
+                              <sly data-sly-test.subtitleTagRemove="${imageText.subtitleTag}">
+                                 <h3
+                                    class="m-hbanner__content--subtitle m-hbanner__content--text-${imageText.subtitleColor}">
+                                    ${imageText.subtitle
+                                    @context='html'}
+                                 </h3>
+                              </sly>
+                              <sly data-sly-test="${!subtitleTagRemove}">
+                                 <h4
+                                    class="m-hbanner__content--subtitle m-hbanner__content--text-${imageText.subtitleColor}">
+                                    ${imageText.subtitle
+                                    @context='html'}
+                                 </h4>
+                              </sly>
+                              <!-- Button url -->
+                              <sly data-sly-list.button="${imageText.buttonlist}">
+                                 <sly data-sly-test="${button.buttonType =='url'}">
+                                    <div class="a-btn a-btn--url a-btn--spacing-bottom" role="group">
+                                       <a class="a-btn-button a-btn-button__theme--${button.buttonColor}" href="${button.urlLink} " target="${button.targetNewWindow ? '_blank' : '_self'}"> <span>${button.buttonText}</span> </a>
+                                    </div>
+                                 </sly>
+                                 <!-- Button Go to Anchor  -->
+                                 <sly data-sly-test="${button.buttonType =='anchor'}">
+                                    <div class="a-btn a-btn--target a-btn--spacing-bottom" role="group">
+                                       <a class="a-btn-button a-btn-button__theme--${button.buttonColor}"
+                                          href="#${button.anchorName}"> <span>${button.buttonText}</span> </a>
+                                    </div>
+                                 </sly>
+                                 <!-- Button Click to call -->
+                                 <sly data-sly-test="${button.buttonType =='clicktocall'}">
+                                    <div class="a-btn a-btn--call a-btn--spacing-bottom" role="group">
+                                       <a class="a-btn-button a-btn-button__theme--${button.buttonColor}"
+                                          href="tel:${button.phoneNumber}"> <span>${button.buttonText}</span> </a>
+                                    </div>
+                                 </sly>
+                                 <!-- Button Download Asset -->
+                                 <sly data-sly-test="${button.buttonType =='asset'}">
+                                    <div class="a-btn a-btn--asset a-btn--spacing-bottom" role="group">
+                                       <a class="a-btn-button a-btn-button__theme--${button.buttonColor} "
+                                          href="${button.assetLink}" target="_blank"> <span>${button.buttonText}</span>
+                                       </a>
+                                    </div>
+                                 </sly>
+                                 <!-- Button playYTVideo -->
+                                 <sly data-sly-test="${button.buttonType =='ytvideo'}">
+                                    <div class="a-btn a-btn--yt-video a-btn--spacing-bottom"
+                                       data-player-ID="${button.videoId}" role="group">
+                                       <a class="a-btn-button a-btn-button__theme--${button.buttonColor}"
+                                          data-target="#yt-modal" data-toggle="modal" href="javascript:void(0)"
+                                          role="dialog"> <span>${button.buttonText}</span>
+                                          <input class="yt-id" type="hidden" value="${button.videoId}" /> </a>
+                                    </div>
+                                 </sly>
+                                 <!-- Button Limelight video -->
+                                 <sly data-sly-test="${button.buttonType =='video'}">
+                                    <script
+                                       src="https://video.limelight.com/player/limelightjs-player.js?orgId=b0029788f6f3415db64a9cf5452f5200">
+                                    </script>
+                                    <div class="a-btn a-btn--limelight-video a-btn--spacing-bottom"
+                                       data-media-ID="${button.mediaId}" data-player-ID="${button.playerId}"
+                                       role="group">
+                                       <a class="a-btn-button a-btn-button__theme--${button.buttonColor}"
+                                          data-target="#ll-video-modal" data-toggle="modal" href="javascript:void(0)"
+                                          role="dialog"> <span>${button.buttonText}</span>
+                                          <input class="mediaId" type="hidden" value="${button.mediaId}" />
+                                          <input class="playerId" type="hidden" value="${button.playerId}" /> </a>
+                                    </div>
+                                 </sly>
+                                 <!-- Button BrightCove video -->
+                                 <sly data-sly-test="${button.buttonType =='brightCove'}">
+                                    <a class="brightcove-video-modal a-btn-button a-btn-button__theme--${button.buttonColor}" data-target="#video-${button.brightVideoID}-modal"
+                                       data-toggle="modal" href="javascript:void(0)" role="dialog"
+                                       data-media-ID="${button.accountID}" data-player-ID="${button.brightPlayerID}"
+                                       data-video-id="${button.brightVideoID}">
+                                       <span>${button.buttonText}</span>
+                                       <input class="accountID" type="hidden" value="${button.accountID}" />
+                                       <input class="brightPlayerID" type="hidden" value="${button.brightPlayerID}" />
+                                       <input class="brightVideoID" type="hidden" value="${button.brightVideoID}" />
+                                    </a>
+                                 </sly>
+                              </sly>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="m-hbanner__media ${headerBanner.hideMobile ? 'm-hbanner__media-mobile--hide' : ''}">
+                        <div class="m-hbanner__media-image">
+                           <sly data-sly-test="${imageText.imageFileReference && imageText.decorative}">
+                              <img src="${imageText.imageFileReference}" alt=" " class="m-hbanner-image" />
+                           </sly>
+                           <sly data-sly-test="${imageText.imageFileReference && !imageText.decorative}">
+                              <img src="${imageText.imageFileReference}" alt="${imageText.altText}"
+                                 class="m-hbanner-image" />
+                           </sly>
+                        </div>
+                     </div>
+                  </div>
+               </sly>
+               <sly data-sly-test="${!bg}">
+                  <div
+                     class="m-hbanner-slider__wrapper m-hbanner__background-color m-hbanner__background-solid--${headerBanner.backgroundColor}">
+                     <div class="m-hbanner-container container ">
+                        <div class="m-hbanner__content  ${headerBanner.textContainerWidth} ">
+                           <sly data-sly-test.titleTagRemove="${imageText.titleTag}">
+                              <h2 class="m-hbanner__content--title m-hbanner__content--text-${imageText.titleColor} ">
+                                 ${imageText.title @context='html'}
+                              </h2>
+                           </sly>
+                           <sly data-sly-test="${!titleTagRemove}">
+                              <h1 class="m-hbanner__content--title m-hbanner__content--text-${imageText.titleColor} ">
+                                 ${imageText.title @context='html'}
+                              </h1>
+                           </sly>
+                           <div class="m-hbanner__content-body ">
+                              <sly data-sly-test.subtitleTagRemove="${imageText.subtitleTag}">
+                                 <h3
+                                    class="m-hbanner__content--subtitle m-hbanner__content--text-${imageText.subtitleColor}">
+                                    ${imageText.subtitle
+                                    @context='html'}
+                                 </h3>
+                              </sly>
+                              <sly data-sly-test="${!subtitleTagRemove}">
+                                 <h4
+                                    class="m-hbanner__content--subtitle m-hbanner__content--text-${imageText.subtitleColor}">
+                                    ${imageText.subtitle
+                                    @context='html'}
+                                 </h4>
+                              </sly>
+                              <sly data-sly-list.button="${imageText.buttonlist}">
+                                 <!-- Button url -->
+                                 <sly data-sly-test="${button.buttonType =='url'}">
+                                    <div class="a-btn a-btn--url a-btn--spacing-bottom" role="group">
+                                       <a class="a-btn-button a-btn-button__theme--${button.buttonColor}" href="${button.urlLink}" target="${button.targetNewWindow ? '_blank' : '_self'}"> <span>${button.buttonText}</span> </a>
+                                    </div>
+                                 </sly>
+                                 <!-- Button Go to Anchor  -->
+                                 <sly data-sly-test="${button.buttonType =='anchor'}">
+                                    <div class="a-btn a-btn--target a-btn--spacing-bottom" role="group">
+                                       <a class="a-btn-button a-btn-button__theme--${button.buttonColor}"
+                                          href="#${button.anchorName}"> <span>${button.buttonText}</span> </a>
+                                    </div>
+                                 </sly>
+                                 <!-- Button Click to call -->
+                                 <sly data-sly-test="${button.buttonType =='clicktocall'}">
+                                    <div class="a-btn a-btn--call a-btn--spacing-bottom" role="group">
+                                       <a class="a-btn-button a-btn-button__theme--${button.buttonColor}"
+                                          href="tel:${button.phoneNumber}"> <span>${button.buttonText}</span> </a>
+                                    </div>
+                                 </sly>
+                                 <!-- Button Download Asset -->
+                                 <sly data-sly-test="${button.buttonType =='asset'}">
+                                    <div class="a-btn a-btn--asset a-btn--spacing-bottom" role="group">
+                                       <a class="a-btn-button a-btn-button__theme--${button.buttonColor} "
+                                          href="${button.assetLink}" target="_blank"> <span>${button.buttonText}</span>
+                                       </a>
+                                    </div>
+                                 </sly>
+                                 <!-- Button playYTVideo -->
+                                 <sly data-sly-test="${button.buttonType =='ytvideo'}">
+                                    <div class="a-btn a-btn--yt-video a-btn--spacing-bottom"
+                                       data-player-ID="${button.videoId}" role="group">
+                                       <a class="a-btn-button a-btn-button__theme--${button.buttonColor}"
+                                          data-target="#yt-modal" data-toggle="modal" href="javascript:void(0)"
+                                          role="dialog"> <span>${button.buttonText}</span>
+                                          <input class="yt-id" type="hidden" value="${button.videoId}" /> </a>
+                                    </div>
+                                 </sly>
+                                 <!-- Button BrightCove video -->
+                                 <sly data-sly-test="${button.buttonType =='brightCove'}">
+                                    <a class="brightcove-video-modal a-btn-button a-btn-button__theme--${button.buttonColor}" data-target="#video-${button.brightVideoID}-modal"
+                                       data-toggle="modal" href="javascript:void(0)" role="dialog"
+                                       data-media-ID="${button.accountID}" data-player-ID="${button.brightPlayerID}"
+                                       data-video-id="${button.brightVideoID}">
+                                       <span>${button.buttonText}</span>
+                                       <input class="accountID" type="hidden" value="${button.accountID}" />
+                                       <input class="brightPlayerID" type="hidden" value="${button.brightPlayerID}" />
+                                       <input class="brightVideoID" type="hidden" value="${button.brightVideoID}" />
+                                    </a>
+                                 </sly>
+                                 <!-- Button Limelight video -->
+                                 <sly data-sly-test="${button.buttonType =='video'}">
+                                    <script
+                                       src="https://video.limelight.com/player/limelightjs-player.js?orgId=b0029788f6f3415db64a9cf5452f5200">
+                                    </script>
+                                    <div class="a-btn a-btn--limelight-video a-btn--spacing-bottom"
+                                       data-media-ID="${button.mediaId}" data-player-ID="${button.playerId}"
+                                       role="group">
+                                       <a class="a-btn-button a-btn-button__theme--${button.buttonColor}"
+                                          data-target="#ll-video-modal" data-toggle="modal" href="javascript:void(0)"
+                                          role="dialog"> <span>${button.buttonText}</span>
+                                          <input class="mediaId" type="hidden" value="${button.mediaId}" />
+                                          <input class="playerId" type="hidden" value="${button.playerId}" /> </a>
+                                    </div>
+                                 </sly>
+                              </sly>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="m-hbanner__media ${headerBanner.hideMobile ? 'm-hbanner__media-mobile--hide' : ''}">
+                        <div class="m-hbanner__media-image">
+                           <div
+                              class="m-hbanner__background-clr m-hbanner__background-solid--${headerBanner.backgroundColor}">
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </sly>
+            </sly>
+         </div>
+      </section>
+   </div>
+   <sly data-sly-call="${template.placeholder @ isEmpty=!text}" />
+   <!-- Youtube video Player -->
+   <div class="yt-video-modal modal fade" id="yt-modal" role="dialog">
+      <div class="modal-dialog">
+         <div class="modal-content">
+            <div class="modal-header">
+               <button class="close" data-dismiss="modal" type="button">&times;</button>
+            </div>
+            <div class="yt-video-player" id="ytvideo" yt-id=""> </div>
+         </div>
+      </div>
+   </div>
+   <!-- Limelight video Player -->
+   <sly data-sly-list.imageText="${headerBanner.imageTextList}">
+      <sly data-sly-list.button="${imageText.buttonlist}">
+         <sly data-sly-test="${button.buttonType =='video'}">
+            <div class="limelight-video-modal modal fade" id="ll-video-modal" role="dialog">
+               <div class="modal-dialog">
+                  <div class="modal-content">
+                     <div class="modal-header">
+                        <button class="close" data-dismiss="modal" type="button">&times;</button>
+                     </div>
+                     <div class="limelight-player" id="limelight_player_${button.playerId}"> </div>
+                  </div>
+               </div>
+            </div>
+         </sly>
+      </sly>
+   </sly>
+   <sly data-sly-list.imageText="${headerBanner.imageTextList}">
+      <sly data-sly-list.button="${imageText.buttonlist}">
+         <sly data-sly-test="${button.buttonType =='brightCove'}">
+            <div class="brightCove-video modal fade generic-modal generic-modal--image"
+               id="video-${button.brightVideoID}-modal" role="dialog">
+               <div class="modal-dialog">
+                  <div class="modal-content generic-modal__content">
+                     <div class="modal-header generic-modal__header">
+                        <span class="generic-modal--close" data-dismiss="modal" aria-label="Close"><i aria-hidden="true"
+                              class="abt-icon abt-icon-cancel"></i></span>
+                     </div>
+                     <!--/* BrightCove Video */-->
+                     <div class="modal-body generic-modal__content-body">
+                        <div class="a-video" data-js-component="video">
+                           <div class="a-video__player global-video-popup">
+                              <div class="brightCove-video" data-account="${button.accountID}"
+                                 data-player="${button.brightPlayerID}" data-embed="default"
+                                 data-video-id="${button.brightVideoID}" data-playlist-id="" data-application-id="">
+                                 <div class="placeHolder"></div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </sly>
+      </sly>
+   </sly>
+</sly>

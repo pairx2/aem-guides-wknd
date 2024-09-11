@@ -1,0 +1,34 @@
+<div  class="cq-placeholder section" 
+	data-emptytext="Configure DO - Sign In/Create Password Parent Component in EDIT Mode" 
+    data-sly-test.author="${(wcmmode.edit || wcmmode.design)}" >
+</div>
+<div data-sly-test="${wcmmode.edit}">
+	Author the DO - Sign In/Create Password Parent Component
+	<form name="${container.name}"
+		enctype="${container.enctype}" class="similac-form"
+		data-sly-use.container="com.adobe.cq.wcm.core.components.models.form.Container">
+	</form>
+</div>
+
+<sly data-sly-test="${!wcmmode.edit}">
+   <sly data-sly-use.obj="com.abbott.aem.an.similac.core.models.DOSignInCreatePwdModel">
+		<script data-sly-test.signInJson="${obj.signInJson @ context='scriptComment'}">
+			var doSignIn = Object.freeze(JSON.parse("${signInJson @ context='scriptString'}"));
+		</script>
+		<script data-sly-test.createPwdJson="${obj.createPwdJson @ context='scriptComment'}">
+			var doCreatePassword = Object.freeze(JSON.parse("${createPwdJson @ context='scriptString'}"));
+		</script>
+   </sly>
+   
+	<div class="container digitalOfferSignIn">
+		<div class="para-content-1 mb-1_875 mt-4">
+			<h2>Your Account</h2>
+		</div>
+		<div class="row">
+			<div class="col-md-12 col-lg-8 M0auto mb-1_875">
+				<div id="digitalOfferSignIn">
+				</div>
+			</div>
+		</div>
+	</div>
+</sly>

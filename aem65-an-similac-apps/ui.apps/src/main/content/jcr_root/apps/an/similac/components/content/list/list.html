@@ -1,0 +1,17 @@
+<div  class="cq-placeholder section" data-emptytext="Configure List Component in EDIT Mode" data-sly-test.author="${(wcmmode.edit || wcmmode.design)}"></div>
+     <div data-sly-use.listLinks="${'com.abbott.aem.an.similac.core.models.MultiFieldReaderModel'}">
+         		<p class="groupHeading" data-sly-test="${properties.listTitle}">${properties.listTitle}</p>
+                <sly data-sly-test.listOrderCheckul = "${properties.listOrder == 'horizontal' ? 'second-nav-list d-flex flex-column flex-md-row justify-content-md-center footer-secondnav' : ' ' }"/>
+  				<sly data-sly-test.listOrderCheckli = "${properties.listOrder == 'horizontal' ? 'nav-item' : ' ' }"/>
+
+               <ul class="${listOrderCheckul}">  
+					<sly data-sly-repeat.listLink="${listLinks.links.listChildren}">
+						 <li class="${listOrderCheckli}" data-login="${listLink.hideOnLoggedIn ? 'false' : ''}"> 
+                         <sly data-sly-use.analyticsConfig="${'com.abbott.aem.an.similac.core.models.AnalyticsConfigModel' @sectionTitle =listLink.linkTitle}" />
+								<sly data-sly-use.linkHelper="${'com.abbott.aem.an.similac.core.models.LinkHelperModel' @ href=listLink.linkURL}" />
+									<a x-cq-linkchecker="skip" href="${linkHelper.linkHrefDomain}" data-gtm="${listLink.newWindow ? 'external-link' : 'internal-link'}|click|${analyticsConfig.eventLabel}_${properties.analyticsLabel}" target="${listLink.newWindow ? '_blank' : '_self'}">${listLink.linkTitle}</a> 
+								</sly>
+						 </li>
+					</sly> 
+				</ul>
+            </div>

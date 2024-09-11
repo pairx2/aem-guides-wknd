@@ -1,0 +1,158 @@
+/*
+Hero Banner component
+*/
+
+.m-hero {
+
+    //style system to acheive look and feel of hero banner without text
+    &.m-hero-image--without-text {
+        .m-hero__title {
+            display: none;
+        }
+
+        .m-hero__header {
+            font-family: @font-avenir-next-rounded-bold;
+        }
+
+        @media @lg-only {
+            margin: 0 auto !important;
+        }
+
+        .m-hero__media {
+
+            @media @lg-only {
+                left: 0;
+                height: 100%;
+                min-width: 0 !important;
+                margin: 0 !important;
+                position: absolute;
+                top: 0;
+                width: 100%;
+
+                img {
+                    --hero-media-image-object-position: left;
+                }
+            }
+        }
+
+        @media @md-up {
+            padding: 0;
+            margin: 0 auto;
+
+            .container {
+                .row {
+                    width: 100% !important;
+                    position: relative;
+                    height: 322px;
+                }
+            }
+
+            .m-hero__content {
+                margin-top: 252px;
+                margin-left: 0;
+                width: 100% !important;
+            }
+
+            .m-hero__header {
+                box-sizing: border-box;
+                background-color: @white;
+                color: @abbott-midnight-blue;
+                font-family: @font-avenir-next-rounded-bold;
+                font-size: 32px !important;
+                float: left;
+                line-height: 32px;
+                height: 50px;
+                margin: 0;
+                max-width: 502px;
+                padding: 9px 0px 12px 15px;
+                opacity: 0.82;
+                width: fit-content !important;
+            }
+
+            .m-hero__body {
+                background-image: linear-gradient(to right, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0));
+                float: left;
+                height: 50px;
+                margin: 0;
+                width: 134px !important;
+            }
+        }
+
+        @media @md-down {
+
+            .m-hero__body,
+            .m-hero__extras {
+                display: none;
+            }
+
+            .m-hero__header {
+                border-bottom: 6px solid @abbott-light-silver;
+                font-size: 32px;
+                line-height: 32px;
+                margin: 0px 0px 24px 0px;
+                padding: 10px 0px 20px 0px;
+                text-align: center;
+                opacity: 0.82;
+            }
+        }
+
+        @media @xl-up {
+            .container .row {
+                height: 372px !important;
+
+                .m-hero__content {
+                    margin-top: 303px;
+                }
+            }
+        }
+    }
+
+    //style system to acheive look and feel of herobanner with text
+
+    &.m-hero-image--with-text {
+        @media @md-up {
+
+            .m-hero__header,
+            .m-hero__body,
+            .m-hero__extras {
+                display: none;
+            }
+        }
+
+        @media @lg-only {
+            .m-hero__media {
+                img {
+                    object-position: left !important;
+
+                }
+            }
+        }
+
+        @media @md-down {
+            .m-hero__header {
+                border-bottom: 0;
+                font-size: 21px;
+                line-height: 21px;
+                margin: 0;
+                padding: 10px 0 24px 0;
+                text-align: left;
+                opacity: 1;
+            }
+        }
+    }
+
+    //style system for hero banner text colors
+    &.m-hero-banner-text-color--abbott-midnight-blue {
+
+        .m-hero__header {
+            color: @abbott-midnight-blue  !important;
+        }
+    }
+
+    &.m-hero-banner-text-color--abbott-saphire {
+
+        .m-hero__header {
+            color: @abbott-saphire  !important;
+        }
+    }
+}

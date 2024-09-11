@@ -1,0 +1,112 @@
+<div class="container wistia-playlist-container responsivegrid aem-GridColumn aem-GridColumn--default--12"
+     data-sly-use.template="core/wcm/components/commons/v1/templates.html">
+   <sly data-sly-use.playList="com.abbott.aem.platform.common.components.models.VideoPlayList">
+      <script src="//fast.wistia.com/assets/external/E-v1.js" async></script>
+      <div class="wistia-playlist container" data-sly-test="${playList.sectionItems}"
+           data-video-type="${playList.playListType}"
+           data-js-component="${playList.playListType}">
+         <sly data-sly-list="${playList.sectionItems}">
+            <span data-sly-test="${itemList.first}"
+                  class="h3 wistia-playlist__main-title">${item.title @ context='html'}</span>
+         </sly>
+         <div class="wistia-playlist__main-container">
+            <div data-sly-test="${playList.playListType == 'wistiaVideos'}" class="wistia_responsive_padding">
+               <div class="wistia_responsive_wrapper">
+                  <sly data-sly-list="${playList.sectionItems}">
+                     <div data-sly-test="${itemList.first}"
+                          class="wistia_embed wistia_async_${item.wistiaId} videoFoam=true">&nbsp;
+                     </div>
+                     <a data-sly-test="${itemList.first}" class="wistia-playlist__main-video-image"
+                        href="#wistia_${item.wistiaId}">
+                        <img src="${item.iconImage}"
+                             alt="${!item.title ? 'play video' : item.title @ context='attribute'}"/>
+                     </a>
+                     <div class="wistia-playlist__button-data" data-button-text="${item.buttonText}"
+                          data-button-link="${item.buttonLink @ extension='html'}" data-button-target="${item.buttonTarget}"></div>
+                  </sly>
+               </div>
+            </div>
+            <div data-sly-test="${playList.playListType == 'html5Videos'}" class="wistia_responsive_padding">
+               <div class="frame-container">
+                  <div class="wistia_responsive_wrapper">
+                     <sly data-sly-list="${playList.sectionItems}">
+                        <iframe data-sly-test="${itemList.first}"
+                                src="${item.videoSrc}"
+                                title="${item.title @ context='attribute'}"
+                                width="100%"
+                                allow="geolocation"
+                                height="475px">
+                        </iframe>
+                        <div class="wistia-playlist__button-data" data-button-text="${item.buttonText}"
+                             data-button-link="${item.buttonLink @ extension='html'}" data-button-target="${item.buttonTarget}"></div>
+                     </sly>
+                  </div>
+               </div>
+            </div>
+            <sly data-sly-list="${playList.sectionItems}">
+               <div data-sly-test="${itemList.first}" class="wistia-playlist__main-description">
+                  <p>${item.videoText @ context='html'}</p>
+               </div>
+               <div data-sly-test="${itemList.first && item.buttonLink}"
+                    class="wistia-playlist__main-button newButton btn-group">
+                  <a href="${item.buttonLink @ extension='html'}" target="${item.buttonTarget}" rel="${item.buttonTarget == '_blank' ? 'noopener noreferrer' : ''}"
+                     class="new-btn dt-txt-colorPalette_White dt-bgcol-colorPalette_Abbott-Primary-Blue dt-bgcol-colorPalette_LightGray_animate dt-txt-colorPalette_Abbott-Primary-Blue_hover">
+                     <span class="wistia-playlist__button-text">${item.buttonText}</span>
+                  </a>
+                 
+               </div>
+            </sly>
+         </div>
+         <div class="wistia-playlist__list-container ${playList.singleVideo ? 'displaynone' : ''}">
+            <span data-sly-test="${playList.additionalHeading}" class="h3 wistia-playlist__related-title">${playList.additionalHeading @ context = 'html'}</span>
+            <sly data-sly-test="${playList.playListType == 'html5Videos'}" >
+               <div class="wistia-playlist__list-items"
+                    data-sly-list="${playList.sectionItems}">
+                  <a data-video-url="${item.videoSrc}"
+                     class="wistia-playlist__video-item ${itemList.first ? 'active' : ''} ${playList.hideDescInPlayListPanel ? 'wistia-playlist__list-descHide': ''}">
+                     <div class="wistia-playlist__video-icon wistia-playlist__video-icon--hasImage"
+                          data-sly-test="${item.iconImage}">
+                        <img alt="${!item.title ? 'play video' : item.title @ context='attribute'}"
+                             src="${item.iconImage}"/>
+                     </div>
+                     <div class="wistia-playlist__video-content ${item.iconImage ? '' : 'no-image'}">
+                        <h6 class="wistia-playlist__video-title"
+                            data-sly-test="${item.title}">${item.title @ context='html'}</h6>
+                        <div class="wistia-playlist__video-copy  ${playList.hideDesclnPlayListPanel ? 'true': ''}"
+                             data-sly-test="${item.videoText}">
+                           <p>${item.videoText @ context='html'}</p>
+                        </div>
+                        <div class="wistia-playlist__button-data" data-button-text="${item.buttonText}"
+                             data-button-link="${item.buttonLink @ extension='html'}" data-button-target="${item.buttonTarget}"></div>
+                     </div>
+                  </a>
+               </div>
+            </sly>
+            <sly data-sly-test="${playList.playListType == 'wistiaVideos'}">
+               <div class="wistia-playlist__list-items"
+                    data-sly-list="${playList.sectionItems}">
+                  <a href="#wistia_${item.wistiaId}"
+                     class="wistia-playlist__video-item ${itemList.first ? 'active' : ''} ${playList.hideDescInPlayListPanel ? 'wistia-playlist__list-descHide': ''}">
+                     <div class="wistia-playlist__video-icon wistia-playlist__video-icon--hasImage"
+                          data-sly-test="${item.iconImage}">
+                        <img alt="${!item.title ? 'play video' : item.title @ context='attribute'}"
+                             src="${item.iconImage}"/>
+                     </div>
+                     <div class="wistia-playlist__video-content ${item.iconImage ? '' : 'no-image'}">
+                        <h6 class="wistia-playlist__video-title"
+                            data-sly-test="${item.title}">${item.title @ context='html'}</h6>
+                        <div class="wistia-playlist__video-copy "
+                             data-sly-test="${item.videoText}">
+                           <p>${item.videoText @ context='html'}</p>
+                        </div>
+                        <div class="wistia-playlist__button-data" data-button-text="${item.buttonText}"
+                             data-button-link="${item.buttonLink @ extension='html'}" data-button-target="${item.buttonTarget}"></div>
+                     </div>
+                  </a>
+               </div>
+            </sly>
+         </div>
+      </div>
+   </sly>
+</div>
+<sly data-sly-call="${template.placeholder @ isEmpty=true}"></sly>

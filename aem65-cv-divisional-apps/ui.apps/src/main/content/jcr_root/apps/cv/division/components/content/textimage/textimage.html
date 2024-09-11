@@ -1,0 +1,222 @@
+<sly data-sly-test="${wcmmode.edit}">
+    <p data-emptytext="${component.title}" class="cq-placeholder"></p>
+</sly>
+
+<div data-sly-use.textImage="com.abbott.aem.cv.division.core.components.models.TextImage">
+    <script src="https://video.limelight.com/player/limelightjs-player.js?orgId=b0029788f6f3415db64a9cf5452f5200"></script>
+    <div
+        class="o-textimage-section ${textImage.topMargin ? 'add-margin-top' : ''} ${textImage .bottomMargin ? 'add-margin-bottom' : ''}">
+        <div class="container">
+            <div
+                class="o-textimage-section__row ${textImage.imagePlacement} ${textImage.topRule ? 'horizontal-rule-top' :''}  ${textImage.bottomRule ? 'horizontal-rule-bottom' :''} ${textImage.ruleColor} ${textImage.imageMargin}">
+                <div class="p-md-0 o-textimage-section__content richtext text ${textImage.imagePlacement} ${textImage.textBlockAlignment}">
+                    <div class="o-textimage-section__richtext cmp-text">
+                        ${textImage.text @context='html'}
+                    </div>
+
+                    <div class="o-textimage-section__button-wrapper ${textImage.buttonPlacement}">
+                        <!-- Button url -->
+                        <sly data-sly-list.button="${textImage.buttonlist}">
+                            <sly data-sly-test="${button.buttonType =='url'}">
+                                <div class="a-btn a-btn--url a-btn--spacing-bottom" role="group">
+                                    <a class="a-btn-button a-btn-button__theme--${button.buttonColor}"
+                                        href="${button.urlLink } "
+                                        target="${button.targetNewWindow ? '_blank' : '_self'}">
+                                        <span>${button.buttonText}</span> </a>
+                                </div>
+                            </sly>
+                            <!-- Button Go to Anchor  -->
+                            <sly data-sly-test="${button.buttonType =='anchor'}">
+                                <div class="a-btn a-btn--target a-btn--spacing-bottom" role="group">
+                                    <a class="a-btn-button a-btn-button__theme--${button.buttonColor}"
+                                        href="#${button.anchorName}"> <span>${button.buttonText}</span> </a>
+                                </div>
+                            </sly>
+                            <!-- Button Click to call -->
+                            <sly data-sly-test="${button.buttonType =='clicktocall'}">
+                                <div class="a-btn a-btn--call a-btn--spacing-bottom" role="group">
+                                    <a class="a-btn-button a-btn-button__theme--${button.buttonColor}"
+                                        href="tel:${button.phoneNumber}"> <span>${button.buttonText}</span> </a>
+                                </div>
+                            </sly>
+                            <!-- Button Download Asset -->
+                            <sly data-sly-test="${button.buttonType =='asset'}">
+                                <div class="a-btn a-btn--asset a-btn--spacing-bottom" role="group">
+                                    <a class="a-btn-button a-btn-button__theme--${button.buttonColor} "
+                                        href="${button.assetLink}" target="_blank"> <span>${button.buttonText}</span>
+                                    </a>
+                                </div>
+                            </sly>
+                            <!-- Button playYTVideo -->
+                            <sly data-sly-test="${button.buttonType =='ytvideo'}">
+                                <div class="a-btn a-btn--yt-video a-btn--spacing-bottom"
+                                    data-player-ID="${button.videoId}" role="group">
+                                    <a class="a-btn-button a-btn-button__theme--${button.buttonColor}"
+                                        data-target="#yt-modal" data-toggle="modal" href="javascript:void(0)"
+                                        role="dialog"> <span>${button.buttonText}</span>
+                                        <input class="yt-id" type="hidden" value="${button.videoId}" /> </a>
+                                </div>
+                                <!--Modal-->
+                                <div class="yt-video-modal modal fade" id="yt-modal" role="dialog">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button class="close" data-dismiss="modal" type="button">&times;</button>
+                                            </div>
+                                            <div class="yt-video-player" id="ytvideo" yt-id=""> </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--End Modal-->
+                            </sly>
+                            <!-- Button Limelight video -->
+                            <sly data-sly-test="${button.buttonType =='video'}">
+                                <script
+                                    src="https://video.limelight.com/player/limelightjs-player.js?orgId=b0029788f6f3415db64a9cf5452f5200">
+                                </script>
+                                <div class="a-btn a-btn--limelight-video a-btn--spacing-bottom"
+                                    data-media-ID="${button.mediaId}" data-player-ID="${button.playerId}" role="group">
+                                    <a class="a-btn-button a-btn-button__theme--${button.buttonColor}"
+                                        data-target="#ll-video-modal" data-toggle="modal" href="javascript:void(0)"
+                                        role="dialog"> <span>${button.buttonText}</span>
+                                        <input class="mediaId" type="hidden" value="${button.mediaId}" />
+                                        <input class="playerId" type="hidden" value="${button.playerId}" /> </a>
+                                </div>
+                                <!--Modal-->
+                                <div class="limelight-video-modal modal fade" id="ll-video-modal" role="dialog">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button class="close" data-dismiss="modal" type="button">&times;</button>
+                                            </div>
+                                            <div class="limelight-player" id="limelight_player_${button.playerId}"> </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--End Modal-->
+                            </sly>
+                        </sly>
+                    </div>
+                </div>
+                <div
+                    class="o-textimage-section__image-wrapper ${textImage.imagePlacement} ${textImage.imageMargin == 'm-custom' ? textImage.imgMargin : 'default'} caption-${textImage.captionPlacement} ${textImage.hideMobile ? 'hide-mob':''}">
+                    <div class="o-textimage-section__image-column ${textImage.imageMargin} ${textImage.imageAlignment}">
+                        <sly data-sly-test="${textImage.imageCta == 'imageAsset'}">
+                            <a href="${textImage.assetValue}" target="_blank">
+                            <sly data-sly-test="${textImage.imagePath && textImage.decorative}">
+                                <img src="${textImage.imagePath}" alt=" " class="o-textimage-section__image ${textImage.topImageMargin} ${textImage.rightImageMargin} ${textImage.bottomImageMargin} ${textImage.leftImageMargin}"/>
+                            </sly>
+                            <sly data-sly-test="${textImage.imagePath && !textImage.decorative}">
+                                <img src="${textImage.imagePath}" alt="${textImage.altText}" class="o-textimage-section__image ${textImage.topImageMargin} ${textImage.rightImageMargin} ${textImage.bottomImageMargin} ${textImage.leftImageMargin}"/>
+                            </sly>   
+                            </a>
+                        </sly>
+                        <sly data-sly-test="${textImage.imageCta == 'none'}">
+                            <sly data-sly-test="${textImage.imagePath && textImage.decorative}">
+                                <img src="${textImage.imagePath}" alt=" " class="o-textimage-section__image ${textImage.topImageMargin} ${textImage.rightImageMargin} ${textImage.bottomImageMargin} ${textImage.leftImageMargin}"/>
+                            </sly>
+                            <sly data-sly-test="${textImage.imagePath && !textImage.decorative}">
+                                <img src="${textImage.imagePath}" alt="${textImage.altText}" class="o-textimage-section__image ${textImage.topImageMargin} ${textImage.rightImageMargin} ${textImage.bottomImageMargin} ${textImage.leftImageMargin}"/>
+                            </sly>
+                        </sly>
+                        <sly data-sly-test="${textImage.imageCta == 'imageUrl'}">
+                            <a target="${textImage.targetUrlNewWindow ? '_blank' : '_self'}"
+                                href="${textImage.targetUrl @ extension = 'html'}">
+                                <sly data-sly-test="${textImage.imagePath && textImage.decorative}">
+                                    <img src="${textImage.imagePath}" alt=" " class="o-textimage-section__image ${textImage.topImageMargin} ${textImage.rightImageMargin} ${textImage.bottomImageMargin} ${textImage.leftImageMargin}"/>
+                                </sly>
+                                <sly data-sly-test="${textImage.imagePath && !textImage.decorative}">
+                                    <img src="${textImage.imagePath}" alt="${textImage.altText}" class="o-textimage-section__image ${textImage.topImageMargin} ${textImage.rightImageMargin} ${textImage.bottomImageMargin} ${textImage.leftImageMargin}"/>
+                                </sly>
+                            </a>
+                        </sly>
+                        <sly data-sly-test="${textImage.imageCta == 'imageAnchor'}">
+                            <a href="#${textImage.anchorValue}">
+                            <sly data-sly-test="${textImage.imagePath && textImage.decorative}">
+                                <img src="${textImage.imagePath}" alt=" " class="o-textimage-section__image ${textImage.topImageMargin} ${textImage.rightImageMargin} ${textImage.bottomImageMargin} ${textImage.leftImageMargin}"/>
+                            </sly>
+                            <sly data-sly-test="${textImage.imagePath && !textImage.decorative}">
+                                <img src="${textImage.imagePath}" alt="${textImage.altText}" class="o-textimage-section__image ${textImage.topImageMargin} ${textImage.rightImageMargin} ${textImage.bottomImageMargin} ${textImage.leftImageMargin}"/>
+                            </sly>
+                            </a>
+                        </sly>
+                        <sly data-sly-test="${textImage.imageCta == 'imagePhoneNumber'}">
+                            <a href="tel:${textImage.telePhoneNumber}">
+                            <sly data-sly-test="${textImage.imagePath && textImage.decorative}">
+                                <img src="${textImage.imagePath}" alt=" " class="o-textimage-section__image ${textImage.topImageMargin} ${textImage.rightImageMargin} ${textImage.bottomImageMargin} ${textImage.leftImageMargin}"/>
+                            </sly>
+                            <sly data-sly-test="${textImage.imagePath && !textImage.decorative}">
+                                <img src="${textImage.imagePath}" alt="${textImage.altText}" class="o-textimage-section__image ${textImage.topImageMargin} ${textImage.rightImageMargin} ${textImage.bottomImageMargin} ${textImage.leftImageMargin}"/>
+                            </sly>
+                            </a>
+                        </sly>
+                        <sly data-sly-test="${textImage.imageCta == 'imageVideo'}">
+                            <a class="limelight-imagetext-video-modal" href="javascript:void(0)" data-target="#Imgvideo-modal"
+                                data-toggle="modal" role="dialog">
+                                <input type="hidden" class="mediaIdValue" value="${textImage.mediaIdValue}" />
+                                <input type="hidden" class="playerIdValue" value="${textImage.playerIdValue}" />
+
+                                <span>
+                                    <sly data-sly-test="${textImage.imagePath && textImage.decorative}">
+                                        <img src="${textImage.imagePath}" alt=" " class="o-textimage-section__image ${textImage.topImageMargin} ${textImage.rightImageMargin} ${textImage.bottomImageMargin} ${textImage.leftImageMargin}"/>
+                                    </sly>
+                                    <sly data-sly-test="${textImage.imagePath && !textImage.decorative}">
+                                        <img src="${textImage.imagePath}" alt="${textImage.altText}" class="o-textimage-section__image ${textImage.topImageMargin} ${textImage.rightImageMargin} ${textImage.bottomImageMargin} ${textImage.leftImageMargin}"/>
+                                    </sly>
+                                </span>
+                            </a>
+
+                            <!-- Modal -->
+                            <div class="limelight-imagetext-modal modal fade" id="Imgvideo-modal" role="dialog">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        </div>
+                                        <div id="limelight_player_textimage_${textImage.playerIdValue}"
+                                            class="limelight_player_cont">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Modal -->
+                        </sly>
+
+                        <sly data-sly-test="${textImage.imageCta == 'imageYtVideo'}">
+                            <a href="javascript:void(0)" class="textimage-yt-modal"
+                                data-target="#yt-image-modal-textimage" data-toggle="modal" role="dialog">
+                                <input type="hidden" class="yt-id" value="${textImage.videoIdValue}" />
+                                <sly data-sly-test="${textImage.imagePath && textImage.decorative}">
+                                    <img src="${textImage.imagePath}" alt=" " class="o-textimage-section__image ${textImage.topImageMargin} ${textImage.rightImageMargin} ${textImage.bottomImageMargin} ${textImage.leftImageMargin}"/>
+                                </sly>
+                                <sly data-sly-test="${textImage.imagePath && !textImage.decorative}">
+                                    <img src="${textImage.imagePath}" alt="${textImage.altText}" class="o-textimage-section__image ${textImage.topImageMargin} ${textImage.rightImageMargin} ${textImage.bottomImageMargin} ${textImage.leftImageMargin}"/>
+                                </sly>
+                            </a>
+
+                            <!-- Modal -->
+                            <div class="yt-video-modal-textimage modal fade" id="yt-image-modal-textimage" role="dialog">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        </div>
+                                        <div id="video-textimage-img" class="yt-video-player-image" yt-id=""></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Modal -->
+                        </sly>
+
+                    </div>
+                    <div class="richtext text">
+                        <div
+                            class="o-textimage-section__image-caption cmp-text ${textImage.captionPlacement}--${textImage.captionAlignment} ${textImage.captionTextColor}">
+                            ${textImage.caption @context='html'}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,52 @@
+@import 'pop-up';
+
+.generic-modal {
+    $self:&;
+
+    &--close {
+        right: inherit;
+        left: 16px;
+    }
+
+    &__content {
+        
+        &-body {
+            @include rem(padding, var(--modal-body-padding-x) var(--modal-body-padding-x) 0 var(--modal-body-padding-y));
+            text-align: right;
+            
+            .abt-icon {
+                display: flex;
+                flex-direction: column;
+                float: left;
+                @include rem(margin-left, var(--modal-body-margin-x));
+            }
+
+        }
+
+        &-footer {
+            
+            .a-btn--link,
+            .a-button {
+                @include rem(margin, 0 var(--modal-body-margin-xx) 0 0);
+            }
+        }
+    }
+
+
+    &__image {
+        &-link {
+            width: 100%;
+            position: relative;
+            border-radius: var(--modal-border-radius) var(--modal-border-radius) 0 0;
+        }
+    }
+
+    &--image {
+
+        #{$self}__image {
+            margin: var(--modal-image-margin-rtl);
+        }
+
+    }
+
+}

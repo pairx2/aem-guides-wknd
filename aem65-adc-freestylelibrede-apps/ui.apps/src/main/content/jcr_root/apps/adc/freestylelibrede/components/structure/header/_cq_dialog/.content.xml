@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:description="Global Header"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Global Header"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <fixedcolums
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+                <items jcr:primaryType="nt:unstructured">
+                    <properties
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+                            <ui-rendition
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                fieldDescription="UI rendition of the component"
+                                fieldLabel="Rendition"
+                                name="./rendition">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <v1
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Version 1 (Old)"
+                                        value="v1-rendition"/>
+                                    <v2
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Version 2 (New)"
+                                        value="v2-rendition"/>
+                                </items>
+                            </ui-rendition>
+                            <header-links
+                                jcr:primaryType="nt:unstructured"
+                                jcr:title="Left Header Links"
+                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <header-link
+                                        granite:class="left-header-multifield-validation"
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="/libs/granite/ui/components/coral/foundation/form/multifield"
+                                        composite="{Boolean}true"
+                                        fieldDescription="Maximum of six links allowed">
+                                        <field
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="/libs/granite/ui/components/coral/foundation/container"
+                                            name="./linksHeader">
+                                            <items
+                                                jcr:primaryType="nt:unstructured"
+                                                name="./items">
+                                                <header-desktop-image
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                    fieldLabel="Header Desktop Image"
+                                                    name="./desktopImagePath"
+                                                    rootPath="/content/dam"
+                                                    validation="cq-dialog-link-validation"/>
+                                                <header-image-mobile
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                    fieldLabel="Header Mobile Image"
+                                                    name="./mobileImagePath"
+                                                    rootPath="/content/dam"
+                                                    validation="cq-dialog-link-validation"/>
+                                                <image-label
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    fieldLabel="Header Image Label"
+                                                    name="./imageLabel"
+                                                    validation="cq-dialog-link-validation"/>
+                                                <image-alt
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    fieldLabel="Header Image Alt"
+                                                    name="./imageAlt"
+                                                    validation="cq-dialog-link-validation"/>
+                                                <header-service-number
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    fieldLabel="Header Service Number"
+                                                    name="./serviceNumber"/>
+                                                <header-link-destination
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                    fieldLabel="Header Link Destination"
+                                                    name="./link"
+                                                    rootPath="/content"
+                                                    validation="cq-dialog-link-validation"/>
+                                                <header-link-action
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                    fieldLabel="Header Link Action"
+                                                    name="./openTab"
+                                                    required="true">
+                                                    <items jcr:primaryType="nt:unstructured">
+                                                        <new-tab
+                                                            jcr:primaryType="nt:unstructured"
+                                                            selected="{Boolean}true"
+                                                            text="New Tab"
+                                                            value="_blank"/>
+                                                        <same-tab
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Same Tab"
+                                                            value="_self"/>
+                                                        <modal-tab
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Modal"
+                                                            value="modal"/>
+                                                        <modal-overlay
+                                                                jcr:primaryType="nt:unstructured"
+                                                                text="Overlay"
+                                                                value="overlay"/>
+                                                    </items>
+                                                </header-link-action>                                                
+												<is-mini-cart
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                    fieldLabel="Mini Cart Popup"
+                                                    name="./miniCart"
+                                                    required="true">
+                                                    <items jcr:primaryType="nt:unstructured">
+                                                        <mini-cart-popup
+                                                            jcr:primaryType="nt:unstructured"
+                                                            selected="{Boolean}false"
+                                                            text="False"
+                                                            value="{Boolean}false"/>
+                                                        <mini-cart-popup-
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="True"
+                                                            value="{Boolean}true"/>
+                                                    </items>
+                                                </is-mini-cart>	
+                                                <headerLinkEvent
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    fieldLabel="Header Link Event"
+                                                    name="./headerLinkEvent"/>
+                                            </items>
+                                        </field>
+                                    </header-link>
+                                </items>
+                            </header-links>
+                        </items>
+                    </properties>
+                </items>
+            </fixedcolums>
+        </items>
+    </content>
+</jcr:root>

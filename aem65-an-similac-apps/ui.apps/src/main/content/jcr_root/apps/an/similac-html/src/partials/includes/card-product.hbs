@@ -1,0 +1,32 @@
+<div class="section">
+<div class="card product-card h-100" >
+	{{#if img_src}}
+  <a href="{{href}}" class="img-wrapper">
+    <picture>
+      <source media="(max-width: 575.98px)" data-srcset="{{img_sm_src}}">
+        <source media="(max-width: 991.98px)" data-srcset="{{img_md_src}}">
+          <img class="card-img-top" src="{{img_lazy_src}}" data-src="{{img_src}}" alt="{{alt_text}}">
+        </picture>
+      </a>
+      {{/if}}
+      <div class="card-body {{custom_class}}" data-product-sku="{{sku}}">
+       <h5 class="text-center"><a href="{{href}}" class="card-title">{{product_name}}</a></h5>
+       <p class="quantity text-center">{{quantity}}</p>
+       <p class="product-rating text-center">
+        <span class="sim-icons" data-icon="star-fill"></span>
+        <span class="sim-icons" data-icon="star-fill"></span>
+        <span class="sim-icons" data-icon="star-fill"></span>
+        <span class="sim-icons" data-icon="star-half"></span>
+        <span class="sim-icons" data-icon="star-border"></span>
+      </p>
+      <div class="d-flex flex-row justify-content-center align-items-center mb-3">
+        <div class="price text-center">$<span class="price-value">{{price}}</span></div> 
+        <div class="old-price text-center">$<span class="old-price-value">{{old_price}}</span></div>
+      </div>
+      <div class="d-flex flex-column justify-content-center align-items-center ">
+       {{> includes/button custom_btn_class="add-cart"  primary_button=true btn_text= btn1.text}}
+       {{> includes/button text_only=true custom_btn_class=""  btn_text= btn2.text}}
+     </div>
+   </div>
+ </div>
+</div>

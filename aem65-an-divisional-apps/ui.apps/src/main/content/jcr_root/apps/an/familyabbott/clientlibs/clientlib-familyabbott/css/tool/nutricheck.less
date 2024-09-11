@@ -1,0 +1,306 @@
+@import "../global/mixins.less";
+@import '../global/variables.less';
+
+.nutricheck-container {
+    .cmp-container {
+        >.container {
+            padding: 0 15px !important;
+        }
+        .product_patient_details_container {
+            .button {
+                &:has(.product_patient_details_calculate_btn) {
+                    margin: 0 !important;
+                }
+            }
+            .columncontrol {
+                &:has(.product_patient_details) {
+                    margin-bottom: 1.5rem !important;
+                }
+            }
+            .formcontainer{
+                +.container {
+                    padding: 0 15px 15px !important;
+                }
+            }
+            .product_patient_details {
+                padding: 20px 20px 0 20px;
+                @media @md-down{
+                    padding: 20px 0 0 0;
+                }
+                > .row {
+                    border-bottom: 1px solid #fff;
+                    padding-bottom: 20px;
+                    margin: 0;
+                    > .columncontrol__column {
+                        &:first-child {
+                            border-right: 1px solid #fff;
+                            @media @md-down{
+                                border-right: none;
+                                border-bottom: 1px solid #fff;
+                            }
+                        }
+                        > div{
+                            margin: 1rem auto !important;
+	                        max-width: 375px;
+                            &:first-child{
+                                margin-top: 0 !important;
+                            }
+                        }
+                        div.container {
+                            padding: 0 !important;
+                            .cmp-container{
+                                > div {
+                                    margin: 1rem auto !important;
+                                    &:first-child{
+                                        margin-top: 0 !important;
+                                    }
+                                }
+                            }
+                        }
+                        div.container.options-container{
+                            + .container {
+                                z-index: 1;
+                            }
+                        }
+                    }
+                    .a-dropdown__field{
+                        border-color: #000 !important;
+                    }
+                    [data-component="input-field"] {
+                        &:has([type="number"]) {
+                            .form-label {
+                                display: none;
+                            }
+                            input {
+                                height: 38px !important;
+                                border-color: #000 !important;
+                                text-align: center;
+                            }
+                        }
+                    }
+                    .image{
+                        img{
+                            width: 55px;
+                        }
+                    }
+                    .columncontrol {
+                        .fields, .a-input-field, .form-group {
+                            margin-bottom: 0 !important;
+                        }
+                    }
+                }
+                .columncontrol__column{
+                    .columncontrol {
+                        .columncontrol__column{
+                            &:first-child{
+                                @media @md-down{
+                                    margin-bottom: 0 ;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .text {
+                &:has(.bg-white) {
+                    background-color: #fff !important;
+	                padding: 20px;
+                }
+                &:has(.energy-results) {
+                    .energy-results {
+                        max-width: 300px;
+                        .energy-value {
+                            font-weight: 700;
+                            float: right;
+                        }
+                    }
+                }
+            }
+            .clone-target {
+                .cmp-container {
+                    position: relative;
+                    .remove-product {
+                        position: absolute;
+                        width: 21px;
+                        right: -35px;
+                        top: 0;
+                        bottom: 0;
+                        margin: auto;
+                        cursor: pointer;
+                    }
+                }
+            }
+			#form-details div[role="alert"] {
+				display: none;
+			}
+        }
+        .product_patient_result_container {
+            .cmp-container {
+                > div {
+                    margin: 1rem auto !important;
+                    &:first-child {
+                        margin-top: 0 !important;
+                    }
+                    &:last-child {
+                        margin-bottom: 0 !important;
+                    }
+                }
+                table {
+                    margin: 0 !important;
+                    thead, tbody {
+                        border: 1px solid #d9d9d6;
+                        tr {
+                            &:nth-child(even) {
+                                background: #f4f4f3;
+                            }
+                            &:nth-child(odd) {
+                                background: #fff;
+                            }
+                            th {
+                                border: 1px solid #d9d9d6;
+                                background-color: #222731;
+                                color: #fff;
+                            }
+                            th, td {
+                                p {
+                                    margin-bottom: 0;
+                                }
+                                &:first-child {
+                                    width: 160px;
+                                }
+                                &:nth-child(2) {
+                                    width: 130px;
+                                }
+                                &:nth-child(3), &:nth-child(5) {
+                                    width: 90px;
+                                }
+                                &:nth-child(4) {
+                                    width: 190px;
+                                }
+                                &:nth-child(6) {
+                                    width: 230px;
+                                }
+
+                            }
+                            td {
+                                border-left: 1px solid #d9d9d6;
+	                            color: #000;
+                                &:nth-child(6) {
+                                    background: rgba(238, 179, 59, .7);
+                                    &.green {
+                                        background: rgba(154, 182, 69, 0.7);
+                                    }
+                                    &.ear-green {
+                                        background: rgb(172, 236, 123);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                ul.result-action {
+                    display: flex;
+	                padding: 0;
+                    li {
+                        list-style: none;
+                        display: inline-flex;
+                        align-items: center;
+                        color: #00747e;
+                        &:not(:last-child) {
+                            margin-right: 15px;
+                        }
+                        img {
+                            width: 25px;
+                            margin-right: 5px;
+                        }
+                        a {
+                            color: #00747e;
+                        }
+                    }
+                }
+                .nutricheck-pdf-download, .nutricheck-print {
+                    cursor: pointer;
+                }
+                .color_scheme_list {
+                    li {
+                        list-style-type: none;
+	                    position: relative;
+                        &::before {
+                            content: '';
+                            background: rgba(154, 182, 69, .7);
+                            border-radius: 50%;
+                            height: 20px;
+                            left: -30px;
+                            position: absolute;
+                            top: 2px;
+                            width: 20px;
+                        }
+                        &:nth-child(2) {
+                            &::before {
+                                background: rgb(172, 236, 123);
+                            }
+                        }
+                        &:nth-child(3) {
+                            &::before {
+                                background: #eeb33b;
+                            }
+                        }
+                    }
+                }
+                .nutricheck_form_details {
+                    display: -ms-flexbox;
+                    display: flex;
+                    background: #d9d9d6;
+                    -ms-flex-direction: row;
+                    flex-direction: row;
+                    -ms-flex-wrap: wrap;
+                    flex-wrap: wrap;
+                    padding: 20px 0;
+                    .nutricheck_product_details, .nutricheck_patient_details {
+                        display: table-row;
+                        width: 50%;
+                        -ms-flex-preferred-size: 50%;
+                        flex-basis: 50%;
+                        padding: 0 15px;
+                        font-weight: 700;
+                        color: #000;
+                        text-align: center;
+                    }
+                    .nutricheck_patient_details {
+                        border-left: 1px solid #fff;
+                    }
+                }
+            }
+        }
+        .product_patient_result_container.nutricheck_result_print {
+            .cmp-container {
+                > div {
+                    margin: 0 !important;
+                }
+            }
+        }
+        .nutricheck_result_print {
+            .cmp-container {
+                > div {
+                    &:has(.nutricheck_form_details_values) {
+                        display: none;
+                    }
+                }
+            }
+        }
+        .container {
+            &:has(.product_patient_result_container) {
+                display: none;
+	            margin-top: 2rem !important;
+            }
+        }
+    }
+
+}
+
+
+@media print {
+	body:has(.nutricheck-container) {
+		-webkit-print-color-adjust: exact;
+	}
+}

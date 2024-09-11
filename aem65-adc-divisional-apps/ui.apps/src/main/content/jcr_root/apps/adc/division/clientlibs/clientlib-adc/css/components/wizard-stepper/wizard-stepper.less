@@ -1,0 +1,49 @@
+@import '../../mixin.less';
+@import '../../media-queries.less';
+@import '../../variables.less';
+
+/**
+ * WIZARD STEPPER - COMPONENT
+**/
+.a-wizard.a-wizard-stepper {
+
+    .a-wizard__label {
+        --wizard-step-active-color: inherit;
+        --wizard-steps-inactive-color: @color-dark-gray;
+        --wizard-step-complete-color: inherit;
+    }
+
+    .a-wizard__label, .a-wizard__points {
+        font-size: var(--wizard-step-label-font-size);
+        line-height: var(--wizard-step-label-line-height);
+        color: var(--wizard-steps-inactive-color);
+        text-align: center;
+    }
+
+    .a-wizard__points {
+        font-weight: 700;
+    }
+
+    .a-wizard__steps {
+        .a-wizard__icon {
+            display: block;
+            color: @color-black-lighter;
+            font-size: @font-size-29;
+            height: @font-size-29;
+            max-width: @font-size-29;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
+    
+    .a-wizard__step--incomplete.a-wizard-step--active, .a-wizard__step--complete {
+        .a-wizard__label, .a-wizard__points, .a-wizard__icon {
+            color: var(--wizard-step-active-color);
+        }
+    }
+
+    .a-wizard__steps--icon.default-fallback-icon:before {
+        content: "";
+    }
+}

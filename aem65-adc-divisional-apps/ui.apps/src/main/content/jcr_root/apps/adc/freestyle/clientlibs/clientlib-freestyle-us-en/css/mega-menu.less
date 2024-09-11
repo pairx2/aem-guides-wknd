@@ -1,0 +1,110 @@
+@import './global/media-queries.less';
+@import './global/variables.less';
+
+.m-mega-menu {
+  &__default &__nested-menu-wrapper &__nested-menu-img-list &__side-nav-item &__item-img {
+    img {
+      max-width: 140px;
+      max-height: 120px;
+    }
+  }
+
+  &__mobile {
+
+    .navbar {
+      justify-content: normal;
+      @media @md-down {
+        height: 44px;
+      }
+
+      @media @sm-up {
+        background-color: transparent;
+      }
+
+      &-collapse-wrapper {
+        @media @lg-down {
+          height: calc(45vh);
+
+          &::-webkit-scrollbar-track {
+            border-radius: 4px;
+            border: 1px solid @color-light-gray;
+            box-sizing: border-box;
+            width: 8px;
+          }
+
+          &::-webkit-scrollbar {
+            width: 8px;
+            background-color: @color-white;
+          }
+
+          &::-webkit-scrollbar-thumb {
+            width: 6px;
+            border-radius: 3px;
+            background-color: @color-light-gray;
+          }
+        }
+      }
+
+      .navbar-nav {
+        .m-mega-menu__mobile-item-wrapper:last-child {
+          > .a-button.a-button--primary-v1 {
+            @media @lg-down {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &__mobile-item-wrapper {
+
+    .link.button.a-link {
+      @media @lg-down {
+        border: none;
+        font-weight: 400;
+      }
+    }
+
+    &:hover {
+      .link.button.a-link {
+        border: none;
+      }
+    }
+
+    &.menu-border-top {
+      border-top: 1px solid var(--mega-menu-dropdown-border-color);
+    }
+  }
+
+  &__nested-menu-wrapper {
+    .m-mega-menu__side-nav {
+      .m-link-stack {
+        .a-link__text {
+          letter-spacing: 0.6px;
+        }
+      }
+    }
+  }
+}
+
+.nav-small-text {
+  .m-mega-menu {
+    &__mobile-item-wrapper{
+      @media @lg-up {
+        margin-right: 0px;
+      }
+    }
+  }
+}
+.mega-menu.carousel {
+  margin-top:0;
+  margin-bottom: 0;
+}
+.m-mega-menu__nested-menu-wrapper .a-link {
+  border-bottom: 1px solid #888b8d;
+  margin: 0 15px;
+}
+.m-mega-menu__nested-menu-wrapper .a-link:last-child {
+  border-bottom: none;
+}

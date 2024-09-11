@@ -1,0 +1,222 @@
+.m-cards-tab {
+  $self: &;
+
+  &__nav {
+    justify-content: space-evenly;
+
+    &-item {
+      box-sizing: border-box;
+      border: 1px solid var(--cards-tab-border-color);
+      box-shadow: 0 0 4px 0 $color-text-gray;
+      border-radius: 8px;
+      background: $color-white;
+      margin: 0 $spacers-3;
+      padding: $spacers-03;
+
+      width: 150px!important;
+      max-width: 150px;
+      min-height: 150px;
+
+      //for smaller mobile
+      @media only screen and (max-width : 374px) {
+        width: 125px !important;
+      }
+    }
+
+    &-text {
+      font-size: $h5-font-size; //16px
+      line-height: $h4-line-height; //24px
+      display: block;
+      color: var(--cards-tab-text-color);
+      text-align: center;
+    }
+
+    &-item:hover,
+    &-item:active {
+      text-decoration: none;
+
+      #{$self}__nav-text {
+        font-weight: bold;
+        color: var(--cards-tab-nav-item-text-color);
+      }
+    }
+
+    .active {
+
+      &#{$self}__nav-item {
+        border-color: var(--cards-tab-border-color-active);
+      }
+
+      #{$self}__nav-text {
+        font-weight: bold;
+        color: var(--cards-tab-text-color-active);
+      }
+
+      #{$self}__icon {
+        color: var(--cards-tab-icon-color-active);
+      }
+
+      #{$self}__icon-active {
+        display: block;
+      }
+
+      #{$self}__icon-inactive {
+        display: none;
+      }
+
+      #{$self}__image img {
+        filter: grayscale(0);
+        opacity: 1;
+      }
+    }
+  }
+
+  &__icon {
+    display: none;
+    color: var(--cards-tab-icon-color);
+    margin: $spacers-01 auto $spacers-03;
+
+    .abt-icon {
+      font-size: var(--cards-tab-icon-size-sm);
+    }
+
+    &-inactive {
+      display: block;
+    }
+  }
+
+  &__image img {
+    margin: $spacers-01 auto $spacers-03;
+    height: 60px;
+    filter: grayscale(1);
+    opacity: 0.7;
+  }
+
+  [data-js-component="cards-tab"] {
+
+    .slick-list {
+      padding-top: $spacers-4!important;
+      padding-bottom: $spacers-4!important;
+    }
+
+    .slick-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: transparent;
+      border: 0;
+      height: 20px;
+      width: 20px;
+      padding: 0;
+
+      // hide arrows in tablet and mobile
+      @include media-breakpoint-down(lg) {
+        display: none !important;
+      }
+
+      &.slick-disabled {
+        opacity: 0.2;
+      }
+    }
+
+    .slick-prev {
+      left: -25px;
+    }
+
+    .slick-next {
+      right: -25px;
+    }
+
+    .slick-dots {
+      font-size: 0;
+      line-height: 0;
+      margin: 0;
+    }
+  }
+
+  /*-------------------------------------
+    Modifiers
+  /*-----------------------------------*/
+
+  // Large variation
+  &--large {
+    #{$self}__nav-item {
+      @include media-breakpoint-up(xl) {
+        // marked important as width is getting override on slick init
+        width: 256px !important;
+        max-width: 256px;
+        min-height: 256px;
+      }
+    }
+
+    #{$self}__nav-text {
+      @include media-breakpoint-up(lg) {
+        font-size: $h3-font-size; //24px
+        line-height: $h3-line-height; //32px
+      }
+    }
+
+    #{$self}__icon, #{$self}__image img {
+      @include media-breakpoint-up(xl) {
+        height: var(--cards-tab-icon-size-xl);
+        margin: $spacers-24 auto;
+
+        .abt-icon {
+          font-size: var(--cards-tab-icon-size-xl);
+        }
+      }
+    }
+
+  }
+
+  // Small variation
+  &--small {
+    #{$self}__nav-item {
+      @include media-breakpoint-up(xl) {
+        // marked important as width is getting override on slick init
+        width: 160px !important;
+        max-width: 160px;
+        min-height: 210px;
+      }
+    }
+
+    #{$self}__nav-text {
+      @include media-breakpoint-up(lg) {
+        font-size: $h4-font-size; //18px
+      }
+    }
+
+    #{$self}__icon, #{$self}__image img {
+      @include media-breakpoint-up(xl) {
+        height: var(--cards-tab-icon-size-md);
+        margin: $spacers-01 auto $spacers-24;
+
+        .abt-icon {
+          font-size: var(--cards-tab-icon-size-md);
+        }
+      }
+    }
+
+  }
+
+  // Full Width
+  &--full-width {
+    max-width: 100%;
+
+    .slick-slider {
+      padding-bottom: $spacers-4;
+      @include media-breakpoint-up(xl) {
+        margin: 0 $spacers-4;
+      }
+    }
+
+    .slick-prev {
+      left: -20px;
+    }
+
+    .slick-next {
+      right: -20px;
+    }
+  }
+
+}

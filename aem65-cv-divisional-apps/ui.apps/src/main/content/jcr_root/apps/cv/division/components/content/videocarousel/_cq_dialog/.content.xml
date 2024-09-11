@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Video Carousel"
+    sling:resourceType="cq/gui/components/authoring/dialog"
+    extraClientlibs="[videocarousel.clientlibs,core.wcm.components.image.v2.editor]">
+    <content
+        granite:class="cmp-image__editor"
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                maximized="{Boolean}true">
+                <items jcr:primaryType="nt:unstructured">
+                    <containerItems
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Items"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <title
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceSuperType="cv/division/components/content/richtext/cq:dialog/content/items/tabs/items/properties/items/columns/items/column/items/text"
+                                                sling:resourceType="cq/gui/components/authoring/dialog/richtext"
+                                                fieldDescription="Please enter the playlist title."
+                                                fieldLabel="Video Playlist Title"
+                                                name="./title"
+                                                useFixedInlineToolbar="{Boolean}true"/>
+                                            <description
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceSuperType="cv/division/components/content/richtext/cq:dialog/content/items/tabs/items/properties/items/columns/items/column/items/text"
+                                                sling:resourceType="cq/gui/components/authoring/dialog/richtext"
+                                                fieldDescription="Please enter the playlist description"
+                                                fieldLabel="Video Playlist Description"
+                                                name="./description"
+                                                useFixedInlineToolbar="{Boolean}true"/>
+                                            <videoChapterList
+                                                jcr:primaryType="nt:unstructured"
+                                                jcr:title="VIDEO CONFIGURATION"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/fieldset">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <chapterConfig
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                                        composite="{Boolean}true"
+                                                        validation="banner-multifield-validate">
+                                                        <field
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                                                            name="./chapterlist">
+                                                            <items jcr:primaryType="nt:unstructured">
+                                                                <chapter
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                                    <items jcr:primaryType="nt:unstructured">
+                                                                        <video-type
+                                                                            granite:class="cq-dialog-dropdown-showhide-multi"
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                                            fieldDescription="Please select video&#xa;type"
+                                                                            fieldLabel="Video Type"
+                                                                            name="./videoType">
+                                                                            <granite:data
+                                                                                jcr:primaryType="nt:unstructured"
+                                                                                cq-dialog-dropdown-showhide-target=".showhidetargetmulti"/>
+                                                                            <items jcr:primaryType="nt:unstructured">
+                                                                                <option1
+                                                                                    jcr:primaryType="nt:unstructured"
+                                                                                    text="Limelight"
+                                                                                    value="limeLight"/>
+                                                                                <option2
+                                                                                    jcr:primaryType="nt:unstructured"
+                                                                                    text="Video Link"
+                                                                                    value="iframe"/>
+                                                                                <option3
+                                                                                    jcr:primaryType="nt:unstructured"
+                                                                                    text="BrightCove"
+                                                                                    value="brightcove"/>
+                                                                            </items>
+                                                                        </video-type>
+                                                                        <limelight-option
+                                                                            granite:class="showhidetargetmulti"
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                                            <granite:data
+                                                                                jcr:primaryType="nt:unstructured"
+                                                                                showhidetargetmultiValue="limeLight"/>
+                                                                            <items jcr:primaryType="nt:unstructured">
+                                                                                <org-id
+                                                                                    jcr:primaryType="nt:unstructured"
+                                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                                    fieldDescription="Please enter organisation&#xa;ID of Limelight&#xa;account"
+                                                                                    fieldLabel="Organisation ID"
+                                                                                    name="./orgID"/>
+                                                                                <video-id
+                                                                                    granite:class="videoId"
+                                                                                    jcr:primaryType="nt:unstructured"
+                                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                                    fieldDescription="Please enter Media ID&#xa;of Limelight video"
+                                                                                    fieldLabel="Media ID"
+                                                                                    name="./mediaID"/>
+                                                                                <limelight-player-id
+                                                                                    granite:class="playerId"
+                                                                                    jcr:primaryType="nt:unstructured"
+                                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                                    fieldDescription="Please enter player&#xa;ID of Limelight"
+                                                                                    fieldLabel="Limelight Player ID"
+                                                                                    name="./limelightPlayerID"/>
+                                                                            </items>
+                                                                        </limelight-option>
+                                                                        <brightcove-option
+                                                                            granite:class="showhidetargetmulti"
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                                            <granite:data
+                                                                                jcr:primaryType="nt:unstructured"
+                                                                                showhidetargetmultiValue="brightcove"/>
+                                                                            <items jcr:primaryType="nt:unstructured">
+                                                                                 <account-id
+                                                                                        jcr:primaryType="nt:unstructured"
+                                                                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                                        fieldDescription="Please enter accountID of Brightcove"
+                                                                                        fieldLabel="Account ID"
+                                                                                        name="./videoCarouselAccountID"/>
+                                                                                    <video-id
+                                                                                        jcr:primaryType="nt:unstructured"
+                                                                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                                        fieldDescription="Please enter video ID of Brightcove"
+                                                                                        fieldLabel="Video ID"
+                                                                                        name="./videoCarouselBrightVideoID"/>
+                                                                                    <player-id
+                                                                                        jcr:primaryType="nt:unstructured"
+                                                                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                                        fieldDescription="Please enter playerID of Brightcove"
+                                                                                        fieldLabel="Player ID"
+                                                                                        name="./videoCarouselBrightPlayerID"/>
+                                                                            </items>
+                                                                        </brightcove-option>
+                                                                        <video-option
+                                                                            granite:class="showhidetargetmulti"
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                                            <granite:data
+                                                                                jcr:primaryType="nt:unstructured"
+                                                                                showhidetargetmultiValue="iframe"/>
+                                                                            <items jcr:primaryType="nt:unstructured">
+                                                                                <video-url
+                                                                                    granite:class="videoUrl"
+                                                                                    jcr:primaryType="nt:unstructured"
+                                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                                    emptyText="https://www.youtube.com/embed/{id_of_video}"
+                                                                                    fieldDescription="Please provide URL&#xa;for the video. YouTube requires structure: https://www.youtube.com/embed/{id_of_video}"
+                                                                                    fieldLabel="Video URL"
+                                                                                    name="./videoURL"/>
+                                                                            </items>
+                                                                        </video-option>
+                                                                        <chapterImage
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                                            fieldDescription="Please select the thumbnail of the video to be displayed in card."
+                                                                            fieldLabel="Thumbnail"
+                                                                            name="./chapterImage"
+                                                                            rootPath="/content/dam/cv"
+                                                                            required="{Boolean}true"/>
+                                                                        <decorative
+                                                                            granite:class="cq-dialog-checkbox-showhide-multifield"
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                                            fieldDescription="Check if the image should be ignored by assistive technology and therefore does not require an alternative text. This applies to decorative images only."
+                                                                            name="./isDecorative"
+                                                                            text="Image is decorative"
+                                                                            uncheckedValue="false"
+                                                                            value="{Boolean}true">
+                                                                            <granite:data
+                                                                                jcr:primaryType="nt:unstructured"
+                                                                                cq-dialog-checkbox-showhide-target=".showhidetarget"/>
+                                                                        </decorative>
+                                                                        <alternativeGroup
+                                                                            granite:class="showhidetarget"
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                                            <items jcr:primaryType="nt:unstructured">
+                                                                                <alt
+                                                                                    granite:class="cmp-image__editor-alt-text"
+                                                                                    jcr:primaryType="nt:unstructured"
+                                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                                    fieldDescription="Textual alternative of the meaning or function of the image, for visually impaired readers."
+                                                                                    fieldLabel="Alternative Text"
+                                                                                    name="./alt"/>
+                                                                                <altValueFromDAM
+                                                                                    jcr:primaryType="nt:unstructured"
+                                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                                                    checked="{Boolean}true"
+                                                                                    fieldDescription="When checked, populate the image's alt attribute with the value of the dc:description metadata in DAM."
+                                                                                    name="./altValueFromDAM"
+                                                                                    text="Get alternative text from DAM"
+                                                                                    uncheckedValue="false"
+                                                                                    value="true"/>
+                                                                            </items>
+                                                                            <granite:data
+                                                                                jcr:primaryType="nt:unstructured"
+                                                                                showhidetargetValue=""/>
+                                                                        </alternativeGroup>
+                                                                        <chapterTitle
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                            fieldDescription="Please enter the video title to be displayed in card."
+                                                                            fieldLabel="Video Title"
+                                                                            name="./chapterTitle"
+                                                                            useFixedInlineToolbar="{Boolean}true"/>
+                                                                        <chapterDescription
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
+                                                                            fieldDescription="Please enter the video description to be displayed in card."
+                                                                            fieldLabel="Video Description"
+                                                                            name="./chapterDescription"
+                                                                            useFixedInlineToolbar="{Boolean}true"/>
+                                                                        <uniqueId
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                            fieldDescription="Please enter unique ID"
+                                                                            fieldLabel="ID"
+                                                                            name="./uniqueId"/>    
+                                                                    </items>
+                                                                </chapter>
+                                                            </items>
+                                                        </field>
+                                                        <granite:data
+                                                            jcr:primaryType="nt:unstructured"
+                                                            maxlinksallowed="20"/>
+                                                    </chapterConfig>
+                                                </items>
+                                            </videoChapterList>
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </containerItems>
+                    <properties
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Properties"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <cardsPerScroll
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:orderBefore="id"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                                fieldDescription="Please enter number of cards to be scrolled at a time (minimum:1, maximum:3)"
+                                                fieldLabel="Number of cards to be scrolled at a time"
+                                                max="{Long}3"
+                                                min="{Long}1"
+                                                name="./cardsPerScroll"/>
+                                            <id
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldDescription="HTML ID attribute to apply to the component."
+                                                fieldLabel="ID"
+                                                name="./id"/>
+                                            <iconRight
+                                                jcr:primaryType="nt:unstructured"
+                                                jcr:title="Right Icon"
+                                                sling:orderBefore="id"
+                                                sling:resourceType="granite/ui/components/coral/foundation/container"
+                                                margin="{Boolean}true">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <heading
+                                                        granite:class="coral-Heading coral-Heading--4"
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/heading"
+                                                        text="Right Icon"/>
+                                                    <well
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/well">
+                                                        <items jcr:primaryType="nt:unstructured">
+                                                            <iconRight
+                                                                granite:class="abbott-icon-picker"
+                                                                jcr:primaryType="nt:unstructured"
+                                                                sling:resourceSuperType="abbott-platform/components/core/iconpicker/v1/iconpicker/cq:dialog/content/items/icon"
+                                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                fieldDescription="Please select Right Icon image"
+                                                                name="./iconRight"/>
+                                                        </items>
+                                                    </well>
+                                                </items>
+                                            </iconRight>
+                                            <iconLeft
+                                                jcr:primaryType="nt:unstructured"
+                                                jcr:title="Left Icon"
+                                                sling:orderBefore="id"
+                                                sling:resourceType="granite/ui/components/coral/foundation/container"
+                                                margin="{Boolean}true">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <heading
+                                                        granite:class="coral-Heading coral-Heading--4"
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/heading"
+                                                        text="Left Icon"/>
+                                                    <well
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/well">
+                                                        <items jcr:primaryType="nt:unstructured">
+                                                            <iconLeft
+                                                                granite:class="abbott-icon-picker"
+                                                                jcr:primaryType="nt:unstructured"
+                                                                sling:resourceSuperType="abbott-platform/components/core/iconpicker/v1/iconpicker/cq:dialog/content/items/icon"
+                                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                fieldDescription="Please select the Left Icon image"
+                                                                name="./iconLeft"/>
+                                                        </items>
+                                                    </well>
+                                                </items>
+                                            </iconLeft>
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </properties>
+                    <accessibility
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Accessibility"
+                        sling:orderBefore="cq:styles"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <accessibilityLabel
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldDescription="Value of an aria-label attribute for the carousel, which describes the carousel content."
+                                                fieldLabel="Label"
+                                                name="./accessibilityLabel"
+                                                value=""/>
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </accessibility>
+                    <cq:styles
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/include"
+                        path="/mnt/overlay/cq/gui/components/authoring/dialog/style/tab_edit/styletab"/>
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>

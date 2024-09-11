@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Retailer"
+    sling:resourceType="cq/gui/components/authoring/dialog"
+    extraClientlibs="[retailerComponentEvents]"
+    helpPath="https://www.adobe.com/go/aem_cmp_form_container_v2">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                maximized="{Boolean}true">
+                <items jcr:primaryType="nt:unstructured">
+                    <retailer
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Retailer"
+                        sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+                        <items jcr:primaryType="nt:unstructured">
+                            <column
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/container"
+                                margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <variations
+                                        granite:class="retailer-variation-event"
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                        fieldLabel="Variation"
+                                        name="./retailerVariation">
+                                        <granite:data
+                                            jcr:primaryType="nt:unstructured"
+                                            retailer-variation-event-target=".retailer-showhide-target"/>
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <myOffers
+                                                jcr:primaryType="nt:unstructured"
+                                                text="My Offers"
+                                                value="myOffers"/>
+                                            <selectRetailer
+                                                jcr:primaryType="nt:unstructured"
+                                                text="Select Retailer"
+                                                value="selectRetailer"/>
+                                            <selectRetailerPwa
+                                                jcr:primaryType="nt:unstructured"
+                                                text="Select Retailer PWA"
+                                                value="selectRetailerPwa"/>
+                                        </items>
+                                    </variations>
+                                    <tile
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldDescription="Enter the title"
+                                        fieldLabel="Title"
+                                        name="./title"/>
+                                    <subTitle
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldDescription="Enter the sub title"
+                                        fieldLabel="Sub Title"
+                                        name="./subTitle"/>
+                                    <retailerNote
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldDescription="Enter the note to be shown for selection"
+                                        fieldLabel="Retailer Note"
+                                        name="./retailerNote"/>
+                                    <retailerPageUrl
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                        fieldDescription="Enter the retailer selection page url"
+                                        fieldLabel="Retailer Selection Page Url"
+                                        name="./retailerPageUrl"/>
+                                    <error
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldDescription="Enter the error text"
+                                        fieldLabel="Error"
+                                        name="./error"/>
+                                    <selectRetailerLabel
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldDescription="Enter the select retailer label"
+                                        fieldLabel="Select Retailer Label"
+                                        name="./selectRetailerLabel"/>
+                                    <deSelectRetailerLabel
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldDescription="Enter the de-select retailer label"
+                                        fieldLabel="De-select Retailer Label"
+                                        name="./deSelectRetailerLabel"/>
+                                    <deSelectRetailerEventLabel
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldDescription="Enter the de-select retailer label for Analytics"
+                                        fieldLabel="De-select Retailer Event Label"
+                                        name="./deSelectRetailerEventLabel"/>
+                                </items>
+                            </column>
+                        </items>
+                    </retailer>
+                    <retailerList
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Retailers List"
+                        sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+                        <items jcr:primaryType="nt:unstructured">
+                            <column
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/container"
+                                margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <list
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                        composite="{Boolean}true">
+                                        <field
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                                            name="./retailerList">
+                                            <items jcr:primaryType="nt:unstructured">
+                                                <label
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    fieldDescription="Enter the label"
+                                                    fieldLabel="Label"
+                                                    name="./label"/>
+                                                <retailerDescription
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="cq/gui/components/authoring/dialog/richtext"
+                                                    fieldDescription="Enter the retailer description "
+                                                    fieldLabel="Retailer Description"
+                                                    name="./retailerDescription"
+                                                    removeSingleParagraphContainer="{Boolean}true"
+                                                    useFixedInlineToolbar="{Boolean}true">
+                                                    <uiSettings
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceSuperType="/apps/an/similac/components/common/dialogs/standardrte/uiSettings"/>
+                                                    <rtePlugins
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceSuperType="/apps/an/similac/components/common/dialogs/standardrte/rtePlugins"/>
+                                                </retailerDescription>
+                                                <value
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    fieldDescription="Enter the value"
+                                                    fieldLabel="Value"
+                                                    name="./value"/>
+                                                <isAvailable
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                    fieldDescription="Enter the Value is Available "
+                                                    fieldLabel="Is Available"
+                                                    name="./isAvailable">
+                                                    <items jcr:primaryType="nt:unstructured">
+                                                        <option1
+                                                            jcr:primaryType="nt:unstructured"
+                                                            name="./true"
+                                                            text="True"
+                                                            value="{Boolean}true"/>
+                                                        <option2
+                                                            jcr:primaryType="nt:unstructured"
+                                                            name="./false"
+                                                            text="False"
+                                                            value="{Boolean}false"/>
+                                                    </items>
+                                                </isAvailable>
+                                                <lineOneTxt
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    fieldDescription="Enter the line one"
+                                                    fieldLabel="Not Available Line One"
+                                                    name="./lineOneTxt"/>
+                                                <lineTwoTxt
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    fieldDescription="Enter the line two"
+                                                    fieldLabel="Not Available Line Two "
+                                                    name="./lineTwoTxt"/>
+                                                <uniqueID
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    fieldDescription="Enter a unique ID if required"
+                                                    fieldLabel="Unique ID"
+                                                    name="./uniqueID"/>
+                                                <imgUrl
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                    fieldDescription="Enter the image Url"
+                                                    fieldLabel="Image Url"
+                                                    name="./imgUrl"/>
+                                                <imgSMUrl
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                    fieldDescription="Enter the image SM Url"
+                                                    fieldLabel="Image SM Url"
+                                                    name="./imgSMUrl"/>
+                                                <pageUrl
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                    fieldDescription="Enter the page Url"
+                                                    fieldLabel="Page Url"
+                                                    name="./pageUrl"/>
+                                                <offerType
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    fieldDescription="Enter the Offer Type"
+                                                    fieldLabel="Offer Type"
+                                                    name="./offerType"/>
+                                                <eventLabel
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    fieldDescription="Enter the Retailer Event Label"
+                                                    fieldLabel="Select Retailer Event Label"
+                                                    name="./retailerEventLabel"/>
+                                                <selectEventLabel
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    fieldDescription="Enter the Event Label for yes/no options"
+                                                    fieldLabel="Event Label for Yes/No"
+                                                    name="./selectEventLabel"/>
+                                            </items>
+                                        </field>
+                                    </list>
+                                    <targetList
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                        composite="{Boolean}true">
+                                        <field
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                                            name="./targetList">
+                                            <items jcr:primaryType="nt:unstructured">
+                                                <label
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    fieldDescription="Enter the label"
+                                                    fieldLabel="Label"
+                                                    name="./label"/>
+                                                <value
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    fieldDescription="Enter the value"
+                                                    fieldLabel="Value"
+                                                    name="./value"/>
+                                                <imgUrl
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                    fieldDescription="Enter the image Url"
+                                                    fieldLabel="Image Url"
+                                                    name="./imgUrl"/>
+                                                <imgSMUrl
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                    fieldDescription="Enter the image SM Url"
+                                                    fieldLabel="Image SM Url"
+                                                    name="./imgSMUrl"/>
+                                                <pageUrl
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                    fieldDescription="Enter the page Url"
+                                                    fieldLabel="Page Url"
+                                                    name="./pageUrl"/>
+                                                <eventLabel
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    fieldDescription="Enter the Retailer Event Label"
+                                                    fieldLabel="Event Label"
+                                                    name="./retailerEventLabel"/>
+                                            </items>
+                                        </field>
+                                    </targetList>
+                                </items>
+                            </column>
+                        </items>
+                    </retailerList>
+                    <retailerSelected
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Retailer Selected"
+                        sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+                        <items jcr:primaryType="nt:unstructured">
+                            <column
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/container"
+                                margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <selectedRetailer
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldDescription="Enter the selected Retailer Message"
+                                        fieldLabel="Selected Retailer Message"
+                                        name="./selectedRetailer"/>
+                                    <selectedRetailerNote
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldDescription="Enter the Selected Retailer Note"
+                                        fieldLabel="Selected Retailer Note"
+                                        name="./selectedRetailerNote"/>
+                                    <submitButtonLabel
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldDescription="Enter the Submit Button Label"
+                                        fieldLabel="Submit Button Label"
+                                        name="./submitButtonLabel"/>
+                                    <cancelButtonLabel
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldDescription="Enter the Cancel Button Label"
+                                        fieldLabel="Cancel Button Label"
+                                        name="./cancelButtonLabel"/>
+                                    <amazonRO
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldDescription="Enter the Amazon Retailer Option"
+                                        fieldLabel="Amazon Retailer Option"
+                                        name="./amazonRO"/>
+                                    <tpgRO
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldDescription="Enter the TPG Retailer Option"
+                                        fieldLabel="TPG Retailer Option"
+                                        name="./tpgRO"/>
+                                    <targetOnlineRO
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldDescription="Enter the Target Online Retailer Option"
+                                        fieldLabel="Target Online Retailer Option"
+                                        name="./targetOnlineRO"/>
+                                    <targetOfflineRO
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldDescription="Enter the Target Offline Retailer Option"
+                                        fieldLabel="Target Offline Retailer Option"
+                                        name="./targetOfflineRO"/>
+                                    <amazonNote
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldDescription="Enter the Additional Amazon Note"
+                                        fieldLabel="Amazon Note"
+                                        name="./amazonNote"/>
+									<targetInStoreNote
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldDescription="Enter the Additional Target In Store Note"
+                                        fieldLabel="Target In Store Note"
+                                        name="./targetInStoreNote"/>
+									<targetOnlineNote
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldDescription="Enter the Additional Target Online Note"
+                                        fieldLabel="Target Online Note"
+                                        name="./targetOnlineNote"/>
+									<tpgNote
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldDescription="Enter the Additional TPG Note"
+                                        fieldLabel="TPG Note"
+                                        name="./tpgNote"/>
+                                </items>
+                            </column>
+                        </items>
+                    </retailerSelected>
+                    <analytics
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/include"
+                        path="/apps/an/similac/components/common/dialogs/analytics"/>
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>

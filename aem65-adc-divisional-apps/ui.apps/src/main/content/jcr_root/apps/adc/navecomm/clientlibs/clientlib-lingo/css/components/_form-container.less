@@ -1,0 +1,58 @@
+.o-form-container {
+  &__success-msg {
+    margin: var(--form-container-success-margin);
+    padding: var(--form-container-success-padding);
+    background: var(--form-container-success-background-color);
+    color: var(--form-container-success-color);
+    border: var(--form-container-success-border);
+    text-transform: inherit;
+    font-weight: normal;
+
+    &:empty {
+      display: none;
+    }
+  }
+
+  // Hidding error msg in sign up & sig in form since custom error handling at the top of the form has been set
+  &#sign-up-form,
+  &#sign-in-form,
+  &#resend-email-form,
+  &#change-password-form {
+    .o-form-container__success-msg,
+    .o-form-container__error-msg {
+      display: none;
+    }
+  }
+
+  &#sign-in-form button[type="submit"] {
+    margin: var(--form-container-success-margin);
+    width: 250px;
+    max-width: 100%;
+  }
+
+  &#termsChangedLogin .form-container .options .a-checkbox--selected {
+    display: none;
+  }
+
+  .checking-address-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+
+    position: absolute;
+    margin: 0 !important;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; // Appear above form contents
+
+    background: var(--form-container-checking-address-loader-bg);
+    backdrop-filter: blur(3px);
+
+    p {
+      color: var(--form-container-checking-address-loader-text-color);
+    }
+  }
+}

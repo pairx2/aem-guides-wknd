@@ -1,0 +1,379 @@
+@import "../../clientlib-base/scss/base/functions";
+@import "../../clientlib-base/scss/base/mixins";
+@import "../../clientlib-base/scss/base/variables";
+
+/*=======Similac Styles=======*/
+.similac-header {
+  background-color: $onahau;
+
+  &__container {
+    position: relative;
+
+    @include media-breakpoint-up(xl) 
+    {
+      width: 100%;
+      padding: 0;
+    }
+    @include media-breakpoint-down(sm) {
+      max-width: none;
+    }
+  }
+
+  &__logo {
+    img {
+      max-width: 100%;
+      padding: 20px 0;
+      width: 210px;
+    }
+
+    &-image {
+      @include media-breakpoint-down(sm) {
+        padding: 12px 0;
+        width: 153px;
+      }
+    }
+  }
+
+  &__items {
+    position: absolute;
+    right: 0;
+    top: 95px;
+    width: 100%;
+
+    img {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      margin-left: auto;
+      max-width: 100%;
+      width: 130px;
+    }
+
+    @include media-breakpoint-down(sm) {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      justify-content: center;
+      position: initial;
+      width: auto;
+
+      img {
+        width: 84px;
+        margin: 0;
+      }
+    }
+
+    @media (min-width: 768px) and (max-width: 992px) {
+      width: 100%;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding: 0px;
+    margin-top: 5px;
+
+    &-list {
+      display: inline-block;
+      list-style-type: none;
+      margin: 0 20px;
+
+      @include media-breakpoint-down(md) {
+        margin-right: 15px;
+      }
+
+      &:last-child {
+        margin-right: 40px;
+        @include media-breakpoint-down(md) {
+          margin-right: 20px;
+        }
+      }
+
+      a {
+        color: $dark-regal-blue;
+        font-family: $font-brandon-text-bold;
+        font-size: 16px;
+        text-transform: uppercase;
+        white-space: nowrap;
+
+        &:hover {
+          text-decoration: none;
+        }
+
+        &:visited, &:visited:hover {
+          color: $dark-regal-blue;
+        }
+      }
+    }
+
+    .similac-login {
+      position: relative;
+      z-index: 1;
+
+      a.active:after {
+        top: 10px;
+        transform: rotate(-135deg);
+      }
+
+      .abbott-topbar__action-link.abbott-greet {
+        color: $dark-regal-blue;
+        font: 16px $font-brandon-text-bold;
+        text-align: right;
+        text-transform: uppercase;
+
+        a i {
+          display: none;
+        }
+      }
+
+      .login {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        width: 100%;
+      }
+    }
+
+    @include media-breakpoint-down(sm) {
+      display: none;
+    }
+  }
+
+  &__cart {
+    position: relative;
+    
+    &-icon {
+      background-color: #fff;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      min-height: 50px;
+      min-width: 50px;
+      position: relative;
+      top: -15px;
+
+      @include media-breakpoint-down(sm) {
+        top: auto;
+      }
+
+      i {
+        color: $bay-of-many;
+        font-size: 30px;
+        margin: 0 auto;
+        line-height: inherit;
+      }
+    }
+
+    &--count {
+      background-color: rgba(245, 163, 45, 0.8);
+      border-radius: 2px;
+      color: #fff;
+      font-size: 13px;
+      line-height: 1.2;
+      padding: 1px 5px;
+      position: absolute;
+      right: -7px;
+      top: 2px;
+    }
+  }
+
+  &--mobile {
+    display: none;
+  }
+
+  @include media-breakpoint-down(sm) {
+    &--mobile {
+      align-items: center;
+      background: $curious-blue-dark;
+      display: flex;
+      min-height: 60px;
+      justify-content: space-between;
+
+      &__cart {
+        float: right;
+        padding-right: 40px;
+
+        a {
+          color: $dark-regal-blue;
+
+          &:hover {
+            text-decoration: none;
+            color: $white;
+          }
+        }
+
+        @media (max-width: 359px) {
+          display: flex;
+          padding-right: 10px;
+        }
+      }
+    }
+
+    .user-logged {
+      justify-content: flex-end;
+      position: relative;
+
+      .similac-actions {
+        padding: 8px 0 8px;
+      }      
+
+    }
+
+    .similac-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      margin: 0;
+      padding: 0;
+      width: 80%;
+    }
+
+    .mobile-action {
+      color: $white;
+      cursor: pointer;
+      display: flex;
+      font-size: 16px;
+      font-weight: 400;
+      flex-direction: row;
+      list-style-type: none;
+      margin: 0 20px;
+      vertical-align: middle;
+
+      .login {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        position: relative;
+        width: 100%;
+        z-index: 1;
+
+        .logout-link {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          margin-left: 30px;
+          position: static;
+        }
+
+        &-modal {
+          left: -20px;
+          top: 42px;
+        }
+      }
+
+      a {
+        color: $white;
+        cursor: pointer;
+        font-family: $font-brandon-text-bold;
+        list-style-type: none;
+        text-transform: uppercase;
+        white-space: nowrap;
+
+        &:hover {
+          color: $white;
+          text-decoration: none;
+        }
+      }
+
+      .login-modal__link {
+        color: lighten($gray52, 5%);
+        font-family: $font-brandon-text-regular;
+        font-size: 0.6875rem;
+        text-transform: initial;
+      }
+
+      .logout-link {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-left: 30px;
+      }
+
+      .abbott-topbar__action-link.abbott-greet {
+        order: 20;
+        display: inline-flex;
+
+        @include media-breakpoint-down(sm) {
+          .greet-text, .name {
+            display: none;
+          }
+  
+          a {
+            background-color: $white;
+            border-radius: 50%;
+            display: block;
+            min-height: 50px;
+            min-width: 50px;
+  
+            i {
+              color: $bay-of-many;
+              display: flex;
+              font-size: 30px;
+              justify-content: center;
+              line-height: inherit;
+              text-align: center;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.scroll-top {
+  color: $white;
+  cursor: pointer;
+  display: none;
+  bottom: 15px;
+  backface-visibility: hidden;
+  background: $sea-buckthorn;
+  border: 1px solid $sea-buckthorn;
+  height: 38px;
+  opacity: 0;
+  padding: 8px 15px;
+  position: fixed;
+  right: 15px;
+  transition: all 500ms ease;
+  z-index: 99;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    background: $white;
+    border: 1px solid $sea-buckthorn;
+    color: $sea-buckthorn;
+  }
+
+  i {
+    font: normal bold 16px $font-brandon-text-bold;
+    line-height: normal;
+  }
+
+  &.active {
+    display: block;
+    opacity: 1;
+    animation: fadeInFromNone 1s ease;
+  }
+
+  @keyframes fadeInFromNone {
+    0% {
+        display: none;
+        opacity: 0;
+    }
+
+    1% {
+        display: block;
+        opacity: 0;
+    }
+
+    100% {
+        display: block;
+        opacity: 1;
+    }
+  }
+}

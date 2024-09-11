@@ -1,0 +1,21 @@
+<sly data-sly-use.component="com.adobe.cq.wcm.core.components.models.Component"
+data-sly-use.customConfig="com.abbott.aem.platform.common.components.models.CustomConfig"
+     data-sly-use.maskedContainer="com.abbott.aem.platform.common.components.models.MaskedContainer"
+     id="${component.id}">
+<sly data-sly-test.disableMasking="${maskedContainer.disableMaskingInAuthor}"/>
+<sly data-sly-test.isAuthor="${wcmmode.edit || wcmmode.preview}"/>	
+<div id="${component.id}" class="m-masked-container ${(disableMasking && isAuthor) ? '' : 'masked'} ${customConfig.className}" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="isAccessibleForFree" content="false"/>
+    <div itemprop="hasPart" itemscope itemtype="http://schema.org/WebPageElement">
+        <meta itemprop="isAccessibleForFree" content="false"/>
+        <meta itemprop="cssSelector" content=".m-masked-container"/>
+        <section id="section-${component.id}">
+            <sly data-sly-include="section.html"></sly>
+        </section>
+        <div class="m-masked-container__login-form"
+             data-sly-test="${maskedContainer.loginFormFragmentPath}">
+            <div data-sly-resource="${@path=maskedContainer.loginFormFragmentPath, selectors='content', wcmmode='disabled'}"></div>
+        </div>
+    </div>
+</div>
+</sly>

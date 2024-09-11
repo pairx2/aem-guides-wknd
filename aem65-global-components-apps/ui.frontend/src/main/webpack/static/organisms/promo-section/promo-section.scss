@@ -1,0 +1,80 @@
+.o-promo {
+	$self: &;
+    text-align: center;
+	
+	.a-button img {
+        @include media-breakpoint-down(sm) {
+            width: 100%;
+        }
+    }
+	&__badge {
+		display: flex;
+		&-top-start {
+			justify-content: flex-start;
+		}
+		&-top-end {
+			justify-content: flex-end;
+		}
+	}
+
+	&__logo {
+		padding: var(--promo-section-logo-padding);
+
+		@include media-breakpoint-up(md) {
+			padding: var(--promo-section-logo-padding-md);
+		}
+
+		@include media-breakpoint-up(xl) {
+			padding: var(--promo-section-logo-padding-xl);
+		}
+	}
+
+	&__title {
+		padding: var(--promo-section-title-padding);
+
+		@include media-breakpoint-up(md) {
+			padding: var(--promo-section-title-padding-md);
+		}
+
+		@include media-breakpoint-up(xl) {
+			padding: var(--promo-section-title-padding-xl);
+		}
+	}
+
+	&__text {
+		padding: var(--promo-section-text-padding);
+	}
+
+	&__wrapper {
+		padding: var(--promo-section-btn-wrapper-padding);
+	
+		#{ $self }__btn {
+			padding: var(--promo-section-btn-padding);
+
+			@include media-breakpoint-up(md) {
+				display: inline-block;
+				padding: var(--promo-section-btn-padding-lg);
+			}
+			@include media-breakpoint-down(sm) {
+				display: flex;
+				justify-content: center;
+			}
+		}
+	}
+
+}
+
+//  Integrational changes as per the style system
+.promosection {
+	&-badge-top-start {
+		.o-promo__badge {
+			justify-content: flex-start;	
+		}
+	}
+
+	&-badge-top-end {
+		.o-promo__badge {
+			justify-content: flex-end;		
+		}
+	}	
+}

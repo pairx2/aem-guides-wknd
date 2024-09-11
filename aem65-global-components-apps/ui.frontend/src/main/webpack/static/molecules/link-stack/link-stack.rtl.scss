@@ -1,0 +1,123 @@
+@import 'link-stack';
+  .m-link-stack {
+      text-align: right;
+      // link stack variation
+      &--border {
+          &::before { // border for mobile devices
+              @include media-breakpoint-down(sm) {
+                  @include rem(right, -16px);
+              }
+          }
+      }
+      &__dropdown-wrapper {
+        text-align: right;
+        @include media-breakpoint-up(lg) {
+            &::before {
+                right: 80%;
+            }
+        }
+      }
+
+      &--content{
+        padding-left: 0;
+        padding-right: 25px;
+      }
+
+      &-faq {
+        .a-link {
+            text-align: right;
+        }
+        .m-link-stack {
+            &--content {
+                padding: var(--link-stack-spacer-xs) 0 var(--link-stack-spacer-s);
+                @include media-breakpoint-down(sm) {
+                    @include fontDefinitionWithSize($base-font-family, $font-size-14, normal, $h5-line-height);
+                    background: $white;
+                    border-radius: 4px;
+                    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.24), 0 4px 8px -2px rgba(141,141,148,0.28);
+                    left: 0;
+                    max-height: 182px;
+                    overflow-y: auto;
+                    padding: 0;
+                    position: absolute;
+                    top: 48px;
+                    width: 100%;
+
+                    &::-webkit-scrollbar {
+                        width: 8px;
+                    }
+                    &::-webkit-scrollbar-track {
+                          border: 1px solid $color-light-gray;
+                          border-radius: 4px;
+                    }
+                    &::-webkit-scrollbar-thumb {
+                          background: $color-light-gray;
+                          border-radius: 10px;
+                    }
+                }
+            }
+
+            &--dropdown {
+                @include media-breakpoint-down(sm) {
+                    padding: $spacers-3 $spacers-03 $spacers-013 $spacers-09;
+
+                    &::after {
+                        left: $spacers-03;
+                        right: auto;
+                    }
+                }
+
+                &-value {
+                    @include media-breakpoint-down(sm) {
+                        text-align: right;
+                    }
+                }
+            }
+        }
+    }
+    $self: &;
+    &__countrylang--select {
+        #{ $self }__link>img {
+            order: 1;
+            @include media-breakpoint-down(md) { 
+                order: 0;
+            }
+        }
+        #{ $self }__country-header {
+            &__title {
+                margin-right: 47px;
+                margin-left: 0px !important;
+            }
+            &__language, #{ $self }__country-lang {
+                margin: 0 16px 0 0 !important;
+            }
+        }
+        #{ $self }__dropdown-wrapper {
+            ul {
+                li {
+                    img {
+                        margin-left: 16px;
+                        margin-right: 0;
+                    }
+                }
+            }
+        }
+    }
+
+    #{ $self }__smart-search {
+        #{ $self }__search-bar {
+            .a-input-field .form-group .a-input-grp input[type="search"] {
+                padding: var(--country-select-input-search-padding-rtl);
+            }
+        }
+    }
+
+    &__country-select {
+        #{ $self }__smart-search {
+            .icon {
+                left: 0;
+                right: var(--country-select-icon-left);
+            }
+        }
+    }
+  }

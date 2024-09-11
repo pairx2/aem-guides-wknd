@@ -1,0 +1,347 @@
+'use strict';
+
+// Global const config
+var path = {};
+path.data = 'data.yml';
+path.partialSrc = './src/partials/';
+path.partials = path.partialSrc + '**/*/hbs';
+path.pageSrc = './src/pages/';
+path.pages = path.pageSrc + '**/*.hbs';
+path.sassSrc = './src/sass/';
+path.sass = path.sassSrc + '**/*.scss';
+path.baseSass = path.sassSrc + '**/vendor.scss';
+path.commonSass = path.sassSrc + '**/global.scss';
+path.componentSass = path.sassSrc + '/components/*.scss';
+path.devSass = path.sassSrc + 'style.scss';
+
+path.dist = './dist/';
+
+path.distHtml = path.dist + '**/*.html';
+path.distCss = path.dist + 'css/';
+
+
+path.commonDist = './dist/similac-common/';
+path.commonCss = path.commonDist + 'css/';
+
+path.baseDist = './dist/similac-base/';
+path.baseCss = path.baseDist + 'css/';
+
+path.componentDist = './dist/similac-component/';
+path.componentCss = path.componentDist + 'css/';
+
+// Global imports
+var gulp = require('gulp');
+var fs = require('fs');
+var plumber = require('gulp-plumber');
+var rename = require('gulp-rename');
+var replace = require('gulp-replace');
+var rimraf = require('rimraf');
+var gulpif = require('gulp-if');
+
+// Handle Bar config imports
+var handlebars = require('gulp-compile-handlebars');
+var layouts = require('handlebars-layouts');
+var yaml = require('js-yaml');
+var inlinesource = require('gulp-inline-source');
+var htmlmin = require('gulp-htmlmin');
+
+// Browser Sync Config imports
+var browserSync = require('browser-sync').create();
+var reload = browserSync.reload;
+
+//SASS config imports
+var sass = require('gulp-sass');
+var scsslint = require('gulp-scss-lint');
+var sourcemaps = require('gulp-sourcemaps');
+var autoprefixer = require('gulp-autoprefixer');
+var cssnano = require('gulp-cssnano');
+
+// JS config imports
+var uglify = require('gulp-uglify');
+var jscs = require('gulp-jscs');
+var jshint = require('gulp-jshint');
+
+// Image config imports
+var imagemin = require('gulp-imagemin');
+var svgSymbols = require('gulp-svg-symbols');
+
+var merge = require('merge-stream');
+
+// Handle Bar config starts
+
+handlebars.Handlebars.registerHelper(layouts(handlebars.Handlebars));
+
+gulp.task('templates', function () {
+    var templateData = yaml.safeLoad(fs.readFileSync(path.data));
+
+    var options = {
+        ignorepartials: true,
+        batch: [path.partialSrc],
+        helpers: {
+            capitals: function (str) {
+                return str.toUpperCase();
+            }
+        }
+    };
+
+    return gulp.src(path.pages)
+        .pipe(plumber())
+        .pipe(handlebars(templateData, options))
+        .pipe(rename(function (_path) {
+            _path.extname = '.html';
+        }))
+        .pipe(gulp.dest(path.dist));
+});
+
+gulp.task('templates:optimized', gulp.series(['templates'], function () {
+    return gulp.src(path.distHtml)
+        .pipe(inlinesource())
+        .pipe(replace(/\.\.\//g, ''))
+        .pipe(htmlmin({
+            collapseWhitespace: true,
+            removeComments: true
+        }))
+        .pipe(gulp.dest(path.dist));
+}));
+
+// Handle Bar config ends
+
+//SVG Icons
+gulp.task('sprites', function () {
+    return gulp.src('src/icons/*.svg')
+        .pipe(svgSymbols({
+            id: 'icon-%f',
+            class: '.icon-%f',
+            svgAttr: {class: 'similac-svg-icons'},
+            // templates: ['default-scss', 'default-svg'],
+            mode: {
+                "inline": true,
+                "defs": true,
+                "stack": true
+            }
+        }))
+        .pipe(
+            rename(function (_path) {
+                _path.basename = 'svg-icons';
+            })
+        )
+        .pipe(gulpif(/[.]svg$/, gulp.dest('./src/img/')))
+        .pipe(gulpif(/[.]scss$/, gulp.dest('./src/sass/')));
+    // .pipe(gulp.dest('./src/sprite/'));
+});
+//SVG Icons Ends
+
+// SASS Config starts
+gulp.task('sass:lint', function () {
+    gulp.src(path.sass)
+        .pipe(plumber())
+        .pipe(scsslint());
+});
+
+gulp.task('sass:build', function (done) {
+
+
+    var baseCss = gulp.src(path.baseSass)
+        .pipe(rename({
+            suffix: ''
+        }))
+        .pipe(plumber())
+        .pipe(sourcemaps.init())
+        .pipe(sass({
+            outputStyle: 'expanded',
+        }))
+        .pipe(autoprefixer())
+        .pipe(sourcemaps.write('.', { includeContent: false, sourceRoot: '../src' }))
+        .pipe(gulp.dest(path.baseCss));
+
+    var commonCss = gulp.src(path.commonSass)
+        .pipe(rename({
+            suffix: ''
+        }))
+        .pipe(plumber())
+        .pipe(sourcemaps.init())
+        .pipe(sass({
+            outputStyle: 'expanded',
+        }))
+        .pipe(autoprefixer())
+        .pipe(sourcemaps.write('.', { includeContent: false, sourceRoot: '../src' }))
+        .pipe(gulp.dest(path.commonCss));
+
+    var componentCss = gulp.src(path.componentSass)
+        .pipe(rename({
+            suffix: ''
+        }))
+        .pipe(plumber())
+        .pipe(sourcemaps.init())
+        .pipe(sass({
+            outputStyle: 'expanded',
+        }).on('error', sass.logError))
+        .pipe(autoprefixer())
+        .pipe(sourcemaps.write('.', { includeContent: false, sourceRoot: '../src' }))
+        .pipe(gulp.dest(path.componentCss));
+
+    var devCss = gulp.src(path.devSass)
+        .pipe(rename({
+            suffix: ''
+        }))
+        .pipe(plumber())
+        .pipe(sourcemaps.init())
+        .pipe(sass({
+            outputStyle: 'expanded',
+        }).on('error', sass.logError))
+        .pipe(autoprefixer())
+        .pipe(sourcemaps.write('.', { includeContent: false, sourceRoot: '../src' }))
+        .pipe(gulp.dest(path.distCss));
+
+    return merge(baseCss, commonCss, componentCss, devCss);
+    // done();
+});
+
+gulp.task('sass:optimized', function () {
+    return gulp.src(path.sassMain)
+        .pipe(rename({
+            suffix: '.min'
+        }))
+        .pipe(plumber())
+        .pipe(sass({
+            outputStyle: 'compressed',
+        }))
+        .pipe(autoprefixer())
+        .pipe(cssnano({
+            compatibility: 'ie10'
+        }))
+        .pipe(gulp.dest(path.distCss));
+});
+
+// gulp.task('sass', gulp.series(['sass:lint', 'sass:build']));
+gulp.task('sass', gulp.series(['sprites', 'sass:build'], function (done) {
+    done();
+}));
+
+// SASS Config ends
+
+// JS config starts
+
+gulp.task('js:build', function () {
+    var basejs = gulp.src('src/js/lib/*.js')
+        .pipe(plumber())
+        .pipe(sourcemaps.init())
+        .pipe(uglify())
+        .pipe(sourcemaps.write('.', { includeContent: false, sourceRoot: '../src' }))
+        .pipe(gulp.dest('dist/similac-base/js'));
+
+    var commonjs = gulp.src('src/js/*.js')
+        .pipe(plumber())
+        .pipe(sourcemaps.init())
+        .pipe(uglify())
+        .pipe(sourcemaps.write('.', { includeContent: false, sourceRoot: '../src' }))
+        .pipe(gulp.dest('dist/similac-common/js'));
+
+    var componentjs = gulp.src('src/js/component/**/*.js')
+        .pipe(plumber())
+        .pipe(sourcemaps.init())
+        .pipe(uglify())
+        .pipe(sourcemaps.write('.', { includeContent: false, sourceRoot: '../src' }))
+        .pipe(gulp.dest('dist/similac-component/js'));
+
+
+    return merge(basejs, commonjs,componentjs);
+});
+
+gulp.task('js:lint', function () {
+    return gulp.src(['./src/js/**/*.js', '!./src/js/lib/**/*.js', 'Gulpfile.js'])
+        .pipe(plumber())
+        .pipe(jscs())
+        .pipe(jshint())
+        .pipe(jshint.reporter('default'));
+});
+
+gulp.task('js', gulp.series(['js:lint', 'js:build']));
+
+// JS config ends
+
+
+// Image config starts
+
+gulp.task('images:build', function () {
+    return gulp.src('src/img/**/*')
+        .pipe(plumber())
+        // .pipe(imagemin({
+        //     progressive: true,
+        // }))
+        .pipe(gulp.dest('./dist/resources/img'));
+});
+
+gulp.task('images', gulp.series(['sprites', 'images:build']));
+
+gulp.task('images:optimized', function () {
+    return gulp.src('src/img/**/*')
+        .pipe(plumber())
+        .pipe(imagemin({
+            progressive: true,
+            multipass: true,
+        }))
+        .pipe(gulp.dest('./dist/resources/img'));
+});
+
+// Image config ends
+
+// Fonts config starts
+
+gulp.task('fonts', function () {
+    return gulp.src('src/fonts/*')
+        .pipe(plumber())
+        .pipe(gulp.dest('./dist/resources/fonts'));
+});
+
+// Fonts config ends
+
+
+gulp.task('clean', function (cb) {
+    return rimraf(path.dist, cb);
+});
+
+gulp.task('watch', function () {
+    gulp.watch([path.pages, path.partials, path.data], gulp.series(['templates']), reload);
+    gulp.watch('./src/sass/**/*.scss', gulp.series(['sass']), reload);
+    gulp.watch('./src/img/**/*', gulp.series(['images']), reload);
+    gulp.watch(['./src/js/**/*.js', 'Gulpfile.js'], gulp.series(['js']), reload);
+});
+
+
+gulp.task('build', gulp.series(['clean', 'sass', 'images', 'fonts', 'js', 'templates'], function (done) {
+    done();
+}));
+
+gulp.task('build:optimized', gulp.series(['clean', 'sass:optimized', 'images:optimized', 'fonts', 'js', 'templates:optimized']));
+
+// use default task to launch Browsersync and watch JS files
+gulp.task('serve', gulp.series(['build'], function (done) {
+
+    // Serve files from the root of this project
+    browserSync.init(['./dist/**/*'], {
+        ghostMode: {
+            clicks: false,
+            forms: false,
+            scroll: false,
+        },
+        server: {
+            baseDir: './dist',
+        },
+    });
+
+    // add browserSync.reload to the tasks array to make
+    // all browsers reload after tasks are complete.
+    // gulp.start(['watch']);
+
+    gulp.watch('./src/**/*.hbs', gulp.series(['templates']), reload);
+    gulp.watch('./src/sass/**/*.scss', gulp.series(['sass:build']), reload);
+    gulp.watch('./src/img/**/*', gulp.series(['images']), reload);
+    gulp.watch(['./src/js/**/*.js', 'Gulpfile.js'], gulp.series(['js']), reload);
+    gulp.watch('./*.yml', gulp.series(['templates']), reload);
+    done();
+}));
+
+gulp.task('react', gulp.series(['clean','sass', 'images', 'fonts', 'js'], function (done) {
+    done();
+}));

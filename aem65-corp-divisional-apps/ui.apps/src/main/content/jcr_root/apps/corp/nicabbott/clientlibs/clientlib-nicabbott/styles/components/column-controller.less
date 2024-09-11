@@ -1,0 +1,320 @@
+/**********************************
+column-controller Component
+**********************************/
+
+//mixin to hide display of the vertical line none on mobile view
+.mobile {
+    @media @sm-down {
+        display: none;
+    }
+}
+
+//mixin to show the display of line in ipad view
+.ipadview {
+    @media @lg-down {
+        display: block !important;
+    }
+}
+
+.columncontrol {
+
+    //style system to reverse the columns in mobile view
+    &.mob-column-reverse {
+        @media @md-down {
+            .row {
+                flex-direction: column-reverse !important;
+            }
+        }
+    }
+
+    // to reverse column in mobile view for social-media
+    &.col-reverse-mob {
+        @media @md-down {
+            .container {
+                .row {
+                    flex-direction: column-reverse;
+                }
+            }
+        }
+
+        .columncontrol__column {
+            padding-right: 0 !important;
+        }
+    }
+
+    // Style system to have 15px of spacing between columns
+    &.column-spacing--15 {
+        .row .columncontrol__column {
+            padding-left: 7.5px;
+            padding-right: 7.5px;
+        }
+    }
+
+    // Style system to have 7px of spacing between columns
+    &.column-spacing--7 {
+        .row .columncontrol__column {
+            padding-left: 3.5px;
+            padding-right: 3.5px;
+        }
+    }
+
+    // Style system no spacing between columns
+    &.column-spacing--0 {
+        .row .columncontrol__column {
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+
+    // Style system to have 7px of spacing between columns in mobile
+    &.column-mob-spacing--7 {
+        .row .columncontrol__column {
+            @media @md-down {
+                margin-bottom: 7px !important;
+            }
+        }
+    }
+
+    // Style system to have 15px of spacing between columns in mobile
+    &.column-mob-spacing--15 {
+        .row .columncontrol__column {
+            @media @md-down {
+                margin-bottom: 15px !important;
+            }
+        }
+    }
+
+    // Style system to have no spacing between columns in mobile
+    &.column-mob-spacing--0 {
+        .row .columncontrol__column {
+            @media @md-down {
+                margin-bottom: 0 !important;
+            }
+        }
+    }
+
+    // Style system to remove spacing for columns in tablet
+    &.column-tablet-spacing--0 {
+        .row .columncontrol__column {
+            @media @lg-only {
+                margin-bottom: 0 !important;
+            }
+        }
+    }
+
+    &.column-tablet-spacing--8 {
+        .row .columncontrol__column {
+            @media @lg-only {
+                margin-bottom: 0.5rem !important;
+            }
+        }
+    }
+
+    //style system to remove bottom space for mobile
+    &.column-mob-remove--bottom-spacing {
+        .row .columncontrol__column {
+            @media @md-down {
+                margin-bottom: 0 !important;
+            }
+        }
+    }
+
+    //style system to remove top space for mobile
+    &.column-mob-remove--top-spacing {
+        .row .columncontrol__column {
+            @media @md-down {
+                margin-top: 0 !important;
+            }
+        }
+    }
+
+    //style system to remove left padding
+    &.column-remove-mob--left-spacing {
+        @media @md-down {
+            &+.container {
+                padding-left: 0;
+            }
+
+            .columncontrol__column {
+                padding-left: 0;
+            }
+        }
+    }
+
+    //style system to remove right padding
+    &.column-remove-mob--right-spacing {
+        @media @md-down {
+            &+.container {
+                padding-right: 0;
+            }
+
+            .columncontrol__column {
+                padding-right: 0;
+            }
+        }
+    }
+
+    //style system to remove left padding
+    &.column-remove--left-spacing {
+        @media @md-up {
+            &+.container {
+                padding-left: 0;
+            }
+
+            .columncontrol__column {
+                padding-left: 0 !important;
+            }
+        }
+    }
+
+    //style system to remove right padding
+    &.column-remove--right-spacing {
+        @media @md-up {
+            &+.container {
+                padding-right: 0;
+            }
+
+            .columncontrol__column {
+                padding-right: 0 !important;
+            }
+        }
+    }
+
+    //Style system to remove spacing around
+    &.column-remove--around-spacing {
+        @media @md-up {
+            &>.container {
+                padding-left: 0;
+                padding-right: 0;
+
+                &>.row>.columncontrol__column {
+                    &:first-child {
+                        padding-left: 0;
+                    }
+
+                    &:last-child {
+                        padding-right: 0;
+                    }
+                }
+            }
+        }
+    }
+
+
+    //style system to add spacing between columns for ipad view
+    &.column-ipad-spacing--25px {
+        .columncontrol__column {
+            @media @lg-only {
+                padding-left: 25px;
+                padding-right: 25px;
+            }
+        }
+    }
+
+    // Style system to middle align the components in each column
+    &.column-align-content--middle {
+        .columncontrol__column {
+            margin-bottom: auto;
+            margin-top: auto;
+        }
+    }
+
+    // Style system to bottom align the components in each column
+    &.column-align-content--bottom {
+        .columncontrol__column {
+            margin-bottom: 0;
+            margin-top: auto;
+        }
+    }
+
+    // Style system to have fluid container in mobile
+    &.column-mob-fluid-container {
+        &+.container {
+            @media @md-down {
+                max-width: 100%;
+            }
+        }
+    }
+
+    // Style system to have two column layout in mobile viewports
+    &.column-mob-col-6 {
+        .columncontrol__column.col-12 {
+            @media @md-down {
+                flex: 0 0 50%;
+            }
+        }
+    }
+
+    //style system for de-contact-us form tablet full width
+    &.columncontrol--tablet-full-width {
+        >.container>.row>.columncontrol__column {
+            @media @lg-only {
+
+                flex: 0 0 100%;
+                max-width: 100%;
+
+            }
+        }
+
+    }
+
+    &.column-control--footer {
+
+        .row {
+            .columncontrol__column {
+                @media @md-down {
+                    padding-left: 0;
+
+                    &:nth-child(2) {
+                        display: none;
+                    }
+
+                }
+
+                @media @lg-only {
+                    margin-bottom: 0;
+                }
+            }
+
+            .linkstack {
+                .m-link-stack {
+                    .m-link-stack--header {
+                        display: none;
+                    }
+
+                    .m-link-stack--content {
+                        padding: 0;
+
+                        @media @lg-only {
+                            display: block !important;
+                            width: 120px;
+                        }
+
+                        .a-link {
+                            @media @lg-up {
+                                padding-bottom: 10px;
+                            }
+
+                            .a-link__text {
+                                color: @abbott-shining-silver;
+                                font-size: 12.6px;
+                                font-weight: 400;
+                                text-transform: uppercase;
+                                font-family: @font-brandon-grotesque-regular;
+
+                                @media @lg-only {
+                                    font-size: 12px;
+                                }
+
+                                &:hover,
+                                &:focus {
+                                    color: @abbott-footer-link-cyan  !important;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

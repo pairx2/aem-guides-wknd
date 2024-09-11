@@ -1,0 +1,72 @@
+<!--/* Footer (ARDX - Division) */-->
+<sly data-sly-use.footer="com.abbott.aem.platform.common.components.models.Footer"
+	 data-sly-use.template="core/wcm/components/commons/v1/templates.html">
+	 <div class="footer rw-cnt">
+        <div class="container">
+            <div class="row">
+
+
+                  <div class="o-footer__topsec">
+                     <div class="col-xs-12 col-md-6 col-sm-6 col-lg-6 text-left">
+                        <div class="${wcmmode.edit ? 'logo-editor' : 'o-footer-logo'}">
+                           <!--/* logo comp */-->
+
+            <sly data-sly-test="${wcmmode.edit}">Logo</sly>
+                           <sly data-sly-resource="${'logo' @ resourceType=footer.logoProxyPath}"/>
+                           <!--/* logo comp */-->
+                        </div>
+                     </div>
+                     <div class="col-xs-12 col-md-6 col-sm-6 col-lg-6 text-right">
+                        <div class="${wcmmode.edit ? 'navlinks-editor' : 'o-footer-right-menu'}">
+                        <!--/* menu links */-->
+                        <sly data-sly-test="${wcmmode.edit}">Navigation Links</sly>
+                           <sly data-sly-resource="${'linkstack' @ resourceType=footer.linkstackProxyPath}"/>
+
+                        <!--/* menu links */-->
+                        </div>
+                     </div>
+                  </div>
+
+            </div>
+            <div class="row">
+              <div class="col-12 col-md-12 col-sm-12 col-xs-12">
+
+                  <sly data-sly-test="${wcmmode.edit}">Textual Declaration</sly>
+                <sly data-sly-resource="${'Text1' @ resourceType=footer.textProxyPath}"/>
+               </div>
+            </div>
+            <div class="row">
+               <div class="col-md-12 col-lg-12 col-sm-12">
+                  <div class="o-footer-btm-link">
+                        <div class="col-md-7 col-sm-6  col-xs-12 text-left">
+                           <div class="${wcmmode.edit ? 'secondarylink-editor' : 'o-footer-nav-btm'}">
+                                     <sly data-sly-test="${wcmmode.edit}">Secondary Links</sly>
+                         <sly data-sly-resource="${'linkstack1' @ resourceType=footer.linkstackProxyPath}"/>
+                           <sly data-sly-include="navLinks.html"></sly>
+
+
+                           </div>
+
+                          
+                        </div>
+                        <div class="col-md-5 col-sm-6 col-xs-12 text-right">
+
+                            
+
+                              <div class="${wcmmode.edit ? 'trade-editor' : 'o-footer-btrgt'}">
+                                 <sly data-sly-test="${wcmmode.edit}">Trademark/Copyright</sly>
+                                 <sly data-sly-resource="${'Text' @ resourceType=footer.textProxyPath}"/>
+
+                              </div>
+                        </div>
+                  </div> 
+
+
+               </div>
+            </div>
+        </div>
+     </div>
+	
+  
+     
+<sly data-sly-call="${template.placeholder @ isEmpty=true}"></sly>

@@ -1,0 +1,67 @@
+<sly data-sly-use.model="com.abbott.aem.adc.freestylelibrede.models.ChatButtonModel"></sly>
+    <!--Embedded Service Snippet starts here-->
+<style type='text/css'>
+	.embeddedServiceHelpButton .helpButton .uiButton {
+		background-color: #ffd100;
+		font-family: "Sans Source Pro", sans-serif;
+	}
+	.embeddedServiceHelpButton .helpButton .uiButton:focus {
+		outline: 1px solid #ffd100;
+	}
+</style>
+
+<script type='text/javascript' src='https://service.force.com/embeddedservice/5.0/esw.min.js'></script>
+<script type='text/javascript'>
+	var initESW = function(gslbBaseURL) {
+		embedded_svc.settings.displayHelpButton = false; //Or false
+		embedded_svc.settings.language = 'de'; //For example, enter 'en' or 'en-US'
+
+		embedded_svc.settings.defaultMinimizedText = 'Chat'; //(Defaults to Chat with an Expert)
+		//embedded_svc.settings.disabledMinimizedText = '...'; //(Defaults to Agent Offline)
+
+		//embedded_svc.settings.loadingText = ''; //(Defaults to Loading)
+		//embedded_svc.settings.storageDomain = 'yourdomain.com'; //(Sets the domain for your deployment so that visitors can navigate subdomains during a chat session)
+
+		// Settings for Chat
+		//embedded_svc.settings.directToButtonRouting = function(prechatFormData) {
+			// Dynamically changes the button ID based on what the visitor enters in the pre-chat form.
+			// Returns a valid button ID.
+		//};
+		//embedded_svc.settings.prepopulatedPrechatFields = {}; //Sets the auto-population of pre-chat form fields
+		//embedded_svc.settings.fallbackRouting = []; //An array of button IDs, user IDs, or userId_buttonId
+		embedded_svc.settings.offlineSupportMinimizedText = 'Chat'; //(Defaults to Contact Us)
+
+		embedded_svc.settings.enabledFeatures = ['LiveAgent'];
+		embedded_svc.settings.entryFeature = 'LiveAgent';
+
+		embedded_svc.init(
+			"${model.chatEndpoint @ context='scriptString'}",
+			"${model.chatInit @ context='scriptString'}",
+			gslbBaseURL,
+			"${model.orgId @ context='scriptString'}",
+			'CSR_Chat_Group',
+			{
+				baseLiveAgentContentURL: "${model.liveAgentContentURL @ context='scriptString'}",
+				deploymentId: "${model.deploymentId @ context='scriptString'}",
+				buttonId: "${model.buttonId @ context='scriptString'}",
+				baseLiveAgentURL: "${model.liveAgentURL @ context='scriptString'}",
+				eswLiveAgentDevName: "${model.csrChatGroup @ context='scriptString'}",
+				isOfflineSupportEnabled:"${model.offlineSupportEnabled @ context='scriptString'}"
+			}
+		);
+	};
+
+	if (!window.embedded_svc) {
+		var s = document.createElement('script');
+		s.setAttribute('src', "${model.script @ context='scriptString'}");
+		s.onload = function() {
+			initESW(null);
+		};
+		document.body.appendChild(s);
+	} else {
+		initESW("${model.url @ context='scriptString'}");
+	}
+</script>
+    <!--Embedded Service Snippet ends here-->
+ 
+  

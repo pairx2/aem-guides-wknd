@@ -1,0 +1,43 @@
+@import './global/variables.less';
+@import './global/media-queries.less';
+
+.m-hero {
+  &__content {
+    .m-hero--media-end & {
+      order: 1;
+    }
+  }
+
+  &__media {
+    .m-hero--media-end & {
+      order: 2;
+    }
+
+    .m-hero--half-width & {
+      @media @lg-down {
+        min-width: 100%;
+        margin-left: 0;
+      }
+
+      .o-hero-carousel & {
+        @media @lg-down {
+          min-width: 100vw;
+          margin-left: ~"calc(-1 * (100vw - 100%) / 2)";
+        }
+      }
+    }
+  }
+
+  &__extras {
+    @media @sm-down {
+      display: flex;
+      flex-wrap: wrap;
+
+      .a-button--md:not(.a-button) {
+        flex: 0 0 50%;
+        max-width: 50%;
+        margin: 0;
+      }
+    }
+  }
+}

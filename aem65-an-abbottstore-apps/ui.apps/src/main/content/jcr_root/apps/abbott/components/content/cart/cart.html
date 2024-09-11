@@ -1,0 +1,18 @@
+<sly data-sly-use.headerModel="${'com.abbott.aem.an.abbottstore.models.HeaderModel' @ headerResourcePath=currentPage.path}">
+  <sly data-sly-use.templates="abbott/components/content/templates.html" />
+  <sly data-sly-test.cartTitle="${properties.cartTitle}" />
+  <sly data-sly-test="${headerModel.variationType == 'as-variation'}">
+    <a href="#" class="abbott-topbar__action-link abbott-topbar__action-link--cart" id="abbott-mini-cart-trigger">
+      <span id="total-amount"></span> <span> <img src="${properties.cartImageRef}" alt="cart"></span>
+    </a>
+    <span class="abbott-topbar__action-link--cart--count hidden">0</span>
+	<input type="hidden", id="start-shopping" value="${properties.startShoppingLink}"/>
+  </sly>
+  <sly data-sly-test="${headerModel.variationType == 'ss-variation'}">
+    <div class="similac-header__cart-icon align-items-center text-center cart-popup-trigger">
+      <em class="ai-cart-1"></em>
+      <span class="similac-header__cart--count">0</span>
+    </div>
+  </sly>
+  <sly data-sly-call="${templates.placeholder @ isEmpty= !cartTitle}"></sly>
+</sly>

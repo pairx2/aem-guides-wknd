@@ -1,0 +1,185 @@
+@import "media-queries.less";
+@import "variables.less";
+
+@names: abbott-green, abbott-gray, abbott-blue, abbott-cyan, abbott-yellow, abbott-primaryblue;
+@bgColorsTab: #222731, #d9d9d6, #004f71, #64ccc9, #ffd100, #009CDE;
+@hoverBgColorsTab: #7ccc6c, #000000, #d9d9d6, #000, #222731, #ececea;
+@colors: #7ccc6c, #000000, #d9d9d6, #000, #222731, #ffffff;
+@hoverTextColorsTab: #222731, #d9d9d6, #004f71, #64ccc9, #ffd100, #009CDE;
+@activebgColorsTab: #222731, #d9d9d6, #004f71, #64ccc9, #ffd100, #009CDE;
+@length: length(@colors);
+
+
+.tab-color-variation(@names; @colors; @bgColorsTab; @hoverBgColorsTab; @hoverTextColorsTab; @index)
+  when
+  (iscolor(extract(@colors, @index)))
+  and
+  (@index > 0) {
+  .tab-color-variation(@names; @colors; @bgColorsTab; @hoverBgColorsTab; @hoverTextColorsTab; (@index - 1));
+
+  @name: extract(@names, @index);
+  @color: extract(@colors, @index);
+  @bgColorTab: extract(@bgColorsTab, @index);
+  @hoverBgColorTab: extract(@hoverBgColorsTab, @index);
+  @hoverTextColorTab: extract(@hoverTextColorsTab, @index);
+  @activeBgColorTab: extract(@activebgColorsTab, @index);
+
+    #tab-@{name} {
+    nav {
+      border-bottom:1px solid #222731!important;
+      padding-bottom:0px;
+      display: block;
+      a {
+        color: @color;
+        background-color: @bgColorTab;
+        display: inline-block;
+        &.active{
+          background-color: @hoverBgColorTab;
+          color: @hoverTextColorTab !important;
+          border-bottom: 0px !important;
+          &:hover{
+            background-color: @activeBgColorTab;
+            color: @hoverBgColorTab !important;
+          }
+        }
+        &:hover {
+          background-color: @hoverBgColorTab;
+          color: @hoverTextColorTab;
+          text-decoration: none;
+        }
+        &:focus {
+          background-color: @hoverBgColorTab;
+          color: @hoverTextColorTab;
+        }
+      }
+    }
+  }
+}
+
+.tab-color-variation(@names; @colors; @bgColorsTab; @hoverBgColorsTab; @hoverTextColorsTab; @length);
+
+.tabs {
+  nav {
+    a {
+      margin-right: 1px;
+      padding: 8px 10px 2px 10px;
+      font-family: @brandon-bold;
+      font-size: 15px;
+      letter-spacing: normal;
+      text-transform: uppercase;
+      @media @lg-down {
+        margin-bottom: 3px !important;
+      }
+      @media @md-down {
+        width: 100%;
+        margin-bottom: 3px !important;
+      }
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+#tab-abbott-gray{
+  nav{
+a{
+     &:hover{
+    text-decoration: underline;
+  }
+  }
+  }
+}
+#tab-abbott-cyan{
+  nav{
+a{
+     &:hover{
+    text-decoration: underline;
+  }
+  }
+  }
+}
+
+@colorstab: #63666a, #eeb33b, #7ccc6c, #d9d9d6, #aa0061, #004f71, #00b140, #470a68, #e4002b, #ffffff, #ffd100, #00ffff, #000000,#009CDE, #002a3a, #5bc2e7, #64ccc9, #eeb33b, #222731, #888b8d;
+@namestab: colorPalette_DarkGray, colorPalette_DarkOrange, colorPalette_Green, colorPalette_LightGray, colorPalette_Magenta, colorPalette_MediumBlue, colorPalette_MediumGreen, colorPalette_Purple, colorPalette_Red, colorPalette_White, colorPalette_Yellow, colorPalette_Cyan, colorPalette_Black, colorPalette_PrimaryBlue, colorPalette_DarkBlue, colorPalette_LightBlue, colorPalette_Mint, colorPalette_Orange, colorPalette_Charcoal, colorPalette_MediumGray;
+@lengthtab: length(@colorstab);
+ 
+ .panel-tab-color-schemes(@namestab; @colorstab; @index)
+ when
+ (iscolor(extract(@colorstab, @index)))
+ and
+ (@index > 0) {
+ .panel-tab-color-schemes(@namestab; @colorstab; (@index - 1));
+
+ @name: extract(@namestab, @index);
+ @color: extract(@colorstab, @index);
+
+   .cmp-tabs__tablist{
+       &.cmp-tabs__tab--tabbgcolor-@{name} {
+           .cmp-tabs__tab{
+               background-color: @color;
+               position: relative;
+           }	
+       }
+       &.cmp-tabs__tab--activetabcolor-@{name} {
+           .cmp-tabs__tab{
+               &:active {
+                background-color: @color;
+               }
+               &:hover {
+                background-color: @color;
+               }
+               &.active {
+                background-color: @color;
+               }
+           }
+       }
+       &.cmp-tabs__tabfontcolor-@{name} {
+           .cmp-tabs__tab {
+               * {
+                   color: @color;
+               }
+           }   
+       }
+       &.cmp-tabs__activetabfontcolor-@{name} {
+           .cmp-tabs__tab {
+              &.active {
+                  * {
+                      color: @color;
+                  }
+              }
+              &:active {
+                * {
+                      color: @color;
+                  }
+              }
+              &:hover {
+                   * {
+                       color: @color;
+                   }
+               }
+           }
+       }
+       border-bottom: 1px solid @color-charcoal !important;
+       padding-bottom: 0;
+      .cmp-tabs__tab {
+        @media @md-up {
+          border-bottom: none;
+          margin-right: 6px;
+        }
+        &:hover {
+          text-decoration: none;
+        }
+        &.active{
+          border-bottom: none;
+          text-decoration: none;
+        }
+      }
+      .nav-item {
+        @media @md-up {
+          flex: 0;
+          margin-bottom: 0;
+        }
+      }
+   }
+}
+.panel-tab-color-schemes(@namestab; @colorstab; @lengthtab);

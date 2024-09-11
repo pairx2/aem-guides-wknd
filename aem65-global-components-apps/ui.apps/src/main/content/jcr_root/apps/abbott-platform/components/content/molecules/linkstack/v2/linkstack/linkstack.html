@@ -1,0 +1,33 @@
+<div data-sly-test="${wcmmode.edit}" class="cq-placeholder" data-emptyText="Link Stack"></div>
+<sly data-sly-use.component="com.adobe.cq.wcm.core.components.models.Component" data-sly-use.linkStack="com.abbott.aem.platform.common.components.models.LinkStack" data-sly-use.customConfig="com.abbott.aem.platform.common.components.models.CustomConfig">
+    <sly data-sly-test="${linkStack.linkStackType == 'linkstack'}">
+        <sly data-sly-test.sticky="${linkStack.enableStickyList}">
+            <div id="${component.id}" class="m-link-stack m-link-stack-sticky js-m-link-stack-sticky ${!wcmmode.edit ? 'd-none' : ''} m-link-stack-sticky--sticky ${customConfig.className}"
+                data-js-component="default-link-stack-sticky"
+                data-sticky="${linkStack.enableStickyList}"
+                data-edit-mode="${wcmmode.edit ? 'true' : ''}">
+                <div class="container">
+                    <div class="m-link-stack-sticky__row row">
+                        <sly data-sly-include="linkstack-header-sticky.html"></sly>
+                        <sly data-sly-test="${linkStack.links}">
+                            <sly data-sly-include="linkstack-sublinks-sticky.html"></sly>
+                        </sly>
+                        <sly data-sly-test="${linkStack.enableButton}" data-sly-resource="${'button' @resourceType=linkStack.buttonProxyPath, decoration=true}"></sly>
+                    </div>
+                </div>
+            </div>
+        </sly>
+        <sly data-sly-test="${!linkStack.enableStickyList}">
+        <div id="${component.id}" class="m-link-stack js-m-link-stack ${customConfig.className}" data-js-component="default-link-stack">
+            <sly data-sly-include="linkstack-header.html"></sly>
+            <sly data-sly-test="${linkStack.links}">
+                <sly data-sly-include="linkstack-sublinks.html"></sly>
+            </sly>
+            <sly data-sly-test="${linkStack.enableButton}" data-sly-resource="${'button' @resourceType=linkStack.buttonProxyPath, decoration=true}"></sly>
+        </div>
+        </sly>
+    </sly>
+    <sly data-sly-test="${linkStack.linkStackType=='siteselect'}">
+        <sly data-sly-include="linkstack-siteselect.html"></sly>
+    </sly>
+</sly>

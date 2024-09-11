@@ -1,0 +1,362 @@
+/{{farmName}}-farm {
+    # client headers which should be passed through to the render instances
+    # (feature supported since dispatcher build 2.6.3.5222)
+    /clientheaders {
+	{{#ifEquals name "cms.services.abbott"}}
+		"Origin"
+		"Access-Control-Request-Method"
+		"Access-Control-Request-Headers"        
+	{{/ifEquals}}
+		$include "../clientheaders/clientheaders.any"
+    }
+    ## hostname globbing for farm selection (virtual domain addressing)
+    /virtualhosts {
+        "{{name}}"
+        {{#if f7}}"f7aya7rugada.{{name}}"{{/if}}
+        {{#if www}}"www.{{name}}"{{/if}}
+        "staging.{{name}}"
+{{#if isCloudSubdomainRequiredOnUat}}
+        "uat.cloud.{{name}}"
+{{else}}
+        "uat.{{name}}"
+{{/if}}
+{{#if isCloudSubdomainRequired}}
+    {{#ifEquals name "abbott.com"}}
+        "dev.aem.{{name}}"
+        "dev2.aem.{{name}}"
+        "qa.aem.{{name}}"
+        "qa2.aem.{{name}}"
+    {{/ifEquals}}
+    {{#ifNotEquals name "abbott.com"}}
+        "dev.cloud.{{name}}"
+        "dev2.cloud.{{name}}"
+        "qa.cloud.{{name}}"
+        "qa2.cloud.{{name}}"
+    {{/ifNotEquals}}
+        
+{{else}}
+        "dev.{{name}}"
+        "dev2.{{name}}"
+		"devsbx.{{name}}"
+        "qa.{{name}}"
+        "qa2.{{name}}"
+    {{#ifEquals name "nic.services.abbott"}}
+        "nic.abbott"
+    {{/ifEquals}}        
+{{/if}}
+        "dev2preview.{{name}}"   
+        "preview.{{name}}"  
+        "local.{{name}}"
+    }
+    ## the load will be balanced among these render instances
+    /renders {
+        $include "../renders/default_renders.any"
+    }
+    ## only handle the requests in the following acl. default is 'none'
+    ## the glob pattern is matched against the first request line
+    /filter {
+		$include "../filters/filters.any"
+		{{#if isMapEnabled}}
+							
+			# Allow sitemap.xml
+			{{#if multiMarket}}
+				{{#if sitemapAtRoot}}
+			## Site {{site}} Sitemap 
+			/1000 { /type "allow" /method "GET" /extension "xml" /selectors "sitemap" /path "/" }
+				{{else}}
+				   {{#each markets}}
+						{{#each languages}}
+			## Country/Language {{../path}}/{{this}} Sitemap 
+			/1000{{@../index}}{{@index}} { /type "allow" /method "GET" /extension "xml" /selectors "sitemap" /path "/{{../path}}/{{this}}" }
+						{{/each}}
+					{{/each}}
+				{{/if}}
+			{{else}}
+				{{#if multiLanguage}}
+					{{#each markets}}
+						{{#each languages}}
+			## Country-Language {{this}} Sitemap 
+			/1000{{@index}} { /type "allow" /method "GET" /extension "xml" /selectors "sitemap" /path "/{{this}}" }
+						{{/each}}
+					{{/each}}
+				{{else}}
+			/1000{{@index}} { /type "allow" /method "GET" /extension "xml" /selectors "sitemap" /path "/" }
+				{{/if}}
+			{{/if}}
+            {{#ifEquals name "similac.com"}}
+            ## Site {{site}} Sitemap
+			/100000 { /type "allow" /method "GET" /extension "xml" /selectors "sitemap" /path "/" }
+            {{/ifEquals}}
+            
+            {{#ifEquals name "cybersecurity.abbott"}}
+                ## Allow json from DAM
+                /1001 { /type "allow" /extension "json" /path "/content/dam/bts/cybersecurity/*" }
+            {{/ifEquals}}
+
+		{{else}}			
+
+			# Allow cq:tags i18n
+			/1000 { /type "allow" /extension "json" /selectors "tagdata" /path "/content/cq:tags/i18n*" }
+
+			# Allow i18n
+			/1001 { /type "allow" /extension "json" /selectors "tagdata" /path "/i18n*" }
+			
+			# Allow json for content.services
+			/1002 { /type "allow" /extension "json" /path "/content/dam/epd/acare/config/*" }
+
+		{{/if}} 
+		{{#if siteInDAM}}
+			/1003 { /type "allow" /extension "json" /path "/html/js/*" }
+			/1004 { /type "allow" /extension "otf" /path "/html/fonts/*" }
+			/1005 { /type "allow" /extension "mp3" /path "/audio/*" }
+			/1006 { /type "allow" /extension "mp4" /path "/video/*" }
+			/1007 { /type "allow" /extension '(json|otf|mp3|mp4)' /path "/content/dam/corp/brandtraining/*" }
+		{{/if}}
+		{{#if isFilterNeeded}}
+            # Allow i18n json
+            /1001 { /type "allow" /url "/bin/adc/freestylelibrede/i18n.de.json" }
+		{{/if}}
+
+        {{#if isXMLExtensionAllowed}}
+            # Allow xml file for CORP sites under DAM path 
+            /1001 { /type "allow" /extension "xml" /path "/content/dam/corp/abbott/*" }
+			/1002 { /type "allow" /extension "xml" /path "/content/dam/corp/abbottcore/*" }
+		{{/if}}
+        
+        {{#ifEquals name "freestyle.abbott"}}
+            /1001 { /type "allow" /extension "json" /path "/content/dam/adc/freestylelibreus/*" }
+            /1002 { /type "allow" /extension '(js|png|jpg|xml|swf|css|mp3|ogg|svg|db)' /path "/content/dam/adc/freestyle/countries/us-en/flipbook/*" }
+            /1003 { /type "allow" /method "GET" /url "/content/dam/adc/freestyle/applepay/*" }
+		{{/ifEquals}}
+        
+        {{#ifEquals name "abbottstore.com"}}
+            /1001 { /type "allow" /method "GET" /url "/bin/getVariation*" }
+            /1002 { /type "allow" /method "POST" /url "/bin/verifyRecaptcha*" }
+            /1003 { /type "allow" /method "POST" /url "/bin/verify/loginRecaptcha*" }
+		{{/ifEquals}}
+        
+        {{#ifEquals name "glucernastore.com"}}
+            /1001 { /type "allow" /method "GET" /url "/bin/getVariation*" }
+            /1002 { /type "allow" /method "POST" /url "/bin/verifyRecaptcha*" }
+		{{/ifEquals}}
+
+		{{#ifEquals name "similac.com"}}
+            /1001 { /type "allow" /extension "json" /path "/content/dam/an/similac/*" }
+		{{/ifEquals}}
+        
+		{{#ifEquals name "family.abbott"}}
+            /1001 { /type "allow" /extension "json" /path "/content/dam/an/familyabbott/*" }
+		{{/ifEquals}}
+		
+		{{#ifEquals name "redirect.abbott"}}
+            /1001 { /type "allow" /extension "json" /path "/content/dam/an/menap-gpas-redirect/*" }
+		{{/ifEquals}}
+
+		{{#ifEquals name "freestyleandroid.com"}}
+            /1001 { /type "allow" /extension "json" /path "/content/dam/adc/freestyleandroid/json/*" }
+		{{/ifEquals}}
+		
+		{{#ifEquals name "freestylebattery.com"}}
+            /1001 { /type "allow" /extension "json" /path "/content/dam/adc/freestylebattery/json/*" }
+		{{/ifEquals}}
+        
+        {{#ifEquals name "abbottnutrition.com"}}
+			/1001 { /type "allow" /method "GET" /extension "js" /selectors "sw" /path "/abbott" }
+			/1002 { /type "allow" /method "GET" /extension "js" /path "/workbox-sw" }
+            /1003 { /type "allow" /method "GET" /extension "js" /path "/workbox-6-5-1*" }
+			/1004 { /type "allow" /method "GET" /extension "webmanifest" /selectors "manifest" /path "/*" }
+			/1005 { /type "allow" /method "GET" /extension "webmanifest" /selectors "manifest" /path "/content/*" }
+			/1006 { /type "allow" /method "POST" /url "/bin/pwa/cfreader*" }
+		{{/ifEquals}}
+
+		{{#ifEquals name "vascular.eifu.abbott"}}
+			/1001 { /type "allow" /method "GET" /path "/content/dam/av/eifu/contact-us-fragments*" }
+			/1002 { /type "allow" /method "GET" /extension '(js|css|html|svg|cur|png|properties|pdf|bcmap|gif|txt|map)' /path "/content/dam/av/eifu/pdfjs/*" }
+		{{/ifEquals}}
+
+        {{#ifEquals name "manuals.eifu.abbott"}}
+			/1001 { /type "allow" /method "GET" /path "/content/dam/av/eifu/contact-us-fragments*" }
+			/1002 { /type "allow" /method "GET" /extension '(js|css|html|svg|cur|png|properties|pdf|bcmap|gif|txt|map)' /path "/content/dam/av/eifu/pdfjs/*" }
+		{{/ifEquals}}
+		
+		{{#ifEquals name "globalpointofcare.eifu.abbott"}}
+			/1001 { /type "allow" /method "GET" /path "/content/dam/ardx/eifu/contact-us-fragments*" }
+			/1002 { /type "allow" /method "GET" /extension '(js|css|html|svg|cur|png|properties|pdf|bcmap|gif|txt|map)' /path "/content/dam/ardx/eifu/pdfjs/*" }
+		{{/ifEquals}}
+        
+        {{#ifEquals name "cardiovascular.abbott"}}
+			/1001 { /type "allow" /method "GET" /extension '(html|js|css|xml|woff|png|jpg|mp3|json|mp4)' /path "/content/dam/cv/cardiovascular/us/en/education-training/*" }
+            /1002 { /type "allow" /method "GET" /extension "pptx" /path "/content/dam/cv/cardiovascular/*" }
+            /1003 { /type "allow" /method "GET" /extension "xml" /path "/content/dam/cv/cardiovascular/feed/*" }
+		{{/ifEquals}}
+
+        {{#ifEquals name "globalpointofcare.abbott"}}
+			/1001 { /type "allow" /method "GET" /extension "json" /path "/content/dam/ardx/gpoc/support/*" }
+			/1002 { /type "allow" /method "GET" /extension '(VAS|vas|apkg|APKG|msi|MSI|exe|EXE|bat|BAT)' /path "/content/dam/ardx/globalpointofcare/*" }
+		{{/ifEquals}}
+		
+		{{#ifEquals name "acelis.com"}}
+			/1001 { /type "allow" /method "GET" /extension "json" /path "/content/dam/ardx/acelis/vitamink/json/*" }
+		{{/ifEquals}}
+
+		{{#ifEquals name "cms.services.abbott"}}
+			/1011 { /type "allow" /method '(GET|POST|OPTIONS)' /extension "json" /path "/content/cq:graphql/ardx_colibri/*" } 
+			/1012 { /type "allow" /method '(GET|POST|OPTIONS)' /extension "json" /path "/content/_cq_graphql/ardx_colibri/*"}
+			/1013 { /type "allow" /method '(GET|POST|OPTIONS)' /extension "json" /path "/graphql/execute*" }			
+			/1014 { /type "allow" /method '(GET|POST|OPTIONS)' /extension "json" /path "/content/cq:graphql/adc_bluebird/*" } 
+			/1015 { /type "allow" /method '(GET|POST|OPTIONS)' /extension "json" /path "/content/_cq_graphql/adc_bluebird/*"}
+		{{/ifEquals}}
+		
+		{{#ifEquals name "labcentral.corelaboratory.abbott"}}
+			/1001 { /type "allow" /method "GET" /extension "otf" /path "/content/dam/add/customerportal/*" }
+		{{/ifEquals}}
+
+            /2001 { /type "deny" /path "/content/ardx/eifu/report*" }
+			/2002 { /type "deny" /path "/content/av/eifu/report*" }
+            /2003 { /type "allow" /method "GET" /extension "xml" /selectors "faqsitemap" /path "/*" }
+			/2004 { /type "deny" /path "/content/*/cacheflush*" }
+			/2005 { /type "allow" /path "/libs/cq/i18n/*" /selectors "*" /extension "json" }
+			# Allow json from DAM
+			/2006 { /type "allow" /extension "json" /path "/content/dam/*/manifest*" }
+			{{#ifEquals name "proconnect.abbott"}}
+			/2007 { /type "allow" /method "GET" /extension "json" /path "/content/dam/an/hcpproconnect/uk/en/json/*" }
+            {{/ifEquals}} 
+			{{#ifEquals name "corelaboratory.abbott"}}
+            /2008 { /type "allow" /method "GET" /extension '(mp4|xlsx|xls|docx|JPG|PDF|exe|mp3|zip|webp|ics|msg)' /path "/content/dam/add/corelaboratory/*" }
+            {{/ifEquals}}
+			/2009 { /type "deny" /path "/content/*/flushcdncache*" }
+           
+    }
+    ## if the package is installed on publishers to generate a list of all content with a vanityurl attached
+    ## this section will auto-allow the items to bypass the normal dispatcher filters
+    ## Reference: https://docs.adobe.com/docs/en/dispatcher/disp-config.html#Enabling%20Access%20to%20Vanity%20URLs%20-%20/vanity_urls
+    /vanity_urls {
+        /url    "/libs/granite/dispatcher/content/vanityUrls.html"
+        /file   "/tmp/vanity_urls"
+        /delay  300
+    }
+    ## allow propagation of replication posts (should seldomly be used)
+    /propagateSyndPost "0"
+    ## the cache is used to store requests from the renders for faster delivery
+    ## for a second time.
+    /cache {
+        ## The cacheroot must be equal to the document root of the webserver
+        /docroot "${DOCROOT}"
+        ## sets the level upto which files named ".stat" will be created in the
+        ## document root of the webserver. when an activation request for some
+        ## handle is received, only files within the same subtree are affected
+        ## by the invalidation.
+        /statfileslevel "2"
+        ## caches also authorized data
+        /allowAuthorized "0"
+        ## Flag indicating whether the dispatcher should serve stale content if
+        ## no remote server is available.
+        /serveStaleOnError "1"
+        ## the rules define, which pages should be cached. please note that
+        ## - only GET requests are cached
+        ## - only requests with an extension are cached
+        ## - only requests without query parameters ( ? ) are cached
+        ## - only unauthorized pages are cached unless allowUnauthorized is set to 1
+        /rules {
+            $include "../cache/rules.any"
+        }
+        # the invalidate section defines those pages which are 'invalidated' after
+        # any activation. please note that, the activated page itself and all
+        # related documents are flushed on an modification. for example: if the
+        # page /foo/bar is activated, all /foo/bar.* files are removed from the
+        # cache.
+        /invalidate {
+            /0000 {
+                /glob "*"
+                /type "deny"
+            }
+            /0001 {
+                /glob "*.html"
+                /type "allow"
+            }
+            /0002 {
+                /glob "*.css"
+                /type "allow"
+            }
+            /0003 {
+                /glob "*.json"
+                /type "allow"
+            }
+            /0004 {
+                /glob "*.js"
+                /type "allow"
+            }
+            /0005 {
+                /glob "*.json.*"
+                /type "allow"
+            }
+        }
+        /allowedClients {
+            $include "../cache/default_invalidate.any"
+        }
+        ## The ignoreUrlParams section contains query string parameter names that
+        ## should be ignored when determining whether some request's output can be
+        ## cached or delivered from cache.
+        /ignoreUrlParams {
+         /0001 { /glob "*" /type "allow" }
+         /0002 { /glob "q" /type "deny" }
+         {{#ifEquals name "abbottnutrition.com"}}
+         /0003 { /glob "productids" /type "deny" }
+         /0004 { /glob "ps-sku" /type "deny" }
+         {{/ifEquals}}
+         {{#ifEquals name "abbottstore.com"}}
+		 /0003 { /glob "prodPath" /type "deny" }
+		 /0004 { /glob "store" /type "deny" }
+		 /0005 { /glob "size" /type "deny" }
+		 /0006 { /glob "flavor" /type "deny" }
+         /0007 { /glob "currentSelection " /type "deny" }
+         /0008 { /glob "c" /type "deny" }
+         /0009 { /glob "C" /type "deny" }
+         {{/ifEquals}}
+         {{#ifEquals name "glucernastore.com"}}
+		 /0003 { /glob "prodPath" /type "deny" }
+		 /0004 { /glob "store" /type "deny" }
+		 /0005 { /glob "size" /type "deny" }
+		 /0006 { /glob "flavor" /type "deny" }
+         /0007 { /glob "currentSelection " /type "deny" }
+         {{/ifEquals}}
+        }
+
+        ## Cache response headers next to a cached file. On the first request to
+        ## an uncached resource, all headers matching one of the values found here
+        ## are stored in a separate file, next to the cache file. On subsequent
+        ## requests to the cached resource, the stored headers are added to the
+        ## response.
+        ## Note, that file globbing characters are not allowed here.
+        /headers {
+            "Cache-Control"
+            "Content-Disposition"
+            "Content-Type"
+            "Expires"
+            "Last-Modified"
+            "X-Content-Type-Options"
+			{{#ifEquals name "cms.services.abbott"}}
+			"Access-Control-Allow-Origin"
+            "Access-Control-Expose-Headers"
+            "Access-Control-Max-Age"
+            "Access-Control-Allow-Credentials"
+            "Access-Control-Allow-Methods"
+            "Access-Control-Allow-Headers"       
+			{{/ifEquals}}
+        }
+        ## A grace period defines the number of seconds a stale, auto-invalidated
+        ## resource may still be served from the cache after the last activation
+        ## occurring. Auto-invalidated resources are invalidated by any activation,
+        ## when their path matches the /invalidate section above. This setting
+        ## can be used in a setup, where a batch of activations would otherwise
+        ## repeatedly invalidate the entire cache.
+        /gracePeriod "2"
+
+        ## Enable TTL evaluates the response headers from the backend, and if they
+        ## contain a Cache-Control max-age or Expires date, an auxiliary, empty file
+        ## next to the cache file is created, with modification time equal to the
+        ## expiry date. When the cache file is requested past the modification time
+        ## it is automatically re-requested from the backend.
+        /enableTTL "1"
+    }
+}

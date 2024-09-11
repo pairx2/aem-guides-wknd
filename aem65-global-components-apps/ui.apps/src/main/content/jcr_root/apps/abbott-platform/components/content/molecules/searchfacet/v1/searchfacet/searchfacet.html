@@ -1,0 +1,42 @@
+<sly data-sly-use.searchFacetObj="com.abbott.aem.platform.common.components.models.SearchFacet"
+data-sly-use.customConfig="com.abbott.aem.platform.common.components.models.CustomConfig"
+data-sly-use.component="com.adobe.cq.wcm.core.components.models.Component"
+   data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
+   <sly data-sly-test="${!searchFacetObj.disableSearchCategoryFacet}">
+   <div id="${component.id}" class="m-link-stack m-link-stack-faq js-m-link-stack ${customConfig.className}" data-js-component="default-link-stack" data-sly-list.searchFacetItem="${searchFacetObj.searchFacetProperties}">
+       <div class="m-link-stack-faq--wrapper ${searchFacetItem.isTruncationEnable ? 'm-link-stack--truncation' : ''}" data-visible-length="${searchFacetItem.numberOfItemsVisible ? searchFacetItem.numberOfItemsVisible : '3'}">
+			<div class="m-link-stack--header">
+			<h6 class="m-link-stack--title">${searchFacetItem.title}</h6>
+			</div>
+			<div class="m-link-stack--dropdown" data-field-name="${searchFacetItem.fieldName}" data-is-multiple="${searchFacetItem.isMultiple ? 'true' : 'false'}">
+					<template id="facet-temp">
+						<div class="faq-link">
+							<div data-sly-test="${searchFacetItem.isMultiple}" class="a-checkbox a-checkbox--horizontal">
+								<label class="a-checkbox__label" for="c1">
+								<span class="a-checkbox__text">{link-text}</span>
+								<input type="checkbox" class="a-checkbox__input" name = "c1" id="c1" data-required="true">
+								<span class="a-checkbox__custom"></span>
+								</label>
+							</div>
+							<div data-sly-test="${!searchFacetItem.isMultiple}" class="a-link">
+								<a class="a-link__text" aria-label="{link-text}" role="link" data-id="">{link-text}</a>
+							</div>
+						</div>
+				</template>
+				<span class="m-link-stack--dropdown-value">${searchFacetItem.title}</span>
+				<div class="js-faq-links m-link-stack--content d-none d-md-block"></div>
+			</div>
+			<sly data-sly-test="${searchFacetItem.isTruncationEnable}">  
+				<div class="m-link-stack--truncate d-none">
+					<a href="javascript:void(0)" target="_self">
+						<span class="m-link-stack--more">${searchFacetItem.showText}</span>
+						<span class="m-link-stack--less d-none">${searchFacetItem.hideText}</span>
+						<em class="abt-icon abt-icon-down-arrow"></em>
+					</a>
+				</div>
+			</sly>
+	   </div>
+   </div>
+</sly> 
+</sly>
+<sly data-sly-call="${templates.placeholder @ isEmpty=!searchFacetObj.searchFacetProperties}"></sly>

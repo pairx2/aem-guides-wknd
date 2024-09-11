@@ -1,0 +1,353 @@
+@import "./global/mixins.less";
+@import './global/variables.less';
+
+// SB HCP Mobile side filter code
+
+#product-resource-title {
+
+    text-align: center;
+    @media @lg-only {
+		padding: 0 5rem;
+        margin-bottom: 4.375rem;
+    }
+    @media @lg-up {
+		padding: 0 15rem;
+        margin-bottom: 4.375rem;
+    }
+}
+
+.abbott-breadcrumb:has(.container) + .responsivegrid {
+    .container.responsivegrid.a-container:has(#product-resource-title) {
+        padding-top: 0;
+    }
+}
+
+.container.responsivegrid.a-container:has(#product-resource-title) {
+    padding-bottom: 0;
+}
+
+.container.responsivegrid.a-container {
+    &:has(#product-resource),
+    &:has(#section-beforeAPICall) {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+}
+
+#product-resource {
+    margin-bottom: 2.5rem;								// SB HCP-454 space between cards and footer
+    .row {
+        #sideFilter {
+            transition: all 0.3s;
+            //max-width: 16rem;
+            #sidebarClose {								// HCP- back button in mobile filter
+				font-size: @font-size-18;
+                color: @color-core-dark-blue;
+                span {
+					font-family: @calibri-font-family, @base-font-family;
+                }
+            }
+            #filter-heading {
+				display: flex;
+				.text {
+                    color: @color-core-dark-blue;
+                    font-family: @base-font-family;
+                    blockquote {
+						margin: 0;
+                    }
+                    p {
+						line-height: 2.5rem;
+                        margin: 0;
+                    }
+                }
+                .link {
+                    margin-left: auto;
+                    #reset-filter {
+                        padding-right: 0;
+                        span {
+                        	color: @color-hcp-blue;
+                        	text-decoration: underline;
+                            font-size: @font-size-16;
+                        }
+                    }
+            	}
+            }
+			.a-rule {
+                margin: 0.5rem 0;
+                @media @xs-only {
+					width: 95%;
+                }
+            }
+            .options {
+                .checkbox {
+                    .a-checkbox {
+						margin-bottom: 0;
+
+                    }
+                    .collapse {
+                        .a-checkbox {
+							margin-bottom: 0;
+                            
+                        }
+                    }
+                }
+            }
+            .link {										// HCP - view all button
+                .btn {
+                    font-size: @font-size-14 !important;
+                    background: transparent;
+                    padding: .375rem .75rem .375rem 0;
+                    text-transform: none;
+                    line-height: 1.5;
+                    @media @md-down{
+                        &:has(.abt-icon){
+                            text-align: left;
+                        }
+                    }
+					span {
+                        color: @color-core-dark-blue;
+                    } 
+                    .abt-icon {
+						font-size: @font-size-14 !important;
+                        color: @color-core-dark-blue;
+                        display: inline;
+                        padding-left: 7px !important;
+
+                        &:before {
+                            color: @color-core-dark-blue;
+                        }
+                    }
+                    .upIcon {							// SB HCP-490 by default hiding up arrow
+						display: none;
+                    }
+                }
+            }
+        }
+        #rightPanel {
+            .a-container {
+                z-index: unset;  
+            }
+            ul{
+                &.a-dropdown__menu {
+                    li{
+                        &.selectedColor {
+                            background: transparent;
+                        }
+                    }
+                }
+            }
+            #page-sort {
+				display: flex;
+                @media @sm-up {
+					margin-right: 3.5rem;			// SB HCP-536 changes
+                	margin-left: 1.1rem;
+                }
+                .text {
+                    p {
+						line-height: 2.5rem;		// SB HCP - aligning showing .. with reset filter in desktop
+                        margin: 0;
+                    }
+                }
+                .options {
+					margin-left: auto;
+                    .drop-down {
+						.form-group {
+                            margin-bottom: 0;
+                            display: flex;
+                            .form-label {
+                                    width: 100%;
+                                    line-height: 2.9rem;		// SB HCP-531 sort by & DD alignment
+                                    font-size: @font-size-18;
+                            		white-space: nowrap; 		// SB HCP-454 sort by heading wrap   
+                                	margin-bottom: 0;
+                                	font-family: @calibri-font-family, @base-font-family;	// SB HCP-536 font family calibri
+                            }
+                            .a-dropdown__field {
+                                border: none;
+                                color: @color-hcp-blue;
+                                padding-right: 1.5rem;					// SB HCP-536
+                                .a-dropdown-selected {
+                                    color: @color-hcp-blue;
+                            		white-space: nowrap; 				// SB HCP-454 sort by heading wrap
+                                    font-family: @calibri-font-family, @base-font-family;	// SB HCP-536 font family calibri
+                                    font-weight: @font-weight-700;
+                                    font-size: @font-size-18;
+                                }
+                                .a-dropdown__menu {						// SB HCP - styling of sort by dropdown menu
+									border: 1px solid @color-dark-grey;
+                                    min-width: 9rem;					// SB HCP-536
+                                    //left: -100%;
+                                    margin-left: auto;
+                                    li {
+										color: @color-dark-blue;
+                                        border-bottom: none;
+                                        font-family: @calibri-font-family, @base-font-family;	// SB HCP-536 font family calibri
+                                        span:first-child {
+											display: none;				// SB HCP- to hide icon span in li items on left
+                                        }
+                                        span {
+											padding: 0.4rem 0.7rem;		// SB HCP-536 reduce size of DD menu
+                                        }
+                                    }
+                                    li:hover {
+										background: @color-neutral-light-gray;
+                                    }
+                                }
+                            }
+                            .a-dropdown__field::after {
+                                font-size: 0.8rem;		// HCP size of DD down arrow
+                                margin-right: -1rem;
+                            } 
+                            @media @xs-only {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+            }
+            #filter-sort {
+				display: none;
+                #sidebarCollapse {				// HCP- filter button in mobile view to open sidebar
+					color: @color-hcp-blue;
+                    text-decoration: underline;
+                    padding: 0.5rem 0;
+                    background: transparent;
+                    text-transform: none;
+                    line-height: 1.5;
+                }
+                .options {
+					margin-left: auto;
+                    .drop-down {
+						.form-group {
+                            margin-bottom: 0;
+                            display: flex;
+                            .form-label {
+                                    width: 100%;
+                                    line-height: 2.9rem;		// SB HCP-531 sort by & DD alignment
+                                    font-size: @font-size-18;
+                              		white-space: nowrap; 		// SB HCP-454 sort by heading wrap 
+                                	margin-bottom: 0;
+                                	font-family: @calibri-font-family, @base-font-family;	// SB HCP-536 font family calibri
+                            }
+                            .a-dropdown__field {
+                                border: none;
+                                color: @color-hcp-blue;
+                                padding-right: 2.5rem;					// SB HCP-536 changes
+                                .a-dropdown-selected {
+                                    color: @color-hcp-blue;
+                                    white-space: nowrap; 				// SB HCP-454 sort by heading wrap   
+                                    font-family: @calibri-font-family, @base-font-family;	// SB HCP-536 font family calibri
+                                    font-weight: @font-weight-700;
+                                    font-size: @font-size-18;
+                                }
+                                .a-dropdown__menu {						// SB HCP - styling of sort by dropdown menu
+									border: 1px solid @color-dark-grey;
+                                    min-width: 9rem;					// SB HCP-536 changes
+                                    //left: -100%;
+									margin-left: auto;
+                                    @media @xs-only {
+                                        border: 1px solid var(--dropdown-menu-box-shadow);
+                                    }
+                                    li {
+										color: @color-dark-blue;
+                                        border-bottom: none;
+                                        font-family: @calibri-font-family, @base-font-family;	// SB HCP-536 font family calibri
+                                        span:first-child {
+											display: none;				// SB HCP- to hide icon span in li items on left
+                                            @media @xs-only {
+                                                display: block;
+                                                cursor: pointer;
+                                            }
+                                        }
+                                        span {
+											padding: 0.4rem 0.7rem;		// SB HCP-536 reduce size of DD menu
+                                        }
+                                    }
+                                    li:hover {
+										background: @color-neutral-light-gray;
+                                    }
+                                }
+                            }
+                            .a-dropdown__field::after {
+                                font-size: 0.8rem;		// HCP size of DD down arrow
+                            } 
+                        }
+                    }
+                }
+                @media @xs-only {
+					display: flex;
+                }
+            }
+            .a-rule {
+                //margin: 0.7rem 0;
+                @media @sm-up {
+					width: 92%;
+                    margin-left: 1.1rem;
+                }
+            }
+            #selectedFilters {				// HCP- container for chip tags
+				margin-top: 1.5rem;
+                margin-bottom: 1.5rem;
+                .btn {
+					color: @color-dark-grey;
+                    .abt-icon {
+                        font-size: 0.8rem;
+                    }
+                }
+                @media @md-up {
+					margin-left: 1.1rem;	// SB HCP-476, chip alignment
+                }
+            }
+            @media @xs-only {
+				 padding: 0 2.5rem;
+            }
+            @media @md-up {
+				padding-left: 0;
+                padding-right: 0;
+            }
+        }
+
+        @media @xs-only {						// HCP- media query below 576px
+
+            #sideFilter {
+				margin-left: -101% !important;
+                max-width: none;
+                .applyButton {					// HCP- Apply filter css
+					background: @color-hcp-blue;
+                    width: 95%;
+                    span {
+						color: @color-white;
+                    }
+                }
+            }
+            #sideFilter.active {
+				margin-left: 0 !important; // SB HCP- search filter 
+                padding: 0 2rem;
+                width: 100%;
+            }
+            .hideRight {
+				display: none !important;
+            }
+        }
+
+        .container {
+            padding: 0;
+
+            .cmp-container {
+                >div:not(.experiencefragment) {
+                    margin-top: 0;
+                }
+            }
+        }
+        /*@media all and (max-width: 375px) {
+            #sideFilter {
+				margin-left: -65% !important;
+            }
+        }*/
+    }
+}
+
+.responsivegrid .aem-Grid .columncontrol .row>[class*="col-"]>div:not(.experiencefragment) {
+       margin-top: 0;
+       margin-bottom: 0;
+}

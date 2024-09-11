@@ -1,0 +1,23 @@
+<sly data-sly-test="${WCMMode.edit}"> Edit the Tabs Component </sly>
+<section 
+   class="cmp-tabs pdp-tabs mt-4"
+   data-cmp-is="tabs" data-sly-use.tabs="com.adobe.cq.wcm.core.components.models.Tabs" data-sly-use.templates="/apps/an/similac/components/content/templates.html">
+   <ol role="tablist" class="cmp-tabs__tablist text-center d-none d-md-block" aria-multiselectable="false"  data-sly-test="${tabs.items && tabs.items.size > 0}">
+    <sly data-sly-repeat.item="${tabs.items}">
+     <sly data-sly-use.analyticsConfig="${'com.abbott.aem.an.similac.core.models.AnalyticsConfigModel' @ pageName=currentPage.name, sectionTitle = item.title, linkName='tab'}" />
+      <li  role="tab" id="${item.title}" class="cmp-tabs__tab ${item.name == tabs.activeItem ? ' cmp-tabs__tab--active' : ''}"
+         data-cmp-hook-tabs="tab" data-gtm = "tab|click|${analyticsConfig.eventLabel @context='attribute'}" >${item.title}</li>
+     </sly>
+   </ol>
+   <div  role="tabpanel"
+      class="cmp-tabs__tabpanel ${item.name == tabs.activeItem ? ' cmp-tabs__tabpanel--active' : ''}"
+      data-cmp-hook-tabs="tabpanel" data-sly-repeat.item="${tabs.items}">
+      <span class="cmp-tabs__tab-mobile text-center d-flex d-md-none" role="tab">
+       <div class="cmp-tabs__tab-mobile-title">${item.title}</div>
+   <span class="sim-icons plus-icon" data-icon="add-white"></span><span class="sim-icons minus-icon" data-icon="minus-white"></span>
+   </span>
+   <div class="cmp-tabs__tab-content container" data-sly-resource="${item.name @ decorationTagName='div'}"></div>
+   </div>
+   <sly data-sly-resource="${resource.path @ resourceType='wcm/foundation/components/parsys/newpar', appendPath='/*', decorationTagName='div', cssClassName='new section aem-Grid-newComponent'}"
+      data-sly-test="${(wcmmode.edit || wcmmode.preview) && tabs.items.size < 1}"></sly>
+</section>

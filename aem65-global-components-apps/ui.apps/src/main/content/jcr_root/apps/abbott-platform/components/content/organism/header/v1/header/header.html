@@ -1,0 +1,26 @@
+<sly data-sly-use.header="com.abbott.aem.platform.common.components.models.Header"
+	 data-sly-use.component="com.adobe.cq.wcm.core.components.models.Component"
+	 data-sly-use.template="core/wcm/components/commons/v1/templates.html"
+    data-sly-use.headerTop="header-top.html"
+    data-sly-use.headerLogo="header-logo.html"
+    data-sly-use.headerMenu="header-menu.html">
+    <!--/* ORGANISM: HEADER STARTS */-->
+	<div id="${component.id}" class="o-header ${ header.enableCompactMobileHeader ? 'compact-mobile' : ''} ${wcmmode.edit ? 'header-wrapper-edit' : ''}" data-js-component="header">
+	    <div class="o-header__wrapper">
+	    	<!--/* TOP YELLOW NAV STARTS */-->
+		    <sly data-sly-call="${headerTop.headerTop @ header = header}" />
+		    <!--/* TOP YELLOW NAV ENDS */-->
+		    <!--/* STICKY SECTION STARTS */-->
+		    <div class="o-header__sticky-section" data-sticky="true">
+		    	<!--/* Header logo included here */-->
+		    	<sly data-sly-call="${headerLogo.headerLogo @ header = header}" />
+		    	<!--/* Molecule mega menu included here */-->
+		        <sly data-sly-call="${headerMenu.headerMenu @ header = header}" />
+			</div>
+			<!--/* STICKY SECTION ENDS*/-->
+		</div>
+	<div class="o-header__search-overlay"></div>
+	</div>
+    <!--/* ORGANISM: HEADER ENDS */-->
+</sly>
+<sly data-sly-call="${template.placeholder @ isEmpty=true}"></sly>

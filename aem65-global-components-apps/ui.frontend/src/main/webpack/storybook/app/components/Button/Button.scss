@@ -1,0 +1,76 @@
+.stb-button {
+    font-size: 18px;
+    line-height: normal;
+    background-color: #159bd7;
+    border-radius: 6px;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 0 28px;
+    font-weight: bold;
+    border: 1px solid #159bd7;
+    color: #fff;
+    height: 48px;
+    position: relative;
+
+    &[disabled] {
+        background-color: #ccc;
+        border-color: #ccc;
+    }
+
+    &[data-size="small"] {
+        font-size: 13px;
+        height: 34px;
+        padding: 0 18px;
+    }
+
+    &[data-size="medium"] {
+        height: 40px;
+        padding: 0 24px;
+        border-radius: 4px;
+    }
+
+    &[data-secondary="true"] {
+        border: 1px solid #002A3A;
+        color: #002A3A;
+        background-color: #fff;
+    }
+
+    &[data-full-width="true"] {
+        width: 100%;
+    }
+
+    &.loading {
+        color: #159bd7;
+
+        &[data-secondary="true"] {
+            color:#002A3A;
+        }
+        pointer-events: none;
+        &:after {
+            content: "";
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            border: 3px solid transparent;
+            border-top-color: #ffffff;
+            border-left-color: #ffffff;
+            border-radius: 50%;
+            animation: button-loading-spinner 0.8s ease infinite;
+        }
+    }
+}
+
+@keyframes button-loading-spinner {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
+  }

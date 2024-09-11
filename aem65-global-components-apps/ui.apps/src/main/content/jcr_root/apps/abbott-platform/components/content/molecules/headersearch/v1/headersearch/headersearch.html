@@ -1,0 +1,44 @@
+<sly data-sly-use.search="com.abbott.aem.platform.common.components.models.HeaderSearch"
+	 data-sly-use.component="com.adobe.cq.wcm.core.components.models.Component"
+     data-sly-use.customConfig="com.abbott.aem.platform.common.components.models.CustomConfig"
+    data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
+
+    <sly data-sly-list.filterList="${search.filters}">
+        <input type="hidden" name="${filterList.fieldName}" value="${filterList.fieldValue}" data-filters="true" />
+    </sly>
+    <sly data-sly-list.sortOrderList="${search.sortOrder}">
+        <input type="hidden" name="${sortOrderList.sortFieldName}" value="${sortOrderList.sortingOrder}"
+            data-sort="true" />
+    </sly>
+    <div id="${component.id}" class="a-search ${search.enablePredictiveSearch ? 'predictive-search': ''} ${customConfig.className}">
+        <input type="hidden" value="${search.enablePredictiveSearch ? 'true': 'false'}" name="enablePredictiveSearch">
+        <sly data-sly-test="${!search.enablePredictiveSearch}">
+            <form action="${search.searchResultsPage}">
+                <span data-search-click="click" class="a-search--icon-left"><em class="${search.searchIcon}"></em></span>
+                <input type="search" class="a-search__input" name="q" aria-label="${search.searchTitle}" placeholder="${search.searchTitle}" data-placeholder="${search.searchTitle}" autocomplete="off" />
+                <span data-search-close="close" class="a-search--icon-right"><em class="${search.closeIcon}"></em></span>
+            </form>
+        </sly>
+        <sly data-sly-test="${search.enablePredictiveSearch}">
+            <div class="predictive-search-bar m-search-bar" data-api="${search.suggestEndPointUrl}" data-js-component="search-bar" data-auto-load-query-param="true">
+                <div class="m-search-bar__input">
+                    <form action="${search.searchResultsPage}" name="predictiveForm" class="predictiveForm">
+                        <span data-search-click="click" class="a-search--icon-left"><em class="${search.searchIcon}"></em></span>
+                        <input class="a-search__input m-search-bar__input-field predictive-search-input" autocomplete="off" name="q" type="search" placeholder="${search.searchTitle}" aria-label="${i18n_header_search.title}">
+                        <span data-search-close="close" class="a-search--icon-right"><em class="${search.closeIcon}"></em></span>
+                    </form>
+                    <div class="m-search-bar__autocomplete d-none">
+                        <div class="m-search-bar__autocomplete-list" role="listbox">
+                            <div class="m-search-bar__autocomplete-item" aria-label="test" aria-selected="false"
+                                role="option"></div>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn d-none" type="submit"></button>
+            </div>
+        </sly>
+    </div>
+</sly>
+<sly data-sly-call="${templates.placeholder @ isEmpty=!search.searchTitle}"></sly>
+
+

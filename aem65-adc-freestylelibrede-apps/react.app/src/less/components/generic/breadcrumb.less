@@ -1,0 +1,59 @@
+
+
+.cmp-breadcrumb__list{
+    list-style: none;
+    display: flex;
+    margin-left: 8px;
+    @media(max-width:360px){
+        word-break: break-all;
+    }
+}
+.cmp-breadcrumb__item {
+        display: inline-flex;
+        padding: 0px 15px;
+        color: @color-fsl-blue;
+        
+        position: relative;
+    &:first-child{
+        &::before{
+            display: none;
+        }
+    }
+    &:before {
+        content:"";       
+        background-image: url("@{icon-path}/Arrow_Forth_blue.svg");
+        background-repeat:  no-repeat;
+        width: 8px;
+        height: 26px;
+        position: absolute;
+        left: -6px;
+        top: -1px;
+
+    }
+    &--active{
+        color: @color-fsl-black;
+    }
+}
+
+.breadcrumb{
+	margin-bottom: 0 !important;
+	background-color: transparent !important;
+	padding: 2.3rem  1rem .5rem 0rem !important;
+	ol.cmp-breadcrumb__list{
+        padding:0;
+        margin-left: 0;
+        li:first-child{
+            padding-left: 5px !important;
+        }
+    } 
+}
+
+.left-pad{
+    padding-left: 40px !important;
+    @media @adc-tablet-break{
+        padding-left: 20px !important;
+    }
+    @media @adc-mobile-break{
+        padding-left: 10px !important;
+    }
+}

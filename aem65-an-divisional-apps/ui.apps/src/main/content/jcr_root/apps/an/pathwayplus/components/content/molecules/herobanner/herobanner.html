@@ -1,0 +1,40 @@
+
+<sly data-sly-use.heroBanner="com.abbott.aem.platform.common.components.models.HeroBanner"
+     data-sly-use.component="com.adobe.cq.wcm.core.components.models.Component"
+	 data-sly-use.imageTemplate="core/wcm/components/teaser/v1/teaser/image.html"
+     data-sly-use.templates="core/wcm/components/commons/v1/templates.html"
+     id="${component.id}"     
+     data-cmp-data-layer="${heroBanner.data.json}">
+<section id="${component.id}">
+<style>
+#${component.id @context='styleToken'} {
+	--hero-start-color: ${heroBanner.startColor @context='styleToken'};
+    --hero-start-position: ${heroBanner.startColorPosition  @context='styleToken'}%;
+    --hero-end-color: ${heroBanner.endColor  @context='styleToken'};
+    --hero-end-position: ${heroBanner.endColorPosition  @context='styleToken'}%;
+}
+</style>
+        <div class="container">
+          <div class="row no-gutters">
+            <div class="m-hero__content">
+			  <p class="m-hero__title h6">${heroBanner.pretitle @context='html'} </p>
+              <h1 class="m-hero__header h1-hero">${heroBanner.title @context='html'} </h1>
+              <div class="m-hero__body">${heroBanner.description @context='html'}</div>
+               <!--/* Buttons Section */-->
+               <sly data-sly-include="herobanner_buttons.html"></sly>        	
+        	</div>
+            <div class="m-hero__media">
+              <div class='m-hero__image' data-sly-call="${imageTemplate.image @ teaser=heroBanner}"></div>
+        <!-- hero banner mobile version image start-->
+				<div class= "m-hero__image__mobile">
+        		<sly
+					data-sly-resource="${'image' @resourceType='/apps/abbott-platform/components/content/atoms/image/v1/image', decorationTagName='div'}">
+				</sly>
+				</div>
+        <!--hero banner mobile version image end-->
+            </div>
+          </div>
+        </div>
+</sly>
+<sly data-sly-call="${templates.placeholder @ isEmpty=!heroBanner.title}"></sly>
+</section>

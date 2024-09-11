@@ -1,0 +1,121 @@
+@import '../../atoms/indicator/indicator.scss';
+@import 'hero-carousel.scss';
+[dir="rtl"] .o-hero-carousel {
+  @include media-breakpoint-down(md) {
+    width: 100vw;
+    margin-right: calc(-1 * (100vw - 100%) / 2);
+    margin-left: 0;
+
+    .slick-arrow{
+      &.slick-prev{
+        right: 40px;
+        left: auto;
+      }
+
+      &.slick-next{
+        right: auto;
+        left: 40px;
+      }
+    }
+  }
+
+  .slick-prev{
+    right: 0;
+    left: auto;
+  }
+
+  .slick-next{
+    right: auto;
+    left: 0;
+  }
+
+}
+
+
+.o-hero-carousel  {
+  $self: &;
+
+  @include media-breakpoint-up(lg) {
+
+
+    @at-root #{$self}--media-start#{&}{
+      .slick-dots {
+        width: calc(50% - 15px);
+        right: 0;
+        left: auto;
+        bottom: 36px;
+
+      }
+
+      .slick-next{
+        left: auto;
+        right: calc(#{8.333% * 6} + 32px + #{var(--hero-carousel-arrow-width)});
+        bottom: 24px;
+        top: auto;
+        transform: none;
+      }
+
+      .slick-prev{
+        right: calc(#{8.333% * 6} + 15px);
+        left: auto;
+        bottom: 24px;
+        top: auto;
+        transform: none;
+      }
+    }
+
+    @at-root #{$self}--media-end#{&}{
+      .slick-dots {
+        width: calc(50% - 15px);
+        right: auto;
+        left: 0;
+        bottom: 36px;
+      }
+
+      .slick-next{
+        right: calc(8.333% + 32px + #{var(--hero-carousel-arrow-width)});
+        left: auto;
+        bottom: 24px;
+        top: auto;
+        transform: none;
+      }
+
+      .slick-prev{
+        left: auto;
+        right: 8.333%;
+        bottom: 24px;
+        top: auto;
+        transform: none;
+      }
+    }
+
+
+
+    @at-root #{$self}--tall#{$self}--media-start#{&}{
+      .slick-dots {
+        bottom: 36px;
+      }
+      .slick-next{
+        bottom: 24px;
+      }
+
+      .slick-prev{
+        bottom: 24px;
+      }
+    }
+
+    @at-root #{$self}--tall#{$self}--media-end#{&}{
+      .slick-dots {
+        bottom: 36px;
+      }
+
+      .slick-next{
+        bottom: 24px;
+      }
+
+      .slick-prev{
+        bottom: 24px;
+      }
+    }
+  }
+}

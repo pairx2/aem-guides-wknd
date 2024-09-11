@@ -1,0 +1,18 @@
+<div data-sly-use.embed="com.abbott.aem.platform.common.components.models.PlatformEmbed"
+     data-sly-use.component="com.adobe.cq.wcm.core.components.models.Component"
+     data-sly-use.commonsTemplates="core/wcm/components/commons/v1/templates.html"
+     data-sly-use.customConfig="com.abbott.aem.platform.common.components.models.CustomConfig"
+     data-sly-test.hasContent="${(embed.result && embed.result.processor) || embed.html || embed.embeddableResourceType || embed.iframe}"
+     id="${component.id}"
+     class="cmp-embed ${customConfig.className}">
+    <sly data-sly-test="${embed.result && embed.result.processor}"
+         data-sly-use.processorTemplate="processors/${embed.result.processor}.html"
+         data-sly-call="${processorTemplate.render @ options=embed.result.options}"></sly>
+    <sly data-sly-test="${embed.html}">${embed.html @context = 'html'}</sly>
+    <sly data-sly-test="${embed.iframe}">
+    	${embed.iframe @context = 'unsafe'}
+    </sly>
+    <sly data-sly-test="${embed.embeddableResourceType}"
+         data-sly-resource="${resource.path @ resourceType=embed.embeddableResourceType, wcmmode='disabled'}"></sly>
+</div>
+<sly data-sly-call="${commonsTemplates.placeholder @ isEmpty = !hasContent}"></sly>

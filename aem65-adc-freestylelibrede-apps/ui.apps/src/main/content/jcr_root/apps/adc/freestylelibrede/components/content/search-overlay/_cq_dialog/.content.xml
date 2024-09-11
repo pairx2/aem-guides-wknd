@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Search Overlay"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                maximized="{Boolean}true">
+                <items jcr:primaryType="nt:unstructured">
+                    <searchbar
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Search bar"
+                        sling:resourceType="granite/ui/components/coral/foundation/include"
+                        path="adc/freestylelibrede/components/content/search-bar/cq:dialog/content/items/tabs/items/general"/>
+                    <general
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Search Result"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <more-cta-style
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                fieldLabel="&quot;View More&quot; CTA Style"
+                                name="./viewMoreStyle"
+                                text="&quot;View More&quot; CTA Style">
+                                <datasource
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="abbott-platform/datasource/generic-list"
+                                    path="/apps/adc/freestylelibrede/authoring/datasources/cta-types"/>
+                            </more-cta-style>
+                            <number-results
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                fieldLabel="Nr of results to show"
+                                max="{Long}20"
+                                min="{Long}5"
+                                name="./searchNrOfResults"
+                                step="1"
+                                value="10"/>
+                            <number-results-more
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                fieldLabel="Nr of results per &quot;View More&quot;"
+                                max="{Long}20"
+                                min="{Long}5"
+                                name="./searchNrOfViewMore"
+                                step="1"
+                                value="10"/>
+                            <filter-root-path
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                fieldLabel="Filter Root Path"
+                                name="./filterRootPath"
+                                rootPath="/content/cq:tags"/>
+                            <search-root-path
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Search Root Path"
+                                name="./searchRootPath"/>
+                            <no-result-description
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldLabel="No Results Description"
+                                    name="./noResultDescription"/>
+                            <no-result-button-link
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                    fieldLabel="No Results Button Link"
+                                    rootPath="/content"
+                                    name="./noResultBtnLink"/>
+                            <ui-rendition
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                fieldDescription="UI rendition of the component"
+                                fieldLabel="Rendition"
+                                name="./rendition">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <v1
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Version 1 (Old)"
+                                        value="v1-rendition"/>
+                                    <v2
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Version 2 (New)"
+                                        value="v2-rendition"/>
+                                </items>
+                            </ui-rendition>
+                            <sysSourceType
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldLabel="System Source Type"
+                                    name="./sysSourceType"/>
+                            <searchList
+                                cq:showOnCreate="{Boolean}true"
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                composite="{Boolean}true"
+                                fieldLabel="Default Search Result List">
+                                <field
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/container"
+                                    name="./searchDefaultList">
+                                    <items jcr:primaryType="nt:unstructured">
+                                        <title
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Title"
+                                            name="./title"/>
+                                        <description
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Description"
+                                            name="./description"/>
+                                        <url
+                                            cq:showOnCreate="{Boolean}true"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                            fieldLabel="Url"
+                                            name="./url"
+                                            rootPath="/content"/>
+                                    </items>
+                                </field>
+                            </searchList>
+                        </items>
+                    </general>
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>

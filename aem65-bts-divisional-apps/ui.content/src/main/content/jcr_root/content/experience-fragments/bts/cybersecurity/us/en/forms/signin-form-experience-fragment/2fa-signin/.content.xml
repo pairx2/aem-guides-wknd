@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        cq:lastModified="{Date}2021-03-15T14:39:48.478Z"
+        cq:lastModifiedBy="prashant.kumar8@abbott.com"
+        cq:lastReplicated="{Date}2021-03-15T14:41:08.838Z"
+        cq:lastReplicatedBy="prashant.kumar8@abbott.com"
+        cq:lastReplicationAction="Activate"
+        cq:template="/conf/bts/cybersecurity/settings/wcm/templates/abbott-cybersecurity-experience-fragment-template"
+        cq:xfVariantType="web"
+        jcr:isCheckedOut="{Boolean}true"
+        jcr:language="en_us"
+        jcr:mixinTypes="[mix:versionable]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="2FA-Signin"
+        jcr:uuid="b5199db5-133a-49f5-9b69-9e034651601f"
+        sling:resourceType="bts/cybersecurity/components/structure/xfpage"
+        changeFrequency="always"
+        contentCategory="faq"
+        hideBreadcrumb="false"
+        siteName="cybersecurity">
+        <root
+            jcr:lastModified="{Date}2020-11-25T22:02:00.317+05:30"
+            jcr:lastModifiedBy="admin"
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="wcm/foundation/components/responsivegrid">
+            <formcontainer
+                jcr:created="{Date}2020-12-03T11:17:37.717+05:30"
+                jcr:createdBy="admin"
+                jcr:lastModified="{Date}2021-03-15T14:39:48.354Z"
+                jcr:lastModifiedBy="prashant.kumar8@abbott.com"
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="bts/cybersecurity/components/form/formcontainer"
+                cancel="true"
+                failureMessage="Invalid verification code"
+                formMode="formcontainer"
+                formType="/api/public/profile/login"
+                id="f-signin-2fa"
+                onSuccess="ABT.verifyOTP.onSuccess"
+                recaptcha="false"
+                requestType="POST"
+                reset="false"
+                submit="true"
+                successMessage="User Verified"
+                updateRequest="ABT.verifyOTP.updateRequest">
+                <formcontainer-par
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="wcm/foundation/components/parsys">
+                    <title
+                        jcr:created="{Date}2020-12-03T11:18:57.851+05:30"
+                        jcr:createdBy="admin"
+                        jcr:lastModified="{Date}2020-12-15T20:42:22.685+05:30"
+                        jcr:lastModifiedBy="admin"
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Verification"
+                        sling:resourceType="bts/cybersecurity/components/content/title"
+                        type="h2"/>
+                    <embed_221218000
+                        jcr:created="{Date}2020-12-03T11:19:20.573+05:30"
+                        jcr:createdBy="admin"
+                        jcr:lastModified="{Date}2020-12-15T20:43:17.419+05:30"
+                        jcr:lastModifiedBy="admin"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="bts/globals/components/content/embed"
+                        html="&lt;p>A temporary verification code was sent to your mobile number ending with &lt;span id=&quot;masked-mobile&quot;>XX&lt;/span> on file with Abbott Cybersecurity. Please use this code within 10 minutes to complete the login.&lt; "
+                        type="html"/>
+                    <fields
+                        jcr:created="{Date}2020-12-03T11:20:36.567+05:30"
+                        jcr:createdBy="admin"
+                        jcr:lastModified="{Date}2021-02-23T20:46:34.502Z"
+                        jcr:lastModifiedBy="balabhargav.krishnaravi@abbott.com"
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Verification Code"
+                        sling:resourceType="bts/globals/components/form/fields"
+                        fieldIcon="no-icon"
+                        name="otp"
+                        placeholder="Verification Code"
+                        regexErrorMessage="Invalid Verification Code."
+                        regexPattern="/^[A-Za-z0-9]{6}$/g"
+                        regexRequired="true"
+                        required="true"
+                        requiredMessage="Please enter the verification code"
+                        rows="2"
+                        type="password"/>
+                </formcontainer-par>
+                <formcontainer-submit
+                    jcr:lastModified="{Date}2020-12-03T11:22:29.975+05:30"
+                    jcr:lastModifiedBy="admin"
+                    jcr:primaryType="nt:unstructured"
+                    jcr:title="Verify"
+                    sling:resourceType="abbott-platform/components/content/atoms/button/v1/button"
+                    action="_blank"
+                    buttonName="verify"
+                    buttonType="withoutDestination"
+                    external="false"
+                    formButtonType="submit"/>
+                <formcontainer-cancel
+                    jcr:lastModified="{Date}2020-12-15T20:45:34.640+05:30"
+                    jcr:lastModifiedBy="admin"
+                    jcr:primaryType="nt:unstructured"
+                    jcr:title="Resend"
+                    sling:resourceType="abbott-platform/components/content/atoms/button/v1/button"
+                    action="_self"
+                    buttonType="withDestination"
+                    external="false"
+                    formButtonType="button"
+                    id="f-2fa-resend"
+                    link="#"/>
+            </formcontainer>
+        </root>
+        <cq:metadata jcr:primaryType="nt:unstructured"/>
+    </jcr:content>
+</jcr:root>

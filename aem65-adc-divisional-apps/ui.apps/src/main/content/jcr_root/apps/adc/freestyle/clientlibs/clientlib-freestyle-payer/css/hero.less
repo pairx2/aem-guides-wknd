@@ -1,0 +1,111 @@
+@import './global/media-queries.less';
+@import './global/variables.less';
+
+.m-hero {
+    height: 100%;
+
+    &__body {
+        font-weight: 400;
+        p {
+            @media @lg-down {
+                max-width: 340px;
+            }
+        }
+    }
+
+    &__media {
+        .m-hero & {
+            @media @lg-down {
+                min-width: 100%;
+                margin-left: 0;
+                height: 100%;
+            }
+        }
+
+        .m-hero--media-end.m-hero--half-width & {
+            @media @lg-up {
+                margin-right: 0;
+            }
+        }
+        .m-hero--half-width.m-hero--medium & {
+            @media @lg-up {
+                height: auto;
+            }
+        }
+    }
+
+    &__image, .cmp-image__image {
+        position: relative;
+    }
+
+    &--media-start, 
+    &--media-end {  
+        .m-hero__content {
+            @media @lg-down {
+                padding-top: 0;
+            }
+        }
+    }
+
+    &--media-end {
+        .m-hero__content {
+            @media @lg-up {
+                margin-left: var(--hero-content-default-space);
+            }
+        }  
+    }
+
+    &--half-width&--tall {
+        @media @lg-up {  
+            padding-top: 0;
+        }   
+    }
+    &--half-width {
+        .slick-active & {
+            .container {
+                @media @lg-up {
+                    padding-left: 10px;
+                    padding-right: 10px;
+                }
+            }
+        }
+        
+        .m-hero__content {
+            @media @lg-up {
+                padding-left: 15px;
+            }
+        }
+    }
+
+    &.m-hero--half-width {
+        .m-hero__content {
+            @media @lg-up {
+                display:flex;
+                flex-direction: column;
+                justify-content: center;
+                margin-left: 0;
+                flex: 1;
+                max-width: 50%;
+            }
+        }
+        .m-hero__media {
+            @media @lg-up {
+                max-width: 50%;
+                padding: 0 12.5px; 
+            }
+            .cmp-image__image {
+                @media @lg-up {
+                    max-height: 600px;
+                }
+            }
+        }
+     }
+
+     .container {
+        @media @xl-only {
+            padding-left: 0;
+            padding-right: 35px;
+         }
+     }
+}
+

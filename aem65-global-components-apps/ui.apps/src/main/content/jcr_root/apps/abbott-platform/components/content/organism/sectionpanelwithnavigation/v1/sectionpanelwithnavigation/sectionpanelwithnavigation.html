@@ -1,0 +1,69 @@
+<sly data-sly-use.sectionPanel="com.abbott.aem.platform.common.components.models.SectionPanelWithNavigation"
+    data-sly-use.component="com.adobe.cq.wcm.core.components.models.Component"
+    data-sly-use.customConfig="com.abbott.aem.platform.common.components.models.CustomConfig"
+    data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
+    <!--/*Section Panel Starts*/-->
+    <section id="section_${component.id}" class="${customConfig.className}">
+        <style data-sly-test="${sectionPanel.startColor && sectionPanel.endColor}">
+         #section_${component.id @context='styleToken'} {
+            --sectionPanel-start-color: ${sectionPanel.startColor @context='styleToken'};
+            --sectionPanel-start-position: ${sectionPanel.startColorPosition  @context='styleToken'}%;
+            --sectionPanel-end-color: ${sectionPanel.endColor  @context='styleToken'};
+            --sectionPanel-end-position: ${sectionPanel.endColorPosition  @context='styleToken'}%;
+            }
+         </style>
+
+    <div id="${component.id}" class="o-section-panel__wrapper">
+
+        <div class="a-bg-img">
+            <sly
+                data-sly-resource="${'image' @ resourceType=sectionPanel.imageProxyPath, wcmmode='disabled'}">
+            </sly>
+        </div>
+
+        <div class="o-section-panel__container container">
+            <div class="o-section-panel__heading" data-sly-test="${sectionPanel.sectionTitleRequired}">
+                <!--/*Section Title starts*/-->
+                <sly
+                    data-sly-resource="${'sectiontitle' @resourceType=sectionPanel.titleProxyPath,decoration=true}">
+                </sly>
+                <!--/*Section Title ends*/-->
+            </div>
+
+            <div class="o-section-panel__logo" data-sly-test="${sectionPanel.leftImage}">
+                <!--/* AEM Image */-->
+                <sly
+                    data-sly-resource="${'logoo' @resourceType=sectionPanel.logoProxyPath,decoration=true}">
+                </sly>
+            </div>
+            <div class="o-section-panel__title" data-sly-test="${sectionPanel.titleRequired}">
+                <sly
+                    data-sly-resource="${'title2' @resourceType=sectionPanel.titleProxyPath,decoration=true}">
+                </sly>
+            </div>
+            <div class="o-section-panel__para" data-sly-test="${sectionPanel.textRequired}">
+                <sly
+                    data-sly-resource="${'text' @resourceType=sectionPanel.textProxyPath,decoration=true}">
+                </sly>
+            </div>
+            <div class="o-section-panel__btn-wrap" data-sly-test="${sectionPanel.ctaLinkRequired}">
+                <!--/* ------ Button  without link and icon------ */-->
+                <sly
+                    data-sly-resource="${'ctaLink' @resourceType=sectionPanel.buttonProxyPath,decoration=true}">
+                </sly>
+                <!--/* ------ Button without link and icon------ */-->
+            </div>
+            <div class="o-section-panel__tiles" data-sly-test="${sectionPanel.tileListRequired}">
+                <!--/*Tiles List Starts*/-->
+                <sly
+                    data-sly-resource="${'tileList' @resourceType=sectionPanel.tilelistProxyPath,decoration=true}">
+                </sly>
+                <!--/*Tiles List Ends*/-->
+            </div>
+        </div>
+
+    </div>
+    </section>
+    <!--/*Section Panel Ends*/-->
+</sly>
+<sly data-sly-call="${templates.placeholder @ isEmpty=!sectionPanel.sectionTitle}"></sly>

@@ -1,0 +1,223 @@
+// @import (reference) "../base/variables";
+
+.banner--prelogin {
+
+  .a-container {
+    .col-lg-4 {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+  }
+
+  .xf-content-height {
+    min-height: 0;
+  }
+
+  .formcontainer {
+
+    .o-form-container {
+      box-shadow: 0 2px 6px 0 fade(@color-black, 25%);
+      border-radius: 6px;
+      background-color: @color-white;
+      padding: 30px 15px;
+
+      @media (max-width: 992px) {
+        padding: 30px 5px;
+      }
+
+      .a-input-label {
+        margin-bottom: 8px;
+      }
+
+      &__parent {
+        margin: 0 !important;
+      }
+    }
+
+    .cmp-title__text {
+      color: @color-dark-grey;
+      font: bold @font-size-title-l2/29px @font-family-default; 
+    }
+
+    .text, .embed {
+      
+      p {
+        line-height: 24px;
+        margin: 30px 0;
+        color: @color-dark-grey;
+      }
+    }
+
+    .a-input-field {
+      .icon {
+        margin-top: 3px;
+        color: @color-dark-grey-100;
+        cursor: pointer;
+      }
+
+      .form-group {
+        .a-input-label {
+          color: @color-dark-grey;
+          font-family: @font-family-default;
+        }
+
+        &.validation-require,
+        &.validation-error,
+        &.validation-regex,
+        &.password-match-error {
+          .a-input-label, .form-text {
+            color: @color-error-pressed;
+          } 
+        }
+
+        &.password-match-error {
+          .form-text.a-input-field--text-error {
+            color: @color-error-pressed;
+            display: block;
+          } 
+        }
+      }
+
+      
+    }
+
+    .o-form-container__buttons {
+      margin-top: 20px;
+      justify-content: space-between;
+      flex-direction: row;
+      align-items: center;
+    
+      a.btn {
+        color: @color-primary;
+        padding-left: 0;
+        padding-right: 0;
+        text-transform: uppercase;
+        margin: 0;
+        font: bold @font-size-body-text @font-family-default; 
+        box-shadow: none;
+
+        @media (max-width: @screen-lg) {
+          font-size: 12px;
+        }
+
+        &.has-loader {
+          position: relative;
+          
+          &:after,
+          &:before{
+            content: '';
+            border-radius: 2px;
+            height: 4px;
+            display: block;
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 100%;
+          }
+          
+          &:before {
+            border: 1px solid @color-grey;
+            background: @color-white;
+          }
+          
+          &:after {
+            background: @color-grey;
+            animation-name: reset-button-loader;
+            animation-duration: 32s;
+            animation-timing-function: linear;
+          }
+        }
+      }
+
+      button.btn {
+        color: @color-white;
+        background: @color-primary;
+        text-transform: uppercase;
+        padding: 15px 5px;
+        border-radius: 4px;
+        outline: none;
+        font: bold @font-size-body-text/17px @font-family-default;
+        min-width: 120px; 
+
+        @media (max-width: @screen-lg) {
+          padding: 15px 35px;
+          min-width: auto;
+        }
+
+        &:hover {
+          background: @color-primary;
+        }
+
+        &:focus {
+          outline: 2px solid @color-light-blue;
+        }
+
+        &:active {
+          background: @color-dark-blue;
+          outline: none;
+        }
+
+        &:disabled {
+          background: @color-dark-grey-100;
+        }
+      }
+    }
+
+    &+.text {
+      color: @color-white;
+      font-size: @font-size-small-text;
+      line-height: 1.5;
+      margin-top: 20px;
+      text-align: center;
+
+      a {
+        color: @color-yellow;
+        font-weight: bold;
+      }
+    }
+  }
+
+  .o-form-container {
+    &__success-msg,
+    &__error-msg {
+      border-radius: 4px;
+      padding: 10px 14px;
+      color: @color-dark-grey;
+      font: bold @font-size-small-text/14px @font-family-default; 
+      text-transform: none;
+      font-weight: 100;
+      margin: 15px 0;
+  
+      &:empty {
+        display: none;
+      }
+    }
+  
+    &__success-msg {
+      background-color: @color-light-green;
+      
+    }
+    &__error-msg {
+      background-color: @color-light-red;
+    }
+  }
+}
+
+#f-register-2fa,
+#f-signin-2fa,
+#f-create-password {
+  display: none;
+
+  .cq-Editable-dom & {
+    display: block;
+  }
+}
+
+@keyframes reset-button-loader {
+  0.00% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}

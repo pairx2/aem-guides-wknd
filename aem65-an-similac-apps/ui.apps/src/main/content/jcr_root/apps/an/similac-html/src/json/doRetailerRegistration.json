@@ -1,0 +1,137 @@
+{
+  "formTitle": "DO Retailer Registration",
+  "formName": "DO Retailer Registration",
+  "actionPath": "https://staging.similac.com/api/public/lookup/user",
+  "redirectOnSuccessURL": "/digital_offer_signin.html",
+  "saveLocal":"CreatePasswordForm",
+  "errorUpdateProfile":"Oops! You have already signed up for our digital savings. Please visit your profile page to see available savings by signing in <a href='#'>Click here</a>",
+  "eventCategory": "sign-in",
+  "eventType": "first-time",
+  "fields": [
+    {
+      "label": "OR",
+      "name": "OR",
+      "type": "divider"
+    },
+    {
+      "label": "First time here?",
+      "type": "htmltag",
+      "tagName": "p"      
+    },
+    {
+      "type": "formError"
+    },
+    {
+      "label": "Membership ID",
+      "name": "memberId",
+      "type": "textbox",
+      "maxLength": 10,
+      "validations": [
+        {
+          "errorType": "required",
+          "errorMessage": "This is required field"
+        }
+      ]
+    },
+    {
+      "label" :"Not sure where to find your membership ID Number?",
+      "type": "htmltag",
+      "tagName": "span",
+       "help": {
+        "icon": "info",
+        "content": "You can easily find your Membership ID on your coupons, directly below your name.",
+        "tooltipImageD":"https://static-nocdn.abbottnutrition.com/cms/preview-web8/similac-2015.com/img/check-img.jpg",
+        "tooltipImageM":"http://localhost:8080/resources/img/save_400.jpg",
+        "direction":"bottom",
+        "backgroundColor": "#7FDBFF",
+        "color": "#0074D9"
+      }
+    },
+    {
+      
+      "label": "Last Name",
+      "name": "lastName",
+      "type": "textbox",
+      "maxLength": 50,
+      "validations": [
+        {
+          "errorType": "required",
+          "errorMessage": "This is required field"
+        },
+        {
+          "errorType": "stringPLASH",
+          "errorMessage": "Last Name must contain only letters, spaces, apostrophes, hyphens, and periods."
+        }
+      ]
+    },
+    {
+      
+      "label": "Email Address",
+      "name": "userName",
+      "type": "textbox",
+      "passIn": "none",
+      "validations": [
+        {
+          "errorType": "required",
+          "errorMessage": "Email Address is required."
+        },
+        {
+          "errorType": "email",
+          "errorMessage": "Email Address must contain a valid email address, e.g. \u0027name@server.com\u0027."
+        }
+      ]
+    },
+    {     
+      
+      "label": "Zip Code",
+      "name": "zipCode",
+      "placeholder": null,
+      "type": "textbox",
+      "maxLength": 25,
+      "validations": [
+        {
+          "errorType": "required",
+          "errorMessage": "ZIP Code is required."
+        },
+        {
+          "errorType": "lengthCheck",
+          "minAllowedLength": 5,
+          "maxAllowedLength": 9,
+          "errorMessage": "Minimum number of characters not met."
+        },
+        {
+          "errorType": "usZipCode",
+          "errorMessage": "ZIP Code must contain 5 digits."
+        }
+      ]
+    },
+      {
+         "label": "I'm not a robot",
+         "name": "captchaValue",
+         "type": "captcha",
+         "size": "invisible",
+         "theme": "light",
+         "render": "explicit",
+         "sitekey": "6LemwvAdAAAAAPGwveEsrNvNE3q1l8AJPuzLvMFn"
+      },
+    {
+      "label": "SUBMIT",
+      "id": "SUBMIT",
+      "name": "SUBMIT",
+      "type": "submit",
+      "className": "btn btn-primary col-lg-6 col-md-5 col-sm-1 mt-3 mb-4"
+    },
+    {
+      "label": "captchaValue",
+      "name": "captchaValue",
+      "type": "hidden",
+      "initValue": "unknown"
+   },
+    {
+      "label": "targetSystem",
+      "name": "targetSystem",
+      "type": "hidden",
+      "initValue": "anie"
+   }
+  ]
+}

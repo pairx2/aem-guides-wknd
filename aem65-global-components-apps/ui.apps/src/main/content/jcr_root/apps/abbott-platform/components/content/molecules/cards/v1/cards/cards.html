@@ -1,0 +1,41 @@
+<sly data-sly-use.cards="com.abbott.aem.platform.common.components.models.Cards" data-sly-use.imageTemplate="image.html"
+     data-sly-use.component="com.adobe.cq.wcm.core.components.models.Component" data-sly-use.customConfig="com.abbott.aem.platform.common.components.models.CustomConfig"
+     data-sly-use.template="core/wcm/components/commons/v1/templates.html"
+     data-cmp-data-layer="${cards.data.json}"></sly>
+<section id="${component.id}" class="${customConfig.className} m-card__wrapper">
+  <sly
+          data-sly-use.i18n_cards_clickable="${'com.abbott.aem.cloud.platform.core.models.I18nFetcher' @ key = 'cards-clickable'}"
+  />
+  <sly data-sly-test.modal="${cards.expFragPathVideo}" />
+  <sly data-sly-test="${modal}" data-sly-include="cards_modal.html" />
+  <sly data-sly-test="${!modal}">
+      <a data-sly-unwrap="${!cards.clickable}" aria-label="${i18n_cards_clickable.title}"
+         data-redirect-confirm="${cards.external}" class="m-card-link" data-disable-child-links href="${cards.cardLink}"
+         target="${cards.action}">
+        <div class="m-card__media">
+          <sly data-sly-call="${imageTemplate.image @ cards=cards}"></sly>
+        </div>
+        <div class="m-card__body">
+          <h2 class="m-card__title h4">${cards.title @ context="html"}</h2>
+          <div class="m-card__description">${cards.description @ context="html"}</div>
+          <sly data-sly-test.clickable="${!cards.clickable}">
+            <sly data-sly-test="${properties.ctaOne=='link'}"
+                 data-sly-resource=" ${@path='cta1' ,resourceType=cards.linkProxyPath, decorationTagName='div'}">
+            </sly>
+            <sly data-sly-test="${properties.ctaOne=='download'}"
+                 data-sly-resource="${@path='cta1',resourceType=cards.downloadProxyPath, decorationTagName='div'}">
+            </sly>
+            <sly data-sly-test="${properties.ctaTwo=='link'}"
+                 data-sly-resource="${@path='cta2' ,resourceType=cards.linkProxyPath, decorationTagName='div'}">
+            </sly>
+            <sly data-sly-test="${properties.ctaTwo=='download'}"
+                 data-sly-resource="${@path='cta2',resourceType=cards.downloadProxyPath, decorationTagName='div'}">
+            </sly>
+          </sly>
+          <sly data-sly-test="${cards.clickable}"
+               data-sly-resource="${@path='nonClickableLink' ,resourceType=cards.nonClickableLinkProxyPath, decoration=true}" />
+        </div>
+      </a>
+  </sly>
+</section>
+<sly data-sly-call="${template.placeholder @ isEmpty=!cards.imageResource}"></sly>

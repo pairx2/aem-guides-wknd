@@ -1,0 +1,109 @@
+<sly data-sly-use.dynamiclist="com.abbott.aem.platform.common.components.models.DynamicCardList"
+   data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
+<div id="${carousel.id}"
+   class="cmp-carousel ${dynamiclist.componentType}"
+   role="group"
+   aria-label="${carousel.accessibilityLabel}"
+   aria-live="polite"
+   data-cmp-is="carousel"
+   data-cmp-autoplay="${(wcmmode.edit || wcmmode.preview) ? '' : carousel.autoplay}"
+   data-cmp-delay="${carousel.delay}"
+   data-cmp-autopause-disabled="${carousel.autopauseDisabled}"
+   data-cmp-data-layer="${carousel.data.json}"
+   data-sly-use.carousel="com.abbott.aem.platform.common.components.models.CustomCarousel"
+   data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
+   <sly data-sly-test.crdsPerScreen="${(carousel.cardsPerScreen) ? carousel.cardsPerScreen : ''}"/>
+   <sly data-sly-test.crdsPerScroll="${(carousel.cardsPerScroll) ? carousel.cardsPerScroll : ''}"/>
+   <div data-js-component="${wcmmode.edit ? '' : 'carousel'}" 
+      data-no-indicators="${(carousel.hideIndicators) ? 'true' : 'false'}" 
+      data-cards-per-screen="${crdsPerScreen}"
+      data-cards-per-scroll="${crdsPerScroll}"
+      data-transition-autoplay="${carousel.autoplay  @context='styleToken'}" 
+      data-transition-autopause-disable="${carousel.autopauseDisabled  @context='styleToken'}" 
+      data-responsive="true"
+      data-tablet-cards-per-screen="2" 
+      data-tablet-cards-per-scroll="1" 
+      data-mobile-cards-per-screen="2" 
+      data-mobile-cards-per-scroll="1"
+      data-transition-delay="${carousel.delay}"
+      data-center-mode="${dynamiclist.centerMode ? 'true' : 'false'}"
+      data-variable-width="${dynamiclist.variableWidth}"
+      data-arrows="${dynamiclist.arrows ? 'true':'false'}"
+      >
+      <sly class="cmp-carousel__content"
+         aria-atomic="false"
+         aria-live="${carousel.autoplay ? 'off' : 'polite'}"
+         data-sly-test="${carousel.items && carousel.items.size > 0}">
+         <sly data-sly-repeat.item="${carousel.items}">
+            <sly data-sly-test="${wcmmode.edit}">
+               Author the Slide ${itemList.count}
+            </sly>
+            <sly id="${item.id}"
+               class="cmp-carousel__item${itemList.first ? ' cmp-carousel__item--active' : ''} "
+               role="tabpanel"
+               aria-roledescription="slide"
+               aria-label="${'Slide {0} of {1}' @ format=[itemList.count, carousel.items.size], i18n}"
+               data-cmp-data-layer="${item.data.json}"
+               data-cmp-hook-carousel="item"
+               data-sly-resource="${item.name @ decorationTagName='div'}"></sly>
+         </sly>
+      </sly>
+      <sly data-sly-test="${dynamiclist.componentType=='similartags'}">
+         <sly data-sly-list.child="${dynamiclist.listOfCards  @begin=0,end=2}" >
+            <article
+               class="m-card mr-3">
+               <div class="m-card__media">
+                  <div class="m-card__wrap">
+                     <div class="m-card__image">
+                        <div class="cmp-image" data-path="${child.properties['image/fileReference']}">
+                           <img class="cmp-image__image" loading="lazy" alt="image text"
+                              src="${child.properties['image/fileReference'] || dynamiclist.imageDefault}" />
+                           <sly data-sly-test.logo="${child.properties['cq:RedirectTarget']}">
+                              <div class="a-image image--align logo-on-image">
+                                 <a class="a-image" role="link" href="#" target="_blank">
+                                 <img class="a-image__default rounded-pill" itemprop="contentUrl" data-cmp-hook-image="image" alt="logo over image" src="${dynamiclist.logoImage}">
+                                 </a>
+                              </div>
+                           </sly>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="m-card__body">
+                  <div class="a-chips mb-3">
+                     <a   class="a-chips--link px-4"
+                        data-page-tags="${child.properties['cq:tags']}" href="${child.path}.html">Article</a>
+                  </div>
+                  <h2 class="m-card__title h4">${child.title}</h2>
+                  <p class="m-card__description">${child.description}</p>
+                  <p class="card-text"></p>
+               </div>
+            </article>
+         </sly>
+      </sly>
+      <sly data-sly-test="${dynamiclist.componentType=='pickUp'}" >
+         <sly data-sly-list.page="${currentPage.listChildren @begin=0,end=3}" >
+            <article
+               class="m-card mr-3 pickUp" >
+               <div class="m-card__media" data-image-asset="${dynamiclist.imageDefault}">
+                  <div class="m-card__wrap">
+                     <div class="m-card__image">
+                        <div class="cmp-image">
+                           <img class="cmp-image__image" loading="lazy" alt="image text" 
+                              src="${dynamiclist.imageDefault}" />
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="m-card__body">
+                  <h2 class="m-card__title h4"></h2>
+               </div>
+            </article>
+         </sly>
+      </sly>
+      <sly data-sly-test="${dynamiclist.componentType=='trending'}" >
+         <sly data-sly-resource="${resource.path @ resourceType='wcm/foundation/components/parsys/newpar', appendPath='/*', decorationTagName='div', cssClassName='new section aem-Grid-newComponent'}"
+            data-sly-test="${(wcmmode.edit || wcmmode.preview) && carousel.items.size < 1}"></sly>
+      </sly>
+   </div>
+</div>

@@ -1,0 +1,18 @@
+<sly data-sly-test="${wcmmode.edit}">
+   <p data-sly-unwrap="${properties.title}" data-emptytext="Configure ${component.title}" class="cq-placeholder"></p>
+</sly>
+<sly data-sly-use.imageOverlayModel="com.abbott.aem.adc.freestylelibrede.models.ImageOverlayModel">
+    <div class="row">
+        <div class="col-12">
+            <div class="cmp-image ImageCard d-flex flex-column" style="background-image: url(${imageOverlayModel.fileReference @ context='uri'})">
+                <h2 style="color: ${imageOverlayModel.textColor @ context='styleString'}">${imageOverlayModel.title} </h2>
+                ${imageOverlayModel.subTitle @ context='html'}
+                <sly data-sly-list.cta="${imageOverlayModel.ctaList}">
+                    <div class="ImageButton mt-auto">
+                        <a href="${cta.ctaLink}" target="${cta.ctaAction}" class="adc-button adc-button-secondary text-center full-width m-0">${cta.ctaText}</a>
+                    </div>
+                </sly>
+            </div>
+        </div>
+    </div>
+</sly>

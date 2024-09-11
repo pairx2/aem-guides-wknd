@@ -1,0 +1,38 @@
+<sly data-sly-use.featuresCard="com.abbott.aem.platform.common.components.models.FeaturesCard"
+	data-sly-use.template="core/wcm/components/commons/v1/templates.html"
+	data-sly-use.component="com.adobe.cq.wcm.core.components.models.Component"
+	data-sly-use.customConfig="com.abbott.aem.platform.common.components.models.CustomConfig"
+	data-cmp-data-layer="${cards.data.json}">
+<sly data-sly-call="${template.placeholder @ isEmpty=true}"></sly>
+	<!--/* Features Card Starts */-->
+	<div class="o-features-card text-center ${customConfig.className}" id="${component.id}">
+		<div class="o-features-card__block">
+			<div data-sly-test="${featuresCard.badgeRequired}" class="o-features-card__badge">
+				<!--/* ATOM: BADGE STARTS */-->
+				<sly
+					data-sly-resource="${'badge' @resourceType=featuresCard.badgeProxyPath, decoration=true}">
+				</sly>
+				<!--/* ATOM: BADGE ENDS */-->
+			</div>
+			<div data-sly-test="${featuresCard.featureStyle == 'image'}" class="o-features-card__image">
+				<sly
+					data-sly-resource="${'image' @resourceType=featuresCard.imageProxyPath, decorationTagName='div'}">
+				</sly>
+				<!--/* AEM Image */-->
+			</div>
+			<div data-sly-test="${featuresCard.featureStyle == 'number'}" class="o-features-card__number">
+				<h2>${featuresCard.largeFormatNumber}</h2>
+			</div>
+			<div class="o-features-card__title">
+				<sly data-sly-resource="${'title' @resourceType=featuresCard.titleProxyPath, decoration=true}"></sly>
+			</div>
+			<div class="o-features-card__content">
+				<sly data-sly-resource="${'description' @resourceType=featuresCard.textProxyPath,decoration=true }"></sly>
+			</div>
+			<sly data-sly-test="${featuresCard.buttonRequired}"
+				data-sly-resource="${'button' @resourceType=featuresCard.buttonProxyPath, decorationTagName='div'}">
+			</sly>
+		</div>
+	</div>
+	<!--/* Features Card Ends */-->
+</sly>

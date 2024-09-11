@@ -1,0 +1,19 @@
+<section data-sly-use.textBanner="com.abbott.aem.platform.common.components.models.TextBanner"
+	 data-sly-use.component="com.adobe.cq.wcm.core.components.models.Component"
+	 data-sly-use.customConfig="com.abbott.aem.platform.common.components.models.CustomConfig"
+	 data-sly-use.template="core/wcm/components/commons/v1/templates.html"
+     id="${component.id}" class="${customConfig.className}"
+     data-sly-test.text="${textBanner.bannerTitle}">
+        <style data-sly-test="${textBanner.startColor && textBanner.endColor}">
+        #${component.id @context='styleToken'} {
+                --textBanner-start-color: ${textBanner.startColor @context='styleToken'};
+                --textBanner-start-position: ${textBanner.startColorPosition  @context='styleToken'}%;
+                --textBanner-end-color: ${textBanner.endColor  @context='styleToken'};
+                --textBanner-end-position: ${textBanner.endColorPosition  @context='styleToken'}%;
+                }
+        </style>
+        <blockquote class="a-text-banner">
+             <h3 class="a-text-banner--title"><span class="generic__quotes">" </span>${text}<span class="generic__quotes"> "</span></h3>
+        </blockquote>
+</section>
+<sly data-sly-call="${template.placeholder @ isEmpty=!text}"></sly>

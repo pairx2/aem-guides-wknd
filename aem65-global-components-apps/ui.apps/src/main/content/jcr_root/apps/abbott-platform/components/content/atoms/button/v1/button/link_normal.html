@@ -1,0 +1,32 @@
+<sly data-sly-use.button="${'com.abbott.aem.platform.common.components.models.Button'}"
+data-sly-use.customConfig="com.abbott.aem.platform.common.components.models.CustomConfig"
+>
+	<sly data-sly-test.modalOrExternal="${button.action == 'modal' || (button.external && button.redirectConfirm)}" />
+	<sly data-sly-test.external="${button.action != 'modal' && button.external && button.redirectConfirm}" />
+	
+	<sly data-sly-test="${external}"><div class="a-link"></sly>
+	<a id="${button.id}" 
+    	aria-label="${button.accessibilityLabel}" 
+        data-cmp-clickable="${button.data ? true : false}" 
+        data-cmp-data-layer="${button.data.json}" 
+		title="${button.accessibilityLabel}" 
+        class="${button.buttonType == 'imageButton'?'' : 'btn'} ${external ? 'a-link--text' : ''} ${customConfig.className}" 
+        data-dismiss="${modalOrExternal && button.buttonType == 'cancelButton' ? 'modal' : ''}"
+        role="${external ? 'link' : ''}"
+        href="${external ? 'javascript:void(0);' : (modalOrExternal ? '' : button.link)}" 
+        target="${modalOrExternal ? '' : button.action}"
+		rel="${button.external && button.action=='_blank' ? 'noopener':''}">
+        <img data-sly-test.image="${button.buttonType == 'imageButton'}" 
+        	src="${button.image}" alt="${button.altText}"/>
+		<sly data-sly-test="${!image}">
+			<sly data-sly-test="${button.hideButtonText}">
+			<em data-sly-test="${button.icon}" class="${button.icon} abt-icon-only"></em>
+			</sly>
+			<sly data-sly-test="${!button.hideButtonText}">
+			<em data-sly-test="${button.icon}" class="${button.icon}"></em>
+			<span>${ button.text @context='html'}</span>
+			</sly>
+		</sly>
+	</a>
+	<sly data-sly-test="${external}"></div></sly>
+</sly>

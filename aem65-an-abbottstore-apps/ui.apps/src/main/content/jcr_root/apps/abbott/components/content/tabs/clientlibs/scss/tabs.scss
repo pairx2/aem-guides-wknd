@@ -1,0 +1,295 @@
+@import '../../../../../clientlibs/clientlib-base/scss/base/functions';
+@import '../../../../../clientlibs/clientlib-base/scss/base/variables';
+@import '../../../../../clientlibs/clientlib-base/scss/base/mixins';
+
+.pdp-tabs {
+  font-family: $fonts-poppins;
+  margin-bottom: 5em;
+
+  .cmp-tabs {
+    &__tablist{
+      display: block;
+    }
+
+    &__tab{
+      border-bottom-width: 2px;
+      color: $black;
+      display: inline-block;
+      font-weight: 600;
+      margin: 0 1rem;
+      padding: .5rem 0;
+
+      &.cmp-tabs__tab--active:focus{
+        outline: none;
+      }
+    }
+
+    &__tab-mobile {	
+      font-weight: 500;
+      padding: 10px;
+      position: relative;
+      
+      .ai-caret-down {
+        position: absolute;
+        top: 13px;
+        right: 0;
+      }
+    }
+    
+
+    &__tabpanel {
+      color: $daintree;
+
+      @media(max-width: 767px){
+        display: block;
+
+        .cmp-tabs__tab-content{
+          display: none;
+        }
+
+        &.cmp-tabs__tabpanel--active{
+          .cmp-tabs__tab-content{
+            display: block;
+          }
+
+          .cmp-tabs__tab-mobile {			
+            .ai-caret-down:before {
+              content: "\e7c8";
+            }
+          }
+        } 
+      }
+    }
+  }
+
+  /* ======= Tab content styles ======= */
+  .pdp-tab {
+    &__product-info {
+      li {
+        margin-bottom: .8em;
+      }
+    }
+
+    &__more-info {
+      color: $black;
+      
+      &-data {
+        padding: 4px 4px 8px;
+      }
+
+      &-label {
+        font-weight: 500;
+        padding: 4px 24px 8px 0;
+      }
+    }
+
+    &__nutri-info {
+
+      &-title {
+        color: $black;
+        font-size: 22px;
+        margin: 11px 0;
+      }
+
+      &-text {
+        color: $black;
+
+        b {
+          font-weight: 500;
+        }
+      }
+
+      &-table {
+        border: 1px solid $gray-300;
+        border-collapse: collapse;
+        color: $black;
+        width: 100%;
+
+        @media(max-width: 767px) {
+          color: $daintree;
+        }
+
+        &-title{
+          background: $dark-cerulean;
+          color: $white;
+          font-size: 22px;
+          line-height: 30px;
+          padding: 10px;
+        }
+
+        th {
+          border-bottom: 2px solid $gray-300;
+          font-weight: 500;
+          padding: 8px 2px;
+        }
+
+        td {
+          padding: 0;
+
+          .pdp-tab__nutri-info-table-data-border {
+            border-bottom: 1px solid $gray-300;
+            display: block;
+            padding: 8px 0;
+            white-space: nowrap;
+          }
+
+          &:first-child {
+            .pdp-tab__nutri-info-table-data-border {
+              margin-left: 10px;
+            }
+          }
+
+          &:last-child {
+            .pdp-tab__nutri-info-table-data-border {
+              margin-right: 10px;
+            }
+          }
+        }
+
+        tr:first-child {
+          td {
+            padding-top: 15px;
+          }
+        }
+
+        tr:last-child {
+          td:first-child:before, td:last-child:after {
+            height: 100%;
+          }
+
+          .pdp-tab__nutri-info-table-data-border {
+            border: none;
+          }
+        }
+
+        &-data-header {
+          width: 15%;
+
+          &.small {
+            font-size: 1em;
+            width: 30%;
+          }
+
+          @media(max-width: 767px) {
+            width: initial;
+
+            &:nth-child(2) {
+              text-align: left !important;
+              
+              .pdp-tab__nutri-info-table-data-border {
+                padding-left: 5px;
+              }
+            }
+          }
+        }
+
+        &-data-value {
+          width: 15%;
+
+          .pdp-tab__nutri-info-table-data-border {
+            padding-left: 40% !important;
+          }
+
+          &.small {
+            font-size: 1em;
+            width: 30%;
+            
+            .pdp-tab__nutri-info-table-data-border {
+              padding-left: 40% !important;
+            }
+          }
+
+          @media(max-width: 767px) {
+            width: initial;
+
+            &:last-child {
+              text-align: right;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/* ======= GlucernaStore Styles ===== */
+.gs-variation {
+
+  .cmp-tabs {
+    background: $wild-sand;
+    padding: 20px 40px;
+
+    @media (min-width: 768px) and (max-width: 991px) {
+      padding: 18px;
+    }
+
+    @media (max-width: 767px) {
+      padding: 20px;
+    }
+
+    &__tablist {
+      text-align: left !important;
+    }
+
+    &__tab {
+      color: $biscay;
+      font-weight: 700;
+      margin: 0 55px 0 0;
+
+      @media (min-width: 768px) and (max-width: 991px) {
+        font-weight: 600;
+        font-size: 14px;
+        margin: 0 25px 0 0;
+      }
+
+      &.cmp-tabs__tab--active {
+        border-bottom: solid 4px $dark-orange;
+      }
+
+      &-mobile {
+        color: $biscay;
+        font-size: 0.825rem;
+        padding-left: 0;
+        text-align: left !important;
+
+        em {
+          display: none;
+        }
+      }
+
+      &-content {
+        display: block !important;
+        
+        margin-top: 40px;
+
+        @media (max-width: 767px) {
+          font-size: 0.8rem;
+          margin-bottom: 30px;
+          margin-top: 10px;
+          padding-left: 5px;
+        }
+      }
+    }
+  }
+
+  .pdp-tab {
+    &__product-info, &__nutri-info, &__more-info, &__subscription {
+      color: $light-blue;
+    }
+
+    &__nutri-info {
+      &-text, &-title, &-table {
+        color: $light-blue;
+      }
+
+      &-table-title {
+        background: $light-blue;
+      }
+
+      th {
+        font-weight: 400;
+        padding: 8px 0;
+      }
+    }
+  }
+}

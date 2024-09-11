@@ -1,0 +1,36 @@
+<sly data-sly-use.templates="abbott/components/content/templates.html"/>
+<sly data-sly-use.subCalModel="com.abbott.aem.an.abbottstore.models.SubscriptionCalcultor" />
+	<sly data-sly-test.titleName = "${subCalModel.title}" />
+<div class="subscription-calculator">
+    <div class="similac-subtitle text-center">
+        ${subCalModel.title}
+    </div>
+	<div class="subscription-calculator__container">
+		<sly data-sly-list.monthlyList= ${subCalModel.monthlySavings}>
+			<div class="subscription-calculator-item">
+				<div class="subscription-calculator-item-plan">
+					<span class="plan-heading">${subCalModel.subTitle}</span>
+					<div class="plan-month">
+						<em class="ai-calendar-empty-alt"></em>
+						<span class="plan-month-number">${monthlyList.monthNum}</span>
+					</div>
+				</div>
+				<div class="subscription-calculator-item-saving">
+					<p class="saving">
+						<sly data-sly-test=${monthlyList.conditionApply}>
+							<span class="upto">up to</span>
+						 </sly>
+						<span class="save">${monthlyList.savings}</span>
+					</p>
+					<span class="saving-text">Savings</span>
+				</div>
+				<div class="savings-accordion">
+					<em class="ai-caret-down-wide"></em>
+					<em class="ai-caret-up-wide"></em>
+				</div>
+			</div>
+		</sly>			
+	</div>
+	
+</div>
+<sly data-sly-call="${templates.placeholder @ isEmpty= !titleName}"></sly> 

@@ -1,0 +1,162 @@
+
+<template data-sly-template.pdf="${@ dynamicProductDetail, product}">
+    <div class="pdflayout">
+        <!-- Header HTML -->
+        <div class="header d-none" id="header">
+            <img src="" alt="${pageProperties.displayTitle @ context='html'}" />
+            <h2>${pageProperties.displayTitle @ context='html'}</h2>
+        </div>
+    
+        <div id="parent" class="d-none">
+        <!-- Page body -->
+        <div class="container">
+            <div class="row no-gutters">
+                <div class="col col-12"><img src="" alt="${pageProperties.displayTitle @ context='html'}"/></div>
+                <div class="col col-7">
+                    <h2 class="productTitle">${pageProperties.displayTitle @ context='html'}</h2>
+                    <h4 class="productSubTitle">${pageProperties.commonName @context='html'}</h4>
+                    <p class="para">${pageProperties.pdpDescription}</p>
+                    <sly data-sly-list.reference="${pageProperties.productRefrenceValue}">
+                        <p class="pdffootnote my-1">${reference}</p>
+                    </sly>
+                </div>
+                <div class="col col-5">
+                    <img class="img-fluid productImg" src="" alt="${pageProperties.displayTitle @ context='html'}"/>
+                </div>
+                <div class="col col-12">
+                    <div class="features">
+                        <sly data-sly-list.feature="${product.features}">
+                        <div data-sly-test="${featureList.first}" class="position-relative subHeading">
+                            <hr class="m-0"/>
+                            <h3 class="pdpheadings"><sly data-sly-use.feature_i18="${'com.abbott.aem.cloud.platform.core.models.I18nFetcher' @ key = 'features'}"/>${feature_i18.title}</h3>
+                        </div>
+                        </sly>
+                        
+                        <ul class="p-0" data-sly-list.feature="${product.features}">
+                            <li class="mx-3 my-1"><span class="mx-3">${feature.claimText}</span></li>
+                        </ul>
+                        <div class="p-0" data-sly-list.featureReference="${product.featureReferences}">
+                            <p class="pdfref my-2">${featureReference.referenceSymbol}${featureReference.referenceText}</p>
+                        </div>
+                    </div>
+                    <div class="safetyPrecautions" data-sly-list.precaution="${product.precautions}">
+                        <div data-sly-test="${precautionList.first}" class="position-relative subHeading w-75">
+                            <hr class="m-0"/>
+                            <h3 class="pdpheadings"><sly data-sly-use.safetyPrecautions_i18="${'com.abbott.aem.cloud.platform.core.models.I18nFetcher' @ key = 'safetyPrecautions'}"/>${safetyPrecautions_i18.title}</h3>
+                        </div>
+                        <ul class="p-0 m-0">
+                            <li class="mx-3 my-1"><span class="mx-3">${precaution.claimText  @ context='html'}</span></li>
+                        </ul>
+                    </div>
+                    <div class="availability">
+                        <sly data-sly-list.avail="${product.availability}">
+                        <div data-sly-test="${availList.first}" class="position-relative subHeading w-75">
+                            <hr class="m-0"/>
+                            <h3 class="pdpheadings"><sly data-sly-use.availability_i18="${'com.abbott.aem.cloud.platform.core.models.I18nFetcher' @ key = 'availability'}"/>${availability_i18.title}</h3>
+                        </div>
+						</sly>
+                        <div class="availTable">
+                            <table class="w-100" aria-describedby="Dynamic Products availability">
+                                <thead data-sly-list.avail="${product.availability}">
+                                    <tr data-sly-test="${availList.first}">
+                                        <th class="width40" scope="col"><sly data-sly-use.listNumber_i18="${'com.abbott.aem.cloud.platform.core.models.I18nFetcher' @ key = 'listNumber'}"/>${listNumber_i18.title}</th>
+                                        <th class="width60" scope="col"><sly data-sly-use.item_i18="${'com.abbott.aem.cloud.platform.core.models.I18nFetcher' @ key = 'item'}"/>${item_i18.title}</th>
+                                    </tr>
+                                </thead>
+                                <tbody data-sly-list.avail="${product.availability}">
+                                    <tr data-val='${avail.acode}'>
+                                        <td class="width40">${avail.displayListNumber @ context='html'}</td>
+                                        <td class="width60">${avail.description @ context='html'}</td>
+                                    </tr>
+                                
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="ingredients">
+                        <div class="position-relative subHeading w-75">
+                            <hr class="m-0"/>
+                            <h3 class="pdpheadings"><sly data-sly-use.ingredients_i18="${'com.abbott.aem.cloud.platform.core.models.I18nFetcher' @ key = 'ingredients'}"/>${ingredients_i18.title}</h3>
+                        </div>
+                        <div data-sly-list.ingredient="${product.ingredients}">
+                            <h5 class="pdfingredients m-0" data-val='${ingredient.ACode}'>${ingredient.flavorName @ context='html'} ${ingredient.formulationType @ context='html'}</h5>
+                            <p class="pdfingredients" data-val='${ingredient.ACode}'>${ingredient.ingredients @ context='html'}</p>
+                        </div>
+                        <div data-sly-list.ingredient="${product.ingredients}">                        
+                            <p class="pdfingredients" data-val='${ingredient.ACode}'>${ingredient.allergenStatement @ context='html'}</p>
+                        </div>
+                    </div>
+                    <div class="nutritionInformation">
+						<sly data-sly-list.servingSizeList="${product.servingSize}" >
+                        <div data-sly-test="${servingSizeListList.first}" class="position-relative subHeading w-75">
+                            <hr class="m-0"/>
+                            <h3 class="pdpheadings"><sly data-sly-use.nutritionInformation_i18="${'com.abbott.aem.cloud.platform.core.models.I18nFetcher' @ key = 'nutritionInformation'}"/>${nutritionInformation_i18.title}</h3>
+                        </div>
+						</sly>
+                        <div data-sly-list.servingSizeList="${product.servingSize}" class="d-flex">
+                        <div class="availTable" data-val='${servingSizeList.acode}'>
+                            <table class="w-100"  aria-describedby="Serving size list">
+								<thead>
+									<tr>
+										<th class="grayBack" scope="col"></th>
+										<th class="servingSize" scope="col">${servingSizeList.servingSizeName @ context='html'}</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td class="grayBack"></td>
+										<td><span class="nutriValue"><sly data-sly-use.value_i18="${'com.abbott.aem.cloud.platform.core.models.I18nFetcher' @ key = 'value'}"/>${value_i18.title}</span><span class="nutriDV"><sly data-sly-use.percentDV_i18="${'com.abbott.aem.cloud.platform.core.models.I18nFetcher' @ key = 'percentDV'}"/>${percentDV_i18.title}${servingSizeList.percentDVSymbol @context='html'}</span></td>
+									</tr>
+								</tbody>
+							</table>
+                        </div>
+                        </div>
+						<sly data-sly-list.servingSizeList="${product.servingSize}">
+							<div class="p-0 footNote" data-sly-list.footNoteList="${servingSizeList.footnotes}" data-val='${servingSizeList.acode}'>
+								<p class="my-3"><span>${footNoteList.footnoteSymbol}${footNoteList.footnoteValue}</span></p>
+							</div>
+						</sly>
+						 </div>
+						
+						
+						<div class="preparation" data-sly-list.instruction="${product.instructions}">
+                        <div class="position-relative subHeading w-75" >
+                            <hr class="m-0"/>
+                            <h3 class="pdpheadings">${instruction.category}</h3>
+                        </div>
+                        <p>${instruction.productInstructions @ context='html'}</p>
+                        
+                    </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        </div>
+        <!-- Footer HTML -->
+        <table class="footer d-none" id="footer" aria-describedby="footer-desc">
+            <thead class="d-none">
+                <tr>
+                    <th id="pdfFooter" colspan="5"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="col col-2">
+                    <td class="tableImg"><img src="/content/dam/an/abbottnutrition/images/global/Abbott_Logo.png" alt="image"></td>
+                    <td>
+                        <p>Abbott Nutrition Abbott Laboratories <br/>Columbus, OH 43219 <br><br/>1-800-227-5767</p>
+                    </td>
+                    <td>
+                        <p>For more information contact your <br/>Abbott Nutrition Representative or visit: <br><br/>www.abbottnutrition.com</p>
+                    </td>
+                    <td>
+                        <p>© <sly data-sly-use.copyrightYear="${'com.abbott.aem.cloud.platform.core.models.I18nFetcher' @ key = 'copyrightyear'}"/>${copyrightYear.title} Abbott Laboratories Inc.<br><br>Last updated: <span id="lastUpdated">MM/DD/YYYY</span></p>
+                    </td>
+                    <td><br>
+                        <h5>Page <span class="currentPage"></span> of <span class="totalPage"></span></h5>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+    </template>

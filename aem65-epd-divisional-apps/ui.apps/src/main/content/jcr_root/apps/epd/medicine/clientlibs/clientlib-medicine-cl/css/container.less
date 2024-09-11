@@ -1,0 +1,118 @@
+@import './global/media-queries.less';
+@import './global/variables.less';
+
+.cmp-container[role='section-panel'] {
+  .columncontrol {
+    .column-divider {
+      padding-left: @spacer-28;
+
+      @media @md-down {
+        padding: 0;
+        margin: 0;
+
+        &:after {
+          display: none;
+        }
+
+        .image {
+          margin-right: auto;
+          max-width: 66%;
+        }
+      }
+
+      &:after {
+        height: @full-width;
+      }
+
+      .text {
+        padding-left: @spacer-15;
+      }
+
+      .a-button {
+        padding-left: @spacer-15;
+
+        .btn {
+          position: relative;
+          transition: 0.3s ease all;
+
+          &:hover {
+            &:before {
+              height: @full-width;
+              outline-width: 1px;
+            }
+
+            .animation {
+              opacity: 1;
+            }
+          }
+
+          .backdrop-styles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: @full-width;
+          }
+
+          &:before {
+            content: '';
+            height: 0%;
+            border-radius: var(--button-border-radius);
+            transition: inherit;
+            background-color: @color-charcoal;
+            outline: 0px solid @color-charcoal;
+            .backdrop-styles;
+          }
+
+          .animation {
+            padding: var(--button-padding);
+            opacity: 0;
+            .backdrop-styles;
+          }
+        }
+
+        &--primary-v1 {
+          .btn {
+            &:hover {
+              color: @color-yellow;
+            }
+          }
+        }
+        &--primary {
+          .btn {
+            &:hover {
+              color: var(--button-primary-bg);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.cmp-container[role='responsibility'] {
+  .text~.image .cmp-image__image {
+    max-height: 130px;
+  }
+
+  .columncontrol {
+    .column-divider {
+      &::after {
+        height: 300px;
+      }
+
+      &:nth-child(2)::after {
+        border-right: 0;
+      }
+    }
+
+    .featurescard .image .cmp-image__image {
+      max-width: 100%;
+      max-height: 125px;
+      transition: all .2s ease-in-out;
+
+      &:hover {
+        transform: scale(0.85);
+      }
+    }
+  }
+}

@@ -1,0 +1,69 @@
+@import '../mixin.less';
+@import '../media-queries.less';
+@import '../variables.less';
+/**
+ * MY PROFILE - PAGE
+**/
+
+[id*="userRewardPoints"] {
+    display: flex;
+    justify-content: center;
+    position: relative;
+
+    h2, h3 {
+        border-radius: 14px;
+        padding: 5px 30px;
+        text-align: center;
+        margin-bottom: 0px;
+        position: relative;
+    }
+
+    &.points-loading {
+        h2, h3 {
+            padding: 5px 30px 5px 60px;
+        }
+    }
+    .a-spinner {
+        font-size: 1rem;
+        top: 50%;
+        left: 30px;
+        transform: translateY(-50%);
+        display: none;
+
+        .spinner-border {
+            @media @lg-down {
+                height: 1.5rem;
+                width: 1.5rem;
+            }
+        }
+    }
+
+    .a-spinner-show {
+        display: flex;
+
+        & + .mfs-points {
+            display: none;
+        }
+    }
+}
+
+[id*="rewardPointsSection"] {
+    @media @sm-up {
+        padding: 30px 0px;
+    }
+}
+
+[id*="onBoardingPopup-modal"] {
+    .generic-modal__image {
+        margin: 0 0 2.5rem;
+        text-align: center;
+
+        img {
+            width: auto;
+        }
+    }
+
+    .modal-footer {
+        display: none;
+    }
+}

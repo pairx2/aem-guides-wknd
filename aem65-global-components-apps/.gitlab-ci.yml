@@ -1,0 +1,33 @@
+stages:
+    - build
+UI Build:
+  stage: build
+  only:
+    - ta/theme-builder
+  script:
+    - cd ui.frontend
+    - npm install
+    - npm run prod
+    - cp -R dist /home/saisrujan.dommati/abbott-server/code
+    - cd /home/saisrujan.dommati/abbott-server/code/server
+    - pm2 restart pm2.json --only abbott-dev2
+  variables:
+    GIT_STRATEGY: clone
+
+Schedular Build:
+  stage: build
+  only:
+    - ta/theme-builder
+  script:
+    - cd ui.frontend/src/main/webpack/server
+    - npm install
+    - npm run scheduler
+    - rm -rf node_modules
+    - cd ..
+    - cp -R server /home/saisrujan.dommati/abbott-server/code
+    - cp -R config /home/saisrujan.dommati/abbott-server/code
+    - cd /home/saisrujan.dommati/abbott-server/code/server
+    - npm install
+    - pm2 restart pm2.json --only abbott-dev2
+  variables:
+    GIT_STRATEGY: clone

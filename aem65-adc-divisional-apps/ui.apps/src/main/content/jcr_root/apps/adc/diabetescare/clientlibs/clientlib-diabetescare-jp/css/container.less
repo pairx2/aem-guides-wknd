@@ -1,0 +1,167 @@
+@import "./global/media-queries.less";
+@import "./global/variables.less";
+
+.cmp-container[role="product-list"] {
+  .image .cmp-image__image {
+    width: 120px;
+    padding: @spacer-20;
+    /*Fix for blurry image*/
+    image-rendering: -moz-crisp-edges; /* Firefox */
+    image-rendering: -o-crisp-edges; /* Opera */
+    image-rendering: -webkit-optimize-contrast; /* Webkit (non-standard naming) */
+    image-rendering: crisp-edges;
+    -ms-interpolation-mode: nearest-neighbor; /* IE (non-standard property) */
+  }
+
+  .link {
+    margin-top: @spacer-24 !important;
+
+    .a-link {
+      &__text {
+        color: @color-astral-blue;
+        font-size: @spacer-23;
+        line-height: @spacer-24;
+        font-weight: normal;
+
+        @media @lg-only {
+          font-size: @spacer;
+          line-height: @spacer;
+        }
+        @media @md-down {
+          font-size: @spacer-18;
+          line-height: @spacer-18;
+        }
+
+        &:hover {
+          color: darken(@color-astral-blue, 20%);
+        }
+      }
+    }
+  }
+
+  .columncontrol {
+    margin: @spacer-15 0 !important;
+
+    @media @lg-down {
+      margin-bottom: @spacer-30 !important;
+
+      .columncontrol__column {
+        flex: 0 0 @full-width;
+        max-width: @full-width;
+        text-align: center;
+        margin-bottom: 0 !important;
+      }
+    }
+  }
+}
+
+/*Home page styling*/
+.cmp-container {
+  &[role="home-content"] {
+    .columncontrol__column {
+      padding: 0;
+    }
+    .text-primary {
+      font-size: @spacer-22;
+      font-weight: normal;
+
+      @media @lg-only {
+        font-size: @spacer-30;
+        line-height: @spacer-30;
+      }
+      @media @md-down {
+        font-size: @spacer-18;
+        line-height: @spacer-18;
+      }
+    }
+    .image {
+      padding: @spacer;
+
+      @media @md-down {
+        display: none;
+      }
+    }
+
+    p {
+      font-size: @font-base;
+      line-height: @spacer-20;
+      margin-top: @spacer;
+    }
+  }
+}
+
+/*home page banner section*/
+#section-campaign-banner {
+  #campaign-banner {
+    min-height: 420px;
+  }
+
+  .text-yellow {
+    color: @color-yellow;
+    font-family: @brandon-bold;
+    font-size: @spacer-67;
+    line-height: @spacer-60;
+  }
+
+  .columncontrol .column-divider::after {
+    border-bottom: none;
+
+    @media @md-up {
+      height: @full-height;
+      border-right: @spacer-1 solid @color-white;
+      background-color: @color-white;
+    }
+  }
+
+  @media @md-down {
+    #campaign-banner {
+      min-height: initial;
+    }
+    .a-container__media .a-container__image {
+      display: block;
+    }
+    .a-container__media__mobile {
+      display: none;
+    }
+    .text-yellow {
+      font-size: @spacer-19;
+      line-height: @spacer-18;
+    }
+    .columncontrol__column.column-divider {
+      margin: 0;
+    }
+  }
+}
+
+.cmp-container[role="pre-footer"] {
+  .m-link-stack {
+    max-width: 330px;
+
+    h6 {
+      font-size: @spacer-18;
+      color: @color-charcoal-light;
+      font-weight: normal;
+    }
+
+    &--content.d-none {
+      display: block !important;
+    }
+
+    a {
+      font-size: @spacer-13;
+      font-family: @custom-helvetica;
+      color: @color-pre-footer-links;
+      line-height: @spacer-24;
+      font-weight: normal;
+
+      &:hover {
+        color: initial;
+        text-decoration: underline;
+      }
+    }
+
+    .abt-icon-down-arrow.js-collapse-icon::before {
+      content: "";
+    }
+  }
+}

@@ -1,0 +1,19 @@
+<template data-sly-template.tile="${@ tile}">
+<sly data-sly-use.customConfig="com.abbott.aem.platform.common.components.models.CustomConfig" />
+    <div class="${wcmmode.edit ? 'p-4' : ''} ${customConfig.className}">
+        <a id="${tile.id}" href="${tile.link}" target="${tile.action}" class="a-tile__link"
+            data-cmp-clickable="${tile.data ? true : false}" data-cmp-data-layer="${tile.data.json}">
+            <span class="a-tile__icon"><em aria-hidden="true" class="abt-icon abt-icon-right-arrow"></em></span>
+            <div class="a-tile__title" data-sly-test="${tile.text}">
+                <span class="a-tile__title-text">${tile.text  @ context="html"}</span>
+            </div>
+            <div class="a-tile__para" data-sly-test="${tile.subtitle}">
+                <p>${tile.subtitle  @ context="html"}</p>
+            </div>
+            <div class="a-tile__tile-icon" data-sly-test="${tile.icon}">
+                <i aria-hidden="true" class="abt-icon ${tile.icon}" style="color:${tile.color @context ='styleToken'}">
+                </i>
+            </div>
+        </a>
+    </div>
+</template>

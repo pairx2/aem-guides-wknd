@@ -1,0 +1,28 @@
+<sly data-sly-use.page="com.abbott.aem.platform.common.components.models.PlatformPage">
+<div id="site-leaving-popup-content" class="${wcmmode.edit ? '' : 'modal'}">
+    <div class="m-popup-content">
+        <sly data-sly-test="${page.siteLeavingPopupFragmentPath}" data-sly-resource="${@path=page.siteLeavingPopupFragmentPath, selectors='content', wcmmode='disabled'}"></sly>
+    </div>
+</div>
+<!-- Block for site entering popup starts-->
+<div id="site-entering-popup-content" class="${wcmmode.edit ? '' : 'modal'}" data-api-url="${page.geolocationEndPointURL}" 
+	data-wcm-edit-mode = "${wcmmode.edit ? 'true' : 'false'}"
+	data-site-entering-popup-required = "${page.siteEnteringPopupFragmentPath ? 'true' : 'false'}">
+	<div class="m-popup-content">
+        <sly data-sly-test="${page.siteEnteringPopupFragmentPath}" data-sly-resource="${@path=page.siteEnteringPopupFragmentPath, selectors='content', wcmmode='disabled'}"></sly>
+    </div>
+</div>
+<!-- Block for site entering popup ends-->
+<!-- Site section disclaimer popup starts -->
+<sly data-sly-test="${page.siteSectionSpecificFragmentPath}" >
+	<div id="site-section-popup-content" class="popup-wrapper" style="display:none" data-wcm-edit-mode = "${wcmmode.edit ? 'true' : 'false'}">
+		<div class="m-popup-content">
+			<div class="popup-container" >
+				 <div class="popup-text notes">
+					<sly data-sly-resource="${@path=page.siteSectionSpecificFragmentPath, selectors='content', wcmmode='disabled'}"></sly>
+				</div>
+			</div>
+		</div>
+	</div>
+</sly>
+</sly>

@@ -1,0 +1,41 @@
+<sly data-sly-use.alertbanner="com.abbott.aem.an.similac.core.models.AlertBannerModel" data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
+<sly data-sly-test="${wcmmode.edit|| wcmmode.design}">
+    <div data-emptytext="Configure AlertBanner Component" class="cq-placeholder"> </div>
+    </sly>
+	<!--/* Alert component html */-->
+	<div class="m-alert-banner d-none" id="${alertbanner.id}" data-js-component="alertbanner">
+	  <div class="m-alert-banner__container">
+		<div class="m-alert-banner__icon">
+		  <p>
+			<em aria-hidden="true" class="${alertbanner.icon}"></em>
+		  </p>
+		</div>
+		<div class="m-alert-banner__content">
+		  <div class="m-alert-banner__text">
+			<div class="m-alert-banner__content__title">
+				<p>${alertbanner.alertMessage}</p>			
+				<div class="m-alert-banner--button">
+					<button class="btn" type="button">
+					  <span>${alertbanner.buttonText}</span>
+					</button>
+				  </div>
+			 </div>
+			<div class="m-alert-banner__content__para"> ${alertbanner.displayText @context='html'} </div>
+		  </div>
+		</div>
+		<div class="m-alert-banner__collapse--icon">
+		  <div class="m-collapse">
+			<span>${alertbanner.collapseText}</span>
+			<em class="abt-icon abt-icon-down-arrow" aria-hidden="true"></em>
+		  </div>
+		  <div class="m-expand d-none">
+			<span>${alertbanner.expandText}</span>
+			<em class="abt-icon abt-icon-up-arrow " aria-hidden="true"></em>
+		  </div>
+		</div>
+		<!--container -->
+	  </div>
+	  <!-- banner -->
+	</div>
+  </sly>
+  <sly data-sly-call="${templates.placeholder @ isEmpty = true}"></sly>

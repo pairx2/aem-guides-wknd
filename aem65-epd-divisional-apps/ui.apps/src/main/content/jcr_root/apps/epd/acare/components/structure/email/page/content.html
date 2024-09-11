@@ -1,0 +1,38 @@
+<!--/*
+* Copyright (c)   Abbott Laboratories
+* Program Name :  content.html
+* Application  :  EPD EMail Templates Design
+* Purpose      :  See description
+* Description  :  This is page Component which is used to display email pages.
+* Modification History:
+* ---------------------
+*    Date                                Modified by                                       Modification Description
+*-----------                            ----------------                                    -------------------------
+*  02-Nov-2020                  Cognizant Technology solutions                                 Initial Creation
+*-----------                           ----------------                                      -------------------------
+*/-->
+
+<sly data-sly-test.bgColor="${inheritedPageProperties.bgColor || '#ffffff'}"/>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="deviceWidth" aria-describedby="table" aria-hidden="true">
+    <tr>
+        <td align="center" valign="top" style="background-color: ${bgColor @ context = 'styleToken'};" class="mobile-bg">
+            <table width="600" cellspacing="0" cellpadding="0" border="0" class="container" aria-describedby="table" aria-hidden="true">
+                <tr>
+                    <td align="left" valign="top" class="container">
+                        	<!-- Header start -->
+							 <sly data-sly-include ="header.html" />
+    						<!-- Header end-->
+                            <!-- content data goes here -->
+ 						<table width="600" cellspacing="0" cellpadding="0" border="0" class="container" aria-describedby="table" aria-hidden="true">
+                               <sly data-sly-include ="mail-content.html" />
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <!-- Footer start -->
+	<sly data-sly-include ="footer.html" />
+    <!-- Footer end-->
+</table>

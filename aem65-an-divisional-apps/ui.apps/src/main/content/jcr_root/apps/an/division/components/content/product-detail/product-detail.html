@@ -1,0 +1,242 @@
+<div data-sly-test="${wcmmode.edit}" class="cq-placeholder"
+   data-emptyText="AN - Product Detail"></div>
+<sly data-sly-use.productDetail="com.abbott.aem.an.division.core.components.models.ProductDetail"
+     data-sly-set.product="${productDetail.product}"
+     data-sly-set.filteredFlavors="${productDetail.filteredFlavors}">
+    <div class="cmp-product-detail columncontrol">
+        <input type="hidden" name="gratisId" value="${productDetail.gratisId}">
+        <input type="hidden" name="brandId" value="${productDetail.brandId}">
+        <div class="row no-gutters">
+            <h2 class="d-md-none">${product.productName @ context='html'}</h2>
+            <h4 class="d-md-none"
+                data-sly-test="${product.commonName}">${product.commonName @ context='html'}</h4>
+            <div class="col-12 col-md-6 col-lg-6 cmp-product-detail__mediacarousel">
+                <sly data-sly-resource="${'mediacarousel' @ resourceType='an/globals/components/container/mediacarousel'}"></sly>
+            </div>
+            <div class="col-12 col-md-6 col-lg-6 cmp-product-detail__info">
+                <div class="cmp-product-detail__marketing-text">
+                    <h2 class="d-none d-md-block">${product.productName @ context='html'}</h2>
+                    <h4 class="d-none d-md-block"
+                        data-sly-test="${product.commonName}">${product.commonName @ context='html'}</h4>
+                    <sly data-sly-resource="${'marketingtext' @ resourceType='an/globals/components/content/text'}"></sly>
+                </div>
+                <div class="cmp-product-detail__formulation-dropdowns">
+                    <div class="cmp-product-detail__formulation-dropdown"
+                         data-sly-test="${filteredFlavors}">
+                        <div class="a-dropdown" data-required="true" data-js-component="form-dropdown">
+                            <div class="a-dropdown__container form-group">
+                                <div class="a-dropdown__field">
+                                    <span class="a-dropdown__placeholder"></span>
+                                    <ul class="a-dropdown__menu nav nav-tabs o-content-section__list">
+                                        <sly data-sly-list.flavor="${filteredFlavors}">
+                                            <li role="presentation" class="o-content-section__list-item">
+                                                <a href="#"
+                                                   class="o-content-section__list-item-link ${flavorList.count==1 ? 'selected' : ''}">
+                                                    ${flavor.flavorNameOverride @ context='html'}
+                                                </a>
+                                            </li>
+                                        </sly>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cmp-product-detail__serving-dropdown cmp-product-detail__formulation-filter"
+                         data-sly-test="${filteredFlavors}"
+                         data-sly-list.flavor="${filteredFlavors}">
+                        <div class="a-dropdown cmp-product-detail__formulation-filter--item" data-required="true" data-js-component="form-dropdown">
+                            <div class="a-dropdown__container form-group">
+                                <div class="a-dropdown__field">
+                                    <span class="a-dropdown__placeholder"></span>
+                                    <ul class="a-dropdown__menu nav nav-tabs o-content-section__list">
+                                        <sly data-sly-list.servingSize="${flavor.servingSizes}">
+                                            <li role="presentation" class="o-content-section__list-item">
+                                                <a href="#"
+                                                   class="o-content-section__list-item-link ${servingSizeList.count==1 ? 'selected' : ''}">
+                                                    ${servingSize.servingSizeName @ context='html'}
+                                                </a>
+                                            </li>
+                                        </sly>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="cmp-product-detail__buttons">
+                    <div class="button link a-button a-button--primary a-button--sm"
+                         data-sly-test="${productDetail.gratisId}">
+                        <a id="requestSampleButton" class="btn disabled" href="#" target="_self">
+                            <sly data-sly-use.i18n_pdpRequestSample="${'com.abbott.aem.cloud.platform.core.models.I18nFetcher' @ key = 'pdp-request-sample'}"/>
+                            <span>${i18n_pdpRequestSample.title}</span>
+                        </a>
+                    </div>
+                    <div class="button link a-button--icon-left cmp-product-detail__gratis-error"
+                         data-sly-test="${productDetail.gratisId}">
+                        <a class="btn " href="#">
+                            <em class="abt-icon abt-icon-exclamation"></em>
+                        </a>
+                    </div>
+                    <div class="cmp-product-detail__formulation-filter"
+                         data-sly-test="${productDetail.skus}"
+                         data-sly-list.sku="${productDetail.skus}">
+                        <div class="cmp-product-detail__formulation-filter--item">
+                            <div class="button link a-button a-button--secondary a-button--sm"
+                                 data-sly-test="${sku.priceSpiderSku}">
+                                <a class="btn " href="${sku.priceSpiderSku}" target="_self">
+                                    <sly data-sly-use.i18n_pdpFindRetailer="${'com.abbott.aem.cloud.platform.core.models.I18nFetcher' @ key = 'pdp-find-retailer'}"/>
+                                    <span>${i18n_pdpFindRetailer.title}</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h4 class="cmp-product-detail__clinical-information"
+        data-sly-use.i18n_pdpClinicalInformation="${'com.abbott.aem.cloud.platform.core.models.I18nFetcher' @ key = 'pdp-clinical-information'}">
+        ${i18n_pdpClinicalInformation.title}
+    </h4>
+    <div class="tabs">
+        <div id="tabs-product-details" class="cmp-tabs a-tabs" data-cmp-is="tabs">
+            <nav role="tablist" class="cmp-tabs__tablist a-tabs__nav nav nav-tabs nav-fill row"
+                 aria-multiselectable="false">
+                <a role="tab" id="tabs-product-nutrition-tab"
+                   data-sly-test="${filteredFlavors}"
+                   class="cmp-tabs__tab cmp-tabs__tab--active show active a-tabs__nav-link nav-item a-tabs__tab-pane tab-pane"
+                   aria-controls="tabs-product-nutrition-tab" tabindex="0" aria-label="Active"
+                   href="#tabs-product-nutrition-content" data-cmp-hook-tabs="tab" data-toggle="tab">
+                    <sly data-sly-use.i18n_pdpNutritionalInformation="${'com.abbott.aem.cloud.platform.core.models.I18nFetcher' @ key = 'pdp-nutritional-information'}"/>
+                    <span class="a-tabs__nav-text">${i18n_pdpNutritionalInformation.title}</span>
+                </a>
+                <a role="tab" id="#tabs-product-info-tab"
+                   class="cmp-tabs__tab a-tabs__nav-link nav-item a-tabs__tab-pane tab-pane"
+                   aria-controls="tabs-product-info-tab" tabindex="-1" aria-label="Active"
+                   href="#tabs-product-info-content" data-cmp-hook-tabs="tab" data-toggle="tab">
+                    <sly data-sly-use.i18n_pdpProductInformation="${'com.abbott.aem.cloud.platform.core.models.I18nFetcher' @ key = 'pdp-product-information'}"/>
+                    <span class="a-tabs__nav-text">${i18n_pdpProductInformation.title}</span>
+                </a>
+                <a role="tab" id="#tabs-product-ingredients-tab"
+                   data-sly-test="${filteredFlavors}"
+                   class="cmp-tabs__tab a-tabs__nav-link nav-item a-tabs__tab-pane tab-pane"
+                   aria-controls="tabs-product-ingredients-tab" tabindex="-1" aria-label="Active"
+                   href="#tabs-product-ingredients-content" data-cmp-hook-tabs="tab" data-toggle="tab">
+                    <sly data-sly-use.i18n_pdpIngredients="${'com.abbott.aem.cloud.platform.core.models.I18nFetcher' @ key = 'pdp-ingredients'}"/>
+                    <span class="a-tabs__nav-text">${i18n_pdpIngredients.title}</span>
+                </a>
+                <a role="tab" id="#tabs-product-resources-tab"
+                   data-sly-test="${productDetail.resourcesExperienceFragment}"
+                   class="cmp-tabs__tab a-tabs__nav-link nav-item a-tabs__tab-pane tab-pane"
+                   aria-controls="tabs-product-resources-tab" tabindex="-1" aria-label="Active"
+                   href="#tabs-product-resources-content" data-cmp-hook-tabs="tab" data-toggle="tab">
+                    <sly data-sly-use.i18n_pdpResources="${'com.abbott.aem.cloud.platform.core.models.I18nFetcher' @ key = 'pdp-resources'}"/>
+                    <span class="a-tabs__nav-text">${i18n_pdpResources.title}</span>
+                </a>
+                <a role="tab" id="#tabs-product-safety-tab"
+                   class="cmp-tabs__tab a-tabs__nav-link nav-item a-tabs__tab-pane tab-pane"
+                   aria-controls="tabs-product-safety-tab" tabindex="-1" aria-label="Active"
+                   href="#tabs-product-safety-content" data-cmp-hook-tabs="tab" data-toggle="tab">
+                    <sly data-sly-use.i18n_pdpSafety="${'com.abbott.aem.cloud.platform.core.models.I18nFetcher' @ key = 'pdp-safety'}"/>
+                    <span class="a-tabs__nav-text">${i18n_pdpSafety.title}</span>
+                </a>
+            </nav>
+            <div class="a-tabs__content tab-content">
+                <div id="tabs-product-nutrition-content" role="tabpanel"
+                     data-sly-test="${filteredFlavors}"
+                     aria-labelledby="tabs-product-nutrition-tab" tabindex="0"
+                     class="cmp-tabs__tabpanel cmp-tabs__tabpanel--active active a-tabs__tab-pane tab-pane "
+                     data-cmp-hook-tabs="tabpanel">
+                    <div class="text">
+                        <h3>${i18n_pdpNutritionalInformation.title}</h3>
+                        <div class="cmp-product-detail__formulation-filter" data-sly-list.flavor="${filteredFlavors}">
+                            <div class="cmp-product-detail__formulation-filter--item">
+                                <div class="cmp-product-detail__serving-filter" data-sly-list.servingSize="${flavor.servingSizes}">
+                                    <div class="cmp-product-detail__serving-filter--item">
+                                        <h4>${flavor.flavorNameOverride @ context='html'} - ${servingSize.servingSizeName @ context='html'}</h4>
+                                        <div class="cmp-product-detail__nutrition-tables" data-sly-list.category="${servingSize.groupedNutritionalInfo}">
+                                            <table aria-describedby="nutrition-table-desc">
+                                                <tr><th id="showPercentDailyValue" colspan="${productDetail.showPercentDailyValue ? '3' : '2'}">${category @ context='html'}</th></tr>
+                                                <tr>
+                                                    <th scope="col"></th>
+                                                    <th scope="col" data-sly-use.i18n_pdpAmountPerServing="${'com.abbott.aem.cloud.platform.core.models.I18nFetcher' @ key = 'pdp-amount-per-serving'}">${i18n_pdpAmountPerServing.title}</th>
+                                                    <th  scope="col" data-sly-test="${productDetail.showPercentDailyValue}"
+                                                        data-sly-use.i18n_pdpPercentDailyValue="${'com.abbott.aem.cloud.platform.core.models.I18nFetcher' @ key = 'pdp-percent-daily-value'}">${i18n_pdpPercentDailyValue.title}</th>
+                                                </tr>
+                                                <sly data-sly-list.nutritionalInfo="${servingSize.groupedNutritionalInfo[category]}">
+                                                    <tr>
+                                                        <td>${nutritionalInfo.nutritionName @ context='html'}</td>
+                                                        <td>${nutritionalInfo.nutritionValue @ context='html'}</td>
+                                                        <td data-sly-test="${productDetail.showPercentDailyValue}">${nutritionalInfo.percentDV @ context='html'}</td>
+                                                    </tr>
+                                                </sly>
+                                            </table>
+                                        </div>
+                                        <ul class="list-unstyled"
+                                            data-sly-test="${productDetail.showFootnotes}"
+                                            data-sly-list.footnote="${servingSize.footnotes}">
+                                            <li><small>${footnote.footnoteSymbol @ context='html'} ${footnote.footnoteValue @ context='html'}</small></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="tabs-product-info-content" role="tabpanel"
+                     aria-labelledby="tabs-product-info-tab" tabindex="0"
+                     class="cmp-tabs__tabpanel a-tabs__tab-pane tab-pane " data-cmp-hook-tabs="tabpanel">
+                    <div class="text">
+                        <h3>${product.productName @ context='html'}</h3>
+                        <p data-sly-list.feature="${product.features}">
+                            <sly>${feature.claimText @ context='html'}</sly>
+                        </p>
+                        <ul class="list-unstyled" data-sly-list.featureReference="${product.featureReferences}">
+                            <li><small>${featureReference.referenceSymbol @ context='html'} ${featureReference.referenceText @ context='html'}</small></li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div id="tabs-product-ingredients-content" role="tabpanel"
+                     data-sly-test="${filteredFlavors}"
+                     aria-labelledby="tabs-product-ingredients-tab" tabindex="0"
+                     class="cmp-tabs__tabpanel cmp-tabs__tabpanel--active active a-tabs__tab-pane tab-pane "
+                     data-cmp-hook-tabs="tabpanel">
+                    <div class="text">
+                        <h3>${i18n_pdpIngredients.title}</h3>
+                        <div class="cmp-product-detail__formulation-filter" data-sly-list.flavor="${filteredFlavors}">
+                            <div class="cmp-product-detail__formulation-filter--item">
+                                <h4>${flavor.flavorNameOverride @ context='html'}</h4>
+                                <p>${flavor.ingredients @ context='html'}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="tabs-product-resources-content" role="tabpanel"
+                     data-sly-test="${productDetail.resourcesExperienceFragment}"
+                     aria-labelledby="tabs-product-resources-tab" tabindex="0"
+                     class="cmp-tabs__tabpanel cmp-tabs__tabpanel--active active a-tabs__tab-pane tab-pane "
+                     data-cmp-hook-tabs="tabpanel">
+                    <div class="text">
+                        <h3>${i18n_pdpResources.title}</h3>
+                    </div>
+                    <div data-sly-resource="${@path=productDetail.resourcesExperienceFragment, selectors='content', wcmmode='disabled'}"></div>
+                </div>
+                <div id="tabs-product-safety-content" role="tabpanel"
+                     aria-labelledby="tabs-product-safety-tab" tabindex="0"
+                     class="cmp-tabs__tabpanel cmp-tabs__tabpanel--active active a-tabs__tab-pane tab-pane "
+                     data-cmp-hook-tabs="tabpanel">
+                    <div class="text">
+                        <h3>${i18n_pdpSafety.title}</h3>
+                        <sly data-sly-list.precaution="${product.precautions}">
+                            <p>${precaution.claimText @ context='html'}</p>
+                        </sly>
+                        <ul class="list-unstyled" data-sly-test="${product.precautionReferences.size > 0}" data-sly-list.precautionReference="${product.precautionReferences}">
+                            <li><small>${precautionReference.referenceSymbol @ context='html'} ${precautionReference.referenceText @ context='html'}</small></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</sly>

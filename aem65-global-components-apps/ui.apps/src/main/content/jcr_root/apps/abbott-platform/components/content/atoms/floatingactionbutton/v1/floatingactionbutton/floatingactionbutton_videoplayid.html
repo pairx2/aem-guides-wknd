@@ -1,0 +1,81 @@
+<div
+	data-sly-use.button="com.abbott.aem.platform.common.components.models.FloatingActionButton"
+	<sly data-sly-test="${button.buttonType == 'video'}">
+	<div class="m-popup m-floating-popup" data-toggle="modal" data-target="#video${resource.path.hashCode}-modal">
+
+
+		<div class="a-floatingactionbutton__floating-button ${button.hideOnDesktop ? 'fab-d-none' : ''}">
+			<div classs="a-floatingactionbutton__float-full-width">
+				<sly data-sly-test="${button.buttonStyle== 'btn-full-width'}">
+					<button
+						class="btn-full-width full-width-${button.buttonSize} floating-btn-text  ${button.buttonColor}"
+                       id="video${resource.path.hashCode}">
+
+						<sly data-sly-test="${button.iconPosition == 'left'}"> 
+						<em	class="${button.buttonIcon @context='html'} icon-left"></em> </sly>
+						<sly data-sly-test="${!button.hideButtonText}">
+						${button.buttonText} </sly>
+
+						<sly data-sly-test="${button.iconPosition == 'center'}">
+						<em class="${button.buttonIcon @context='html'} icon-right"></em> </sly>
+					</button>
+
+					<div class="m-popup-content">
+						<div class="m-video" data-js-component="video">
+							<div id="${component.id}" class="a-video">
+								<div class="a-video__player global-video">
+									<div
+										class="limeLight-video-wrapper limeLight-video video-js a-video__player-source limelight-player"
+										data-player-ID="${button.playerId}"
+										data-media-ID="${button.mediaId}">
+										<div id="limelight_player_${button.playerId}"></div>
+										<script
+											src="https://video.limelight.com/player/limelightjs-player.js?orgId=${button.orgId}"></script>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					</sly>
+				</div>
+			</div>
+
+		<div class="a-floatingactionbutton__floating-button ${button.hideOnDesktop ? 'fab-d-none' : ''}">
+		<div class="right-aligned">
+			<sly data-sly-test="${button.buttonStyle== 'right-aligned'}">
+				<button
+					class="text-${button.iconPosition} right-aligned-${button.buttonSize} floating-btn-text ${button.buttonColor}">
+				   <div class="button-alignment">
+					<sly data-sly-test="${button.iconPosition == 'left'}"> 
+					<em	class="${button.buttonIcon @context='html'} icon-left"></em> </sly>
+					<sly data-sly-test="${!button.hideButtonText}">
+					${button.buttonText} </sly>
+
+					<sly data-sly-test="${button.iconPosition == 'center'}"> 
+					<em	class="${button.buttonIcon @context='html'} icon-right"></em> </sly>
+                   </div>
+				</button>
+
+				<div class="m-popup-content" id="videoModalMain">
+					<div class="m-video" data-js-component="video">
+						<div id="${component.id}" class="a-video">
+							<div class="a-video__player global-video">
+								<div
+									class="limeLight-video-wrapper limeLight-video video-js a-video__player-source limelight-player"
+									data-player-ID="${button.playerId}"
+									data-media-ID="${button.mediaId}">
+									<div id="limelight_player_${button.playerId}"></div>
+									<script
+										src="https://video.limelight.com/player/limelightjs-player.js?orgId=${button.orgId}"></script>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				</sly>
+			</div>
+		</div>
+	</div>
+	</sly>
+
+

@@ -1,0 +1,60 @@
+@import "./global/variables.less";
+
+.o-wizard {
+
+  .container {
+    .columncontrol & {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+
+  &__container {
+    overflow: initial;
+  }
+  &__content .formcontainer {
+    .o-form-container__element {
+      width: @full-width;
+      flex: none;
+      max-width: initial;
+  
+      .required-text {
+        color: @color-blue;
+      }
+    }
+  
+    #question-wizard {
+      counter-reset: question-counter;
+      
+      .options .radio {
+        margin: @spacer-24 0;
+  
+        .a-radio-label {
+          font-size: @spacer-24;
+          line-height: @spacer-32;
+          color: @color-black;
+          font-weight: 600;
+  
+          &::before {
+            counter-increment: question-counter;
+            content: counter(question-counter) ".";
+            position: absolute;
+            left: -@spacer-24;
+          }
+        }
+      }
+    }
+  }
+}
+
+.formcontainerbuttons-left {
+  .o-wizard__btn {
+    justify-content: flex-start !important;
+  }
+}
+
+.a-checkbox--indeterminate {
+  .a-checkbox__text {
+    color: @color-blue;
+  }
+}

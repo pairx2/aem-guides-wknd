@@ -1,0 +1,17 @@
+<sly data-sly-use.errorPage="com.abbott.aem.platform.common.components.models.ErrorPage"
+	 data-sly-use.component="com.adobe.cq.wcm.core.components.models.Component" id="${component.id}"
+	 data-sly-use.imageTemplate="image.html" data-sly-use.commonsTemplates="core/wcm/components/commons/v1/templates.html"/>
+	 
+<div class="m-error-page ${wcmmode.edit ? 'error-editor': ''}">
+	<sly data-sly-call="${imageTemplate.image @ image=errorPage ,imgClass = 'm-error-page__bg-img'}"></sly>
+    <div class="container">
+        <div class="m-error-page__content ${wcmmode.edit ? 'content-editor': ''}">
+        	<sly data-sly-resource="${'error-title' @resourceType='bts/globals/components/content/title', decoration=true}"></sly>
+            <div class="d-lg-flex align-items-center pt-2">
+            	<sly data-sly-resource="${'rich-text' @resourceType='bts/globals/components/content/text'}"></sly>
+            </div>
+        </div>
+    </div>
+</div>
+
+<sly data-sly-test="${wcmmode.edit}" data-sly-call="${commonsTemplates.placeholder @ isEmpty = true}" />

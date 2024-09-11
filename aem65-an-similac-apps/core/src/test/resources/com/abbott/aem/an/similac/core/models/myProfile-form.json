@@ -1,0 +1,258 @@
+	 
+	 {
+	"myProfile" : {
+	   "jcr:primaryType":"cq:Page",
+	   "jcr:createdBy":"admin",
+	   "jcr:content":{
+			"jcr:primaryType":"cq:PageContent",
+			"sling:resourceType":"/apps/an/similac/components/structure/page",
+			"profileContainer":{
+				"jcr:primaryType":"nt:unstructured",
+				"formName":"MyProfile",
+				"formTitle":"My Profile",
+				"actionPath":"action path",
+				"profileContainer":{
+					"jcr:primaryType":"nt:unstructured",
+					"formName":"MyInfo ",
+					"formTitle":"My Info",
+					"actionPath":"action path",
+					"text_htmltag":{
+					   "jcr:primaryType":"nt:unstructured",
+					   "categoryType": "others",
+					   "jcr:title":"About You",
+					   "tagName":"h2",
+					   "jcr:lastModifiedBy":"admin",
+					   "usePlaceholder":"true",
+					   "name":"ABOUT_YOU",
+					   "btnClassName": "col-6",
+					   "type":"htmltag",
+					   "sling:resourceType":"an/similac/components/form/text"
+					},
+					"text_textbox":{
+					   "jcr:primaryType":"nt:unstructured",
+					   "jcr:title":"Email Address ",
+					   "showHelp":"false",
+					   "usePlaceholder":"true",
+					   "name":"EMAIL_ADDRESS",
+					   "type":"textbox",
+					   "categoryType":"userInfo []",
+					   "placeholder":"email",
+					   "sling:resourceType":"an/similac/components/form/text",
+					   "validation":{
+						  "jcr:primaryType":"nt:unstructured",
+						  "item0":{
+							 "jcr:primaryType":"nt:unstructured",
+							 "validationText":"required",
+							 "validationValue":"Email Address is required."
+						  },
+						  "item1":{
+							 "jcr:primaryType":"nt:unstructured",
+							 "validationText":"email",
+							 "validationValue":"Email Address must contain a valid email address, e.g. 'name@server.com'."
+						  },
+						  "item2":{
+							 "jcr:primaryType":"nt:unstructured",
+							 "validationUrl":"https://ow278jgus1.execute-api.us-east-1.amazonaws.com/dev/api/registration/verify-email-exists",
+							 "validationText":"emailAsync",
+							 "validationValue":"Email Address is already registered."
+						  }
+					   }
+					},
+					"text_help":{
+					   "jcr:primaryType":"nt:unstructured",
+					   "jcr:createdBy":"admin",
+					   "jcr:title":"More About You",
+					   "tagName":"h2",
+					   "showHelp":"true",
+					   "icon":"More About you",
+					   "name":"More_About _You",
+					   "type":"htmltag",
+					   "color":"#001F3F",
+					   "categoryType":"others []",
+					   "content":"The more we know, the easier it is to tailor support and savings specifically for you.",
+					   "sling:resourceType":"an/similac/components/form/text",
+					   "backgroundColor":"#0074D9"
+					},
+					"text_hidden":{
+					   "jcr:primaryType":"nt:unstructured",
+					   "jcr:createdBy":"admin",
+					   "jcr:title":"Hidden Field",
+					   "name":"Hidden",
+					   "initValue":"true",
+					   "type":"hidden",
+					   "sling:resourceType":"an/similac/components/form/text"
+					},
+					"options_checkbox":{
+					   "jcr:primaryType":"nt:unstructured",
+					   "jcr:title":"I am 18 years or Older",
+					   "apiCallRequired":"false",
+					   "jcr:lastModifiedBy":"test-developer-similac",
+					   "source":"local",
+					   "name":"ADULT",
+					   "type":"checkbox",
+					   "checkboxImgReq":"true",
+					   "renderOnField":"field",
+					   "renderOnValue":"value",
+					   "checkboxImage":"/path/test-image.png",
+					   "checkboxRenderOn":"true",
+					   "categoryType":"userInfo []",
+					   "displayLabelFormat":"hName - (hCity)",
+					   "sling:resourceType":"an/similac/components/form/options",
+					   "validation":{
+						  "jcr:primaryType":"nt:unstructured",
+						  "item0":{
+							 "jcr:primaryType":"nt:unstructured",
+							 "validationText":"required",
+							 "validationValue":"You must be 18 years or older to sign up."
+						  }
+					   }
+					},
+					 "options_raddio":{
+					   "jcr:primaryType":"nt:unstructured",
+					   "jcr:title":"My baby was born:",
+					   "apiCallRequired":"false",
+					   "source":"local",
+					   "jcr:created":"Wed May 13 2020 15:25:11 GMT+0530",
+					   "name":"BABY_BORN",
+					    "checkboxImgReq":"false",
+					   "type":"radio",
+					   "checkboxRenderOn":"false",
+					   "categoryType":"children []",
+					   "jcr:lastModified":"Wed Jun 03 2020 07:05:10 GMT+0000",
+					   "sling:resourceType":"an/similac/components/form/options",
+					   "items":{
+						  "jcr:primaryType":"nt:unstructured",
+						  "item0":{
+							 "jcr:primaryType":"nt:unstructured",
+							 "text":"Earlier than 37 weeks",
+							 "value":"earlier"
+						  },
+						  "item1":{
+							 "jcr:primaryType":"nt:unstructured",
+							 "text":"Later than 37 weeks",
+							 "value":"later"
+						  }
+					   }
+					},
+					"options_dropdown":{
+					   "jcr:primaryType":"nt:unstructured",
+					   "jcr:title":"My baby was born prematurely at",
+					   "apiCallRequired":"false",
+					    "categoryType":"children []",
+					   "source":"local",
+					   "name":"SELECT_WEEKS",
+					   "type":"dropdown",
+					   "checkboxImgReq":"false",
+					   "displayLabelFormat":"hName - (hCity)",
+					   "valueFormat":"valueFormat",
+					   "placeholder":"Select Weeks",
+					   "sling:resourceType":"an/similac/components/form/options",
+					   "items":{
+						  "jcr:primaryType":"nt:unstructured",
+						  "item0":{
+							 "jcr:primaryType":"nt:unstructured",
+							 "text":"20 weeks",
+							 "value":"20"
+						  },
+						  "item1":{
+							 "jcr:primaryType":"nt:unstructured",
+							 "text":"21 weeks",
+							 "value":"21"
+						  }
+					   },
+					   "validation":{
+						  "jcr:primaryType":"nt:unstructured",
+						  "item0":{
+							 "jcr:primaryType":"nt:unstructured",
+							 "validationText":"required",
+							 "validationValue":"Please select an item."
+						  }
+					   }
+					}
+	
+				},
+				"smsNotificationContainer": {
+			          "jcr:primaryType": "nt:unstructured",
+			          "formName": "smsNotification",
+			          "formTitle": "smsNotify",
+			          "actionPath": "/api/private/profile/profile-info",
+			          "text_title": {
+			            "jcr:primaryType": "nt:unstructured",
+			            "jcr:title": "Never miss a deal!",
+			            "checkboxRenderOn": "false",
+			            "type": "htmltag",
+			            "categoryType": "others",
+			            "sling:resourceType": "an/similac/components/form/text",
+			            "textIsRich": "true"
+			          },
+			          "text_phoneNumber": {
+			            "jcr:primaryType": "nt:unstructured",
+			            "jcr:title": "Phone Number",
+			            "name": "phone",
+			            "type": "tel",
+			            "categoryType": "others",
+			            "jcr:lastModified": "Wed Oct 19 2022 19:21:02 GMT+0530",
+			            "sling:resourceType": "an/similac/components/form/text",
+			            "validation": {
+			              "jcr:primaryType": "nt:unstructured",
+			              "item0": {
+			                "jcr:primaryType": "nt:unstructured",
+			                "validationText": "required",
+			                "validationValue": "Phone Number is required."
+			              },
+			              "item1": {
+			                "jcr:primaryType": "nt:unstructured",
+			                "validationText": "phoneNumberUS",
+			                "validationValue": "Phone Number format is (000) 000-0000."
+			              },
+			              "item2": {
+			                "jcr:primaryType": "nt:unstructured",
+			                "minAllowedLength": "1",
+			                "maxAllowedLength": "14",
+			                "validationText": "lengthCheck",
+			                "validationValue": "Minimum number of characters not met."
+			              }
+			            }
+			          },
+			          "button": {
+			            "jcr:primaryType": "nt:unstructured",
+			            "jcr:title": "TEXT ME ALERTS",
+			            "name": "submit",
+			            "type": "submit",
+			            "sling:resourceType": "an/similac/components/form/button"
+			          },
+			          "text_notNow": {
+			            "jcr:primaryType": "nt:unstructured",
+			            "jcr:title": "<u>Not now</u>",
+			            "name": "NOT NOW",
+			            "type": "htmltag",
+			            "categoryType": "others",
+			            "sling:resourceType": "an/similac/components/form/text"
+			          },
+			          "options": {
+			            "jcr:primaryType": "nt:unstructured",
+			            "jcr:title": "By selecting SMS, you agree to receive reoccurring automated promotional and personalized marketing text messages from Similac Rewards. Message and data rates may apply. Message frequency varies. Reply <b>STOP</b> at any time to unsubscribe from text messages. If you unsubscribe from text messages, you may receive an opt-out confirmation text message. Reply <b>HELP</b> for help, or you can get help directly from our toll-free number, 800-515-7677. We are unable to reply to any messages outside of programed responses for <b>STOP, HELP, TC, PRIVACY. </b>Please contact us at the number above or on <u><a href=\"https://www.similac.com\" target=\"_blank\" rel=\"noreferrer\">Similac.com</a></u> for product related questions or concerns. By subscribing to receive text messages you agree to the <u><a href=\"https://www.abbott.com/online-terms-and-conditions.html\" target=\"_blank\" rel=\"noreferrer\">Similac Terms & Conditions </a></u> & <u><a href=\"https://www.abbottnutrition.com/privacy-policy\" target=\"_blank\" rel=\"noreferrer\">Abbott Privacy Policy.</a></u>",
+			            "initValue": "true",
+			            "name": "smsselect",
+			            "type": "checkbox",
+			            "categoryType": "userInfo",
+			            "sling:resourceType": "an/similac/components/form/options"
+			          }
+			        }
+				} 
+			}
+	},
+	"emptyChildResource" : {
+	   "jcr:content":{
+			"container":{ }	  
+		}
+	},
+	"emptyResource" : { 
+	   "jcr:primaryType":"cq:Page",
+	   "jcr:content":{  }
+	},
+	"forException" : {
+	}
+}
+	
+ 

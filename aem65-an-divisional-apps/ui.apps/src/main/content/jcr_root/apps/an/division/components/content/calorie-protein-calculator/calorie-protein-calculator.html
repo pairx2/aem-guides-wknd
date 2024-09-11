@@ -1,0 +1,209 @@
+<sly data-sly-use.calmodel="com.abbott.aem.an.division.core.components.models.CalculatorSelect"></sly>
+<sly data-sly-test="${calmodel.calculatorTypeSelect=='caloriecalculator'}">
+	<sly data-sly-use.calorieModel="com.abbott.aem.an.division.core.components.models.CalorieProteinCalculator"
+		data-sly-use.template="core/wcm/components/commons/v1/templates.html">
+	</sly>
+	<section class="calorieCalc">
+		<div class="basicContainer">
+			<div class="row">
+				<div class="col-lg-6 padd0">
+					<div class="calorieRequirement">
+						<h2>${calorieModel.rteTitle}</h2>
+						<p class="calorieP2">${calorieModel.rteDescription}</p>
+						<p class="calorieP4">${calorieModel.rteNote}</p>
+					</div>
+				</div>
+				<div class="col-lg-6 padd0">
+					<div class="calorieParameter">
+						<p class="calorieP3">${calorieModel.calorieCalHeading}</p>
+						<div class="calorieGenderContainer">
+							<p class="calorieP4">${calorieModel.calorieCalGender}</p>
+							<div class="calorieGender">
+								<label class="image-radio">
+									<input type="checkbox" name="gender" value="female" class="d-none" />
+									<span class="female"></span>
+								</label>
+								<label class="image-radio">
+									<input type="checkbox" name="gender" value="male" class="d-none" />
+									<span class="male"></span>
+								</label>
+							</div>
+						</div>
+						<div class="calorieInputs">
+							<input type="number" name="age" class="calorieP5" placeholder="Edad" />
+							<input type="number" name="weight" class="calorieP5" placeholder="Peso (kg)" />
+							<input type="number" name="height" class="calorieP5" placeholder="Altura (cm)" />
+						</div>
+						<p class="calorieP4">${calorieModel.calorieCalActivities}</p>
+						<div class="caloriePhysicalActivityContainer">
+							<div class="caloriePhysicalActivityLineContainer" data-sly-list.multifield="${resource.listChildren}">
+								<div class="caloriePhysicalActivityLine" data-sly-list="${multifield.listChildren}" data-sly-test="${multifield.name == 'palProductSuggestion'}">
+									<div class="caloriePhysicalActivityDots" data-value="${item.palLevel}"  data-sly-test="${item.palLevel}"></div>
+								</div>
+							</div>
+							<div class="caloriePhysicalActivityTextContainer clearfix">
+								<div class="caloriePhysicalActivityText">${calorieModel.calorieActivityVeryLight}</div>
+								<div class="caloriePhysicalActivityText">${calorieModel.calorieActivityLight}</div>
+								<div class="caloriePhysicalActivityText">${calorieModel.calorieActivityModerate}</div>
+								<div class="caloriePhysicalActivityText">${calorieModel.calorieActivityHigh}</div>
+								<div class="caloriePhysicalActivityText">${calorieModel.calorieActivityVeryHigh}</div>
+							</div>
+						</div>
+						<div class="calorieCalcFieldError d-none">
+							<p>${calorieModel.calorieFieldsRequired}</p>
+						</div>
+						<div class="calorieCalcField">
+							<p class="calorieP4">${calorieModel.calorieClearFields}</p>
+							<button class="calorieP4">${calorieModel.calorieViewResult}</button>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-6 padd0 d-none">
+					<div class="calorieResult">
+						<p class="calorieP4">${calorieModel.calorieResult}</p>
+						<div class="calorieResultVal">
+							<h1>${calorieModel.calorieStaticResult}</h1>
+							<span>${calorieModel.calorieKiloCalories}</span>
+						</div>
+						<p class="calorieResultDesc">${calorieModel.calorieRecommendationHeading}</p>
+						<p class="calorieP4">${calorieModel.calorieProductRecommendation}</p>
+						<sly data-sly-list.multifield="${resource.listChildren}">
+							<sly data-sly-list="${multifield.listChildren}">
+							<div class="calorieResultProduct d-none" data-palValue="${item.palLevel}">
+								<div class="calorieResultProductImg">
+									<img src="${item.image}" alt="${item.title}"/>
+									<p>${item.title}</p>
+								</div>
+								<div class="calorieResultProductPdf d-none" data-sly-test="${item.link}">
+									<a class="calorieP4" href="${item.link}" target="_blank">${calorieModel.caloriePDF}</a>
+								</div>
+							</div>
+						</sly>
+						</sly>				
+						</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</sly>
+<sly data-sly-test="${calmodel.calculatorTypeSelect=='proteincalculator'}">
+	<sly data-sly-use.proteinModel="com.abbott.aem.an.division.core.components.models.ProteinCalFirstLevel"
+		data-sly-use.template="core/wcm/components/commons/v1/templates.html">
+	</sly>
+	<div data-sly-use.company="calorie-protein-calculator.js" data-sly-unwrap>
+		<div data-sly-test="${!company.products && wcmmode.edit}">
+			Add products using component dialog
+		</div>
+		<section class="proteinCalc">
+			<div class="basicContainer">
+				<div class="row">
+					<div class="proteinSliderContainer">
+						<div class="proteinSlider owl-carousel">
+							<div class="proteinSliderTile proteinSlider1 item">
+								<p class="proteinP3">${proteinModel.proteinCalHeading}</p>
+								<div class="proteinFormCalc">
+									<div class="proteinFormContainer proteinFormGender clearfix">
+										<label class="proteinFormLabel proteinP1">${proteinModel.proteinCalGender}</label>
+										<div class="proteinFormFieldContainer">
+											<label class="image-radio">
+												<input type="checkbox" name="gender" value="female" class="d-none" />
+												<span class="female"></span>
+											</label>
+											<label class="image-radio">
+												<input type="checkbox" name="gender" value="male" class="d-none" />
+												<span class="male"></span>
+											</label>
+										</div>
+									</div>
+									<div class="proteinFormContainer clearfix">
+										<label class="proteinFormLabel proteinP1">${proteinModel.proteinCalAge}</label>
+										<input type="number" name="age" class="proteinP2" placeholder="0" />
+									</div>
+									<div class="proteinFormContainer clearfix">
+										<label class="proteinFormLabel proteinP1">${proteinModel.proteinCalHeight}</label>
+										<input type="number" name="height" class="proteinP2" placeholder="0 cm" />
+									</div>
+									<div class="proteinFormContainer clearfix">
+										<label class="proteinFormLabel proteinP1">${proteinModel.proteinCalWeight}</label>
+										<input type="number" name="weight" class="proteinP2" placeholder="0" />
+									</div>
+									<div class="proteinPhysicalActivity">
+										<p class="proteinP1">${proteinModel.proteinCalActivities}</p>
+										<div class="proteinPhysicalActivityContainer">
+											<div class="proteinPhysicalActivityLineContainer">
+												<div class="proteinPhysicalActivityLine">
+													<div class="proteinPhysicalActivityDots" data-value="1.21"></div>
+													<div class="proteinPhysicalActivityDots" data-value="1.37"></div>
+													<div class="proteinPhysicalActivityDots" data-value="1.55"></div>
+													<div class="proteinPhysicalActivityDots" data-value="1.72"></div>
+													<div class="proteinPhysicalActivityDots" data-value="1.99"></div>
+												</div>
+											</div>
+											<div class="proteinPhysicalActivityTextContainer clearfix">
+												<div class="proteinPhysicalActivityText proteinP2">${proteinModel.proteinActivityVeryLight}</div>
+												<div class="proteinPhysicalActivityText proteinP2">${proteinModel.proteinActivityLight}</div>
+												<div class="proteinPhysicalActivityText proteinP2">${proteinModel.proteinActivityModerate}</div>
+												<div class="proteinPhysicalActivityText proteinP2">${proteinModel.proteinActivityHigh}</div>
+												<div class="proteinPhysicalActivityText proteinP2">${proteinModel.proteinActivityVeryHigh}</div>
+											</div>
+										</div>
+									</div>
+									<div class="proteinStartError d-none">
+										<p>${proteinModel.proteinFieldsRequired}</p>
+									</div>
+									<div class="proteinStartContainer">
+										<button class="proteinP1">${proteinModel.proteinSubmitButton}</button>
+									</div>
+								</div>
+							</div>
+							<sly data-sly-test="${company.products}">
+								<sly data-sly-list.productList="${company.products}">
+									<div class="proteinSliderTile ${productList.tile} item">
+										<p class="tileP1">${productList.name}</p>
+										<div class="proteinTileContainer clearfix"
+											data-sly-list.component="${productList.components}">
+											<div class="proteinTile" data-value="${component.protein}">
+												<div class="proteinTileImg">
+													<img src="${component.image}" alt="iconImage" />
+													<img src="${component.imageOnSelect}" alt="iconImageActive" />
+												</div>
+												<p class="tileP2">${component.name}</p>
+												<p class="tileP3">${proteinModel.proteinSupply} ${component.protein} g</p>
+											</div>
+										</div>
+										<div class="finalResultContainer d-none">
+											<p class="resultP1">${proteinModel.proteinResults}</p>
+											<div class="finalResult clearfix">
+												<div class="totalCalorieNeed">
+													<p class="resultP2">${proteinModel.proteinTotalRequirement}</p>
+													<p class="resultP3"><span>0</span><span>g</span></p>
+												</div>
+												<div class="totalCalorieConsume">
+													<p class="resultP2">${proteinModel.proteinTotalConsumption}</p>
+													<p class="resultP3"><span>0</span><span>g</span></p>
+												</div>
+											</div>
+											<p class="resultP4 lessProtein d-none">
+												${proteinModel.lessProteinDescription}</p>
+											<p class="resultP4 equalProtein d-none">
+												${proteinModel.equalProteinDescription}</p>
+											<p class="resultP4 moreProtein d-none">
+												${proteinModel.moreProteinDescription}</p>
+										</div>
+									</div>
+								</sly>
+							</sly>
+						</div>
+						<div class="proteinRequirement d-none">
+							<p class="patientProtein tileP4">${proteinModel.proteinQuery}
+							</p>
+							<p class="patientProteinTotal">${proteinModel.proteinTotal} <span>0</span> g</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+</sly>
+<div data-sly-test="${wcmmode.edit && authoringUtils && authoringUtils.isTouch}">Please author
+	calorie-protein-calculator</div>

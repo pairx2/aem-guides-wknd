@@ -1,0 +1,800 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+	jcr:primaryType="nt:unstructured"
+	jcr:title="Popup"
+	sling:resourceType="cq/gui/components/authoring/dialog">
+	<content
+		jcr:primaryType="nt:unstructured"
+		sling:resourceType="granite/ui/components/coral/foundation/container">
+		<items jcr:primaryType="nt:unstructured">
+			<tabs
+				granite:class="container-showhide-tabs"
+				jcr:primaryType="nt:unstructured"
+				sling:resourceType="granite/ui/components/coral/foundation/tabs"
+				maximized="{Boolean}true">
+				<items jcr:primaryType="nt:unstructured">
+					<welcome
+						jcr:primaryType="nt:unstructured"
+						jcr:title="Welcome"
+						sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+						<items jcr:primaryType="nt:unstructured">
+							<column
+								jcr:primaryType="nt:unstructured"
+								sling:resourceType="granite/ui/components/coral/foundation/container"
+								margin="{Boolean}true">
+								<items jcr:primaryType="nt:unstructured">
+									<hideUnit
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                        fieldLabel="Hide for (unit)"
+                                        name="./welcomeHideUnit">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <days
+                                                jcr:primaryType="nt:unstructured"
+                                                text="Days"
+                                                value="days"/>
+											<hours
+                                                jcr:primaryType="nt:unstructured"
+                                                text="Hours"
+                                                value="hours"/>
+                                            <minutes
+                                                jcr:primaryType="nt:unstructured"
+                                                text="Minutes"
+                                                value="minutes"/>
+                                        </items>
+                                    </hideUnit>
+									<CTADays
+										jcr:primaryType="nt:unstructured"
+										sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+										fieldDescription="Number of days to hide the popup on CTA click"
+										fieldLabel="Popup Hide Days (CTA)"
+										name="./welcomeCTADays"/>
+									<closeDays
+										jcr:primaryType="nt:unstructured"
+										sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+										fieldDescription="Number of days to hide the popup on close"
+										fieldLabel="Popup Hide Days (Close)"
+										name="./welcomeSignUpDays"/>
+									<urlPattern
+										jcr:primaryType="nt:unstructured"
+										sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+										fieldDescription="Enter the keywords to check for in the URL. Separate them using pipe '|' symbol. eg: abc|xyz|similac"
+										fieldLabel="URL Keywords for Display"
+										name="./welcomeUrlPattern"/>
+									<heading
+										jcr:primaryType="nt:unstructured"
+										sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+										fieldDescription="Enter the Heading for the Welcome Popup"
+										fieldLabel="Heading"
+										name="./welcomeHeading"/>
+									<welcomeDescription
+										jcr:primaryType="nt:unstructured"
+										sling:resourceType="cq/gui/components/authoring/dialog/richtext"
+										name="./welcomeDescription"
+										useFixedInlineToolbar="{Boolean}true"
+										fieldLabel="Description">
+										<rtePlugins
+											jcr:primaryType="nt:unstructured"
+											sling:resourceSuperType="/apps/an/similac/components/common/dialogs/standardrte/rtePlugins"/>
+										<uiSettings
+											jcr:primaryType="nt:unstructured"
+											sling:resourceSuperType="/apps/an/similac/components/common/dialogs/standardrte/uiSettings"/>
+									</welcomeDescription>
+									<image
+										jcr:primaryType="nt:unstructured"
+										sling:resourceType="cq/gui/components/authoring/dialog/fileupload"
+										allowUpload="{Boolean}false"
+										autoStart="{Boolean}false"
+										class="cq-droptarget"
+										fieldDescription="Configure the Welcome popup image"
+										fieldLabel="Image"
+										fileNameParameter="./imgName1"
+										fileReferenceParameter="./welcomeImage"
+										mimeTypes="[image/gif,image/jpeg,image/png,image/webp,image/tiff,image/svg]"
+										multiple="{Boolean}false"
+										name="./file1"
+										title="Image URL"
+										uploadUrl="${suffix.path}"
+										useHTML5="{Boolean}true"/>
+									<welcomeImageAlt
+										jcr:primaryType="nt:unstructured"
+										sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+										fieldDescription="Enter the Alt Text for the Image"
+										fieldLabel="Alt Text"
+										name="./welcomeImageAlt"/>
+									<welcomeCTA
+										jcr:primaryType="nt:unstructured"
+										sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+										fieldDescription="Enter the CTA Url"
+										fieldLabel="CTA URL"
+										name="./welcomeCTA"
+										rootPath="/content/an/similac/global"/>
+									<welcomeLinkText
+										jcr:primaryType="nt:unstructured"
+										sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+										fieldDescription="Enter the Link Text for the CTA"
+										fieldLabel="Link Text"
+										name="./welcomeLinkText"/>
+									<welcomeFootnote
+										jcr:primaryType="nt:unstructured"
+										sling:resourceType="cq/gui/components/authoring/dialog/richtext"
+										name="./welcomeFootnote"
+										useFixedInlineToolbar="{Boolean}true"
+										fieldLabel="Footnote">
+										<rtePlugins
+											jcr:primaryType="nt:unstructured"
+											sling:resourceSuperType="/apps/an/similac/components/common/dialogs/standardrte/rtePlugins"/>
+										<uiSettings
+											jcr:primaryType="nt:unstructured"
+											sling:resourceSuperType="/apps/an/similac/components/common/dialogs/standardrte/uiSettings"/>
+									</welcomeFootnote>
+								</items>
+							</column>
+						</items>
+					</welcome>
+					<shutterfly
+						jcr:primaryType="nt:unstructured"
+						jcr:title="Shutterfly"
+						sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+						<items jcr:primaryType="nt:unstructured">
+							<column
+								jcr:primaryType="nt:unstructured"
+								sling:resourceType="granite/ui/components/coral/foundation/container"
+								margin="{Boolean}true">
+								<items jcr:primaryType="nt:unstructured">
+									<hideUnit
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                        fieldLabel="Hide for (unit)"
+                                        name="./shutterflyHideUnit">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <days
+                                                jcr:primaryType="nt:unstructured"
+                                                text="Days"
+                                                value="days"/>
+											<hours
+                                                jcr:primaryType="nt:unstructured"
+                                                text="Hours"
+                                                value="hours"/>
+                                            <minutes
+                                                jcr:primaryType="nt:unstructured"
+                                                text="Minutes"
+                                                value="minutes"/>
+                                        </items>
+                                    </hideUnit>
+									<CTADays
+										jcr:primaryType="nt:unstructured"
+										sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+										fieldDescription="Number of days to hide the popup on CTA click"
+										fieldLabel="Popup Hide Days (CTA)"
+										name="./shutterflyCTADays"/>
+									<closeDays
+										jcr:primaryType="nt:unstructured"
+										sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+										fieldDescription="Number of days to hide the popup on close"
+										fieldLabel="Popup Hide Days (Close)"
+										name="./shutterflySignUpDays"/>
+									<urlPattern
+										jcr:primaryType="nt:unstructured"
+										sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+										fieldDescription="Enter the keywords to check for in the URL. Separate them using pipe '|' symbol. eg: abc|xyz|similac"
+										fieldLabel="URL Keywords for Display"
+										name="./shutterflyUrlPattern"/>
+									<heading
+										jcr:primaryType="nt:unstructured"
+										sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+										fieldDescription="Enter the Heading for the shutterfly Popup"
+										fieldLabel="Heading"
+										name="./shutterflyHeading"/>
+									<shutterflyDescription
+										jcr:primaryType="nt:unstructured"
+										sling:resourceType="cq/gui/components/authoring/dialog/richtext"
+										name="./shutterflyDescription"
+										useFixedInlineToolbar="{Boolean}true"
+										fieldLabel="Description">
+										<rtePlugins
+											jcr:primaryType="nt:unstructured"
+											sling:resourceSuperType="/apps/an/similac/components/common/dialogs/standardrte/rtePlugins"/>
+										<uiSettings
+											jcr:primaryType="nt:unstructured"
+											sling:resourceSuperType="/apps/an/similac/components/common/dialogs/standardrte/uiSettings"/>
+									</shutterflyDescription>
+									<image
+										jcr:primaryType="nt:unstructured"
+										sling:resourceType="cq/gui/components/authoring/dialog/fileupload"
+										allowUpload="{Boolean}false"
+										autoStart="{Boolean}false"
+										class="cq-droptarget"
+										fieldDescription="Configure the shutterfly popup image"
+										fieldLabel="Image"
+										fileNameParameter="./imgName1"
+										fileReferenceParameter="./shutterflyImage"
+										mimeTypes="[image/gif,image/jpeg,image/png,image/webp,image/tiff,image/svg]"
+										multiple="{Boolean}false"
+										name="./file1"
+										title="Image URL"
+										uploadUrl="${suffix.path}"
+										useHTML5="{Boolean}true"/>
+									<shutterflyImageAlt
+										jcr:primaryType="nt:unstructured"
+										sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+										fieldDescription="Enter the Alt Text for the Image"
+										fieldLabel="Alt Text"
+										name="./shutterflyImageAlt"/>
+									<shutterflyCTA
+										jcr:primaryType="nt:unstructured"
+										sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+										fieldDescription="Enter the CTA Url"
+										fieldLabel="CTA URL"
+										name="./shutterflyCTA"
+										rootPath="/content/an/similac/global"/>
+									<shutterflyLinkText
+										jcr:primaryType="nt:unstructured"
+										sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+										fieldDescription="Enter the Link Text for the CTA"
+										fieldLabel="Link Text"
+										name="./shutterflyLinkText"/>
+									<shutterflyFootnote
+										jcr:primaryType="nt:unstructured"
+										sling:resourceType="cq/gui/components/authoring/dialog/richtext"
+										name="./shutterflyFootnote"
+										useFixedInlineToolbar="{Boolean}true"
+										fieldLabel="Footnote">
+										<rtePlugins
+											jcr:primaryType="nt:unstructured"
+											sling:resourceSuperType="/apps/an/similac/components/common/dialogs/standardrte/rtePlugins"/>
+										<uiSettings
+											jcr:primaryType="nt:unstructured"
+											sling:resourceSuperType="/apps/an/similac/components/common/dialogs/standardrte/uiSettings"/>
+									</shutterflyFootnote>
+								</items>
+							</column>
+						</items>
+					</shutterfly>
+					<do
+						jcr:primaryType="nt:unstructured"
+						jcr:title="DO"
+						sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+						<items jcr:primaryType="nt:unstructured">
+							<column
+								jcr:primaryType="nt:unstructured"
+								sling:resourceType="granite/ui/components/coral/foundation/container"
+								margin="{Boolean}true">
+								<items jcr:primaryType="nt:unstructured">
+									<hideUnit
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                        fieldLabel="Hide for (unit)"
+                                        name="./doHideUnit">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <days
+                                                jcr:primaryType="nt:unstructured"
+                                                text="Days"
+                                                value="days"/>
+											<hours
+                                                jcr:primaryType="nt:unstructured"
+                                                text="Hours"
+                                                value="hours"/>
+                                            <minutes
+                                                jcr:primaryType="nt:unstructured"
+                                                text="Minutes"
+                                                value="minutes"/>
+                                        </items>
+                                    </hideUnit>
+									<CTADays
+										jcr:primaryType="nt:unstructured"
+										sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+										fieldDescription="Number of days to hide the popup on CTA click"
+										fieldLabel="Popup Hide Days (CTA)"
+										name="./doCTADays"/>
+									<closeDays
+										jcr:primaryType="nt:unstructured"
+										sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+										fieldDescription="Number of days to hide the popup on close"
+										fieldLabel="Popup Hide Days (Close)"
+										name="./doSignUpDays"/>
+									<urlPattern
+										jcr:primaryType="nt:unstructured"
+										sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+										fieldDescription="Enter the keywords to check for in the URL. Separate them using pipe '|' symbol. eg: abc|xyz|similac"
+										fieldLabel="URL Keywords for Display"
+										name="./doUrlPattern"/>
+									<heading
+										jcr:primaryType="nt:unstructured"
+										sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+										fieldDescription="Enter the Heading for the DO Popup"
+										fieldLabel="Heading"
+										name="./doHeading"/>
+									<doDescription
+										jcr:primaryType="nt:unstructured"
+										sling:resourceType="cq/gui/components/authoring/dialog/richtext"
+										name="./doDescription"
+										useFixedInlineToolbar="{Boolean}true"
+										fieldLabel="Description">
+										<rtePlugins
+											jcr:primaryType="nt:unstructured"
+											sling:resourceSuperType="/apps/an/similac/components/common/dialogs/standardrte/rtePlugins"/>
+										<uiSettings
+											jcr:primaryType="nt:unstructured"
+											sling:resourceSuperType="/apps/an/similac/components/common/dialogs/standardrte/uiSettings"/>
+									</doDescription>
+									<image
+										jcr:primaryType="nt:unstructured"
+										sling:resourceType="cq/gui/components/authoring/dialog/fileupload"
+										allowUpload="{Boolean}false"
+										autoStart="{Boolean}false"
+										class="cq-droptarget"
+										fieldDescription="Configure the DO popup image"
+										fieldLabel="Image"
+										fileNameParameter="./imgName1"
+										fileReferenceParameter="./doImage"
+										mimeTypes="[image/gif,image/jpeg,image/png,image/webp,image/tiff,image/svg]"
+										multiple="{Boolean}false"
+										name="./file1"
+										title="Image URL"
+										uploadUrl="${suffix.path}"
+										useHTML5="{Boolean}true"/>
+									<doImageAlt
+										jcr:primaryType="nt:unstructured"
+										sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+										fieldDescription="Enter the Alt Text for the Image"
+										fieldLabel="Alt Text"
+										name="./doImageAlt"/>
+									<doCTA
+										jcr:primaryType="nt:unstructured"
+										sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+										fieldDescription="Enter the CTA Url"
+										fieldLabel="CTA URL"
+										name="./doCTA"
+										rootPath="/content/an/similac/global"/>
+									<doLinkText
+										jcr:primaryType="nt:unstructured"
+										sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+										fieldDescription="Enter the Link Text for the CTA"
+										fieldLabel="Link Text"
+										name="./doLinkText"/>
+									<doFootnote
+										jcr:primaryType="nt:unstructured"
+										sling:resourceType="cq/gui/components/authoring/dialog/richtext"
+										name="./doFootnote"
+										useFixedInlineToolbar="{Boolean}true"
+										fieldLabel="Footnote">
+										<rtePlugins
+											jcr:primaryType="nt:unstructured"
+											sling:resourceSuperType="/apps/an/similac/components/common/dialogs/standardrte/rtePlugins"/>
+										<uiSettings
+											jcr:primaryType="nt:unstructured"
+											sling:resourceSuperType="/apps/an/similac/components/common/dialogs/standardrte/uiSettings"/>
+									</doFootnote>
+								</items>
+							</column>
+						</items>
+					</do>
+					<resetPassword
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Reset Password"
+                        sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+                        <items jcr:primaryType="nt:unstructured">
+                            <column
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/container"
+                                margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <heading
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldDescription="Enter the Heading for the Reset Password Popup"
+                                        fieldLabel="Heading"
+                                        name="./resetPasswordHeading"/>
+                                    <description
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="cq/gui/components/authoring/dialog/richtext"
+                                        fieldDescription="Enter the description for the Reset Password Popup"
+                                        fieldLabel="Description"
+                                        name="./resetPasswordDescription"
+                                        useFixedInlineToolbar="{Boolean}true">
+                                        <rtePlugins
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceSuperType="/apps/an/similac/components/common/dialogs/standardrte/rtePlugins"/>
+                                        <uiSettings
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceSuperType="/apps/an/similac/components/common/dialogs/standardrte/uiSettings"/>
+                                    </description>
+                                    <cancel
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldDescription="Enter the cancel button label"
+                                        fieldLabel="Cancel Button Label"
+                                        name="./resetPasswordCancel"/>
+                                    <update
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldDescription="Enter the update password button label"
+                                        fieldLabel="Update Password Button Label"
+                                        name="./resetPasswordUpdate"/>
+                                    <updateheading
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldDescription="Enter the Heading for the Confirm Password Popup"
+                                        fieldLabel="Confirm Password Heading"
+                                        name="./confirmPasswordHeading"/>
+                                    <updatedescription
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="cq/gui/components/authoring/dialog/richtext"
+                                        fieldDescription="Enter the description for the Confirm Password Popup"
+                                        fieldLabel="Description"
+                                        name="./confirmPasswordDescription"
+                                        useFixedInlineToolbar="{Boolean}true">
+                                        <rtePlugins
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceSuperType="/apps/an/similac/components/common/dialogs/standardrte/rtePlugins"/>
+                                        <uiSettings
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceSuperType="/apps/an/similac/components/common/dialogs/standardrte/uiSettings"/>
+                                    </updatedescription>
+                                    <updatebutton
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldDescription="Enter the confirm password button label"
+                                        fieldLabel="Confirm Password Button Label "
+                                        name="./confirmPasswordLabel"/>
+                                </items>
+                            </column>
+                        </items>
+                    </resetPassword>
+                    <downloadApp
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Download App"
+                        sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+                        <items jcr:primaryType="nt:unstructured">
+                            <column
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/container"
+                                margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <configurationSafariLabel
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/heading"
+                                        level="{Long}4"
+                                        text="Configuration for Safari"/>
+									<downloadBannerHeadingSafari
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldDescription="Enter the Heading for Add to Home Screen Popup for Safari"
+                                        fieldLabel="Banner Heading for Safari"
+                                        name="./downloadBannerHeadingSafari"/>
+									<downloadBannerImgSafari
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="cq/gui/components/authoring/dialog/fileupload"
+                                        allowUpload="{Boolean}false"
+                                        autoStart="{Boolean}false"
+                                        class="cq-droptarget"
+                                        fieldDescription="Configure the Banner Image having Download steps"
+                                        fieldLabel="Image having Download Steps"
+                                        fileNameParameter="./imgName"
+                                        fileReferenceParameter="./downloadBannerImgSafari"
+                                        mimeTypes="[image/gif,image/jpeg,image/png,image/webp,image/tiff,image/svg]"
+                                        multiple="{Boolean}false"
+                                        name="./file1"
+                                        title="Image URL"
+                                        rootPath="/content/dam/an/similac"
+                                        uploadUrl="${suffix.path}"
+                                        useHTML5="{Boolean}true"/>
+                                    <downloadBannerImgAltSafari
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldDescription="Enter the Alt Text for the Download Steps Image"
+                                        fieldLabel="Image Alt Text"
+                                        name="./downloadBannerImgAltSafari"/>
+									<downloadBannerGifImageSafari
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="cq/gui/components/authoring/dialog/fileupload"
+                                        allowUpload="{Boolean}false"
+                                        autoStart="{Boolean}false"
+                                        class="cq-droptarget"
+                                        fieldDescription="Configure the Download Banner Animated Image"
+                                        fieldLabel="Animated Image"
+                                        fileNameParameter="./imgName1"
+                                        fileReferenceParameter="./downloadBannerGifImageSafari"
+                                        mimeTypes="[image/gif,image/jpeg,image/png,image/webp,image/tiff,image/svg]"
+                                        multiple="{Boolean}false"
+                                        name="./file1"
+                                        title="Image URL"
+                                        rootPath="/content/dam/an/similac"
+                                        uploadUrl="${suffix.path}"
+                                        useHTML5="{Boolean}true"/>
+                                    <downloadBannerImageAltSafari
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldDescription="Enter the Alt Text for the Animated Image"
+                                        fieldLabel="Animated Image Alt Text"
+                                        name="./downloadBannerGifImageAltSafari"/>
+                                    <downloadBannerFootnoteSafari
+                                        cq:lastReplicated="{Date}2023-07-04T20:22:49.516+05:30"
+                                        cq:lastReplicated_publish="{Date}2023-07-04T20:22:49.516+05:30"
+                                        cq:lastReplicatedBy="admin"
+                                        cq:lastReplicatedBy_publish="admin"
+                                        cq:lastReplicationAction="Activate"
+                                        cq:lastReplicationAction_publish="Activate"
+                                        jcr:mixinTypes="[cq:ReplicationStatus]"
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="cq/gui/components/authoring/dialog/richtext"
+                                        fieldLabel="Banner Pop up Footnote"
+										fieldDescription="Configure the Footnote for Download Banner"
+                                        name="./downloadBannerFootnoteSafari"
+                                        useFixedInlineToolbar="{Boolean}true">
+                                        <rtePlugins
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceSuperType="/apps/an/similac/components/common/dialogs/standardrte/rtePlugins"/>
+                                        <uiSettings
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceSuperType="/apps/an/similac/components/common/dialogs/standardrte/uiSettings"/>
+                                    </downloadBannerFootnoteSafari>								
+                                    <configurationChromeLabel
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/heading"
+                                        level="{Long}4"
+                                        text="Configuration for Chrome"/>
+									<downloadBannerHeadingChrome
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldDescription="Enter the Heading for Banner Chrome"
+                                        fieldLabel="Banner Heading"
+                                        name="./downloadBannerHeadingChrome"/>
+									<downloadBannerImgChrome
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="cq/gui/components/authoring/dialog/fileupload"
+                                        allowUpload="{Boolean}false"
+                                        autoStart="{Boolean}false"
+                                        class="cq-droptarget"
+                                        fieldDescription="Configure the Image having Download Steps"
+                                        fieldLabel="Image having  Download Steps"
+                                        fileNameParameter="./imgName1"
+                                        fileReferenceParameter="./downloadBannerImgChrome"
+                                        mimeTypes="[image/gif,image/jpeg,image/png,image/webp,image/tiff,image/svg]"
+                                        multiple="{Boolean}false"
+                                        name="./file1"
+                                        title="Image URL"
+                                        rootPath="/content/dam/an/similac"
+                                        uploadUrl="${suffix.path}"
+                                        useHTML5="{Boolean}true"/>
+                                    <downloadBannerImgAltChrome
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldDescription="Enter the Alt Text for the Download Steps Image"
+                                        fieldLabel="Image Alt Text"
+                                        name="./downloadBannerImgAltChrome"/>
+									<downloadBannerGifImageChrome
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="cq/gui/components/authoring/dialog/fileupload"
+                                        allowUpload="{Boolean}false"
+                                        autoStart="{Boolean}false"
+                                        class="cq-droptarget"
+                                        fieldDescription="Configure the Download Banner Animated Image"
+                                        fieldLabel="Animated Image"
+                                        fileNameParameter="./imgName1"
+                                        fileReferenceParameter="./downloadBannerGifImageChrome"
+                                        mimeTypes="[image/gif,image/jpeg,image/png,image/webp,image/tiff,image/svg]"
+                                        multiple="{Boolean}false"
+                                        name="./file1"
+                                        title="Image URL"
+                                        rootPath="/content/dam/an/similac"
+                                        uploadUrl="${suffix.path}"
+                                        useHTML5="{Boolean}true"/>
+                                    <downloadBannerImageAltChrome
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldDescription="Enter the Alt Text for the Animated Image"
+                                        fieldLabel="Animated Image Alt Text"
+                                        name="./downloadBannerGifImageAltChrome"/>
+                                    <downloadBannerFootnoteChrome
+                                        cq:lastReplicated="{Date}2023-07-04T20:22:49.516+05:30"
+                                        cq:lastReplicated_publish="{Date}2023-07-04T20:22:49.516+05:30"
+                                        cq:lastReplicatedBy="admin"
+                                        cq:lastReplicatedBy_publish="admin"
+                                        cq:lastReplicationAction="Activate"
+                                        cq:lastReplicationAction_publish="Activate"
+                                        jcr:mixinTypes="[cq:ReplicationStatus]"
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="cq/gui/components/authoring/dialog/richtext"
+                                        fieldLabel="Banner Pop up Footnote"
+										fieldDescription="Configure the Footnote for Download Banner"
+                                        name="./downloadBannerFootnoteChrome"
+                                        useFixedInlineToolbar="{Boolean}true">
+                                        <rtePlugins
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceSuperType="/apps/an/similac/components/common/dialogs/standardrte/rtePlugins"/>
+                                        <uiSettings
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceSuperType="/apps/an/similac/components/common/dialogs/standardrte/uiSettings"/>
+                                    </downloadBannerFootnoteChrome>									
+                                </items>
+                            </column>
+                        </items>
+                    </downloadApp>
+                    <pwaSms
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="PWA SMS"
+                        sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+                        <items jcr:primaryType="nt:unstructured">
+                            <column
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/container"
+                                margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <confirm
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldDescription="Enter the Confirm Button Label"
+                                        fieldLabel="Confirm"
+                                        name="./confirmCta"/>
+                                    <cancel
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldDescription="Enter the Cancel Button Label"
+                                        fieldLabel="Cancel"
+                                        name="./cancelCta"/>
+                                    <heading
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldDescription="Enter the Heading text for Popup"
+                                        fieldLabel="Heading"
+                                        name="./popupHeading"/>
+                                    <description
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="cq/gui/components/authoring/dialog/richtext"
+										fieldDescription="Enter the Description text for Popup"
+                                        fieldLabel="Description"
+                                        name="./popupDescription"
+                                        useFixedInlineToolbar="{Boolean}true">
+                                        <rtePlugins
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceSuperType="/apps/an/similac/components/common/dialogs/standardrte/rtePlugins"/>
+                                        <uiSettings
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceSuperType="/apps/an/similac/components/common/dialogs/standardrte/uiSettings"/>
+                                    </description>
+                                </items>
+                            </column>
+                        </items>
+                    </pwaSms>
+					<qrScanProgress
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="QR Code Scan Progress"
+                        sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+                        <items jcr:primaryType="nt:unstructured">
+                            <column
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/container"
+                                margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <heading
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldDescription="Enter the text for QR Code Scan Progress"
+                                        fieldLabel="QR Code Scan Progress Message"
+                                        name="./qrScanProgressMsg"/>
+                                </items>
+                            </column>
+                        </items>
+                    </qrScanProgress>
+                    <howToEarn
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="How to earn"
+                        sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+                        <items jcr:primaryType="nt:unstructured">
+                            <column
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/container"
+                                margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <howToEarnLabel
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldDescription="Enter the label for How to earn"
+                                        fieldLabel="How to earn points label"
+                                        name="./howToEarnLabel"/>
+                                    <onePointImg
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="cq/gui/components/authoring/dialog/fileupload"
+                                        allowUpload="{Boolean}false"
+                                        autoStart="{Boolean}false"
+                                        class="cq-droptarget"
+                                        fieldDescription="Configure the One Point Image"
+                                        fieldLabel="One Point Image"
+                                        fileNameParameter="./imgName"
+                                        fileReferenceParameter="./onePointImg"
+                                        mimeTypes="[image/gif,image/jpeg,image/png,image/webp,image/tiff,image/svg]"
+                                        multiple="{Boolean}false"
+                                        name="./file1"
+                                        title="Image URL"
+                                        rootPath="/content/dam/an/similac"
+                                        uploadUrl="${suffix.path}"
+                                        useHTML5="{Boolean}true"/>
+                                    <onePointImgAlt
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldDescription="Enter One Point image alt text"
+                                        fieldLabel="One Point image alt text"
+                                        name="./onePointImgAlt"/>
+                                    <locateQRCodeText
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldDescription="Enter the text for Locate QR Code Link"
+                                        fieldLabel="Locate QR Code Link text"
+                                        name="./locateQRCodeText"/>
+                                    <locateQRCodeLink
+										jcr:primaryType="nt:unstructured"
+										sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+										fieldDescription="Enter the CTA Url"
+										fieldLabel="Locate QR Code Page URL"
+										name="./locateQRCodeLink"
+										rootPath="/content/an/similac"/>
+                                    <fivePointsImg
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="cq/gui/components/authoring/dialog/fileupload"
+                                        allowUpload="{Boolean}false"
+                                        autoStart="{Boolean}false"
+                                        class="cq-droptarget"
+                                        fieldDescription="Configure the Five Points Image"
+                                        fieldLabel="Five Points Image"
+                                        fileNameParameter="./imgName"
+                                        fileReferenceParameter="./fivePointsImg"
+                                        mimeTypes="[image/gif,image/jpeg,image/png,image/webp,image/tiff,image/svg]"
+                                        multiple="{Boolean}false"
+                                        name="./file1"
+                                        title="Image URL"
+                                        rootPath="/content/dam/an/similac"
+                                        uploadUrl="${suffix.path}"
+                                        useHTML5="{Boolean}true"/>
+                                    <fivePointsImgAlt
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldDescription="Enter Five Points image alt text"
+                                        fieldLabel="Five Points image alt text"
+                                        name="./fivePointsImgAlt"/>
+                                    <locateQRCodeFootnote
+										jcr:primaryType="nt:unstructured"
+										sling:resourceType="cq/gui/components/authoring/dialog/richtext"
+										name="./locateQRCodeFootnote"
+										useFixedInlineToolbar="{Boolean}true"
+										fieldLabel="Footnote">
+										<rtePlugins
+											jcr:primaryType="nt:unstructured"
+											sling:resourceSuperType="/apps/an/similac/components/common/dialogs/standardrte/rtePlugins"/>
+										<uiSettings
+											jcr:primaryType="nt:unstructured"
+											sling:resourceSuperType="/apps/an/similac/components/common/dialogs/standardrte/uiSettings"/>
+									</locateQRCodeFootnote>
+                                    <closeIcon
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="cq/gui/components/authoring/dialog/fileupload"
+                                        allowUpload="{Boolean}false"
+                                        autoStart="{Boolean}false"
+                                        class="cq-droptarget"
+                                        fieldDescription="Configure the close icon"
+                                        fieldLabel="Close Icon"
+                                        fileNameParameter="./imgName"
+                                        fileReferenceParameter="./closeIcon"
+                                        mimeTypes="[image/gif,image/jpeg,image/png,image/webp,image/tiff,image/svg]"
+                                        multiple="{Boolean}false"
+                                        name="./file1"
+                                        title="Image URL"
+                                        rootPath="/content/dam/an/similac"
+                                        uploadUrl="${suffix.path}"
+                                        useHTML5="{Boolean}true"/>
+                                    <closeIconAlt
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldDescription="Enter Close icon alt text"
+                                        fieldLabel="Close icon alt text"
+                                        name="./closeIconAlt"/>
+                                </items>
+                            </column>
+                        </items>
+                    </howToEarn>
+				</items>
+			</tabs>
+		</items>
+	</content>
+</jcr:root>

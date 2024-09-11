@@ -1,0 +1,22 @@
+<div data-sly-test="${wcmmode.edit}" class="cq-placeholder" data-emptytext="header"></div>
+<sly data-sly-use.header="com.abbott.aem.platform.common.components.models.Header"
+    data-sly-use.headerLogo="header-logo.html">
+    <div class="${!header.hideMegaMenuInNav ? 'postlogin-header' : 'prelogin-header'}">
+        <!-- ORGANISM: HEADER STARTS -->
+        <div class="o-header ${wcmmode.edit ? 'header-wrapper-edit' : ''}" data-js-component="header">
+            <div class="o-header__wrapper bts-cybersecurity">
+                <!-- STICKY SECTION STARTS-->
+                <div class="o-header__sticky-section" data-sticky="false">
+                    <!-- Header logo included here-->
+                    <sly data-sly-call="${headerLogo.headerLogo @ header = header}" />
+                </div>
+                <!-- STICKY SECTION ENDS-->
+            </div>
+        </div>
+        <!-- ORGANISM: HEADER ENDS -->
+    </div>
+    <div class="header-shadow"></div>
+    <section class="message__sign-out" data-sly-test="${ header.hideMegaMenuInNav && request.requestParameterMap['type'][0].toString=='FL' }">
+        <p>${properties.forceLogoutMessage}</p>
+    </section>
+</sly>

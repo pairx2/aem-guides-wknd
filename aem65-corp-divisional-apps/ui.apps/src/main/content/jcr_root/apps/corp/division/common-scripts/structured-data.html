@@ -1,0 +1,70 @@
+<sly data-sly-use.corppage="com.abbott.aem.corp.division.core.components.models.CorpPage">
+ <sly data-sly-test="${corppage.structuredData != 'none'}">
+  <sly data-sly-test="${(corppage.structuredData == 'Default') || (corppage.structuredData == 'FAQ')}">
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Corporation",
+        "name": "Abbott Laboratories",
+        "alternateName": "Abbott",
+        "url": "https://www.abbott.com",
+        "logo": "https://www.abbott.com/content/dam/corp/abbott/global/logos/logo.png",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Chicago",
+          "addressRegion": "IL",
+          "postalCode": "60064",
+          "streetAddress": "100 Abbott Park Road"
+        },
+        "foundingdate": "1888",
+        "founder": "Wallace Abbott",
+        "tickerSymbol": "ABT (NYSE)",
+        "sameAs": ["https://www.facebook.com/Abbott", "https://www.twitter.com/abbottnews", "https://www.instagram.com/abbottglobal", "https://www.youtube.com/channel/UC346EX3v26ACsjLhe-HwHDg", "https://www.linkedin.com/company/abbott-/", "https://en.wikipedia.org/wiki/Abbott_Laboratories"],
+        "suborganization": ["Cardiovascular", "Diabetes Care", "Diagnostics", "Neuromodulation", "Nutrition", "Medicines"]
+      }
+    </script>
+  </sly>
+    <sly data-sly-test="${corppage.structuredData == 'Article'}">
+     <script type="application/ld+json">
+        {
+			"@context": "http://schema.org",
+			"@type": "Article",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+				${corppage.url ? '"@id": "{0}"' : "" @ format=[corppage.url], context = 'scriptComment'}
+            },
+			${corppage.pageTitle ? '"headline": "{0}",' : "" @ format=[corppage.pageTitle], context = 'scriptComment'}
+			${corppage.url ? '"url": "{0}",' : "" @ format=[corppage.url], context = 'scriptComment'}
+			${corppage.parentTitle ? '"articleSection": "{0}",' : "" @ format=[corppage.parentTitle], context = 'scriptComment'}
+			${corppage.imageUrl ? '"image": "{0}",' : "" @ format=[corppage.imageUrl], context = 'scriptComment'}
+			${corppage.textBody ? '"articleBody": "{0}",' : "" @ format=[corppage.textBody], context = 'scriptComment'}
+			${corppage.lastPublished ? '"datePublished": "{0}",' : "" @ format=[corppage.lastPublished], context = 'scriptComment'}
+           ${corppage.lastModified ? '"dateModified": "{0}",' : "" @ format=[corppage.lastModified], context = 'scriptComment'}
+			${corppage.pageDescription ? '"description": "{0}",' : "" @ format=[corppage.pageDescription], context = 'scriptComment'}
+"author": {
+                "@type": "Person", 
+				"name": "Abbott Content Team"
+
+               },
+
+            "publisher": {
+                "@type": "Organization",
+                "name": "Abbott",
+                "logo": {
+                    "@type": "ImageObject",
+					${corppage.logoUrl ? '"url": "{0}"' : "" @ format=[corppage.logoUrl], context = 'scriptComment'}
+                }
+            }
+
+}
+        }
+    </script>
+  </sly>
+  <sly data-sly-test="${corppage.structuredData == 'FAQ'}">
+    <script type="application/ld+json">
+      <title> ${corppage.pageTitle @context = 'scriptComment'} </title>
+      ${corppage.questionAnswers @context = 'scriptComment'}
+    </script>
+  </sly>
+</sly>
+</sly>

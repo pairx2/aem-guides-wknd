@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0"
+          xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+          xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+          jcr:primaryType="nt:unstructured"
+          jcr:title="Success Page"
+          sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/tabs">
+                <items jcr:primaryType="nt:unstructured">
+                    <column
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Properties"
+                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+                            <successPageType
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                    fieldLabel="Success Page Type"
+                                    granite:class="cq-dialog-dropdown-showhide"
+                                    name="./successPageType">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <webtocase
+                                            jcr:primaryType="nt:unstructured"
+                                            text="Web To Case"
+                                            value="webtocase"/>
+                                    <callback
+                                            jcr:primaryType="nt:unstructured"
+                                            text="Call Back Request"
+                                            value="callback"/>
+                                </items>
+                                <granite:data
+                                        jcr:primaryType="nt:unstructured"
+                                        cq-dialog-dropdown-showhide-target=".success-page-type-showhide-target"/>
+                            </successPageType>
+                            <heading
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldLabel="Success Page Heading"
+                                    name="./heading"/>
+                            <subheading
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldLabel="Success Page Subheading"
+                                    name="./subheading"/>
+                            <image
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                    fieldLabel="Success Image"
+                                    name="./image">
+                                <datasource
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="abbott-platform/datasource/generic-list"
+                                        path="/apps/adc/freestylelibrede/authoring/datasources/abbott-icons"/>
+                            </image>
+                            <informationMessage
+                                    granite:class="hide success-page-type-showhide-target"
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="cq/gui/components/authoring/dialog/richtext"
+                                    fieldLabel="Reader Information Text"
+                                    name="./informationMessage"
+                                    removeSingleParagraphContainer="{Boolean}true"
+                                    useFixedInlineToolbar="{Boolean}true">
+                                <granite:data
+                                        jcr:primaryType="nt:unstructured"
+                                        showhidetargetvalue="webtocase"/>
+                            </informationMessage>
+                            <newMessageCtaStyle
+                                    granite:class="hide success-page-type-showhide-target"
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                    fieldLabel="&quot;Write a new message&quot; CTA"
+                                    name="./newMessageCtaStyle">
+                                <datasource
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="abbott-platform/datasource/generic-list"
+                                        path="/apps/adc/freestylelibrede/authoring/datasources/cta-types"/>
+                                <granite:data
+                                        jcr:primaryType="nt:unstructured"
+                                        showhidetargetvalue="webtocase"/>
+                            </newMessageCtaStyle>
+                            <newMessageCtaUrl
+                                    granite:class="hide success-page-type-showhide-target"
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                    fieldLabel="&quot;Write a new message&quot; CTA URL"
+                                    name="./newMessageCtaUrl"
+                                    rootPath="/content/adc">
+                                <granite:data
+                                        jcr:primaryType="nt:unstructured"
+                                        showhidetargetvalue="webtocase"/>
+                            </newMessageCtaUrl>
+                            <homeCtaStyle
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                    fieldLabel="&quot;Go to Home&quot; CTA"
+                                    name="./homeCtaStyle">
+                                <datasource
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="abbott-platform/datasource/generic-list"
+                                        path="/apps/adc/freestylelibrede/authoring/datasources/cta-types"/>
+                            </homeCtaStyle>
+                            <homeCtaUrl
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                    fieldLabel="&quot;Go to Home&quot; CTA URL"
+                                    name="./homeCtaUrl"
+                                    rootPath="/content/adc"/>
+                        </items>
+                    </column>
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>

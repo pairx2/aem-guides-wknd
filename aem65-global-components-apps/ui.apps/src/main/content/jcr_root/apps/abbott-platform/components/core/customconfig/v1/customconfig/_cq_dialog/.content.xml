@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0"
+  xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+  xmlns:granite="http://www.adobe.com/jcr/granite/1.0"
+  jcr:primaryType="nt:unstructured"
+  jcr:title="Custom Config Component"
+  sling:resourceType="cq/gui/components/authoring/dialog">
+  <content
+    granite:class="tabselection"
+    jcr:primaryType="nt:unstructured"
+    sling:resourceType="granite/ui/components/coral/foundation/container">
+    <items jcr:primaryType="nt:unstructured">
+      <tabs
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/tabs"
+        maximized="{Boolean}true">
+        <items jcr:primaryType="nt:unstructured">
+          <configItem
+            jcr:primaryType="nt:unstructured"
+            jcr:title="ID/Class Config"
+            sling:resourceType="granite/ui/components/coral/foundation/container"
+            margin="{Boolean}true">
+            <items jcr:primaryType="nt:unstructured">
+              <columns
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                margin="{Boolean}true">
+                <items jcr:primaryType="nt:unstructured">
+                  <column
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/container">
+                    <items jcr:primaryType="nt:unstructured">
+                      <id
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                        fieldDescription="HTML IDs are used to uniquely identify an element in the code."
+                        validation="html-unique-id-validator"
+                        fieldLabel="ID"
+                        name="./id"/>
+                      <className
+                        jcr:primaryType="nt:unstructured"
+                        fieldDescription="HTML Classes are used to provide styling an element in the code."
+                        fieldLabel="Class"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                        name="./className"/>
+                    </items>
+                  </column>
+                </items>
+              </columns>
+            </items>
+          </configItem>
+        </items>
+      </tabs>
+    </items>
+  </content>
+</jcr:root>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Prescription Reminder"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                maximized="{Boolean}true">
+                <items jcr:primaryType="nt:unstructured">
+                    <properties
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Properties"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <ui-rendition
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                fieldDescription="UI rendition of the component"
+                                fieldLabel="Rendition"
+                                name="./rendition">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <account-overview
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Account Overview"
+                                        value="account-overview"/>
+                                    <vrx-checkout2
+                                        jcr:primaryType="nt:unstructured"
+                                        text="RX Checkout"
+                                        value="rx-checkout"/>
+                                </items>
+                            </ui-rendition>
+                            <heading
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Heading"
+                                name="./heading"
+							/>
+                            <ctaText
+								jcr:primaryType="nt:unstructured"
+								sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+								fieldLabel="CTA text "
+								name="./cta/text"/>
+							<ctaType
+								jcr:primaryType="nt:unstructured"
+								sling:resourceType="/libs/granite/ui/components/coral/foundation/form/select"
+								fieldLabel="CTA Type"
+								name="./cta/type">
+								<datasource
+									jcr:primaryType="nt:unstructured"
+									sling:resourceType="abbott-platform/datasource/generic-list"
+									path="/apps/adc/freestylelibrede/authoring/datasources/cta-types"/>
+							</ctaType>
+							<linkcontainer
+								jcr:primaryType="nt:unstructured"
+								sling:resourceType="granite/ui/components/coral/foundation/container">
+								<granite:data
+									jcr:primaryType="nt:unstructured"
+									showhidetargetvalue="link"/>
+								<items jcr:primaryType="nt:unstructured">
+									<link
+										jcr:primaryType="nt:unstructured"
+										sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+										fieldLabel="CTA Link"
+										name="./cta/link"
+										rootPath="/content/adc/freestylelibrede"/>
+								</items>
+							</linkcontainer>
+                            <reminderWindowStartDays
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                fieldLabel="No of days before supply end date to start showing banner "
+                                name="./reminderWindowStartDays"
+                                step="1"
+                                value="60"/>
+                            <reminderWindowStopDays
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                fieldLabel="No of days before supply end date to stop showing banner "
+                                name="./reminderWindowStopDays"
+                                step="1"
+                                value="30"/>
+                            <reminderWindowBannerStartDays
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                fieldLabel="No of days before supply end date to show within the banner "
+                                name="./reminderWindowBannerStartDays"
+                                step="1"
+                                value="60"/>
+                            <reminderWindowBannerStopDays
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                fieldLabel="No of days before supply end date to show within showing banner "
+                                name="./reminderWindowBannerStopDays"
+                                step="1"
+                                value="30"/>
+                        </items>
+                    </properties>
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>

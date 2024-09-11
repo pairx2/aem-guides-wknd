@@ -1,0 +1,191 @@
+@import "../../atoms/indicator/indicator.scss";
+
+// DCL.less file code
+
+.o-dynamic-card-list {
+  height: auto;
+  &:before {
+    background: none;
+  }
+  .dynamic-card-list-title h4 {
+    @include media-breakpoint-down(sm) {
+      flex-direction: column;
+      flex: 1;
+    }
+  }
+  .viewAll {
+    width: (--dynamic-card-list-viewAll-button-width);
+    @include media-breakpoint-up(sm) {
+      max-width: var(--dynamic-card-list-viewAll-button-max-width-sm-up);
+    }
+  }
+  .slick-initialized {
+    .slick-slide {
+      width: var(--dynamic-card-list-slick-slide-max-width);
+      margin-right: var(--dynamic-card-list-slick-slide-margin-right);
+      @include media-breakpoint-down(sm) {
+        max-width: var(--dynamic-card-list-slick-slide-max-width-sm-down);
+        margin-right: var(--dynamic-card-list-slick-slide-margin-right-sm-down);
+      }
+    }
+    .pickUp {
+      max-width: var(--dynamic-card-list-pickUp-max-width);
+      cursor: pointer;
+      .m-card__body {
+        height: var(--dynamic-card-list-pickUp-card-body-height);
+      }
+    }
+  }
+  .slick-dots {
+    li {
+      button {
+        width: var(--indicator-width);
+        height: var(--indicator-height);
+        border-radius: var(--indicator-border-radius);
+        border: var(--indicator-border-width) solid
+          var(--indicator-border-color);
+        background-color: var(--indicator-dot);
+        display: inline-block;
+        margin: var(--indicator-dot-margin);
+        -webkit-box-sizing: content-box;
+        box-sizing: content-box;
+        cursor: pointer;
+        padding: 0;
+        &:hover {
+          background-color: var(--indicator-dot-hover-color);
+        }
+        &:before {
+          content: none;
+        }
+      }
+      list-style-type: none;
+      width: auto;
+      height: auto;
+      margin: 0;
+      padding: 0;
+    }
+    li.slick-active {
+      button {
+        background-color: var(--indicator-dot-active);
+        &:hover {
+          background-color: var(--indicator-dot-active);
+        }
+      }
+    }
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    position: absolute;
+    top: auto;
+    bottom: 10px;
+    width: 100%;
+    left: 0;
+    padding: 0;
+    @include media-breakpoint-up(sm) {
+      display: none !important;
+    }
+    @include media-breakpoint-down(sm) {
+      padding-bottom: 2rem !important;
+    }
+  }
+  .slick-slider {
+    margin: 0 20px;
+    padding-bottom: 30px;
+    @include media-breakpoint-down(lg) {
+      margin: 0;
+    }
+  }
+  .slick-slide {
+    height: auto;
+    padding: 10px;
+  }
+  .slick-arrow {
+    display: none !important;
+  }
+  .slick-list {
+    @include media-breakpoint-down(sm) {
+      padding-bottom: 4rem;
+    }
+  }
+  .m-card {
+    --card-border-radius: 30px;
+    .logoOnImage {
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: 1rem;
+    }
+    .cmp-image__image{
+        border-bottom: 1px solid var(--dynamic-card-list-card-border-color);
+    }
+  }
+  @include media-breakpoint-down(sm) {
+    .slick-list {
+      padding-bottom: 4rem;
+    }
+    .slick-dots {
+      padding-bottom: 2rem !important;
+    }
+  }
+}
+
+// Carousel.less code
+
+.o-dynamic-card-list--dark {
+  .slick-dots {
+    button {
+      width: var(--indicator-width);
+      height: var(--indicator-height);
+      border-radius: var(--indicator-border-radius);
+      border: var(--indicator-border-width) solid var(--indicator-border-color);
+      background-color: var(--indicator-dot);
+      display: inline-block;
+      margin: var(--indicator-dot-margin);
+      -webkit-box-sizing: content-box;
+      box-sizing: content-box;
+      cursor: pointer;
+      border-color: var(--indicator-light-dot);
+      &:hover {
+        background-color: var(--indicator-dot-hover-color);
+      }
+    }
+    .slick-active {
+      button {
+        background-color: var(--indicator-light-dot-active);
+        &:hover {
+          background-color: var(--indicator-light-dot-active);
+        }
+      }
+    }
+  }
+  .slick-arrow {
+    &:before {
+      color: #{$color-white};
+    }
+  }
+}
+.o-dynamic-card-list[data-no-indicators="true"] {
+  padding-bottom: 0;
+}
+.o-dynamic-card-list--dots-start {
+  &.o-dynamic-card-list {
+    .slick-dots {
+      width: 50%;
+      left: 0;
+    }
+  }
+}
+.o-dynamic-card-list--dots-end {
+  &.o-dynamic-card-list {
+    .slick-dots {
+      width: 50%;
+      left: 50%;
+    }
+  }
+}

@@ -1,0 +1,50 @@
+# Environment types in [DEV,QA,STG,PRD]
+- DEF environmentType=$[env:AB_ACL_ENVIRONMENT_TYPE;default=PRD]
+- DEF groupPrefix="APP-AEM-DM-${environmentType}"
+- DEF groupPrefixAll="APP-AEM-DM-ALL"
+# Authoring groups for Brightcove DAM assets
+-  group_config:
+   -  FOR mapping IN CHILDREN OF /content/bts/brightcove/mappings:
+      -  ${groupPrefixAll}-brightcove-${lowerCase(mapping.title)}-authors:
+         -  name: Brightcove ${upperCase(mapping.title)}
+            description: Authoring group for Brightcove ${upperCase(mapping.title)}
+            isMemberOf: base-abbott, workflow-users
+            externalId: "${groupPrefixAll}-brightcove-${lowerCase(mapping.title)}-authors;ims"
+   -  ${groupPrefixAll}-brightcove-administrators:
+      -  name: Brightcove ${upperCase(mapping.title)}
+         description: Authoring group for Brightcove ${upperCase(mapping.title)}
+         isMemberOf: base-abbott, workflow-users
+         externalId: "${groupPrefixAll}-brightcove-administrators;ims"
+-  ace_config:           
+   -  FOR mapping IN CHILDREN OF /content/bts/brightcove/mappings:
+      -  ${groupPrefixAll}-brightcove-${lowerCase(mapping.title)}-authors:
+         -  path: /content/dam/brightcove_assets
+            permission: allow
+            actions: read
+         -  path: /content/dam/brightcove_assets/1336131408001/${mapping.name}
+            permission: allow
+            actions: read,modify,create,delete,replicate
+         -  path: /var/workflow/models
+            permission: allow
+            actions: read,modify,create,delete,replicate
+            restrictions:         
+               rep:glob: /bc-sync-new-asset*
+         -  path: /var/workflow/models
+            permission: allow
+            actions: read,modify,create,delete,replicate
+            restrictions:         
+               rep:glob: /brightcove-delete-asset*
+   -  ${groupPrefixAll}-brightcove-administrators:
+      -  path: /content/dam/brightcove_assets
+         permission: allow
+         actions: read,modify,create,delete,replicate
+      -  path: /var/workflow/models
+         permission: allow
+         actions: read,modify,create,delete,replicate
+         restrictions:         
+               rep:glob: /bc-sync-new-asset*
+      -  path: /var/workflow/models
+         permission: allow
+         actions: read,modify,create,delete,replicate
+         restrictions:         
+               rep:glob: /brightcove-delete-asset*

@@ -1,0 +1,109 @@
+@import 'header-v2.scss';
+
+.o-header-v2-global {
+  .a-link {
+    .abt-icon {
+      order: 2;
+    }
+    &--icon-right {
+      .abt-icon {
+        order: unset;
+      }
+    }
+  }
+  .megamenu {
+    .m-mega-menu__mobile-item-wrapper {
+      @include media-breakpoint-up(lg) {
+        margin-right: 0;
+        margin-left: var(--header-v2-component-spacing);
+        &:last-child {
+          margin-left: 0;
+        }
+      }
+    }
+    .navbar-nav {
+      padding: 0;
+    }
+    .version1 .m-mega-menu__nested-menu {
+      right: 0;
+    }
+  }
+}
+.o-header-v2-section {
+  > div {
+    &:last-child {
+      > div {
+        margin-left: 0;
+      }
+    }
+  }
+}
+.o-header-v2-group {
+  margin-right: 0;
+  margin-left: var(--header-v2-component-spacing);
+  > div {
+    > div {
+      margin-right: 0;
+      margin-left: var(--header-v2-component-spacing);
+    }
+    &:last-child {
+      > div {
+        margin-left: 0;
+      }
+    }
+  }
+  &--visibility {
+    &Sticky {
+      &Stuck {
+        &:last-child {
+          margin-left: 0;
+          margin-right: calc(var(--header-v2-component-spacing) * -1);
+        }
+        .sticky &:last-child {
+          margin-right: 0;
+        }
+      }
+      &Unstuck {
+        .sticky &:last-child {
+          margin-left: 0;
+          margin-right: calc(var(--header-v2-component-spacing) * -1);
+        }
+      }
+    }
+    &Screen {
+      &Desktop {
+        &:last-child {
+          @include media-breakpoint-down(md) {
+            margin-left: 0;
+            margin-right: calc(var(--header-v2-component-spacing) * -1);
+          }
+        }
+      }
+      &Mobile {
+        &:last-child {
+          @include media-breakpoint-up(lg) {
+            margin-left: 0;
+            margin-right: calc(var(--header-v2-component-spacing) * -1);
+          }
+        }
+      }
+    }
+    &User {
+      &Authenticated {
+        &:last-child {
+          margin-left: 0;
+          margin-right: calc(var(--header-v2-component-spacing) * -1);
+        }
+        [data-authenticated] &:last-child {
+          margin-right: 0;
+        }
+      }
+      &Unauthenticated {
+        [data-authenticated] &:last-child {
+          margin-left: 0;
+          margin-right: calc(var(--header-v2-component-spacing) * -1);
+        }
+      }
+    }
+  }
+}

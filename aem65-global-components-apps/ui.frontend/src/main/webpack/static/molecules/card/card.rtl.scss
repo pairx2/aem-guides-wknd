@@ -1,0 +1,27 @@
+@import 'card';
+
+.m-card {
+  $self: &;
+  text-align: right;
+  #{$self}__wrap {
+    .toggle-overlay {
+      .hover-text {
+        left: unset;
+        right: var(--card-overlay-text-right-spacing);
+      }
+    }
+  }
+
+  &--horizontal{
+    #{$self}__media{
+      border-radius: var(--card-horizontal-media-border-radius-rtl);
+    }
+
+    &#{$self}--media-end{
+      #{$self}__media{
+        border-radius: var(--card-horizontal-media-end-border-radius-rtl);
+      }
+    }
+
+  }
+}

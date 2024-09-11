@@ -1,0 +1,17 @@
+<sly data-sly-use.templates="abbott/components/content/templates.html" />
+<sly data-sly-test.loginLabel="${properties.loginModalLabel}" />
+<!-- /* LOGIN */ -->
+
+<sly data-sly-test="${inheritedPageProperties.themeType == 'abbott.abbottstore'}">
+	<sly data-sly-include="as-login.html"></sly>
+</sly>
+
+<sly data-sly-test="${inheritedPageProperties.themeType != 'abbott.abbottstore'}">
+	<sly data-sly-include="ss-gs-login.html" />
+</sly>
+
+<sly data-sly-call="${templates.placeholder @ isEmpty= !loginLabel}"></sly>
+
+
+
+

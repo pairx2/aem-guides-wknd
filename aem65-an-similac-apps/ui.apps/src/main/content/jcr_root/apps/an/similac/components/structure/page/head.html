@@ -1,0 +1,85 @@
+<template data-sly-template.head="${ @ page }"
+		  data-sly-use.headlibRenderer="headlibs.html"
+		  data-sly-use.headResources="head.resources.html"
+		  data-sly-use.seo="com.abbott.aem.an.similac.core.models.SeoAttributeModel">
+	<meta charset="UTF-8">
+
+	<meta name="keywords" content="${keywords}" data-sly-test.keywords="${page.keywords}"/>
+	<sly data-sly-test.hasMetaDec="${properties['meta_description'] && properties['meta_description'] != 'null'}">
+    	<meta name="description" content="${description}" data-sly-test.description="${properties['meta_description']}"/>
+    </sly>
+    <sly  data-sly-test="${!hasMetaDec}">
+		<meta name="description" content="${description}" data-sly-test.description="${properties['jcr:description']}"/>
+    </sly>
+	<meta name="robots" content="${seo.robotseo}" data-sly-test="${seo.robotseo}"/>
+	<meta name="template" content="${templateName}" data-sly-test.templateName="${page.templateName}"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="ps-account" content="${psAccount}" data-sly-test.psAccount="${inheritedPageProperties.psAccount}">
+    <meta name="ps-config" content="${psConfig}" data-sly-test.psConfig="${inheritedPageProperties.psConfig}">
+	<meta name="ps-country" content="${psCountry}" data-sly-test.psCountry="${inheritedPageProperties.psCountry}">
+	<meta name="ps-language" content="${psLanguage}" data-sly-test.psLanguage="${inheritedPageProperties.psLanguage}">
+	<link rel="manifest" href="/manifest.json">
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="application-name" content="${inheritedPageProperties.pwaAppName?inheritedPageProperties.pwaAppName :'AbbottNutrition'}">
+	<meta name="apple-mobile-web-app-status-bar-style" content="${inheritedPageProperties.pwaAppBarColorCode?inheritedPageProperties.pwaAppBarColorCode :'#EEB33B'}">
+	<meta name="theme-color" content="${inheritedPageProperties.pwaAppThemeColor?inheritedPageProperties.pwaAppThemeColor :'#ffffff'}"/>
+	<meta name="apple-mobile-web-app-title" content="${inheritedPageProperties.pwaAppTitle?inheritedPageProperties.pwaAppTitle :'Abbott Nutrition'}">
+	<meta name="apple-mobile-web-app-status-bar-style" content="default">
+	<meta data-sly-test.facebookVerification="${inheritedPageProperties['facebookVerification']}" name="facebook-domain-verification" content="${facebookVerification}"/>
+	<link rel="apple-touch-icon" sizes="152x152" href="${inheritedPageProperties.pwaAppIconMobile}">
+	<link rel="apple-touch-icon" sizes="180x180" href="${inheritedPageProperties.pwaAppIconDesktop}">
+	<link rel="apple-touch-icon" sizes="167x167" href="${inheritedPageProperties.pwaAppIconTab}">
+	<link rel="canonical" href="${authCanonical}" data-sly-test.authCanonical="${pageProperties['canonicalurl']}" /> 
+	<link rel="canonical" href="${seo.canonical}" data-sly-test="${!authCanonical}" /> 
+	<sly data-sly-list.languageNavigation="${seo.hreflangMap}">
+    <link rel="alternate" hreflang="${languageNavigation}" href="${seo.hreflangMap[languageNavigation]}" data-sly-test="${seo.hreflang}"/>
+    </sly>
+	<sly data-sly-test="${properties.hrefLangLinks}">${properties.hrefLangLinks @context = 'scriptComment'}</sly>
+	
+	<sly data-sly-include="head.socialmedia.html"></sly>
+	<sly data-sly-include="customheaderlibs.html"></sly>
+	<sly data-sly-call="${headlibRenderer.headlibs @ hasCloudconfigSupport = page.hasCloudconfigSupport}"></sly>
+   	<link rel="icon" href="${inheritedPageProperties.favicons}" data-sly-test="${inheritedPageProperties.favicons}"/>
+	
+	<!--/* Open Graph Properties */-->
+	<meta property="og:title" content="${seo.fbtitle @context='attribute'}" data-sly-test="${seo.fbtitle}" />
+	<meta property="og:description" content="${seo.fbdescription @context='attribute'}" data-sly-test="${seo.fbdescription}" />
+	<meta property="fb:app_id" content="${seo.fbpixelid @context='attribute'}" data-sly-test="${seo.fbpixelid}" />
+	<meta property="og:type" content="${seo.fbtype @context='attribute'}" data-sly-test="${seo.fbtype}" />
+	<meta property="og:url" content="${authCanonical ? authCanonical : seo.canonical @context='attribute'}" />
+	<meta property="og:image" content="${seo.ogimage @context='attribute'}" data-sly-test="${seo.ogimage}" />
+	<meta property="og:image:type" content="${seo.ogImageType @context='attribute'}" data-sly-test="${seo.ogImageType}" />
+	<meta property="og:image:width" content="${seo.ogImageWidth @context='attribute'}" data-sly-test="${seo.ogImageWidth}" />
+	<meta property="og:image:height" content="${seo.ogImageHeight @context='attribute'}" data-sly-test="${seo.ogImageHeight}" />
+	<meta property="og:site_name" content="${seo.fbsitename @context='attribute'}" data-sly-test="${seo.fbsitename}" />
+	<meta property="siteName" content="${inheritedPageProperties.siteName @ context='attribute'}" data-sly-test="${inheritedPageProperties.siteName}" />
+	<meta property="division" content="${inheritedPageProperties.division @ context='attribute'}" data-sly-test="${inheritedPageProperties.division}" />
+	<meta property="jcr:language" content="${inheritedPageProperties.jcr:language @ context='attribute'}" data-sly-test="${inheritedPageProperties.jcr:language}" />
+	<meta property="contentCategory" content="${inheritedPageProperties.contentCategory @ context='attribute'}" data-sly-test="${inheritedPageProperties.contentCategory}" />
+	<sly data-sly-use.clientlib="/apps/an/similac/components/common/templates/clientlib.html" 
+    data-sly-call="${clientlib.js @ categories=inheritedPageProperties.newrelicclientlibs, loading='defer'}"/>
+	
+	<input type="hidden" name="super-script-indicators" id="super-script-indicators" data-version="" value="${inheritedPageProperties.superScript}" data-sly-test="${inheritedPageProperties.superScript}">
+	
+	<sly data-sly-test="${!wcmmode.edit}">
+		<input type="hidden" id="secured-page" data-version="" value="${properties.securedPage}" data-sly-test="${properties.securedPage}">
+		<sly data-sly-test="${properties.sessionRedirectPage}" data-sly-use.sessionRedirectPage="${'com.abbott.aem.an.similac.core.models.LinkHelperModel' @ href=properties.sessionRedirectPage}">
+			<input type="hidden" id="session-redirect-page" data-version="" value="${sessionRedirectPage.linkHref}">
+		</sly>
+		<input type="hidden" id="on-login-hide" data-version="" value="${properties.onLoginHide}" data-sly-test="${properties.onLoginHide}">
+		<sly data-sly-test="${properties.onLoginRedirect}" data-sly-use.onLoginRedirect="${'com.abbott.aem.an.similac.core.models.LinkHelperModel' @ href=properties.onLoginRedirect}">
+			<input type="hidden" id="login-reg-redirect-page" data-version="" value="${onLoginRedirect.linkHref}">
+		</sly>
+	</sly>
+    <sly data-sly-test="${inheritedPageProperties.gtmscript}">${inheritedPageProperties.gtmscript @ context='scriptComment'}</sly>
+	<sly data-sly-test="${inheritedPageProperties.googleApiScript}">${inheritedPageProperties.googleApiScript @ context='scriptComment'}</sly>
+	<sly data-sly-test="${inheritedPageProperties.bvscript}">${inheritedPageProperties.bvscript @ context='scriptComment'}</sly>
+  	
+	<sly data-sly-test="${pageProperties.schemaScript}">${pageProperties.schemaScript @ context='scriptComment'}</sly>
+	<sly data-sly-test="${inheritedPageProperties.bugherdscript}">${inheritedPageProperties.bugherdscript @ context='scriptComment'}</sly>
+    <sly data-sly-test="${inheritedPageProperties.priceSpiderScript}">${inheritedPageProperties.priceSpiderScript @ context='scriptComment'}</sly>
+	<sly data-sly-test="${inheritedPageProperties.socialButtonScript && !inheritedPageProperties.hideSocialButton}">
+    ${inheritedPageProperties.socialButtonScript  @ context='scriptComment'}</sly>
+	<sly data-sly-test="${inheritedPageProperties.adobelaunchscript}">${inheritedPageProperties.adobelaunchscript @ context='scriptComment'}</sly>
+</template>

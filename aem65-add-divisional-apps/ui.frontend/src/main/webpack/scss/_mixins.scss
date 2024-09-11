@@ -1,0 +1,163 @@
+@mixin container-fixed($gutter: $grid-gutter-width) {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: floor(($gutter / 2));
+  padding-right: ceil(($gutter / 2));
+}
+
+@mixin container-breakout-fullwidth() {
+  // i need to be able to call desktop and mobile independently
+  @include container-breakout-desktop();
+  @include container-breakout-mobile();
+}
+
+@mixin container-breakout-desktop() {
+  @include media-breakpoint-up(xl) {
+    margin-left: calc(-50vw + ($container-xl-max-width/2 + $gutter-padding/2 + 1px));
+    margin-right: calc(-50vw + ($container-xl-max-width/2 + $gutter-padding/2 + 1px));
+  }
+  @include media-breakpoint-down(xl) {
+    margin-left: calc(-50vw + ($container-lg-max-width/2 + $gutter-padding/2 + 1px));
+    margin-right: calc(-50vw + ($container-lg-max-width/2 + $gutter-padding/2 + 1px));
+  }
+}
+@mixin container-breakout-mobile() {
+  @include media-breakpoint-down(lg) {
+    margin-left: calc(-50vw + ($container-md-max-width/2 + $gutter-padding/2 + 1px));
+    margin-right: calc(-50vw + ($container-md-max-width/2 + $gutter-padding/2 + 1px));
+  }
+  @include media-breakpoint-down(md) {
+    margin-left: calc(-50vw + ($container-sm-max-width/2 + $gutter-padding/2 + 1px));
+    margin-right: calc(-50vw + ($container-sm-max-width/2 + $gutter-padding/2 + 1px));
+  }
+}
+
+
+//WKND Mixins
+
+@mixin container-content() {
+  max-width: $max-width;
+  margin: 0 auto;
+  padding: 0 $gutter-padding;
+  float: unset !important;
+}
+
+@mixin animated() {
+  -webkit-animation-duration: 0.5s;
+  animation-duration: 0.5s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@mixin fadeIn() {
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+}
+
+@mixin boxShadow() {
+  -webkit-box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.25);
+}
+
+@mixin fontDefinition($fontFamily, $fontWeight, $lineHeight) {
+  font-family: $fontFamily;
+  font-weight: $fontWeight;
+  line-height: $lineHeight;
+}
+
+@mixin fontDefinitionWithSize($fontFamily, $fontSize, $fontWeight, $lineHeight) {
+  font-family: $fontFamily;
+  font-size: $fontSize;
+  font-weight: $fontWeight;
+  line-height: $lineHeight;
+}
+
+@mixin localizationTypography($fontFamily) {
+  h1,
+  .h1 {
+    font-family: $fontFamily;
+    font-weight: 800;
+  }
+
+  h2,
+  .h2 {
+    font-family: $fontFamily;
+    font-weight: 800;
+  }
+
+  h3,
+  .h3 {
+    font-family: $fontFamily;
+    font-weight: 800;
+  }
+
+  h4,
+  .h4 {
+    font-family: $fontFamily;
+    font-weight: 800;
+  }
+
+  h5,
+  .h5 {
+    font-family: $fontFamily;
+    font-weight: 700;
+  }
+
+  h6,
+  .h6 {
+    font-family: $fontFamily;
+    font-weight: 700;
+  }
+
+  p {
+    font-family: $fontFamily;
+  }
+}
+
+@mixin transitionEaseIn($property, $time) {
+  -moz-transition: $property $time ease-in;
+  -o-transition: $property $time ease-in;
+  -webkit-transition: $property $time ease-in;
+  transition: $property $time ease-in;
+}
+
+@mixin transition($time) {
+  transition: $time;
+  -moz-transition: $time;
+  -o-transition: $time;
+  -webkit-transition: $time;
+}
+
+@mixin transitionDisabledMotionPref($value) {
+  transition: $value;
+  -moz-transition: $value;
+  -o-transition: $value;
+  -webkit-transition: $value;
+}
+
+
+@mixin transitionAll($time) {
+ @include transitionEaseIn(all, $time)
+}
+
+@mixin backdrop() {
+  display: none;
+  opacity: 0.8;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1040;
+  width: 100vw;
+  height: 100vh;
+  background-color: $black;
+ }
+
+
+ @mixin flex-direction($direction) {
+  flex-direction: $direction;
+  -webkit-flex-direction: $direction;
+  -moz-flex-direction: $direction;
+  -ms-flex-direction: $direction;
+  -o-flex-direction: $direction;
+ }

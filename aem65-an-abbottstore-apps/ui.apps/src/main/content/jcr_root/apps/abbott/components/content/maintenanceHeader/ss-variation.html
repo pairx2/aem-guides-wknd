@@ -1,0 +1,40 @@
+<template data-sly-template.variation>
+  <sly data-sly-use.templates="abbott/components/content/templates.html" />
+  <!--/* SimilacStore HEADER */-->
+  <header class="similac-header">
+    <div class="container similac-header__container">
+      <div class="row no-gutters">
+        <div class="col-6 col-md-4 col-lg-5">
+          <div class="similac-header__logo float-left">
+            <sly
+              data-sly-call="${templates.includeResource @ relativeResourcePath='./', nodeName='logo1', slingResourceType='abbott/components/content/logo'}"
+            />
+          </div>
+        </div>
+        <div class="col-6 col-md-8 col-lg-7">
+        	<div class="float-right h-100 d-flex justify-content-center flex-column justify-content-md-end pb-md-4">
+            	<sly
+					data-sly-call="${templates.includeResource @ relativeResourcePath='./', nodeName='logo', slingResourceType='abbott/components/content/logo'}"
+                />
+            </div>
+        </div>
+      </div>
+     </div>
+  </header>  
+  <style>
+      body{
+          background-image: url(/content/dam/abbott/similac-text-background.jpg);
+          background-position: 50% 0;
+          background-repeat: repeat-x;
+          background-attachment: scroll; 
+      }
+      body.hide-background {
+        background-image: none;
+      }
+      @media (max-width: 767px) {
+        body {
+          background-image: none;
+        }
+      }
+  </style>
+</template>

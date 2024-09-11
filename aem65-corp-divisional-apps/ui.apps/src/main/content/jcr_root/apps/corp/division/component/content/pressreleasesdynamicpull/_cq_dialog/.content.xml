@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Dynamic Pull Component"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <tab
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                maximized="{Boolean}true">
+                <items jcr:primaryType="nt:unstructured">
+                    <tab1
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Press Release Details"
+                        sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <column
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <displayType
+                                        granite:class="cq-dialog-dropdown-showhide"
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                        fieldLabel="Select Component View"
+                                        name="./displayType">
+                                        <granite:data
+                                            jcr:primaryType="nt:unstructured"
+                                            cq-dialog-dropdown-showhide-target=".type-showhide-target"/>
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <pressreleasedynamic
+                                                jcr:primaryType="nt:unstructured"
+                                                text="Press Release Dynamic Pull"
+                                                value="pressreleasedynamic"/>
+                                            <executiveteam
+                                                jcr:primaryType="nt:unstructured"
+                                                text="Executive team"
+                                                value="executiveteam"/>
+                                            <ourexperts
+                                                jcr:primaryType="nt:unstructured"
+                                                text="Our Experts"
+                                                value="ourexperts"/>
+                                            <marathon
+                                                jcr:primaryType="nt:unstructured"
+                                                text="Tag and Pillar Pages"
+                                                value="marathonpages"/>
+                                        </items>
+                                    </displayType>
+                                    <pathContainer
+                                        granite:class="type-showhide-target hide"
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:orderBefore="id"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <pressreleasepath
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                fieldDescription="Please provide press release root path"
+                                                fieldLabel="Root Path"
+                                                name="./pressReleaseRootPath"
+                                                rootPath="/content/corp"/>
+                                        </items>
+                                        <granite:data
+                                            jcr:primaryType="nt:unstructured"
+                                            showhidetargetvalue="pressreleasedynamic,executiveteam,ourexperts,marathonpages"/>
+                                    </pathContainer>
+                                    <presscontainer
+                                        granite:class="type-showhide-target hide"
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:orderBefore="id"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <granite:data
+                                            jcr:primaryType="nt:unstructured"
+                                            showhidetargetvalue="pressreleasedynamic"/>
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <totalresults
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                                fieldDescription="Please enter total no. of results to be display"
+                                                fieldLabel="Total No.of Results"
+                                                min="1"
+                                                name="./totalResults"/>
+                                            <initialresults
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                                fieldDescription="Please enter Initial Count"
+                                                fieldLabel="Initial Count"
+                                                min="1"
+                                                name="./initialCount"/>
+                                            <showmore
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldDescription="Please provide Show More Text"
+                                                fieldLabel="Show More Text"
+                                                name="./showMoreText"/>
+                                            <errormsg
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldDescription="Please provide error message if there are no results"
+                                                fieldLabel="Error Message Text"
+                                                name="./errorMsg"/>
+                                            <paginationtext
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldDescription="Please provide pagination text"
+                                                fieldLabel="Pagination Text"
+                                                name="./paginationText"/>
+                                        </items>
+                                    </presscontainer>
+                                    <expertcontainer
+                                        granite:class="type-showhide-target hide"
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:orderBefore="id"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <granite:data
+                                            jcr:primaryType="nt:unstructured"
+                                            showhidetargetvalue="ourexperts,marathonpages"/>
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <expertcount
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                                fieldDescription="Please enter total no. of results to be display"
+                                                fieldLabel="Total No.of Results"
+                                                min="1"
+                                                name="./expertCount"/>
+                                            <tagpath
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="cq/gui/components/coral/common/form/tagfield"
+                                                fieldDescription="Please provide tag path"
+                                                fieldLabel="Tag Path"
+                                                name="./tagPath"
+                                                rootPath="/content"/>
+                                        </items>
+                                    </expertcontainer>
+                                    <marathoncontainer
+                                        granite:class="type-showhide-target hide"
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:orderBefore="id"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <granite:data
+                                            jcr:primaryType="nt:unstructured"
+                                            showhidetargetvalue="marathonpages"/>
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <readmore
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Enter Story Hover Text"
+                                                name="./readMore"/>
+                                            <showdate
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                fieldDescription="Show Article date "
+                                                name="./showDate"
+                                                text="Show Article date "
+                                                uncheckedValue="false"
+                                                value="true"/>
+                                            <seealltext
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Enter The See All Stories Text"
+                                                name="./seeAllText"/>
+                                            <hyperlink
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                fieldLabel="Enter The See All Stories HyperLink"
+                                                name="./viewAllLink"/>
+                                        </items>
+                                    </marathoncontainer>
+                                </items>
+                            </column>
+                        </items>
+                    </tab1>
+                </items>
+            </tab>
+        </items>
+    </content>
+</jcr:root>

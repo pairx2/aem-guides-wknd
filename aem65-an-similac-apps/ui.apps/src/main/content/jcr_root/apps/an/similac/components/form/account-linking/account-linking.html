@@ -1,0 +1,33 @@
+<div  class="cq-placeholder section" 
+	data-emptytext="Configure Account Linking Parent Component in EDIT Mode" 
+    data-sly-test.author="${(wcmmode.edit || wcmmode.design)}" >
+</div>
+<div data-sly-test="${wcmmode.edit}">
+   Author the Account Linking Parent Component
+   <form class="similac-form"
+      name="${container.name}" enctype="${container.enctype}"
+      data-sly-use.container="com.adobe.cq.wcm.core.components.models.form.Container">
+   </form>
+</div>
+
+<sly data-sly-test="${!wcmmode.edit}">
+   <sly data-sly-use.obj="com.abbott.aem.an.similac.core.models.AccountLinkingModel">
+        <sly data-sly-test ="${obj.formJson}">
+            <script>
+            	var jsonData = Object.freeze(JSON.parse("${obj.formJson @ context='scriptString'}"));
+            </script>
+        </sly>
+   </sly>
+   
+	<div class="container accountLinking">
+		<div class="para-content-1 mb-1_875 mt-4">
+			<h2>${properties.accountLinkingTitle  @ context='html'}</h2>
+		</div>
+		<div class="row">
+			<div class="col-md-12 col-lg-9 M0auto  mb-1_875">
+				<div id="accountLinking">
+				</div>
+			</div>
+		</div>
+	</div>
+</sly>

@@ -1,0 +1,90 @@
+<sly data-sly-use.templates="an/similac/components/content/templates.html"/>
+<div class="cq-placeholder section" data-emptytext="Configure Footer Component in EDIT Mode" data-sly-test.author="${(wcmmode.edit || wcmmode.design)}"></div>
+   <sly data-sly-use.footer="${'com.abbott.aem.an.similac.core.models.FooterModel'}"/>
+  <sly data-sly-use.analyticsConfig="${'com.abbott.aem.an.similac.core.models.AnalyticsConfigModel' @ sectionTitle =footer.abbottLogoAlttext , linkName='Footer Link'}" />
+<sly data-sly-test.eventCategory="${properties.eventCategory ? properties.eventCategory : 'external-link'}"/>
+<sly data-sly-test.eventAction="${properties.eventAction ? properties.eventAction : 'click'}" />
+<sly data-sly-test.eventLabel="${properties.eventLabel ? properties.eventLabel : analyticsConfig.eventLabel}" />
+<sly data-sly-test.gtmValue="${'{0}{1}{2}{3}{4}' @ format=[eventCategory, '|',eventAction,'|',eventLabel]}" />
+
+<footer>
+<sly data-sly-test="${!properties.hidefooter}">
+   <nav class="second-nav bg-cerulean " aria-label="Secondary Nav">
+      <div class="container ">
+          <sly data-sly-resource="${'footerlinks0' @ resourceType='/apps/an/similac/components/content/list'}"></sly>
+      </div>
+   </nav>
+    <sly data-sly-test.isPWA="${'/app/account/' in currentPage.path}"/>
+	<sly data-sly-test="${isPWA}">
+       <nav class="footer-main [object Object]" aria-label="Primary Nav">
+    </sly>
+	<sly data-sly-test="${!isPWA}">
+   		<nav class="footer-main bg-aliceBlue [object Object]" aria-label="Primary Nav">
+	</sly>
+      <div class="container">
+      <div class="row">
+         <div class="col-md-4 col-lg-3">
+         <div class="mb-md-3 mb-1_875">
+            <a href="${footer.abbottLogoURL}" target="_blank" data-gtm="${gtmValue @context='attribute'}"><img src="${footer.abbottLogo}" alt="${footer.abbottLogoAlttext || true}" data-sly-test="${footer.abbottLogoAlttext}"></a>
+            </div>
+            <sly data-sly-resource="${'footerlinks1' @ resourceType='/apps/an/similac/components/content/list'}"></sly>
+         </div>
+         <div class="col-md-4 col-lg-6">
+            <div class="row">
+               <div class="col-md-12 col-lg-4 d-none d-md-block pr-0 pt-1">
+                  <sly data-sly-resource="${'footerlinks2' @ resourceType='/apps/an/similac/components/content/list'}"></sly>
+               </div>
+               <div class="col-md-12 col-lg-4 d-none d-md-block pr-0 pt-1">
+                  <sly data-sly-resource="${'footerlinks3' @ resourceType='/apps/an/similac/components/content/list'}"></sly>
+               </div>
+               <div class="col-md-12 col-lg-4 d-none d-md-block pr-0 pt-1">
+                  <sly data-sly-resource="${'footerlinks4' @ resourceType='/apps/an/similac/components/content/list'}"></sly>
+               </div>
+            </div>
+            </div>
+               <div class="col-md-4 col-lg-3 mt-4 mt-md-0 pt-1">
+                  <p class="groupHeading">${footer.socialiconsHeader}</p>
+                  <ul class="social-icons-list">
+                     <li data-sly-test="${properties.instagramURL}">
+                        <sly
+                           data-sly-use.instaLink="${'com.abbott.aem.an.similac.core.models.LinkHelperModel' @ href=properties.instagramURL}" />
+                        <a x-cq-linkchecker="skip" href="${instaLink.linkHref}" target="_blank"
+                           data-gtm="external-link|click|instagram_footer-link">
+                           <img src="${footer.instagramIcon}" alt="${footer.instagramAlttext || true}"
+                              data-sly-test="${footer.instagramIcon}">
+                        </a>
+                     </li>
+                     <li data-sly-test = "${properties.facebookURL}">
+                           <sly data-sly-use.facebookLink="${'com.abbott.aem.an.similac.core.models.LinkHelperModel' @ href=properties.facebookURL}" />
+                        <a x-cq-linkchecker="skip" href="${facebookLink.linkHref}" target="_blank" data-gtm="external-link|click|facebook_footer-link">
+                           <sly data-sly-test = "${footer.facebookIcon}">
+                              <img src="${footer.facebookIcon}" alt="${footer.facebookAltText || true}" data-sly-test="${footer.facebookIcon}">
+                           </sly>
+                           <sly data-sly-test = "${!footer.facebookIcon}">
+                              <span class="sim-icons" data-icon="facebook"></span>
+                           </sly>
+                        </a>
+                     </li>
+                     <li data-sly-test = "${properties.youtubeURL}">
+                        <sly data-sly-use.youtubeLink="${'com.abbott.aem.an.similac.core.models.LinkHelperModel' @ href=properties.youtubeURL}" />
+                        <a x-cq-linkchecker="skip" href="${youtubeLink.linkHref}" target="_blank" data-gtm="external-link|click|youtube_footer-link">
+                           <sly data-sly-test = "${footer.youtubeIcon}">
+                              <img src="${footer.youtubeIcon}" alt="${footer.youtubeAltText || true}" data-sly-test="${footer.youtubeIcon}">
+                           </sly>
+                           <sly data-sly-test = "${!footer.youtubeIcon}">
+                              <span class="sim-icons" data-icon="you-tube"></span>
+                           </sly>
+                        </a>  
+                     </li>
+                  </ul>
+            </sly>
+         </div>
+      </div>
+      <div class="row">
+         <div class="col-12">
+            <span class="copyrights">${footer.copyrightsText}</span>
+         </div>
+      </div>
+   </nav>
+</sly>
+</footer>

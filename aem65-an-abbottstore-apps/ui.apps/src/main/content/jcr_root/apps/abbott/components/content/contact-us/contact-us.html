@@ -1,0 +1,219 @@
+<sly data-sly-use.templates="abbott/components/content/templates.html"/>
+ <input type="hidden" id="currentPage"  value="${currentPage.getPath}" />
+<form class="form-page static-page mb-5" method="POST" name="contact-form" id="contact-form" novalidate>
+   <sly data-sly-test="${inheritedPageProperties.themeType == 'abbott.abbottstore'}">
+        <input type="hidden" id="msgSource" name="msgSource" value="abbottstore_com_contactus" />
+        <input type="hidden" id="frhForm" name="frh.form" value="abbottstore_com_contactus" />
+        <input type="hidden" id="storeName" name="store_name" value="abbottstore" />
+    </sly>
+    <sly data-sly-test="${inheritedPageProperties.themeType == 'abbott.similac'}">
+        <input type="hidden" id="msgSource" name="msgSource" value="similacstore_com_contactus" />
+        <input type="hidden" id="frhForm" name="frh.form" value="similacstore_com_contactus" />
+        <input type="hidden" name="store_name" value="similacstore" />
+    </sly>
+    <sly data-sly-test="${inheritedPageProperties.themeType == 'abbott.glucerna'}">
+        <input type="hidden" id="msgSource" name="msgSource" value="glucernastore_com_contactus" />
+        <input type="hidden" id="frhForm" name="frh.form" value="glucernastore_com_contactus" />
+        <input type="hidden" id="storeName" name="store_name" value="glucernastore" />
+    </sly>
+
+	<sly data-sly-test.title="${properties.title}" />
+    <h1>${properties.title}</h1>
+
+    <div class="row">
+        <div class="col-sm-12 col-md-6">
+            <div class="form-group">
+                <label for="email">${properties.emailLabel}: <span class="asterisk">*</span></label>
+                <input type="email" class="form-control" id="email" name="EmailAddress" aria-describedby="emailHelp" data-validation="required email" />
+                <small id="emailHelp" class="form-text text-muted d-none">This is a required field.</small>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6">
+            <div class="form-group">
+                <label for="veryfy-email">${properties.verifyemailLabel}: <span class="asterisk">*</span></label>
+                <input type="email" class="form-control" id="veryfy-email" name="ConfirmEmailAddress" aria-describedby="veryfyEmailHelp" data-validation="required match-value" data-match-to="#email" />
+                <small id="veryfyEmailHelp" class="form-text text-muted d-none">This is a required field.</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12 col-md-6">
+            <div class="form-group">
+                <label for="first-name">${properties.fNameLabel}: <span class="asterisk">*</span></label>
+                <input class="form-control" id="first-name" name="FirstName" aria-describedby="firstNamelHelp" data-validation="required alphabetic" />
+                <small id="firstNamelHelp" class="form-text text-muted d-none">This is a required field.</small>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6">
+            <div class="form-group">
+                <label for="last-name">${properties.lNameLabel}: <span class="asterisk">*</span></label>
+                <input class="form-control" id="last-name" name="LastName" aria-describedby="lastNameHelp" data-validation="required alphabetic" />
+                <small id="lastNameHelp" class="form-text text-muted d-none">This is a required field.</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12 col-md-6">
+            <div class="form-group">
+                <label for="streetAddress">${properties.addressLabel}: <span class="asterisk">*</span></label>
+                <input class="form-control" id="streetAddress" name="StreetAddress" aria-describedby="streetAddressHelp" data-validation="required" />
+                <small id="streetAddressHelp" class="form-text text-muted d-none">This is a required field.</small>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6">
+            <div class="form-group">
+                <label for="addressLine2">${properties.addressLabel2}:</label>
+                <input class="form-control" id="addressLine2" name="StreetAddress2" aria-describedby="addressLine2Help" />
+                <small id="addressLine2Help" class="form-text text-muted d-none">This is a required field.</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12 col-md-6">
+            <div class="form-group">
+                <label for="city">${properties.cityLabel}: <span class="asterisk">*</span></label>
+                <input class="form-control" id="city" name="City" aria-describedby="citylHelp" data-validation="required alphabetic" />
+                <small id="citylHelp" class="form-text text-muted d-none">This is a required field.</small>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6">
+            <div class="form-group">
+                <label for="state">${properties.stateLabel}: <span class="asterisk">*</span></label>
+                <select class="form-control" id="state" name="State" aria-describedby="statelHelp" data-validation="required">
+                    <option value="">Select a state</option>
+                    <option value="AL">Alabama</option>
+                    <option value="AK">Alaska</option>
+                    <option value="AZ">Arizona</option>
+                    <option value="AR">Arkansas</option>
+                    <option value="CA">California</option>
+                    <option value="CO">Colorado</option>
+                    <option value="CT">Connecticut</option>
+                    <option value="DE">Delaware</option>
+                    <option value="DC">District of Columbia</option>
+                    <option value="FL">Florida</option>
+                    <option value="GA">Georgia</option>
+                    <option value="HI">Hawaii</option>
+                    <option value="ID">Idaho</option>
+                    <option value="IL">Illinois</option>
+                    <option value="IN">Indiana</option>
+                    <option value="IA">Iowa</option>
+                    <option value="KS">Kansas</option>
+                    <option value="KY">Kentucky</option>
+                    <option value="LA">Louisiana</option>
+                    <option value="ME">Maine</option>
+                    <option value="MD">Maryland</option>
+                    <option value="MA">Massachusetts</option>
+                    <option value="MI">Michigan</option>
+                    <option value="MN">Minnesota</option>
+                    <option value="MS">Mississippi</option>
+                    <option value="MO">Missouri</option>
+                    <option value="MT">Montana</option>
+                    <option value="NE">Nebraska</option>
+                    <option value="NV">Nevada</option>
+                    <option value="NH">New Hampshire</option>
+                    <option value="NJ">New Jersey</option>
+                    <option value="NM">New Mexico</option>
+                    <option value="NY">New York</option>
+                    <option value="NC">North Carolina</option>
+                    <option value="ND">North Dakota</option>
+                    <option value="OH">Ohio</option>
+                    <option value="OK">Oklahoma</option>
+                    <option value="OR">Oregon</option>
+                    <option value="PA">Pennsylvania</option>
+                    <option value="RI">Rhode Island</option>
+                    <option value="SC">South Carolina</option>
+                    <option value="SD">South Dakota</option>
+                    <option value="TN">Tennessee</option>
+                    <option value="TX">Texas</option>
+                    <option value="UT">Utah</option>
+                    <option value="VT">Vermont</option>
+                    <option value="VA">Virginia</option>
+                    <option value="WA">Washington</option>
+                    <option value="WV">West Virginia</option>
+                    <option value="WI">Wisconsin</option>
+                    <option value="WY">Wyoming</option>
+                </select>
+                <small id="statelHelp" class="form-text text-muted d-none">This is a required field.</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12 col-md-6">
+            <div class="form-group">
+                <label for="country">${properties.countryLabel}: </label>
+                <input class="form-control" id="country" name="Country" />
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6">
+            <div class="form-group">
+                <label for="zipCode">${properties.zipCodeLabel}: <span class="asterisk">*</span></label>
+                <input class="form-control" id="zipCode" name="ZipCode" aria-describedby="zipCodelHelp" data-validation="required" />
+                <small id="zipCodelHelp" class="form-text text-muted d-none">This is a required field.</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12 col-md-6">
+            <div class="form-group">
+                <label for="phone">${properties.phoneLabel}: <span class="asterisk">*</span></label>
+                <input class="form-control" id="phone" name="PhoneNumber" aria-describedby="phoneHelp" data-validation="required phone" />
+                <small id="phoneHelp" class="form-text text-muted d-none">This is a required field.</small>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6">
+            <div class="form-group">
+                <label for="subject">${properties.subjectLabel}: <span class="asterisk">*</span></label>
+                <select class="form-control" id="subject" name="Subject" aria-describedby="subjectHelp" data-validation="required">
+                    <option value="">Select a subject...</option>
+                    <option value="Password, Email or Login">Password, Email or Login</option>
+                    <option value="Promo Code Issue/Discounts">Promo Code Issue/Discounts</option>
+                    <option value="Shipping/Tracking Orders">Shipping/Tracking Orders</option>
+                    <option value="Order Questions/Comments">Order Questions/Comments</option>
+                    <option value="Product Questions">Product Questions</option>
+                    <option value="Website Technical Errors/Questions">Website Technical Errors/Questions</option>
+                    <option value="Returns">Returns</option><option value="Other">Other</option>
+                </select>
+                <small id="subjectHelp" class="form-text text-muted d-none">This is a required field.</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="form-group">
+                <label for="orderRef">${properties.orderReferenceLabel}:</label>
+                <input class="form-control" id="orderRef" name="OrderReferenceNumber" />
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="form-group">
+                <label for="query">${properties.questionLabel}: <span class="asterisk">*</span></label>
+                <textarea class="form-control" id="query" name="QuestionsComments" aria-describedby="queryHelp" data-validation="required"></textarea>
+                <small id="queryHelp" class="form-text text-muted d-none">This is a required field.</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12 col-md-4 mb-3">
+            <div id="captcha"></div>
+            <small id="captchaHelp" class="form-text text-muted d-none">Please verify captcha image</small>
+        </div>
+    </div>
+
+    <div class="support-info">${properties.text @context='html'}</div>
+
+    <input type="submit" value="${properties.buttonLabel}" name="submit" class="btn button" />
+</form>
+
+<script src="https://www.google.com/recaptcha/api.js?onload=onGoogleCaptchaLoad&render=explicit" async defer></script>
+
+<sly data-sly-call="${templates.placeholder @ isEmpty= !title}"></sly> 

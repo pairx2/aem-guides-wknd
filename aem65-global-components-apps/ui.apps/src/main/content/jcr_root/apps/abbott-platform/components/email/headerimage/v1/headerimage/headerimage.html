@@ -1,0 +1,37 @@
+<sly data-sly-use.image="com.adobe.cq.wcm.core.components.models.Image"
+     data-sly-use.component="com.adobe.cq.wcm.core.components.models.Component"
+     data-sly-use.templates="core/wcm/components/commons/v1/templates.html"
+     data-sly-unwrap="${!wcmmode.edit && !wcmmode.design}"
+     data-sly-use.emailPage="com.abbott.aem.platform.common.components.models.EmailPage" />
+<div class="email-header">
+   <table border="0" style="background-color:white;width:450pt;border-collapse:collapse;">
+      <tbody>
+         <tr>
+            <td class="esd-structure es-p20t es-p30r es-p30l" style="text-align:center;">
+               <table style="border-collapse:collapse;width:100%;">
+                  <tbody>
+                     <tr>
+                        <td class="esd-container-frame" style="vertical-align:top;width:540px;text-align:center;">
+                           <table style="border-collapse:collapse;width:100%;">
+                              <tbody>
+                                 <tr>
+                                    <td style="text-align:center;" class="esd-block-image"><a
+                                       data-sly-unwrap="${!image.link}" href="${image.link}" data-cmp-clickable="${image.data ? true : false}" data-cmp-hook-image="link" target="${properties.external ? '_blank' : ''}"><img
+                                       class="adapt-img esdev-empty-img"
+                                       src="${wcmmode.edit ? image.fileReference : image.fileReference @ prependPath=emailPage.assetPrefixDomain}" itemprop="contentUrl" data-cmp-hook-image="image"
+                                       data-sly-attribute.usemap="${image.areas ? usemap : ''}"
+                                       alt="${image.alt || true}" title="${image.displayPopupTitle && image.title}" width="100%"></a>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </td>
+                     </tr>
+                  </tbody>
+               </table>
+            </td>
+         </tr>
+      </tbody>
+   </table>
+</div>
+<sly data-sly-call="${templates.placeholder @ isEmpty = !image.src, classAppend = 'cmp-image cq-dd-image'}"></sly>

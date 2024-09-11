@@ -1,0 +1,32 @@
+
+<sly data-sly-use.sessionPopup="com.abbott.aem.bts.cybersecurity.components.model.SessionPopup"
+	 data-sly-use.template="core/wcm/components/commons/v1/templates.html">
+<div data-sly-test="${wcmmode.edit}" class="cq-placeholder" data-emptyText="Session Popup Model"></div>
+
+	<div class=" ${wcmmode.disabled ? 'modal generic-modal session-modal' : 'd-block'} " tabindex="-1" role="dialog" id="session-modal" data-is-timeout-Enabled="${sessionPopup.timeoutEnabled}" 
+		data-inactivity-time="${sessionPopup.inactivityTimeoutLimit}" data-popup-time="${sessionPopup.timerLimit}" aria-modal="true">
+	    <div class="modal-dialog modal-dialog-centered" role="document">
+	        <div class="modal-content generic-modal__content">
+	            <div class="modal-body generic-modal__content-body">
+	                <p class="session-modal__title">
+						<span data-sly-test.text="${sessionPopup.inactivityTimeoutMessage}">${text}</span>
+					</p>
+	                <div class="timer">
+	                    <p class="timer__text" data-sly-test.prefix="${sessionPopup.timeoutAlertPrefix}">${prefix}</p>
+	                    <div class="timer__time">
+	                        <span class="timer__min"></span>:<span class="timer__sec"></span>
+	                    </div>
+	                </div>
+	            </div>
+	            <div class="modal-footer generic-modal__content-footer">
+	                <div class="session-modal__btn-terminate" id="session-modal-terminate">
+	                    <sly data-sly-resource="${@path='button-terminate',resourceType='bts/globals/components/content/button'}"></sly>
+	                </div>
+	                <div class="session-modal__btn-extend" id="session-modal-extend">
+	                    <sly data-sly-resource="${@path='button-extend',resourceType='bts/globals/components/content/button'}"></sly>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+</sly>

@@ -1,0 +1,33 @@
+<sly data-sly-use.ctaSection="com.abbott.aem.platform.common.components.models.CtaSection"
+data-sly-use.component="com.adobe.cq.wcm.core.components.models.Component"
+data-sly-use.customConfig="com.abbott.aem.platform.common.components.models.CustomConfig"
+data-sly-use.commonsTemplates="core/wcm/components/commons/v1/templates.html"/>
+
+<div  id="${component.id}" class="o-cta-section o-cta-section--alertbanner-small o-cta-section--alertbanner-medium o-cta-section--alertbanner-large ${customConfig.className}" style="background-color: ${ctaSection.backgroundColor @context='styleToken'}" data-js-component="cta-section">
+		<div class="container">
+			<div class="row a-container__layout-section">
+				<div class="col-12 col-md-12 col-lg-6 o-cta-section__column">
+					<div class="o-cta-section__content">
+						<div class="o-cta-section__title" data-sly-test="${ctaSection.title}">
+							<h3>${ctaSection.title @context='html'}</h3>
+						</div>
+						<div class="o-cta-section__sub-title" data-sly-test="${ctaSection.subTitle}">
+							<h4>${ctaSection.subTitle @context='html'}</h4>
+						</div>
+						<p data-sly-test="${ctaSection.description}">${ctaSection.description @context='html'}</p>
+					</div>
+				</div>
+				<div class="col-12 col-md-12 col-lg-6 o-cta-section__column">
+					<div class="o-cta-section__button-wrap align-items-center">
+						<sly data-sly-list.buttonItems="${ctaSection.listOfButtons}">
+						<sly data-sly-test.parName="${buttonItems}" />
+							<sly
+								data-sly-resource="${@path= buttonItems, resourceType=ctaSection.buttonProxyPath , decoration=true}">
+							</sly>
+						</sly>		
+					</div>
+				</div>
+			</div>
+		</div>
+</div>
+<sly data-sly-call="${commonsTemplates.placeholder @ isEmpty = !ctaSection.title}" />

@@ -1,0 +1,57 @@
+<sly data-sly-use.templates="abbott/components/content/templates.html" />
+<sly data-sly-use.storeUrlModel="${'com.abbott.aem.an.abbottstore.models.UrlServiceModel' @ themeType=inheritedPageProperties.themeType}"/>
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel">${properties.loginLabel}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <em class="ai-close"></em>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                ${properties.registerLabel @context='html'}
+                <div class="login-modal" id="login-modal">
+                    <form name="user-login" method="POST" action="${storeUrlModel.loginUrl}Post">
+                        <input type="hidden" name="form_key" value="" id="login-form-key" />
+                        <input type="hidden" name="is_aem_login_user_key" value="" id="is_aem_login_user_key" />
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="login[username]" id="login-username"
+                                maxlength="255" placeholder="${properties.emailId}" aria-describedby="usernameHelp"
+                                data-validation="required email"
+                                data-error-email="Please enter a valid email address (Ex: johndoe@domain.com)." />
+                            <small id="usernameHelp" class="form-text text-muted d-none">This is a required
+                                field.</small>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="password" class="form-control" name="login[password]" id="login-password"
+                                placeholder="${properties.emailPassword}" aria-describedby="passwordHelp"
+                                data-validation="required password"
+                                data-error-password="Please enter 6 or more characters. Leading and trailing spaces will be ignored."
+                                   autocomplete="off" />
+                            <small id="passwordHelp" class="form-text text-muted d-none">This is a required
+                                field.</small>
+                        </div>
+                        <div class="form-group">
+                            <small id="loginRecaptchaHelp" class="form-text text-muted d-none"> Captcha Verification Failed </small>
+                        </div>
+                        <button class="login-modal__btn" type="submit">
+                            ${properties.loginModalLabel}
+                        </button>
+                        <div class="mt-3 mb-3">
+                            <a href="${storeUrlModel.forgotPasswordUrl}"
+                                class="login-modal__link d-inline-block">${properties.forgotPasswordLabel}</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<sly data-sly-call="${templates.placeholder @ isEmpty= !loginLabel}"></sly>

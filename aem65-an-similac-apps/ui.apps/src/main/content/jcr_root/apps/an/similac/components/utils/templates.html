@@ -1,0 +1,14 @@
+
+<template data-sly-template.placeholder="${@ isEmpty, classAppend, emptyTextAppend}">
+    <div class="cq-placeholder ${classAppend}" data-emptytext="${component.properties.jcr:title @ context='text'}${emptyTextAppend && ' - ' @ context='text' }${emptyTextAppend @ context='text'}" data-sly-test="${(wcmmode.edit || wcmmode.preview) && isEmpty}"></div>
+</template>
+
+
+<template data-sly-template.includeResource="${@ relativeResourcePath, nodeName}">
+    <sly data-sly-test.relResourcePath="${'{0}{1}{2}' @ format=[relativeResourcePath, '/' ,nodeName]}"/>
+    <sly data-sly-use.resourceObj="${'com.abbott.aem.an.similac.core.models.ResourceValidation' @ resourcePath=relResourcePath}">
+		<sly data-sly-test="${resourceObj.validResource}">
+    	<sly data-sly-resource="${relResourcePath @ wcmmode='disabled'}"/>
+    </sly>
+    </sly>
+</template>

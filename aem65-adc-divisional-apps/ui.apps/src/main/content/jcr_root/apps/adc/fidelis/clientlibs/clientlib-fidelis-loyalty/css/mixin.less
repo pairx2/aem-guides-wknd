@@ -1,0 +1,44 @@
+@import './variables.less';
+
+.font-style(@fontSize, @lineHight, @color, @letterSpacing: normal) {
+  font-size: @fontSize;
+  line-height: @lineHight;
+  color: @color;
+  letter-spacing: @letterSpacing;
+}
+
+.generate-gradient-circle-list(@n, @i: 1) when (@i =< @n) {
+
+  @deg1: (@i * 360deg/@n);
+  @deg2: (@i * 360deg/@n)+1;
+  #circledNumberList-@{n} {
+    .m-custom-list {
+      li:nth-child(@{i}) {
+        .m-custom-list__heading:before {
+          background-image: conic-gradient(#ffd110 0%, #ffd110 (@deg1), transparent (@deg2), transparent 360deg);
+        }
+      }
+    }
+  }
+
+  .generate-gradient-circle-list(@n, (@i + 1));
+}
+
+.skeleton-square(@height) {
+  height: @height;
+  max-height: @height!important;
+  background: @skeleton-loader-start-color;
+  background: -webkit-gradient(linear, left top, right top, color-stop(8%, @skeleton-loader-start-color), color-stop(18%, @skeleton-loader-end-color), color-stop(33%, @skeleton-loader-start-color));
+  background: linear-gradient(to right, @skeleton-loader-start-color 8%, @skeleton-loader-end-color 18%, @skeleton-loader-start-color 33%);
+  background-size: 800px 100px;
+  animation: wave-squares 2s infinite ease-out;
+}
+
+.skeleton-line(@height: 12px) {
+  height: @height;
+  background: @skeleton-loader-start-color;
+  background: -webkit-gradient(linear, left top, right top, color-stop(8%, @skeleton-loader-start-color), color-stop(18%, @skeleton-loader-end-color), color-stop(33%, @skeleton-loader-start-color));
+  background: linear-gradient(to right, @skeleton-loader-start-color 8%, @skeleton-loader-end-color 18%, @skeleton-loader-start-color 33%);
+  background-size: 800px 100px;
+  animation: wave-lines 2s infinite ease-out;
+}

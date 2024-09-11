@@ -1,0 +1,112 @@
+@import "./global/variables.less";
+@import "./global/media-queries.less";
+
+.tabs{
+    .a-tabs__nav{
+        padding-bottom:1px;
+        border-bottom:1px solid @color-charcoal;
+    }
+    .a-tabs__nav-link{
+        padding:8px;
+        margin-right:1px;
+        min-width:157px;
+        flex:0;
+        border:0;
+        position:relative;
+        &::before{
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+            	z-index:-1;
+                background: @color-charcoal;
+                -webkit-transform: scaleY(0);
+                -moz-transform: scaleY(0);
+                transform: scaleY(0);
+                -webkit-transform-origin: 50% 0;
+                -moz-transform-origin: 50% 0;
+                transform-origin: 50% 0;
+                -webkit-transition-property: transform;
+                -moz-transition-property: transform;
+                transition-property: transform;
+                -webkit-transition-duration: .3s;
+                -moz-transition-duration: .3s;
+                transition-duration: .3s;
+        }
+        &:hover{
+            background-color:inherit;
+             &::before{
+
+                -webkit-transform: scaleY(1);
+                -moz-transform: scaleY(1);
+                transform: scaleY(1);
+                }
+        }
+        &.active{
+            background:@color-charcoal;
+            cursor:default;
+        }
+        .a-tabs__nav-text{
+            font-family:@brandon-bold;
+            font-size:@spacer-16;
+            line-height:@spacer-16;
+        }
+    }
+}
+
+.a-tabs {
+    &__nav {
+      &-link {
+        background-color: @color-light-gray;
+      }
+    }
+
+    .tab-variation(@names; @colors; @index) when (iscolor(extract(@colors, @index))) and (@index > 0) {
+    .tab-variation(@names; @colors; (@index - 1));
+  
+    @name: extract(@names, @index); 
+    @color: extract(@colors, @index);
+    
+ 
+           &#tab-@{name}{        
+                .a-tabs__nav-link{            
+                    background:@color;            
+                    &.active{                
+                        background:@color-charcoal;                
+                        color:@color;                
+                        &:hover{                    
+                            background:@color-charcoal;                
+                        }            
+                    }            
+                    &::before{                
+                        background:@color-charcoal;                
+                        z-index:-1;            
+                    }            
+                    &:hover{                    
+                        color:@color;                    
+                        z-index:1;            
+                    }        
+                }        
+                .text .cmp-text{            
+                    h4{                
+                        color:@color; 
+                        font-family: @brandon-black;           
+                    }            
+                    a{                
+                        color:@color;                
+                    text-decoration: underline !important;                
+                    &:hover{                    
+                        text-decoration: none !important;                
+                        }            
+                    }        
+                }    
+            }
+
+    
+    }
+    
+    .tab-variation(@names; @colors; @length);
+    
+}

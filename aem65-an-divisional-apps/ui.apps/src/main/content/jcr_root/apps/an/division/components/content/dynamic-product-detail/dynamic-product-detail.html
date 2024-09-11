@@ -1,0 +1,140 @@
+<div class="productDetailPageRun pageRun">
+<div class="container">
+    <div class="row">
+        <div data-sly-test="${wcmmode.edit}" class="cq-placeholder" data-emptyText="AN - Dynamic Product Detail"></div>
+        <sly data-sly-use.dynamicProductDetail="${'com.abbott.aem.an.division.core.components.models.DynamicProductDetail' @productId=pageProperties.productId}"
+            data-sly-set.product="${dynamicProductDetail.product}">
+
+            <input type="hidden" id="product-hidden-${product.id}" class="productData product-hidden-${product.id}"
+                value="${product.ProductJson}">
+            <div data-sly-test="${dynamicProductDetail.productStaticArea == 'abbottNutrition'}"
+                class="cmp-product-detail columncontrol">
+                <div class="row">
+                    <div class="col-12 col-md-6 col-lg-6">
+                        <h2 class="d-md-none">${pageProperties.displayTitle @ context='html'}</h2>
+                        <h4 class="d-md-none" data-sly-test="${pageProperties.commonName}">${pageProperties.commonName @
+                            context='html'}</h4>
+                        <div class="cmp-product-detail__mediacarousel">
+                            <sly data-sly-include="media-carousel.html">
+                                </sly>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-6 cmp-product-detail__info">
+                        <div class="cmp-product-detail__marketing-text">
+                            <h2 class="d-none d-md-block">${pageProperties.displayTitle @ context='html'}</h2>
+                            <h4 class="d-none d-md-block">${pageProperties.commonName @ context='html'}</h4>
+                            <p>${pageProperties.pdpDescription}</p>
+                            <sly data-sly-list.reference="${pageProperties.productRefrenceValue}">
+                                <p class="ref-pr">${reference}</p>
+                            </sly>
+                        </div>
+                        <div class="cmp-product-detail__buttons">
+                            <div 
+                                class="button link a-button a-button--md a-button--primary ">
+
+                                <a 
+                                    id="where-to-buy_product-detail"
+                                    aria-label="${dynamicProductDetail.productLocatorLabel}" class="wheretobuy btn d-none"
+                                    href="${dynamicProductDetail.productLocatorUrl @ extension='html'}?ps-sku="
+                                    target="_self">
+                                    <span>${dynamicProductDetail.productLocatorLabel}</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="cmp-product-detail__buttons"
+                            data-sly-test="${dynamicProductDetail.downloadGuideLabel}">
+                            <div class="button link a-button a-button--md btn-only-bdr">
+                                <a type="button" id="download_product-detail"
+                                    aria-label="${dynamicProductDetail.downloadGuideLabel}" class="downloadguide btn"
+                                    onclick="convertHTMLToPDF()">
+                                    <span>${dynamicProductDetail.downloadGuideLabel}</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="cmp-product-detail__buttons"
+                            data-sly-test="${dynamicProductDetail.contactRepLabel}">
+                            <div class="button link a-button btn-only-bdr">
+                                <a id="contact-rep_product-detail"
+                                    aria-label="${dynamicProductDetail.contactRepLabel}" class="btn"
+                                    href="${dynamicProductDetail.contactRepUrl @ extension='html'}" target="_self">
+                                    <span>${dynamicProductDetail.contactRepLabel}</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="cmp-product-detail__formulation-dropdowns">
+                            <div
+                                class="cmp-product-detail__formulation-dropdown cmp-product-detail__formulation-filter">
+                                <div class="a-dropdown cmp-product-detail__formulation-filter--item"
+                                    data-required="true" data-js-component="form-dropdown">
+                                    <div class="a-dropdown__container form-group">
+
+										<span class="dropDownLabel">Flavor/Form</span>
+                                        <div id="filters_product-detail_flavor-form"
+                                            aria-labelledby="Flavor/Form" class="a-dropdown__field" tabindex="0">
+                                            <span aria-labelledby="Flavor/Form"
+                                                class="a-dropdown__placeholder">Flavor/Form</span>
+                                            <ul aria-labelledby="SELECT FLAVOR/FORM"
+                                                class="a-dropdown__menu nav nav-tabs o-content-section__list">
+                                                <sly data-sly-list="${pageproperties.formulationTypeandflavour}">
+                                                    <sly data-sly-test.id="${pageproperties.formulationCode}">
+                                                        <li role="presentation" id="${id[itemList.index]}"
+                                                            class="o-content-section__list-item ${pageproperties.defaultFormulationCode == id[itemList.index] ? 'selected' : ''}">
+                                                            <a href="#" class="o-content-section__list-item-link">
+                                                                ${item @ context='html'}
+                                                            </a>
+                                                        </li>
+                                                    </sly>
+                                                </sly>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cmp-product-detail__serving-dropdown">
+                                <div class="a-dropdown" data-required="true" data-js-component="form-dropdown">
+                                    <div id="filters_product-detail_size" aria-label="Serving Size"
+                                        class="a-dropdown__container form-group" tabindex="0">
+
+										<span class="dropDownLabel">Serving Size</span>
+                                        <div class="a-dropdown__field">
+                                            <span class="a-dropdown__placeholder">Serving Size</span>
+                                            <ul class="a-dropdown__menu nav nav-tabs o-content-section__list">
+                                                <sly data-sly-list="${pageproperties.skuServingSize}">
+                                                    <sly data-sly-test.id="${pageproperties.skuServingSizeId}">
+                                                        <li id="${id[itemList.index]}" role="presentation"
+                                                            class="o-content-section__list-item ${itemList.count==1 ? 'selected' : ''}">
+                                                            <a href="#" class="o-content-section__list-item-link">
+                                                                ${item @ context='html'}
+                                                            </a>
+                                                        </li>
+                                                    </sly>
+                                                </sly>
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-50 contact-msg">
+                            <p class="d-none d-md-block">${dynamicProductDetail.contactMessage @ context='html'}</p>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <p class="discMsg d-none d-md-block">${dynamicProductDetail.disclaimerMessage @ context='html'}</p>
+                </div>
+            </div>
+            <div data-sly-test="${dynamicProductDetail.addProductInformationMarkup == 'abbottNutrition'}"
+                class="pd-20 w-100">
+                <sly data-sly-use.productTabs="dynamic-product-tabs.html"
+                    data-sly-call="${productTabs.tab @ dynamicProductDetail= dynamicProductDetail, product= product}">
+                </sly>
+            </div>
+        </sly>
+    </div>
+</div>
+<sly data-sly-use.pdf="product-detail-pdf/dynamic-product-pdf.html"
+    data-sly-call="${pdf.pdf @ dynamicProductDetail= dynamicProductDetail, product= product}"></sly>
+
+</div>

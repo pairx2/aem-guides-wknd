@@ -1,0 +1,19 @@
+<!--/*
+Overriding the body.html from page v2 of core.
+This is to add the header, footer, breadcrumb, etc for every page.
+*/-->
+<div class="abbott-wrapper">
+	<sly data-sly-include="body-header-expfrag.html"></sly>
+</div>
+
+<sly data-sly-include="body-hiddenlinks.html"></sly>
+
+<sly data-sly-use.templatedContainer="com.day.cq.wcm.foundation.TemplatedContainer"
+     data-sly-repeat.child="${templatedContainer.structureResources}"
+     data-sly-resource="${child.path @ resourceType=child.resourceType, decorationTagName='div'}"></sly>
+
+<sly data-sly-include="body-footer-expfrag.html"></sly>
+
+<!-- Block for site specific, site entering and site leaving popup starts-->
+<sly data-sly-include="body-popup-expfrag.html"></sly>
+<!-- Block for site specific, site entering and site leaving popup ends-->

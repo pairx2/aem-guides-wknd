@@ -1,0 +1,74 @@
+<coral-multifield
+  data-sly-use.childrenEditor="com.adobe.cq.wcm.core.components.commons.editor.dialog.childreneditor.Editor"
+  data-sly-use.iconTemplate="icon.html"
+  data-cmp-is="childrenEditor"
+  class="cmp-childreneditor cmp-childreneditor--payment-tabs"
+  data-container-path="${childrenEditor.container.path}"
+>
+  <sly data-sly-list.item="${childrenEditor.container.getChildren}">
+    <input
+      data-sly-set.paymentType="${item.valueMap.paymentType || false}"
+      data-sly-test="${paymentType}"
+      type="hidden"
+      data-cmp-hook-childreneditor="paymentType"
+      data-item-index="${itemList.index}"
+      value="${paymentType}"
+    />
+  </sly>
+  <coral-multifield-item data-sly-repeat.item="${childrenEditor.items}" data-name="${item.name}">
+    <div class="cmp-childreneditor__item">
+      <coral-icon
+        data-sly-test.isLiveCopy="${item.isLiveCopy}"
+        class="coral-Form-fieldinfo coral3-Icon coral3-Icon--infoCircle coral3-Icon--sizeS"
+        icon="infoCircle"
+        tabindex="0"
+        size="S"
+        role="img"
+        aria-label="description"
+      ></coral-icon>
+      <coral-tooltip
+        data-sly-test="${isLiveCopy}"
+        target="_prev"
+        placement="right"
+        class="coral3-Tooltip coral3-Tooltip--info coral3-Tooltip--arrowLeft"
+        aria-hidden="true"
+        variant="info"
+        tabindex="-1"
+        role="tooltip"
+        style="z-index: 10020; max-width: 1070px; left: 205px; top: -3px"
+      >
+        <coral-tooltip-content>
+          You have to cancel the inheritance for the panel in order to change its title.
+        </coral-tooltip-content>
+      </coral-tooltip>
+      <sly data-sly-call="${iconTemplate.icon @ item=item}"></sly>
+      <input
+        is="coral-textfield"
+        class="cmp-childreneditor__item-title"
+        data-cmp-hook-childreneditor="itemTitle"
+        name="./${item.name}/cq:panelTitle"
+        value="${item.value}"
+        data-sly-attribute.disabled="${item.isLiveCopy}"
+        placeholder="${item.title}"
+      />
+      <span class="cmp-childreneditor__item-icon"></span>
+    </div>
+  </coral-multifield-item>
+  <input type="hidden" name="itemOrder" data-cmp-hook-childreneditor="order">
+  <input type="hidden" name="deletedItems" data-cmp-hook-childreneditor="delete">
+  <button data-cmp-hook-childreneditor="add" type="button" is="coral-button">${'Add' @ i18n}</button>
+  <template coral-multifield-template="">
+    <div class="cmp-childreneditor__item">
+      <span class="cmp-childreneditor__item-icon" data-cmp-hook-childreneditor="itemIcon"></span>
+      <input
+        is="coral-textfield"
+        class="cmp-childreneditor__item-title"
+        data-cmp-hook-childreneditor="itemTitle"
+        required
+      />
+      <span class="cmp-childreneditor__item-icon"></span>
+      <input type="hidden" data-cmp-hook-childreneditor="itemResourceType" />
+      <input type="hidden" data-cmp-hook-childreneditor="itemTemplatePath" />
+    </div>
+  </template>
+</coral-multifield>

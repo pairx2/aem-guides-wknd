@@ -1,0 +1,242 @@
+
+.vid-player{
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    background-color: @color-fsl-black;
+    text-align: center;
+    z-index: 1;
+    background-size: cover !important;
+    min-height: 550px;
+    background-repeat: no-repeat !important;
+    background-position: top !important;
+    @media @mobile-break{
+        background-color: transparent;
+    }
+
+    &[data-layout ="full-width"]{
+        min-height: 700px;
+        background-size: cover !important;
+        @media @mobile-break{
+            min-height: 325px;
+            .container{
+                padding-left: 35px;
+                padding-right: 35px;
+                .row{
+                    margin-left: 0;
+                    margin-right: 0;
+                }
+            }
+        }
+        @media @tab-only{
+            min-height: 425px;
+        }
+        @media @min-tab{
+            .play-button{
+                background-image: url("@{icon-path}/IconVideo-tab.png");
+                height: 75px;
+                width: 75px;
+            }
+        }
+        & .full-width.video-content{
+            position: relative;
+            width: 443px;
+            margin-top: 85px;
+            padding-top: 0;
+            @media @tab-only{
+                width: 400px;
+            }
+            @media @mobile-break{
+                width: 100%;
+                margin-top: 30px;
+                text-align: center;
+            }
+
+            & .video-content--desc{
+                margin-top: 30px;
+            }
+            &.left,  &.text-left{
+                text-align: left;
+                margin-left: 65px !important;
+                @media @mobile-break{
+                    margin-left: 0px !important;
+                    text-align: center !important;
+                }
+            }
+            &.text-right{
+                text-align: left !important;
+                margin-left: 40%;
+                margin-right: 65px !important;
+                @media @mobile-break{
+                    margin-right: 0px !important;
+                    margin-left: 0;
+                    text-align: center !important;
+                }
+            }
+            &.text-center{
+                width: 80%;
+                text-align: center !important;
+                @media @mobile-break{
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    &[data-layout ="full-bleed"]{
+        min-height: 550px;
+        &[data-playback="dispaly-inline"]{
+            @media @adc-desktop-break{
+                max-height: 550px;
+            }
+        }
+        @media @mobile-break{
+            background-size: auto 460px !important;
+            min-height: 350px;
+            .video-content{
+                padding: 490px 15px 15px 15px;
+                text-align: center !important;
+                h2, h3, h4{
+                    color: @color-fsl-blue;
+                }
+                .adc-button{
+                    background-color: @color-fsl-blue !important;
+                    color: @color-fsl-white !important;
+                    margin-top: 20px;
+                }
+            }
+        }
+        .adc-deep-link{
+            @media @mobile-break{
+                bottom: auto;
+                top: 420px;
+            }
+        }
+    }
+
+    .mask{
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        display: inline-block;
+        z-index: 997;
+        .gradient(rgba(255,255,255, 0.1), 50%, rgba(0,0,0, 0.8), 100%, bottom);
+    }
+    .adc-button{
+        margin-top: 75px;
+    }
+    .text-center{
+        margin-left:auto;
+        margin-right:auto;
+    }
+    .text-right{
+        text-align: left !important;
+        margin-left: auto;
+    }
+    .vid-title{
+        @media @min-tab{
+            color: @color-fsl-white;
+            max-width: 500px;
+            padding-top: 100px;
+        }
+        &.full-width, &.column-width{
+            padding-top: 50px;
+            h5{display: none;}
+            .adc-button{
+                margin-top: 15px;
+            }
+        }
+        &.bottom{
+            @media @min-desktop{
+                padding-top: 400px !important;
+            }
+            @media @max-tab{
+                width: 80%;
+                padding-top: 340px !important;
+            }
+        }
+        &.full-bleed{
+            text-align: left;
+            @media @min-tab{
+                padding-left: 15px;
+                width: 42%;
+            }
+            @media @adc-mobile-break{
+                text-align: center;
+            }
+        }
+    }
+    img, .play-button, .play-button:before {
+        position: absolute;
+        cursor: pointer;
+    }
+    .play-button {
+        width: 130px;
+        height: 130px;
+        background-color: transparent;
+        background-position: 0 0;
+        background-repeat: no-repeat;
+        background-image: url("@{icon-path}/IconVideo-desktop.png");
+        z-index: 999;
+        top: 50%;
+        left: 50%;
+        transform: translate3d( -35%, -50%, 0);
+        opacity: 0.7;
+        @media @adc-mobile-break{
+            background-image: url("@{icon-path}/IconVideo-phone.png");
+            height: 52px;
+            top: 30%;
+            width: 52px;
+        }
+        @media @adc-tablet-break{
+            background-image: url("@{icon-path}/IconVideo-tab.png");
+            height: 75px;
+            width: 75px;
+        }
+        &.full-width{
+            &:before{
+                transform: translate3d( -30%, -50%, 0);
+            }
+        }
+        &.column-width{
+            width: 50px;
+            height: 50px;
+            &:before{
+                border-width: 12px 0 12px 18px;
+                transform: translate3d( -30%, -50%, 0);
+            }
+        }
+    }
+}
+.video-player{
+    .modal-dialog {max-width: 800px; margin: 30px auto;}
+    .modal-body {position:relative; padding:0;}
+    .close {
+        position:absolute;
+        right:-30px;
+        top:0;
+        z-index:999;
+        font-size:2rem;
+        font-weight: normal;
+        color:@color-fsl-white;
+        opacity:1;
+
+        @media @max-tab{
+            font-size: 2.5rem;
+            right: 10px;
+            top: -35px;
+        }
+    }
+}
+html {
+    scroll-behavior: smooth;
+  }
+
+.home-page {
+    .video {
+        position: relative;
+        z-index: 0;
+    }
+}

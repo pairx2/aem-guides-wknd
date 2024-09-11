@@ -1,0 +1,14 @@
+<sly
+		data-sly-use.navigation="com.abbott.aem.platform.common.components.models.navigation.PlatformNavigation"
+		data-sly-test.megaMenuStyle="${navigation.megaMenuStyle || 'abbott-platform/components/content/molecules/megamenu/v1/megamenuversions/version3'}"
+		data-sly-use.template="core/wcm/components/commons/v1/templates.html"
+		data-sly-use.versionTemplate="${megaMenuStyle}/versiontemplate.html"
+		data-sly-call="${versionTemplate.navigation @ navigation=navigation}">
+
+
+</sly>
+
+<sly data-sly-test.authorable="${wcmmode.edit ? 'cmp-navigation p-4' : 'cmp-navigation'}"/>
+
+<sly data-sly-call="${template.placeholder @ isEmpty=true, classAppend=authorable}"></sly>
+

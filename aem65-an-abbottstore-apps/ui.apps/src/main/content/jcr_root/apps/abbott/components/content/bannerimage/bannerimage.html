@@ -1,0 +1,51 @@
+<sly data-sly-use.templates="core/wcm/components/commons/v1/templates.html"/>
+<sly data-sly-use.details="${'com.abbott.aem.an.abbottstore.models.BannerImage' @ variation=inheritedPageProperties.themeType}" />
+<sly data-sly-test.image="${details.deskTopImageRef || details.tabImageRef || details.mobileImageRef}" />
+<sly data-sly-test="${details.bannerType == 'as-banner-img'}">
+<div class="abbott-banner-image">
+    <sly data-sly-test="${details.imageLink}">
+	<sly data-sly-use.clientLib="${'/libs/granite/sightly/templates/clientlib.html'}"/>
+	<sly data-sly-call="${clientLib.js @ categories='abbott.bannerimage'}"/>
+        <a id="img-link" href="${details.imageLink}" target="${details.imgLinkTarget ? '_blank' : '_self'}">
+            <picture>
+                <source media="(min-width: 992px)" srcset="${details.deskTopImageRef}">
+                <source media="(min-width: 768px)" srcset="${details.tabImageRef}">
+                <source media="(max-width: 767px)" srcset="${details.mobileImageRef}">
+                <img src="${details.deskTopImageRef}" alt="${details.imgAltText}">
+            </picture>
+        </a>
+    </sly>
+
+    <sly data-sly-test="${!details.imageLink}">
+        <picture>
+            <source media="(min-width: 992px)" srcset="${details.deskTopImageRef}">
+            <source media="(min-width: 768px)" srcset="${details.tabImageRef}">
+            <source media="(max-width: 767px)" srcset="${details.mobileImageRef}">
+            <img src="${details.deskTopImageRef}" alt="${details.imgAltText}">
+        </picture>
+    </sly>
+</div>
+<div class="abbott-banner-mobile-promo d-md-none"> ${properties.mobileText @context = 'html'}</div>
+</sly>
+<sly data-sly-test.gsImage="${details.gsImageRef || details.gsTitle}" />
+<sly data-sly-test="${details.bannerType == 'gs-banner-img'}">
+    <div class="glucerna-banner">
+        <div class="glucerna-banner-image-wrapper">
+            <img class="glucerna-banner-image" src="${details.gsImageRef}" alt="${details.gsImgAltText}" />
+        </div>
+        <div class="glucerna-banner-info-wrapper">
+            <div class="glucerna-banner-info">
+                <div class="glucerna-title" style="color: ${details.gsTitleColor @context='styleToken'}">${details.gsTitleText1 @context='html'}</div>
+                <div class="glucerna-title" style="color: ${details.gsTitleColor @context='styleToken'}">${details.gsTitleText2  @context='html'}</div>
+                <div class="glucerna-subtitle">${details.gsText @context='html'}</div>
+                <a href="${details.buttonLink}" role="link" class="glucerna-banner-info-link">
+                    <span class="glucerna-btn-primary subscribe-loggedin d-none">${properties.loggedinButtonLabel}</span>
+                    <span class="glucerna-btn-primary subscribe-loggedout">${properties.annonymousButtonLabel}</span>
+                </a>
+                <div class="glucerna-footnote" style="color: ${details.gsNoteTextColor @context='styleToken'}">${details.gsNoteText}</div>
+            </div>
+        </div>
+    </div>
+</sly>
+
+<sly data-sly-call="${templates.placeholder @ isEmpty = !(image || gsImage)}"></sly>

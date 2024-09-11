@@ -1,0 +1,30 @@
+<sly data-sly-use.config="${'com.abbott.aem.an.similac.core.models.SimilacConfigModel'}" />
+<input type="hidden" id="store-base-url" value=${config.storeUrl} />
+<input type="hidden" id="store-name" value=${config.storeName} />
+<input type="hidden" id="aem-base-url" value=${config.storeDomain} />
+<input type="hidden" id="aem-default-image-url"	value=${config.defaultImage} />
+<input type="hidden" id="page-store-url" value=${config.pageStoreUrl} />
+<input type="hidden" id="popup-title" value=${properties.popupTitle} />
+<input type="hidden" id="popup-text" value=${properties.popupText} />
+<input type="hidden" id="confirm-button-label"	value=${properties.okButtonText} />
+<input type="hidden" id="cancel-button-lable"	value=${properties.cancelButtonText} />
+<input type="hidden" id="safe-list" value=${properties.safeList} />
+<div id="template" class="global-error">
+	<p>${inheritedPageProperties.cookieMsg @ context='html'}</p>
+	<svg viewBox="0 0 100 100" class="sim-icon">
+    	<use href="#icon-basic-01"></use>
+    </svg>
+</div>
+<noscript>
+	<div id="template">
+		${inheritedPageProperties.jsMsg @ context='html'}
+		<svg viewBox="0 0 100 100" class="sim-icon">
+        	<use href="#icon-basic-01"></use>
+        </svg>
+	</div>
+	<style>
+		#overlay {
+			display: none;
+		}
+	</style>
+</noscript>

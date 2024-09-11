@@ -1,0 +1,61 @@
+<!--/*
+* Copyright (c)   Abbott Laboratories
+* Program Name :  body-text-with-tag.html
+* Application  :  EPD EMail Templates Design
+* Purpose      :  See description
+* Description  :  This is body text w. optional tag Component which is used to display mail content.
+* Modification History:
+* ---------------------
+*    Date                                Modified by                                       Modification Description
+*-----------                            ----------------                                    -------------------------
+*  31-Oct-2020                  Cognizant Technology solutions                                 Initial Creation
+*-----------                           ----------------                                      -------------------------
+*/ -->
+
+<div data-sly-test="${wcmmode.edit || wcmmode.design}" class="cq-placeholder section" data-emptytext="Configure Body Text with Optional tag Component in EDIT Mode"></div>
+
+<sly data-sly-use.bodyTextWithTag="${'com.abbott.aem.epd.acare.core.models.components.BodyTextWithTag'}"></sly>
+
+	<!-- Hidden Email info fields - emailFrom and emailSubject -->
+	<input data-sly-test="${bodyTextWithTag.emailInfo.emailTo}" type="hidden" id="emailTo" name="emailTo" value="${bodyTextWithTag.emailInfo.emailTo}">
+	<input data-sly-test="${bodyTextWithTag.emailInfo.emailFrom}" type="hidden" id="emailFrom" name="emailFrom" value="${bodyTextWithTag.emailInfo.emailFrom}">
+	<input data-sly-test="${bodyTextWithTag.emailInfo.emailSubject}" type="hidden" id="emailSubject" name="emailSubject" value="${bodyTextWithTag.emailInfo.emailSubject}">
+	<input data-sly-test="${bodyTextWithTag.emailInfo.emailCC}" type="hidden" id="emailCC" name="emailCC" value="${bodyTextWithTag.emailInfo.emailCC}">
+	<input data-sly-test="${bodyTextWithTag.emailInfo.emailBCC}" type="hidden" id="emailBCC" name="emailBCC" value="${bodyTextWithTag.emailInfo.emailBCC}">
+<table border="0" style="background-color: #fff;" class="container table-spacing" aria-describedby="table" aria-hidden="true">
+    <tr>
+        <td style="padding-bottom: 60px;" class="container left-align">
+            <table border="0" class="inner-container table-spacing" aria-describedby="table" aria-hidden="true">
+                <tr>
+                    <td class="container left-align">
+                        <table border="0" class="container table-spacing" aria-describedby="table" aria-hidden="true">
+                            <tr>
+                                <td style="font-family: Georgia, Arial, sans-serif; font-size: 18px; line-height: 1.33; letter-spacing: 0.5px; text-align: left; color: #202c30; padding: 24px 95px 0 77px;" class="pad-lr-10 left-align">
+                                     ${bodyTextWithTag.text @ context='unsafe'}
+                                </td>
+                            </tr>
+
+                            <sly data-sly-test="${bodyTextWithTag.tag.tagLinkText}">                            	
+                                 <tr>
+                                    <td style="padding: 0 90px 0 76px;" class="pad-lr-10 left-align">
+                                        <table border="0" aria-describedby="table" aria-hidden="true">
+                                            <tr>
+                                                <td bgcolor="${bodyTextWithTag.tag.tagBGColor}" class="left-align" style="font-family: Georgia, Arial, sans-serif; font-size: 16px; font-weight: bold; font-style: normal; font-stretch: normal; line-height: 1.13; letter-spacing: 0.6px; text-align: left; color: ${(bodyTextWithTag.tag.textColor || '#009cde') @ context = 'styleToken'}; border: solid 1px #d9e5ea; border-radius: 24px; padding: 14px 5px;">                                                  
+                                                    <a data-sly-unwrap="${!bodyTextWithTag.tag.tagLink}" x-cq-linkchecker="skip" href="${bodyTextWithTag.tag.tagLink @ context = 'unsafe'}" target="_blank" style="text-decoration: none; font-family: Georgia, Arial, sans-serif; font-size: 16px; font-weight: bold; font-style: normal; font-stretch: normal; line-height: 1.13; letter-spacing: 0.6px; text-align: left; color: ${(bodyTextWithTag.tag.textColor || '#009cde') @ context = 'styleToken'}; display: block;">
+                                                        <span style="font-family: Georgia, Arial, sans-serif; font-size: 16px; font-weight: bold; font-style: normal; font-stretch: normal; line-height: 1.13; letter-spacing: 0.6px; text-align: left; color: ${(bodyTextWithTag.tag.textColor || '#009cde') @ context = 'styleToken'}; padding:10px;">
+                                                            ${bodyTextWithTag.tag.tagLinkText}&nbsp;<img data-sly-test="${bodyTextWithTag.tag.tagIcon}" src="${bodyTextWithTag.tag.tagIcon @ context = 'unsafe'}" alt="${bodyTextWithTag.tag.tagAltText || 'alt-text' }" style="display: inline-block; vertical-align: middle; padding-left: 10px; border: none;" />
+                                                        </span>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </sly>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>

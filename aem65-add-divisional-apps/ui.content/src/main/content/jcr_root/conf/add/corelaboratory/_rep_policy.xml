@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:crx="http://www.day.com/crx/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:rep="internal"
+    jcr:primaryType="rep:ACL">
+    <allow
+        jcr:primaryType="rep:GrantACE"
+        rep:principalName="add-corelaboratory-base"
+        rep:privileges="{Name}[jcr:read]"/>
+    <allow1
+        jcr:primaryType="rep:GrantACE"
+        rep:principalName="APP-Adobe-AEM-DM-ALL-add-corelaboratory-content-editor"
+        rep:privileges="{Name}[rep:alterProperties]">
+        <rep:restrictions
+            jcr:primaryType="rep:Restrictions"
+            rep:glob="/sling:configs/URLRedirect"/>
+    </allow1>
+    <allow2
+        jcr:primaryType="rep:GrantACE"
+        rep:principalName="APP-Adobe-AEM-DM-ALL-add-corelaboratory-content-editor"
+        rep:privileges="{Name}[jcr:modifyProperties,jcr:addChildNodes]">
+        <rep:restrictions
+            jcr:primaryType="rep:Restrictions"
+            rep:glob="/sling:configs/URLRedirect/jcr:content"/>
+    </allow2>
+    <allow3
+        jcr:primaryType="rep:GrantACE"
+        rep:principalName="APP-Adobe-AEM-DM-ALL-add-corelaboratory-content-editor"
+        rep:privileges="{Name}[rep:write]">
+        <rep:restrictions
+            jcr:primaryType="rep:Restrictions"
+            rep:glob="/sling:configs/URLRedirect/jcr:content/"/>
+    </allow3>
+    <allow4
+        jcr:primaryType="rep:GrantACE"
+        rep:principalName="APP-Adobe-AEM-DM-ALL-add-corelaboratory-admin-content-editor"
+        rep:privileges="{Name}[jcr:versionManagement,rep:write,crx:replicate,jcr:lockManagement]"/>
+</jcr:root>

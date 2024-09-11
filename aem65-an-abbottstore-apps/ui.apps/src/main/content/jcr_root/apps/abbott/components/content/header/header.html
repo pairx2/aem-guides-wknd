@@ -1,0 +1,25 @@
+
+<!--/* HEADER */-->
+<sly data-sly-use.configurationHelpTemplate="abbott/components/content/templates.html">
+    <sly data-sly-use.headerModel="${'com.abbott.aem.an.abbottstore.models.HeaderModel' @ headerResourcePath=currentPage.path}">
+	<sly data-sly-test = "${inheritedPageProperties.themeType}">
+        <sly data-sly-use.storeUrlModel="${'com.abbott.aem.an.abbottstore.models.UrlServiceModel' @themeType=inheritedPageProperties.themeType}"/>
+		<input type="hidden" id="store-base-url" value=${storeUrlModel.storeUrl} />
+		<input type="hidden" id="aem-base-url" value=${storeUrlModel.getAemServer} />
+		<input type="hidden" id="aem-default-image-url" value=${storeUrlModel.getUnavialableImagePath} />
+		 <input type="hidden" id="siteKey" value=${storeUrlModel.getSiteKey} />
+     </sly>
+        	<sly data-sly-use.variationTemplate="${headerModel.variationType}.html">
+     		<sly data-sly-test="${!headerModel.templatePage}"
+                	 data-sly-call="${variationTemplate.template @relativeResourcePath = headerModel.relativeHeaderPath}"/>
+           	 <sly data-sly-test="${headerModel.templatePage}">
+                	<sly data-sly-call="${configurationHelpTemplate.placeholder @isEmpty = 'true', classAppend = '', emptyTextAppend = 'Please configure Header Component on the locale page of the site.' }"/>
+					</sly>
+        	</sly>
+        </sly>
+    </sly> 
+</sly>  
+
+
+
+

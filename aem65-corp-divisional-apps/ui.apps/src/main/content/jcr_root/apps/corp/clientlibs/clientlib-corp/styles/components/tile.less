@@ -1,0 +1,668 @@
+/**********************************
+tile Component
+**********************************/
+// Style system for tile default stylings.
+.generic-tile {
+    @media @md-down {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        padding-left: 0;
+        padding-right: 0;
+        --tiles-border-radius: 0;
+    }
+
+    border-top: var(--tiles-corp-hero-panel-border-top);
+    box-shadow: var(--tiles-corp-hero-panel-box-shadow);
+
+    &.a-tile-square-corner {
+        &.a-tile {
+            @media @xl-up {
+                margin: 10px !important;
+            }
+            .a-tile__link {
+                border-radius: 0;
+                cursor: default;
+                @media @md-down {
+                    flex-direction: column;
+                    justify-content: flex-start;
+                    align-items: flex-start;
+                }
+                .a-tile__icon {
+                    @media @md-down {
+                        display: none;
+                    }
+                }
+                .a-tile__title {
+                    .a-tile__title-text {
+                        h4 {
+                            font-size: 20px;
+                            @media @md-down {
+                                font-size: 16px;
+                            }
+                        }
+                    }
+                }
+                .a-tile__para {
+                    @media @md-down {
+                        display: block;
+                    }
+                    p {
+                        font-size: 14px;
+                        @media @md-down {
+                            margin: 0;
+                        }
+                    }
+                }
+                &:hover {
+                    &::after {
+                        border-radius: 0;
+                    }
+                }
+            }
+        }
+    }
+
+    .a-tile__link {
+        background-color: var(--tiles-corp-hero-panel-bg-color);
+        min-height: var(--tiles-corp-hero-panel-min-height);
+        padding: var(--tiles-corp-hero-panel-padding);
+
+        &::after {
+            display: block;
+            border: none;
+            height: 0;
+        }
+
+        .a-tile__title * {
+            color: var(--tiles-corp-hero-panel-title-color);
+            font-family: var(--tiles-corp-hero-panel-title-font-family);
+            margin-bottom: 0;
+            text-transform: uppercase;
+            word-wrap: break-word;
+        }
+
+        .a-tile__para {
+            margin-top: 12px;
+        }
+
+        .a-tile__para * {
+            color: var(--tiles-corp-hero-panel-description-color);
+            line-height: 1rem;
+            font-family: var(--tiles-corp-hero-panel-description-font-family);
+            margin-top: 0;
+            word-wrap: break-word;
+        }
+
+        &:hover {
+            border: none;
+
+            .a-tile__title {
+                * {
+                    color: var(--tiles-corp-hero-panel-title-hover-color);
+                }
+            }
+
+            .a-tile__para {
+                * {
+                    color: var(--tiles-corp-hero-panel-description-hover-color);
+                }
+            }
+
+            &::after {
+                background-color: var(--tiles-corp-hero-panel-bg-hover-color);
+                border-top: none;
+                height: 100%;
+            }
+        }
+
+        // Styles for tile component in mobile view.
+        @media @md-down {
+            display: flex;
+            flex-direction: row-reverse;
+            height: auto !important;
+            justify-content: flex-end;
+            align-items: flex-end;
+            min-height: 3rem;
+            padding: 1rem;
+
+            // To remove description for tiles in mobile view
+            .a-tile__para {
+                display: none;
+            }
+
+            .a-tile__icon {
+                color: var(--tiles-corp-hero-panel-title-color);
+                top: unset;
+            }
+        }
+    }
+}
+
+.a-tile--corp-heronav-unique-styles {
+    --tiles-corp-hero-panel-title-color: @abbott-dark-gray;
+    --tiles-corp-hero-panel-description-color: @abbott-dark-gray;
+    --tiles-corp-hero-panel-description-hover-color: @white;
+    --tiles-corp-hero-panel-bg-hover-color: @abbott-gray;
+    --tiles-corp-hero-panel-min-height: 160px;
+    --tiles-corp-hero-panel-padding: 10%;
+}
+
+.a-tile {
+
+
+    // Style system to remove the top border, box shadow for tile and make background as blue.
+    &.a-tile--corp-blue-card {
+
+        .a-tile__link {
+
+            &::after {
+                display: none;
+            }
+
+            &:hover {
+                --tiles-corp-hero-panel-title-hover-color: @white;
+                --tiles-corp-hero-panel-description-hover-color: @white;
+                background-color: @abbott-dark-blue;
+                border: 1px solid @abbott-silver;
+            }
+        }
+
+        @media @md-down {
+            .a-tile__link {
+                display: block;
+                min-height: var(--tiles-corp-hero-panel-min-height);
+                padding: var(--tiles-corp-hero-panel-padding);
+
+                .a-tile__para {
+                    display: block;
+                }
+
+                .a-tile__icon {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    // Style system to achieve the styles for cards in  hero navigation - Green card.
+    &.a-tile--corp-heronav-green-card {
+        &:extend(.a-tile--corp-heronav-unique-styles);
+        --tiles-corp-hero-panel-title-hover-color: @abbott-green;
+        --tiles-corp-hero-panel-bg-color: @abbott-green;
+    }
+
+    // Style system to achieve the styles for cards in  hero navigation - Dark green card.
+    &.a-tile--corp-heronav-dark-green-card {
+        &:extend(.a-tile--corp-heronav-unique-styles);
+        --tiles-corp-hero-panel-title-hover-color: @abbott-dark-green;
+        --tiles-corp-hero-panel-bg-color: @abbott-dark-green;
+    }
+
+    // Style system to achieve the styles for cards in  hero navigation - Hover blue card.
+    &.a-tile--corp-heronav-hover-blue-card {
+        &:extend(.a-tile--corp-heronav-unique-styles);
+        --tiles-corp-hero-panel-title-hover-color: @abbott-button-hover-blue;
+        --tiles-corp-hero-panel-bg-color: @abbott-button-hover-blue;
+    }
+
+    // Style system to achieve the styles for cards in  hero navigation - Yellow card.
+    &.a-tile--corp-heronav-yellow-card {
+        &:extend(.a-tile--corp-heronav-unique-styles);
+        --tiles-corp-hero-panel-title-hover-color: @abbott-yellow;
+        --tiles-corp-hero-panel-bg-color: @abbott-yellow;
+    }
+
+    // Style system to achieve the styles for cards in  hero navigation - Dark yellow card.
+    &.a-tile--corp-heronav-dark-yellow-card {
+        &:extend(.a-tile--corp-heronav-unique-styles);
+        --tiles-corp-hero-panel-title-hover-color: @abbott-dark-yellow;
+        --tiles-corp-hero-panel-bg-color: @abbott-dark-yellow;
+    }
+
+    // Style system to achieve the styles for cards in  hero navigation - Fuscia card.
+    &.a-tile--corp-heronav-fuscia-card {
+        &:extend(.a-tile--corp-heronav-unique-styles);
+        --tiles-corp-hero-panel-title-hover-color: @abbott-fuscia;
+        --tiles-corp-hero-panel-bg-color: @abbott-fuscia;
+    }
+
+    // Style system to achieve the styles for cards in  hero navigation - Dark fuscia card.
+    &.a-tile--corp-heronav-dark-fuscia-card {
+        &:extend(.a-tile--corp-heronav-unique-styles);
+        --tiles-corp-hero-panel-title-hover-color: @abbott-dark-fuscia;
+        --tiles-corp-hero-panel-bg-color: @abbott-dark-fuscia;
+    }
+
+    // Style system to achieve the styles for cards in  hero navigation - Orange card.
+    &.a-tile--corp-heronav-orange-card {
+        &:extend(.a-tile--corp-heronav-unique-styles);
+        --tiles-corp-hero-panel-title-hover-color: @abbott-orange;
+        --tiles-corp-hero-panel-bg-color: @abbott-orange;
+    }
+
+    // Style system to achieve the styles for cards in  hero navigation - Dark orange card.
+    &.a-tile--corp-heronav-dark-orange-card {
+        &:extend(.a-tile--corp-heronav-unique-styles);
+        --tiles-corp-hero-panel-title-hover-color: @abbott-dark-orange;
+        --tiles-corp-hero-panel-bg-color: @abbott-dark-orange;
+    }
+
+    // Style system to achieve the styles for cards in  hero navigation - Cyan card.
+    &.a-tile--corp-heronav-cyan-card {
+        &:extend(.a-tile--corp-heronav-unique-styles);
+        --tiles-corp-hero-panel-title-hover-color: @abbott-cyan;
+        --tiles-corp-hero-panel-bg-color: @abbott-cyan;
+    }
+
+    // Style system to achieve the styles for cards in  hero navigation - Dark cyan card.
+    &.a-tile--corp-heronav-dark-cyan-card {
+        &:extend(.a-tile--corp-heronav-unique-styles);
+        --tiles-corp-hero-panel-title-hover-color: @abbott-dark-cyan;
+        --tiles-corp-hero-panel-bg-color: @abbott-dark-cyan;
+    }
+
+    // Style system to achieve the styles for cards in  hero navigation - Mint card.
+    &.a-tile--corp-heronav-mint-card {
+        &:extend(.a-tile--corp-heronav-unique-styles);
+        --tiles-corp-hero-panel-title-hover-color: @abbott-mint;
+        --tiles-corp-hero-panel-bg-color: @abbott-mint;
+    }
+
+    // Style system to achieve the styles for cards in  hero navigation - Medium blue card.
+    &.a-tile--corp-heronav-medium-blue-card {
+        --tiles-corp-hero-panel-bg-color: @abbott-medium-blue;
+        --tiles-corp-hero-panel-bg-hover-color: @abbott-light-gray;
+        --tiles-corp-hero-panel-description-color: @abbott-light-gray;
+        --tiles-corp-hero-panel-description-hover-color: @abbott-medium-blue;
+        --tiles-corp-hero-panel-min-height: 225px;
+        --tiles-corp-hero-panel-title-color: @abbott-light-gray;
+        --tiles-corp-hero-panel-title-hover-color: @abbott-medium-blue;
+        --tiles-corp-hero-panel-padding: 4rem 1.25rem 0 1.25rem
+    }
+
+    // Style system for tile full width
+    &.a-tile--full-width {
+        max-width: @full-width;
+
+        .a-tile__link {
+            width: @full-width;
+        }
+    }
+
+    // To remove default margin for tiles in a tile container
+    &.a-tile--corp-collapse-margin {
+        margin: 3px !important;
+        padding: 0;
+    }
+
+    /* Font variation for title of tile component - starts here */
+
+    &.a-tile-title--font-bold .a-tile__link .a-tile__title * {
+        .font--bold();
+    }
+
+    &.a-tile-title--font-medium .a-tile__link .a-tile__title * {
+        .font--medium();
+    }
+
+    &.a-tile-title--font-black .a-tile__link .a-tile__title * {
+        .font--black();
+    }
+
+    &.a-tile-title--font-regular .a-tile__link .a-tile__title * {
+        .font--regular();
+    }
+
+    &.a-tile-title--font-thin .a-tile__link .a-tile__title * {
+        .font--thin();
+    }
+
+    &.a-tile-title--font-italic .a-tile__link .a-tile__title * {
+        .font--italic();
+    }
+
+    /* Font variation for title of tile component - ends here */
+
+    /* Font variation for description of tile component - starts here */
+
+    &.a-tile-description--font-bold .a-tile__link .a-tile__para * {
+        .font--bold();
+    }
+
+    &.a-tile-description--font-medium .a-tile__link .a-tile__para * {
+        .font--medium();
+    }
+
+    &.a-tile-description--font-black .a-tile__link .a-tile__para * {
+        .font--black();
+    }
+
+    &.a-tile-description--font-regular .a-tile__link .a-tile__para * {
+        .font--regular();
+    }
+
+    &.a-tile-description--font-thin .a-tile__link .a-tile__para * {
+        .font--thin();
+    }
+
+    &.a-tile-description--font-italic .a-tile__link .a-tile__para * {
+        .font--italic();
+    }
+
+    /* Font variation for title of description component - ends here */
+
+    //font families for title of tile component
+    &.a-tile-title--font-arial {
+        --tiles-corp-hero-panel-title-font-family: @font-arial;
+    }
+
+    &.a-tile-title--font-brandon-grotesque-medium {
+        --tiles-corp-hero-panel-title-font-family: @font-brandon-grotesque-medium;
+    }
+
+    &.a-tile-title--font-brandon-grotesque-black {
+        --tiles-corp-hero-panel-title-font-family: @font-brandon-grotesque-black;
+    }
+
+    &.a-tile-title--font-brandon-grotesque-regular {
+        --tiles-corp-hero-panel-title-font-family: @font-brandon-grotesque-regular;
+    }
+
+    &.a-tile-title--font-brandon-grotesque-bold {
+        --tiles-corp-hero-panel-title-font-family: @font-brandon-grotesque-bold;
+    }
+
+    &.a-tile-title--font-georgia {
+        --tiles-corp-hero-panel-title-font-family: @font-georgia;
+    }
+
+    &.a-tile-title--font-meiryo {
+        --tiles-corp-hero-panel-title-font-family: @font-meiryo;
+    }
+
+    &.a-tile-title--font-segoe-ui {
+        --tiles-corp-hero-panel-title-font-family: @font-segoe-ui;
+    }
+
+    &.a-tile-title--font-times-new-roman {
+        --tiles-corp-hero-panel-title-font-family: @font-times-new-roman;
+    }
+
+    &.a-tile-title--font-extazy-black {
+        --tiles-corp-hero-panel-title-font-family: @font-extazy-black;
+    }
+
+    &.a-tile-title--font-extazy-bold {
+        --tiles-corp-hero-panel-title-font-family: @font-extazy-bold;
+    }
+
+    &.a-tile-title--font-extazy-light {
+        --tiles-corp-hero-panel-title-font-family: @font-extazy-light;
+    }
+
+    &.a-tile-title--font-extazy-regular {
+        --tiles-corp-hero-panel-title-font-family: @font-extazy-regular;
+    }
+
+    &.a-tile-title--font-noto-sans-thin {
+        --tiles-corp-hero-panel-title-font-family: @font-noto-sans-thin;
+    }
+
+    &.a-tile-title--font-noto-sans-light {
+        --tiles-corp-hero-panel-title-font-family: @font-noto-sans-light;
+    }
+
+    &.a-tile-title--font-noto-sans-regular {
+        --tiles-corp-hero-panel-title-font-family: @font-noto-sans-regular;
+    }
+
+    &.a-tile-title--font-noto-sans-medium {
+        --tiles-corp-hero-panel-title-font-family: @font-noto-sans-medium;
+    }
+
+    &.a-tile-title--font-noto-sans-bold {
+        --tiles-corp-hero-panel-title-font-family: @font-noto-sans-bold;
+    }
+
+    &.a-tile-title--font-noto-sans-black {
+        --tiles-corp-hero-panel-title-font-family: @font-noto-sans-black;
+    }
+
+    &.a-tile-title--font-microsoft-ya-hei {
+        --tiles-corp-hero-panel-title-font-family: @font-microsoft-ya-hei;
+    }
+
+    &.a-tile-title--font-calibri {
+        --tiles-corp-hero-panel-title-font-family: @font-calibri;
+    }
+
+    &.a-tile-title--font-sans-serif {
+        --tiles-corp-hero-panel-title-font-family: @font-sans-serif;
+    }
+
+    &.a-tile-title--font-noto-sans-kr {
+        --tiles-corp-hero-panel-title-font-family: @font-noto-sans-kr;
+    }
+
+    &.a-tile-title--font-mercury-text-g1-roman {
+        --tiles-corp-hero-panel-title-font-family: @font-mercury-text-g1-roman;
+    }
+
+    &.a-tile-title--font-Helvetica-neue {
+        --tiles-corp-hero-panel-title-font-family: @font-helvetica-neue;
+    }
+
+    &.a-tile-title--font-hiragino-mincho-pron {
+        --tiles-corp-hero-panel-title-font-family: @font-hiragino-mincho-pron;
+    }
+
+    &.a-tile-title--font-malgun-gothic-w35-regular {
+        --tiles-corp-hero-panel-title-font-family: @font-malgun-gothic-w35-regular;
+    }
+
+    &.a-tile-title--font-noto-sans-sc-regular {
+        --tiles-corp-hero-panel-title-font-family: @font-noto-sans-sc-regular;
+    }
+
+    &.a-tile-title--font-noto-sans-vi-regular {
+        --tiles-corp-hero-panel-title-font-family: @font-noto-sans-vi-regular;
+    }
+
+    &.a-tile-title--font-noto-serif-vi-regular {
+        --tiles-corp-hero-panel-title-font-family: @font-noto-serif-vi-regular;
+    }
+
+    &.a-tile-title--font-brandon-medium {
+        --tiles-corp-hero-panel-title-font-family: @font-brandon-medium;
+    }
+
+    &.a-tile-title--font-brandon-bold {
+        --tiles-corp-hero-panel-title-font-family: @font-brandon-bold;
+    }
+
+    &.a-tile-title--font-brandon-regular {
+        --tiles-corp-hero-panel-title-font-family: @font-brandon-regular;
+    }
+
+    //font families for description for tile component
+    &.a-tile-description--font-arial {
+        --tiles-corp-hero-panel-description-font-family: @font-arial;
+    }
+
+    &.a-tile-description--font-brandon-grotesque-medium {
+        --tiles-corp-hero-panel-description-font-family: @font-brandon-grotesque-medium;
+    }
+
+    &.a-tile-description--font-brandon-grotesque-black {
+        --tiles-corp-hero-panel-description-font-family: @font-brandon-grotesque-black;
+    }
+
+    &.a-tile-description--font-brandon-grotesque-regular {
+        --tiles-corp-hero-panel-description-font-family: @font-brandon-grotesque-regular;
+    }
+
+    &.a-tile-description--font-brandon-grotesque-bold {
+        --tiles-corp-hero-panel-description-font-family: @font-brandon-grotesque-bold;
+    }
+
+    &.a-tile-description--font-georgia {
+        --tiles-corp-hero-panel-description-font-family: @font-georgia;
+    }
+
+    &.a-tile-description--font-meiryo {
+        --tiles-corp-hero-panel-description-font-family: @font-meiryo;
+    }
+
+    &.a-tile-description--font-segoe-ui {
+        --tiles-corp-hero-panel-description-font-family: @font-segoe-ui;
+    }
+
+    &.a-tile-description--font-times-new-roman {
+        --tiles-corp-hero-panel-description-font-family: @font-times-new-roman;
+    }
+
+    &.a-tile-description--font-extazy-black {
+        --tiles-corp-hero-panel-description-font-family: @font-extazy-black;
+    }
+
+    &.a-tile-description--font-extazy-bold {
+        --tiles-corp-hero-panel-description-font-family: @font-extazy-bold;
+    }
+
+    &.a-tile-description--font-extazy-light {
+        --tiles-corp-hero-panel-description-font-family: @font-extazy-light;
+    }
+
+    &.a-tile-description--font-extazy-regular {
+        --tiles-corp-hero-panel-description-font-family: @font-extazy-regular;
+    }
+
+    &.a-tile-description--font-noto-sans-thin {
+        --tiles-corp-hero-panel-description-font-family: @font-noto-sans-thin;
+    }
+
+    &.a-tile-description--font-noto-sans-light {
+        --tiles-corp-hero-panel-description-font-family: @font-noto-sans-light;
+    }
+
+    &.a-tile-description--font-noto-sans-regular {
+        --tiles-corp-hero-panel-description-font-family: @font-noto-sans-regular;
+    }
+
+    &.a-tile-description--font-noto-sans-medium {
+        --tiles-corp-hero-panel-description-font-family: @font-noto-sans-medium;
+    }
+
+    &.a-tile-description--font-noto-sans-bold {
+        --tiles-corp-hero-panel-description-font-family: @font-noto-sans-bold;
+    }
+
+    &.a-tile-description--font-noto-sans-black {
+        --tiles-corp-hero-panel-description-font-family: @font-noto-sans-black;
+    }
+
+    &.a-tile-description--font-microsoft-ya-hei {
+        --tiles-corp-hero-panel-description-font-family: @font-microsoft-ya-hei;
+    }
+
+    &.a-tile-description--font-calibri {
+        --tiles-corp-hero-panel-description-font-family: @font-calibri;
+    }
+
+    &.a-tile-description--font-sans-serif {
+        --tiles-corp-hero-panel-description-font-family: @font-sans-serif;
+    }
+
+    &.a-tile-description--font-noto-sans-kr {
+        --tiles-corp-hero-panel-description-font-family: @font-noto-sans-kr;
+    }
+
+    &.a-tile-description--font-mercury-text-g1-roman {
+        --tiles-corp-hero-panel-description-font-family: @font-mercury-text-g1-roman;
+    }
+
+    &.a-tile-description--font-Helvetica-neue {
+        --tiles-corp-hero-panel-description-font-family: @font-helvetica-neue;
+    }
+
+    &.a-tile-description--font-hiragino-mincho-pron {
+        --tiles-corp-hero-panel-description-font-family: @font-hiragino-mincho-pron;
+    }
+
+    &.a-tile-description--font-malgun-gothic-w35-regular {
+        --tiles-corp-hero-panel-description-font-family: @font-malgun-gothic-w35-regular;
+    }
+
+    &.a-tile-description--font-noto-sans-sc-regular {
+        --tiles-corp-hero-panel-description-font-family: @font-noto-sans-sc-regular;
+    }
+
+    &.a-tile-description--font-noto-sans-vi-regular {
+        --tiles-corp-hero-panel-description-font-family: @font-noto-sans-vi-regular;
+    }
+
+    &.a-tile-description--font-noto-serif-vi-regular {
+        --tiles-corp-hero-panel-description-font-family: @font-noto-serif-vi-regular;
+    }
+
+    &.a-tile-description--font-brandon-medium {
+        --tiles-corp-hero-panel-description-font-family: @font-brandon-medium;
+    }
+
+    &.a-tile-description--font-brandon-bold {
+        --tiles-corp-hero-panel-description-font-family: @font-brandon-bold;
+    }
+
+    &.a-tile-description--font-brandon-regular {
+        --tiles-corp-hero-panel-description-font-family: @font-brandon-regular;
+    }
+
+    &.a-tile--mob-left-right-padding-10 {
+        @media @md-down {
+            padding: 0 10px;
+        }
+    }
+
+    /* Stock information styling -- starts here */
+    .stock-Info {
+        border: 1px solid var(--tiles-corp-hero-panel-description-color);
+        padding: 10px 10px 0 10px;
+        font-family: @font-brandon-grotesque-bold;
+
+        .down-arrow {
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: 6px solid var(--tiles-corp-hero-panel-description-color);
+            display: inline-block;
+            vertical-align: middle;
+            padding-top: 5px;
+        }
+
+        .up-arrow {
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-bottom: 6px solid var(--tiles-corp-hero-panel-description-color);
+            display: inline-block;
+            vertical-align: top;
+            padding-top: 4px;
+        }
+
+    }
+
+    .a-tile__link:hover {
+
+        .stock-Info {
+            border: 1px solid var(--tiles-corp-hero-panel-description-hover-color);
+
+            .up-arrow {
+                border-bottom-color: var(--tiles-corp-hero-panel-description-hover-color);
+            }
+
+            .down-arrow {
+                border-top-color: var(--tiles-corp-hero-panel-description-hover-color)
+            }
+        }
+    }
+
+    /* Stock information styling -- ends here */
+}

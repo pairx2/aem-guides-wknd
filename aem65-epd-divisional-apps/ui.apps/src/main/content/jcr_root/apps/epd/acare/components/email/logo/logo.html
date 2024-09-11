@@ -1,0 +1,17 @@
+<sly data-sly-set.asset_domain="${inheritedPageProperties.assetDomain}" />
+
+<div data-sly-test="${wcmmode.edit}" class="cq-placeholder" data-emptyText="Logo - EMail Template"></div>
+<sly data-sly-use.logo="com.abbott.aem.platform.common.components.models.Logo">
+	<div class="a-logo-comp ${wcmmode.edit ? 'logo-comp-edit' : ''}">
+		<sly data-sly-test.link="${logo.link!=null}" data-sly-test.file="${logo.fileReference!=null}"></sly>
+        <sly data-sly-set.logoImg = "${'{0}{1}' @ format=[asset_domain, logo.fileReference]}"/>
+        <sly data-sly-set.stickyLogoImg = "${'{0}{1}' @ format=[asset_domain, logo.stickyLogoImage]}"/>
+
+		<img data-sly-test="${!link && (logo.fileReference!=null)}" class="a-logo-comp--image img-fluid" src="${(wcmmode.disabled ? logoImg : logo.fileReference) @ context = 'unsafe'}" alt="${logo.logoAltText || 'Logo Image'}" />
+		<sly data-sly-use.externalizerObj="${'com.abbott.aem.epd.acare.core.models.ExternalUrlModel' @path = logo.link}" data-sly-test.externalizedLink="${externalizerObj.absoluteUrl}" />			
+			<a data-sly-unwrap="${!link}" class="a-logo-comp--link ${logo.external ? 'ext_link' : ''}" href="${externalizedLink}" target="${logo.action}" data-toggle="${logo.external ? 'modal' : ''}" data-target="#${logo.external ? logo.id : ''}">
+				<img data-sly-test="${file}" class="a-logo-comp--image img-fluid" src="${(wcmmode.disabled ? logoImg : logo.fileReference) @ context = 'unsafe'}" alt="${logo.logoAltText || 'Abbott Header Logo'}" />
+				<img data-sly-test="${logo.stickyLogoImage!=null}" class="a-logo-comp--image img-fluid sticky-logo" src="${(wcmmode.disabled ? stickyLogoImg : logo.stickyLogoImage) @ context = 'unsafe'}" alt="${logo.logoAltText || 'Abbott Header Sticky Logo'}" />
+			</a>
+	</div>
+</sly>

@@ -1,0 +1,174 @@
+<sly data-sly-test="${wcmmode.edit}"> Edit Navigation Menu v2 Component here ... </sly>
+<sly data-sly-use.navModal="com.abbott.aem.adc.freestylelibrede.models.NavigationMenuV2Model"></sly>
+
+<div class="container d-none d-md-block">
+   <nav class="navbar navbar-expand-lg navbar-light" style="padding-left: 3px; padding-right: 0px; margin-right: -1rem;">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+         <ul class="navbar-nav v2-Navbar-hover mr-auto" style="    display: flex !important;
+         flex-direction: row;
+         align-items: center;
+         padding: 0px;">
+            <li data-sly-repeat.navList="${navModal.menuItems}" class="nav-item active">
+               <a onclick="${navList.navItemLinkEvent @context='html'}" class="nav-link dropdown-toggle nav-link-style-fiest-level" href="#" role="button"
+                  data-toggle="dropdown" aria-expanded="false">
+                  ${navList.title}
+                  <span class="new-nav-item-icon-up-black"><i class="adc-icon adc-icon--sm adc-icon--arrowLeftMobile "
+                        aria-hidden="true"></i></span>
+                  <span class="new-nav-item-icon-down-black"><i
+                        class="adc-icon adc-icon--sm adc-icon--arrowRightMobile " aria-hidden="true"></i></span>
+               </a>
+               <div class="dropdown-menu sub-menu-dropdown-style shadow">
+                  <div class="container" data-sly-list.subMenuListItem="${navList.subMenuItems}">
+                     <div class="submenu-row-style">
+                        <div class="col-lg-6 card-bg-grey-hover">
+                           <a class="submenu-a-link" href="${subMenuListItem.link}"
+                              target="${subMenuListItem.linkAction}"
+                              onclick="${subMenuListItem.subNavItemLinkEvent @context='html'}" title="${subMenuListItem.title}">
+                              <div class='d-flex align-items-center'>
+                                 <sly data-sly-test="${subMenuListItem.iconPath}"><img class="submenu-icon-size mr-3"
+                                     alt="${subMenuListItem.title}"  src='${subMenuListItem.iconPath}'> </sly>
+
+                                 <div >
+                                    <div class="submenu-title"> ${subMenuListItem.title} </div>
+                                    <div class="submenu-desc"> ${subMenuListItem.description} </div>
+                                 </div>
+                              </div>
+                           </a>
+                        </div>
+                     </div>
+                     <sly data-sly-test="${subMenuListItemList.even && !subMenuListItemList.last}">
+                        <hr class="submenuline">
+                     </sly>
+                  </div>
+               </div>
+            </li>
+         </ul>
+         <div class="nav-inner-container v2-button-margins">
+            <div data-sly-list.buttonList="${navModal.menuButtons}">
+               <button class="adc-button-${buttonList.type}" style="letter-spacing: inherit">
+                  <a href="${buttonList.link}" target="${buttonList.action}" onclick="${buttonList.navBtnEvent @context='html'}" title="${buttonList.text}">
+                     ${buttonList.text}
+                  </a>
+               </button>
+            </div>
+         </div>
+      </div>
+   </nav>
+</div>
+<div id="mySidenavmain" class="master-nav">
+   <div id="mySidenav" class="sidenav left-side ">
+
+      <div class="btn-box-panel">
+         <div class="closebtn-box">
+            <em class="closebtn-box-logo"></em>
+            <div class="closebtn closebtn-box-font" onclick="closeNav()">${navModal.closeIconText}</div>
+         </div>
+
+         <div class="closebtn-box-buttons">
+            <div data-sly-list.buttonList="${navModal.menuButtons}" style="display: flex !important; flex-direction:column !important; width:100% !important">
+               <a href="${buttonList.link}" onclick="${buttonList.navBtnEvent @context='html'}" target="${buttonList.action}"
+                  class="adc-button adc-button-${buttonList.type} text-center mb-3 mt-lg-0 ">${buttonList.text}</a>
+
+            </div>
+         </div>
+      </div>
+
+      <div class="wrapper wrapper-box center-block">
+
+         <div class="panel-group wrapper-panel" id="accordion" >
+            <div class="panel panel-default heading-box-panel" role="tablist" aria-multiselectable="true" style="display: flex !important; flex-direction:column !important">
+               <div class="adc-list panel-heading active" role="tab" id="headingOne" style="margin-bottom: 0.5rem !important;">
+                  <p class="panel-title">
+                     <a href="${navModal.homepagePath}">
+                        <span class="my-2 heading-text" style="letter-spacing:0px !important">${navModal.homepagePathLabel}</span>
+                     </a>
+                  </p>
+               </div>
+               <div class="panel-border"></div>
+               <div data-sly-repeat.navList="${navModal.menuItems}" role="tab" class="panel panel-default heading-box-panel">
+                  <div class="adc-list-v2 panel-heading active"  id="headingOne">
+                     <p class="panel-title mb-3 mt-2">
+                        <a role="button" onclick="${navList.navItemLinkEvent @context='html'}" data-toggle="collapse" data-parent="#accordion" href="#${navList.menuItemId}"
+                           aria-expanded="true" aria-controls="collapseOne" style="display: flex; justify-content: space-between">
+                           <span class="my-2 heading-text">${navList.title}</span>
+                           <em class="cordin_icon"></em>
+                        </a>
+                     </p>
+                  </div>
+                  <div id="${navList.menuItemId}" class="panel-collapse collapse in" role="tabpanel"
+                     aria-labelledby="${navList.menuItemId}">
+                     <div class="panel-body">
+                        <div class="container" data-sly-list.subMenuListItem="${navList.subMenuItems}">
+                           <div class="">
+                              <div class="v2-rendition">
+                                 <a class="md-ancor-tag" href="${subMenuListItem.link}"
+                                    target="${subMenuListItem.linkAction}"
+                                    onclick="${subMenuListItem.subNavItemLinkEvent @context='html'}">
+                                    <div>
+                                       <div>
+                                          <div class="md-subheading-style"> ${subMenuListItem.title} </div>
+                                          <div class="md-subcontent-style"> ${subMenuListItem.description} </div>
+                                       </div>
+                                    </div>
+                                 </a>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="panel-border"></div>
+               </div>
+            </div>
+            <div class="search-box-main">
+               <a href="#adcde-noscroll" data-toggle="modal" data-target="#search-overlay-modal" class="new-text-header mobile-search-box-alignment">
+                  <input type="text" placeholder=" Suchbegriff eingeben..." class="search-box-mbl" style="padding-left: 20px;">
+                  <a class="search-icon-box">
+                     <span class="search-icon-blue" ><em class="search-icon-blue-logo"></em></span>
+                  </a>
+               </a>
+            </div>
+         </div>
+         <div class="panel-border"></div>
+      </div>
+
+      <a href="#adcde-noscroll" data-toggle="modal" data-target="#search-overlay-modal" class="new-text-header">
+         <div style="width: 272px; height: 54px; display: flex;">
+             <input type="text" placeholder="Suchbegriff eingeben..." class="search-box-mbl" />
+             <div class="search-icon-box"></div>
+         </div>
+     </a>
+
+   </div>
+</div>
+
+
+<script>
+   function openNav() {
+      document.getElementById("mySidenav").style.width = "320px";
+     document.getElementById("mySidenavmain").style.width= "100%";
+     document.getElementsByTagName("body")[0].style.overflow="hidden";
+   }
+
+   function closeNav() {
+      document.getElementById("mySidenav").style.width = "0";
+     document.getElementById("mySidenavmain").style.width= "0%";
+     document.getElementsByTagName("body")[0].style.overflow="auto";
+   }
+   window.addEventListener('mousedown', function (event) {
+      var dropd = document.getElementById('mySidenav');
+      var img = document.getElementById('v2-flyout');
+
+      if (event.target === img && dropd.style.width === "0") {
+         dropd.style.width = "320px";
+         document.getElementById("mySidenavmain").style.width= "0%"
+         document.getElementsByTagName("body")[0].style.overflow="auto";
+      } else if (event.target != dropd && event.target.closest('#mySidenav') != dropd) {
+         dropd.style.width = '0';
+         document.getElementById("mySidenavmain").style.width= "0%"
+         document.getElementsByTagName("body")[0].style.overflow="auto";
+      }
+
+   });
+
+  
+</script>   

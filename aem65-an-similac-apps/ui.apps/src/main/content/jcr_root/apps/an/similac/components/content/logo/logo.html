@@ -1,0 +1,21 @@
+<sly data-sly-use.templates="an/similac/components/content/templates.html" />
+
+<sly data-sly-test.eventCategory="${properties.eventCategory ? properties.eventCategory : 'internal-link'}"/>
+<sly data-sly-test.eventAction="${properties.eventAction ? properties.eventAction : 'click'}" />
+<sly data-sly-test.eventLabel="${properties.eventLabel ?  properties.eventLabel : 'similac-logo'}" />
+<sly data-sly-test.gtmValue="${'{0}{1}{2}{3}{4}' @ format=[eventCategory, '|',eventAction,'|',eventLabel]}" />
+
+
+<sly data-sly-use.logo="${'com.abbott.aem.an.similac.core.models.LogoModel'}" />
+<sly data-sly-test.logoImage="${logo.logoImage}">
+<sly data-sly-test.altText="${logo.altText}">
+    <sly data-sly-test.link="${logo.redirectionLink @context='uri'}">
+		<a href="${logo.redirectionLink}" target="${details.redirectionTarget?'_blank':'_self'}" data-gtm ="${gtmValue @context='attribute'}">
+            <img class="header-logo" src="${logoImage}" alt="${altText || true}" data-sly-test="${logoImage}">
+        </a>
+    </sly>
+    <sly data-sly-test.link="${!logo.redirectionLink}">
+        <img class="header-logo" src="${logoImage}" alt="${altText || true}" data-sly-test="${logoImage}">
+    </sly>
+</sly>
+<sly data-sly-call="${templates.placeholder @ isEmpty= !logoImage}"></sly>

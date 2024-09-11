@@ -1,0 +1,21 @@
+
+<div class="cq-placeholder section"  
+   data-emptytext="Configure Subscribe Component in EDIT Mode" data-sly-test.author="${(wcmmode.edit || wcmmode.design)}"></div>
+<sly data-sly-use.linkHelper="${'com.abbott.aem.an.similac.core.models.LinkHelperModel' @ href=properties.ctaLink}" />
+<sly data-sly-test.eventCategory="${properties.eventCategory ? properties.eventCategory : 'sign-up'}"/>
+<sly data-sly-test.eventAction="${properties.eventAction ? properties.eventAction : 'click'}" />
+<sly data-sly-test.eventLabelVal="${'{0}{1}{2}{3}{4}' @ format=['join-similac-strongmoms','_','subscribe']}" />
+<sly data-sly-test.eventLabel="${properties.eventLabel ?  properties.eventLabel : eventLabelVal}" />
+<sly data-sly-test.gtmValue="${'{0}{1}{2}{3}{4}' @ format=[eventCategory, '|',eventAction,'|',eventLabel]}" />
+<section class="ribbon py-3" data-login="false">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-md-8 col-lg-10 align-self-center mb-3 mb-md-0">
+				<p class="m-0 ribbon-text">${properties.subscribeText @context='html'} </p>
+			</div>
+			<div class="col-12 col-md-4 col-lg-2 d-flex justify-content-center align-self-center">
+				<a href="${linkHelper.linkHref}" target="${properties.ctaTarget ? '_blank' : '_self'}" data-gtm="${gtmValue @context='attribute'}" class="btn btn-primary ">${properties.ctaLabel}</a>
+			</div>
+		</div>
+	</div>
+</section>

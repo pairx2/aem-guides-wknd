@@ -1,0 +1,26 @@
+<div data-sly-test="${wcmmode.edit}" class="cq-placeholder" data-emptytext="Column Control"></div>
+
+<!--/* Column Layout Component Start */-->
+<sly data-sly-use.colCtrl="com.abbott.aem.platform.common.components.models.ColumnControl">
+    <sly data-sly-use.component="com.adobe.cq.wcm.core.components.models.Component"
+         data-sly-use.customConfig="com.abbott.aem.platform.common.components.models.CustomConfig">
+        <div id="${component.id}" class="${properties.containerDivRequired ? '' : 'container'} ${customConfig.className}">
+            <div class="row" data-sly-list="${colCtrl.columnLayout}">
+                <sly data-sly-set.Col="${ '{0}{1}' @format=['tab_item_no_', itemList.index] }"></sly>
+                <div class="col-3 col-md-3 col-lg-1 columncontrol__column ${properties.columnDivider ? 'column-divider' : ''}"
+                     data-sly-test="${colCtrl.columnLayout.size > 1 && item == '1'}"
+                     data-sly-resource="${@path=Col, resourceType='wcm/foundation/components/parsys'}"></div>
+                <div class="col-12 col-md-6 col-lg-${item} columncontrol__column ${properties.columnDivider ? 'column-divider' : ''}"
+                     data-sly-test="${colCtrl.columnLayout.size > 3 && !(item == '1')}"
+                     data-sly-resource="${@path=Col, resourceType='wcm/foundation/components/parsys'}"></div>
+                <div class="col-12 col-md-${item} col-lg-${item} columncontrol__column ${properties.columnDivider ? 'column-divider' : ''}"
+                     data-sly-test="${(colCtrl.columnLayout.size == 3 || colCtrl.columnLayout.size == 2) && !(item == '1')}"
+                     data-sly-resource="${@path=Col, resourceType='wcm/foundation/components/parsys'}"></div>
+                <div class="col-12 col-md-12 col-lg-12 columncontrol__column ${properties.columnDivider ? 'column-divider' : ''}"
+                     data-sly-test="${colCtrl.columnLayout.size == 1 && item == '1'}"
+                     data-sly-resource="${@path=Col, resourceType='wcm/foundation/components/parsys'}"></div>
+            </div>
+        </div>
+    </sly>
+</sly>
+<!--/* Column Layout Component Ends */-->

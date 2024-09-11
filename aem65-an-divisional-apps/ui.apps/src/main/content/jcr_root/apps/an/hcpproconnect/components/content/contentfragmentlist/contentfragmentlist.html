@@ -1,0 +1,16 @@
+
+<sly data-sly-use.list="com.adobe.cq.wcm.core.components.models.contentfragment.ContentFragmentList"
+     data-sly-use.component="com.adobe.cq.wcm.core.components.models.Component"
+	 data-sly-use.customModel="com.abbott.aem.an.division.core.models.CustomContentFragmentModel"
+
+     data-sly-test="${list.listItems.size>0}" data-sly-use.fragmentTemplate="core/wcm/components/contentfragment/v1/contentfragment/templates.html">
+    <section data-sly-list.fragment="${list.listItems}"
+             id="${component.id}"
+			 searchApiEndPoint = ${customModel.searchApiEndPoint}
+             class="cmp-contentfragmentlist">
+        <sly data-sly-call="${fragmentTemplate.contentFragment @ fragment=fragment, wcmmode=wcmmode}"></sly>
+    </section>
+</sly>
+
+<sly data-sly-use.template="core/wcm/components/commons/v1/templates.html"
+     data-sly-call="${template.placeholder @ isEmpty=list.listItems.size == 0, classAppend='cq-dd-contentfragmentlist'}"></sly>

@@ -1,0 +1,51 @@
+<template data-sly-template.resultItem="${@poiSearchResults='POI Locator Result item'}">
+    <li class="m-poi-locator-results__list-item" data-locator-id="{id}">
+        <div class="m-poi-locator-results__list-item-number">{listNumber}</div>
+        <div class="m-poi-locator-results__list-item-detail">
+            <h3 class="m-poi-locator-results__list-item-detail--store-name">{name}</h3>
+
+            <sly data-sly-test="${poiSearchResults.distanceLabelText}">
+                <p class="m-poi-locator-results__list-item-detail--store-miles">{distance}
+                    ${poiSearchResults.distanceLabelText}</p>
+            </sly>
+            <sly data-sly-test="${poiSearchResults.addressLabelText}">
+                <div class="m-poi-locator-results__list-item-detail__label">
+                    ${poiSearchResults.addressLabelText}</div>
+            </sly>
+            <div class="m-poi-locator-results__list-item-detail--store-address">{addressOne} {addressTwo}</div>
+            <div class="m-poi-locator-results__list-item-detail--store-contact-details">
+                <sly data-sly-test="${poiSearchResults.telephoneLabelText}">
+                    <div class="m-poi-locator-results__list-item-detail__label mr-1">
+                        ${poiSearchResults.telephoneLabelText}</div>
+                </sly>
+                <div class="m-poi-locator-results__list-item-detail--store-contact">
+                    <a href="tel:{phone}" role="link">{phone}</a>
+                </div>
+            </div>
+            <sly data-sly-list.poiResult="${poiSearchResults.poiLocatorResultList}">
+                <div
+                    class="m-poi-locator-results__list-item-detail--store-${poiResult.resultKey} additional-fields">
+                    <div
+                        class="m-poi-locator-results__list-item-detail__label d-inline-block mr-1">
+                        ${poiResult.resultLabel}:</div>
+                    <div class="m-poi-locator-results__list-item-detail__name d-inline-block">
+                        {${poiResult.resultKey}}</div>
+                </div>
+            </sly>
+            <sly data-sly-test="${poiSearchResults.websiteUrlLabelText}">
+                <div class="m-poi-locator-results__list-item-detail--visit-website a-link a-link--icon-left mb-3">
+                    <a data-href="{website}" target="_blank" class="a-link__text" role="link"><i
+                            class="${poiSearchResults.getWebsiteIcon}" aria-hidden="true">
+                        </i><span>${poiSearchResults.websiteUrlLabelText}</span></a>
+                </div>
+            </sly>
+            <sly data-sly-test="${poiSearchResults.getDirectionsLinkLabelText}">
+                <div class="m-poi-locator-results__list-item-detail--get-direction a-link a-link--icon-left">
+                    <a href="https://www.google.com/maps/dir/?api=1&origin={Origlatitude},{Origlongitude}&destination={latitude},{longitude}"
+                        target="_blank" class="a-link__text"><i class="${poiSearchResults.getDirectionIcon}"
+                            aria-hidden="true"> </i>${poiSearchResults.getDirectionsLinkLabelText}</a>
+                </div>
+            </sly>
+        </div>
+    </li>
+</template>

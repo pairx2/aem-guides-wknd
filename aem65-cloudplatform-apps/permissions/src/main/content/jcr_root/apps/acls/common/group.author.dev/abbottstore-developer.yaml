@@ -1,0 +1,130 @@
+- DEF groupPrefix="APP-Adobe-AEM-DM-ALL"
+- DEF environmentType=$[env:AB_ACL_ENVIRONMENT_TYPE;default=PRD]
+- DEF lowerEnvList=:
+     - DEV
+     - QA
+
+- group_config:
+    
+    - ${groupPrefix}-an-abbottstore-developer:
+       - name: AN Abbott Store Developer
+         isMemberOf: base-developer,base-commerce-developer
+         externalId: "${groupPrefix}-an-abbottstore-developer;ims"
+
+    - ${groupPrefix}-an-similacstore-developer:
+       - name: AN Similac Store Developer
+         isMemberOf: base-developer,base-commerce-developer
+         externalId: "${groupPrefix}-an-similacstore-developer;ims"
+
+    - ${groupPrefix}-an-glucernastore-developer:
+       - name: AN Glucerna Store Developer
+         isMemberOf: base-developer,base-commerce-developer
+         externalId: "${groupPrefix}-an-glucernastore-developer;ims"
+
+
+- ace_config:
+    
+       - ${groupPrefix}-an-abbottstore-developer:
+       
+          - IF ${containsItem(lowerEnvList, environmentType)}:
+             - path: /content/cq:tags/abbott
+               permission: allow
+               actions: modify,create,delete,replicate
+          
+             - path: /apps/abbott
+               permission: allow
+               actions: modify,create,delete,replicate
+         
+             - path: /conf/abbott
+               permission: allow
+               actions: modify,create,delete,replicate
+              
+             - path: /content/abbott
+               permission: allow
+               actions: modify,create,delete,replicate
+         
+             - path: /content/dam/abbott
+               permission: allow
+               actions: modify,create,delete,replicate
+
+             - path: /content/experience-fragments/abbott
+               permission: allow
+               actions: modify,create,delete,replicate
+              
+             - path: /etc/packages/abbott
+               permission: allow
+               actions: modify,create,delete,replicate
+                
+             - path: /var/workflow/models/abbott
+               permission: allow
+               actions: modify,create,delete
+            
+        
+       - ${groupPrefix}-an-similacstore-developer:
+          - IF ${containsItem(lowerEnvList, environmentType)}:
+              - path: /content/cq:tags/abbott
+                permission: allow
+                actions: modify,create,delete,replicate
+              
+              - path: /apps/abbott
+                permission: allow
+                actions: modify,create,delete,replicate
+             
+              - path: /conf/abbott
+                permission: allow
+                actions: modify,create,delete,replicate
+                  
+              - path: /content/similac
+                permission: allow
+                actions: modify,create,delete,replicate
+             
+              - path: /content/dam/abbott
+                permission: allow
+                actions: modify,create,delete,replicate
+
+              - path: /content/experience-fragments/abbott
+                permission: allow
+                actions: modify,create,delete,replicate
+                  
+              - path: /etc/packages/similac
+                permission: allow
+                actions: modify,create,delete,replicate
+                    
+              - path: /var/workflow/models/abbott
+                permission: allow
+                actions: modify,create,delete
+            
+       - ${groupPrefix}-an-glucernastore-developer:
+          - IF ${containsItem(lowerEnvList, environmentType)}:
+              - path: /content/cq:tags/abbott
+                permission: allow
+                actions: modify,create,delete,replicate
+              
+              - path: /apps/abbott
+                permission: allow
+                actions: modify,create,delete,replicate
+             
+              - path: /conf/abbott
+                permission: allow
+                actions: modify,create,delete,replicate
+                  
+              - path: /content/glucerna
+                permission: allow
+                actions: modify,create,delete,replicate
+             
+              - path: /content/dam/abbott
+                permission: allow
+                actions: modify,create,delete,replicate
+
+              - path: /content/experience-fragments/abbott
+                permission: allow
+                actions: modify,create,delete,replicate
+                  
+              - path: /etc/packages/glucerna
+                permission: allow
+                actions: modify,create,delete,replicate
+                    
+              - path: /var/workflow/models/glucerna
+                permission: allow
+                actions: modify,create,delete 
+ 

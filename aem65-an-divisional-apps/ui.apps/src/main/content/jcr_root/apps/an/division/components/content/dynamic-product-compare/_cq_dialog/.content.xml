@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Dynamic Product Compare"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <product-source
+                granite:class="cq-dialog-dropdown-showhide"
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                fieldDescription="Please select where the source of the data should come from to compare."
+                fieldLabel="Product Source"
+                name="./dataSource"
+                required="{Boolean}true">
+                <granite:data
+                    jcr:primaryType="nt:unstructured"
+                    cq-dialog-dropdown-showhide-target=".product-source-showhide-target"/>
+                <items jcr:primaryType="nt:unstructured">
+                    <pimapi
+                        jcr:primaryType="nt:unstructured"
+                        text="PIM API"
+                        value="pimapi"/>
+                </items>
+            </product-source>
+            <pimapi-option
+                granite:class="hide product-source-showhide-target"
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/container">
+                <granite:data
+                    jcr:primaryType="nt:unstructured"
+                    showhidetargetvalue="pimapi"/>
+                <items jcr:primaryType="nt:unstructured">
+                    <well
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/well">
+                        <items jcr:primaryType="nt:unstructured">
+                            <product-id-session-storage-source
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                fieldDescription="Please select the name of the sessionStorage object that has the items to compare"
+                                fieldLabel="Product ID Session Storage Source"
+                                name="./sessionStorageLoc">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <an-product-comparison
+                                        jcr:primaryType="nt:unstructured"
+                                        text="AbbottNutrition Product Comparison"
+                                        value="abbottnutrition-product-comparison"/>
+                                </items>
+                            </product-id-session-storage-source>
+                        </items>
+                    </well>
+                </items>
+            </pimapi-option>
+            <results-layout
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                fieldDescription="Please select the item layout template."
+                fieldLabel="Results Layout "
+                name="./resultsLayout"
+                required="{Boolean}true">
+                <items jcr:primaryType="nt:unstructured">
+                    <abbottnutrition
+                        jcr:primaryType="nt:unstructured"
+                        text="AbbottNutrition"
+                        value="abbottnutrition-result-layout"/>
+                </items>
+            </results-layout>
+            <mincomparison
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                fieldDescription="Please select which minimum of items to compare."
+                fieldLabel="Minimum Comparison"
+                max="4"
+                min="2"
+                name="./minComparision"/>
+            <maxcomparison
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                fieldDescription="Please select which maximum of items to compare."
+                fieldLabel="Maximum Comparison"
+                max="4"
+                min="2"
+                name="./maxComparision"/>
+            <imageremoveicon
+                granite:class="abbott-icon-picker"
+                jcr:primaryType="nt:unstructured"
+                sling:resourceSuperType="abbott-platform/components/core/iconpicker/v1/iconpicker/cq:dialog/content/items/icon"
+                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                fieldDescription="Please select image that should be used for removing the item and image selected"
+                fieldLabel="Image Remove Icon"
+                name="./imgRemoveIcon"/>
+            <buttonlabel
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                fieldDescription="Please enter button label."
+                fieldLabel="Button Label"
+                name="./buttonLabel"/>
+        </items>
+    </content>
+</jcr:root>

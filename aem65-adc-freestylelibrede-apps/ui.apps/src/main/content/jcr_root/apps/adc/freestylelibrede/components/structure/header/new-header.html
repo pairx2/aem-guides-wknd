@@ -1,0 +1,114 @@
+
+
+ <header style="
+max-width: 1440px;
+width: 100%;
+">
+  <!-- header top -->
+
+
+  <sly data-sly-use.header="com.abbott.aem.adc.freestylelibrede.models.HeaderModel" />
+  <div id="headerTop" class=" bg-white v2-rendition stick-head-top box-shade-v2">
+    <div class="container header-top-container">
+      <div class="row header-top align-items-center justify-content-between">
+
+        <!-- Mobile View SubMenu Button D1 -->
+        <div class="sub-menu-button text-md-center text-lg-left d-lg-none d-block">
+          <ul class="list-inline m-0" style="justify-content: normal;">
+            <sly data-sly-list="${header.linksHeader}">
+              <li data-sly-test="${item.mobileImagePath}" class="list-inline-item">
+                <a id="v2-flyout" href="#adcde-noscroll" class="new-text-header" onclick="openNav()" title="${item.imageLabel}">
+                  <img src="${item.mobileImagePath}" alt="${item.imageAlt}">
+                </a>
+                
+              </li>
+            </sly>
+          </ul>
+        </div>
+        <!-- Mobile Image Logo D2-->
+        <div class="col-xs-4 col-5 text-md-center text-lg-left h-logo-freestyle d-block" onclick="${header.fsl3LogoEvent @context='html'}"
+          data-sly-resource="${'par' @ resourceType='adc/freestylelibrede/components/content/logo'}">
+        </div>
+
+          <!-- Home and search buttons D3-->
+       
+                   <!-- D4 -->
+        <div style="display: none;"
+          data-sly-resource="${'search-bar' @ resourceType='adc/freestylelibrede/components/content/search-bar'}"></div>
+            <!-- Logo D5-->
+          <div class="col-lg-6 col-5  d-block text-md-center text-lg-left logo-area ht-list" >	
+            <div class="d-md-block hover-class-logo free-style-logo"  onclick="${header.fsl3LogoEvent @context='html'}"
+                 data-sly-resource="${'par' @ resourceType='adc/freestylelibrede/components/content/logo'}"></div>
+          </div>
+
+          <!-- Cart and Login D6-->
+        <div class=" col-xs-4 col-lg-6 col-4 text-md-center text-lg-left search-login-cart-logo-col d-md-none d-block d-none d-md-block ht-list">
+          
+        
+          
+          <ul class="list-inline m-0">
+            <sly data-sly-list="${header.linksHeader}">
+              <!-- Home -->
+              <!-- Search -->
+              <li data-sly-test="${!item.serviceNumber}" class="list-inline-item active">
+                <a data-sly-test.overlay="${item.openTab == 'overlay'}" href="#adcde-noscroll" data-toggle="modal"
+                  data-target="${item.link}" class=" new-text-header"
+                  onclick="${item.headerLinkEvent @context='html'}" title="${item.imageLabel}">
+                  <img class="top-nav-item-icon-default mr-2" src="${item.desktopImagePath}" alt="${item.imageAlt}"/>
+                  <img class="top-nav-item-icon-active" src="${item.desktopImagePath}" alt="${item.imageAlt}"/>
+                  ${item.imageLabel}
+                </a>
+                <a data-sly-test="${!overlay}" href="${item.link}" target="${item.openTab}" class=" new-text-header"
+                  onclick="${item.headerLinkEvent @context='html'}" title="${item.imageLabel}">
+                  <img class="top-nav-item-icon-default mr-2" src="${item.desktopImagePath}" alt="${item.imageAlt}" />
+                  <img class="top-nav-item-icon-active" src="${item.desktopImagePath}" alt="${item.imageAlt}" />
+                  ${item.imageLabel}
+                </a>
+              </li>
+            </sly>
+            <li class="list-inline-item ">
+              <sly
+                data-sly-resource="${'minicartpopup' @ resourceType='adc/freestylelibrede/components/content/minicartpopup'}">
+              </sly>
+            </li>
+            <li class="list-inline-item ">
+              <sly
+                data-sly-resource="${'header-login' @ resourceType='adc/freestylelibrede/components/content/header-login'}">
+              </sly>
+            </li>
+            <li data-sly-resource="${'par2' @ resourceType='adc/freestylelibrede/components/content/logo'}"
+                class="list-inline-item d-none d-lg-block h-abbot-logo" onclick="${header.abbottLogoEvent @context='html'}">
+            </li>
+          </ul>
+        </div>
+
+         <!--D8 -->
+        <div
+          data-sly-resource="${'minicartpopup' @ resourceType='adc/freestylelibrede/components/content/minicartpopup',selectors='mobile'}">
+        </div>
+
+      </div> <!-- Row closing div-->
+     </div>  <!-- //Container div -->
+
+
+    <div data-sly-test="${wcmmode.edit}" style="display: block;"
+      data-sly-resource="${'search-bar' @ resourceType='adc/freestylelibrede/components/content/search-bar'}">
+    </div>
+    <div class=" bg-nav-v2  navigationmenu_v2 v2-rendition "
+      data-sly-resource="${'navigationmenu_v2' @ resourceType='adc/freestylelibrede/components/content/navigationmenu-v2'}">
+    </div>
+
+</header>
+
+<script>
+
+ 
+   
+    var docs = document.querySelector('.logo-area');
+    var child = docs.querySelector(':scope > .hover-class-logo');
+    var anc = child.querySelector(':scope > .d-block');
+    anc.children[0].style.width = 'auto';
+    anc.children[0].style.height = '52px';
+  
+ 
+</script>

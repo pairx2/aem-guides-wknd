@@ -1,0 +1,90 @@
+@import "./global/mixins.less";
+@import './global/variables.less';
+
+.a-search{
+  width: 100%;
+  border-radius: 5px;
+  position: relative;
+}
+
+.a-search.active input{
+  border-radius: 5px 5px 0 0;
+}
+
+.a-search .autocom-box{
+  padding: 0;
+  opacity: 1;
+  pointer-events: none;
+  max-height: 280px;
+  overflow-y: auto;
+}
+
+.a-search.active .autocom-box{
+  opacity: 1;
+  pointer-events: auto;
+  color:@color-core-dark-blue;
+}
+
+.autocom-box li{
+  list-style: none;
+  padding: 8px 12px;
+  display: none;
+  background:@color-white;
+  width: 100%;
+  cursor: default;
+  border-left: 1px solid @color-neutral-light-gray;
+  border-right: 1px solid @color-neutral-light-gray;
+}
+
+.autocom-box li:last-child{
+  border-bottom: 1px solid @color-neutral-light-gray;
+}
+
+.a-search.active .autocom-box li{
+  display: block;
+}
+.autocom-box li:hover{
+  background: @color-hcp-grey2;
+    color:@color-hcp-blue;
+}
+
+.a-search .icon{
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  height: 55px;
+  width: 55px;
+  text-align: center;
+  line-height: 55px;
+  font-size: 20px;
+  color: #644bff;
+  cursor: pointer;
+}
+
+.o-header--full-width .o-header__search .abt-icon-cancel{
+color: @color-black;
+}
+
+.o-header--full-width .o-header__search .abt-icon {
+color: @color-core-dark-blue;
+}
+
+/* SB HCP-522 commenting to show search icon on sticky header when scrolled
+.o-header .sticky .a-search:not(.a-search--expand) .a-search--icon-left {
+    display: none;
+    pointer-events: none;
+}
+
+.o-header__sticky-search.show .a-search__input {
+    pointer-events: none;
+    display: none;
+}*/
+
+.o-header__search .a-search--expand .a-search__input::placeholder {
+    color: @color-core-dark-blue!important;
+}
+
+// Deepali HCP-522 showing suggestions in left side at header sticky search
+.o-header__sticky-search .autocom-box li {
+	text-align: left;
+}

@@ -1,0 +1,47 @@
+<template  data-sly-template.simple="${ @ container}">
+	<sly data-sly-test="${wcmmode.edit}" data-sly-use.allowed="com.day.cq.wcm.foundation.AllowedComponentList"></sly>
+	<sly class="cmp-container${wcmmode.edit ? ' {0}': '' @ format=[allowed.cssClass]}"
+		 data-sly-use.templates="core/wcm/components/commons/v1/templates.html"
+		 style="${container.backgroundStyle @ context='styleString'}">
+
+
+		<sly data-sly-test.isAllowedApplicable="${allowed.isApplicable}"
+			 data-sly-test="${isAllowedApplicable}"
+			 data-sly-use.allowedTemplate="allowedcomponents.html"
+			 data-sly-call="${allowedTemplate.allowedcomponents @ title=allowed.title, components=allowed.components}"></sly>
+
+		<nav class="navbar navbar-expand-lg"
+			 role="navigation"
+			 itemscope itemtype="http://schema.org/SiteNavigationElement">
+
+			<button class="navbar-toggler" type="button">
+				<span class="abt-icon-hamburger"></span>
+			</button>
+
+
+			<div class="navbar-collapse" id="navbarNavAltMarkup">
+				<div class="navbar-collapse-wrapper" id="navbarCollapseWrapper">
+
+					<ul class="${wcmmode.edit ? 'navbar-nav mr-auto' : 'navbar-nav mr-auto  hide-lg-country hide-lg-language'}">
+						<li class="m-mega-menu__mobile-item-wrapper"
+							data-sly-test="${!isAllowedApplicable}"
+							data-sly-repeat="${container.items}"
+							data-sly-resource="${item.path @ decoration=true}">
+						</li>
+						<sly data-sly-test="${inheritedPageProperties.languageNavigationPath}">
+                        <li class="m-mega-menu__mobile-item-wrapper m-mega-menu__mobile-item-wrapper--country-selector d-lg-none">
+                        <sly data-sly-resource="${@path=inheritedPageProperties.languageNavigationPath, selectors='content' , wcmmode='disabled'}"></sly>
+                        </li>
+                      </sly>
+					</ul>
+				</div>
+			</div>
+		</nav>
+
+
+		<sly data-sly-test="${!isAllowedApplicable && !wcmmode.disabled}"
+			 data-sly-resource="${resource.path @ resourceType='core/wcm/components/container/v1/container/new', appendPath='/*', decorationTagName='div', cssClassName='new section m-mega-menu__mobile-item-wrapper'}"/>
+
+	</sly>
+
+</template>

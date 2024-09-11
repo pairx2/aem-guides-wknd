@@ -1,0 +1,255 @@
+
+
+body {
+    .a-tile {        
+        &__link {
+            background-color: @color-light-blue;
+            box-shadow: none;
+            border-radius: 0;
+            &:after {
+                border-top: none;
+                height: 0;
+                border-radius: 0;
+            }
+            &:hover:after {
+                border-top: none;
+                background-color: @color-white;
+            }
+            .a-tile__title {
+                &-text, p, h5 {
+                    font-family: @brandonblack;
+                    text-transform: uppercase;
+                    &:after {
+                        content: none;
+                    } 
+                }
+            }
+            .a-tile__title .a-tile__title-text, .a-tile__para, .a-tile__para p, 
+            .a-tile__title p, .a-tile__title h5 {
+                color: @color-medium-blue;    
+                font-weight: normal;           
+            }
+            .a-tile__para, .a-tile__para p {
+                font-family: @georgiaregular;
+                
+            }
+            .a-tile__para p {
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+            &:hover {
+                .a-tile__title .a-tile__title-text, .a-tile__para, .a-tile__para p, 
+                .a-tile__title p, .a-tile__title h5 {
+                    color: @color-medium-blue;    
+                }
+            }
+        }       
+        &--dark {
+            .a-tile__link {
+                background-color: @color-medium-blue;
+                border-radius: 0;
+                &:after, &:hover:after {
+                    border-top: none;
+                    background-color: @color-white;
+                    border-radius: 0;
+                }
+                .a-tile__title .a-tile__title-text, .a-tile__title p, .a-tile__title h5 {
+                    color: @color-thin-blue;
+                }
+                .a-tile__para, .a-tile__para p {
+                    color: @color-white;
+                }
+                &:hover {
+                    .a-tile__title {
+                        &-text {
+                            color: @color-thin-blue;  
+                            p, h5 {
+                                color: @color-thin-blue;
+                            }  
+                            &:after {
+                                content: none;
+                            }            
+                        }                    
+                    }   
+                    .a-tile__para, .a-tile__para p {
+                        color: @color-medium-blue; 
+                    }             
+                }
+                
+            }        
+        }  
+        &--medium {
+            &__link {
+                .a-tile__title {
+                    &-text {
+                        .font-size(21px, 20px);
+                    }
+                }
+            }
+        }
+        &--small {
+            &__link {
+                .a-tile__title {
+                    &-text {
+                        .font-size(16px, 16px);
+                    }
+                }
+            }
+        }
+        &--large {
+            &__link {
+                .a-tile__title {
+                    &-text {
+                        .font-size(24px, 24px);
+                    }
+                }
+            }
+        }
+        #tile-white-text.a-tile__link {                
+            .a-tile__title {
+                &-text, p, h5 {
+                    color: @color-white;
+                    text-align: center;
+                    &:after {
+                        content: none;
+                    } 
+                }
+            }
+            &:hover {
+                .a-tile__title .a-tile__title-text, .a-tile__para, .a-tile__para p, 
+                .a-tile__title p, .a-tile__title h5 {
+                    color: @color-medium-blue;    
+                }
+            }
+        }
+    }
+    .m-tile-list {
+        .a-tile {
+            margin: 1.5px;
+            &--xsmall.a-tile--light, &--xsmall.a-tile--dark {
+                .a-tile__link {
+                    min-width: 140px;
+                    width: auto;
+                    padding: 7px;
+                    background-color: @color-light-blue;
+                    min-height: 50px;
+                    height: auto;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    .a-tile__title {
+                        &-text, &-text p, &-text h5 {
+                            .font-size(16px, 14px);
+                            font-family: @brandonbold;
+                            color: @color-medium-blue;
+                            margin: 0;
+                            text-align: center;
+                        }
+                    }  
+                    @media @md-down {
+                        justify-content: left;
+                        .a-tile__title {
+                            padding-right: 25px;
+                            &-text p, &-text h5 {
+                                text-align: left;
+                            }
+                        }                        
+                        .a-tile__icon {
+                            top: 15px;
+                            right: 20px;
+                            color: @color-medium-blue;
+                            font-family: @brandonbold;
+                            .abt-icon {
+                                font-size: @font-size-16;
+                                &:before {
+                                    font-size: 12px;
+                                    font-weight: bold;
+                                }
+                            }
+                        }
+                    }                  
+                }
+            }
+            &--xsmall.a-tile--dark {
+                .a-tile__link {
+                    &:after {
+                        background-color: @color-medium-blue !important;
+                    }
+                    &:hover {
+                        .a-tile__title {
+                            &-text, p, h5 {
+                                color: @color-light-blue !important;
+                            }
+                        }
+                        @media @md-down {
+                            .a-tile__icon {
+                                color: @color-light-blue;
+                            }
+                        }
+                    }                    
+                }
+            }
+            &--medium.a-tile--dark, &--medium.a-tile--light {
+                .a-tile__link {
+                    .a-tile__title, .a-tile__title p, .a-tile__title h5 {
+                        .font-size(21px, 20px);
+                        @media @lg-down {
+                            .font-size(16px, 20px);
+                        }
+                    }
+                }
+                @media @md-down {
+                    .a-tile__link {
+                        min-height: 50px;
+                        height: 50px;
+                        padding: 14px 20px;
+                        display: flex;
+                        align-items: center;
+                        .a-tile__title, .a-tile__title p, .a-tile__title h5 {
+                            .font-size(18px, 18px);
+                            margin-bottom: 0;
+                        }
+                        .a-tile__para {
+                            display: none
+                        }
+                    }
+                    .a-tile__icon {
+                        color: @color-light-blue;
+                        top: 14px;
+                        .abt-icon {
+                            font-size: 12px;
+                            font-weight: bold;
+                        }
+                        &:hover {
+                            color: @color-light-blue;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    #tile-bg-thin-blue {
+        .m-tile-list {
+            .a-tile {
+                &--xsmall.a-tile--light, &--xsmall.a-tile--dark {
+                    .a-tile__link {
+                        background-color: @color-thin-blue;
+                        .a-tile__title {
+                            &-text, &-text p, &-text h5 {
+                                color: @color-charcoal;
+                            }
+                        } 
+                        &:hover {
+                            .a-tile__title {
+                                &-text, &-text p, &-text h5 {
+                                    color: @color-medium-blue;
+                                }
+                            } 
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

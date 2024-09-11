@@ -1,0 +1,51 @@
+<template  data-sly-template.headerMenu="${@ header}">
+	<div class="o-header__mega-menu">
+        <div class="container">
+            <div class="row justify-content-between">
+                <sly data-sly-test.notEditMode="${!wcmmode.edit}"></sly>
+                <!--/* Search - Compact Mobile header */-->
+                <div data-sly-test="${!header.hideSearchInNav && header.enableCompactMobileHeader}" class="${wcmmode.edit ? '' : 'o-header__search o-header__mob-search d-block d-lg-none'}" data-search-icon="search">
+                    <div data-sly-unwrap="${!wcmmode.edit}">
+                        <sly data-sly-test="${notEditMode}" data-sly-resource="${'header-search' @ resourceType=header.headersearchProxyPath}"/>
+                    </div>
+                </div>
+                <!--/* Search - Compact Mobile header */-->
+
+            	<div class="m-mega-menu__mobile ${header.underlineMegaMenuInNav ? 'm-mega-menu--underline' : ''} " data-js-component="mega-menu" data-sly-test="${!header.hideMegaMenuInNav}">
+                	<sly data-sly-resource="${'mega-menu' @ resourceType=header.megamenuProxyPath, decoration=true}" />
+                </div>
+
+                <!--/* Util Navs - Compact Mobile Header */-->
+                <div class="m-mega-menu__mobile-item-wrappe o-header__utility-nav d-lg-none" data-sly-test="${header.enableCompactMobileHeader}">
+                    <div data-sly-unwrap="${!wcmmode.edit}">
+                        <sly data-sly-resource="${'country-dropdown' @resourceType=header.linkstackProxyPath,decoration=true}" />
+                    </div>
+                    <div class="${wcmmode.edit ? 'edit-langnav':''}" data-sly-unwrap="${!wcmmode.edit}">
+                        <sly data-sly-test="${!inheritedPageProperties.languageNavigationPath}"
+                             data-sly-resource="${'language-navigation' @ resourceType=header.languageNavigationProxyPath}"/>
+                        <sly data-sly-test="${inheritedPageProperties.languageNavigationPath}"
+                             data-sly-resource="${@path=inheritedPageProperties.languageNavigationPath, selectors='content' , wcmmode='disabled'}"/>
+                    </div>
+                </div>
+                <!--/* Util Navs - Compact Mobile Header */-->
+
+                <!--/* Molecule sign  up for the mobile */-->
+                <div class="${wcmmode.edit ? '' : 'o-header__mob-options d-block d-lg-none'}"
+                    data-sly-use.headerLogin="header-login.html">
+                    <!--/* Molecule header login links included here */-->
+                    <sly data-sly-call="${headerLogin.headerLogin @ header = header}" />
+                </div>
+
+
+
+                <!--/* Search */-->
+                <div data-sly-test="${!header.hideSearchInNav && !header.enableCompactMobileHeader}" class="${wcmmode.edit ? '' : 'o-header__search o-header__mob-search d-block d-lg-none'}" data-search-icon="search">
+                    <div data-sly-unwrap="${!wcmmode.edit}">
+                        <sly data-sly-test="${notEditMode}" data-sly-resource="${'header-search' @ resourceType=header.headersearchProxyPath}"/>
+                    </div>
+                </div>
+				<!--/* Search */-->
+            </div>
+        </div>
+    </div> 
+</template>

@@ -1,0 +1,20 @@
+export const GET_AVAILABLE_PAYMENT_METHODS_REQUEST = 'GET_AVAILABLE_PAYMENT_METHODS_REQUEST';
+export const GET_AVAILABLE_PAYMENT_METHODS_REQUEST_SUCCESS = 'GET_AVAILABLE_PAYMENT_METHODS_REQUEST_SUCCESS';
+export const GET_AVAILABLE_PAYMENT_METHODS_REQUEST_FAILURE = 'GET_AVAILABLE_PAYMENT_METHODS_REQUEST_FAILURE';
+export const ACCEPT_CORRECTED_RISKCHECK_ADDRESS_REQUEST = 'ACCEPT_CORRECTED_RISKCHECK_ADDRESS_REQUEST';
+
+export const getAvailablePaymentMethodsRequest = (payload) => ({
+	type: GET_AVAILABLE_PAYMENT_METHODS_REQUEST, payload
+});
+
+export const getAvailablePaymentMethodsRequestSuccess = payload => ({
+	type: GET_AVAILABLE_PAYMENT_METHODS_REQUEST_SUCCESS, payload
+});
+
+export const getAvailablePaymentMethodsRequestFailure = error => ({
+	type: GET_AVAILABLE_PAYMENT_METHODS_REQUEST_FAILURE, error
+});
+
+export const acceptCorrectedRiskCheckAddressRequest = payload => ({
+	type: ACCEPT_CORRECTED_RISKCHECK_ADDRESS_REQUEST, payload
+});

@@ -1,0 +1,96 @@
+@import './globals/mixins.less';
+@import './globals/media-queries.less';
+@import './globals/variables.less';
+
+/*****Questionnaire****/
+#productErrorMsg{
+    display: none;
+    color: red;
+}
+#fsl2OrderConfirmation_Reader{
+    display: none;
+}
+#fsl2OrderConfirmation_Sensor{
+    display: none;
+}
+#fsl2WizardFormQuestionnaire {
+    .o-wizard__content {
+
+        .formcontainer {
+            .options {
+                /*+ .text {
+                    p {
+                        padding-left: 2rem;
+                        padding-right: 2rem;
+                        margin-bottom: 0.75rem;
+                        font-size: 0.875rem;
+                        line-height: 1.25rem;
+                    }
+                }*/
+                .radio {
+                    > label {
+                        display: block;
+                        font-size: @font-size-base;
+                        font-weight: bold;
+                    }
+                }
+            }
+
+            .fields {
+                .a-input-label {
+                    color: @color-black;
+                    display: block;
+                    font-size: @font-size-base;
+                    font-weight: bold;
+                }
+            }
+        }
+        .hidden {
+            .cq-placeholder {
+                max-height:0;
+            }
+        }
+        #fsl2ConsentsForm {
+            .o-form-container__buttons {
+                display: block!important;
+            }
+            .o-form-container__success-msg,
+            .o-form-container__error-msg {
+                margin-bottom: 1rem;
+                display: none;
+            }
+        }
+
+        #consentsWaitMsg,
+        #questionsWaitMsg {
+            display: none;
+        }
+    }
+}
+
+//authoring style
+.cq-Editable-dom {
+    #fsl2WizardFormQuestionnaire {
+        .o-wizard__content {
+            #consentsWaitMsg, #questionsWaitMsg {
+                display: block!important;
+            }
+            .hidden {
+                .cq-placeholder {
+                    max-height:30px;
+                }
+            }
+        }
+    }
+    .options{
+        .radio{
+            display: block!important;
+        }
+    }
+}
+@media @md-up{
+    #questionaireSubmit{
+        width:30%;
+        top:50px;
+    }
+}

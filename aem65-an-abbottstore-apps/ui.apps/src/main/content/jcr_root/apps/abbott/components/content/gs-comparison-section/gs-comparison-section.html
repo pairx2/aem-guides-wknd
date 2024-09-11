@@ -1,0 +1,22 @@
+<sly data-sly-use.templates="core/wcm/components/commons/v1/templates.html"/>
+<sly data-sly-use.details="${'com.abbott.aem.an.abbottstore.models.ComparisonModel' @ variation=inheritedPageProperties.themeType}" />
+<sly data-sly-test.dataItems="${details.title || details.subTitle || details.compareItems}"/>
+<div class="glucerna-comaprision-section" style="background-color: ${details.bgColor @context='styleToken'}">
+    <div class="container mx-auto p-0">
+        <h2 class="glucerna-title" style="color: ${details.titleColor @context='styleToken'}">${details.title  @context='html'}</h2>
+        <div class="glucerna-comaprision-text">
+            <div class="glucerna-subtitle">${details.subText1 @context='html'}</div>
+            <div class="glucerna-subtitle">${details.subText2}</div>
+            <div class="glucerna-subtitle">${details.subText3 @context='html'}</div>
+        </div>
+        <div class="glucerna-comaprision-wrapper"  data-sly-list.compareItemsList ="${details.compareItems}">
+            <img class="glucerna-comparision-image" src="${compareItemsList.image}" alt="${compareItemsList.altText}">
+        </div>
+        <div class="glucerna-footnote">${details.text @context='html'}</div>
+    </div>
+    <a href="${details.buttonLink}" role="link" class="glucerna-comparision-link">
+        <span class="glucerna-btn-primary subscribe-loggedin d-none">${properties.loggedinButtonLabel}</span>
+        <span class="glucerna-btn-primary subscribe-loggedout">${properties.annonymousButtonLabel}</span>
+    </a>
+</div>
+<sly data-sly-call="${templates.placeholder @ isEmpty = !dataItems}"></sly>

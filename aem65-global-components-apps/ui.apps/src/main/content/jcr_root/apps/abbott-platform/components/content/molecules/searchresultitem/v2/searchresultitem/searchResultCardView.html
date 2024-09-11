@@ -1,0 +1,58 @@
+<template data-sly-template.cardItem="${@ searchResultItem}">
+    <div class="a-card-result a-card-result__cardrow col-md-4 col-lg-4 col-sm-12 result-items ${searchResultItem.bannerPosition}">
+        <div class="a-card-result__image">
+            <a data-href="${searchResultItem.searchButtonLink}" data-default-search-btn-link="${searchResultItem.defaultSearchButtonLink}" aria-label="${searchResultItem.titleText}" class="a-card-result__image-link">
+                <img src="${searchResultItem.imagePath @ context='html'}" class="product-card_image" alt="{title}" title="{title}" />
+            </a>
+        </div>
+
+        <h3 class="a-card-result__title">
+            ${searchResultItem.titleText}
+        </h3>
+        <p class="a-card-result__description">${searchResultItem.descriptionText}</p>
+        <div class="a-checkbox" data-sly-test="${searchResultItem.isComparePopupEnable}">
+            <label class="a-checkbox__label" for="{productid}">
+                <span class="a-checkbox__text">${searchResultItem.productCompareLabel}</span>
+                <input type="checkbox" class="a-checkbox__input m-product-compare__checkbox" value="{productid}" name="{productid}" id="{productid}" data-required="true" data-cardsid="{productid}"/>
+                <span class="a-checkbox__custom"></span>
+            </label>
+        </div>
+
+        <a data-href="${searchResultItem.searchButtonLink}" data-default-search-btn-link="${searchResultItem.defaultSearchButtonLink}" data-default-search-btn-label="${searchResultItem.defaultSearchButtonLabel}" aria-label="${searchResultItem.titleText}" role="link" class="a-card-result__link a-result__link">${searchResultItem.searchButtonLabel}</a>
+
+        <div class="m-popup brightcove-video-link" data-toggle="modal" data-target="#videoModal">
+            <a class="brightcove-video-link__Popup" data-account="${searchResultItem.videoAccountId}" data-player="${searchResultItem.videoAppId}" data-video-id="${searchResultItem.videoId}">${searchResultItem.searchButtonLabel}</a>
+        </div>
+        <div class="a-link external-link">
+            <a class="a-link__text" role="link" data-redirect-confirm="true" data-redirect-url="${searchResultItem.searchButtonLink}" data-default-search-btn-link="${searchResultItem.defaultSearchButtonLink}" data-default-search-btn-label="${searchResultItem.defaultSearchButtonLabel}">
+                ${searchResultItem.searchButtonLabel}
+            </a>
+        </div>
+
+        <sly data-sly-list.searchResultMultiField="${searchResultItem.searchResultItemList}">
+            <sly data-sly-test.isUrl="${searchResultMultiField.selectType == 'url'}">
+                <div class="m-search-results__card-item-detail-url additional-fields">
+                    <a href="" target="_blank" role="link"><i class="" aria-hidden="true">
+                    </i><span>{${searchResultMultiField.resultKey}}</span></a>
+                </div>
+            </sly>
+            <sly data-sly-test.isImage="${searchResultMultiField.resultKey == 'mainimage'}">
+                <div class="m-search-results__card-item-detail--main-image ${searchResultItem.bannerPosition}">
+                    <img src="{${searchResultMultiField.resultKey}}" class="" alt="{title}" title="{title}" />
+                </div>
+            </sly>
+            <sly data-sly-test.isCategorybar="${searchResultMultiField.resultKey == 'categorybar'}">
+                <div class="m-search-results__card-item-detail-category-tag {categorycolor}  ${searchResultItem.cornerRadius}" data-category-pin="{pin}">
+                    <i class="${searchResultItem.iconpicker} ${searchResultItem.IconAlignment}" aria-hidden="true"> </i><span class="${searchResultItem.textAlignment}">{${searchResultMultiField.resultKey}}</span>
+                </div>
+            </sly>
+            <sly data-sly-test="${!isUrl && !isImage && !isCategorybar}">
+                <div class="m-search-results__card-item-detail-${searchResultMultiField.resultKey} additional-fields">
+                    <div class="m-search-results__card-item-detail__label d-inline-block mr-1">${searchResultMultiField.resultLabel}</div>
+                    <div class="m-search-results__card-item-detail__name ${searchResultMultiField.resultKey} d-inline-block">
+                        {${searchResultMultiField.resultKey}}</div>
+                </div>
+            </sly>
+        </sly>
+    </div>
+</template>

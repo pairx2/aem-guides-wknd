@@ -1,0 +1,85 @@
+// column background
+.columncontrol {
+  &.column-background {
+    &--left-shaded-with-image,
+    &--left-shaded-with-bg-color {
+      background: var(--column-background-color)
+        url("../../resources/images/column-control-bg.png") no-repeat;
+      background-size: var(--column-background-size);
+      background-position: var(--column-background-position);
+      @media @md-up {
+        background-size: var(--column-background-size-md);
+        background-position: top right;
+      }
+
+      > .container > .row > .columncontrol__column {
+        > .ordersummary {
+          height: 100%;
+        }
+      }
+    }
+
+    &--left-shaded-with-bg-color {
+      background-image: none;
+    }
+  }
+
+  &.column-mobile--carousel {
+    .slick-slide {
+      padding-bottom: var(--column-mb-carousel-slide-padding-bottom);
+
+      .columncontrol__column {
+        max-width: none;
+        padding: var(--column-mb-carousel-column-padding);
+
+        .product-tile {
+          margin: 0 auto;
+        }
+      }
+    }
+
+    .slick-arrow {
+      display: block !important;
+
+      top: auto;
+      bottom: var(--column-mb-carousel-arrow-bottom);
+    }
+
+    .slick-prev {
+      left: auto;
+      right: var(--column-mb-carousel-arrow-prev-right);
+    }
+
+    .slick-next {
+      right: var(--column-mb-carousel-arrow-next-right);
+    }
+
+    .slick-dots {
+      position: static;
+      justify-content: flex-end;
+
+      padding-right: var(--column-mb-carousel-arrow-next-right);
+    }
+
+    @media @md-down {
+      margin-bottom: var(--column-mb-carousel-margin-bottom);
+    }
+  }
+}
+
+html:not(.aem-AuthorLayer-Edit) {
+  #order-summary-column > .row > .columncontrol__column {
+    &:first-child {
+      z-index: 1;
+
+      @media @md-down {
+        order: 1;
+      }
+    }
+    &:last-child > .a-container:first-child {
+      @media @md-up {
+        display: none;
+      }
+    }
+  }
+}

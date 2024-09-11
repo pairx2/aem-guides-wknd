@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+          jcr:primaryType="nt:unstructured"
+          jcr:title="Products Comparision"
+          sling:resourceType="cq/gui/components/authoring/dialog"
+          extraClientlibs="cq.dropdown.dialog.multi"
+          helpPath="https://www.adobe.com/go/aem6_3_docs_component_en#Title - HTL">
+    <content
+            granite:class="products-compare"
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                    maximized="{Boolean}true">
+                <items jcr:primaryType="nt:unstructured">
+                    <product
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Product Comparision"
+                            sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+                        <items jcr:primaryType="nt:unstructured">
+                            <column
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/container">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <features
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                            composite="{Boolean}true"
+                                            eaem-show-on-collapse="EAEM.showProductName"
+                                            fieldDescription="Add the features to be compared"
+                                            fieldLabel="Features to be compared">
+                                        <field
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/container"
+                                                name="./features">
+                                            <layout
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                                    margin="{Boolean}false"/>
+                                            <items jcr:primaryType="nt:unstructured">
+                                                <feature-name
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                        fieldDescription="Please add features to be compared"
+                                                        fieldLabel="Feature Name"
+                                                        name="./featureName"/>
+                                                <feature-id
+                                                        granite:class="feature-id"
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
+                                                        fieldLabel="Feature Id"
+                                                        name="./featureId"/>
+                                            </items>
+                                        </field>
+                                    </features>
+                                    <products
+                                            jcr:primaryType="nt:unstructured"
+                                            jcr:title="Product Information"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                            composite="{Boolean}true"
+                                            eaem-show-on-collapse="EAEM.showProductName"
+                                            fieldDescription="For no table heading, just add the required number of products and leave their authoring blank "
+                                            fieldLabel="Products to compare">
+                                        <field
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/container"
+                                                name="./products">
+                                            <layout
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                                    margin="{Boolean}false"/>
+                                            <items jcr:primaryType="nt:unstructured">
+                                                <product-title
+                                                        granite:class="collapse-expand-multifield"
+                                                        jcr:primaryType="nt:unstructured"
+                                                        jcr:title="Product"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                        fieldDescription="Please enter product title"
+                                                        fieldLabel="Product Title"
+                                                        name="./productTitle"/>
+                                                <product-image
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                        fieldDescription="Please provide product image path"
+                                                        fieldLabel="Product Image"
+                                                        name="./productImage"
+                                                        rootPath="/content/dam"/>
+                                                <product-id
+                                                        granite:class="product-id"
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
+                                                        fieldLabel="Product Id"
+                                                        name="./productId"/>
+                                                <alt-text
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                        fieldDescription="Please provide alternate text"
+                                                        fieldLabel="Alt Text"
+                                                        name="./productAltText"/>
+                                                <badge-checkbox
+                                                        granite:class="product-badge-check"
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                        fieldDescription="Please check the box if badge is required for image"
+                                                        name="./badgeChecked"
+                                                        text="Is Badge Required?"
+                                                        value="{Boolean}true">
+                                                    <granite:data
+                                                            jcr:primaryType="nt:unstructured"
+                                                            toggle-checkbox_source="\0"/>
+                                                </badge-checkbox>
+                                                <badge-position
+                                                        granite:class="badge-position"
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                        fieldDescription="Please select the badge position."
+                                                        fieldLabel="Badge Position"
+                                                        name="./badgePosition"
+                                                        text="Badge Position">
+                                                    <items jcr:primaryType="nt:unstructured">
+                                                        <option1
+                                                                jcr:primaryType="nt:unstructured"
+                                                                text="Top Right"
+                                                                value="top-right"/>
+                                                        <option2
+                                                                jcr:primaryType="nt:unstructured"
+                                                                text="Top Left"
+                                                                value="top-left"/>
+                                                    </items>
+                                                    <granite:data
+                                                            jcr:primaryType="nt:unstructured"
+                                                            toggle-checkbox_target="false"/>
+                                                </badge-position>
+                                            </items>
+                                        </field>
+                                    </products>
+                                    <table-link
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                            fieldDescription="Please check the box if is table link is required"
+                                            name="./tableLinkRequired"
+                                            text="Please check the box if is table link is required"
+                                            uncheckedValue="false"
+                                            value="true"/>
+                                    <borderStyle
+                                            granite:class="cq-dialog-dropdown-showhide"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                            fieldLabel="Border Style"
+                                            name="./borderStyle">
+                                        <items
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                            <none
+                                                    jcr:primaryType="nt:unstructured"
+                                                    text="None"
+                                                    value="none"/>
+                                            <solid
+                                                    jcr:primaryType="nt:unstructured"
+                                                    text="Solid"
+                                                    value="solid"/>
+                                        </items>
+                                        <granite:data
+                                                jcr:primaryType="nt:unstructured"
+                                                cq-dialog-dropdown-showhide-target=".borderColor-width-showhide-target"/>
+                                    </borderStyle>
+                                    <borderColorContainer
+                                            granite:class="borderColor-width-showhide-target"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                                            margin="{Boolean}true">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <borderColor
+                                                    jcr:primaryType="nt:unstructured"
+                                                    jcr:title="Border Color"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/colorfield"
+                                                    fieldLabel="Border Color"
+                                                    name="./borderColor"
+                                                    showDefaultColors="{Boolean}false"
+                                                    showProperties="{Boolean}true"
+                                                    showSwatches="{Boolean}false"/>
+                                        </items>
+                                        <granite:data
+                                                jcr:primaryType="nt:unstructured"
+                                                showhidetargetvalue="solid"/>
+                                    </borderColorContainer>
+                                    <borderWidthContainer
+                                            granite:class="borderColor-width-showhide-target"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                                            margin="{Boolean}true">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <borderWidth
+                                                    jcr:primaryType="nt:unstructured"
+                                                    jcr:title="Border Width"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                                    fieldLabel="Border Width"
+                                                    max="{Long}2"
+                                                    min="{Long}0"
+                                                    name="./borderWidth"/>
+                                        </items>
+                                        <granite:data
+                                                jcr:primaryType="nt:unstructured"
+                                                showhidetargetvalue="solid"/>
+                                    </borderWidthContainer>
+                                    <ariaDescription
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldDescription="Label for Aria Description"
+                                            fieldLabel="Aria Description"
+                                            name="./ariaDescription"/>
+                                </items>
+                            </column>
+                        </items>
+                    </product>
+                    <cq:styles
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/include"
+                            path="/mnt/overlay/cq/gui/components/authoring/dialog/style/tab_edit/styletab"/>
+                    <gradient
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="/libs/granite/ui/components/coral/foundation/include"
+                            path="abbott-platform/components/core/backgroundoptions/v1/backgroundoptions/cq:dialog/content/items/tabs/items/gradient"/>
+                    <configItem
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="ID/Class Config"
+                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                            margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                    margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <configTab
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="/libs/granite/ui/components/coral/foundation/include"
+                                                    path="/apps/abbott-platform/components/core/customconfig/v1/customconfig/cq:dialog/content/items/tabs/items/configItem/items/columns/items/column"/>
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </configItem>
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>

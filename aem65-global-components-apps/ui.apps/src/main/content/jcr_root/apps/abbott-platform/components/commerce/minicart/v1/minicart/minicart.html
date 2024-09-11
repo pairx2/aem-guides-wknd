@@ -1,0 +1,30 @@
+<!--/* Mini Cart Component Starts */-->
+<sly data-sly-use.miniCartModel="com.abbott.aem.platform.common.components.models.commerce.MiniCart"
+        data-sly-use.commonTemplates="core/wcm/components/commons/v1/templates.html"></sly>
+
+<div class="${wcmmode.edit ? 'm-minicart__on-edit-mode' :'m-minicart m-minicart__container'} js-mini-cart">
+    <div class="m-minicart__main">
+        <div class="m-minicart__content">
+            <div id="minicart" data-icon="${miniCartModel.icon}" data-header="${miniCartModel.header}" 
+                    data-read-allowed="${miniCartModel.readAllowed}" data-cart-header="${miniCartModel.cartHeader}"
+                    data-price-to-show="${miniCartModel.priceToShow}" data-enable-tax="${miniCartModel.enableTax}"
+                    data-delete-class="abt-icon abt-icon-only abt-icon-delete abt-icon-${inheritedPageproperties.siteName}-delete"
+                    data-incompatible-product-message="${miniCartModel.incompatibleProductMessage}"
+                    data-miniaddtocart-aa-tracking="${miniCartModel.miniAddToCartAATracking}"
+                    data-miniremovecart-aa-tracking="${miniCartModel.miniRemoveCartAATracking}"
+                    data-show-spaceinprice="${miniCartModel.showSpaceInPrice}" data-subtotal-withouttax="${miniCartModel.subtotalWithoutTax}"></div>
+            <div id="below-cart-msg" class="m-minicart__bottom m-minicart__content-above ${!wcmmode.edit?'d-none':''}"
+                 data-sly-resource="${'container' @ resourceType='wcm/foundation/components/parsys'}"></div>
+            <div id="empty-cart-msg" class="m-minicart__bottom m-minicart__content-above ${!wcmmode.edit?'d-none':''}">
+                ${miniCartModel.emptyCartMessage @ context = "html"}
+                <div class="m-minicart__button-list" data-sly-test.btnList="${miniCartModel.listOfButtons}"
+                        data-sly-list.btnItem="${btnList}">
+                    <sly data-sly-test.parName="${btnItem}"/>
+                    <sly data-sly-resource="${@path= btnItem, resourceType=miniCartModel.buttonProxyPath,decoration=true}"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<sly data-sly-call="${commonTemplates.placeholder @ isEmpty=!miniCartModel.icon}"></sly>

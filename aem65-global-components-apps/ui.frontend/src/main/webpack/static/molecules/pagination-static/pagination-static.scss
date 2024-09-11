@@ -1,0 +1,89 @@
+.m-pagination-static {
+
+    &__content {}
+
+    &__links {
+        .paginationjs {
+            $self: &;
+            text-align: center;
+
+            &-pages ul {
+                margin: 0;
+                padding: 0;
+                border: var(--pagination-border);
+                border-radius: var(--pagination-border-radius);
+                display: inline-flex;
+                list-style: none;
+
+                li {
+                    a {
+                        display: block;
+                        color: var(--pagination-link-color);
+                        text-decoration: var(--pagination-text-decoration);
+                        font-size: var(--pagination-link-font-size);
+                        line-height: var(--pagination-link-line-height);
+                        padding: var(--pagination-link-padding);
+                        border-left: var(--pagination-border-width) solid var(--pagination-border-color);
+                        border-right: var(--pagination-border-width) solid var(--pagination-border-color);
+
+                        &:hover {
+                            font-weight: bold;
+                            text-decoration: var(--pagination-text-decoration);
+                            color: var(--pagination-hover-link-color);
+                            background-color: var(--pagination-active-bg-color);
+                        }
+
+                        &:active,
+                        &:focus {
+                            background-color: var(--pagination-active-bg-color);
+                            border-color: var(--pagination-active-border-color);
+                            border-left: 1px solid #222731;
+                            border-right: 1px solid #222731;
+                            font-weight: bold;
+                        }
+
+                        .abt-icon {
+                            display: block;
+                            padding-top: 3px;
+                            padding-bottom: 3px;
+                        }
+                    }
+
+                    #{$self}-prev a {
+                        border-top-left-radius: var(--pagination-border-radius);
+                        border-bottom-left-radius: var(--pagination-border-radius);
+
+                        &:hover {
+                            border-left-color: var(--pagination-border-color);
+                            background-color: var(--pagination-active-bg-color);
+                        }
+                    }
+
+                    #{$self}-next a {
+                        border-top-right-radius: var(--pagination-border-radius);
+                        border-bottom-right-radius: var(--pagination-border-radius);
+
+                        &:hover {
+                            border-right-color: var(--pagination-border-color);
+                            background-color: var(--pagination-active-bg-color);
+                        }
+                    }
+
+                    &.active {
+                        position: relative;
+
+                        &:after {
+                            content: '';
+                            position: absolute;
+                            height: var(--pagination-active-link-width);
+                            bottom: 0;
+                            left: 0;
+                            right: 0;
+                            background-color: var(--pagination-link-color);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

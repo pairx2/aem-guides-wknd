@@ -1,0 +1,24 @@
+<sly data-sly-template.actions="${@ teaser}"
+	 data-sly-test.linkText="${properties.linkText}"
+	 data-sly-test.componentWidth="${properties.componentWidth}"
+	 data-sly-test.ctaStyle="${properties.ctaStyle}"
+	 data-sly-test.buttonClass="${properties.componentWidth == 'col-12-4-8' ? 'col-12 col-lg-8' : 'col-sm-12 col-md-6'}">
+
+<sly data-sly-use.analyticsConfig="${'com.abbott.aem.an.similac.core.models.AnalyticsConfigModel' @ pageName=currentPage.name, sectionTitle =teaser.title , linkName=linkText}" />
+<sly data-sly-test.eventCategory="${properties.eventCategory ? properties.eventCategory : 'callout'}"/>
+<sly data-sly-test.eventAction="${properties.eventAction ? properties.eventAction : 'click'}" />
+<sly data-sly-test.eventLabel="${properties.eventLabel ? properties.eventLabel : analyticsConfig.eventLabel}" />
+<sly data-sly-test.gtmValue="${'{0}{1}{2}{3}{4}' @ format=[eventCategory, '|',eventAction,'|',eventLabel]}" />
+
+<sly data-sly-use.analyticsConfigLink="${'com.abbott.aem.an.similac.core.models.AnalyticsConfigModel' @ pageName=currentPage.name, sectionTitle =teaser.title , linkName=properties.ctaLinkText}" />
+<sly data-sly-test.eventLabelLink="${properties.eventLabel ? properties.eventLabel : analyticsConfigLink.eventLabel}" />
+<sly data-sly-test.gtmForLink="${'{0}{1}{2}{3}{4}' @ format=[eventCategory, '|',eventAction,'|',eventLabelLink]}" />
+
+    <div class="cmp-teaser__action-container card-buttons row align-items-center">
+		<div class="${buttonClass} buttons" data-sly-test="${ctaStyle=='button' || ctaStyle =='both'}">
+        <a href="${teaser.linkURL}" class="btn btn-primary w-100 btn-half" data-gtm="${gtmValue}">${linkText}</a></div>
+
+         <div class="${buttonClass} buttons text-center text-md-center text-lg-left" data-sly-test="${ctaStyle=='text' || ctaStyle =='both'}">
+        <a href="${properties.ctaLinkURL}" data-gtm="${gtmForLink}" class="text-only w-100 btn-half">${properties.ctaLinkText}</a></div>
+    </div>
+</sly>

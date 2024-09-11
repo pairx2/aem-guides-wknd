@@ -1,0 +1,17 @@
+<sly data-sly-use.pagination="com.abbott.aem.platform.common.components.models.Pagination" data-sly-use.component="com.adobe.cq.wcm.core.components.models.Component"
+data-sly-use.customConfig="com.abbott.aem.platform.common.components.models.CustomConfig">
+   <div id="${component.id}" class="m-pagination-static ${customConfig.className}">
+      <div class="m-pagination-static__wrapper" data-js-component="pagination-static" auto-hide-previous="${pagination.hidePrevious ? 'true' : 'false'}"
+           auto-hide-next="${pagination.hideNext ? 'true' : 'false'}" page-size="${pagination.pageSize}">
+         <div class="m-pagination-static__components">
+            <sly data-sly-resource="${'contentfragmentlist' @ resourceType=pagination.contentFragmentListProxyPath, decoration=true}" />
+         </div>
+         <!-- PAGINATION CONTENT DATA -->
+         <sly data-sly-test="${!wcmmode.edit && !wcmmode.preview}">
+            <div class="m-pagination-static__content"></div>
+            <!-- PAGINATION LINKS -->
+            <div class="m-pagination-static__links"></div>
+         </sly>
+      </div>
+   </div>
+</sly>

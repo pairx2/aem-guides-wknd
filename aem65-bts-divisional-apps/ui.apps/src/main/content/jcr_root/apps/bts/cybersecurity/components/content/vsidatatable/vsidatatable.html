@@ -1,0 +1,200 @@
+<!--/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  ~ Copyright 2019 Adobe
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/-->
+<sly data-sly-use.list="com.adobe.cq.wcm.core.components.models.contentfragment.ContentFragmentList"
+     data-sly-use.component="com.adobe.cq.wcm.core.components.models.Component"
+     data-sly-test="${list.listItems.size>0}">
+    <section id="vsiFilters">
+        <p class="filter-title">${'filters'@i18n}</p>
+        <div class="select-risk-range" border="0" cellspacing="5" cellpadding="5">
+            ${'rating'@i18n} <img src="/etc.clientlibs/bts/cybersecurity/clientlibs/bts-themes/resources/images/vsidatatable/vsi-dwnarw.png" alt="Down Arrow"/>
+        </div>
+        <div id="selectRiskRange">
+            <div class="sel-risk-wrap">
+                <div class="minmaxtext">${'minimum.rating'@i18n}</div>
+                <div><input placeholder="0.0" type="text" id="minRisk" name="min"></div>
+
+                <div class="minmaxtext">${'maximum.rating'@i18n}</div>
+                <div><input placeholder="10.0" type="text" id="maxRisk" name="max"></div>
+                <div class="close-btn">close</div>
+            </div>
+        </div>
+        <div class="select-date-range" border="0" cellspacing="5" cellpadding="5">
+            ${'date.published'@i18n} <img src="/etc.clientlibs/bts/cybersecurity/clientlibs/bts-themes/resources/images/vsidatatable/vsi-dwnarw.png" alt="Down Arrow"/>
+        </div>
+        <div id="selectDateRange">
+            <div class="date-range-wrap">
+                <div class="minmaxtext"> ${'minimum.date'@i18n}</div>
+                <div><input type="text" id="minDate" name="minDate"></div>
+
+                <div class="minmaxtext"> ${'maximum.date'@i18n}</div>
+                <div><input type="text" id="maxDate" name="maxDate"></div>
+                <div class="close-btn">${'close'@i18n}</div>
+            </div>
+        </div>
+        <div id="selectDropdown">
+
+        </div>
+        <a href="#" id="clearFilters">${'reset'@i18n}</a>
+    </section>
+    <table id="vsiDataTable" aria-describedby="vsiDataTable" class="vsi-table cmp-contentfragmenttable">
+        <thead class="filter-head" data-sly-list.fragment="${list.listItems}">
+        <sly data-sly-test="${fragmentList.first}">
+            <tr data-sly-list.element="${fragment.elements}">
+                <th scope="col">${element.title}</th>
+            </tr>
+        </sly>
+        </thead>
+        <tbody class="filter-list" data-sly-list.fragment="${list.listItems}">
+        <tr data-sly-list.element="${fragment.elements}">
+            <td data-pending-status="${element.value == 'Pending' ? 'pending':''}">
+                <sly data-sly-test="${element.dataType == 'calendar'}">${element.value @ format='MM-DD-YYYY', type='date', i18n}</sly>
+                <sly data-sly-test="${element.dataType == 'boolean'}">${element.value ? "true" : "false"}</sly>
+                <sly data-sly-test="${element.dataType != 'calendar' && element.dataType != 'boolean'}">${(element.value) @join='<br/>', context='html'}</sly>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <input type='hidden' value="${'productlist.dropdownBeforeText'@i18n}" id="show-msg"/>
+    <input type='hidden' value="${'productlist.dropdownAfterText'@i18n}" id="per-page-msg"/>
+    <div id="vsiSidebar" class="vsi-sidebar">
+        <div class="sidebar-close"><img src="/etc.clientlibs/bts/cybersecurity/clientlibs/bts-themes/resources/images/vsidatatable/vsi-x.png" alt="Close Button" /></div>
+        <div class="vsi-sidebar-body vsi-scrollbar">
+            <section class="sidebar-tc">
+                <div class="sidebar-id">
+                    <p class="sidebar-tiny">${'vulnerabiity.identifier'@i18n} <span>?</span></p>
+                    <p class="cve vsi-scrollbar"></p>
+                </div>
+                <div class="sidebar-type">
+                    <p class="sidebar-tiny">${'vulnerabiity.type'@i18n} <span>?</span></p>
+                    <p class="type"></p>
+                </div>
+            </section>
+            <section class="sidebar-oc mt-20 sb-border-bottom">
+                <h3 class="title vsi-title"></h3>
+            </section>
+            <section class="sidebar-tc mt-20 sb-border-bottom">
+                <div class="sidebar-risk">
+                    <p class="sidebar-tiny">${'cvss.base.score'@i18n} <span>?</span></p>
+                    <p class="risk-score"></p>
+                </div>
+                <div class="sidebar-date">
+                    <p class="sidebar-tiny">${'date.published'@i18n}</p>
+                    <p class="type"></p>
+                </div>
+            </section>
+            <section class="sidebar-tc mt-20 sb-border-bottom">
+                <div class="sidebar-source">
+                    <p class="sidebar-tiny">${'source'@i18n} <span>?</span></p>
+                    <p class="source"></p>
+                </div>
+                <div class="sidebar-status">
+                    <p class="sidebar-tiny">${'status'@i18n} <span>?</span></p>
+                    <p class="type"></p>
+                </div>
+            </section>
+            <section class="sidebar-tc mt-20 sb-border-bottom">
+                <h3 class="title info-title">${'assessment.information'@i18n}</h3>
+                <div class="sidebar-decision">
+                    <p class="sidebar-tiny">${'assessment.decision'@i18n} <span>?</span></p>
+                    <p class="decision"></p>
+                </div>
+                <div class="sidebar-oc sidebar-response">
+                    <p class="sidebar-tiny">${'response'@i18n} <span>?</span></p>
+                    <p class="response"></p>
+                </div>
+            </section>
+            <section class="sidebar-oc mt-20 sb-border-bottom sidebar-details">
+                <p class="sidebar-tiny">${'response.details'@i18n} <span>?</span></p>
+                <p class="details"><p>
+            </section>
+        </div>
+    </div>
+
+    <!-- MODALS -->
+    <div id="vsiVulID" class="sidebar-modal">
+        <div class="modal-content">
+            <h4 class="modal-title">Vulnerability Identifier</h4>
+            <p>CVE number or other unique identifier for the vulnerability.</p>
+        </div>
+    </div>
+    <div id="vsiVulType" class="sidebar-modal">
+        <div class="modal-content">
+            <h4 class="modal-title">Vulnerability Type</h4>
+            <p>Is the vulnerability specific to an Abbott product (Abbott Vulnerability) or related to commonly used software an Abbott product utilizes (Third-Party Vulnerability)</p>
+        </div>
+    </div>
+    <div id="vsiInitRiskScore" class="sidebar-modal">
+        <div class="modal-content">
+            <h4 class="modal-title">CVSS v3 Base Score</h4>
+            <p>CVSS base score, if available. Abbott uses version 3.0 of the Common Vulnerability Scoring System framework.</p>
+        </div>
+    </div>
+    <div id="vsiVulSource" class="sidebar-modal">
+        <div class="modal-content">
+            <h4 class="modal-title">Source</h4>
+            <p>How Abbott product cybersecurity vulnerabilities are discovered.<br/>Sources include:</p>
+            <ul>
+                <li><strong>Vulnerability Scans</strong> - Vulnerability scans performed on a product</li>
+                <li><strong>Penetration Tests</strong> - Penetration tests performed on a product</li>
+                <li><strong>NVD</strong> - Vulnerabilities discovered in the NVD database for components that are resident in a product</li>
+                <li><strong>Threat Intel</strong> - Vulnerabilities discovered from various external sources such as H-ISAC, industry groups or other media sources</li>
+                <li><strong>Coordinated Disclosure</strong> - Vulnerabilities discovered by 3rd party researchers using Abbott's Coordinated Disclosure process</li>
+            </ul>
+        </div>
+    </div>
+    <div id="vsiVulStatus" class="sidebar-modal">
+        <div class="modal-content">
+            <h4 class="modal-title">Status</h4>
+            <p>Current status of the vulnerability in the assessment process</p>
+            <ul>
+                <li><strong>Pending</strong> - Abbott has determined the Vulnerability Response and is in the process of implementing the Response</li>
+                <li><strong>Closed</strong> - Abbott has completed the Vulnerability Assessment and has implemented the Response, if applicable</li>
+            </ul>
+        </div>
+    </div>
+    <div id="vsiAssessDecision" class="sidebar-modal">
+        <div class="modal-content">
+            <h4 class="modal-title">Vulnerability Assessment Decision</h4>
+            <p>Abbott's assessment of the risk the vulnerability poses to a product after determining whether the vulnerability impacts clinical performance. Decisions include classifying the risk as:</p>
+            <ul>
+                <li><strong>Controlled</strong> - When a vulnerability exists but there is sufficiently low (acceptable) residual risk of patient harm</li>
+                <li><strong>Uncontrolled</strong> - When a vulnerability exists that creates unacceptable residual risk of patient harm due to inadequate compensating controls and risk mitigations</li>
+                <li><strong>Critical and Controlled</strong> - When a vulnerability exists that would allow an individual or system without authorization or access rights or proper credentials to gain administrative-like access to a Product or Service</li>
+                <li><strong>Critical and Uncontrolled</strong> - A critical vulnerability that is also defined as Uncontrolled</li>
+            </ul>
+        </div>
+    </div>
+    <div id="vsiVulResponse" class="sidebar-modal">
+        <div class="modal-content">
+            <h4 class="modal-title">Vulnerability Response</h4>
+            <p>The following are the potential actions Abbott will take to respond to the vulnerability:</p>
+            <ul>
+                <li><strong>Risk Acceptance</strong> - The identified risk is within Abbott’s organizational risk tolerance.</li>
+                <li><strong>Risk Mitigation</strong> - Abbott has taken an action to remove or reduce the overall risk.</li>
+                <li><strong>Risk Avoidance</strong> - Abbott has taken an action to either eliminate the activities or technologies that are the basis of the risk or to revise these activities or technologies to avoid the potential for an unacceptable risk.</li>
+                <li><strong>Risk Transfer</strong> - Abbott has shifted the risk liability and responsibility to a third-party.</li>
+            </ul>
+        </div>
+    </div>
+    <div id="vsiResDetails" class="sidebar-modal">
+        <div class="modal-content">
+            <h4 class="modal-title">Response Details</h4>
+            <p>Additional information provided to support the Vulnerability Assessment Decision and Response</p>
+        </div>
+    </div>
+</sly>
+<sly data-sly-use.template="core/wcm/components/commons/v1/templates.html"
+     data-sly-call="${template.placeholder @ isEmpty=list.listItems.size == 0, classAppend='cq-dd-contentfragmentlist'}"></sly>

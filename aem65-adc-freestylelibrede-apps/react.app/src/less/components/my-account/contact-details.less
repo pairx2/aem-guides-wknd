@@ -1,0 +1,146 @@
+.adc-contact-details,
+.account-contact-details {
+	&__title {
+		.border-bottom(@color-fsl-grey-2);
+
+		.adc-title {
+			font-weight: @weight-bold;
+			letter-spacing: 1.5px;
+		}
+	}
+
+	.adc-border-bottom {
+		.border-bottom(@color-fsl-grey-2);
+	}
+
+	.adc-notification {
+		&:nth-child(2) {
+			.border-bottom(@color-fsl-grey-2);
+		}
+
+		.adc-title--black {
+			text-transform: lowercase;
+
+			&:first-letter {
+				text-transform: capitalize;
+			}
+		}
+
+		&__text {
+			.font-size-rems(12);
+			line-height: 15px;
+			color: @color-fsl-black;
+		}
+	}
+
+	.adc-contact-edit {
+		.adc-text-link.icon {
+			.icon(Edit);
+			background-position: right;
+		}
+
+		&__title {
+			.font-size-rems(13);
+			letter-spacing: 0.2px;
+			line-height: 24px;
+		}
+	}
+
+	&__formcontrols-text {
+		.adc-title {
+			font-weight: normal;
+		}
+	}
+}
+
+.adc-edit-contact-details {
+	&-padding {
+		padding-left: 0px !important;
+	}
+
+	&-padding-lable {
+		padding-left: 30px !important;
+		&-grey{
+			color: grey;
+		}
+	}
+
+
+	&-style-icon {
+		position: absolute;
+		top: 2px;
+	}
+
+	&-display {
+		display: block;
+		position: relative;
+		padding-left: 0;
+		margin-bottom: 12px;
+		font-size: 1rem;
+		user-select: none;
+		line-height: 24px;
+	}
+
+	&-active {
+		background: @color-fsl-green no-repeat center;
+		.icon(tick_white);
+		color: @color-fsl-white;
+		content: "";
+		width: 21px;
+		height: 21px;
+		border-radius: 100%;
+		position: absolute;
+		right: 0;
+		top: 5px;
+	}
+	&-disable {
+		color:@color-fsl-grey-4;
+		cursor: default;
+	}
+}
+
+.adc-custom-checkbox {
+	display: block;
+	position: relative;
+	cursor: pointer;
+
+	&__default {
+		position: absolute;
+		opacity: 0;
+		cursor: pointer;
+		height: 0;
+		width: 0;
+	}
+
+	&__checkmark {
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 25px;
+		width: 25px;
+		.icon(Checkbox_inactive);
+	}
+
+	&__text {
+		.font-size-rems(16);
+		line-height: 24px;
+		color: @color-fsl-black;
+	}
+
+	&__default:checked~&__checkmark {
+		.icon(Checkbox_activ);
+	}
+
+	&__checkmark:after {
+		position: absolute;
+		display: none;
+	}
+
+	&__default:checked~&__checkmark:after {
+		display: block;
+	}
+
+	@media @mobile-break {
+		padding-left: 30%;
+	}
+}

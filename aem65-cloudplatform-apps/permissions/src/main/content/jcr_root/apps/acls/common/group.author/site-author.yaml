@@ -1,0 +1,591 @@
+# Environment types in [DEV,QA,STG,PRD]
+- DEF environmentType=$[env:AB_ACL_ENVIRONMENT_TYPE;default=PRD]
+
+- DEF divisions=[adc,add,an,ardx,av,bts,corp,cv,epd,nm,vc]
+
+- DEF groupPrefix="APP-Adobe-AEM-DM-${environmentType}"
+- DEF groupPrefixAll="APP-Adobe-AEM-DM-ALL"
+
+- group_config:
+
+    - FOR division IN ${divisions}:
+
+       - ${division}-base:
+          - name: ${upperCase(division)} Base Group
+            description: Base group for division specific read access
+            isMemberOf: base-abbott
+            path: /home/groups/${division}
+
+       - ${groupPrefix}-${division}-content-editor:
+          - name: ${upperCase(division)} Content Editor
+            description: Division Content Editor group. Is environment specific.
+            isMemberOf: ${division}-base, operators, projects-administrators, ${environmentType}-${division}-content-editor-base
+            externalId: "${groupPrefix}-${division}-content-editor;ims"
+            
+       - ${environmentType}-${division}-content-editor-base:
+          - name: ${upperCase(division)} Content Editor Base
+            description: Division Content Editor Base group. Is environment specific.
+            isMemberOf: base-abbott
+            
+
+       - ${groupPrefixAll}-${division}-content-reviewer:
+          - name: ${upperCase(division)} Content Reviewer
+            description: Division Content Reviewer Group. Can annotate and provide comments as part of content review.
+            isMemberOf: ${division}-base
+            externalId: "${groupPrefixAll}-${division}-content-reviewer;ims"
+
+
+       - FOR site IN CHILDREN OF /content/${division}:
+
+          - ${division}-${site.name}-base:
+             - name: ${upperCase(division)} ${site.title} Base Group
+               description: Base group for site specific read access
+               isMemberOf: base-abbott
+               path: /home/groups/${division}/${site.name}
+               
+          - ${division}-${site.name}-editor-base:
+             - name: ${upperCase(division)} ${site.title} Editor Base Group
+               description: Base group for site specific edit access
+               isMemberOf: base-abbott
+               path: /home/groups/${division}/${site.name}
+
+          - ${groupPrefixAll}-${division}-${site.name}-content-editor:
+             - name: ${upperCase(division)} ${site.title} Content Editor
+               description: Site specific Content Editor
+               isMemberOf: ${division}-${site.name}-base, ${division}-${site.name}-editor-base
+               externalId: "${groupPrefixAll}-${division}-${site.name}-content-editor;ims"
+
+          - ${groupPrefixAll}-${division}-${site.name}-admin-content-editor:
+             - name: ${upperCase(division)} ${site.title} Admin Content Editor
+               description: Site specific Content Admin. Can do additional tasks like edit templates or create language copy.
+               isMemberOf: ${division}-${site.name}-base, ${division}-${site.name}-editor-base
+               externalId: "${groupPrefixAll}-${division}-${site.name}-admin-content-editor;ims"
+
+
+- ace_config:
+
+    - FOR division IN ${divisions}:
+
+       - ${division}-base:
+
+          - path: /conf/${division}
+            permission: allow
+            actions: read,replicate
+            initialContent: |
+                           <jcr:root jcr:primaryType="sling:Folder"
+                              jcr:title="${upperCase(division)}">
+                           </jcr:root>
+                            
+                                   
+          - path: /conf
+            permission: allow
+            actions: read,replicate
+            restrictions:
+               rep:glob: '*/settings/cloudconfigs/commerce'               
+                                   
+          - path: /conf/abbott-platform/settings/wcm/policies
+            permission: allow
+            actions: read,replicate
+
+          - path: /conf/abbott-platform/settings/wcm/templates
+            permission: allow
+            actions: read,replicate
+            
+          - path: /conf/abbott-platform/settings/dam/cfm/models
+            permission: allow
+            actions: read,replicate
+            
+          - path: /conf/${division}/globals/settings/wcm/policies
+            permission: allow
+            actions: read,replicate
+            
+          - path: /conf/${division}/globals/settings/wcm/templates
+            permission: allow
+            actions: read,replicate
+            
+          - path: /conf/global/settings/dam/adminui-extension
+            permission: allow
+            actions: read,replicate
+
+          - path: /conf/global/settings/wcm/policies
+            permission: allow
+            actions: read,replicate
+            
+          - path: /conf/global/settings/cloudconfigs/translation
+            permission: allow
+            actions: read,replicate
+
+          - path: /content/${division}
+            permission: allow
+            actions: read
+            initialContent: |
+                           <jcr:root jcr:primaryType="cq:Page">
+                               <jcr:content jcr:primaryType="cq:PageContent"
+                                   jcr:title="${upperCase(division)}"
+                                   sling:resourceType="abbott-platform/components/structure/page/v1/page">
+                               </jcr:content>
+                           </jcr:root>
+
+          - path: /content/campaigns/${division}
+            permission: allow
+            actions: read
+
+          - path: /content/cq:tags/${division}
+            permission: allow
+            actions: read
+            initialContent: |
+                           <jcr:root jcr:primaryType="cq:Tag"
+                               jcr:title="${upperCase(division)}"
+                               sling:resourceType="cq/tagging/components/tag">
+                           </jcr:root>
+                           
+          - path: /content/cq:tags/i18n
+            permission: allow
+            actions: read          
+
+          - path: /content/dam/${division}
+            permission: allow
+            actions: read
+            initialContent: |
+                           <jcr:root jcr:primaryType="sling:OrderedFolder">
+                               <jcr:content jcr:primaryType="nt:unstructured"
+                                   jcr:title="${upperCase(division)}">
+                               </jcr:content>
+                           </jcr:root>
+
+          - path: /content/email-templates/${division}
+            permission: allow
+            actions: read
+            initialContent: |
+                           <jcr:root jcr:primaryType="cq:Page">
+                               <jcr:content jcr:primaryType="cq:PageContent"
+                                   jcr:title="${upperCase(division)}"
+                                   sling:resourceType="abbott-platform/components/structure/page/v1/page">
+                               </jcr:content>
+                           </jcr:root>
+
+          - path: /content/experience-fragments/${division}
+            permission: allow
+            actions: read
+            initialContent: |
+                           <jcr:root jcr:primaryType="sling:OrderedFolder"
+                               jcr:title="${upperCase(division)}">
+                           </jcr:root>
+
+          - path: /etc/cloudservices/campaign
+            permission: allow
+            actions: read,replicate
+
+          - path: /var/workflow/models/${division}
+            permission: allow
+            actions: read
+            initialContent: |
+                           <jcr:root jcr:primaryType="sling:Folder"
+                               jcr:title="${upperCase(division)}">
+                           </jcr:root>
+
+          - path: /var/commerce/products/${division}
+            permission: allow
+            actions: read
+            initialContent: |
+                           <jcr:root jcr:primaryType="sling:OrderedFolder"
+                               jcr:title="${upperCase(division)}">
+                           </jcr:root>
+
+       - ${environmentType}-${division}-content-editor-base:
+
+          - path: /conf
+            permission: deny
+            actions: create,modify,delete,replicate
+            restrictions:
+              rep:glob: '*/redirect*'
+            keepOrder: true
+
+          - path: /conf/${division}
+            permission: allow
+            actions: create,modify,delete,replicate
+            keepOrder: true
+            
+          - path: /conf/${division}
+            permission: deny
+            actions: create,modify,delete,replicate
+            restrictions:
+              rep:glob: '*/redirect*'
+            keepOrder: true
+
+          - path: /content/${division}
+            permission: allow
+            actions: create,modify,delete,replicate
+
+          - path: /content/campaigns/${division}
+            permission: allow
+            actions: create,modify,delete,replicate
+
+          - path: /content/cq:tags/${division}
+            permission: allow
+            actions: create,modify,delete,replicate
+
+          - path: /content/dam/${division}
+            permission: allow
+            actions: create,modify,delete,replicate
+
+          - path: /content/email-templates/${division}
+            permission: allow
+            actions: create,modify,delete,replicate
+            
+          - path: /content/cq:tags/i18n
+            permission: allow
+            actions: create,modify,delete,replicate
+
+          - path: /content/experience-fragments/${division}
+            permission: allow
+            actions: create,modify,delete,replicate
+
+          - path: /var/commerce/products/${division}
+            permission: allow
+            actions: create,modify,delete,replicate
+            
+          - path: /content/launches
+            permission: allow
+            actions: create,modify,delete,replicate
+
+       # Using prefix all since reviewer would only be having annotate permissions which means one group should be enough across environments
+       - ${groupPrefixAll}-${division}-content-reviewer:
+          # Provide annotate permission to content reviewer
+          - path: /content/${division}
+            permission: allow
+            privileges: rep:write
+            restrictions:
+              rep:glob: '*/jcr:content/*'
+
+       - FOR site IN CHILDREN OF /content/${division}:
+
+          - ${division}-${site.name}-base:
+
+             # Allow read to division (parent) folder
+             - path: /conf/${division}
+               permission: allow
+               actions: read,replicate
+               
+             - path: /conf
+               permission: allow
+               actions: read,replicate
+               restrictions:
+                  rep:glob: '*/sling:configs/URLRedirect'               
+               
+             - path: /conf
+               permission: allow
+               actions: read,replicate
+               restrictions:
+                  rep:glob: '*/settings/cloudconfigs/commerce'                  
+               
+             - path: /conf/abbott-platform/settings/wcm/policies
+               permission: allow
+               actions: read,replicate
+
+             - path: /conf/abbott-platform/settings/wcm/templates
+               permission: allow
+               actions: read,replicate
+
+             - path: /conf/abbott-platform/settings/dam/cfm/models
+               permission: allow
+               actions: read,replicate
+               
+             - path: /conf/${division}/globals/settings/wcm/policies
+               permission: allow
+               actions: read,replicate
+            
+             - path: /conf/${division}/globals/settings/wcm/templates
+               permission: allow
+               actions: read,replicate
+            
+             - path: /conf/global/settings/dam/adminui-extension
+               permission: allow
+               actions: read,replicate
+
+             - path: /conf/global/settings/wcm/policies
+               permission: allow
+               actions: read,replicate
+               
+             - path: /conf/global/settings/cloudconfigs/translation
+               permission: allow
+               actions: read,replicate
+
+             - path: /conf/${division}
+               permission: allow
+               privileges: rep:readProperties
+
+             - path: /conf/${division}/${site.name}
+               permission: allow
+               actions: read
+               initialContent: |
+                              <jcr:root jcr:primaryType="sling:Folder"
+                                 jcr:title="${site.title}">
+                              </jcr:root>
+
+             - path: /conf/${division}_${site.name}
+               permission: allow
+               actions: read                              
+
+             - path: /content/${division}
+               permission: allow
+               actions: read
+               restrictions:
+                 rep:glob: ''
+
+             - path: /content/${division}
+               permission: allow
+               privileges: rep:readProperties
+
+             - path: /content/${division}/${site.name}
+               permission: allow
+               actions: read
+               initialContent: |
+                             <jcr:root jcr:primaryType="cq:Page">
+                                <jcr:content jcr:primaryType="cq:PageContent"
+                                     jcr:title="${site.title}"
+                                     sling:resourceType="abbott-platform/components/structure/page/v1/page">
+                                </jcr:content>
+                             </jcr:root>
+
+             - path: /content/campaigns/${division}
+               permission: allow
+               actions: read
+               restrictions:
+                 rep:glob: ''
+
+             - path: /content/campaigns/${division}
+               permission: allow
+               privileges: rep:readProperties
+
+             - path: /content/campaigns/${division}/${site.name}
+               permission: allow
+               actions: read
+               
+             - path: /content/cq:tags/i18n
+               permission: allow
+               actions: read
+
+             - path: /content/cq:tags/${division}
+               permission: allow
+               actions: read
+               restrictions:
+                 rep:glob: ''
+
+             - path: /content/cq:tags/${division}
+               permission: allow
+               privileges: rep:readProperties
+
+             - path: /content/cq:tags/${division}/${site.name}
+               permission: allow
+               actions: read
+               initialContent: |
+                              <jcr:root jcr:primaryType="cq:Tag"
+                                  jcr:title="${site.title}"
+                                  sling:resourceType="cq/tagging/components/tag">
+                              </jcr:root>
+
+             - path: /content/dam/${division}
+               permission: allow
+               actions: read
+               restrictions:
+                 rep:glob: ''
+
+             - path: /content/dam/${division}
+               permission: allow
+               privileges: rep:readProperties
+
+             - IF ${contains(division, 'cv')}:
+                 
+                 - path: /content/dam/${division}
+                   permission: allow
+                   actions: read
+
+             - path: /content/dam/${division}/${site.name}
+               permission: allow
+               actions: read
+               initialContent: |
+                              <jcr:root jcr:primaryType="sling:OrderedFolder">
+                                  <jcr:content jcr:primaryType="nt:unstructured"
+                                      jcr:title="${site.title}">
+                                  </jcr:content>
+                              </jcr:root>
+
+             - path: /content/experience-fragments/${division}
+               permission: allow
+               actions: read
+               restrictions:
+                 rep:glob: ''
+
+             - path: /content/experience-fragments/${division}
+               permission: allow
+               privileges: rep:readProperties
+
+             - path: /content/experience-fragments/${division}/${site.name}
+               permission: allow
+               actions: read
+               initialContent: |
+                              <jcr:root jcr:primaryType="sling:OrderedFolder"
+                                 jcr:title="${site.title}">
+                              </jcr:root>
+
+             - path: /content/email-templates/${division}
+               permission: allow
+               actions: read
+               restrictions:
+                 rep:glob: ''
+
+             - path: /content/email-templates/${division}
+               permission: allow
+               privileges: rep:readProperties
+
+             - path: /content/email-templates/${division}/${site.name}
+               permission: allow
+               actions: read
+               initialContent: |
+                             <jcr:root jcr:primaryType="cq:Page">
+                                <jcr:content jcr:primaryType="cq:PageContent"
+                                     jcr:title="${site.title}"
+                                     sling:resourceType="abbott-platform/components/structure/page/v1/page">
+                                </jcr:content>
+                             </jcr:root>
+
+             - path: /etc/cloudservices/campaign
+               permission: allow
+               actions: read,replicate
+
+             - path: /var/commerce/products/${division}
+               permission: allow
+               actions: read
+               restrictions:
+                 rep:glob: ''
+
+             - path: /var/commerce/products/${division}
+               permission: allow
+               privileges: rep:readProperties
+
+#                 - IF ${site["jcr:content"]["isCommerce"]}:
+#
+#                   - path: /var/commerce/products/${division}/${site.name}
+#                     permission: allow
+#                     actions: read
+#                     initialContent: |
+#                                    <jcr:root jcr:primaryType="sling:OrderedFolder"
+#                                       jcr:title="${site.title}">
+#                                    </jcr:root>
+
+             - path: /var/workflow/models/${division}
+               permission: allow
+               actions: read
+               restrictions:
+                 rep:glob: ''
+
+             - path: /var/workflow/models/${division}/${site.name}
+               permission: allow
+               actions: read
+               initialContent: |
+                                <jcr:root jcr:primaryType="sling:Folder"
+                                   jcr:title="${site.title}">
+                                </jcr:root>
+
+          - ${division}-${site.name}-editor-base:
+
+             - path: /conf/${division}/${site.name}
+               permission: allow
+               privileges: rep:alterProperties
+               restrictions:
+                 rep:glob: '/sling:configs/URLRedirect'
+
+             - path: /conf/${division}/${site.name}
+               permission: allow
+               privileges: jcr:modifyProperties, jcr:addChildNodes
+               restrictions:
+                 rep:glob: '/sling:configs/URLRedirect/jcr:content'
+
+             - path: /conf/${division}/${site.name}
+               permission: allow
+               privileges: rep:write
+               restrictions:
+                 rep:glob: '/sling:configs/URLRedirect/jcr:content/'
+
+             - path: /conf/${division}_${site.name}
+               permission: allow
+               privileges: rep:alterProperties
+               restrictions:
+                 rep:glob: '/sling:configs/URLRedirect'
+
+             - path: /conf/${division}_${site.name}
+               permission: allow
+               privileges: jcr:modifyProperties, jcr:addChildNodes
+               restrictions:
+                 rep:glob: '/sling:configs/URLRedirect/jcr:content'
+
+             - path: /conf/${division}_${site.name}
+               permission: allow
+               privileges: rep:write
+               restrictions:
+                 rep:glob: '/sling:configs/URLRedirect/jcr:content/'                 
+
+             - path: /content/${division}/${site.name}
+               permission: allow
+               actions: create,modify,delete,replicate
+
+             - path: /content/campaigns/${division}/${site.name}
+               permission: allow
+               actions: create,modify,delete,replicate
+               
+             - path: /content/cq:tags/i18n
+               permission: allow
+               actions: create,modify,delete,replicate
+
+             - path: /content/cq:tags/${division}/${site.name}
+               permission: allow
+               actions: create,modify,delete,replicate
+               
+             - IF ${contains(division, 'cv')}:
+                 
+                 - path: /content/dam/${division}
+                   permission: allow
+                   actions: create,modify,delete,replicate
+
+             - path: /content/dam/${division}/${site.name}
+               permission: allow
+               actions: create,modify,delete,replicate
+
+             - path: /content/email-templates/${division}/${site.name}
+               permission: allow
+               actions: create,modify,delete,replicate
+
+             - path: /content/experience-fragments/${division}/${site.name}
+               permission: allow
+               actions: create,modify,delete,replicate
+
+             - path: /apps/${division}/${site.name}/i18n
+               permission: allow
+               actions: create,modify,replicate
+
+                 # For commerce products access, a boolean property "isCommerce" needs to be present in site jcr:content node
+#                - IF ${site["jcr:content"]["isCommerce"]}:
+#
+#                    - path: /var/commerce/products/${division}/${site.name}
+#                      permission: allow
+#                      actions: create,modify,delete,replicate
+#
+#                    - path: /var/commerce/products/abbott
+#                      permission: allow
+#                      actions: read,create,modify,delete,replicate
+#
+#                    - path: /content/cq:tags/abbott
+#                      permission: allow
+#                      actions: read,create,modify,delete,replicate
+
+          # TODO: Add permissions for creating language copy and live copy
+          - ${groupPrefixAll}-${division}-${site.name}-admin-content-editor:
+
+             - path: /conf/${division}/${site.name}
+               permission: allow
+               actions: create,modify,delete,replicate
+
+             - path: /conf/${division}_${site.name}
+               permission: allow
+               actions: create,modify,delete,replicate

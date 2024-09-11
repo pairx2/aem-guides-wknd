@@ -1,0 +1,53 @@
+<sly data-sly-use.sidenav="com.abbott.aem.cv.division.core.components.models.SideNavigation"
+	 data-sly-use.commonsTemplates="core/wcm/components/commons/v1/templates.html">
+	<div
+			class="sideNavigationComp ${sidenav.integraterootpage ? 'integraterootpage' : ''} ${sidenav.bottommargin ? 'add-margin-bottom' : ''} ${sidenav.topmargin ? 'add-margin-top' : ''}">
+		<div class="row">
+			<div class="side-nav-panel" id="mySidenav">
+				<sly data-sly-test="${sidenav.displayrootpage}">
+					<a href="${sidenav.requestedPage.path}.html"
+					   class="grand-parent-li">${sidenav.requestedPage.properties.navTitle ?
+						sidenav.requestedPage.properties.navTitle : (sidenav.requestedPage.properties.pageTitle ? sidenav.requestedPage.properties.pageTitle : sidenav.requestedPage.title)}</a>
+				</sly>
+
+				<ul class="nav" data-sly-list.siblingitems="${sidenav.siblingItems}">
+					<sly data-sly-test="${siblingitemsList.first}">
+						<sly
+								data-sly-test.firstitem="${siblingitems.properties.navTitle ? siblingitems.properties.navTitle : (siblingitems.properties.pageTitle ? siblingitems.properties.pageTitle : siblingitems.title)}">
+						</sly>
+					</sly>
+
+					<li class="parent-li">
+						<label class="parent"><a href="${siblingitems.path}.html">${siblingitems.properties.navTitle ?
+							siblingitems.properties.navTitle : (siblingitems.properties.pageTitle ? siblingitems.properties.pageTitle : siblingitems.title)}</a></label> <em
+							class="abt-icon abt-icon-left-arrow"></em>
+						<sly data-sly-test="${siblingitems.path == currentPage.path}">
+							<sly
+									data-sly-test.selecteditem="${siblingitems.properties.navTitle ? siblingitems.properties.navTitle : (siblingitems.properties.pageTitle ? siblingitems.properties.pageTitle : siblingitems.title)}">
+							</sly>
+						</sly>
+						<sly data-sly-test="${siblingitems.listChildren}">
+							<ul class="nav nav-list tree child" data-sly-list.childitems="${siblingitems.listChildren}">
+								<sly data-sly-test="${!childitems.properties.hideInNav}">
+									<sly data-sly-test="${childitems.path == currentPage.path}">
+										<sly
+												data-sly-test.selecteditem="${childitems.properties.navTitle ? childitems.properties.navTitle : (childitems.properties.pageTitle ? childitems.properties.pageTitle : childitems.title)}">
+										</sly>
+									</sly>
+									<li><a href="${childitems.path}.html">${childitems.properties.navTitle ?
+										childitems.properties.navTitle : (childitems.properties.pageTitle ? childitems.properties.pageTitle : childitems.title)}</a></li>
+								</sly>
+							</ul>
+						</sly>
+					</li>
+				</ul>
+			</div>
+			<div class="side-nav-mob">
+				<em class="abt-icon abt-icon-left-arrow" onclick="openNav()"></em><span class="openNavMenu"
+																						onclick="openNav()">${selecteditem ? selecteditem : firstitem}</span>
+				<em class="abt-icon abt-icon-right-arrow display-none" onclick="closeNav()"></em>
+			</div>
+		</div>
+	</div>
+</sly>
+<sly data-sly-call="${commonsTemplates.placeholder @ isEmpty = !sidenavigation.title}" />

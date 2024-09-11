@@ -1,0 +1,24 @@
+<sly data-sly-use.page="com.abbott.aem.platform.common.components.models.PlatformPage"/>
+<sly data-sly-test.pageLocale="${page.languageCode}"/>
+<div class="article-info" data-sly-use.page="com.abbott.aem.platform.common.components.models.PlatformPage"data-sly-use.articleInfo="${'com.abbott.aem.ardx.division.core.components.models.ArticleDetail' @locale=pageLocale}"
+		data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
+    <div class="article-row">
+        <div class="article-col-sm-6 article-info__primary-author"
+             data-sly-test.primaryAuthInfo="${articleInfo.primaryAuthorBasicInfo}">
+            <div class="article-info__primary-author__main-info">${articleInfo.primaryAuthorBasicInfo @ context='html'}</div>
+            <div class="article-info__primary-author__sub-info small">${articleInfo.primaryAuthorSubInfo @ context='html'}</div>
+        </div>
+        
+        <div class="article-col-sm-6 article-info__secondary-author" data-sly-test="${primaryAuthInfo}">
+            <div class="article-info__secondary-author__main-info">${articleInfo.secondaryAuthorBasicInfo @ context='html'}</div>
+            <div class="article-info__secondary-author__sub-info small">${articleInfo.secondaryAuthorSubInfo @ context='html'}</div>
+        </div>
+        
+    </div>
+    <div class="article-row">
+        <div class="article-col-sm-12 article-info__publish-date" data-sly-test="${articleInfo.articleDate}">		
+           ${articleInfo.publishText} ${articleInfo.articleDate} 
+        </div>
+    </div>
+</div>
+<sly data-sly-call="${templates.placeholder @ isEmpty=true}"></sly>

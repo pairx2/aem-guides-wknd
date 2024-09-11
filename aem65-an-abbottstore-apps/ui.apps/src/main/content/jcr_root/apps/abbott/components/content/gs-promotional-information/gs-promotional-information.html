@@ -1,0 +1,22 @@
+<sly data-sly-use.templates="core/wcm/components/commons/v1/templates.html"/>
+<sly data-sly-use.details="com.abbott.aem.an.abbottstore.models.GsPromotionInfoModel" />
+<sly data-sly-test.dataItems="${details.title || details.gsInfoItemsList}"/>
+<div class="glucerna-promotional-information" style="background-color: ${details.bgColor @context='styleToken'}">
+	<div class="container">
+		<h2 class="glucerna-title" style="color: ${details.titleColor @context='styleToken'}">${details.title @context='html'}</h2>
+		<div class="glucerna-promotional-wrapper" data-sly-list.promotionInfoItemsList="${details.promotionInfoItemsList}">
+			<div class="glucerna-promotional-card">
+				<h3 class="promo-title" style="color: ${promotionInfoItemsList.promotionTitleColor @context='styleToken'}">${promotionInfoItemsList.promotionTitle}</h3>
+				<h4 class="promo-subtitle" style="color: ${promotionInfoItemsList.promotionSubTitleColor @context='styleToken'}">${promotionInfoItemsList.promotionSubTitle @context='html'}</h4>
+				<div class="glucerna-subtitle">${promotionInfoItemsList.promotionText @context='html'}</div>
+				<picture>
+					<source media="(min-width: 992px)" srcset="${promotionInfoItemsList.deskTopImage}">
+					<source media="(max-width: 991px)" srcset="${promotionInfoItemsList.mobileImage}">
+					<img class="glucerna-promotional-image" src="${promotionInfoItemsList.deskTopImage}" alt="${promotionInfoItemsList.altText}">
+				</picture>
+				<div class="glucerna-footnote">${promotionInfoItemsList.disclaimerText @context='html'}</div>
+			</div>
+		</div>
+	</div>
+</div>
+<sly data-sly-call="${templates.placeholder @ isEmpty = !dataItems}"></sly>

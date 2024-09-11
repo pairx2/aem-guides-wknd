@@ -1,0 +1,60 @@
+/**********************************
+breadcrumb Component
+**********************************/
+.abbott-breadcrumb {
+
+    // Style system to add fixed breadcrumb below header
+    &.abbott-breadcrumb__fixed {
+        position: relative;
+        margin: 0 !important;
+        height: 32px;
+
+        .container {
+            background-color: @abbott-light-gray;
+            padding: 8px 40px 4px !important;
+            position: fixed;
+            max-width: 100%;
+            z-index: 101;
+
+            .a-breadcrumb {
+                margin-left: 0;
+
+                .a-breadcrumb__list {
+                    font-weight: normal;
+                }
+            }
+
+            @media @xxl-only {
+                width: 1440px;
+            }
+        }
+
+        .a-breadcrumb__item {
+            .a-breadcrumb--link {
+                color: @abbott-pantone-cool-grey  !important;
+                text-transform: uppercase;
+                font-size: 12px;
+
+                &:hover {
+                    color: @abbott-primary-blue  !important;
+                    text-decoration: none !important;
+                }
+            }
+
+            &.a-breadcrumb--active {
+                color: @abbott-primary-blue  !important;
+                text-transform: uppercase;
+                font-size: 12px;
+            }
+
+            &:not(:first-child)::before {
+                content: ' > ';
+                color: @abbott-pantone-cool-grey  !important;
+            }
+        }
+
+        @media @md-down {
+            display: none;
+        }
+    }
+}

@@ -1,0 +1,44 @@
+/**********************************
+Hero Banner Component
+**********************************/
+
+html[dir="rtl"] {
+    .m-hero {
+
+
+        // Code to display hero banner content over the banner in tablet breakpoints
+        @media @lg-only {
+            height: auto;
+            padding-bottom: 0;
+        }
+
+        @media @md-down {
+            .m-hero__content {
+                text-align: right;
+            }
+        }
+
+        @media @lg-down {
+            .m-hero__media {
+                margin-left: 0;
+                margin-right: ~"calc(-1 * (100vw - 100%) / 2)";
+            }
+        }
+
+
+        // Style system to get sub section panel look and feel
+        &.m-hero-style--sub-section-panel {
+            .row.no-gutters .m-hero__media .cmp-image__image {
+                left: 0;
+                right: 65%;
+            }
+        }
+
+        // To hide media section, which is causing hero content to overflow it's parent.
+        &.m-hero-style--sub-section-panel.text--full-width {
+            .row .m-hero__media {
+                display: none;
+            }
+        }
+    }
+}

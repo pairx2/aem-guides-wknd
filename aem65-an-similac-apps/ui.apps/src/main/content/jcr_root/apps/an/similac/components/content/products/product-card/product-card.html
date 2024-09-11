@@ -1,0 +1,65 @@
+
+<sly data-sly-use.templates="an/similac/components/content/templates.html"/>
+<sly data-sly-use.product="${'com.abbott.aem.an.similac.core.models.ProductCardModel'}"/>
+<sly data-sly-test.productDetails="${product.productBean}">
+
+  <sly data-sly-use.analyticsConfig="${'com.abbott.aem.an.similac.core.models.AnalyticsConfigModel' @ sectionTitle =productDetails.name , linkName='Find a Retailer'}" />
+<sly data-sly-test.eventCategory="${properties.eventCategory ? properties.eventCategory : 'find-retailer'}"/>
+<sly data-sly-test.eventAction="${properties.eventAction ? properties.eventAction : 'click'}" />
+<sly data-sly-test.eventLabel="${properties.eventLabel ? properties.eventLabel : analyticsConfig.eventLabel}" />
+<sly data-sly-test.gtmValue="${'{0}{1}{2}{3}{4}' @ format=[eventCategory, '|',eventAction,'|',eventLabel]}" />
+
+	<div class="card product-card ${wcmmode.disabled ? 'h-100' : ''}" >
+
+	   <a href="${productDetails.link}" class="img-wrapper">
+		  <picture data-sly-test.dynamic="${!properties.imgSrc}">
+			 <source media="(max-width: 575.98px)" data-srcset="${productDetails.mobileImage @ context = 'uri'}">
+			 <source media="(max-width: 991.98px)" data-srcset="${productDetails.tabletImage @ context = 'uri'}">
+			 <img class="card-img-top" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="${productDetails.desktopImage @ context = 'uri'}" alt="${productDetails.name || true}" data-sly-test="${productDetails.image}">
+		  </picture>
+		  <picture data-sly-test="${!dynamic}">
+			 <source media="(max-width: 575.98px)" data-srcset="${properties.imagePathMob @ context = 'uri'}">
+			 <source media="(max-width: 991.98px)" data-srcset="${properties.imagePathTab @ context = 'uri'}">
+			 <img class="card-img-top" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="${properties.imgSrc @ context = 'uri'}" alt="${productDetails.name || true}">
+		  </picture> 
+	   </a>
+	   <div class="card-body" data-product-sku="${productDetails.sku @ context='attribute'}">
+
+		  <h5 class="text-center"><a href="${productDetails.link}" class="card-title">${productDetails.name @ context='html'}</a></h5>
+		  <p class="quantity text-center">${productDetails.sizeOrWeight}</p>
+		 
+			<div class="text-center product-rating" data-bv-show="inline_rating"
+  					data-bv-product-id="${productDetails.bazaarVoiceID @ context='attribute'}"
+  					data-bv-redirect-url="${productDetails.link @ context='uri'}">
+			</div>
+		  
+		  <div class="d-flex flex-row justify-content-center align-items-center mb-3">
+		    <div class="price text-center">$<span class="price-value">${productDetails.price}</span></div> 
+			<sly data-sly-test.specialPrice="${productDetails.specialPrice @ context='attribute'}" />
+            <sly data-sly-test="${specialPrice && specialPrice !=  '0.0'}">
+            <div class="old-price text-center">
+
+				$<span class="old-price-value">${specialPrice}</span>
+
+            </div> 
+            </sly>
+            </div>
+             <sly data-sly-use.linkHelper="${'com.abbott.aem.an.similac.core.models.LinkHelperModel' @ href=properties.findRetailer}" />
+			 <sly id="pdp-sku" data-sly-test.sku="${productDetails.sku @ context='attribute'}" />			
+		  <div class="people-also-viewed-in-stock-${sku} ">
+		  <div class="d-flex flex-column justify-content-center align-items-center  ">
+			 <a class="btn btn-primary add-cart">${"Add To Cart" @ i18n, context='html'}</a>
+             <a href="${linkHelper.linkHref}#sku-${sku}" data-gtm="${gtmValue @context='attribute'}" target="${properties.findRetailerTarget ? '_blank' : '_self'}" class="text-only ">${"Find a Retailer" @ i18n, context='html'}</a>
+		  </div>
+		  </div>
+		  <div class="people-also-viewed-out-of-stock-${sku} d-none">
+		  <div class="d-flex flex-column justify-content-center align-items-center ">
+			<a href="${linkHelper.linkHref}#sku-${sku}" data-gtm="${gtmValue @context='attribute'}" target="${properties.findRetailerTarget ? '_blank' : '_self'}" class="btn btn-secondary people-also-viewed">${"Find a Retailer" @ i18n, context='html'}</a>			 
+			<div class="text-only text-danger">${'Out of Stock' @ i18n, context='html'}</div>
+		  </div>
+		  </div>
+	   </div>
+	</div>
+
+</sly>
+<sly data-sly-call="${templates.placeholder @isEmpty = 'true', classAppend = '', emptyTextAppend = 'Please configure Product Card Component.' }"/>

@@ -1,0 +1,331 @@
+$tablet-width: 1037px;
+$mobile-width: 640px;
+$tablet-plus-mobile: 992px;
+
+@mixin padding-left-right-32 {
+    @media(min-width: 1024px) {
+            padding-left: 32px;
+            padding-right: 32px;
+        }
+}
+
+#myfreestyle-checkout{
+    .m-minicart {
+        .a-promo-code{
+            margin-bottom: 0;
+            @media(max-width: #{$mobile-width}) {
+                margin-bottom: 20px;
+            }
+            &__label {
+                &-container{
+                    padding: 0;
+                    flex: 0 0 255px;
+                    @media(max-width: #{$mobile-width}) {
+                        flex: 0 0 100%;
+                    }
+                    @media(min-width: #{$mobile-width}) and (max-width: #{$tablet-width}){
+                        flex: 0 0 63%;
+                    }
+                    @media (min-width: 992px) and (max-width: 1200px) {
+                        flex:0 0 58%;
+                    }
+                    input {
+                        @media (min-width: 992px) and (max-width: 1200px) {
+                        padding-right: 0;
+                        width: 96%;
+                        }
+                    }
+                }
+            }
+            &__form {
+                margin-top: 5px;
+                @media(max-width: #{$mobile-width}) {
+                flex-wrap: wrap;
+                }
+            }
+            &__btn {
+                &-container{
+                    flex: 0 0 160px;
+                    @media (min-width: 992px) and (max-width: 1200px) {
+                        flex: 0 0 43%;
+                    }
+                    @media(max-width: #{$mobile-width}) {
+                        flex: 0 0 100%;
+                        margin-bottom: 16px;
+                    }
+                    .a-button {
+                            .btn {
+                                margin-left: unset;
+                                margin-right: unset;
+                                max-width: 160px;
+                                @media(max-width: #{$mobile-width}) {
+                                    max-width: 100%;
+                                }
+                            }
+                    }
+                }
+            }
+            &__title {
+                @media(max-width: #{$mobile-width}) {
+                    font-size: 18px;
+                    padding-top: 5px;
+                }
+                @media (min-width: 992px) and (max-width: 1200px) {
+                    font-size: 16px;
+                }
+
+            }
+            &__btn-expand {
+                position: relative;
+                > span {
+                    width: 120px;
+                    font-size: 14px;
+                    font-weight: bold;
+                    position: absolute;
+                    right: 32px;
+                    color: #001489;
+                    font-family: "Helvetica", Arial, sans-serif;
+                    letter-spacing: 0;
+                    @media (min-width: 992px) and (max-width: 1200px) { 
+                        right: 0;
+                        font-size: 10px;
+                    }
+                }
+            }
+        }
+        img[alt="visa icon"] {
+            width: 49.99px;
+        } 
+    }
+    .minicart{
+        .m-minicart{
+            &__cart-item {
+                padding-top: 16px;
+                padding-bottom: 16px;
+            }
+            &__header {
+                @include padding-left-right-32;
+                @media(min-width: 1024px) {
+                    padding-top: 48px;
+                    padding-bottom: 24px;
+                }
+            }
+            &__sku {
+                max-width: 200px;
+                width: 100%;
+                @media (min-width: #{$mobile-width}) {
+                    font-size: 18px;
+                    line-height: 24px;
+                }
+
+            }
+            &__items {
+                @include padding-left-right-32;
+            }
+            &__bottom {
+                padding-bottom: 3px;
+                @include padding-left-right-32;
+            }
+            &__price {
+                @media(max-width: #{$mobile-width}) {
+                    font-size: 18px;
+                }
+            }
+            &__delivery {
+                margin-bottom: 18px;
+                align-items: center;
+                &-value {
+                    font-weight: bold;
+                    font-size: 18px;
+                }
+            }
+            &__tax {
+                margin-bottom: 18px;
+                &-label {
+                font-size: 14px;
+                }
+            }
+            &__subtotal {
+                margin-bottom: 18px;
+            }
+            &__tax-value {
+                font-size: 18px;
+            }
+            &__totals {
+                background-color: #FAFAFA;
+                padding-bottom: 32px;
+                @include padding-left-right-32;
+            }
+            &__heading-toggle {
+                @media(min-width: #{$mobile-width}) and (max-width: #{$tablet-width}){
+                    padding-right: 5px;
+                }
+            }
+            @media (max-width: #{$tablet-plus-mobile}) {
+                &__price-vat-label {
+                    font-weight: normal;
+                }
+            }
+        }
+    }
+    .m-minicart__bottom>div {
+        margin-bottom: 0;
+    }
+    #checkout-consents-options {
+        label{
+            &.a-checkbox {
+                &__label {
+                    span {
+                        &:not([class]) {
+                            display: none;
+                        }
+                        &.a-checkbox__text {
+                            a {
+                                color: #001489;
+                                font-family: "Helvetica", Arial, sans-serif;
+                                font-size: 14px;
+                                font-weight: bold;
+                                letter-spacing: 0;
+                                line-height: 20px;
+                                text-decoration: none;
+                                &:hover {
+                                    text-decoration: underline;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .m-ordersummary__item-qty {
+        border-radius: 4px;
+    }
+    #delivery-label {
+        padding-top: 2px;
+        padding-bottom: 2px;
+    }
+
+    @media(min-width: #{$mobile-width}) and (max-width: #{$tablet-width}) {
+        .o-wizard__content .m-minicart__header {
+            padding-left: 30px;
+            padding-right: 30px;
+        }
+        #security-label {
+            padding-bottom: 10px;
+        }
+    }
+    @media(max-width: #{$mobile-width}) {
+        #security-label {
+            padding-bottom: 10px;
+        }
+    }
+}
+
+
+.conditional-container {
+    &[data-conditional-variable='noAddressFound'],&[data-conditional-variable='showRequiredFieldsMessage'],&[data-conditional-variable='showCertificateAddressValidationError'] {
+        border-radius: 4px;
+        background-color: #ffd6d6;
+        .abt-icon-information {
+            &::before {
+                color: #E4002B;
+            }
+        }
+        p {
+            color: #222731;
+        }
+    }
+}
+
+[data-conditional-variable="addressBookFull"] .formalert {
+    border-radius: 4px;
+    background-color: #ffd6d6;
+    margin: 20px 0px;
+    .abt-icon {
+        &::before {
+            color: #E4002B;
+        }
+    }
+    p {
+        color: #222731;
+    }
+}
+
+#my-address-add-full-fields-modal {
+    #search-another-address {
+        .abt-icon.abt-icon-search {
+            font-size: 16px;
+            color: #001489;
+            left: 10px;
+            top: 2px;
+        }
+    }
+}
+.generic-modal__content-body {
+    .required-txt {
+        font-size: 12px;
+        color: #222731;
+    }
+    
+    .abt-icon-spinner {
+        display: none;
+    }
+
+    .a-button--spinner {
+        .abt-icon-spinner {
+            display: inline-block;
+        }
+    }
+}
+
+$fields: 'district', 'neighborhood', 'postcode', 'city';
+
+@each $field-option in $fields {
+    #field_label_#{$field-option}_1 {
+        display:none;
+    }
+}
+
+#dropdwon-select-loader > div {
+    position: absolute;
+    z-index: 9;
+    text-align: center;
+    width: 100%;
+    background: #ffffff5e;
+    display: flex;
+    justify-content: center;
+    left: 0;
+    margin: 0 !important;
+    padding: 0;
+    min-height: 210px;
+    @media(max-width: #{$mobile-width}) {
+        min-height: 400px;
+    }
+}
+#is-address-dropdown-options {
+    display: none;
+}
+
+.a-dropdown__container .a-dropdown__field .a-dropdown-selected {
+    word-wrap: break-word;
+}
+
+#guest-order-container {
+    min-height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    * {
+        color: #000;
+    }
+}
+#guest-order-summary-container {
+    .text {
+        margin-bottom: 0;
+    }
+    .link{
+        margin-top: 0;
+        padding: 0;
+    }
+}

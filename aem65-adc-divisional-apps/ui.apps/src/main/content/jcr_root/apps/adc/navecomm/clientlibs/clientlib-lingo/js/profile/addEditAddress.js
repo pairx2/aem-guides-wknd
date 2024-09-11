@@ -1,0 +1,3 @@
+const OnNaveCommAddEditAddressSuccess = () => {
+  location.reload();
+};

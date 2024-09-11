@@ -1,0 +1,43 @@
+@import './global/media-queries.less';
+@import './global/variables.less';
+@import './global/mixin.less';
+
+.m-hero {
+  section {
+    width: @full-width;
+  }
+
+  &--text-align-end .row {
+    justify-content: end;
+  }
+
+  &--text-align-end &__content {
+    direction: rtl;
+  }
+
+  &--text-align-center &__content &__header {
+    @media @lg-down {
+      text-align: left;
+    }
+  }
+
+  &__header {
+    > span > a {
+      color: inherit;
+      text-decoration: none;
+    }
+  }
+
+  &--content-end {
+    display: flex;
+    align-items: end;
+    justify-content: center;
+  }
+  
+  @media @md-up {
+    .h1-hero {
+      font-size: @spacer-60;
+      font-family: @brandon-bold;
+    }
+  }
+}

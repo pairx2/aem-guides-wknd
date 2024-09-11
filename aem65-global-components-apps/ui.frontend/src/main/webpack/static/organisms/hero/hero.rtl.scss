@@ -1,0 +1,176 @@
+@import 'hero.scss';
+
+.m-hero {
+  $self: &;
+  text-align: right;
+
+  &__content {
+    @include media-breakpoint-up(lg) {
+      margin-right: var(--hero-content-default-space);
+      margin-left: 0;
+    }
+  }
+
+  &__media {
+    @include media-breakpoint-down(md) {
+      // this has to be moved out the container, hence
+      // using negative values
+      // view port width - container width divided by 2
+      margin-right: calc(-1 * (100vw - 100%) / 2);
+      margin-left: 0;
+    }
+  }
+
+  &__extras{
+
+    @include media-breakpoint-down(xs) {
+      .a-button {
+        + .a-button{
+          margin-right: 0!important;
+        }
+      }
+    }
+
+    .a-button + .a-button {
+      margin-right: var(--hero-extras-between-spacing);
+      margin-left: 0;
+    }
+  }
+
+  &--half-width {
+    @include media-breakpoint-up(lg) {
+
+      // this will convert to
+      // .m-hero--media-start.m-hero--half-width
+      @at-root #{$self}--media-start#{&} {
+        #{$self}__content {
+          margin-right: 15px;
+          padding-right: 15px;
+          margin-left: 0;
+          padding-left: 0;
+        }
+        #{$self}__media {
+          margin-right: -15px;
+          margin-left: 0;
+        }
+      }
+
+      // this will convert to
+      // .m-hero--media-end.m-hero--half-width
+      @at-root #{$self}--media-end#{&} {
+        #{$self}__content {
+          //1 column width
+          padding-right: var(--hero-content-default-space);
+          padding-left: 15px;
+          margin-left: 15px;
+          margin-right: 0;
+        }
+        #{$self}__media {
+          margin-right: 0;
+          margin-left: -15px;
+        }
+      }
+    }
+  }
+
+  &--medium {
+
+    @include media-breakpoint-up(lg) {
+
+      @at-root #{$self}--text-align-end#{&}{
+        #{$self}__title{
+          left: 0;
+          right: auto;
+        }
+      }
+
+      @at-root #{$self}--text-align-start#{&}{
+        #{$self}__title{
+          left: auto;
+          right: 0;
+        }
+      }
+    }
+  }
+
+
+  &--short {
+
+    @include media-breakpoint-up(lg) {
+
+      @at-root #{$self}--text-align-end#{&}{
+        #{$self}__title{
+          left: 15px;
+          right: auto;
+        }
+      }
+
+      @at-root #{$self}--text-align-start#{&}{
+        #{$self}__title{
+          left: auto;
+          right: 0;
+        }
+      }
+    }
+  }
+
+  &--full-width {
+    @include media-breakpoint-up(lg) {
+      // this will convert to
+      // .m-hero--content-start.m-hero--full-width
+      @at-root #{$self}--content-start#{&}{
+        #{$self}__content {
+          padding-left: 15px;
+          padding-right: 0;
+        }
+      }
+
+      // this will convert to
+      // .m-hero--content-end.m-hero--full-width
+      @at-root #{$self}--content-end#{&} {
+        #{$self}__content {
+          padding-right: 15px;
+          padding-left: 0;
+
+          margin-left: var(--hero-content-default-space);
+          margin-right: 0;
+        }
+      }
+
+    }
+  }
+
+  &--text-align {
+    &-start {
+      text-align: right;
+    }
+
+    &-center {
+      text-align: center;
+
+      #{$self}__extras {
+        justify-content: center;
+      }
+    }
+
+    &-end {
+      text-align: left;
+    }
+  }
+
+  &--gradient {
+    &-start {
+      #{$self}__media:after{
+        background: linear-gradient(-90deg, var(--hero-start-color) var(--hero-start-position), var(--hero-end-color) var(--hero-end-position));
+      }
+    }
+
+    &-end {
+      #{$self}__media:after{
+        background: linear-gradient(90deg, var(--hero-start-color) var(--hero-start-position), var(--hero-end-color) var(--hero-end-position));
+      }
+    }
+
+  }
+}
+

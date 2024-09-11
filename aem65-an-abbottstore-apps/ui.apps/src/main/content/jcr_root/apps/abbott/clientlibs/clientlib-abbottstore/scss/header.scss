@@ -1,0 +1,768 @@
+@import "../../clientlib-base/scss/base/functions";
+@import "../../clientlib-base/scss/base/mixins";
+@import "../../clientlib-base/scss/base/variables";
+
+/*=======ABBOTT TOPBAR========*/
+.abbott {
+  &-topbar {
+    background: $white;
+    color: #222731;
+    box-shadow: 0px 0 3px 0px #000;
+    height: 43px;
+
+    .container {
+      position: relative;
+    }
+
+    @media (max-width: 767px) {
+      padding: 10px 0;
+      height: auto;
+    }
+
+    &__links {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+
+      .mob-right-icons {
+        margin-top: 9px;
+      }
+
+      @media (max-width: 767px) {
+        position: relative;
+
+        .mob-right-icons {
+          display: flex;
+          justify-content: flex-end;
+          margin-top: 0;
+        }
+      }
+    }
+
+    &__item {
+      display: inline-block;
+
+
+
+      &--login {
+        z-index: 3;
+      }
+    }
+
+    &__action-link {
+      background: transparent;
+      border: none;
+      color: #222731;
+      display: inline-block;
+      font-family: $font-brandon-text-bold;
+      font-size: 14px;
+      margin-left: 31px;
+      padding: 0;
+      text-transform: uppercase;
+
+      &.abbott-greet {
+        margin-right: 20px;
+      }
+
+      &:hover {
+        color: #222731;
+        text-decoration: none;
+      }
+
+      em {
+        bottom: -4px;
+        display: inline-block;
+        position: relative;
+        left: 3px;
+        font-size: 18px;
+
+        &:hover {
+          text-decoration: none;
+        }
+      }
+
+      &--cart {
+        margin-right: 0;
+
+        .cart {
+          position: relative;
+        }
+
+        &--count {
+          width: 15px;
+          height: 15px;
+          display: inline-block;
+          background-color: #00ae42;
+          border-radius: 50%;
+          color: #fff;
+          text-align: center;
+          font-size: 10px;
+          line-height: 1.5;
+          position: absolute;
+          right: 9px;
+          top: 2px;
+
+          @media (max-width: 767px) {
+            right: -7px;
+            top: -6px;
+          }
+        }
+
+        @media (max-width: 767px) {
+          margin-left: 0;
+        }
+
+        &:hover {
+          text-decoration: none;
+        }
+
+        .ai-cart {
+          margin-right: 10px;
+
+          @media (max-width: 767px) {
+            display: none;
+          }
+        }
+
+        #total-amount {
+          @media (max-width: 767px) {
+            display: none;
+          }
+        }
+      }
+    }
+
+    &__life-text {
+      display: inline-block;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+  }
+
+  /*========== ABBOTT HEADER ===========*/
+  &-header {
+    background: $black;
+    color: $white;
+
+    &__life {
+      &-text {
+        display: inline-block;
+        margin-left: 30px;
+        position: relative;
+        width: 150px;
+
+        @media (max-width: 1024px) {
+          margin-left: 10px;
+          width: 140px;
+        }
+
+        @media (max-width: 991px) {
+          &:before {
+            display: none;
+          }
+        }
+
+        @media (max-width: 767px) {
+          display: none;
+        }
+      }
+    }
+
+    &__search {
+      font-family: $font-brandon-text-bold;
+      font-size: 14px;
+      cursor: pointer;
+      display: inline-block;
+
+      em {
+        font-size: 14px;
+        margin-left: 6px;
+
+        @media (max-width: 767px) {
+          font-size: 24px;
+        }
+      }
+    }
+
+    &__navbar {
+      padding: 17px 0;
+      z-index: 3;
+
+      .abbott-logo {
+        padding-left: 0;
+        padding-right: 0;
+      }
+
+      .row {
+        margin: 0 !important;
+      }
+    }
+
+    .abbott-nav {
+      &__list {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        display: flex;
+
+        @media (max-width:767px) {
+          flex-direction: column;
+        }
+      }
+
+      .abbott-nav__item {
+        cursor: default;
+        display: block;
+        z-index: 1;
+        padding: 10px 0;
+
+        &+.abbott-nav__item {
+          margin-left: 59px;
+
+          @media (max-width: 992px) {
+            margin-left: 10px;
+          }
+        }
+      }
+
+      &__text {
+        font-size: 14px;
+        font-family: $font-brandon-text-bold;
+
+        em {
+          margin-left: 5px;
+          position: relative;
+          top: 2px;
+
+        }
+      }
+
+      /* ==== Abbott-store : Submenu ======*/
+      @media (min-width: 768px) {
+
+        &__item {
+          span.abbott-nav__text {
+            border-bottom: 1px solid $white;
+          }
+
+        }
+
+        &__item:hover {
+          span.abbott-nav__text {
+            border-bottom: 1px solid #000;
+          }
+
+        }
+
+        &__item:hover .abbott-nav_submenu {
+          display: block;
+          top: 42px;
+        }
+
+        .abbott-nav_submenu {
+          .sub-menu-col-ctrl {
+            &>div {
+              float: left;
+              flex: none;
+              max-width: none;
+              width: auto;
+              margin: 0;
+              padding: 0 25px;
+              border-right: 1px solid #979797;
+
+              @media (min-width: 768px) and (max-width: 1023px) {
+                padding: 0 20px;
+              }
+
+              &:last-child {
+                border: none;
+              }
+
+              .column-control-column {
+                border: none;
+              }
+
+            }
+          }
+        }
+
+      }
+
+      &_submenu {
+        background: $white;
+        color: $daintree;
+        cursor: default;
+        display: none;
+        position: absolute;
+        padding: 21px 16px 16px;
+        z-index: 999;
+        width: 100%;
+        box-shadow: 0 2px 4px 0 rgba(59, 58, 58, 0.5);
+        left: 0;
+        right: 0;
+
+        .row div:not(:last-child) {
+          .column-control-column {
+            border-right: 1px solid #97979787;
+          }
+        }
+
+        .list-comp {
+          a {
+            background-color: $white;
+            color: #595959;
+            display: inline-block;
+            font-family: $font-brandon-text-bold;
+            font-size: 14px;
+            margin: 5px 0;
+            text-decoration: none;
+            text-transform: uppercase;
+            word-break: break-word;
+
+            @media (max-width:767px) {
+              font-size: 16px;
+            }
+
+
+            &[href]:hover {
+              color: $black;
+              text-decoration: none;
+              border-color: $black;
+            }
+          }
+
+          &__items {
+            list-style: none;
+            padding: 0;
+          }
+
+          &__title {
+            margin: 0;
+
+            a {
+              font-size: 14x;
+            }
+          }
+
+          &__link {
+            border: none;
+          }
+        }
+
+        @media (min-width: 768px) and (max-width: 1023px) {
+          max-width: 100%;
+          top: 60px;
+
+          .col,
+          .col-lg-3,
+          .col-12 {
+            max-width: 25%;
+          }
+        }
+
+        .button {
+          padding-top: 24px !important;
+          padding-bottom: 0px !important;
+          font: 14px $font-brandon-text-bold;
+          letter-spacing: 0.3px;
+          line-height: 20px;
+          padding-left: 10px;
+          color: #000000;
+
+          .btn {
+            padding: 0px !important;
+            font-size: 14px;
+
+            @media (max-width: 767px) {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+
+    .hamburger {
+      display: none;
+      color: #6e6e6e;
+      font-size: 16px;
+      margin-left: 7px;
+      text-decoration: none;
+      position: absolute;
+      left: 0;
+
+      span {
+        line-height: 2;
+        font-size: 11px;
+        color: #222731;
+        font-family: $font-brandon-text-bold;
+        vertical-align: text-top;
+      }
+
+      @media (max-width: 767px) {
+        display: inline-block;
+      }
+
+      i {
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+/*========= ABBOTT Mobile Menu ===========*/
+@media(max-width: 767px) {
+  body {
+    transition: 0.3s left;
+
+  }
+
+  #feature-sec {
+    .col-md-6 {
+      border-bottom: 1px solid #dedede;
+      border-top: 1px solid #dedede;
+    }
+
+    .col-12 {
+      padding: 0;
+    }
+
+    .card-color-container {
+      background-color: #FFFFFF !important;
+    }
+  }
+
+  .abbott-main-nav {
+    background: $white;
+    box-shadow: 0 0 5px 0 rgba($gray-900, 0.75);
+    height: 100vh;
+    left: calc(-100% + 54px);
+    max-width: calc(100% - 54px);
+    overflow: auto;
+    position: fixed;
+    top: 0;
+    transition: 0.3s left;
+    width: 80%;
+    z-index: 10;
+  }
+
+  .abbott-mobile-menu-tab {
+    background: $gray-100;
+    margin-bottom: 20px;
+
+    &__item {
+      color: $black;
+      display: inline-block;
+      font-size: 16px;
+      line-height: 71px;
+      padding: 0 20px;
+
+      &:focus,
+      &:active {
+        color: $black;
+        text-decoration: none;
+      }
+
+      &.active {
+        background: $white;
+      }
+    }
+
+    &__content {
+      float: none !important;
+      display: none;
+      padding: 0 15px;
+
+      &.active {
+        display: block;
+      }
+
+      &.user-account-mobile {
+        border-top: 1px solid #d9d9d9;
+        padding: 0 5px;
+      }
+
+      .user-account-mobile__list-item-link {
+        color: lighten($black, 10%);
+        display: block;
+        font-size: 14px;
+        font-weight: normal !important;
+        padding: 10px;
+
+
+        &:hover {
+          background: lighten($blue, 30%);
+          border-radius: 6px;
+          opacity: 0.7;
+          text-decoration: none;
+        }
+      }
+
+      .abbott-nav__item {
+        border-bottom: none;
+        display: block !important;
+        margin-left: 0 !important;
+        padding: 15px 0;
+
+        &.active-mobile {
+          .abbott-nav__text {
+
+            .ai-caret-down:before {
+              content: '\e7c8'
+            }
+          }
+
+          .abbott-nav_submenu {
+            display: block;
+          }
+        }
+
+        .abbott-nav_submenu {
+          box-shadow: none;
+          padding-left: 13px;
+          position: static;
+          width: auto;
+
+          .list-comp {
+            &__title a {
+              border: none;
+              margin-left: 0;
+              padding-left: 0;
+              font-family: $font-brandon-text-medium;
+
+            }
+
+            &__items {
+              padding-left: .5rem;
+
+              a {
+                color: $gray-600;
+              }
+            }
+          }
+
+          .new.section {
+            display: none;
+          }
+        }
+      }
+
+      .abbott-nav__text {
+        color: $daintree;
+        display: block;
+        position: relative;
+        font-size: 16px;
+
+        em {
+          position: absolute;
+          top: 0;
+          right: 0;
+        }
+      }
+    }
+  }
+}
+
+.scroll-top {
+  color: $white;
+  cursor: pointer;
+  display: none;
+  bottom: 80px;
+  backface-visibility: hidden;
+  background: $black;
+  border: 1px solid $white;
+  height: 40px;
+  opacity: 0;
+  padding: 10px;
+  position: fixed;
+  right: 20px;
+  transition: all 500ms ease;
+  z-index: 99;
+
+  &:focus {
+    outline: none;
+  }
+
+  i {
+    font: normal bold 18px $font-brandon-text-bold;
+    line-height: normal;
+  }
+
+  &.active {
+    display: block;
+    opacity: 1;
+    animation: fadeInFromNone 1s ease;
+
+    @include media-breakpoint-down(sm) {
+      opacity: 0.5;
+    }
+  }
+
+  @keyframes fadeInFromNone {
+    0% {
+      display: none;
+      opacity: 0;
+    }
+
+    1% {
+      display: block;
+      opacity: 0;
+    }
+
+    100% {
+      display: block;
+      opacity: 1;
+    }
+  }
+}
+
+// =============================
+
+.abbott-mobile-menu-tab__content {
+  .abbott-nav__text {
+    color: #000000;
+    display: block;
+    position: relative
+  }
+}
+
+.cart-text {
+  display: inline-block !important;
+}
+
+.cart a span {
+  display: inline-block;
+
+  @media (max-width:767px) {
+    img {
+      margin-top: -1px;
+      margin-left: 10px;
+    }
+  }
+
+}
+
+#close-icon {
+  position: absolute;
+  left: -31px;
+  font-size: 25px;
+  cursor: pointer;
+  top: 7px;
+}
+
+.search-modal__container {
+  .ai-close {
+    float: right;
+    clear: both;
+  }
+}
+
+@media (max-width: 767px) {
+
+  .abbott-header__life-text {
+    display: inline-block;
+    margin-left: 0;
+    width: auto;
+  }
+
+  .abbott-header {
+    .abbott-nav_submenu {
+      .list-comp__title {
+        em {
+          display: none !important;
+        }
+      }
+
+      .row div:not(:last-child) {
+        .column-control-column {
+          border: none;
+        }
+      }
+    }
+  }
+
+
+  .abbott-mobile-menu-tab__content {
+    float: none !important;
+    display: block;
+    padding: 0 25px;
+
+    .user-account-mobile__list {
+      margin-left: 16px;
+
+      .user-account-mobile__list-item {
+        display: block;
+      }
+
+      .user-account-mobile__list-item-link {
+        color: #1a1a1a;
+        font-size: 16px;
+        padding: 8px 5px;
+        font-family: $font-brandon-text-medium;
+
+        &:hover {
+          background: none;
+          border-radius: 0;
+          opacity: .7;
+          text-decoration: none;
+        }
+      }
+    }
+
+    .user-account-mobile {
+      border-bottom: none;
+    }
+  }
+
+
+  #close-icon {
+    display: block;
+  }
+
+
+  .close-icon {
+    display: block;
+  }
+
+  .abbott-topbar__action-link--cart {
+    .ai-cart {
+      display: block;
+    }
+  }
+
+  .abbott-header__search {
+    display: block;
+
+    em {
+      font-size: 17px;
+      font-weight: normal;
+      display: block;
+      margin-top: 4px;
+    }
+  }
+
+
+  .abbott-main-nav {
+    background: #fff;
+    box-shadow: 0 0 5px 0 #2125292b;
+    height: auto;
+    overflow: initial;
+    position: absolute;
+    top: 32px;
+    right: -15px;
+    left: auto;
+    transition: left .3s;
+    width: 100%;
+    z-index: 2;
+    display: none;
+    padding-bottom: 10px;
+    max-width: calc(100% - 14px);
+  }
+
+  .has-active-menu .abbott-main-nav {
+    display: block;
+  }
+
+
+}

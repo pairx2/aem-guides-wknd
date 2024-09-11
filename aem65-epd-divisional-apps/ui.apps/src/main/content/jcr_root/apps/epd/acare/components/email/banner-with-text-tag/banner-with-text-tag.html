@@ -1,0 +1,89 @@
+<!--/*
+* Copyright (c)   Abbott Laboratories
+* Program Name :  banner-with-text-tag.html
+* Application  :  EPD EMail Templates Design
+* Purpose      :  See description
+* Description  :  This is Banner with Text and Tag component which is used to display banner with description.
+* Modification History:
+* ---------------------
+*    Date                                Modified by                                       Modification Description
+*-----------                            ----------------                                    -------------------------
+*  31-Oct-2020                  Cognizant Technology solutions                                 Initial Creation
+*-----------                           ----------------                                      -------------------------
+*/-->
+<div data-sly-test="${wcmmode.edit || wcmmode.design}" class="cq-placeholder section" data-emptytext="Configure Banner with Text with Optional tag Component in EDIT Mode"></div>
+
+<sly data-sly-use.bannerWithText="com.abbott.aem.epd.acare.core.models.components.BannerWithTextAndTag" />
+<!-- Hidden Email info fields - emailFrom and emailSubject -->
+	<input data-sly-test="${bannerWithText.emailInfo.emailFrom}" type="hidden" id="emailFrom" name="emailFrom" value="${bannerWithText.emailInfo.emailFrom}">
+	<input data-sly-test="${bannerWithText.emailInfo.emailSubject}" type="hidden" id="emailSubject" name="emailSubject" value="${bannerWithText.emailInfo.emailSubject}">
+	<input data-sly-test="${bannerWithText.emailInfo.emailTo}" type="hidden" id="emailTo" name="emailTo" value="${bannerWithText.emailInfo.emailTo}">
+	<input data-sly-test="${bannerWithText.emailInfo.emailCC}" type="hidden" id="emailCC" name="emailCC" value="${bannerWithText.emailInfo.emailCC}">
+	<input data-sly-test="${bannerWithText.emailInfo.emailBCC}" type="hidden" id="emailBCC" name="emailBCC" value="${bannerWithText.emailInfo.emailBCC}">
+<table border="0" style="background-color: #fff;" class="container table-spacing" aria-describedby="table" aria-hidden="true">
+    <tr>
+        <td style="padding-bottom: ${bannerWithText.padding @ context='styleToken'};" class="container left-align">
+            <table border="0" class="container" style="border-spacing: 0;" aria-describedby="table" aria-hidden="true">
+               <sly data-sly-test="${bannerWithText.fileReference}">
+                    <tr align="${bannerWithText.bannerAlignment}">
+                        <td class="container left-align">
+                            <table border="0" class="inner-container" style="border-spacing: 0;" aria-describedby="table" aria-hidden="true">
+                                <tr>
+                                    <td class="container left-align">
+										<a data-sly-unwrap="${!bannerWithText.linkURL}" x-cq-linkchecker="skip" href="${bannerWithText.bannerLink @ context = 'unsafe'}" target="_blank">                                           
+                                            <img src="${bannerWithText.bannerImage @ context = 'unsafe'}" alt="${bannerWithText.bannerAltText || 'alt-banner'}" class="container nutrition-image" style="border: none;width:100%;" />
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                     </tr>
+                </sly>
+                <sly data-sly-test="${bannerWithText.teaser.pretitle || bannerWithText.teaser.title || bannerWithText.description}">
+                  <tr>
+                    <td class="container left-align">
+                        <table border="0" class="inner-container" style="border-spacing: 0;" aria-describedby="table" aria-hidden="true">
+                            <tr>
+                                <td style="font-family: Georgia; font-size: 18px; line-height: 1.33; letter-spacing: 0.5px; text-align: left; color: #202c30; padding: 47px 90px 40px 76px;" class="ac-below-image pad-lr-none left-align">
+                                    <sly data-sly-test="${bannerWithText.teaser.pretitle}">
+                                        <strong>${bannerWithText.teaser.pretitle @ context = 'html'}</strong><br />
+                                        <br />
+                                    </sly>
+										<strong>${bannerWithText.teaser.title @ context = 'html'}</strong><br />
+                                        <br />		
+                                    ${bannerWithText.description @ context = 'html'}
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                  </tr>
+                </sly>              
+                <sly data-sly-test="${bannerWithText.tag.tagLinkText}">
+                    <tr>
+                        <td style="padding: 0 90px 0 76px;" class="container pad-lr-none left-align">
+                            <table border="0" class="inner-container" style="border-spacing: 0;" aria-describedby="table" aria-hidden="true">
+                                <tr>
+                                    <td class="left-align">
+                                        <table border="0" style="border-spacing: 0;" aria-describedby="table" aria-hidden="true">
+                                            <tr>
+                                                <td bgcolor="${bannerWithText.tag.tagBGColor}" style="font-family: Georgia; font-size: 16px; font-weight: bold; text-align: center; vertical-align: middle line-height: 1.13; letter-spacing: 0.6px; text-align: center; color: ${(bannerWithText.tag.textColor || '#009cde') @ context = 'styleToken'}; border: solid 1px #d9e5ea; border-radius: 24px; padding: 14px 10.5px;">
+                                                    <a data-sly-unwrap="${!bannerWithText.tag.tagLink}" x-cq-linkchecker="skip" href="${bannerWithText.tag.tagLink @ context = 'unsafe'}" target="_blank"
+                                                        style="text-decoration: none; font-family: Georgia; font-size: 16px; font-weight: bold; line-height: 1.13; letter-spacing: 0.6px; text-align: left; color: ${(bannerWithText.tag.textColor || '#009cde') @ context = 'styleToken'}; display: inline-block; vertical-align: middle;">
+                                                        <span style="font-family: Georgia; font-size: 16px; font-weight: bold; line-height: 1.13; letter-spacing: 0.6px; text-align: left; color: ${(bannerWithText.tag.textColor || '#009cde') @ context = 'styleToken'}; padding: 10px;">
+                                                            ${bannerWithText.tag.tagLinkText}
+                                                            <img data-sly-test="${bannerWithText.tag.tagIcon}" src="${bannerWithText.tag.tagIcon @ context = 'unsafe'}" alt="${bannerWithText.tag.tagAltText || 'alt-text'}" style="display: inline-block; vertical-align: middle; padding-left: 13px; border: none;"/>
+                                                        </span>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                      </tr>
+                 </sly>
+            </table>
+        </td>
+    </tr>
+</table>

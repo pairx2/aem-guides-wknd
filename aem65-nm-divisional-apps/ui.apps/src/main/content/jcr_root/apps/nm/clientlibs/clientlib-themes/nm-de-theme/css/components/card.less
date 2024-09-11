@@ -1,0 +1,287 @@
+@import '../variables.less';
+@import '../media-queries.less';
+@import '../mixin.less';
+
+body .m-card {
+    justify-content: start;
+    &:hover {
+        background-color: transparent;
+    }
+    &__media {
+        height: auto !important;
+        width: auto;
+        min-width: 80px;
+        min-height: 80px;
+        background-color: transparent;
+        border-radius: 0;
+    }
+    .m-popup {
+        .m-card__body {
+            padding: 0;
+        }
+        .m-card__media .m-card__image img {
+            cursor: pointer;
+        }
+    }
+    h6 {
+        line-height: 18px;
+    }
+    .m-card__title {
+        font-family: @brandonblack !important;  
+        .font-size(16px,18px);
+      }
+      div.m-card__description p {
+        .font-size(16px,24px);
+         font-family: @georgiaregular;  
+         color: @color-black;
+      }
+    &.m-card--fit {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        .descripText:hover {
+            color: @color-charcoal;
+        } 
+        .m-card__body {
+            padding-left: 0;
+            padding-right: 0;
+        }
+        img {
+            height: auto;
+            width: auto;
+        &:hover {
+                transform: scale(0.85);
+                transition: all .2s ease-in-out;
+        }
+        }
+        .m-card__media {
+            text-align: center;
+        }
+        .m-card__title {
+            text-align: center;
+            line-height: 18px;
+            @media @md-down {
+                font-size: 18px;
+            }
+        }
+     }
+     &.m-card--media-end {
+        &:before {
+            box-shadow: none;
+        }
+     }
+     &.m-card__title-dark {
+        .m-card__title {
+            color: @color-charcoal;
+        }
+        div.m-card__media {
+            background-color: transparent;
+        }
+     }
+     &.m-card__description-dark {
+        div.m-card__description p {
+            color: @color-medium-blue;
+            font-family: @georgiaregular;
+            &:hover {
+                color: @color-charcoal;
+               }
+        }
+        a p {
+            @media @lg-up {
+            margin-left: 50px;
+            } 
+         }
+     }
+     &.m-card__description-light {
+        div.m-card__description p {
+            color: @info-blue;
+            font-family: @georgiaregular;
+            &:hover {
+                color: @color-charcoal;
+               }
+        }
+     }
+     &.m-card--horizontal.m-card--large {
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        height: auto !important;
+        &:before {
+            box-shadow: none;
+        }
+        @media @lg-down {
+            .m-card-link {
+                display: block;
+            }
+        }
+        .m-card__media {
+            padding-top: 0;
+            padding-left: 0;
+            max-height: 130px;
+            max-width: 115px;
+            min-width: auto;
+            img {
+                max-width: 115px;
+                width: 100%;
+                max-height: 100px;
+            }
+        }
+        .m-card__body {
+            padding: 0;
+        }
+        .cmp-image__image {
+         @media @lg-down {
+            position: relative;
+         }   
+        }
+        .m-card__description {
+            @media @lg-up {
+            p {
+                float: left;
+                &:nth-child(1) {
+                    margin-bottom: 15px;
+                    float: left;
+                    width: 50%;
+                }
+                &:nth-child(2) {
+                    width: 50%;
+                    float: left;
+                    text-align: right;
+                }
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+        }
+        .m-card__title {
+            .font-size(22px,24px);
+            color: @color-navy-blue;
+            font-family: @brandonblack;
+            margin-bottom: 25px;
+            &:hover {
+                color: @color-medium-blue;
+            }
+            @media @md-down {
+                .font-size(18px,20px);
+            }
+        }
+     }
+}
+
+.columncontrol {
+    #card-overlay-text {
+        @media @md-down {
+            padding: 0;
+            margin: 0 -10px;
+            width: ~'calc(100% + 20px)';
+            max-width: ~'calc(100% + 20px)';
+        }
+        > .row {
+            margin: 0;
+            > div[class*="col-"] {
+                padding: 0;
+                margin: 0;
+                .m-card {
+                    width: 100%;
+                    height: auto !important;
+                    &:before {
+                        content: none;
+                    }
+                    &__media {
+                        border-radius: 0;
+                        width: 100%;
+                        height: 210px !important;
+                        @media @lg-down {
+                            height: 255px !important;
+                        }
+                    }
+                    &__body {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        padding: 20px;
+                        &:hover {
+                            background-color: @color-shuttle-gray;
+                        }
+                        .m-card__title {
+                            display: none;
+                        }
+                        .m-card__description, .m-card__description p {
+                            color: @color-white;
+                            .font-size(16px, 20px);
+                            font-family: @georgiaregular;
+                            @media @lg-down {
+                                .font-size(14px, 16px);
+                            }
+                        }
+                        .m-card__description {                        
+                            p {
+                                margin-bottom: 10px;
+                                &:first-child {
+                                    font-family: @brandonbold;
+                                    line-height: 16px;
+                                }
+                                &:last-child {
+                                    margin-bottom: 5px;
+                                }
+                            }
+                        }
+                        .a-link {
+                            &__text {
+                                color: @color-medium-blue;
+                                background-color: @color-white;
+                                font-family: @brandonblack;
+                                .font-size(18px, 16px);
+                                padding: 10px 20px 2px;
+                                height: 35px;
+                                text-transform: uppercase;
+                                position: relative;
+                                z-index: 1;
+                                &:before {
+                                    .btn-overlay;
+                                    background-color: @color-medium-blue;
+                                }
+                                &:hover {
+                                    color: @color-white;
+                                    &:before {
+                                        -webkit-transform: scaleY(1);
+                                        transform: scaleY(1);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    &__description-light {
+                        .m-card__body {  
+                            .m-card__description, .m-card__description p {
+                                color: @color-thin-blue;
+                            }
+                            .m-card__description {                        
+                                p {
+                                    &:last-child {
+                                    display: none;
+                                    }
+                                }
+                            }
+                            &:hover {
+                                background-color: @info-blue;
+                                .m-card__description {                        
+                                    p {
+                                        &:last-child {
+                                        display: block;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }            
+            }
+        }
+    }
+}

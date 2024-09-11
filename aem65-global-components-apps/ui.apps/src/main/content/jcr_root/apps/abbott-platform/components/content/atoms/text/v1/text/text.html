@@ -1,0 +1,30 @@
+<section data-sly-use.textModel="com.abbott.aem.platform.common.components.models.TextModel"
+   data-sly-use.component="com.adobe.cq.wcm.core.components.models.Component"
+   data-sly-use.customConfig="com.abbott.aem.platform.common.components.models.CustomConfig"
+   data-sly-use.templates="core/wcm/components/commons/v1/templates.html"
+   data-sly-test.text="${textModel.text}"
+   data-cmp-data-layer="${textModel.data.json}"
+   id="${component.id}" class="cmp-text ${customConfig.className}"
+   data-sly-attribute="${textModel.shortEnabled}">
+   <style data-sly-test="${textModel.startColor && textModel.endColor}">
+      #${component.id @context='styleToken'} {
+      --text-start-color: ${textModel.startColor @context='styleToken'};
+      --text-start-position: ${textModel.startColorPosition  @context='styleToken'}%;
+      --text-end-color: ${textModel.endColor  @context='styleToken'};
+      --text-end-position: ${textModel.endColorPosition  @context='styleToken'}%;
+      }
+   </style>
+   <sly data-sly-test="${textModel.shortEnabled != 'true'}">
+      <p	 class="cmp-text__paragraph"
+         data-sly-unwrap="${textModel.isRichText}">${text @ context = textModel.isRichText ? 'html' : 'text'}
+      </p>
+   </sly>
+   <sly data-sly-test="${textModel.shortEnabled == 'true'}">
+      <div class="${textModel.shortEnabled ? 'a-short' : ''}" data-js-component="text" aria-expanded="false" data-sly-attribute="${textModel.shortEnabled}" data-short-lesslink="${textModel.lessLink}" data-short-numberoflines="${textModel.numberOfLines}" data-short-morelink="${textModel.moreLink}">
+         <p      class="cmp-text__paragraph"
+            data-sly-unwrap="${textModel.isRichText}">${text @ context = textModel.isRichText ? 'html' : 'text'}
+         </p>
+      </div>
+   </sly>
+</section>
+<sly data-sly-call="${templates.placeholder @ isEmpty = !text, classAppend='cmp-text'}"></sly>

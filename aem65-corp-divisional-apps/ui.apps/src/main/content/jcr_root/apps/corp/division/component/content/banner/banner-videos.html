@@ -1,0 +1,59 @@
+<template data-sly-template.banneritems="${@ banneritems}">
+			<div class="responsiveImageVideo">
+                <sly data-sly-test="${banneritems.videoType == 'limelightvideo' && banneritems.hubModelPopup == 'true'}">
+                  <div class="hub2-limelightVideoImage">
+                    <div class="hub2-limeLightVideo-wrapper">
+                      <img src="${banneritems.imagePath}" class="hub2-limeLightVideo" alt="${banneritems.altText}" data-mediaId="${banneritems.mediaID}" data-playerid="${banneritems.playerId}">
+                      <div class="hub2PlayIcon"></div>
+                      <div id="hub2Videooverlay">
+                        <div class="modal-dialog" id="hub2Videopopup">
+                          <button type="button" class="close hub2-popup-close">&times;</button>
+                          <div id="limelight_player_${banneritems.playerId}" class="hub2-videoplayer" style="width:100%;height:100%;"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <span id='videoAutoplayCheck' class='hidden'>${banneritems.autoplay}</span>
+                  </div>
+                </sly>
+                <sly data-sly-test="${banneritems.videoType == 'limelightvideo' && banneritems.hubModelPopup != 'true' }">
+                  <div class="hub2-limelightVideoImage">
+                    <div class="hub2-limeLightVideo-wrapper">
+                      <img src="${banneritems.imagePath}" class="hub2-limeLightembedVideo" alt="${banneritems.altText}" data-mediaId="${banneritems.mediaID}" data-playerid="${banneritems.playerId}">
+                      <div class="hub2PlayIcon embedIcon"></div>
+                      <div data-sly-test="${banneritems.videoDuration}" class="vid-duration">${banneritems.videoDuration}</div>
+                      <div class="hub-embededVideo">
+                        <div id="limelight_player_${banneritems.playerId}" class="hub2-videoplayer" style="width:100%;height:100%;"></div>
+                      </div>
+                    </div>
+                  </div>
+                </sly>
+                <sly data-sly-test="${banneritems.videoType  == 'youtube' && banneritems.hubModelPopup == 'true' }">
+                  <div class="hub2-youtubeVideoImage">
+                    <div class="hub2-youtubeVideoImage-wrapper">
+                      <img src="${banneritems.imagePath}" class="hub2-youtubeVideo" alt="${banneritems.altText}">
+                      <div class="hub2PlayIcon"></div>
+                      <div data-sly-test="${banneritems.videoDuration}" class="vid-duration">${banneritems.videoDuration}</div>
+                      <div id="hub2Videooverlay">
+                        <div class="modal-dialog" id="hub2Videopopup">
+                          <button type="button" class="close hub2-popup-close">&times;</button>
+                          <iframe title="Youtube Video in a Popup" width="100%" height="100%" src="${banneritems.videoScript}?autoplay=0"></iframe>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </sly>
+                <sly data-sly-test="${banneritems.videoType  == 'youtube' && banneritems.hubModelPopup != 'true'}">
+                  <div class="hub2-youtubeVideoImage">
+                    <div class="hub2-youtubeVideoImage-wrapper">
+                      <img src="${banneritems.imagePath}" class="hub2-youtubeembedVideo" alt="${banneritems.altText}">
+                      <div class="hub2PlayIcon embedIcon"></div>
+                      <div data-sly-test="${banneritems.videoDuration}" class="vid-duration">${banneritems.videoDuration}</div>
+                      <div class="hub-embededVideo">
+                        <iframe title="Youtube Video" width="100%" height="100%" src="${banneritems.videoScript}?autoplay=0"></iframe>
+                      </div>
+                    </div>
+                  </div>
+                </sly>
+			</div>
+
+</template>

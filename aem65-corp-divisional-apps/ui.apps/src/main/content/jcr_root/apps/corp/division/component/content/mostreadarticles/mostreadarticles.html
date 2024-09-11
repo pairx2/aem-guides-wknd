@@ -1,0 +1,39 @@
+<div
+  data-sly-test="${wcmmode.edit}"
+  class="cq-placeholder"
+  data-emptyText="Configure Most Read Articles Component"
+></div>
+<sly
+  data-sly-use.mostRead="com.abbott.aem.corp.division.core.components.models.MostReadArticles"
+>
+  <div class="most-read-title">${mostRead.title}</div>
+  <div class="most-read">
+    <sly data-sly-list.child="${mostRead.articleListObj}">
+      <div class="item">
+        <a href="${child.articlePath @extension = 'html'}">
+          <div class="image-section">
+            <img
+              class="article-image"
+              src="${child.articleImage}"
+              alt="${child.articleTitle}"
+            />
+            <span class="read-more">${mostRead.hoverTitle}</span>
+            <div class="sotory-overlay"></div>
+          </div>
+          <div class="content-section">
+            <div class="${child.articleColor} tag">
+              ${child.parentPageTitle}
+            </div>
+            <div class="date">${child.articleDate}</div>
+            <div class="title">
+              <p>${child.articleTitle @ context='html'}</p>
+            </div>
+            <div class="desc">
+              <p>${child.articleDescription @ context='html'}</p>
+            </div>
+          </div>
+        </a>
+      </div>
+    </sly>
+  </div>
+</sly>

@@ -1,0 +1,147 @@
+@import '../global/media-queries.less';
+@import '../global/mixin.less';
+@import '../global/variables.less';
+
+body>.root{
+	overflow:hidden;
+}
+.graphsecwrapper { 
+    .title, .text {
+        display: none;
+    }
+    .title:first-child, .title:first-child+.text {
+        display: block;
+    }
+
+    p {
+        @media @lg-down {
+            padding-left: @spacer-32;
+            padding-right: @spacer-32;
+        }
+    }
+
+    .title+.text p {
+        @media @lg-only { 
+            padding-bottom: 175px;
+        }
+    }
+}
+
+.clusterwrapper { 
+    padding-left: 0;
+    padding-right: 0;
+
+    .title, .text {
+        &:extend(.graphsecwrapper .text);
+    }
+    .title:first-child, .title:first-child+.text {
+        &:extend(.graphsecwrapper .title:first-child);
+    }
+    .title h2{
+        @media @lg-up{
+            letter-spacing: 1.87px;
+        }
+    }
+}
+
+#graphVideoWrapper {
+    .align-center();
+    margin: 0;
+    @media @lg-up {
+        top: -26px;
+    }
+}
+
+#imagesequence {
+    text-align: center;
+    width: 100%;
+    @media @md-down {
+        height: 300px;
+        position: relative;
+    }
+
+    @media @lg-only {
+        height: 644px;
+    }
+
+    img {
+        display: none; 
+        margin: 0 auto;          
+        @media @lg-up {
+            width: auto;
+            height: 400px;
+        }
+        @media only screen and (min-width: 992px) and (max-width: 1340px) {
+            height: 380px;
+        }   
+        @media only screen and (min-width: 1340) {
+            height: 400px;     
+        }
+        @media @lg-down {
+            width: 70%;
+            height: auto;
+        }
+        @media only screen and (min-width: 620px) and (max-width: 767.98px) {
+            width: 40%;         
+        }
+    }
+}
+
+.graphtrigger {
+    @media @md-down {
+        position: relative;
+    }
+    @media @lg-only {
+            margin-bottom: 0;
+            position: relative;
+    }
+}
+
+#output {
+    width: 640px;
+    @media @md-down {
+        width: 400px;
+    }
+}
+
+#glucose-sec, #looping-sec {
+    height: auto;
+    .align-center();
+}
+
+#glucose-sec {
+    @media @lg-up {
+        top: 524px;
+        width: 250px;
+        display: none;
+    }
+    @media @lg-only {
+        top: 0;
+        width: 190px;
+        display: none;
+    }
+    @media @md-down {  
+        top: 0;   
+        width: 130px;
+        visibility: hidden;
+    }
+
+}
+
+#looping-sec {
+    @media @lg-up {
+        top: 287px;
+        width: 650px;
+        display: none;
+    }
+    @media @lg-only {
+        top: -200px;
+        width: 500px;
+        display: none;
+    }
+    @media @md-down {
+        top: -130px;
+        width: 350px;           
+        visibility: hidden;
+    }
+}

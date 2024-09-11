@@ -1,0 +1,233 @@
+.a-tile {
+  max-width: -webkit-max-content;
+  max-width: -moz-max-content;
+  max-width: max-content;
+}
+.a-tile__link {
+  padding: var(--tiles-padding);
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  display: inline-block;
+  border-radius: var(--tiles-border-radius);
+  position: relative;
+  -webkit-box-shadow: var(--tiles-box-shadow);
+  box-shadow: var(--tiles-box-shadow);
+  overflow: hidden;
+  background-color: var(--tiles-bg);
+  z-index: 2;
+}
+.a-tile__link:after {
+  border-radius: var(--tiles-border-radius);
+  -webkit-transition: var(--tiles-bg-transition);
+  transition: var(--tiles-bg-transition);
+  background-color: var(--tiles-bg);
+  border-top: var(--tiles-border-top);
+  content: "";
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  height: 12px;
+  top: 0;
+  left: 0;
+}
+.a-tile__link:hover {
+  color: var(--tiles-bg-hover-color);
+  text-decoration: none;
+}
+.a-tile__link:hover:after {
+  height: 100%;
+  background-color: var(--tiles-bg-hover);
+  border-top: var(--tiles-border-top-hover);
+}
+.a-tile__link:hover .a-tile__title,
+.a-tile__link:hover .a-tile__title-text,
+.a-tile__link:hover .a-tile__para,
+.a-tile__link:hover p {
+  color: var(--tiles-bg-hover-color);
+  text-decoration: none;
+}
+.a-tile__link:hover .a-tile__tile-icon,
+.a-tile__link:hover i {
+  color: var(--tiles-bg-hover-color) !important;
+}
+.a-tile__link:hover .a-tile__icon {
+  color: var(--tiles-bg-hover-color);
+}
+.a-tile__title,
+.a-tile-text {
+  color: var(--tiles-bg-color);
+  font-weight: bold;
+  position: relative;
+  z-index: 5;
+}
+.a-tile__icon {
+  display: none;
+  font-size: var(--tiles-icon-size);
+  position: relative;
+  z-index: 5;
+}
+.a-tile__para {
+  color: var(--tiles-bg-color);
+  margin-top: var(--tiles-para-margin-top);
+  font-family: var(--tiles-font-family);
+  position: relative;
+  z-index: 5;
+}
+.a-tile__para p {
+  font-family: var(--tiles-para-font-family);
+}
+.a-tile__tile-icon {
+  color: var(--tiles-bg-color);
+  margin-top: 1.25rem;
+  position: relative;
+  height: 3rem;
+  width: 3rem;
+  z-index: 5;
+}
+.a-tile__tile-icon i {
+  font-size: 3rem;
+}
+@media (max-width: 767.98px) {
+  .a-tile {
+    min-width: inherit;
+    max-width: inherit;
+    width: 100%;
+  }
+}
+.a-tile--xsmall .a-tile__link {
+  min-height: var(--tiles-xsmall-height);
+  height: auto;
+  width: var(--tiles-xsmall-width);
+}
+@media (max-width: 991.98px) {
+  .a-tile--xsmall .a-tile__link {
+    width: var(--tiles-xsmall-width-tablet);
+  }
+}
+@media (max-width: 767.98px) {
+  .a-tile--xsmall .a-tile__link {
+    min-height: var(--tiles-xsmall-height-mobile);
+  }
+}
+.a-tile--small .a-tile__link {
+  min-height: var(--tiles-medium-height);
+  height: auto;
+  width: var(--tiles-xsmall-width);
+}
+@media (max-width: 991.98px) {
+  .a-tile--small .a-tile__link {
+    width: var(--tiles-xsmall-width-tablet);
+  }
+}
+@media (max-width: 767.98px) {
+  .a-tile--small .a-tile__link {
+    min-height: var(--tiles-small-height-mobile);
+  }
+}
+.a-tile--medium .a-tile__link {
+  width: var(--tiles-medium-width);
+  min-height: var(--tiles-medium-height);
+  height: auto;
+}
+@media (max-width: 991.98px) {
+  .a-tile--medium .a-tile__link {
+    width: var(--tiles-medium-width-tablet);
+  }
+}
+@media (max-width: 767.98px) {
+  .a-tile--medium .a-tile__link {
+    min-height: var(--tiles-medium-height-mobile);
+  }
+}
+.a-tile--large .a-tile__link {
+  width: var(--tiles-large-width);
+  min-height: var(--tiles-large-height);
+  height: auto;
+}
+@media (max-width: 991.98px) {
+  .a-tile--large .a-tile__link {
+    width: var(--tiles-large-width-tablet);
+  }
+}
+@media (max-width: 767.98px) {
+  .a-tile--large .a-tile__link {
+    min-height: var(--tiles-large-height-mobile);
+  }
+}
+@media (max-width: 767.98px) {
+  .a-tile--xsmall .a-tile__link,
+  .a-tile--small .a-tile__link,
+  .a-tile--medium .a-tile__link,
+  .a-tile--large .a-tile__link {
+    width: 100%;
+  }
+  .a-tile--xsmall .a-tile__link .a-tile__icon,
+  .a-tile--small .a-tile__link .a-tile__icon,
+  .a-tile--medium .a-tile__link .a-tile__icon,
+  .a-tile--large .a-tile__link .a-tile__icon {
+    position: absolute;
+    top: 22px;
+    right: 10px;
+    display: block;
+    color: var(--tiles-icon-color);
+  }
+}
+.a-tile--xsmall .a-tile__link:hover .a-tile__icon,
+.a-tile--small .a-tile__link:hover .a-tile__icon,
+.a-tile--medium .a-tile__link:hover .a-tile__icon,
+.a-tile--large .a-tile__link:hover .a-tile__icon {
+  color: var(--tiles-icon-color-hover);
+}
+.a-tile--dark .a-tile__link {
+  background-color: var(--tiles-bg-dark);
+  border-color: var(--tiles-border-color-dark);
+  color: var(--tiles-color-dark);
+}
+.a-tile--dark .a-tile__link:after {
+  height: 0;
+  border-color: var(--tiles-border-color-dark);
+}
+.a-tile--dark .a-tile__link .a-tile__title,
+.a-tile--dark .a-tile__link .a-tile__title-text,
+.a-tile--dark .a-tile__link .a-tile__para,
+.a-tile--dark .a-tile__link p {
+  color: var(--tiles-color-dark);
+}
+.a-tile--dark .a-tile__link .a-tile__tile-icon,
+.a-tile--dark .a-tile__link i {
+  color: var(--tiles-color-dark);
+}
+.a-tile--dark .a-tile__link:hover {
+  color: var(--tiles-color-dark-hover);
+}
+.a-tile--dark .a-tile__link:hover:after {
+  background-color: var(--tiles-bg-dark-hover) !important;
+  border-color: var(--tiles-border-color-dark-hover);
+  height: 100% !important;
+  z-index: 1;
+}
+.a-tile--dark .a-tile__link:hover .a-tile__title-text:after {
+  display: block;
+  position: relative;
+  bottom: -8px;
+  width: 88px;
+  height: 4px;
+  content: " ";
+  background-color: var(--tiles-title-border-line-dark-hover);
+}
+.a-tile--dark .a-tile__link:hover .a-tile__title,
+.a-tile--dark .a-tile__link:hover .a-tile__title-text,
+.a-tile--dark .a-tile__link:hover .a-tile__para,
+.a-tile--dark .a-tile__link:hover p {
+  text-decoration: none;
+  color: var(--tiles-color-dark-hover);
+  position: relative;
+  z-index: 2;
+}
+.a-tile--dark .a-tile__link:hover .a-tile__tile-icon,
+.a-tile--dark .a-tile__link:hover i {
+  color: var(--tiles-color-dark-hover) !important;
+}
+.a-tile--dark .a-tile__link:hover .a-tile__icon {
+  color: var(--tiles-icon-color-hover);
+}

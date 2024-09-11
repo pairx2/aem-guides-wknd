@@ -1,0 +1,91 @@
+.tabs {
+    @media @lg-up {
+        padding-right: 35px;
+    }
+    .a-tabs__nav {
+        padding-bottom: 0px;
+        border-bottom: 1px solid @brand-blue;
+        @media @md-down {
+            border: unset;
+        }
+        &-link {
+            color: @color-black;
+            .font-size(16px, 16px);
+            font-family: @brandonbold;
+            flex: 1 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4px 8px 0 8px;
+            height: 50px;
+            position: relative;
+            border-bottom: none;
+            letter-spacing: 0;
+            z-index: 1;
+            @media @lg-only {
+                .font-size(12px, 14px);
+            }
+            @media @md-down {
+                 margin-bottom: 20px;
+                max-width: 100%;
+                flex-basis: 100%;
+                border-bottom: 1px solid @brand-blue;
+            }
+            &:before {
+                background-color: @color-black;
+            }
+            &.active {
+                border-bottom: 3px solid @color-thin-blue ;
+                color: @color-black;
+                font-weight: 500;
+                &:hover {
+                    border-bottom: 3px solid @color-thin-blue;
+                }
+            }
+            &:hover {
+                background-color: @brand-light-blue !important;
+                border-bottom: none;
+                color:@color-black ;
+            }
+            &:focus {
+                text-decoration: none;
+            }
+            .a-tabs__nav-text {
+                align-items: center;
+                justify-content: center;    
+                color: @brand-blue;  
+                font-size: 24px;
+                line-height: 32px;   
+            }
+        }        
+    }
+    .tab-content {
+        .container {
+           @media @md-down {
+                padding: 10px 0 30px 0 !important;
+            }
+            .accordion {
+                @media @md-down {
+                    padding: 0 !important;
+                }
+            }
+        }
+        .columncontrol > .container > .row {
+            @media @md-down {
+                > .col-md-3 {
+                    max-width: 25%;
+                    margin-bottom: 0;
+                }
+                > .col-md-9 {
+                    max-width: 75%;
+                }
+            }   
+            .cmp-text p:last-child {
+                margin-bottom: 0;
+            }         
+        }
+    }  
+}
+.columncontrol.column-align--center .row.a-tabs__nav {
+    justify-content: left;
+}

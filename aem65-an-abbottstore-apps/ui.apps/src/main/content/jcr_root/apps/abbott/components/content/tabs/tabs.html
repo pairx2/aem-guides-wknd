@@ -1,0 +1,28 @@
+<sly data-sly-use.data ="com.abbott.aem.an.abbottstore.models.TabsModel" />
+<section data-sly-use.tabs="com.adobe.cq.wcm.core.components.models.Tabs"
+     data-sly-use.templates="core/wcm/components/commons/v1/templates.html"
+     class="cmp-tabs pdp-tabs mt-4"
+     data-cmp-is="tabs">
+    <ol data-sly-test="${tabs.items && tabs.items.size > 0}"
+        role="tablist"
+        class="cmp-tabs__tablist text-center d-none d-md-block"
+        aria-multiselectable="false">
+        <li data-sly-repeat.item="${tabs.items}"
+            role="tab"
+            class="cmp-tabs__tab ${data.tabsVisibilityFlags[itemList.index] ? '' : 'd-none'} ${item.name == tabs.activeItem ? ' cmp-tabs__tab--active' : ''}"
+            data-cmp-hook-tabs="tab">${item.title}</li>
+    </ol>
+    <div data-sly-repeat.item="${tabs.items}"         
+         role="tabpanel"
+         class="cmp-tabs__tabpanel${item.name == tabs.activeItem ? ' cmp-tabs__tabpanel--active' : ''}"
+         data-cmp-hook-tabs="tabpanel">
+            <span class="cmp-tabs__tab-mobile text-center d-block d-md-none" role="tab">
+                ${item.title}
+                <em class="ai-caret-down"></em>
+            </span>
+            <div class="cmp-tabs__tab-content ${data.tabsVisibilityFlags[itemList.index] ? '' : 'd-none'}" data-sly-resource="${item.name @ decorationTagName='div'}"></div>
+
+        </div>
+    <sly data-sly-resource="${resource.path @ resourceType='wcm/foundation/components/parsys/newpar', appendPath='/*', decorationTagName='div', cssClassName='new section aem-Grid-newComponent'}"
+         data-sly-test="${(wcmmode.edit || wcmmode.preview) && tabs.items.size < 1}"></sly>
+</section>

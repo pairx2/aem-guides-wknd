@@ -1,0 +1,111 @@
+@import "./global/mixins.less";
+@import './global/variables.less';
+
+#flavour-container {
+	div#flavour-dropdown {
+    display: grid;
+    grid-template-columns: 40% 28% 32%;
+    grid-column-gap: 10px;
+    padding : 0;
+        @media @md-down {
+            display: block;
+        }
+    }
+
+    #addToCart {
+        padding : 20px !important;
+        width : 100%;
+
+    }
+
+    div#flavour-dropdown .options {
+        margin: 0 !important;
+    }
+
+    .button.link.a-button.a-button--primary:has(#addToCart) {
+        grid-column: span 2;
+        margin : 10px 0 0 0;
+    }
+
+}
+
+
+.experiencefragment:has(#flavour-container) {
+    position: relative;
+    z-index: 10;
+}
+
+.container.responsivegrid:has(#section-downloadContainer) {
+    position: relative;
+    z-index : 9;
+}
+
+#productImageContent {
+	*{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+    }
+
+    #imageHolder{
+        position: relative;
+        overflow: hidden;
+    }
+
+    #imageHolder img,
+    #imageHolderSingleImage img{
+        border-radius: 5px;
+    }
+    #imageHolder .glass,
+    #imageHolderSingleImage .glass{
+        position: absolute;
+        border:3px solid rgb(22,22,22);
+        height: 100px;
+        width: 100px;
+        cursor: none;
+        border-radius: 50%;
+    }
+
+    img#imageTmpID {
+        width: 100%;
+    }
+    img#imageTmpIDSingleImage {
+        width: 100%;
+    }
+
+    #magnifier-container {
+        position: absolute;
+        right: 12%;
+        top: 85%;
+    }
+
+    ul.slick-dots {
+        top: 92%;
+        li {
+            margin : 0 .25rem;
+        }
+        @media @md-down {
+            top: 91%;
+        }
+    }
+    .abt-icon.slick-next.slick-arrow.abt-icon.abt-icon-right-arrow,
+    .abt-icon.slick-prev.slick-arrow.abt-icon.abt-icon-left-arrow {
+        @media @md-down {
+            display : inline-block !important;
+        }
+    }
+}
+
+.color-disabled {
+    background: var(--button-disabled-bg-color) !important;
+}
+
+.pointer-disabled {
+    pointer-events: none;
+}
+
+#exceed-message {
+    font-family: @calibri-font-family, @base-font-family;
+    position: absolute;
+    color: #e4002b;
+}

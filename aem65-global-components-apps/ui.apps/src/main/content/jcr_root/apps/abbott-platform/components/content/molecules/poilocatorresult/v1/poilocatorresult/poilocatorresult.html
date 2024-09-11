@@ -1,0 +1,14 @@
+<sly data-sly-use.poiSearchResults="com.abbott.aem.platform.common.components.models.POILocatorResult"
+data-sly-use.customConfig="com.abbott.aem.platform.common.components.models.CustomConfig"
+data-sly-use.component="com.adobe.cq.wcm.core.components.models.Component"
+   data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
+
+<!-- /* IF VALUE OF MAPALIGNMENT IS vertical RENDER verticalalign HTML */-->
+<sly data-sly-test ="${poiSearchResults.mapAlignment == 'vertical'}" data-sly-include="verticalalign.html"></sly>
+
+<!-- /* IF VALUE OF MAPALIGNMENT IS horizontal RENDER horizontal HTML */-->
+<sly data-sly-test ="${poiSearchResults.mapAlignment == 'horizontal'}" data-sly-include="horizontalalign.html"></sly>
+
+</sly>
+<div class="m-poi-locator-results__no-resultfound d-none">${poiSearchResults.noResultFoundText}</div>
+<sly data-sly-call="${templates.placeholder @ isEmpty=!poiSearchResults.searchResultText}"></sly>

@@ -1,0 +1,176 @@
+.product-categories {
+    padding-top: 60px;
+    padding-bottom:71px;
+
+    @media screen and (max-width: @screen-lg) {
+        padding-top: 47px;
+        padding-bottom: 49px;
+    }
+
+    @media screen and (max-width: @screen-sm) {
+        padding-top: 34px;
+        padding-bottom: 31px;
+    }
+
+    .wrapper-content {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: -8px;
+
+        @media screen and (min-width: @screen-sm) {
+            margin-bottom: -3px;
+        }
+        
+        @media screen and (min-width: @screen-lg) {
+            margin-bottom: 2px;
+        }
+ 
+        .title-link__desktop, .title-link__mobile {
+            a {
+                float: unset;
+                font: bold @font-size-small-text/20px @font-family-default;
+                color: @color-primary;
+                
+                @media screen and (min-width:  @screen-lg) {
+                    font-size: @font-size-body-text;
+                }
+
+                &:hover {
+                    text-decoration: underline;
+                }
+
+                &:focus, &:active {
+                    text-decoration: underline;
+                    color: @color-black;
+                }
+            }
+        }
+
+        .abt-icon {
+            float: right;
+            font-weight: bold;
+            line-height: 19px;
+            margin-left: 10px;
+            color: @color-icon-blue;
+            top: 0;
+        }
+
+        .title-link {
+
+            &__desktop {
+                
+                @media (max-width: @screen-sm) {
+                    display: none;
+                }
+            }
+            
+            &__mobile {
+                display: none;
+                
+                @media (max-width: @screen-sm) {
+                    display: block;
+                }
+            }
+        }
+    }
+
+    .cmp-title__text {
+        margin: 0;
+        font: bold @font-size-large-text/22px @font-family-default;
+        color: @color-dark-grey;
+        letter-spacing: normal;
+
+        @media screen and (min-width:  @screen-lg) {
+            font-size: @font-size-title-l4;
+            line-height: 24px;
+        }
+    }
+ 
+    .content-cards {
+        margin-top: 27px;
+
+        .category-card {
+            border: 1px @color-light-grey solid;
+            border-radius: 5px;
+            width: 100%;
+
+            &:hover {
+                box-shadow: 0 2px 6px 0 rgba(0,0,0,0.25);
+            }
+
+            &::before {
+                box-shadow: none;
+            }
+        }
+    
+        .m-card__media {
+            display: flex;
+            justify-content: center;
+            height: auto;
+            margin: 32px 0 30px;
+            
+            @media (max-width: @screen-lg) {
+                margin: 21px 0 24px;
+            }
+
+            @media (max-width: @screen-sm) {
+                margin: 26px 0 32px;
+            }
+        }
+    
+        .m-card__body {
+            text-align: center;
+            padding: 0;
+            overflow: unset;
+            margin-bottom: 22px;
+
+            @media screen and (max-width: @screen-lg) {
+                margin-bottom: 19px;
+            }
+
+            @media screen and (max-width: @screen-sm) {
+                margin-bottom: 16px;
+            }
+        }
+    
+        .m-card__title{
+            color: @color-title;
+            font: bold @font-size-large-text/21px @font-family-default;
+            margin: 0;
+
+            .screen-below(@screen-lg, {
+                font-size: @font-size-medium-text;
+                line-height: 21px;
+            });
+            
+            .screen-below(@screen-md - 1, {
+                font-size: @font-size-body-text;
+            });
+        }
+
+        .m-card__image {
+            text-align: center;
+            position: relative;
+
+            img {
+                max-width: 100%;
+            }
+        }
+
+        &:hover {
+            a, .m-card__title {
+               text-decoration: none; 
+                color: @color-primary;
+            }
+        }
+    }
+
+    //make link visible for author page
+    .cq-Editable-dom.title-link__mobile {
+        display: block !important;
+        height: 30px;
+        width: 150px;
+        border: 1px solid @color-grey;
+    }
+
+}

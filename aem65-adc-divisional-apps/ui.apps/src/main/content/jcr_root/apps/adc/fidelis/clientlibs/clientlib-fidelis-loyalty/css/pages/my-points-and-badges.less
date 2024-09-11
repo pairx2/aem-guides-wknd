@@ -1,0 +1,141 @@
+@import '../mixin.less';
+@import '../media-queries.less';
+@import '../variables.less';
+/**
+ * MY POINTS AND BADGES - PAGE
+**/
+
+.mfs-txn-points {
+    span {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 4px;
+        background: #E3F4D7;
+        color: #4AAB07;
+    }
+
+    &.points-added {
+        span {
+            &:before {
+                content: '+';
+            }
+        }
+    }
+
+    &.points-redeemed {
+        span {
+            background: #FFD6D6;
+            color: #CC0000;
+
+            &:before {
+                content: '-';
+            }
+        }
+    }
+}
+
+[id*="mfs-transaction-table"], [id*="mfs-txn-table"] {
+    &.m-custom-table {
+        td {
+            border-color: @color-black-lighter;
+            vertical-align: middle;
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+    }
+    .skeleton-loader-container{
+        display: grid;
+        grid-template-columns: auto auto auto;
+        column-gap: 1rem;
+    }
+    &.m-custom-table__content--error, &.m-custom-table__content--complete{
+        .skeleton-loader-container{
+            display: none;
+        }
+    }
+}
+
+/* Badges */
+.mfs-badge, [id^="BADGE_"] {
+    .row {
+        align-items: center;
+
+        .columncontrol__column {
+            @media @lg-down {
+                margin-bottom: 0!important;
+            }
+
+            &.col-md-3.col-lg-3, &.col-md-4.col-lg-4 {
+                @media @md-down {
+                    flex: 0 0 33.33333%;
+                    max-width: 33.33333%;
+                }
+            }
+
+            &.col-md-9.col-lg-9, &.col-md-8.col-lg-8 {
+                @media @md-down {
+                    flex: 0 0 66.66667%;
+                    max-width: 66.66667%;
+                }
+            }
+
+            .title,
+            .text {
+                @media @md-down {
+                    text-align: center;
+                }
+            }
+        }
+    }
+
+    &.mfs-badge--enabled {
+        .cmp-image__image {
+            filter: grayscale(0);
+        }
+
+        .m-card__body {
+            .cta1, .cta2, .button.a-link {
+                display: flex!important;
+            }
+        }
+    }
+
+    &.mfs-badge--disabled {
+        .cmp-image__image {
+            filter: grayscale(1);
+        }
+
+        .m-card__body {
+            .cta1.link.button.a-link, .cta2.link.button.a-link {
+                display: none!important;
+            }
+        }
+    }
+}
+
+[id*="btnModal_BADGE"].generic-modal {
+    .o-promo img {
+        height: 125px;
+        max-height: fit-content;
+        width: auto;
+    }
+    .modal-footer.generic-modal__content-footer:empty {
+        padding-top: 0;
+    }
+
+    .o-promo__wrapper {
+        justify-content: center;
+    }
+}
+
+//authoring style
+.cq-Editable-dom {
+    #mfs-transaction-table{
+        .skeleton-loader-container{
+            display: none;
+        }
+    }
+}

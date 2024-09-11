@@ -1,0 +1,802 @@
+/**********************************
+accordion Component
+**********************************/
+.accordion {
+
+    //Style system to show accordion as Button with expanded view
+    &.accordion__expanded-button-view {
+        .m-accordion {
+
+            .m-accordion__content-items {
+                border: none;
+
+                .m-accordion__header {
+                    background-color: @abbott-gray;
+                    height: 1.75rem;
+                    justify-content: center;
+
+                    .m-accordion-toggle {
+                        .m-accordion-icon:last-child {
+                            .abt-icon:before {
+                                display: inline-block;
+                                transform: rotate(90deg);
+                            }
+                        }
+                    }
+
+                    @media @md-down {
+                        align-items: center;
+                        height: auto;
+                    }
+
+                    .m-accordion__title-wrapper {
+                        padding: 0;
+                        width: auto;
+
+                    }
+
+                    .m-accordion__icon-wrapper {
+                        padding-top: 0.5rem;
+                    }
+
+                    * {
+                        color: @white;
+                        font-family: @font-brandon-grotesque-bold;
+                        font-size: 1rem;
+                        text-transform: uppercase;
+                    }
+                }
+
+                .m-accordion__body {
+                    background-color: @white;
+                    padding: 10px;
+                    transition: all .3s ease;
+
+                    @media @lg-only {
+                        padding: 5px;
+                    }
+                }
+            }
+        }
+    }
+
+    // Style system to achieve the accordion functionality.
+    &.accordion__expand-collapse-group {
+        .m-accordion__content-items {
+            border-top: 1px solid @abbott-light-gray;
+            border-bottom: 1px solid @abbott-light-gray;
+
+            &.m-accordion__expanded {
+                background: @abbott-light-silver;
+                border-bottom: none;
+
+                &:hover {
+
+                    .m-accordion__header {
+                        * {
+                            color: @abbott-blue  !important;
+                        }
+                    }
+                }
+            }
+
+            .m-accordion__header {
+                * {
+                    color: @abbott-blue  !important;
+                    font-weight: 500 !important;
+                }
+
+                .m-accordion__icon-wrapper {
+                    padding-left: 0;
+                }
+            }
+
+            .m-accordion__body {
+                padding-left: 1.75rem !important;
+                transition: .2s all ease;
+
+            }
+
+            &:hover {
+                background: @abbott-light-silver;
+
+                .m-accordion__header {
+                    * {
+                        color: @black  !important;
+                    }
+                }
+            }
+        }
+
+        #accordion-top .m-accordion__content-items:first-child {
+            border: 1px solid @abbott-light-gray;
+
+            .m-accordion__header {
+                background: @white;
+            }
+        }
+
+        @media @lg-down {
+            .m-accordion__content-items:first-child.m-accordion__expanded .m-accordion__header {
+                background-color: @abbott-light-silver  !important;
+            }
+        }
+    }
+
+    &.m-accordion-look-lg-hide {
+        @media @md-down {
+            .m-accordion__content .m-accordion__content-items {
+                --accordion-content-border: 1px solid @abbott-accordion-border-light-gray;
+            }
+
+        }
+
+        @media @md-up {
+            .m-accordion__content .m-accordion__content-items {
+                border: none;
+
+                .m-accordion__body {
+                    display: block !important;
+                }
+
+                .m-accordion__header {
+                    pointer-events: none;
+
+                    .m-accordion__title-wrapper {
+                        padding-left: 36px;
+                    }
+                }
+
+                .m-accordion__icon-wrapper {
+                    display: none;
+                }
+
+                .columncontrol .container {
+                    padding: 0;
+
+                    .columncontrol__column {
+                        flex: 0 0 16.66667%;
+                        max-width: 16.66667%;
+                        padding: 5px;
+
+
+                    }
+                }
+            }
+        }
+    }
+
+    //Style system for media library variation -2 component
+
+    &.m-accordion--medialibrary-variation-2 {
+        padding-top: 0 !important;
+
+        .m-accordion__options {
+            margin-bottom: 0 !important;
+        }
+
+        .m-accordion__content-items {
+            border: none;
+            margin-bottom: -20px;
+
+            .m-accordion__header {
+                .m-accordion__title-wrapper {
+                    padding-left: 0;
+                }
+
+                .m-accordion__title-wrapper * {
+                    color: @abbott-bastille;
+                    padding-left: 10px;
+
+                    &:hover {
+                        color: @white;
+                        background-color: @abbott-primary-blue;
+                    }
+                }
+
+                .m-accordion__icon-wrapper {
+                    display: none;
+                }
+            }
+
+            .m-accordion__body {
+                padding-left: 15px;
+
+                .button {
+                    margin-top: 0 !important;
+                    margin-bottom: 5px !important;
+
+                    .btn {
+                        padding: 0;
+                        color: @abbott-gray;
+                        font-weight: bold;
+                    }
+
+                    &.tag-list-button-active {
+                        .btn {
+                            color: @abbott-primary-blue  !important;
+                        }
+                    }
+
+                    &.tag-list-button-not-active {
+                        .btn {
+                            color: @abbott-gray  !important;
+                        }
+                    }
+                }
+            }
+
+            &.tag-list-article-active {
+                .m-accordion__title-wrapper * {
+                    background-color: @abbott-primary-blue;
+                    color: @white;
+                }
+
+                .m-accordion__body .button:first-child {
+                    .btn {
+                        color: @abbott-primary-blue;
+                    }
+                }
+            }
+        }
+    }
+
+    // Style system for deluxe filter accordion look and feel
+    &.m-accordion-variation--deluxe-filter {
+        @media @lg-up {
+            width: 85%;
+        }
+
+        @media @lg-only {
+            width: 90%;
+        }
+
+        padding-bottom: 0 !important;
+        padding-top: 0 !important;
+
+        .m-accordion__options {
+            display: none;
+        }
+
+        .m-accordion__content {
+            .m-accordion__content-items {
+                border-top: 0;
+                border-bottom: 1px solid @abbott-light-gray;
+
+                &.m-accordion__expanded {
+                    background-color: @abbott-hover-white;
+                    border-bottom: none;
+
+                    &:hover .m-accordion__header * {
+                        color: @abbott-card-carousel-hover-color;
+                    }
+                }
+
+                .m-accordion__header {
+                    position: relative;
+
+                    * {
+                        color: @abbott-card-carousel-hover-color;
+                        font-size: @font-size-18;
+                    }
+
+                    .m-accordion__title-wrapper {
+                        --accordion-title-padding-sm: 20px 0 20px 22px;
+                    }
+
+                    .m-accordion__icon-wrapper {
+                        padding-left: 0;
+                        width: 20px;
+                        position: absolute;
+                        right: 20px;
+                        top: 20px;
+
+                        .abt-icon {
+                            font-weight: bold;
+                        }
+                    }
+                }
+
+                .m-accordion__body {
+                    padding-left: 1.75rem;
+                    transition: .2s all ease;
+                }
+
+                &:hover {
+                    background: @abbott-hover-white;
+
+                    .m-accordion__header * {
+                        color: @black;
+                    }
+                }
+            }
+        }
+    }
+
+    //style system of accordion header for bold text
+    &.m-accordion-header-bold {
+        .m-accordion__content-items .m-accordion__header {
+            * {
+                font-weight: bold !important;
+            }
+        }
+    }
+
+    //style system of accordion header for thin text
+    // &.m-accordion-header-font-thin {
+    //     .m-accordion__content-items .m-accordion__header {
+    //         * {
+    //             font-weight: 300;
+    //         }
+    //     }
+    // }
+
+    // Style system for Accordion to have 100% container width
+    &.m-accordion--full-width {
+        .m-accordion.cmp-accordion {
+            --accordion-lg-max-width: 100%;
+        }
+    }
+
+    // style systems for accordion header font -- starts here
+    &.m-accordion-header-font-bold {
+        .m-accordion__content-items .m-accordion__header {
+            * {
+                .font--bold();
+            }
+        }
+    }
+
+    &.m-accordion-header-font-thin {
+        .m-accordion__content-items .m-accordion__header {
+            * {
+                .font--thin();
+                font-weight: 300;
+            }
+        }
+    }
+
+    &.m-accordion-header-font-medium {
+        .m-accordion__content-items .m-accordion__header {
+            * {
+                .font--medium();
+            }
+        }
+    }
+
+    &.m-accordion-header-font-italic {
+        .m-accordion__content-items .m-accordion__header {
+            * {
+                .font--italic();
+            }
+        }
+    }
+
+    &.m-accordion-header-font-black {
+        .m-accordion__content-items .m-accordion__header {
+            * {
+                .font--black();
+            }
+        }
+    }
+
+    &.m-accordion-header-font-regular {
+        .m-accordion__content-items .m-accordion__header {
+            * {
+                .font--regular();
+            }
+        }
+    }
+
+    &.m-accordion-header-font-arial {
+        .m-accordion__content-items .m-accordion__header {
+            * {
+                font-family: @font-arial;
+            }
+        }
+    }
+
+    &.m-accordion-header-font-brandon-grotesque-medium {
+        .m-accordion__content-items .m-accordion__header {
+            * {
+                font-family: @font-brandon-grotesque-medium;
+            }
+        }
+    }
+
+    &.m-accordion-header-font-brandon-grotesque-black {
+        .m-accordion__content-items .m-accordion__header {
+            * {
+                font-family: @font-brandon-grotesque-black;
+            }
+        }
+    }
+
+    &.m-accordion-header-font-brandon-grotesque-regular {
+        .m-accordion__content-items .m-accordion__header {
+            * {
+                font-family: @font-brandon-grotesque-regular;
+            }
+        }
+    }
+
+    &.m-accordion-header-font-brandon-grotesque-bold {
+        .m-accordion__content-items .m-accordion__header {
+            * {
+                font-family: @font-brandon-grotesque-bold;
+            }
+        }
+    }
+
+    &.m-accordion-header-font-georgia {
+        .m-accordion__content-items .m-accordion__header {
+            * {
+                font-family: @font-georgia;
+            }
+        }
+    }
+
+    &.m-accordion-header-font-meiryo {
+        .m-accordion__content-items .m-accordion__header {
+            * {
+                font-family: @font-meiryo;
+            }
+        }
+    }
+
+    &.m-accordion-header-font-segoe-ui {
+        .m-accordion__content-items .m-accordion__header {
+            * {
+                font-family: @font-segoe-ui;
+            }
+        }
+    }
+
+    &.m-accordion-header-font-times-new-roman {
+        .m-accordion__content-items .m-accordion__header {
+            * {
+                font-family: @font-times-new-roman;
+            }
+        }
+    }
+
+    &.m-accordion-header-font-extazy-black {
+        .m-accordion__content-items .m-accordion__header {
+            * {
+                font-family: @font-extazy-black;
+            }
+        }
+    }
+
+    &.m-accordion-header-font-extazy-bold {
+        .m-accordion__content-items .m-accordion__header {
+            * {
+                font-family: @font-extazy-bold;
+            }
+        }
+    }
+
+    &.m-accordion-header-font-extazy-light {
+        .m-accordion__content-items .m-accordion__header {
+            * {
+                font-family: @font-extazy-light;
+            }
+        }
+    }
+
+    &.m-accordion-header-font-extazy-regular {
+        .m-accordion__content-items .m-accordion__header {
+            * {
+                font-family: @font-extazy-regular;
+            }
+        }
+
+    }
+
+    &.m-accordion-header-font-microsoft-ya-hei {
+        .m-accordion__content-items .m-accordion__header {
+            * {
+                font-family: @font-microsoft-ya-hei;
+            }
+        }
+    }
+
+    &.m-accordion-header-font-calibri {
+        .m-accordion__content-items .m-accordion__header {
+            * {
+                font-family: @font-calibri;
+            }
+        }
+    }
+
+    &.m-accordion-header-font-helvetica-neue {
+        .m-accordion__content-items .m-accordion__header {
+            * {
+                font-family: @font-helvetica-neue;
+            }
+        }
+    }
+
+    &.m-accordion-header-font-mercury-text-g1-roman .m-accordion__content-items .m-accordion__header * {
+        font-family: @font-mercury-text-g1-roman;
+    }
+
+    &.m-accordion-header-font-Helvetica-neue .m-accordion__content-items .m-accordion__header * {
+        font-family: @font-helvetica-neue;
+    }
+
+    &.m-accordion-header-font-hiragino-mincho-pron .m-accordion__content-items .m-accordion__header * {
+        font-family: @font-hiragino-mincho-pron;
+    }
+
+    &.m-accordion-header-font-malgun-gothic-w35-regular .m-accordion__content-items .m-accordion__header * {
+        font-family: @font-malgun-gothic-w35-regular;
+    }
+
+    &.m-accordion-header-font-brandon-medium .m-accordion__content-items .m-accordion__header * {
+        font-family: @font-brandon-medium;
+    }
+
+    &.m-accordion-header-font-brandon-bold .m-accordion__content-items .m-accordion__header * {
+        font-family: @font-brandon-bold;
+    }
+
+    &.m-accordion-header-font-brandon-regular .m-accordion__content-items .m-accordion__header * {
+        font-family: @font-brandon-regular;
+    }
+
+    // style systems for accordion header font -- ends here
+
+    //style system for accordion header color -- starts here
+    &.m-accordion-header-white .m-accordion__content-items .m-accordion__header * {
+        color: @white  !important;
+    }
+
+    &.m-accordion-header-black .m-accordion__content-items .m-accordion__header * {
+        color: @black  !important;
+    }
+
+    &.m-accordion-header-abbott-dark-blue .m-accordion__content-items .m-accordion__header * {
+        color: @abbott-dark-blue  !important;
+    }
+
+    &.m-accordion-header-abbott-light-blue .m-accordion__content-items .m-accordion__header * {
+        color: @abbott-light-blue  !important;
+    }
+
+    &.m-accordion-header-abbott-medium-blue .m-accordion__content-items .m-accordion__header * {
+        color: @abbott-medium-blue  !important;
+    }
+
+    &.m-accordion-header-abbott-yellow .m-accordion__content-items .m-accordion__header * {
+        color: @abbott-yellow  !important;
+    }
+
+    &.m-accordion-header-abbott-dark-yellow .m-accordion__content-items .m-accordion__header * {
+        color: @abbott-dark-yellow  !important;
+    }
+
+    &.m-accordion-header-abbott-green .m-accordion__content-items .m-accordion__header * {
+        color: @abbott-green  !important;
+    }
+
+    &.m-accordion-header-abbott-fuscia .m-accordion__content-items .m-accordion__header * {
+        color: @abbott-fuscia  !important;
+    }
+
+    &.m-accordion-header-abbott-orange .m-accordion__content-items .m-accordion__header * {
+        color: @abbott-orange  !important;
+    }
+
+    &.m-accordion-header-abbott-cyan .m-accordion__content-items .m-accordion__header * {
+        color: @abbott-cyan  !important;
+    }
+
+    &.m-accordion-header-abbott-blue .m-accordion__content-items .m-accordion__header * {
+        color: @abbott-blue  !important;
+    }
+
+    &.m-accordion-header-abbott-dark-gray .m-accordion__content-items .m-accordion__header * {
+        color: @abbott-dark-gray  !important;
+    }
+
+    &.m-accordion-header-abbott-primary-blue .m-accordion__content-items .m-accordion__header * {
+        color: @abbott-primary-blue  !important;
+    }
+
+    &.m-accordion-header-abbott-charcoal .m-accordion__content-items .m-accordion__header * {
+        color: @abbott-charcoal  !important;
+    }
+
+    &.m-accordion-header-abbott-purple .m-accordion__content-items .m-accordion__header * {
+        color: @abbott-purple  !important;
+    }
+
+    &.m-accordion-header-abbott-red .m-accordion__content-items .m-accordion__header * {
+        color: @abbott-red  !important;
+    }
+
+    //* style system for accordain bg color gray *//
+
+    &.accordion--bg-gray-white {
+        padding-left: 15px;
+        padding-right: 15px;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+
+        .m-accordion.cmp-accordion {
+            .m-accordion__options {
+                display: none;
+            }
+        }
+
+        .m-accordion__content {
+            .m-accordion__content-items {
+                border-top: 0;
+                border-bottom: 0;
+
+                .m-accordion__body {
+                    padding: 10px;
+                    border-left: 2px solid @abbott-pagination-border-silver;
+                    border-right: 2px solid @abbott-pagination-border-silver;
+                    border-bottom: 2px solid @abbott-pagination-border-silver;
+                    border-radius: 5px;
+                    margin-bottom: 8px;
+
+                    .cmp-accordion__panel {
+                        .text {
+                            .cmp-text {
+                                p {
+                                    line-height: 16.8px;
+                                    margin-top: 0;
+                                    margin-bottom: 0;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .m-accordion__header {
+                    padding: 10px;
+                    border-radius: 5px;
+                    background-color: @abbott-pagination-border-silver;
+                    border: 1px solid @abbott-silver;
+                    color: @black;
+                    margin: 0 !important;
+
+                    button.m-accordion__icon-wrapper {
+                        display: none;
+                    }
+
+                    div.m-accordion__title-wrapper {
+                        padding: 0;
+
+                        p,
+                        h1,
+                        h2,
+                        h3,
+                        h4,
+                        h5,
+                        h6 {
+                            font-weight: 700;
+                            line-height: 16.8px;
+                            font-size: @font-size-14  !important;
+                            color: @black;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /* ----  BLUE THEME OF ACCORDION FOR NEW ACCORDION DESIGN STARTS FROM HERE  ---- */
+    &.accordion--blue-theme {
+        @media (max-width: 1024px) {
+            margin-left: 30px;
+            margin-right: 30px;
+        }
+
+        @media (max-width: 500px) {
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+        .m-accordion__options {
+            padding: 0px;
+            margin-bottom: 10px;
+
+            .coll-exp-title.m-accordion__expand-title.show {
+                padding: 0px;
+
+                .coll-exp-title {
+                    font-family: @font-helvetica;
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: @font-size-14;
+                    line-height: 20px;
+                    color: @abbott-core-accord-href-blue;
+                }
+            }
+        }
+
+        .m-accordion__content {
+            .m-accordion__content-items:hover {
+                background-color: unset;
+            }
+
+            .m-accordion__content-items:hover .m-accordion__header * {
+                color: @abbott-medium-blue  !important;
+            }
+
+            .m-accordion__content-items:first-child {
+                border-top: 1px solid @abbott-core-accord-line-gray;
+            }
+
+            .m-accordion__content-items.m-accordion__expanded {
+                .m-accordion__header {
+                    background-color: unset !important;
+                }
+
+                background-color: unset;
+            }
+
+            .m-accordion__content-items {
+                border-top: unset;
+                border-bottom: 1px solid @abbott-core-accord-line-gray;
+
+                .m-accordion__header {
+                    h3 {
+                        font-weight: bold !important;
+                        font-weight: 450;
+                        font-size: 24px;
+                        line-height: 32px;
+                    }
+
+                    h3:hover {
+                        color: @abbott-blue  !important;
+                    }
+
+                    .m-accordion__title-wrapper {
+                        padding-right: 26px;
+                    }
+
+                    button.m-accordion__icon-wrapper {
+                        align-items: flex-start;
+                        padding-top: 20px;
+
+                        .abt-icon-plus {
+                            color: @abbott-core-accord-href-blue  !important;
+                        }
+
+                        .abt-icon-minus {
+                            color: @abbott-core-accord-href-blue  !important;
+                        }
+                    }
+                }
+
+                .m-accordion__body {
+                    .cmp-accordion__panel {
+                        .cmp-text {
+                            padding-left: 15px;
+
+                            p {
+                                font-family: @font-georgia;
+                                font-style: normal;
+                                font-weight: 400;
+                                font-size: @font-size-base;
+                                line-height: 24px;
+                                color: @abbott-charcoal;
+
+                                a {
+                                    color: @abbott-core-accord-href-blue;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /* ----  BLUE THEME OF ACCORDION ENDS HERE  ---- */
+}

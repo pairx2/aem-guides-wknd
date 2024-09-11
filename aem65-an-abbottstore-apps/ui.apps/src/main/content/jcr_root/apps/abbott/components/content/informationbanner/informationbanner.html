@@ -1,0 +1,15 @@
+<sly data-sly-use.templates="core/wcm/components/commons/v1/templates.html"/>
+<sly data-sly-use.data="com.abbott.aem.an.abbottstore.models.InformationBannerModel" />
+<sly data-sly-test.infoList="${data.infoBannerItems}"/>
+
+<div class="info-banner" style="background-image: url(${data.bgImageRef @context='uri'});">
+    <div data-sly-resource="${ 'richText' @ resourceType='abbott/components/content/richtext'}"></div>
+    <div class="info-banner-block" data-sly-list.infoBannerList="${data.infoBannerItems}">
+        <div class="info-banner-card">
+            <img class="info-banner-card-image" src="${infoBannerList.imageRef}" alt="${infoBannerList.imgAltText}" />
+            <div class="info-banner-card-title" style="color: ${infoBannerList.subTitleColor @context='styleToken'}">${infoBannerList.subTitle}</div>
+            <div class="info-banner-card-detail">${infoBannerList.subDescription @context = 'html'}</div>
+        </div>
+    </div>
+</div>
+<sly data-sly-call="${templates.placeholder @ isEmpty = !infoList}"></sly>

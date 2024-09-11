@@ -1,0 +1,371 @@
+/**
+ * Common Functionalities
+ */
+
+/**
+ * @function
+ * Summary: Genrate 128B unique key from the String
+ * Parameters:  {String}
+ */
+function getenKy(p) {
+  const salt = CryptoJS.lib.WordArray.random(128 / 8);
+  const key128Bits = CryptoJS.PBKDF2(p, salt, {
+    keySize: 128 / 32
+  });
+  return key128Bits.toString();
+}
+
+/**
+ * @function
+ * Summary: Encrypt Data
+ * Parameters:  {String} or {Object}
+ */
+function encryptData(data) {
+  let encData;
+  const sl = getCookie('pk', true);
+  if (typeof data == "object") {
+    encData = CryptoJS.AES.encrypt(JSON.stringify(data), sl).toString();
+  } else {
+    encData = CryptoJS.AES.encrypt(data, sl).toString();
+  }
+  return encData;
+}
+
+/**
+ * @function
+ * Summary: Decrypt Data
+ * Parameters:  ciphertext {String} encripted value, salt {String} passcode,
+ *              type {String} is 'object' or 'string'
+ */
+function decryptData(ciphertext, salt, type) {
+  const bytes = CryptoJS.AES.decrypt(ciphertext, salt);
+  const newBytes = bytes.toString(CryptoJS.enc.Utf8);
+  let deData;
+  try {
+    deData = (type == 'object') ? JSON.parse(newBytes) : newBytes;
+    return deData;
+  } catch (err) {
+    return null;
+  }
+}
+
+
+/**
+ * @function
+ * Summary: Update session cookie. 
+ * Parameters:  jwtToken {String} token received from Login API.
+ *              enableValue {Boolean} if session cookie has to be created or removed.
+ */
+function updateSessionCookie(jwtToken, enableValue) {
+
+  let onSuccessRedirectLink, formPopupID;
+
+  if (enableValue) {
+    onSuccessRedirectLink = $('#redirect-buttons #myfreestylePageSecure').attr('href');
+    formPopupID = 'btnLoginModal';
+  } else {
+    onSuccessRedirectLink = $('#redirect-buttons #myfreestylePage').attr('href');
+    formPopupID = 'btnLogoutModal';
+  }
+
+  //show spinner
+  $('#page-spinner').show();
+  //show modal
+  showhideModal(formPopupID, 1);
+
+  let xAppId = $('[name="x-application-id"]').val(),
+    xCountryCode = $('[name="x-country-code"]').val(),
+    xLangCode = $('[name="x-preferred-language"]').val(),
+    getSessionUrl = $('#session-api-url').val();
+
+  let tempUrl = new URL(getSessionUrl);
+  let getSessionUrlPath = tempUrl.pathname;
+  let getOrigin = window.location.origin;
+
+  const apiEndpoint = getOrigin + getSessionUrlPath + "?enable=" + enableValue;
+
+  const requestOptions = {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'x-application-id': xAppId,
+      'x-country-code': xCountryCode,
+      'x-preferred-language': xLangCode,
+      'x-id-token': jwtToken,
+    },
+    mode: 'cors',
+    cache: 'no-cache',
+  };
+
+  fetch(apiEndpoint, requestOptions)
+    .then(function (resp) {
+      return resp.json()
+    })
+    .then(function (response) {
+      // on API success response
+      if (processResponse(response)) {
+        //hide modal
+        showhideModal(formPopupID, 0);
+
+        //hide spinner
+        $('#page-spinner').hide();
+
+        //redirect
+        window.location.href = onSuccessRedirectLink;
+      } else {
+        //hide modal
+        showhideModal(formPopupID, 0);
+        //hide spinner
+        $('#page-spinner').hide();
+
+        //hide success message
+        $('.o-form-container__success-msg').html('');
+        showHideApiError(response);
+      }
+      return response;
+    })
+    .catch(function (error) {
+      //hide modal
+      showhideModal(formPopupID, 0);
+
+      //hide spinner
+      $('#page-spinner').hide();
+
+      console.log('ERROR in session API :', error);
+
+      //hide success message
+      $('.o-form-container__success-msg').html('');
+      showHideApiError(error);
+    });
+}
+
+
+/**
+ * @function
+ * Summary: Encrypt and Store Data in webstorage
+ * Parameters: obj {Object}
+ */
+
+
+function setUsObj(obj) {
+
+  let tempK = getenKy(obj.email);
+  setCookie('pk', tempK, 1, true);
+
+  let userObj = {
+    ...obj
+  };
+
+  //destructuring to remove all tokens and extra data from obj
+  let {
+    consents,
+    jwtToken,
+    meridianJwtToken,
+    ecomToken,
+    id_token,
+    refresh_token,
+    ...logInObj
+  } = userObj;
+
+  if (logInObj.firstName !== "") {
+    let userInitial = logInObj.firstName.charAt(0).toUpperCase() || "";
+    setCookie('usFn', userInitial, 1, true);
+  }
+
+  if (logInObj.firstName !== "" && logInObj.lastName !== "") {
+    let tempUsObj = encryptData(logInObj);
+    setCookie('usObj', tempUsObj, 1, true);
+  }
+
+  let userConsent = obj.consents || [];
+  if (Array.isArray(userConsent) && userConsent.length > 0) {
+    const newArr = userConsent.map(({consentUpdatedTime, consentCreatedTime, ...restObj}) => {
+      return restObj;
+    });
+    let tempUsCon = encryptData(newArr);
+    setCookie('usCon', tempUsCon, 1, true);
+  }
+
+
+  return true;
+}
+
+
+
+
+
+/**
+ * @function
+ * Summary: Encrypt and Store Data in webstorage
+ * Parameters: obj {Object}
+ */
+function setUsObjMeridian(obj) {
+
+  let mrdCourse = obj.completeMeridianDetails || [];
+  let mrdTPoints = obj.completeMeridianDetails[0].gamePoints || 0;
+
+  if (Array.isArray(mrdCourse) && mrdCourse.length > 0) {
+    for (let key in mrdCourse) {
+      delete mrdCourse[key].cntlclDescription;
+    }
+  }
+  let mrdObj = {
+    'mrdCourse': mrdCourse,
+    'mrdTPoints': mrdTPoints
+  };
+  setItemLocalStorage('mrdObj', JSON.stringify(mrdObj), true)
+
+  return true;
+}
+
+
+/**
+ * @function
+ * Summary: Function to create ConsentsArray
+ * Parameters: data {Object}
+ */
+function getConsentsArray(data) {
+
+  let consentArray = [];
+  const consentsList = ["marketing", "marketingeducation", "marketingsurvey", "additionalmarketing", "addMarketingconsents", "consents", "marketingeducationemail", "marketingsurveyemail", "consents1", "consents2", "consents3", "consents4", "consents5", "requiredConsents"];
+
+  consentsList.forEach(item => {
+    if (data.body[item] !== undefined && Array.isArray(data.body[item])) {
+      data.body[item].forEach(obj => {
+        consentArray.push(obj);
+      });
+    } else if(data.body[item] !== undefined && typeof data.body[item] === 'object') {
+      for (const [datakey, datavalue] of Object.entries(data.body[item])) {
+          consentArray.push({
+            'consentName': datakey,
+            'consentValue': datavalue
+          });
+      }
+    } else if(data.body[item] !== undefined && typeof data.body[item] === 'boolean') {
+      consentArray.push({
+        'consentName': item,
+        'consentValue': data.body[item]
+      });
+    }
+  });
+
+  //marketingpreference
+  let marketingpreference = false;
+  const marketingequalseducation = document.querySelector('input[name="marketingequalseducation"]');
+  let ismarketingequalseducation = marketingequalseducation !== null && marketingequalseducation.value == 'true' ? true : false;
+
+  for (let i = 0, len = consentArray.length; i < len; i++) {
+    if ((consentArray[i].consentName == "marketingemail" || consentArray[i].consentName == "marketingsms" || consentArray[i].consentName == "marketingcall") && consentArray[i].consentValue) {
+      marketingpreference = true;
+    }
+
+    if (ismarketingequalseducation && consentArray[i].consentName == "marketingemail") {
+      consentArray.push({
+        'consentName': 'marketingeducationemail',
+        'consentValue': consentArray[i].consentValue
+      });
+    }
+    if (ismarketingequalseducation && consentArray[i].consentName == "marketingsms") {
+      consentArray.push({
+        'consentName': 'marketingeducationsms',
+        'consentValue': consentArray[i].consentValue
+      });
+    }
+    if (ismarketingequalseducation && consentArray[i].consentName == "marketingcall") {
+      consentArray.push({
+        'consentName': 'marketingeducationcall',
+        'consentValue': consentArray[i].consentValue
+      });
+    }
+  }
+
+  consentArray.push({
+    'consentName': 'marketingpreference',
+    'consentValue': marketingpreference
+  });
+
+  return consentArray;
+}
+
+
+/**
+ * @function
+ * Summary: welcome section to show user info across configured pages
+ * Parameters: user {Object} userinfo object
+ *             page {Object} page to be updated
+ */
+function renderUserDetails(user, page) {
+  const firstName = page.find("span.user-firstname");
+  const lastName = page.find("span.user-lastname");
+  const salutation = page.find("span.user-salutation");
+  const email = page.find("span.user-email");
+  if (user && user.lastName !== "") {
+    lastName.text(user.lastName);
+  }
+  if (user && user.firstName !== "") {
+    firstName.text(user.firstName);
+  }
+  if (user && user.title !== "") {
+    salutation.text(user.title);
+  }
+  if (user && user.email !== "") {
+    email.text(user.email);
+  }
+}
+
+/**
+ * @function
+ * Summary: Function to create Flat Object from Nested Obj
+ * Parameters: obj {Object} data
+ * 
+ */
+function createFlatObj(body) {
+  let regUsObj = {};
+
+  const iterate = (obj) => {
+    Object.keys(obj).forEach(key => {
+      if (typeof obj[key] === 'object' && obj[key] !== null) {
+        iterate(obj[key]);
+      }
+      regUsObj[key] = obj[key];
+    });
+  }
+  iterate(body);
+  return regUsObj;
+}
+
+/**
+ * @function
+ * Summary: Function to render active tab
+ * Parameters: required : page selector optional : tab href
+ */
+function renderActiveTab(myPage, tabURL = '') {
+  /** check active tab **/
+  let tabLink = tabURL ? tabURL : location.href;
+  let selectTab = tabLink && getUrlParsedForTab(tabLink);
+  if (selectTab && selectTab !== "" && selectTab !== "undefined" && myPage.length > 0) {
+    const tabList = myPage.find('.cmp-tabs__tablist');
+    const selectedTabNumber = parseInt(selectTab);
+    const activateTabLink = selectedTabNumber && tabList.find(`a:nth-child(${selectedTabNumber})`);
+    if (activateTabLink.length) {
+      $(activateTabLink)[0].click();
+      $(activateTabLink).prop('tabindex', '0').addClass("cmp-tabs__tab--active show");
+      tabList.find(`a:not(a:nth-child(${selectedTabNumber}))`).prop('tabindex', '-1').removeClass("cmp-tabs__tab--active show");
+    }
+  }
+}
+
+/**
+ * @function
+ * Summary: Function to set URL to iframe in e-learning page
+ */
+
+
+function SetIframeSource() {
+  $("#page-spinner").show();
+  let mJwt = getItemLocalStorage("mJwt", true);
+  let launchURL = getItemLocalStorage("launchURL", true),
+    staticURL = $("#static-url").val();
+  let eurl = staticURL + launchURL + "&authtoken=" + mJwt;
+  $("#courseiframe").attr("src", eurl);
+}

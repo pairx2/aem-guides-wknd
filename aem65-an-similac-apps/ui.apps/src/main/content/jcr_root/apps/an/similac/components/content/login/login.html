@@ -1,0 +1,15 @@
+<sly data-sly-use.templates="an/similac/components/content/templates.html" />
+<sly data-sly-test.loginLabel="${properties.loginLabel}" />
+<span class="sim-icons" data-icon="user"></span>
+<div class="d-none d-lg-block">${properties.loginLabel}</div>
+<sly data-sly-test="${!wcmmode.edit && properties.loginConfigPath}">
+<sly data-sly-call="${templates.includeResource @ relativeResourcePath=properties.loginConfigPath, 
+nodeName='jcr:content/root/container'}" /></sly>
+<sly data-sly-test="${!wcmmode.edit && properties.profileMenuPath}">
+   <sly data-sly-use.obj="${'com.abbott.aem.an.similac.core.models.ProfileNavigationModel' @ resourcePath=properties.profileMenuPath}"/>
+   <script>
+      var jsonProfileNavData = Object.freeze(JSON.parse("${obj.profileNavJson @ context='scriptString'}"));
+   </script>
+   <div id="header-profile-menu-container"></div>
+</sly>
+<sly data-sly-call="${templates.placeholder @ isEmpty= !loginLabel}"></sly>

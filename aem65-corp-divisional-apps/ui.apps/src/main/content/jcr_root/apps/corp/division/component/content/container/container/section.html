@@ -1,0 +1,110 @@
+<sly data-sly-use.container="com.abbott.aem.corp.division.core.components.models.CorpContainer"
+     data-sly-use.component="com.adobe.cq.wcm.core.components.models.Component" id="${component.id}">
+    <sly data-sly-test.svgID="${container.svgId}" data-sly-unwrap></sly>
+    <style>
+      #section-${component.id @context='styleToken'} {
+      --container-start-color: ${container.startColor @context='styleToken'};
+      --container-start-position: ${container.startColorPosition  @context='styleToken'}%;
+      --container-end-color: ${container.endColor  @context='styleToken'};
+      --container-end-position: ${container.endColorPosition  @context='styleToken'}%;
+      }
+   </style>
+    <div class="a-container__row">
+
+        <sly data-sly-test="${container.notchType == 'splitright'}">
+
+            <div class="container-split-right-curve corp-d-md-none">
+                <img src="/content/dam/corp/abbott/global/notch/container/grey-curve.png" class="gray-curve" width="100%" alt="Gray curve">
+            </div>
+        </sly>
+        <sly data-sly-test="${container.notchType == 'splitleft'}">
+            <div class="container-split-left-curve corp-d-md-none">
+                <img src="/content/dam/corp/abbott/global/notch/container/white-curve.png" class="small-white-curve" width="100%" alt="white curve">
+            </div>
+        </sly>
+        <div data-sly-test="${(container.imageVariation == 'withoutimage') && (container.notchType != 'none')}">
+            <div id="container-curve" class ="${container.hideCurveDesktop ? 'corp-d-xl-none' : ''} ${container.hideCurveTab ? 'corp-d-lg-none' : ''} ${container.hideCurveMobile ? 'corp-d-md-none' : ''}">
+                <div class="container-slider-curve ${container.notchType == 'rounded' ? 'rounded-type' : 'notch-type'}">
+
+                    <svg width="100%" height="100%" viewBox="${container.notchType == 'rounded' ? '0 0 1440 195' : '0 0 640 30'}" preserveAspectRatio="none" baseProfile="full" version="1.2">
+                        <defs>
+                            <mask transform="scale(1)" maskContentUnits="userSpaceOnUse" maskUnits="userSpaceOnUse" id="${svgID}">
+                                <sly data-sly-test="${container.notchType == 'rounded'}">
+                                    <image xlink:href="/content/dam/corp/abbott/global/notch/container/xlink-deep-curve-c-h195.png" height="100%"
+                                           width="100%"></image>
+                                </sly>
+
+                                <sly data-sly-test="${container.notchType == 'right'}">
+                                    <image xlink:href="/content/dam/corp/abbott/global/notch/container/notch-right-c-h65.png" height="100%"
+                                           width="100%"></image>
+                                </sly>
+                                <sly data-sly-test="${container.notchType == 'left'}">
+                                    <image xlink:href="/content/dam/corp/abbott/global/notch/container/notch-left-c-h65.png" height="100%"
+                                           width="100%"></image>
+                                </sly>
+
+                            </mask>
+                        </defs>
+                        <rect class="${container.desktopNotchColor} ${container.mobileNotchColor}" x="0" y="0" width="100%" height="100%" mask="url(#${svgID})">
+                        </rect>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <div class="a-container__content">
+            <sly data-sly-test.responsive="${container.layout == 'RESPONSIVE_GRID'}"
+                 data-sly-use.responsiveGridTemplate="responsiveGrid.html"
+                 data-sly-call="${responsiveGridTemplate.responsiveGrid @ container=container}"></sly>
+            <sly data-sly-test.simple="${!responsive}"
+                 data-sly-use.simpleTemplate="simple.html"
+                 data-sly-call="${simpleTemplate.simple @ container=container}"></sly>
+        </div>
+        <div class="a-container__media">
+            <!--/* Image variation */-->
+            <div data-sly-test="${(container.imageVariation == 'withimage') && (container.notchType != 'none')}">
+            <div class="slider-bg-curve-with-image ${container.notchType == 'rounded' ? 'rounded-type' : 'notch-type'}">
+                <svg width="100%" height="100%" viewBox="0 0 1440 925" preserveAspectRatio="none" baseProfile="full" version="1.2">
+                    <defs>
+                        <mask transform="scale(1)" maskContentUnits="userSpaceOnUse" maskUnits="userSpaceOnUse" id="${svgID}">
+                            <sly data-sly-test="${container.notchType == 'rounded'}">
+                                <image xlink:href="/content/dam/corp/abbott/global/notch/container/xlink-deep-curve-i-h864.png" height="100%"
+                                       width="100%"></image>
+                            </sly>
+
+                            <sly data-sly-test="${container.notchType == 'right'}">
+                                <image xlink:href="/content/dam/corp/abbott/global/notch/container/xlink-notch-right-i-h788.png" height="100%"
+                                       width="100%"></image>
+                            </sly>
+                            <sly data-sly-test="${container.notchType == 'left'}">
+                                <image xlink:href="/content/dam/corp/abbott/global/notch/container/xlink-notch-left-i-h7889.png" height="100%"
+                                       width="100%"></image>
+                            </sly>
+                        </mask>
+                    </defs>
+                    <image xlink:href="${container.backgroundImageReference}" x="0" y="0" height="100%" width="100%" mask="url(#${svgID})"></image>
+                </svg>
+            </div>
+            </div>
+
+            <div class="a-container__image ${container.imageVariation == 'withimage'? 'd-none' :''}">
+                <sly data-sly-test="${container.backgroundImageReference && container.decorative}">
+                    <img src="${container.backgroundImageReference}" alt="${container.alt}" class="cmp-image"/>
+                </sly>
+                <sly data-sly-test="${container.backgroundImageReference && !container.decorative}">
+                    <img src="${container.backgroundImageReference}" alt="${container.alt}" class="cmp-image"/>
+                </sly>
+            </div>
+        </div>
+        <sly data-sly-test="${!properties.hideImgOnMobile}">
+            <div class="a-container__media__mobile">
+                <sly data-sly-test="${container.backgroundImageReference && container.decorative}">
+                    <img src="${container.backgroundImageReference}" alt="${container.alt}" class="cmp-image"/>
+                </sly>
+                <sly data-sly-test="${container.backgroundImageReference && !container.decorative}">
+                    <img src="${container.backgroundImageReference}" alt="${container.alt}" class="cmp-image"/>
+                </sly>
+            </div>
+        </sly>
+    </div>
+</sly>

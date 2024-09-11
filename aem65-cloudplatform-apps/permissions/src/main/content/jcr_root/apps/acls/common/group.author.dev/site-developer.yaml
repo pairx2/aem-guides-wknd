@@ -1,0 +1,250 @@
+- DEF divisions=[adc,add,an,ardx,av,bts,corp,cv,epd,nm,vc]
+
+- DEF groupPrefix="APP-Adobe-AEM-DM-ALL"
+
+- DEF environmentType=$[env:AB_ACL_ENVIRONMENT_TYPE;default=PRD]
+
+- DEF lowerEnvList=:
+     - DEV
+     - QA
+
+- group_config:
+
+    - FOR division IN ${divisions}:
+    
+       - ${groupPrefix}-${division}-developer:
+          - name: ${upperCase(division)} Developer
+            isMemberOf: base-developer,fragment-workflows
+            externalId: "${groupPrefix}-${division}-developer;ims"
+
+       - FOR site IN CHILDREN OF /content/${division}:
+        
+          - ${groupPrefix}-${division}-${site.name}-developer:
+             - name: ${upperCase(division)} ${site.title} Developer
+               isMemberOf: base-developer,fragment-workflows
+               externalId: "${groupPrefix}-${division}-${site.name}-developer;ims"
+
+
+- ace_config:
+
+    - FOR division IN ${divisions}:
+    
+       - ${groupPrefix}-${division}-developer:
+          - path: /content/cq:tags/${division}
+            permission: allow
+            actions: modify,create,delete,replicate
+          
+          - path: /apps/${division}
+            permission: allow
+            actions: modify,create,delete,replicate
+         
+          - path: /conf/${division}
+            permission: allow
+            actions: modify,create,delete,replicate
+            
+          - path: /conf/${division}
+            permission: deny
+            actions: modify,create,delete,replicate
+            restrictions:
+               rep:glob: '*/redirect*'
+               
+          - path: /conf
+            permission: allow
+            actions: read,replicate
+            restrictions:
+               rep:glob: '*/settings/cloudconfigs/commerce'
+            
+          - path: /conf/abbott-platform/settings/wcm/policies
+            permission: allow
+            actions: read,replicate
+            
+          - path: /conf/abbott-platform/settings/wcm/templates
+            permission: allow
+            actions: read,replicate
+
+          - path: /conf/abbott-platform/settings/dam/cfm/models
+            permission: allow
+            actions: read,replicate
+            
+          - path: /conf/${division}/globals/settings/wcm/policies
+            permission: allow
+            actions: read,replicate
+            
+          - path: /conf/${division}/globals/settings/wcm/templates
+            permission: allow
+            actions: read,replicate
+            
+          - path: /conf/global/settings/dam/adminui-extension
+            permission: allow
+            actions: read,replicate
+            
+          - path: /conf/global/settings/wcm/policies
+            permission: allow
+            actions: read,replicate
+            
+          - path: /conf/global/settings/cloudconfigs/translation
+            permission: allow
+            actions: read,replicate
+              
+          - path: /content/${division}
+            permission: allow
+            actions: modify,create,delete,replicate
+         
+          - path: /content/dam/${division}
+            permission: allow
+            actions: modify,create,delete,replicate
+
+          - path: /content/email-templates/${division}
+            permission: allow
+            actions: modify,create,delete,replicate
+            
+          - path: /content/campaigns/${division}
+            permission: allow
+            actions: modify,create,delete,replicate
+
+          - path: /content/experience-fragments/${division}
+            permission: allow
+            actions: modify,create,delete,replicate
+            
+          - path: /content/cq:tags/i18n
+            permission: allow
+            actions: modify,create,delete,replicate
+                                            
+          - path: /etc/cloudservices/campaign
+            permission: allow
+            actions: read,replicate
+                
+          - path: /var/workflow/models/${division}
+            permission: allow
+            actions: read,modify,create,delete
+            
+          - IF ${startsWith(environmentType,'STG')}:
+             - path: /etc/packages/${division}/${site.name}
+               permission: allow
+               actions: read
+               initialContent: |
+                    <jcr:root jcr:primaryType="sling:Folder"> </jcr:root>
+          
+          - IF ${containsItem(lowerEnvList, environmentType)}:
+             - path: /etc/packages/${division}/${site.name}
+               permission: allow
+               actions: modify,create,delete,replicate
+               initialContent: |
+                    <jcr:root jcr:primaryType="sling:Folder"> </jcr:root>
+        
+       - FOR site IN CHILDREN OF /content/${division}:
+        
+          - ${groupPrefix}-${division}-${site.name}-developer:
+             - path: /content/cq:tags/${division}/${site.name}
+               permission: allow
+               actions: modify,create,delete,replicate
+             
+             - path: /apps/${division}/${site.name}
+               permission: allow
+               actions: modify,create,delete,replicate
+             
+             - path: /conf/${division}/${site.name}
+               permission: allow
+               actions: modify,create,delete,replicate
+
+             - path: /conf/${division}_${site.name}
+               permission: allow
+               actions: modify,create,delete,replicate               
+
+             - path: /conf/abbott-platform/settings/wcm/policies
+               permission: allow
+               actions: read,replicate
+
+             - path: /conf/abbott-platform/settings/wcm/templates
+               permission: allow
+               actions: read,replicate
+               
+             - path: /conf/${division}/globals/settings/wcm/policies
+               permission: allow
+               actions: read,replicate
+            
+             - path: /conf/${division}/globals/settings/wcm/templates
+               permission: allow
+               actions: read,replicate
+
+             - path: /conf/abbott-platform/settings/dam/cfm/models
+               permission: allow
+               actions: read,replicate
+            
+             - path: /conf/global/settings/dam/adminui-extension
+               permission: allow
+               actions: read,replicate
+
+             - path: /conf/global/settings/wcm/policies
+               permission: allow
+               actions: read,replicate               
+              
+             - path: /content/${division}/${site.name}
+               permission: allow
+               actions: modify,create,delete,replicate
+         
+             - path: /content/dam/${division}/${site.name}
+               permission: allow
+               actions: modify,create,delete,replicate
+               
+             - path: /content/email-templates/${division}/${site.name}
+               permission: allow
+               actions: modify,create,delete,replicate
+               
+             - path: /content/campaigns/${division}/${site.name}
+               permission: allow
+               actions: modify,create,delete,replicate
+
+             - path: /content/experience-fragments/${division}/${site.name}
+               permission: allow
+               actions: modify,create,delete,replicate
+               
+             - path: /content/cq:tags/i18n
+               permission: allow
+               actions: modify,create,delete,replicate
+              
+             - path: /var/workflow/models/${division}
+               permission: allow
+               actions: read
+             
+             - path: /var/workflow/models/${division}/${site.name}
+               permission: allow
+               actions: modify,create,delete
+               
+             - IF ${startsWith(environmentType,'STG')}:
+                - path: /etc/packages/${division}/${site.name}
+                  permission: allow
+                  actions: read
+                  initialContent: |
+                      <jcr:root jcr:primaryType="sling:Folder"> </jcr:root>
+                      
+             - IF ${containsItem(lowerEnvList, environmentType)}:
+                - path: /etc/packages/${division}/${site.name}
+                  permission: allow
+                  actions: modify,create,delete,replicate
+                  initialContent: |
+                      <jcr:root jcr:primaryType="sling:Folder"> </jcr:root>
+                      
+                      
+               
+             
+
+             # For commerce products access, a boolean property "isCommerce" needs to be present in site jcr:content node  
+#             - IF ${site["jcr:content"]["isCommerce"]}:
+#
+#                - path: /var/commerce/products/${division}
+#                  permission: allow
+#                  actions: read
+#
+#                - path: /var/commerce/products/${division}/${site.name}
+#                  permission: allow
+#                  actions: create,modify,delete,replicate
+#
+#                - path: /var/commerce/products/abbott
+#                  permission: allow
+#                  actions: read,create,modify,delete,replicate
+#
+#                - path: /content/cq:tags/abbott
+#                  permission: allow
+#                  actions: read,create,modify,delete,replicate
+                  

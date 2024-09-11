@@ -1,0 +1,25 @@
+<div data-sly-test="${wcmmode.edit}" class="cq-placeholder" data-emptyText="Configure Article ISI component"></div>
+<sly data-sly-use.article="com.abbott.aem.corp.division.core.components.models.ArticleISI">
+<div class="isi-container">
+    <div class="isi-heading">${article.headlineText @context='html'}</div>
+    <div class="isi-card">
+        <div class="isi-border">
+            <div class="isi-padding">
+                <div class="isi-pointer">
+                        <sly data-sly-list.articledata="${article.articleDetails}">
+                            <div data-sly-test="${articledatalist.count > 1}" class="pointer" data-href="#isi-point-${articledatalist.count}">${articledata.isiTitle @context='html'}</div>
+                        </sly>
+                </div>
+                <div class="isi-body">
+                        <sly data-sly-list.articledata="${article.articleDetails}">
+                            <div id="isi-point-${articledatalist.count}" class="isi-point">
+                                <div data-sly-test="${articledata.isiTitle}" class="isi-title">${articledata.isiTitle @context='html'}</div>
+                                <div class="isi-content">${articledata.isiRichtext @context='html'}</div>
+                            </div>
+                        </sly>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</sly>

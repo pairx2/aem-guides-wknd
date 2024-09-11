@@ -1,0 +1,10 @@
+<sly data-sly-use.storeUrlModel="${'com.abbott.aem.an.abbottstore.models.UrlServiceModel' @ themeType=inheritedPageProperties.themeType}" />
+<a href="${storeUrlModel.loginUrl}" class="login__popup-trigger ${inheritedPageProperties.themeType == 'abbott.abbottstore' ? 'abbott-topbar__action-link' : ''}" id="login-popup-trigger" data-toggle="modal" data-target="#loginModal">
+    ${properties.loginLabel}
+</a>
+
+<a href="${storeUrlModel.accountUrl}" class="abbott-topbar__action-link d-none" id="account-link">${properties.loggedInAccountLabel} </a>
+<a href="${storeUrlModel.logoutUrl}" class="abbott-topbar__action-link logout-link d-none" id="logout-link">${properties.loggedOutLabel} </a>
+
+<input type="hidden" id="login-recaptcha-key" data-value="${storeUrlModel.loginSiteKey}" />
+<script async src="https://www.recaptcha.net/recaptcha/enterprise.js?render=${storeUrlModel.loginSiteKey}"></script>

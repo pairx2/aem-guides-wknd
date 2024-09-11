@@ -1,0 +1,91 @@
+@import "../common-imports";
+
+.image-block {
+  // margin: 0.625rem 0;
+  font-size: 0rem;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  &::after {
+    content: " ";
+    height: 0.938rem;
+    background-color: currentColor;
+    display: none;
+  }
+  &::before {
+    content: " ";
+    height: 0.938rem;
+    background-color: currentColor;
+    display: none;
+  }
+
+  &.bottom-border {
+    &::after {
+      display: block;
+    }
+
+    &.border-bottom-desktop {
+      // show
+      ::after {
+        display: none;
+        @include media-breakpoint-up(lg) {
+          display: block;
+        }
+      }
+    }
+    &.border-bottom-desktop-hide {
+      ::after {
+        content: " ";
+        @include media-breakpoint-up(lg) {
+          // height: 0;
+          display: none;
+        }
+      }
+    }
+  }
+  &.top-border {
+    &::before {
+      display: block;
+      content: " ";
+      height: 0.938rem;
+      background-color: currentColor;
+    }
+    &.border-top-desktop {
+      &::before {
+        @include media-breakpoint-down(md) {
+          height: 0;
+          display: none;
+        }
+      }
+    }
+  }
+
+  &.show-pic-desktop {
+    border-radius: 0;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    overflow: hidden;
+
+    @include media-breakpoint-down(md) {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
+
+    img {
+      @include media-breakpoint-down(md) {
+        display: none;
+        height: 0;
+      }
+    }
+  }
+
+
+
+  &:first-child {
+    margin-top: 0;
+  }
+  &:last-child {
+    margin-bottom: 0;
+  }
+}

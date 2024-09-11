@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Dialog"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                maximized="{Boolean}true">
+                <items jcr:primaryType="nt:unstructured">
+                    <tab1
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Primary Configurations"
+                        sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+                        <items jcr:primaryType="nt:unstructured">
+                            <column
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/container"
+                                margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <footerType
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                        fieldDescription=""
+                                        fieldLabel="Select the type"
+                                        name="./footerType">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <primary
+                                                jcr:primaryType="nt:unstructured"
+                                                text="Primary"
+                                                value="primary"/>
+                                            <cta
+                                                jcr:primaryType="nt:unstructured"
+                                                text="Footer With CTA"
+                                                value="footerWithCta"/>
+                                            <card
+                                                jcr:primaryType="nt:unstructured"
+                                                text="Footer With Cards"
+                                                value="footerWithCards"/>
+                                        </items>
+                                    </footerType>
+                                    <textColor
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/colorfield"
+                                        fieldLabel="Text Color"
+                                        name="./textColor"
+                                        showDefaultColors="{Boolean}false"
+                                        showProperties="{Boolean}true"
+                                        showSwatches="{Boolean}false">
+                                        <datasource
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="core/wcm/components/commons/datasources/allowedcolorswatches/v1"/>
+                                    </textColor>
+                                    <subscriptionText
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Subscription Text"
+                                        name="./subscriptionText"/>
+                                    <subscriptionLink
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="cq/gui/components/coral/common/form/pagefield"
+                                        fieldLabel="Subscription link"
+                                        name="./subscriptionLink"/>
+                                    <linkText
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Subscription link text"
+                                        name="./linkText"/>
+                                    <imageTile
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                        fieldDescription="Select the path of the image"
+                                        fieldLabel="Image Tile"
+                                        name="./imageTile"
+                                        rootPath="/content/dam"/>
+                                    <imageTileAltText
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Image Tile Alt Text"
+                                        maxlength="{Long}18"
+                                        name="./imageTileAltText"/>
+                                    <imageTileColor
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/colorfield"
+                                        fieldLabel="Image tile background color"
+                                        name="./imageTileColor"
+                                        showDefaultColors="{Boolean}false"
+                                        showProperties="{Boolean}true"
+                                        showSwatches="{Boolean}false">
+                                        <datasource
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="core/wcm/components/commons/datasources/allowedcolorswatches/v1"/>
+                                    </imageTileColor>
+                                    <disclaimerText
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/include"
+                                        fieldLabel="Footer Disclaimer Text"
+                                        path="abbott-platform/components/content/atoms/text/v1/text/cq:dialog/content/items/tabs/items/properties/items/columns/items/column/items/text"
+                                        removeSingleParagraphContainer="{Boolean}true"
+                                        useFixedInlineToolbar="{Boolean}true"/>
+                                    <linkItems
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                        composite="{Boolean}true"
+                                        fieldDescription="Add the links"
+                                        fieldLabel="Link Items">
+                                        <field
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                                            name="./linkItem">
+                                            <layout
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                                margin="{Boolean}false"/>
+                                            <items jcr:primaryType="nt:unstructured">
+                                                <text
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    fieldLabel="Link label"
+                                                    name="./text"/>
+                                                <link
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="cq/gui/components/coral/common/form/pagefield"
+                                                    fieldLabel="Link"
+                                                    name="./link"
+                                                    rootPath="/content"/>
+                                            </items>
+                                        </field>
+                                    </linkItems>
+                                    <socialImage
+                                        jcr:primaryType="nt:unstructured"
+                                        jcr:title="Social Image tile"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/fieldset">
+                                        <items
+                                            jcr:primaryType="nt:unstructured">
+                                            <shortTitle
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Short title"
+                                                name="./shortTitle"/>
+                                            <shortTitleColor
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/colorfield"
+                                                fieldLabel="Short title color"
+                                                name="./shortTitleColor"
+                                                showDefaultColors="{Boolean}false"
+                                                showProperties="{Boolean}true"
+                                                showSwatches="{Boolean}false">
+                                                <datasource
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="core/wcm/components/commons/datasources/allowedcolorswatches/v1"/>
+                                            </shortTitleColor>
+                                            <socialTileColor
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/colorfield"
+                                                fieldLabel="Social image tile background color"
+                                                name="./socialTileColor"
+                                                showDefaultColors="{Boolean}false"
+                                                showProperties="{Boolean}true"
+                                                showSwatches="{Boolean}false">
+                                                <datasource
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="core/wcm/components/commons/datasources/allowedcolorswatches/v1"/>
+                                            </socialTileColor>
+                                            <socialImage
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                                composite="{Boolean}true"
+                                                fieldLabel="Social Image">
+                                                <field
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/container"
+                                                    name="./socialImage">
+                                                    <layout
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                                        margin="{Boolean}false"/>
+                                                    <items jcr:primaryType="nt:unstructured">
+                                                        <socialIcon
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                            fieldDescription="Select the path of the image"
+                                                            fieldLabel="Image"
+                                                            name="./socialIcon"
+                                                            rootPath="/content/dam"/>
+                                                        <link
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="cq/gui/components/coral/common/form/pagefield"
+                                                            fieldLabel="Link"
+                                                            name="./link"
+                                                            rootPath="/content"/>
+                                                        <socialAltText
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                            fieldLabel="Social Icon Alt Text"
+                                                            maxlength="{Long}18"
+                                                            name="./socialAltText"/>
+                                                    </items>
+                                                </field>
+                                            </socialImage>
+                                        </items>
+                                    </socialImage>
+                                    <leftLogo
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                        fieldDescription="Select the path of the image"
+                                        fieldLabel="Left Logo"
+                                        name="./leftLogo"
+                                        rootPath="/content/dam"/>
+                                    <leftLogoAltText
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Left logo Tile Alt Text"
+                                        maxlength="{Long}18"
+                                        name="./leftLogoAltText"/>
+                                    <leftLogoLink
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="cq/gui/components/coral/common/form/pagefield"
+                                        fieldLabel="Left Logo Link"
+                                        name="./leftLogoLink"/>
+                                    <rightLogo
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                        fieldDescription="Select the path of the image"
+                                        fieldLabel="Right Logo"
+                                        name="./rightLogo"
+                                        rootPath="/content/dam"/>
+                                    <righttLogoAltText
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Right logo Tile Alt Text"
+                                        maxlength="{Long}18"
+                                        name="./righttLogoAltText"/>
+                                    <rightLogoLink
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="cq/gui/components/coral/common/form/pagefield"
+                                        fieldLabel="Right Logo Link"
+                                        name="./rightLogoLink"/>
+                                    <logoTileColor
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/colorfield"
+                                        fieldLabel="Logo tile background color"
+                                        name="./logoTileColor"
+                                        showDefaultColors="{Boolean}false"
+                                        showProperties="{Boolean}true"
+                                        showSwatches="{Boolean}false">
+                                        <datasource
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="core/wcm/components/commons/datasources/allowedcolorswatches/v1"/>
+                                    </logoTileColor>
+                                </items>
+                            </column>
+                        </items>
+                    </tab1>
+                    <tab2
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Footer with cta"
+                        sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+                        <items jcr:primaryType="nt:unstructured">
+                            <column
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/container"
+                                margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <footerCtaText
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Footer CTA text"
+                                        maxlength="{Long}18"
+                                        name="./footerCtaText"/>
+                                    <footerCtaLink
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="cq/gui/components/coral/common/form/pagefield"
+                                        fieldLabel="Footer CTA link"
+                                        name="./footerCtaLink"/>
+                                </items>
+                            </column>
+                        </items>
+                    </tab2>
+                    <tab3
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Footer With Cards"
+                        sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+                        <items jcr:primaryType="nt:unstructured">
+                            <column
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/container"
+                                margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <footerHeading
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Footer heading"
+                                        maxlength="{Long}20"
+                                        name="./footerHeading"/>
+                                    <footerSubheading
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Footer Sub heading"
+                                        maxlength="{Long}60"
+                                        name="./footerSubheading"/>
+                                    <arrowImage
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                        fieldDescription="Select the path of the arrow image"
+                                        fieldLabel="Arrow Image for card"
+                                        name="./arrowImage"
+                                        rootPath="/content/dam"/>
+                                    <arrowAltText
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Arrow Alt Text"
+                                        maxlength="{Long}20"
+                                        name="./arrowAltText"/>
+                                    <card1Title
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Title (First Card)"
+                                        maxlength="{Long}20"
+                                        name="./card1Title"/>
+                                    <card1Subtitle
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Subtitle (First Card)"
+                                        name="./card1Subtitle"/>
+                                    <card1Link
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="cq/gui/components/coral/common/form/pagefield"
+                                        fieldLabel="Block CTA link (First)"
+                                        name="./card1Link"/>
+                                    <card1Image
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                        fieldDescription="Select the path of the image (First Card)"
+                                        fieldLabel="Image (First Card)"
+                                        name="./card1Image"
+                                        rootPath="/content/dam"/>
+                                    <card1AltText
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Alt Text(First Card)"
+                                        maxlength="{Long}20"
+                                        name="./card1AltText"/>
+                                    <card2Title
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Title (Second Card)"
+                                        maxlength="{Long}25"
+                                        name="./card2Title"/>
+                                    <card2Subtitle
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Subtitle (Second Card)"
+                                        name="./card2Subtitle"/>
+                                    <card2Link
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="cq/gui/components/coral/common/form/pagefield"
+                                        fieldLabel="Block CTA link (Second)"
+                                        name="./card2Link"/>
+                                    <card2Image
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                        fieldDescription="Select the path of the image (Second Card)"
+                                        fieldLabel="Image (Second Card)"
+                                        name="./card2Image"
+                                        rootPath="/content/dam"/>
+                                    <card2AltText
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Alt Text(Second Card)"
+                                        maxlength="{Long}20"
+                                        name="./card2AltText"/>
+                                </items>
+                            </column>
+                        </items>
+                    </tab3>
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>

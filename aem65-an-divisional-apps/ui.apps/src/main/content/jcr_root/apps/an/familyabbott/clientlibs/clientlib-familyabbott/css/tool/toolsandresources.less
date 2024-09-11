@@ -1,0 +1,273 @@
+@import "../global/mixins.less";
+@import '../global/variables.less';
+
+#ph-trigger-tool,
+#ph-tummy-trouble,
+#ph-formula-finder,
+#ph-formula-finder-sg {
+    max-width: 730px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0px 10px 25px rgba(0,0,0,0.1);
+
+    &-submit {
+        pointer-events: none;
+    }
+
+    .o-wizard {
+        --tools-container-padding: 7px 30px 24px;
+        --wizard-btn-back-margin-right: 0;
+        --tools-link-color: @color-ensure-blue;
+
+        @media @sm-up {
+            --wizard-btn-back-margin-right: 10px;
+        }
+
+        .container {
+            padding: var(--tools-container-padding);
+        }
+
+        .cmp-title__text {
+            margin-bottom: 1rem;
+        }
+
+        &__btn {
+            -webkit-box-pack: start !important;
+                -ms-flex-pack: start !important;
+            justify-content: start !important;
+            margin-top: 51px;
+
+            @media @sm-down {
+                flex-direction: column;
+           		margin-top: 16px;
+
+                .button-div {
+                    width: 100%;
+                    order: 1;
+
+                    &.o-wizard__btn--back {
+                        order: 2;
+                        margin-top: 8px;
+                    }
+                }
+            }
+
+            .btn[name=next],
+            .btn[name=NEXT] {
+                pointer-events: none;
+            }
+        }
+
+        .radio {
+            --radio-label-color: @color-text-body;
+
+            .a-radio {
+                --radio-text-color: #7F7F7F;
+                --radio-custom-border: 1px solid #BFBFBF;
+                --radio-checked-bg: @color-ensure-blue;
+
+                margin-bottom: 24px;
+
+                &-label {
+                    margin-bottom: 24px;
+                    color: var(--radio-label-color);
+                    display: block !important;
+
+                    &:empty {
+                        display: none !important;
+                    }
+                }
+
+                &__label {
+                    margin-bottom: 0;
+                }
+
+                &__custom {
+                    top: 1px;
+                }
+            }
+        }
+
+        .options {
+            width: 100%;
+        }
+
+        &__content {
+            > .button,
+            > .link {
+                a {
+                    color: var(--tools-link-color);
+                    text-decoration: underline;
+                    padding: 0;
+                    font-weight: 700;
+                }
+
+                + .button,
+                + .link {
+                    margin-top: 5px;
+                }
+
+                + .o-wizard__btn {
+                    @sm-down {
+                        margin-top: 40px;
+                    }
+                }
+            }
+        }
+    }
+
+    .a-wizard {
+        display: none !important;
+        visibility: hidden;
+    }
+}
+
+#ph-tummy-trouble {
+    .o-wizard {
+        &__step {
+            font-weight: 700;
+            color: #222731;
+            margin-left: auto;
+
+            @media @sm-down {
+                margin-left: 0;
+                margin-top: 24px;
+                order: 3;
+            }
+        }
+    }
+
+    &-results {
+        --tummy-trouble-title-color: @color-ensure-blue;
+        --tummy-trouble-subtitle-color: @color-ensure-blue;
+        --tummy-trouble-link-color: @color-ensure-blue;
+
+        margin: -2.5rem -15px 0;
+    	width: calc(~"100% + 30px");
+
+        @media @lg-up {
+            max-width: 730px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+         h3:not(.m-card__title) {
+            color: var(--tummy-trouble-subtitle-color);
+            @media @md-down {
+                font-size: @font-size-18;
+                line-height: 24px;
+            }
+        }
+
+        .ph-tummy-trouble {
+            &-container {
+                .a-rule {
+                    margin-top: 2.5rem;
+                    margin-bottom: 2.5rem;
+                }
+
+                a {
+                    color: var(--tummy-trouble-link-color);
+                    text-decoration: underline;
+                    font-weight: 700;
+                }
+
+                &:last-child {
+                    .a-rule {
+                        &:last-child {
+                            display: none;
+                        }
+                    }
+                }
+            }
+
+            &-title {
+                @media @lg-up {
+                    text-align: center;
+                }
+
+                margin-bottom: 1rem;
+
+                @media @md-up {
+                	margin-bottom: 2.5rem;
+                }
+            }
+
+            &-subtitle {
+                margin-bottom: 1rem;
+
+                @media @md-up {
+                	margin-bottom: 20px;
+                }
+            }
+
+            &-products,
+            &-formula,
+            &-need-more {
+                h3 {
+                    margin-bottom: 20px;
+                }
+            }
+
+            &-products {
+                .columncontrol {
+                    margin: 0 -15px;
+                }
+
+                .m-card {
+                    --card-body-padding: 1rem 0 0;
+                    --card-box-shadow: none;
+
+                    &__title {
+                        margin-bottom: 8px;
+                    }
+
+                    &__body {
+                        display: flex;
+    					flex-flow: column nowrap;
+
+                        @media @md-down {
+                            .cta1.link {
+                                order: 4;
+                                margin-bottom: 0;
+                                margin-top: 24px;
+                            }
+                        }
+
+                        p {
+                            margin-bottom: 0;
+
+                            + p {
+                                margin-top: 10px;
+                            }
+                        }
+                    }
+
+                    &__reference {
+                        @media @md-down {
+                            margin-top: 24px;
+                        }
+
+                        p {
+                            font-size: @font-size-12;
+                            line-height: 16px;
+                            margin-bottom: 0;
+
+                            b {
+                                color: var(--tummy-trouble-subtitle-color);
+                            }
+
+                            + p {
+                                margin-top: 5px;
+                            }
+                        }
+                    }
+                }
+            }
+
+            &-need-more {
+                margin-top: 2.5rem;
+            }
+        }
+    }
+}

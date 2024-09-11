@@ -1,0 +1,77 @@
+.stb-tree-item{
+    $self: &;
+
+    &__wrap{
+        margin-bottom: 8px;
+    }
+
+    &__label {
+        pointer-events: none;
+    }
+
+    &__head{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 16px;
+        line-height: 1.43;
+        color: #222731;
+        margin: 0;
+        cursor: pointer;
+        position: relative;
+        padding: 4px 20px 4px 0;
+
+        &.selected {
+            color: #159bd7;
+        }
+
+        .mdi {
+            font-size: 20px;
+            pointer-events: none;
+            position: absolute;
+            right: 0;
+            transition: transform 250ms ease-in-out;
+            top: 3px;
+        }
+
+        &.open {
+            .mdi {
+                transform: rotate(90deg);
+            }
+        }
+
+        &.open + #{$self}__children {
+            display: block;
+            height: auto;
+        }
+    }
+
+
+    &__children{
+        overflow: hidden;
+        margin: 4px 0 0 16px;
+        height: 0;
+        overflow: hidden;
+        transition: height 250ms ease-in-out;
+
+        #{$self}__head{
+            font-size: 16px;
+            text-transform: capitalize;
+            font-weight: 500;
+            margin: 0 0 4px;
+
+            & + #{$self}__head {
+                margin:4px 0;
+            }
+        }
+
+        #{$self}__wrap {
+            margin-bottom: 0;
+        }
+
+    }
+
+
+}

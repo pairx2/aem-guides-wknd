@@ -1,0 +1,229 @@
+@import "./global/mixins.less";
+@import './global/variables.less';
+
+#SuccessMessageNewHCP{
+	display:none;
+}
+#SuccessMessageExistingHCP
+{
+	display:none;
+}
+
+/*  Start Complete registration form  css*/
+
+/* Add a green text color and a checkmark when the requirements are right */
+.valid {
+  color: green;
+}
+
+.valid:before {
+  position: relative;
+  left: 0px;
+  content: "✔";
+  font-weight: bold;
+  font-size: 13px;
+}
+
+/* Add a red text color and an "x" when the requirements are wrong */
+.invalid {
+  color: red;
+}
+
+.invalid:before {
+  position: relative;
+  left: 0px;
+  content: "✖";
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.error-title, .error-body {
+    font-family: @calibri-font-family, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 17.09px;
+    color: #888B8D;
+    text-align:left;
+}
+
+.errorContainerHidden {
+    display:none;
+}
+.displayErrorContent {
+    display: grid;
+    grid-template-columns: 50% auto;
+}
+
+#numberId.valid, #specialCharId.valid, #lowerCaseLettersId.valid, #charLimitId.valid {
+    color: green;
+
+}
+
+#numberId.invalid, #specialCharId.invalid, #lowerCaseLettersId.invalid, #charLimitId.invalid {
+    color: red;
+}
+
+#numberId.error-holder, #specialCharId.error-holder, #lowerCaseLettersId.error-holder, #charLimitId.error-holder {
+    display: grid;
+    grid-template-columns: 20px 40px auto;
+}
+
+#registrationAreaOfSpecialty-options,.profileareaOfInterest {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-column-gap: 10px;
+    margin-bottom: 10px;
+
+    .a-checkbox-label {
+        grid-column: span 2;
+        margin-bottom: 20px;
+    }
+
+    .a-checkbox {
+        margin: 0;
+        padding-right: 0;
+    }
+
+    .checkbox--text-require {
+        grid-column: span 2;
+        margin: 0;
+    }
+
+    @media @md-down {
+        display: inline;
+    }
+}
+
+.form-container .options > .checkbox {
+    display: grid;
+    justify-content: center;
+
+    @media @md-down {
+        justify-content: start;
+    }
+}
+
+.disabled-dropdown, .disabled-field {
+    background: @color-lighter-grey !important;
+    pointer-events: none;
+}
+
+.disabled-checkbox {
+    pointer-events: none;
+}
+#initialRegistrationForm #successErrorMessage {
+    display: flex;
+    gap: 20px;
+}
+
+#initialRegistrationForm .abt-icon-cancel:before {
+    content: "\e904";
+    color: #FFFFFF;
+    font-size: 12px !important;
+    align-self: center;
+}
+
+#successErrorMessage .a-contact-us-link {
+    text-decoration: unset;
+
+    &:hover {
+        color: #FFFFFF;
+    }
+}
+
+#initialRegistrationForm .a-checkbox__text {
+    font-family: @calibri-font-family, @base-font-family;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: left;
+}
+
+.a-input-password-strength .form-text {
+    margin-top: 10px !important;
+}
+
+.tooltips.a-tooltip--large.a-tooltip--light.tooltip-pwd {
+    margin-top: 12px !important;
+}
+
+.a-input-password-strength .form-row:nth-child(2) {
+    display: grid;
+    grid-template-columns: 90% auto;
+
+    .form-text #errorMessage b {
+        font-family: @base-font-family-bold, Arial, Helvetica, sans-serif;
+        font-size: 14px;
+        line-height: 20.02px;
+        text-align: left;
+        color: #002A3A;
+    }
+}
+
+#registrationSubmit {
+    width: 255px;
+    height: 48px;
+    padding: 15px 32px;
+
+    font-family: @base-font-family-bold, Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    font-weight: 450;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
+
+    @media @md-down {
+        width: 100%;
+        font-size: 16px;
+        padding: 11px 28px;
+    }
+}
+
+#initialRegistrationForm #successErrorMessage,
+#initialRegistrationForm .tooltip-pwd-label {
+    display: none;
+}
+
+#initialRegistrationForm a {
+    font-family: @calibri-font-family, sans-serif;
+}
+
+.options:has(#dynaFormSpecialty-options) {
+    grid-column: span 2;
+}
+
+#dynaFormSpecialty-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 30px;
+
+    @media @md-down {
+        display: block;
+    }
+
+    .a-checkbox {
+        padding-right: 0;
+    }
+}
+
+#dynaFormSpecialty-options .a-checkbox-label {
+    grid-column: span 2;
+    margin-bottom: 20px;
+}
+
+#registrationSubmit.regbtn-enable {
+	padding: 5px 12px;
+    &:disabled {
+		background-color: #009cde;
+		color: var(--button-primary-color);
+		opacity: 1;
+		cursor: pointer;
+	}
+	span {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		height: 35px;
+	}
+}

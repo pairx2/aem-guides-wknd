@@ -1,0 +1,114 @@
+
+
+.adc-carousel {
+	@fade-size: 20px;
+	scrollbar-width: none;
+	-ms-overflow-style: none;
+	overflow: auto;
+	@media screen and (min-width:0\0){
+		overflow-x: auto;
+		overflow-y: hidden;
+	}
+	&.scroll-snap{
+		scroll-snap-type: x mandatory;
+		& > * {
+			scroll-snap-align: center;
+		}
+	}
+	&__wrapper{
+		position: relative;
+	}
+	&__prev, &__next{
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		cursor: pointer;
+		z-index: 1;
+		&--disabled{
+			visibility: hidden;
+		}
+	}
+	&__prev{
+		left: 0;
+	}
+	&__next{
+		right: 0;
+	}
+
+	&::-webkit-scrollbar{
+		display: none;
+	}
+
+	display: flex;
+	flex-wrap: nowrap;
+
+
+	& > .adc-carousel__item {
+		flex: 0 0 auto;
+	}
+
+	&--4{
+		& > .adc-carousel__item {
+			width: 25%;
+		}
+	}
+
+	&--3{
+		& > .adc-carousel__item {
+			width: 33.33%;
+		}
+	}
+	&--2{
+		& > .adc-carousel__item {
+			width: 50%;
+		}
+	}
+	&--1{
+		& > .adc-carousel__item {
+			width: 100%;
+		}
+	}
+	&--2-5{
+		& > .adc-carousel__item {
+			@media @adc-desktop-break {
+				width: calc( 100vw/ 2.5 );
+				max-width: 576px;
+			}
+			@media (min-width : 575px) and (max-width : 1024px){
+				width:calc( 100vw/ 1.5 );
+			}
+			@media  (max-width : 575px) {
+				width:calc( 100vw/ 1.25 );
+			}
+		}
+	}
+
+	&__control{
+		z-index: 1;
+		display: flex;
+		position: absolute;
+		bottom: -15px;
+		left: 50%;
+		transform: translateX(-50%);
+		&-item{
+			transition: background-color 300ms ease-in-out;
+			border: 1px solid @color-fsl-white;
+			width: 15px;
+			cursor: pointer;
+			margin: 0 3px;
+			&--active{
+				background-color: @color-fsl-white;
+			}
+		}
+		&--blue{
+			.adc-carousel__control-item{
+				border: 1px solid @color-fsl-blue;
+				&--active{
+					background-color: @color-fsl-blue;
+				}
+			}
+		}
+
+	}
+
+}

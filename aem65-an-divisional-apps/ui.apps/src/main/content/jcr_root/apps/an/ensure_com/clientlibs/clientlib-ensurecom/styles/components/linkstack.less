@@ -1,0 +1,574 @@
+/*
+LinkStack Component
+*/
+
+.linkstack {
+    &.linkstack--case-studies {
+        .m-link-stack {
+            .m-link-stack--header {
+                .m-link-stack--title {
+                    color: @abbott-prussian-blue;
+                    font-family: @font-avenir-next-bold;
+                    font-size: 1.5rem;
+                    text-transform: capitalize;
+
+                    @media @lg-down {
+                        font-family: @font-avenir-next-rounded-bold;
+                    }
+
+                    @media @md-down {
+                        font-size: 1rem;
+                    }
+                }
+
+                a[class^="abt-icon"] {
+                    display: none;
+                }
+            }
+
+            .m-link-stack--content {
+                padding-top: 0;
+
+                .a-link {
+                    --link-font-family: @font-avenir-next-rounded-bold;
+                    --link-font-size: 1rem;
+
+                    .a-link__text {
+                        --link-stack-color: @abbott-electric-blue;
+                        text-decoration: underline;
+                    }
+                }
+
+                @media @lg-down {
+                    display: block !important;
+                    padding-left: 0;
+                }
+            }
+        }
+    }
+
+    // Secondary Nav for header style option
+    &.header--secondary-nav {
+        background-color: @abbott-dark-saphire;
+        margin-bottom: 0 !important;
+        margin-top: 0 !important;
+        --link-stack-content-padding: 0;
+
+        .m-link-stack {
+            padding-bottom: 5px;
+            padding-top: 5px;
+
+            .m-link-stack--header {
+                display: none;
+            }
+
+            .m-link-stack--content {
+                padding-top: 0;
+                text-align: center;
+
+                .a-link {
+                    display: inline-block;
+
+                    &:not(:last-child) {
+                        border-right: 1px solid @white;
+                    }
+
+                    .a-link__text {
+                        color: @white;
+                        font-size: 1rem;
+                        padding: 0 10px;
+                        text-decoration: none;
+                        font-family: @font-avenir-next-regular;
+                        font-weight: 100;
+
+                        &:hover,
+                        &:focus {
+                            font-family: @font-avenir-next-bold;
+                        }
+                    }
+
+                    &.active .a-link__text {
+                        font-family: @font-avenir-next-bold;
+                    }
+                }
+            }
+        }
+
+        @media @lg-down {
+            display: none;
+        }
+    }
+}
+
+/* PDF download Link and External Link */
+
+@media (min-width :992px) {
+    .a-pdf-external-link {
+        margin: 0 !important;
+
+        /* for reusability */
+        .link-style {
+            color: #009fda;
+            line-height: 22px;
+            font-size: 18px;
+            font-weight: 100;
+            text-decoration: underline;
+            padding-left: 30px;
+        }
+
+        /* PDF link*/
+        .cmp-download {
+            position: relative;
+
+            .cmp-download__title {
+                .link-style();
+
+                .cmp-download__title-link:hover,
+                .cmp-download__title-link:focus {
+                    color: #009fda;
+                }
+            }
+
+            &::before {
+                content: url('/content/dam/an/ensure-com/pdf-link-icon.png');
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 20px;
+            }
+        }
+
+        .cmp-download__title-link span {
+            display: none;
+        }
+
+        /* External Link */
+        .a-link {
+            position: relative;
+
+            .a-link__text {
+                .link-style();
+            }
+
+            &::before {
+                content: url('/content/dam/an/ensure-com/external-link-icon-light-blue.png');
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+        }
+    }
+
+    /*Document Link*/
+    .a-document-link {
+        .a-pdf-external-link();
+
+        .a-link {
+            .a-link__text {
+                padding-left: 27px;
+            }
+
+            &::before {
+                content: url('/content/dam/an/ensure-com/document-icon.png');
+            }
+        }
+    }
+    //pdf download
+    .a-document-pdf{
+        .a-pdf-external-link();
+        .a-link{
+            .a-link__text{
+                padding-left:27px;
+            }
+            &::before{
+            	content:url('/content/dam/an/ensure-com/pdf-link-icon.png');
+            }
+        }
+    }
+    /* Padding */
+    .a-padding-top-8-24-8 {
+        padding-top: 8px;
+    }
+
+    .a-padding-top-18 {
+        padding-top: 18px;
+    }
+
+    .a-padding-d-left-26 {
+        padding-left: 26px;
+    }
+}
+
+@media (min-width:768px) and (max-width:991px) {
+    .a-pdf-external-link {
+        margin: 0 !important;
+
+        /* for reusability */
+        .link-style {
+            color: #009fda;
+            line-height: 20px;
+            font-size: 16px;
+            font-weight: 100;
+            text-decoration: underline;
+            padding-left: 30px;
+            display: flex;
+        }
+
+        /* PDF link*/
+        .cmp-download {
+            position: relative;
+
+            .cmp-download__title {
+                .link-style();
+
+                .cmp-download__title-link:hover,
+                .cmp-download__title-link:focus {
+                    color: #009fda;
+                }
+            }
+
+            &::before {
+                content: url('/content/dam/an/ensure-com/pdf-link-icon.png');
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 20px;
+            }
+        }
+
+        .cmp-download__title-link span {
+            display: none;
+        }
+
+        /* Eternal link*/
+        .a-link {
+            position: relative;
+
+            .a-link__text {
+                .link-style();
+            }
+
+            &::before {
+                content: url('/content/dam/an/ensure-com/external-link-icon-light-blue.png');
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+        }
+    }
+
+    /*Document Link*/
+    .a-document-link {
+        .a-pdf-external-link();
+
+        .a-link {
+            .a-link__text {
+                padding-left: 27px;
+            }
+
+            &::before {
+                content: url('/content/dam/an/ensure-com/document-icon.png');
+            }
+        }
+    }
+    //pdf download
+    .a-document-pdf{
+        .a-pdf-external-link();
+        .a-link{
+            .a-link__text{
+                padding-left:27px;
+            }
+            &::before{
+            	content:url('/content/dam/an/ensure-com/pdf-link-icon.png');
+            }
+        }
+    }
+    /* Padding */
+    .a-padding-top-8-24-8 {
+        padding-top: 24px;
+    }
+
+    .a-padding-top-18 {
+        padding-top: 18px;
+    }
+}
+
+@media (max-width:767px) {
+    .a-pdf-external-link {
+        margin: 0 !important;
+
+        /* for reusability */
+        .link-style {
+            color: #009fda;
+            line-height: 20px;
+            font-size: 16px;
+            font-weight: 100;
+            text-decoration: underline;
+            padding-left: 30px;
+            display: flex;
+        }
+
+        /* PDF Link */
+        .cmp-download {
+            position: relative;
+
+            .cmp-download__title {
+                .link-style();
+
+                .cmp-download__title-link:hover,
+                .cmp-download__title-link:focus {
+                    color: #009fda;
+                }
+            }
+
+            &::before {
+                content: url('/content/dam/an/ensure-com/pdf-link-icon.png');
+                position: absolute;
+                top: 1px;
+                left: 0;
+                height: 20px;
+            }
+        }
+
+        .cmp-download__title-link span {
+            display: none;
+        }
+
+        /* External Link */
+        .a-link {
+            position: relative;
+
+            .a-link__text {
+                .link-style();
+            }
+
+            &::before {
+                content: url('/content/dam/an/ensure-com/external-link-icon-light-blue.png');
+                position: absolute;
+                top: 1px;
+                left: 0;
+            }
+        }
+    }
+
+    /*Document Link*/
+    .a-document-link {
+        .a-pdf-external-link();
+
+        .a-link {
+            .a-link__text {
+                padding-left: 27px;
+            }
+
+            &::before {
+                content: url('/content/dam/an/ensure-com/document-icon.png');
+                top: 0;
+            }
+        }
+    }
+    //pdf download
+    .a-document-pdf{
+        .a-pdf-external-link();
+        .a-link{
+            .a-link__text{
+                padding-left:27px;
+            }
+            &::before{
+            	content:url('/content/dam/an/ensure-com/pdf-link-icon.png');
+            }
+        }
+    }
+    /* Padding */
+    .a-padding-top-8-24-8 {
+        padding-top: 8px;
+    }
+
+    .a-padding-top-18 {
+        padding-top: 18px;
+    }
+
+    .a-padding-m-top-15 {
+        padding-top: 15px;
+    }
+}
+
+/* Link */
+.a-product-link {
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    text-align: center;
+
+    @media @md-down {
+        margin-bottom: 24px !important;
+    }
+
+    .a-link .a-link__text {
+        color: #009fda;
+        line-height: 22px;
+        font-size: 14px;
+        font-weight: 100;
+        text-decoration: underline;
+
+        @media @lg-up {
+            font-family: @font-avenir-next-medium;
+        }
+
+        &:hover,
+        &:focus {
+            color: #002d72;
+        }
+    }
+
+}
+.a-product-link-v1 {
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    text-align: center;
+    .a-link .a-link__text {
+        color: #009fda;
+        line-height: 22px;
+        font-size: 14px;
+        font-weight: 100;
+        text-decoration: underline;
+
+        @media @lg-up {
+            font-family: @font-avenir-next-medium;
+        }
+
+        &:hover,
+        &:focus {
+            color: #009fda;
+        }
+    }
+
+}
+//back to top 
+.a-link-back-to-top-v1 {
+    margin-top: 0px !important;
+
+    .a-link a {
+        color: #5e5e5e;
+        font-size: 16px;
+        font-family: @font-avenir-next-rounded-regular;
+        border-bottom: 1px solid #5e5e5e;
+        font-weight: 100;
+        line-height: 12px;
+        margin-top: 20px !important;
+        margin-bottom: 20px !important;
+
+        @media (max-width:1199) {
+            font-size: 14px !important;
+        }
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+}
+
+.a-link-back-to-top-v2 {
+    text-align: center;
+
+    @media (min-width:768px) {
+        display: none;
+    }
+
+    .a-link a {
+        margin-top: 0px;
+
+        @media (max-width:767px) {
+            width: 300px;
+            height: 50px;
+            display: block;
+            margin: 0 auto;
+            line-height: 50px;
+            background-color: #b7b7b7;
+            color: #fff;
+            font-family: @font-avenir-next-rounded-regular;
+            font-size: 16px;
+            margin-bottom: 30px;
+
+            .a-link__inner-text {
+                border-bottom: 1px solid #fff;
+            }
+        }
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+}
+
+
+/*font family*/
+/*link stack*/
+.linkstack.a-link-fontfamily-brandon-bold {
+    .m-link-stack--title {
+        font-family: @font-brandon-textweb-bold  !important;
+    }
+}
+
+.linkstack.a-link-fontfamily-brandon-regular {
+    .m-link-stack--title {
+        font-family: @font-brandon-textweb-regular  !important;
+    }
+}
+
+.linkstack.a-link-fontfamily-Avenir-next-regular {
+    .m-link-stack--title {
+        font-family: @font-avenir-next-rounded-regular  !important;
+    }
+}
+
+.linkstack.a-link-fontfamily-brandon-bold-regular {
+    .m-link-stack--title {
+        font-family: @font-brandon-textweb-bold  !important;
+    }
+
+    .a-link__text {
+        font-family: @font-brandon-textweb-regular  !important;
+    }
+}
+
+/*link*/
+.link.a-link-fontfamily-brandon-bold {
+    .a-link__inner-text {
+        font-family: @font-brandon-textweb-bold  !important;
+    }
+}
+
+.link.a-link-fontfamily-brandon-regular {
+    .a-link__inner-text {
+        font-family: @font-brandon-textweb-regular  !important;
+    }
+}
+
+.link.a-link-fontfamily-Avenir-next-regular {
+    .a-link__inner-text {
+        font-family: @font-avenir-next-rounded-regular  !important;
+    }
+}
+
+/* Pagination Link */
+.a-pagination-link {
+    display: inline-block;
+    margin: 20px 0 !important;
+
+    .a-link__text {
+        color: #0069b5;
+
+        &:hover {
+            text-decoration: none;
+            color: #0069b5;
+        }
+    }
+
+    &+.a-pagination-link,
+    &.a-link--icon-right {
+        float: right;
+
+        @media (min-width:768px) {
+            padding-right: 32px;
+        }
+    }
+}

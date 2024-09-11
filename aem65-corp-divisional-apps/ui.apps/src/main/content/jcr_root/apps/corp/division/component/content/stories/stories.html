@@ -1,0 +1,78 @@
+<div data-sly-test="${wcmmode.edit}" class="cq-placeholder" data-emptyText="Configure Story Component"></div>
+<sly data-sly-use.storyModal="com.abbott.aem.corp.division.core.components.models.StoriesModal">
+  <sly data-sly-test="${storyModal.SectionTitleRequired}">
+    <div data-sly-resource="${'section-title-dropdown' @resourceType='corp/division/component/content/sectiontitle'}"></div>
+  </sly>
+  <div class="story-container">
+    <div class="story-card-container" data-sly-list.stories="${storyModal.StoryPanels}">
+      <div class="story-card">
+          <sly data-sly-test="${stories.storyType == 'imageStory'}">
+            <a href="${(stories.dynamicData == 'true'?stories.storiesDynamicPath : stories.storyLink)}" class="story-link" target="${stories.newTab}">
+              <div class="story-image">
+                <img src="${stories.storyImage}" alt="${(stories.dynamicData == 'true'?stories.storyHeadline : stories.altText)}" width="350" height="157" />
+                <span class="read-more">${stories.readMore}</span>
+                <div class="story-overlay"></div>
+              </div>
+              <div class="story-details">
+                <div class="story-category color-${stories.dynamicData == 'true'?stories.color : stories.titleColor}">${stories.storyTitle @context='html'}</div>
+                <div class="story-date">${stories.storyDate}</div>
+                <div class="story-title">${stories.storyHeadline @context='html'}</div>
+                <div class="story-desc">${stories.storyDescription @context='html'}</div>
+              </div>
+            </a>
+          </sly>
+        <sly data-sly-test="${stories.storyType == 'videoStory'}">
+          <sly data-sly-test="${stories.storyImage}" />
+          <a href="javascript:void(0)" class="story-link video-story ${stories.videoType == 'limelightvideo' ? 'limelightVideo' : 'ytVideo'}" data-target="#vidPopUp${storiesList.count}">
+            <div class="story-image">
+              <img src="${stories.storyImage}" alt=" ${stories.altText}" width="350" height="157"/>
+              <span class="read-more">${stories.readMore}</span>
+              <div class="play-icon"></div>
+              <div class="story-overlay"></div>
+            </div>
+            <div class="story-details">
+              <sly data-sly-test="${stories.storyTitle}">
+                <div class="story-category color-${stories.titleColor}">${stories.storyTitle}</div>
+                <div class="story-date">${stories.storyDate}</div>
+              </sly>
+              <div class="story-title">${stories.storyHeadline}</div>
+              <div class="story-desc">${stories.storyDescription}</div>
+            </div>
+          </a>
+          <sly data-sly-test="${stories.videoType == 'limelightvideo'}">
+            <div id="vidPopUp${uniqueID}${storiesList.count}" class="popUp-container limelightOverlay videoOverlay">
+              <div class="popupClose">x</div>
+              <div id="limelight_player_${stories.playerId}"></div>
+              <input class="limelightPlayerID" type="hidden" value="${stories.playerId}" />
+              <input class="limelightMediaID" type="hidden" value="${stories.mediaId}" />
+            </div>
+          </sly>
+          <sly data-sly-test="${stories.videoType == 'youtube'}">
+            <div id="vidPopUp${storiesList.count}" class="popUp-container youtubeOverlay videoOverlay">
+              <div class="popupClose">x</div>
+              <iframe class="youtubeVideoFrame" title="Hero Panel YouTube Video" width="100%" height="100%" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <input class="youtubeVideosrc" type="hidden" value="${stories.videoScript}" />
+            </div>
+          </sly>
+        </sly>
+      </div>
+    </div>
+    <sly data-sly-test="${storyModal.displayType == 'withLink'}">
+      <div data-sly-test="${storyModal.viewAllLink}" class="show-more-container">
+        <a href="${storyModal.viewAllLink @ extension='html'}" class="show-more-text">
+          <span>${storyModal.seeAllText}</span>
+          <em class="abt-icon abt-icon-play2"></em>
+        </a>
+      </div>
+    </sly>
+    <sly data-sly-test="${storyModal.displayType == 'withPagination'}">
+      <nav class="pagination-container">
+        <button class="pagination-button prev-button" aria-label="Previous page" title="Previous page"> &lt; </button>
+        <div class="pagination-numbers"></div>
+        <button class="pagination-button next-button" aria-label="Next page" title="Next page"> &gt; </button>
+      </nav>
+    </sly>
+    <div class="popupOverlay"></div>
+    <input data-sly-test="${storyModal.displayType == 'withPagination'}" class="pagination" type="hidden" value="true">
+</sly>
+</div>

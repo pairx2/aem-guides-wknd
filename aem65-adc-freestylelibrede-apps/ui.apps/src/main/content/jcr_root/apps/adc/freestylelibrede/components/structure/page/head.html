@@ -1,0 +1,48 @@
+<template data-sly-template.head="${ @ page }"
+          data-sly-use.headlibRenderer="headlibs.html"
+          data-sly-use.headResources="head.resources.html"
+          >
+    <sly data-sly-use.pageModel="com.abbott.aem.adc.freestylelibrede.models.ServiceModel"></sly>
+	<meta charset="UTF-8">
+    <sly data-sly-test="${pageModel.tags}">
+   		 <meta name="contentcategory" content="${pageModel.tags}">
+    </sly>
+    <sly data-sly-test="${pageModel.path}">
+    	<meta name="location" content="${pageModel.path}">
+    </sly>
+    <sly data-sly-test="${pageModel.description}">
+		<meta name="description" content="${pageModel.description}">
+    </sly>  
+	<sly data-sly-test="${pageModel.tags}">
+		<meta name="tagtitle" content="${pageModel.tags}">
+    </sly>  
+
+    <title>${page.title}</title>
+	  <sly data-sly-list.key="${pageModel.metaTags}">
+		<sly data-sly-use.stringUtility="${'com.abbott.aem.adc.freestylelibrede.models.StringUtility' @ requestString=key}"></sly>
+    	<meta name="${stringUtility.requestString}" content="${pageModel.metaTags[key]}">
+    </sly>
+
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 , maximum-scale=1, shrink-to-fit=no">
+    <meta data-sly-test.templateName="${page.templateName}" name="template" content="${templateName}"/>
+	<meta name="google-site-verification" content="m_WdgeX8PQ-Y_juSZdXX7Cn-gLLnrCrXoIntjJlbo-0" />
+    <script>
+    var isIE = false || !!document.documentMode;
+    var unSupportedBrowser = "${pageModel.unsupportedBrowserPagePath @ context='text'}";
+    if(isIE && window.location.href !== unSupportedBrowser) {
+			window.location.href = unSupportedBrowser;
+		}
+  </script>
+    
+    <sly data-sly-include="head.socialmedia.html"></sly>
+    <sly data-sly-include="customheaderlibs.html"></sly>
+    <sly data-sly-call="${headlibRenderer.headlibs @
+                                designPath                = page.designPath,
+                                staticDesignPath          = page.staticDesignPath,
+                                clientLibCategories       = page.clientLibCategories,
+                                clientLibCategoriesJsHead = page.clientLibCategoriesJsHead,
+                                hasCloudconfigSupport     = page.hasCloudconfigSupport}"></sly>
+   <sly data-sly-include="gtm.html"></sly>
+</template>

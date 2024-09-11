@@ -1,0 +1,82 @@
+.m-imagewithanimation {
+    &__container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+
+        .image-layer {
+            &--main-layer {
+                position: relative;
+                z-index: 3;
+
+                @include media-breakpoint-down(sm) {
+                    width: 70%;
+                    height: auto;
+                }
+
+                @include media-breakpoint-only(md) {
+                    width: 60%;
+                    height: auto;
+                }
+
+                @include media-breakpoint-up(xl) {
+                    margin-right: -15%;
+                }
+            }
+
+            &--play-layer {
+                position: absolute;
+                z-index: 2;
+
+                @include media-breakpoint-down(md) {
+                    display: none;
+                }
+
+                @include media-breakpoint-up(lg) {
+                    margin-right: -45%;
+                }
+
+                @include media-breakpoint-up(xl) {
+                    margin-right: -30%;
+                }
+            }
+
+            &--pause-layer {
+                position: absolute;
+                z-index: 1;
+                display: none;
+
+                @include media-breakpoint-down(md) {
+                    display: none;
+                }
+            }
+        }
+
+        .container__button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: var(--imagewithanimation-button-circle-size);
+            min-height: var(--imagewithanimation-button-circle-size);
+            background: var(--imagewithanimation-button-bg-color);
+            border-radius: 50%;
+            text-decoration: none;
+            align-self: flex-end;
+            z-index: 4;
+
+            @include media-breakpoint-down(md) {
+                display: none;
+            }
+
+            &:hover,
+            &:focus {
+                text-decoration: none;
+            }
+
+            .button__icon {
+                font-size: var(--imagewithanimation-icon-size);
+                color: var(--imagewithanimation-icon-color);
+            }
+        }
+    }
+}

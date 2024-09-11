@@ -1,0 +1,17 @@
+<sly data-sly-template.actions="${@ teaser}">
+
+<sly data-sly-use.analyticsConfig="${'com.abbott.aem.an.similac.core.models.AnalyticsConfigModel' @ pageName=currentPage.name, sectionTitle =teaser.title}" />
+<sly data-sly-test.eventCategory="${properties.eventCategory ? properties.eventCategory : 'callout'}"/>
+<sly data-sly-test.targetAttr="${properties.newTab ? '_blank' : '_self'}" />
+<sly data-sly-test.eventAction="${properties.eventAction ? properties.eventAction : 'click'}" />
+<sly data-sly-test.eventLabel="${properties.ctaEventLabel ? properties.ctaEventLabel : analyticsConfig.eventLabel}" />
+
+<sly data-sly-test.gtmValue="${'{0}{1}{2}{3}{4}{5}{6}' @ format=[eventCategory, '|',eventAction,'|',eventLabel,'_','read-more']}" />
+<sly data-sly-test.gtmValueCart="${'{0}{1}{2}{3}{4}{5}{6}' @ format=[eventCategory, '|',eventAction,'|',eventLabel, '_','add-cart']}" />
+
+
+    <div class="cmp-teaser__action-container card-buttons text-right">   
+        <a class="btn icon-only add-cart" data-gtm="${gtmValueCart}"  data-sly-test ="${properties.addtocartEnabled}"><span class="sim-icons" data-icon="cart"></span></a> 
+        <a href="${teaser.linkURL}" class="btn icon-only ${properties.buttonClass} gtm-link"  target="${targetAttr}" data-gtm="${gtmValue}" data-sly-test="${teaser.linkURL}"><span class="sim-icons" data-icon="arrow-right"></span></a> 
+    </div>
+</sly>

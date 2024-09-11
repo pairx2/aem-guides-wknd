@@ -1,0 +1,29 @@
+- user_config:
+
+  - automation-test-user:
+  
+    - name: automation-test-user
+      isMemberOf: base-abbott,contributor
+      path: /home/users/platform
+      password: $[secret:TEST_USER_PASSWORD]
+           
+- ace_config:
+
+  - automation-test-user:
+    
+
+    - path: /content
+      permission: allow
+      actions: read,modify,create,delete,replicate
+      restrictions:
+        rep:glob: /*/automation-testing*
+      
+    - path: /content/dam/automation-testing
+      permission: allow
+      actions: read,modify,create,delete,replicate
+
+    - path: /content/experience-fragments/bts/automation-testing
+      permission: allow
+      actions: read,modify,create,delete,replicate
+
+      

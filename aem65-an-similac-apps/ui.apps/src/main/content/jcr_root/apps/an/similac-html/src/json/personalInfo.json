@@ -1,0 +1,522 @@
+{
+    "formTitle": "Personal Info",
+    "actionPath": "https://dev2.similac.com/api/private/profile/profile-info",
+    "profilePersonalization": {
+        "title": "Personalization Title Lorem Ipsum Dolor",
+        "description": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut</p>",
+        "buttonLabel": "CTA",
+        "imgUrl": "resources/img/255_204.png",
+        "href": "#",
+        "dataGtmLabel": ""
+    },
+    "personalInfo": {
+        "password": {
+            "formTitle": "Password",
+            "formName": "password",
+            "label": "password",
+            "actionPath": "https://dev.similac.com/api/private/profile/change-password",
+            "changePwd": "Change Password",
+            "placeholder": "*********",
+            "fields": [{
+                    "categoryType": "userInfo",
+                    "label": "Current password*",
+                    "name": "CURRENTPASSWORD",
+                    "type": "password",
+                    "maxLength": "25",
+                    "mappedField": "CURRENTPASSWORD",
+                    "validations": [{
+                            "errorType": "required",
+                            "errorMessage": "This is required field"
+                        },
+                        {
+                            "errorType": "passWithMin8",
+                            "errorMessage": "Minimum 8 characters with Lower Case, Upper Case, Digits, Special Characters."
+                        },
+                        {
+                            "errorType": "passwordValidate",
+                            "errorMessage": "Password can not contain spaces."
+                        }
+                    ]
+                },
+                {
+                    "categoryType": "userInfo",
+                    "label": "New password*",
+                    "name": "PASSWORD",
+                    "type": "passwordstrength",
+                    "maxLength": "25",
+                    "mappedField": "PASSWORD",
+                    "validations": [{
+                            "errorType": "required",
+                            "errorMessage": "This is required field"
+                        },
+                        {
+                            "errorType": "passwordLengthMatch",
+                            "errorMessage": "Minimum length of this field must be equal or greater than 8 symbols. Leading and trailing spaces will be ignored."
+                        },
+                        {
+                            "errorType": "passWithMin8",
+                            "errorMessage": "Minimum of different classes of characters in password is 4. Classes of characters: Lower Case, Upper Case, Digits, Special Characters."
+                        },
+                        {
+                            "errorType": "passwordValidate",
+                            "errorMessage": "Password can not contain spaces."
+                        }
+                    ],
+                    "passwordStrength": {
+                        "label": "Password Strength:",
+                        "rules": {
+                            "empty": {
+                                "label": "No Password",
+                                "value": "empty"
+                            },
+                            "weak": {
+                                "label": "Weak",
+                                "value": "weak"
+                            },
+                            "medium": {
+                                "label": "Medium",
+                                "value": "medium"
+                            },
+                            "strong": {
+                                "label": "Strong",
+                                "value": "strong"
+                            },
+                            "veryStrong": {
+                                "label": "Very Strong",
+                                "value": "veryStrong"
+                            }
+                        }
+                    }
+                },
+                {
+                    "categoryType": "userInfo",
+                    "label": "Confirm New password*",
+                    "name": "CONFIRMPASSWORD",
+                    "type": "password",
+                    "maxLength": "25",
+                    "mappedField": "CONFIRMPASSWORD",
+                    "validations": [{
+                            "errorType": "required",
+                            "errorMessage": "This is required field"
+                        },
+                        {
+                            "errorType": "passWithMin8",
+                            "errorMessage": "Minimum 8 characters with Lower Case, Upper Case, Digits, Special Characters."
+                        },
+                        {
+                            "errorType": "reconfirmPassword",
+                            "errorMessage": "Password and Confirm Passsword fields should match"
+                        }
+                    ]
+                },
+                {
+                    "label": "Save Changes",
+                    "name": "submit",
+                    "type": "submit",
+                    "btnClassName": "btn-primary col-12 col-md-7 col-lg-4  mb-3 mr-3",
+                    "inlineBtn": "true",
+                    "value": "submit"
+                },
+                {
+                    "label": "Cancel",
+                    "name": "cancel",
+                    "type": "cancel",
+                    "btnClassName": "text-only col-12 col-md-3 col-lg-2  mb-3 mr-3",
+                    "inlineBtn": "true",
+                    "value": "cancel"
+                }
+            ]
+        },
+        "myInfo": {
+            "formTitle": "My Info",
+            "formName": "myInfo",
+            "actionPath": "https://qa2.similac.com/api/private/profile/update-profile-info",
+            "editMyInfo": "Edit My Info",
+            "strongMomID": "StrongMoms Rewards ID",
+            "emailAddress": "Email Address",
+            "emailNote": "The address provided at registration is also your username. It is not able to be changed. For questions, please call 1-800-227-5767, Monday through Friday, 8:30 AM to 5 PM EST/EDT. ",
+            "fields": [{
+                    "categoryType": "userInfo",
+                    "label": "First name*",
+                    "name": "firstName",
+                    "type": "textbox",
+                    "maxLength": "50",
+                    "validations": [{
+                            "errorType": "required",
+                            "errorMessage": "First Name is required."
+                        },
+                        {
+                            "errorType": "stringPLASH",
+                            "errorMessage": "First Name must contain only letters, spaces, apostrophes, hyphens, and periods."
+                        }
+                    ]
+                },
+                {
+                    "categoryType": "userInfo",
+                    "label": "Last name*",
+                    "name": "lastName",
+                    "type": "textbox",
+                    "maxLength": "50",
+                    "validations": [{
+                            "errorType": "required",
+                            "errorMessage": "Last Name is required."
+                        },
+                        {
+                            "errorType": "stringPLASH",
+                            "errorMessage": "Last Name must contain only letters, spaces, apostrophes, hyphens, and periods."
+                        }
+                    ]
+                },
+                {
+                    "categoryType": "others",
+                    "name": "secondaryemailNote",
+                    "type": "htmltag",
+                    "className": "personal-info__item-note",
+                    "label":"Optional Entry (Providing a secondary email address allows you to recover your password and receive notifications about your order when you do not have access to your primary email.)"
+                  },
+                {
+                    "label": "Remove secondary email address",
+                    "name": "removeemail",
+                    "type": "button",
+                    "btnClassName": "btn-removeemail"
+                }, {
+                    "categoryType": "userInfo",
+                    "label": "Secondary email address",
+                    "name": "contactEmail",
+                    "type": "textbox",
+                    "validations": [
+                        {
+                            "errorType": "required",
+                            "errorMessage": "Secondary Email address is required."
+                        },
+                    {
+                        "errorType": "email",
+                        "errorMessage": "Secondary email Address must contain a valid email address, e.g. 'name@server.com'."
+                    }
+                ]
+                },
+                {
+                    "label": "Save Changes",
+                    "name": "submit",
+                    "type": "submit",
+                    "btnClassName": "btn-primary col-12 col-md-7 col-lg-4 mb-3 mr-3",
+                    "inlineBtn": "true"
+                },
+                {
+                    "label": "Cancel",
+                    "name": "cancel",
+                    "type": "cancel",
+                    "btnClassName": "text-only col-12 col-md-3 col-lg-2  mb-3 mr-3",
+                    "inlineBtn": "true"
+                }
+            ]
+        },
+        "myBaby": {
+            "formTitle": "My Baby",
+            "formName": "myBaby",
+            "actionPath": "https://dev.similac.com/api/private/profile/update-profile-info",
+            "subTitle": "Update or add baby information her",
+            "addBaby": "Add Baby",
+            "editBaby": "Edit Baby Profile",
+            "removeBaby": "Remove Baby Profile",
+            "removeModalBox": {
+                "title": "Remove Profile",
+                "description": "Are you sure you want to remove this baby’s profile?",
+                "submitButton": "Yes",
+                "cancelButton": "No"
+            },
+            "fields": [{
+                    "categoryType": "children[]",
+                    "label": "My Baby\u0027s Name*",
+                    "name": "name",
+                    "type": "textbox",
+                    "maxLength": "50",
+                    "validations": [{
+                            "errorType": "required",
+                            "errorMessage": "Baby Name is required."
+                        },
+                        {
+                            "errorType": "stringPLASH",
+                            "errorMessage": "Baby Name must contain only letters, spaces, apostrophes, hyphens, and periods."
+                        }
+                    ]
+                },
+                {
+                    "categoryType": "children[]",
+                    "label": "Baby\u0027s birthday or Due Date*",
+                    "name": "birthDate",
+                    "type": "calender",
+                    "validations": [{
+                            "errorType": "required",
+                            "errorMessage": "Date is required"
+                        },
+                        {
+                            "errorType": "checkDateFormatMMDDYYYY",
+                            "errorMessage": "Date is required"
+                        },
+                        {
+                            "errorType": "checkBabyBirthday",
+                            "errorMessage": "Please check the year range allowed, max 5 years old baby"
+                        }
+                    ]
+                },
+                {
+                    "categoryType": "children[]",
+                    "label": "My baby was born:*",
+                    "name": "premature",
+                    "type": "radio",
+                    "displayLabelFormat": "hName - (hCity)",
+                    "fieldType": "boolean",
+                    "renderOn": {
+                        "fieldMapped": "birthDate"
+                    },
+                    "validations": [{
+                        "errorType": "required",
+                        "errorMessage": "Please make a selection."
+                    }],
+                    "sourceValue": [{
+                            "label": "Earlier than 37 weeks",
+                            "value": "true"
+                        },
+                        {
+                            "label": "37 weeks or later",
+                            "value": "false"
+                        }
+                    ]
+                },
+                {
+                    "categoryType": "children[]",
+                    "label": "My baby was born prematurely at*",
+                    "name": "weeksEarly",
+                    "type": "dropdown",
+                    "placeholder": "Select Weeks",
+                    "displayLabelFormat": "hName - (hCity)",
+                    "renderOn": {
+                        "fieldName": "premature",
+                        "value": "true",
+                        "fieldMapped": "birthDate"
+                    },
+                    "validations": [{
+                        "errorType": "required",
+                        "errorMessage": "Please select an item."
+                    }],
+                    "sourceValue": [{
+                            "label": "20 weeks",
+                            "value": "20"
+                        },
+                        {
+                            "label": "21 weeks",
+                            "value": "21"
+                        },
+                        {
+                            "label": "22 weeks",
+                            "value": "22"
+                        },
+                        {
+                            "label": "23 weeks",
+                            "value": "23"
+                        },
+                        {
+                            "label": "24 weeks",
+                            "value": "24"
+                        },
+                        {
+                            "label": "25 weeks",
+                            "value": "25"
+                        },
+                        {
+                            "label": "26 weeks",
+                            "value": "26"
+                        },
+                        {
+                            "label": "27 weeks",
+                            "value": "27"
+                        },
+                        {
+                            "label": "28 weeks",
+                            "value": "28"
+                        },
+                        {
+                            "label": "29 weeks",
+                            "value": "29"
+                        },
+                        {
+                            "label": "30 weeks",
+                            "value": "30"
+                        },
+                        {
+                            "label": "31 weeks",
+                            "value": "31"
+                        },
+                        {
+                            "label": "32 weeks",
+                            "value": "32"
+                        },
+                        {
+                            "label": "33 weeks",
+                            "value": "33"
+                        },
+                        {
+                            "label": "34 weeks",
+                            "value": "34"
+                        },
+                        {
+                            "label": "35 weeks",
+                            "value": "35"
+                        },
+                        {
+                            "label": "36 weeks",
+                            "value": "36"
+                        },
+                        {
+                            "label": "37 weeks",
+                            "value": "37"
+                        }
+                    ]
+                },
+                {
+                    "categoryType": "children[]",
+                    "label": "My child is adopted",
+                    "name": "adopted",
+                    "type": "checkbox",
+                    "initValue": "false",
+                    "sourceValue": [{
+                            "label": "Yes",
+                            "value": "true"
+                        },
+                        {
+                            "label": "No",
+                            "value": "false"
+                        }
+                    ]
+                },
+                {
+                    "categoryType": "children[]",
+                    "label": "Baby\u0027s gender",
+                    "name": "gender",
+                    "type": "dropdown",
+                    "placeholder": "Select One",
+                    "initValue": "Unknown",
+                    "sourceValue": [{
+                            "label": "Its surprise",
+                            "value": "Unknown"
+                        },
+                        {
+                            "label": "Male",
+                            "value": "Male"
+                        },
+                        {
+                            "label": "Female",
+                            "value": "Female"
+                        }
+                    ]
+                },
+                {
+                    "categoryType": "children[]",
+                    "label": "deleted",
+                    "name": "deleted",
+                    "type": "hidden",
+                    "initValue": "false",
+                    "fieldType": "boolean"
+                },
+                {
+                    "label": "Save Changes",
+                    "name": "submit",
+                    "type": "submit",
+                    "btnClassName": "btn-primary col-12 col-md-7 col-lg-4 mb-3 mr-3",
+                    "inlineBtn": "true",
+                    "value": "submit"
+                },
+                {
+                    "label": "Cancel",
+                    "name": "cancel",
+                    "type": "cancel",
+                    "btnClassName": "text-only col-12 col-md-3 col-lg-2  mb-3 mr-3",
+                    "inlineBtn": "true",
+                    "value": "cancel"
+                }
+            ]
+        },
+        "smsNotification":{
+            "formTitle": "SMS Notifications",
+            "getTextAlert" : "Get Text Alerts",
+            "neverMiss": "Never miss a coupon when you sign up for text alerts. Enter your cell phone number here.",
+            "formName": "smsNotification",
+            "notificationSetting": "Notification Settings",
+            "actionPath": "/api/private/profile/update-profile-info",
+            "editPhoneNumberLabelOptOut": "Update My Number or Opt-out",
+            "editPhoneNumberLabel": "Update My Number",
+            "enabledSmsNotificationsTxt": "You have text notifications enabled.",
+            "enablingSmsNotificationsTxtGreen": "You're one step away from enabling notifications.",
+            "enablingSmsNotificationsTxtRed": "<span class='sms-alert'>Look's like we missed you!Make sure you entered the right phone number and select <strong>Resend Text</strong>.</span>",
+            "enablingSmsNotificationsTxt": "To make sure you get text updates about your coupons, complete the process from your phone. Respond <strong>Y</strong> when you get a text from 41691.",
+            "resendSMSText": "Resend Text",
+            "saveChange" : "Save Changes",
+            "smsNotificaionOptOut" : "Look's like you opted out of receiving text alerts about new offers and coupons.",
+            "optBackClick": "Click ",
+            "optBackClickTxt" : "here",
+            "optBackInTxt": " to opt back in!",
+            "fields": [
+                {
+                    "categoryType": "others",
+                    "label": "Phone number",
+                    "name": "number",
+                    "type": "tel",
+                    "validations": [
+                        {
+                            "errorType": "required",
+                            "errorMessage": "Phone Number is required."
+                        },
+                        {
+                            "errorType": "phoneNumberUS",
+                            "errorMessage": "Phone Number format is (000) 000-0000."
+                        },
+                        {
+                            "minAllowedLength": "1",
+                            "errorType": "lengthCheck",
+                            "errorMessage": "Minimum number of characters not met.",
+                            "maxAllowedLength": "14"
+                        }
+                    ]
+                },
+                {
+                    "categoryType": "children[]",
+                    "label": "By selecting SMS, you agree to receive reoccurring automated promotional and personalized marketing text messages from Similac Rewards. Message and data rates may apply. Message frequency varies. Reply STOP at any time to unsubscribe from text messages. If you unsubscribe from text messages, you may receive an opt-out confirmation text message. Reply HELP for help, or you can get help directly from our toll-free number, 800-232-7677. By subscribing to receive text messages you agree to the <a href=\"https://www.abbott.com/online-terms-and-conditions.html\" target=\"_blank\" rel=\"noreferrer\">Similac Terms & Conditions</a> & <a href=\"https://www.abbottnutrition.com/privacy-policy\" target=\"_blank\" rel=\"noreferrer\">Abbott Privacy Policy.</a>",
+                    "name": "sms-agree",
+                    "type": "checkbox",
+                    "displayLabelFormat": "hName - (hCity)"
+                },
+                {
+                    "label": "Text Me Alerts",
+                    "name": "submit",
+                    "type": "submit",
+                    "btnClassName": "btn btn-primary col-12 col-md-7 col-lg-4 mb-3 mr-3",
+                    "inlineBtn": "true",
+                    "dataGtmLabel": "edit-preferences|click|personal-info_add-phone-no_submit"
+                },
+                {
+                    "id": "pwa_stop_text_alert",
+                    "label": "Opt-out of SMS",
+                    "name": "cancel",
+                    "type": "button",
+                    "btnClassName": "btn btn-secondary col-12 col-md-7 col-lg-4",
+                    "inlineBtn": "true"
+                },
+                {
+                    "label": "Cancel",
+                    "name": "cancel",
+                    "type": "cancel",
+                    "btnClassName": "btn text-only col-12 col-md-3 col-lg-2",
+                    "inlineBtn": "true"
+                }
+            ],
+            "optoutModalBox": {
+                "modalTitle": "Are You Sure You Want to Opt-out?",
+                "modalDescription1": "By opting-out, you are removing your phone number from your Similac profile. This means you will no longer receive SMS notifications regarding Similac rewards or special offers.",
+                "modalDescription2": "If you still wish to opt-out, please click the button below to confirm. Otherwise, click “Cancel” to return to your profile.",
+                "modalConfirmButton": "Confirm",
+                "modalCancelButton": "Cancel"
+            }
+        }
+    }
+}

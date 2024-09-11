@@ -1,0 +1,18 @@
+query getCustomerNotificationsList($notificationTypeFilter:StringFilterExpression) {
+  customerNotificationsList(
+    filter: {notificationType: {_expressions: [$notificationTypeFilter]} }
+  ) {
+    items {
+          _path
+          notificationName
+          notificationTitle
+          notificationType
+          notificationPublishDate
+          subject 
+          relevantProducts 
+          notificationDetails {
+              html
+          }
+        } 
+    } 
+}

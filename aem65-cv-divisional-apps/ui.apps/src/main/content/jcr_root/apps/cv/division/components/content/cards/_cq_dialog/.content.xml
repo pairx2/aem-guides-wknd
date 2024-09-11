@@ -1,0 +1,521 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Cards"
+    sling:resourceType="cq/gui/components/authoring/dialog"
+    extraClientlibs="core.wcm.components.image.v2.editor">
+    <content
+        granite:class="cmp-image__editor"
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                maximized="{Boolean}true">
+                <items jcr:primaryType="nt:unstructured">
+                    <image
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Image"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <decorative
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                checked="${not empty cqDesign.isDecorative ? cqDesign.isDecorative : false}"
+                                                fieldDescription="Check if the image should be ignored by assistive technology and therefore does not require an alternative text. This applies to decorative images only."
+                                                name="./isDecorative"
+                                                text="Image is decorative"
+                                                uncheckedValue="false"
+                                                value="{Boolean}true"/>
+                                            <alternativeGroup
+                                                granite:class="cmp-image__editor-alt"
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/well">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <alt
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                        fieldDescription="Textual alternative of the meaning or function of the image, for visually impaired readers."
+                                                        fieldLabel="Alternative Text"
+                                                        name="./alt"
+                                                        required="{Boolean}true"/>
+                                                    <altValueFromDAM
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                        fieldDescription="When checked, populate the image's alt attribute with the value of the dc:description metadata in DAM."
+                                                        name="./altValueFromDAM"
+                                                        text="Get alternative text from DAM"
+                                                        uncheckedValue="false"
+                                                        value="{Boolean}true"/>
+                                                </items>
+                                            </alternativeGroup>
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </image>
+                    <text
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Text"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <alt
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:hideResource="{Boolean}true"
+                                                sling:orderBefore="pretitle"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldDescription="Please enter alt text"
+                                                fieldLabel="Alt Text"
+                                                name="./alt"/>
+                                            <titleGroup
+                                                granite:hide="${cqDesign.titleHidden}"
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/well">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <title
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceSuperType="cv/division/components/content/richtext/cq:dialog/content/items/tabs/items/properties/items/columns/items/column/items/text"
+                                                        sling:resourceType="cq/gui/components/authoring/dialog/richtext"
+                                                        fieldDescription="A title to display as the headline for the teaser."
+                                                        fieldLabel="Title"
+                                                        name="./jcr:title"
+                                                        removeSingleParagraphContainer="{Boolean}true"
+                                                        useFixedInlineToolbar="{Boolean}true"/>
+                                                    <titleFromLinkedPage
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:hideResource="{Boolean}true"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                        checked="{Boolean}false"
+                                                        fieldDescription="When checked, populate the title with the linked page's title."
+                                                        name="./titleFromPage"
+                                                        text="Get title from linked page"
+                                                        uncheckedValue="{Boolean}false"
+                                                        value="{Boolean}true"/>
+                                                </items>
+                                            </titleGroup>
+                                            <descriptionGroup
+                                                granite:hide="${cqDesign.descriptionHidden}"
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/well">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <description
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:include="/apps/abbott-platform/components/core/text/v1/text"
+                                                        sling:resourceSuperType="cv/division/components/content/richtext/cq:dialog/content/items/tabs/items/properties/items/columns/items/column/items/text"
+                                                        sling:resourceType="cq/gui/components/authoring/dialog/richtext"
+                                                        fieldDescription="A description to display as the subheadline for the teaser."
+                                                        fieldLabel="Description"
+                                                        name="./jcr:description"
+                                                        useFixedInlineToolbar="{Boolean}true"/>
+                                                    <descriptionFromLinkedPage
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:hideResource="{Boolean}true"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                        checked="{Boolean}false"
+                                                        fieldDescription="When checked, populate the description with the linked page's description."
+                                                        name="./descriptionFromPage"
+                                                        text="Get description from linked page"
+                                                        uncheckedValue="{Boolean}false"
+                                                        value="{Boolean}true"/>
+                                                </items>
+                                            </descriptionGroup>
+                                            <pretitle
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:hideResource="{Boolean}true"/>
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </text>
+                    <link
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Link &amp; Actions"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <clickable
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <columns
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                                        margin="{Boolean}true">
+                                                        <items jcr:primaryType="nt:unstructured">
+                                                            <column
+                                                                jcr:primaryType="nt:unstructured"
+                                                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                                <items jcr:primaryType="nt:unstructured">
+                                                                    <clickable
+                                                                        granite:class="cq-dialog-checkbox-showhide"
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                                        fieldDescription="Check this option if the card should be clickable."
+                                                                        name="./clickable"
+                                                                        text="Is Card Clickable?"
+                                                                        uncheckedValue="false"
+                                                                        value="{Boolean}true">
+                                                                        <granite:data
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            cq-dialog-checkbox-showhide-target=".card-click-enable-showhide-target"/>
+                                                                    </clickable>
+                                                                    <container
+                                                                        granite:class="hide card-click-enable-showhide-target"
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                                        <granite:data
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            showhidetargetvalue="true"/>
+                                                                        <items jcr:primaryType="nt:unstructured">
+                                                                            <heading
+                                                                                granite:class="coral-Heading coral-Heading--4"
+                                                                                jcr:primaryType="nt:unstructured"
+                                                                                sling:resourceType="granite/ui/components/coral/foundation/heading"
+                                                                                level="{Long}4"
+                                                                                text="Card Link"/>
+                                                                            <well
+                                                                                jcr:primaryType="nt:unstructured"
+                                                                                sling:resourceType="granite/ui/components/coral/foundation/well">
+                                                                                <items jcr:primaryType="nt:unstructured">
+                                                                                    <linkset
+                                                                                        jcr:primaryType="nt:unstructured"
+                                                                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                                                        <items jcr:primaryType="nt:unstructured">
+                                                                                            <link
+                                                                                                jcr:primaryType="nt:unstructured"
+                                                                                                sling:hideResource="{Boolean}true"
+                                                                                                sling:resourceType="cq/gui/components/coral/common/form/pagefield"
+                                                                                                fieldDescription="Link to a content page, external URL or page anchor. Please add .html as page extension when adding query parameter to internal URL."
+                                                                                                fieldLabel="Link"
+                                                                                                name="./cardlink"/>
+                                                                                            <external
+                                                                                                jcr:primaryType="nt:unstructured"
+                                                                                                sling:hideResource="{Boolean}true"
+                                                                                                sling:orderBefore="id"
+                                                                                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                                                                name="./externallink"
+                                                                                                text="Is External Link?"
+                                                                                                uncheckedValue="false"
+                                                                                                value="true"/>
+                                                                                            <openInNewTab
+                                                                                                jcr:primaryType="nt:unstructured"
+                                                                                                sling:hideResource="{Boolean}true"
+                                                                                                sling:orderBefore="id"
+                                                                                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                                                                fieldDescription="Please check to open the link in new tab"
+                                                                                                name="./action"
+                                                                                                text="Open in New Tab"
+                                                                                                uncheckedValue="_self"
+                                                                                                value="_blank"/>
+                                                                                            <link-type
+                                                                                                granite:class="cq-dialog-dropdown-showhide"
+                                                                                                jcr:primaryType="nt:unstructured"
+                                                                                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                                                                fieldDescription="Please select link&#xa;type"
+                                                                                                fieldLabel="Link Type"
+                                                                                                name="./linkType">
+                                                                                                <granite:data
+                                                                                                    jcr:primaryType="nt:unstructured"
+                                                                                                    cq-dialog-dropdown-showhide-target=".link-type-showhide-target"/>
+                                                                                                <items jcr:primaryType="nt:unstructured">
+                                                                                                    <option1
+                                                                                                        jcr:primaryType="nt:unstructured"
+                                                                                                        text="Open Link"
+                                                                                                        value="openLink"/>
+                                                                                                    <option2
+                                                                                                        jcr:primaryType="nt:unstructured"
+                                                                                                        text="Go To Anchor"
+                                                                                                        value="anchor"/>
+                                                                                                    <option3
+                                                                                                        jcr:primaryType="nt:unstructured"
+                                                                                                        text="Limelight"
+                                                                                                        value="limeLight"/>
+                                                                                                    <option4
+                                                                                                        jcr:primaryType="nt:unstructured"
+                                                                                                        text="Youtube Video"
+                                                                                                        value="videoURL"/>
+                                                                                                    <option5
+                                                                                                        jcr:primaryType="nt:unstructured"
+                                                                                                        text="Download Asset"
+                                                                                                        value="downloadAsset"/>
+                                                                                                    <option6
+                                                                                                        jcr:primaryType="nt:unstructured"
+                                                                                                        text="Click To Call"
+                                                                                                        value="clickToCall"/>
+                                                                                                </items>
+                                                                                            </link-type>
+                                                                                            <limelight-option
+                                                                                                granite:class="hide link-type-showhide-target"
+                                                                                                jcr:primaryType="nt:unstructured"
+                                                                                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                                                                <granite:data
+                                                                                                    jcr:primaryType="nt:unstructured"
+                                                                                                    showhidetargetvalue="limeLight"/>
+                                                                                                <items jcr:primaryType="nt:unstructured">
+                                                                                                    <well
+                                                                                                        jcr:primaryType="nt:unstructured"
+                                                                                                        sling:resourceType="granite/ui/components/coral/foundation/well">
+                                                                                                        <items jcr:primaryType="nt:unstructured">
+                                                                                                            <org-id
+                                                                                                                jcr:primaryType="nt:unstructured"
+                                                                                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                                                                fieldDescription="Please enter organisation&#xa;ID of Limelight&#xa;account"
+                                                                                                                fieldLabel="Organisation ID"
+                                                                                                                name="./orgID"/>
+                                                                                                            <video-id
+                                                                                                                jcr:primaryType="nt:unstructured"
+                                                                                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                                                                fieldDescription="Please enter Media ID&#xa;of Limelight video"
+                                                                                                                fieldLabel="Media ID"
+                                                                                                                name="./mediaID"/>
+                                                                                                            <limelight-player-id
+                                                                                                                jcr:primaryType="nt:unstructured"
+                                                                                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                                                                fieldDescription="Please enter player&#xa;ID of Limelight"
+                                                                                                                fieldLabel="Limelight Player ID"
+                                                                                                                name="./limelightPlayerID"/>
+                                                                                                        </items>
+                                                                                                    </well>
+                                                                                                </items>
+                                                                                            </limelight-option>
+                                                                                            <video-option
+                                                                                                granite:class="hide link-type-showhide-target"
+                                                                                                jcr:primaryType="nt:unstructured"
+                                                                                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                                                                <granite:data
+                                                                                                    jcr:primaryType="nt:unstructured"
+                                                                                                    showhidetargetvalue="videoURL"/>
+                                                                                                <items jcr:primaryType="nt:unstructured">
+                                                                                                    <well
+                                                                                                        jcr:primaryType="nt:unstructured"
+                                                                                                        sling:resourceType="granite/ui/components/coral/foundation/well">
+                                                                                                        <items jcr:primaryType="nt:unstructured">
+                                                                                                            <video-url
+                                                                                                                jcr:primaryType="nt:unstructured"
+                                                                                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                                                                emptyText="https://www.youtube.com/embed/{id_of_video}"
+                                                                                                                fieldDescription="Please provide URL&#xa;for the video. YouTube requires structure: https://www.youtube.com/embed/{id_of_video}"
+                                                                                                                fieldLabel="Video URL"
+                                                                                                                name="./videoURL"/>
+                                                                                                        </items>
+                                                                                                    </well>
+                                                                                                </items>
+                                                                                            </video-option>
+                                                                                            <asset-option
+                                                                                                granite:class="hide link-type-showhide-target"
+                                                                                                jcr:primaryType="nt:unstructured"
+                                                                                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                                                                <granite:data
+                                                                                                    jcr:primaryType="nt:unstructured"
+                                                                                                    showhidetargetvalue="downloadAsset"/>
+                                                                                                <items jcr:primaryType="nt:unstructured">
+                                                                                                    <well
+                                                                                                        jcr:primaryType="nt:unstructured"
+                                                                                                        sling:resourceType="granite/ui/components/coral/foundation/well">
+                                                                                                        <items jcr:primaryType="nt:unstructured">
+                                                                                                            <image
+                                                                                                                jcr:primaryType="nt:unstructured"
+                                                                                                                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                                                                                fieldDescription="Please provide DAM&#xa;path for the image"
+                                                                                                                fieldLabel="Image"
+                                                                                                                name="./image"
+                                                                                                                rootPath="/content/dam/cv"/>
+                                                                                                        </items>
+                                                                                                    </well>
+                                                                                                </items>
+                                                                                            </asset-option>
+                                                                                            <openlink-option
+                                                                                                granite:class="hide link-type-showhide-target"
+                                                                                                jcr:primaryType="nt:unstructured"
+                                                                                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                                                                <granite:data
+                                                                                                    jcr:primaryType="nt:unstructured"
+                                                                                                    showhidetargetvalue="openLink"/>
+                                                                                                <items jcr:primaryType="nt:unstructured">
+                                                                                                    <well
+                                                                                                        jcr:primaryType="nt:unstructured"
+                                                                                                        sling:resourceType="granite/ui/components/coral/foundation/well">
+                                                                                                        <items jcr:primaryType="nt:unstructured">
+                                                                                                            <link
+                                                                                                                jcr:primaryType="nt:unstructured"
+                                                                                                                sling:resourceType="cq/gui/components/coral/common/form/pagefield"
+                                                                                                                fieldDescription="Link to a content page, external URL or page anchor. Please add .html as page extension when adding query parameter to internal URL."
+                                                                                                                fieldLabel="Link"
+                                                                                                                name="./cardLink"/>
+                                                                                                            <external
+                                                                                                                jcr:primaryType="nt:unstructured"
+                                                                                                                sling:orderBefore="id"
+                                                                                                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                                                                                name="./external"
+                                                                                                                text="Is External Link?"
+                                                                                                                uncheckedValue="false"
+                                                                                                                value="true"/>
+                                                                                                            <openInNewTab
+                                                                                                                jcr:primaryType="nt:unstructured"
+                                                                                                                sling:orderBefore="id"
+                                                                                                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                                                                                fieldDescription="Please check to open the link in new tab"
+                                                                                                                name="./action"
+                                                                                                                text="Open in New Tab"
+                                                                                                                uncheckedValue="_self"
+                                                                                                                value="_blank"/>
+                                                                                                        </items>
+                                                                                                    </well>
+                                                                                                </items>
+                                                                                            </openlink-option>
+                                                                                            <call-option
+                                                                                                granite:class="hide link-type-showhide-target"
+                                                                                                jcr:primaryType="nt:unstructured"
+                                                                                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                                                                <granite:data
+                                                                                                    jcr:primaryType="nt:unstructured"
+                                                                                                    showhidetargetvalue="clickToCall"/>
+                                                                                                <items jcr:primaryType="nt:unstructured">
+                                                                                                    <well
+                                                                                                        jcr:primaryType="nt:unstructured"
+                                                                                                        sling:resourceType="granite/ui/components/coral/foundation/well">
+                                                                                                        <items jcr:primaryType="nt:unstructured">
+                                                                                                            <phoneNumber
+                                                                                                                jcr:primaryType="nt:unstructured"
+                                                                                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                                                                fieldDescription="Enter telephone number, using numbers only (no special characters)"
+                                                                                                                fieldLabel="Telephone Number"
+                                                                                                                name="./phoneNumber"/>
+                                                                                                        </items>
+                                                                                                    </well>
+                                                                                                </items>
+                                                                                            </call-option>
+                                                                                            <anchor-option
+                                                                                                granite:class="hide link-type-showhide-target"
+                                                                                                jcr:primaryType="nt:unstructured"
+                                                                                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                                                                <granite:data
+                                                                                                    jcr:primaryType="nt:unstructured"
+                                                                                                    showhidetargetvalue="anchor"/>
+                                                                                                <items jcr:primaryType="nt:unstructured">
+                                                                                                    <well
+                                                                                                        jcr:primaryType="nt:unstructured"
+                                                                                                        sling:resourceType="granite/ui/components/coral/foundation/well">
+                                                                                                        <items jcr:primaryType="nt:unstructured">
+                                                                                                            <anchorName
+                                                                                                                jcr:primaryType="nt:unstructured"
+                                                                                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                                                                fieldLabel="Anchor ID"
+                                                                                                                name="./anchorName"
+                                                                                                                rootPath="/content"/>
+                                                                                                        </items>
+                                                                                                    </well>
+                                                                                                </items>
+                                                                                            </anchor-option>
+                                                                                        </items>
+                                                                                    </linkset>
+                                                                                </items>
+                                                                            </well>
+                                                                        </items>
+                                                                    </container>
+                                                                </items>
+                                                            </column>
+                                                        </items>
+                                                    </columns>
+                                                </items>
+                                            </clickable>
+                                            <links
+                                                granite:class="hide card-click-enable-showhide-target"
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    showhidetargetvalue=""/>
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <ctaOne
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                        fieldDescription="Please choose cta type"
+                                                        fieldLabel="Call-to-Action 1"
+                                                        name="./ctaOne">
+                                                        <items jcr:primaryType="nt:unstructured">
+                                                            <option1
+                                                                jcr:primaryType="nt:unstructured"
+                                                                text="None"
+                                                                value="none"/>
+                                                            <option2
+                                                                jcr:primaryType="nt:unstructured"
+                                                                text="Link"
+                                                                value="link"/>
+                                                            <option3
+                                                                jcr:primaryType="nt:unstructured"
+                                                                text="Download"
+                                                                value="download"/>
+                                                        </items>
+                                                    </ctaOne>
+                                                    <ctaTwo
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                        fieldDescription="Please choose cta type"
+                                                        fieldLabel="Call-to-Action 2"
+                                                        name="./ctaTwo">
+                                                        <items jcr:primaryType="nt:unstructured">
+                                                            <option1
+                                                                jcr:primaryType="nt:unstructured"
+                                                                text="None"
+                                                                value="none"/>
+                                                            <option2
+                                                                jcr:primaryType="nt:unstructured"
+                                                                text="Link"
+                                                                value="link"/>
+                                                            <option3
+                                                                jcr:primaryType="nt:unstructured"
+                                                                text="Download"
+                                                                value="download"/>
+                                                        </items>
+                                                    </ctaTwo>
+                                                </items>
+                                            </links>
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </link>
+                    <video
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Experience Fragment Details"
+                        sling:hideResource="{Boolean}true"
+                        margin="{Boolean}true"/>
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>

@@ -1,0 +1,35 @@
+# authoring groups for manuals-eifu CN users
+
+-  DEF groupPrefixAll="APP-Adobe-AEM-DM-ALL"
+-  group_config:
+   -  ${groupPrefixAll}-cn-manuals-eifu-read-only-users:
+        -  name: CN manuals-eifu read only users
+           description: CN manuals-eifu read only users
+           isMemberOf: base-abbott
+           externalId: "${groupPrefixAll}-cn-manuals-eifu-read-only-users;ims"        
+            
+-  ace_config:
+   -  ${groupPrefixAll}-cn-manuals-eifu-read-only-users:
+        -  path: /content/dam/av/manuals-eifu/global
+           permission: allow
+           actions: read
+         
+        -  path: /content/dam/av
+           permission: allow
+           actions: read
+           restrictions:
+             rep:glob: ''
+
+        -  path: /content/dam/av
+           permission: allow
+           privileges: rep:readProperties
+           
+        -  path: /content/dam/av/manuals-eifu
+           permission: allow
+           actions: read
+           restrictions:
+             rep:glob: ''
+
+        -  path: /content/dam/av/manuals-eifu
+           permission: allow
+           privileges: rep:readProperties

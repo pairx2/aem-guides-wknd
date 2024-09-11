@@ -1,0 +1,42 @@
+{{#> layout/base title="Login" }}
+
+{{#*inline "content-block"}}
+
+{{!-- {{> includes/drawer }} --}}
+
+{{> includes/bread-crumb }}
+
+{{!-- needs login for this page --}}
+<input type="hidden" id="secured-page" value="true" />
+
+{{!-- default page if logged-in scenario --}}
+<input type="hidden" id="login-reg-redirect-page" value="http://localhost:8080/" />
+
+{{!-- identify login/registration/resetPassword pages  --}}
+<input type="hidden" id="on-login-hide" value="false" />
+
+{{!-- default page if logged-out scenario --}}
+<input type="hidden" id="session-redirect-page" value="http://localhost:8080/login.html" />
+
+<script>
+    var jsonSocialLoginData = Object.freeze(JSON.parse("{{{jsonFile 'socialLogin.json'}}}"));	
+    var jsonData = Object.freeze(JSON.parse("{{{jsonFile 'login.json'}}}"));
+    var jsonLoginMenuData = Object.freeze(JSON.parse("{{{jsonFile 'loginDialog.json'}}}"));	
+    var miniCart_label = Object.freeze(JSON.parse("{{{jsonFile 'miniCart.json'}}}"));
+    /*var jsonAppData = Object.freeze(JSON.parse("{{{jsonFile 'appCommon.json'}}}"));*/
+</script>
+<script src="/similac-component/js/user_login_dialog/user_login_dialog.react.js"></script>
+
+<div class="container">
+    {{!-- {{> includes/disruptor}} --}}
+    {{!-- {{> includes/banner-content }} --}}
+    {{!-- {{> includes/social-widget-login }} --}}
+
+    {{> includes/user-login }}
+
+</div>
+{{/inline}}
+
+
+
+{{/layout/base}}

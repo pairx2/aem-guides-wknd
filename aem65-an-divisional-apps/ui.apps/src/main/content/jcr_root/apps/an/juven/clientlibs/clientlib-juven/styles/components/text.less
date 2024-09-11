@@ -1,0 +1,216 @@
+/*
+text component
+*/
+
+.text {
+
+    //style system for text colors
+    &.a-text-color--prussian-blue {
+
+        .cmp-text,
+        .cmp-text * {
+            --text-color: @abbott-prussian-blue;
+        }
+    }
+
+    &.a-text-color--similar-gray {
+
+        .cmp-text,
+        .cmp-text * {
+            --text-color: @abbott-similar-gray;
+        }
+    }
+
+    &.a-text-color--black-mana {
+
+        .cmp-text,
+        .cmp-text * {
+            --text-color: @abbott-black-mana;
+        }
+    }
+
+    &.a-text-color--midnight-blue {
+
+        .cmp-text,
+        .cmp-text * {
+            --text-color: @abbott-midnight-blue;
+        }
+    }
+
+    &.a-text-color--electric-blue {
+
+        .cmp-text,
+        .cmp-text * {
+            --text-color: @abbott-electric-blue;
+        }
+    }
+
+    &.a-text-color--gray {
+
+        .cmp-text,
+        .cmp-text * {
+            --text-color: @abbott-gray;
+        }
+    }
+
+    //style system to have unordered list bullets
+    &.a-text--list-disc {
+        ul {
+            padding-left: 18px;
+
+            li {
+                list-style-type: disc;
+            }
+        }
+    }
+
+    &.a-text--list-padding-2rem {
+
+        ol,
+        ul {
+            padding-left: 2rem;
+        }
+    }
+
+    // style system to remove the underline and match color on hover
+    &.a-text--hover-color-match {
+        a {
+            color: var(--text-color) !important;
+
+            &:hover,
+            &:active {
+                color: var(--text-color);
+                outline: none;
+                text-decoration: none;
+            }
+        }
+    }
+
+    //style system to have bg color on active
+    &.a-text-active-bg-color {
+        a {
+
+            &:active,
+            &:focus {
+                @media @lg-down {
+
+                    &,
+                    & * {
+                        background: rgba(0, 174, 239, 0.2);
+                    }
+                }
+            }
+        }
+    }
+
+    //Styles for aligning images in Text.
+    &.a-text--img-space-between {
+        .cmp-text {
+            p:has(img) {
+                display: flex;
+                flex-wrap: wrap;
+
+                @media @md-down {
+                    justify-content: center;
+
+                }
+
+                img {
+                    padding-right: 0.5rem;
+                    padding-bottom: 0.5rem;
+                }
+            }
+        }
+    }
+
+    &.a-text--img-space-around {
+        .cmp-text {
+            p:has(img) {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-around;
+
+                @media @md-down {
+                    display: block;
+                    width: fit-content;
+                    margin: auto;
+
+                    img {
+                        display: block;
+                        margin-bottom: 0.5rem;
+                    }
+                }
+            }
+        }
+    }
+
+    &.a-text--img-only-variation {
+        .cmp-text {
+            p {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+
+                @media @md-down {
+                    justify-content: normal;
+
+                    img {
+                        margin-bottom: 5px;
+                    }
+                }
+            }
+        }
+    }
+
+    //style system to remove margin inside text
+    &.a-text-remove-margin {
+
+        .cmp-text,
+        .cmp-text * {
+            margin: 0 !important;
+        }
+    }
+
+    // Styles to align text
+    &.a-text--align-left {
+        text-align: left;
+    }
+
+    &.a-text--align-right {
+        text-align: right;
+    }
+
+    &.a-text--align-center {
+        text-align: center;
+    }
+
+    // Styles to align text in mobile view.
+    &.a-text--mob-align-left {
+        @media @md-down {
+            text-align: left;
+        }
+    }
+
+    &.a-text--mob-align-right {
+        @media @md-down {
+            text-align: right;
+        }
+    }
+
+    &.a-text--mob-align-center {
+        @media @md-down {
+            text-align: center;
+        }
+    }
+
+    // Style to restrict text overflow in mobile view.
+    &.a-text--mob-hide-overflow {
+        .cmp-text {
+            p {
+                @media @md-down {
+                    word-break: break-word;
+                }
+            }
+        }
+    }
+}

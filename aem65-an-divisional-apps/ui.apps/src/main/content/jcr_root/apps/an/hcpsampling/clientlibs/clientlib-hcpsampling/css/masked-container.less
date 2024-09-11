@@ -1,0 +1,55 @@
+@import "./global/mixins.less";
+@import './global/variables.less';
+
+.m-masked-container {
+  &.masked .m-masked-container__login-form {
+    display: none;
+  }
+
+  &.masked section:after {
+    z-index: 199;
+  }
+  #loginCreateAccountForgotPassword:after {
+    top: 20px;
+  }
+
+  &.masked.show-login .m-masked-container__login-form {
+    display: flex;
+    z-index: 200;
+
+    button[type='submit'] {
+      width:100%;
+      margin-bottom:1rem;
+    }
+
+    .cmp-text a {
+      .tt-upper;
+      font-family: @base-font-family-bold;
+      font-size: @font-size-14;
+    }
+  }
+
+  .aem-AuthorLayer-Edit &.masked.show-login .m-masked-container__login-form {
+    display: none;
+  }
+
+  .m-masked-container__login-form {
+    .responsivegrid .aem-Grid .title {
+      margin: 1rem 0;
+    }
+
+    .o-form-container {
+      display: flex;
+      justify-content: center;
+      margin:0 auto;
+    }
+
+    .o-form-container__wrapper {
+      flex-basis: 340px;
+    }
+
+    .o-form-container__buttons {
+      justify-content: center !important;
+    }
+  }
+}

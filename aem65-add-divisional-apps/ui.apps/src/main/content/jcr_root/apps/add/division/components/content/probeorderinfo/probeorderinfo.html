@@ -1,0 +1,22 @@
+<div data-sly-test="${!wcmmode.disabled}" class="cq-placeholder" data-emptytext="Click here to Edit Probe/Order Info "></div>
+<sly data-sly-use.products="com.abbott.aem.add.division.core.components.models.ProductGallery"
+   data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
+   <sly data-sly-test.componentType="${products.componentType}"></sly>
+   <div data-sly-test="${componentType == 'probeinfo'}">
+      <sly data-sly-list.productslist="${products.productLists}">
+         <input type="hidden" name="probeinfoid" value="${productslist.lookupService}" />
+      </sly>
+      <h4>PROBE INFO</h4>
+      <div data-sly-resource="${'linktype' @resourceType='wcm/foundation/components/parsys'}"></div>
+      <input type="hidden" name="probeimagepath" value="${products.imagePath}" />
+      <div class="probecontainer"></div>
+   </div>
+   <div data-sly-test="${componentType == 'orderinfo'}">
+      <sly data-sly-list.productslist="${products.productLists}">
+         <input type="hidden" name="orderinfoid" value="${productslist.lookupService}" />
+      </sly>
+      <h4> ORDERING INFO</h4>
+      <div class="ordercontainer">
+	  <div class="order-request" data-sly-resource="${'orderBtn' @resourceType='wcm/foundation/components/parsys'}"></div></div>
+   </div>
+</sly>

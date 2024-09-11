@@ -1,0 +1,28 @@
+<template data-sly-template.productInfo="${@ product}">
+	<div class="text">
+			<div data-sly-list.feature="${product.features}" class="mb-3">
+				<h6 data-sly-test="${featureList.first}">
+					<sly
+						data-sly-use.feature_i18="${'com.abbott.aem.cloud.platform.core.models.I18nFetcher' @ key = 'features'}" />
+					${feature_i18.title}
+				</h6>
+				<ul>
+				<li class="mb-1">${feature.claimText}</li>
+			    </ul>
+			</div>
+		<br />
+			<div data-sly-list.precaution="${product.precautions}" class="mb-3">
+				<h6 data-sly-test="${precautionList.first}">
+					<sly
+						data-sly-use.precaution_i18="${'com.abbott.aem.cloud.platform.core.models.I18nFetcher' @ key = 'precautions'}" />
+					${precaution_i18.title}
+				</h6>
+				<ul>
+				<li class="mb-1">${precaution.claimText}</li>
+			    </ul>
+			</div>
+		<div data-sly-list.featureReference="${product.featureReferences}">
+			<p class="note mb-1">${featureReference.referenceSymbol}${featureReference.referenceText}</p>
+		</div>
+	</div>
+</template>

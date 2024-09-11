@@ -1,0 +1,108 @@
+<sly data-sly-use.templates="an/similac/components/content/templates.html" />
+<sly data-sly-use.nutritionalInfoModel="com.abbott.aem.an.similac.core.models.NutritionalInfoModel" />
+<div class= "${nutritionalInfoModel.hasNutrionalInfoData==true ? ' ' : ' remove'}"> </div>
+<sly data-sly-list.flavors="${nutritionalInfoModel.nutritionalInfo.flavors}">
+    <div class="pdp-tab__nutri-info">
+        <sly data-sly-test="${flavors.allergenStatement}">
+            <h2 class="pdp-tab__nutri-info-title">Allergen Statement</h2>
+            <p class="pdp-tab__nutri-info-text">${flavors.allergenStatement @context = 'html'}</p>
+        </sly>
+		
+		<sly data-sly-test.ingredients="${flavors.ingredients}">
+            <h2 class="pdp-tab__nutri-info-title">Ingredients</h2>
+            <p class="pdp-tab__nutri-info-text">${flavors.ingredients @context = 'html'}</p>
+        </sly>
+
+        <sly data-sly-list.servingSizes="${flavors.servingSizes}">
+            <p class="pdp-tab__nutri-info-text" data-sly-test="${servingSizes.servingSizeName}">Serving Size: ${servingSizes.servingSizeName}</p>
+
+            <div class="row pdp-tab__nutri-info-wrapper">
+                <div class="col-12">
+                    <sly data-sly-test="${servingSizes.nutrientDataList}">
+                       <h3 class="pdp-tab__nutri-info-table-title mb-0 d-none d-md-block">Nutrient Data</h3>
+               			<h3 class="pdp-tab__nutri-info-table-title mb-0 d-md-none" data-toggle="collapse" href="#tableContent${servingSizesList.index}">
+						Nutrient Data
+							<span class="sim-icons plus-icon d-md-none" data-icon="add-black"></span>
+							<span class="sim-icons minus-icon d-md-none" data-icon="minus-black"></span>
+						</h3>
+                        <div class="pdp-tab__nutri-info-table collapse show" id="tableContent${servingSizesList.index}" aria-describedby="nutrient">
+                            <div class="pdp-tab__nutri-info-table-head">
+								<div class="pdp-tab__nutri-info-table-data-header" id="nutri-data-0-1" scope="col"></div>
+								<div class="pdp-tab__nutri-info-table-data-header ${servingSizes.servingNutritions ? '' : 'd-none'}"  id="nutri-data-0-2" scope="col">Amount per serving</div>
+								<div class="pdp-tab__nutri-info-table-data-header ${servingSizes.servingNutritionsDv ? '' : 'd-none'}" id="nutri-data-0-3" scope="col">% Daily Value*</div>
+                            </div>
+                            <div class="pdp-tab__nutri-info-table-body" data-sly-list.nutrientData="${servingSizes.nutrientDataList}">
+                                <div class="pdp-tab__nutri-info-table-row">
+									<div class="pdp-tab__nutri-info-table-data-value">
+										${nutrientData.nutritionName}
+									</div>
+    								<div class="pdp-tab__nutri-info-table-data-value">
+										${nutrientData.nutritionValue || '&nbsp;' @ context = 'html'}
+									</div>
+									<div class="${servingSizes.servingNutritionsDv ? '' : 'd-none'} pdp-tab__nutri-info-table-data-value">
+										${nutrientData.percentDV || '&nbsp;' @ context = 'html'}
+									</div>
+								</div>
+							</div>
+						</div>
+					</sly>
+				</div>
+			</div>
+
+			<div class="row pdp-tab__nutri-info-wrapper">
+				<div class="col-12 col-md-6" data-sly-test="${servingSizes.vitaminsDataList}">
+
+						<h3 class="pdp-tab__nutri-info-table-title mt-4 mb-0" id='vitamins'>Vitamins</h3>
+						<div class="pdp-tab__nutri-info-table" aria-describedby="vitamins">
+							<div class="pdp-tab__nutri-info-table-head">
+								<div class="pdp-tab__nutri-info-table-data-header small" id="vitamins-0-1" scope="col"></div>
+								<div class="pdp-tab__nutri-info-table-data-header small ${servingSizes.servingVitaminNutritions ? '' : 'd-none'}" id="vitamins-0-2" scope="col">Amount per serving</div>
+								<div class="pdp-tab__nutri-info-table-data-header small ${servingSizes.servingVitaminNutritionsDv ? '' : 'd-none'}" id="vitamins-0-3" scope="col">% Daily Value*</div>
+							</div>
+							<div class="pdp-tab__nutri-info-table-body" data-sly-list.vitaminsData="${servingSizes.vitaminsDataList}">
+								<div class="pdp-tab__nutri-info-table-row">
+									<div class="pdp-tab__nutri-info-table-data-value small">
+										${vitaminsData.nutritionName} 
+									</div>
+									<div class="pdp-tab__nutri-info-table-data-value small">
+										${vitaminsData.nutritionValue || '&nbsp;' @ context = 'html'}
+									</div>
+									<div class=" pdp-tab__nutri-info-table-data-value small ${servingSizes.servingVitaminNutritionsDv ? '' : 'd-none'}">
+										${vitaminsData.percentDV || '&nbsp;' @ context = 'html'}
+									</div>
+								</div>
+							</div>
+						</div>
+
+				</div>
+				<div class="col-12 col-md-6" data-sly-test="${servingSizes.mineralsDataList}">
+						<h3 class="pdp-tab__nutri-info-table-title mt-4 mb-0" id='minerals'>Minerals</h3>
+						<div class="pdp-tab__nutri-info-table" aria-describedby="minerals">
+							<div class="pdp-tab__nutri-info-table-head">
+								<div class="pdp-tab__nutri-info-table-data-header small" id="minerals-0-1" scope="col"></div>
+								<div class="pdp-tab__nutri-info-table-data-header small ${servingSizes.servingMineralNutritions ? '' : 'd-none'}" id="minerals-0-2" scope="col">Amount per serving</div>
+								<div class="pdp-tab__nutri-info-table-data-header small ${servingSizes.servingMineralNutritionsDv ? '' : 'd-none'}" id="minerals-0-3" scope="col">% Daily Value*</div>
+							</div>
+							<div class="pdp-tab__nutri-info-table-body" data-sly-list.mineralsData="${servingSizes.mineralsDataList}">
+								<div class="pdp-tab__nutri-info-table-row">
+									<div class="pdp-tab__nutri-info-table-data-value small">
+										${mineralsData.nutritionName}
+									</div>
+									<div class=" pdp-tab__nutri-info-table-data-value small">
+										${mineralsData.nutritionValue || '&nbsp;' @ context = 'html'}
+									</div>
+									<div class="${servingSizes.servingMineralNutritionsDv ? '' : 'd-none'} pdp-tab__nutri-info-table-data-value small">
+										${mineralsData.percentDV || '&nbsp;' @ context = 'html'}
+									</div>
+								</div>
+							</div>
+						</div>
+				</div>
+			</div>
+			<sly data-sly-list.footnotes="${servingSizes.footnotes}">
+				<p class="pdp-tab__nutri-info-text mt-2">${footnotes.footnoteSymbol @context='html'} ${footnotes.footnoteValue}</p>
+			</sly>
+		</sly>
+	</div>
+</sly>
+<sly data-sly-call="${templates.placeholder @ isEmpty= !ingredients}"></sly>

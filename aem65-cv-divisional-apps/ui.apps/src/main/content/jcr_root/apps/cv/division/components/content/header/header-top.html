@@ -1,0 +1,51 @@
+<template data-sly-template.headerTop="${@ header}">
+	<sly data-sly-use.i18n_skipToContentLabel="${'com.abbott.aem.cloud.platform.core.models.I18nFetcher' @ key = 'skip-to-content'}" />
+	<sly data-sly-test="${header.enableSkipToContent}">
+		<div class="o-header__skiplink">
+			<div class="container">
+				<a class="skip-link" href="#pageContent">${i18n_skipToContentLabel.title}</a>
+			</div>
+		</div>
+	</sly>
+    <div class="o-header__secondary-top-nav d-none d-lg-block">
+        <div class="container">
+            <div class="justify-content-end row">
+                <div class="o-header__user-activity">
+					<div class="o-header__utility-nav">
+						
+						<div class="${wcmmode.edit ? 'edit-search':''}" data-sly-unwrap="${!wcmmode.edit}">
+                        	<sly data-sly-resource="${'country-dropdown' @resourceType=header.linkProxyPath}" />
+						</div>
+						
+						<div class="${wcmmode.edit ? 'edit-search':''}" data-sly-unwrap="${!wcmmode.edit}">
+							<sly data-sly-resource="${'language-navigation' @ resourceType=header.linkProxyPath}"/>
+                        </div>
+						<!--/* Sign up */-->
+						<div class="${wcmmode.edit ? 'edit-search':''}" data-sly-unwrap="${!wcmmode.edit}">
+							<div class="login-container">	
+							<div class="login-link">
+								<sly data-sly-resource="${'login-link' @ resourceType=header.linkProxyPath}"/>
+							</div>
+                             </div>
+                        </div>
+						<div class="a-link--icon-left ${wcmmode.edit ? 'edit-search':''}" data-sly-unwrap="${!wcmmode.edit}">
+                            <div class="logout-container">	
+                        	<div class="m-signup logout-link display-hidden" data-toggle="modal" data-target="#atom-modal-default">
+								<sly data-sly-resource="${'logout-link' @resourceType=header.linkProxyPath}" />
+							</div>
+                            </div>    
+                        </div>
+						<!--/* Sign up */-->						
+					</div>					
+				</div>
+				<!--/* Search */-->                    
+                <div data-sly-test="${!header.hideSearchInNav}" class="o-header__search" data-search-icon="search">    
+                	<div class="${wcmmode.edit ? 'edit-search':''}" data-sly-unwrap="${!wcmmode.edit}">
+                		<sly data-sly-resource="${'header-search' @ resourceType=header.headersearchProxyPath}"/>                            
+                	</div>
+                </div>                    
+            <!--/* Search */-->
+            </div>
+		</div>
+    </div>
+</template>

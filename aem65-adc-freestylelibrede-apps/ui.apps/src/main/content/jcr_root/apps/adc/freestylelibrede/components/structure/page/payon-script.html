@@ -1,0 +1,129 @@
+<sly data-sly-use.i18n_name_on_cc="${'com.abbott.aem.cloud.platform.core.models.I18nFetcher' @ key = 'name_on_cc'}" />
+<sly
+    data-sly-use.i18n_cc_expiry_date="${'com.abbott.aem.cloud.platform.core.models.I18nFetcher' @ key = 'cc_expiry_date'}" />
+<sly data-sly-use.i18n_cc_cvv="${'com.abbott.aem.cloud.platform.core.models.I18nFetcher' @ key = 'cc_cvv'}" />
+<sly data-sly-use.i18n_cc_cvv_hint="${'com.abbott.aem.cloud.platform.core.models.I18nFetcher' @ key = 'cc_cvv_hint'}" />
+<sly data-sly-use.i18n_card_number="${'com.abbott.aem.cloud.platform.core.models.I18nFetcher' @ key = 'card_number'}" />
+<sly data-sly-use.i18n_save_cta="${'com.abbott.aem.cloud.platform.core.models.I18nFetcher' @ key = 'save_cta'}" />
+<sly
+    data-sly-use.i18n_update_address_and_payment="${'com.abbott.aem.cloud.platform.core.models.I18nFetcher' @ key = 'update_address_and_payment'}" />
+<sly
+    data-sly-use.i18n_rx_payment_cta_label="${'com.abbott.aem.cloud.platform.core.models.I18nFetcher' @ key = 'rx_payment_cta_label'}" />
+<sly
+    data-sly-use.i18n_payment_cta_label="${'com.abbott.aem.cloud.platform.core.models.I18nFetcher' @ key = 'payment_cta_label'}" />
+
+<script>
+
+    const locale = jQuery('html').attr('lang') || 'de';
+
+    const payonFormSelector = 'form[class^="wpwl-form"]';
+    const payonButtonSelector = 'button[class^="wpwl-button"]';
+    const nameInputSelector = 'input.wpwl-control-cardHolder';
+    const checkboxesId = '#adc-payment__checkboxes';
+    const accountCheckboxesId = '#adc-account__checkboxes';
+    const paymentDisplayEditSelector = '.payment-display-edit';
+
+    const primaryButtonClass = 'adc-button adc-button-primary lock full-width m-0';
+    const lockIcon = '<i class="adc-icon adc-icon--lock-gray adc-icon--sm"></i>';
+    const hasRequiredAttr = jQuery(checkboxesId).find('input[required]').length > 0;
+    const isSaveToMyAccount = jQuery('.payment-display-edit').length > 0;
+    const showPayonWidget = JSON.parse(localStorage.getItem('showPayonWidget'));
+
+    const triggerCreateOrder = function () {
+        let status = false;
+        if (window?.PaymentHelper?.state?.isTriggerCreateOrder === true) {
+            // making empty lastorder ID from session ADCDE-9829
+		 	window.localStorage.setItem('lastOrderId', "");
+            var settings = window.PaymentHelper.state.options;
+            jQuery.ajax(settings)
+                .done(function (response, textStatus, jqXHR) {
+                    if (jqXHR.status === 200) {
+                        if (response
+                            && response?.data?.adcCreateOrder
+                            && response?.data?.adcCreateOrder?.success
+                            && response?.data?.adcCreateOrder?.order?.order_id
+                        ) {
+                            status = true;
+                            window.localStorage.setItem('lastOrderId', response?.data?.adcCreateOrder?.order?.order_id);
+                        }
+                    }
+                })
+                .fail(function (jqXHR, textStatus, errorThrown) {
+                });
+            if (!status) {
+                window.PaymentHelper.createOrderError();
+            }
+        }
+        return status;
+    }
+
+    var wpwlOptions = {
+        style: "plain",
+        locale: 'de',
+        brandDetection: true,
+        iframeStyles: {
+            'card-number-placeholder': {
+                'color': '#757575',
+            },
+            'cvv-placeholder': {
+                'color': '#757575',
+            }
+        },
+        labels: {
+            cardHolder: '${i18n_name_on_cc.title @ context='scriptString'}',
+            expiryDate: '${i18n_cc_expiry_date.title @ context='scriptString'}',
+            cvv: '${i18n_cc_cvv.title @ context='scriptString'}',
+            cvvHint: '${i18n_cc_cvv_hint.title @ context='scriptString'}',
+            cardNumber: '${i18n_card_number.title @ context='scriptString'}'
+        },
+        maskCvv: true,
+        registrations: {
+            requireCvv: false,
+            hideInitialPaymentForms: true
+        },
+        sofortCountries: {
+            DE: "Deutschland"
+        },
+        onReady: function () {
+            if (document.getElementsByClassName('wpwl-group-registration wpwl-selected').length > 0) {
+                document.getElementsByClassName('wpwl-group-registration wpwl-selected')[0].style.display = 'none';
+            }
+            jQuery(".wpwl-group-cardHolder").insertBefore(jQuery(".wpwl-group-cardNumber"));
+            let payButton = jQuery(payonFormSelector).find(payonButtonSelector);
+            const isRXCheckout = jQuery('.adc-rx-checkout').length > 0;
+            payButton.text(isSaveToMyAccount ? !showPayonWidget ? '${i18n_save_cta.title @ context='scriptString'}': '${i18n_update_address_and_payment.title @ context='scriptString'}' : isRXCheckout ? '${i18n_rx_payment_cta_label.title @ context='scriptString'}' : '${i18n_payment_cta_label.title @ context='scriptString'}');
+            payButton.addClass(primaryButtonClass);
+            payButton.attr('id', 'payon_place_order');
+            !isSaveToMyAccount && payButton.prepend(lockIcon);
+            let paymentCondition;
+            if (jQuery('.payment-display-edit').is(":visible")) {
+                paymentCondition = jQuery(accountCheckboxesId).html();
+            } else {
+                paymentCondition = jQuery(checkboxesId).html();
+            }
+            payButton.before(jQuery(paymentCondition));
+            let nameInput = jQuery(payonFormSelector).find(nameInputSelector);
+            nameInput.attr("required", true);
+            payButton.on('click', function () {
+                jQuery('.wpwl-form').addClass('dirty');
+                if (document.querySelector('form[class^="wpwl-form"] input[name="customParameters[SHOPPER_isDefaultPaymentMethod]"]')) {
+                    window.localStorage.setItem('isDefaultPayment', document.querySelector('form[class^="wpwl-form"] input[name="customParameters[SHOPPER_isDefaultPaymentMethod]"]').checked);
+                }
+            });
+        },
+        onAfterSubmit: function () {
+            if (window?.PaymentHelper?.state?.isTriggerCreateOrder === true) {
+                const resultFlag = triggerCreateOrder();
+                if (!resultFlag) {
+                    window.wpwl.unload();
+                    jQuery('script').each(function () {
+                        if (this.src.indexOf('static.min.js') !== -1) {
+                            jQuery(this).remove();
+                        }
+                    });
+                    return false;
+                }
+            }
+        }
+    };
+</script>

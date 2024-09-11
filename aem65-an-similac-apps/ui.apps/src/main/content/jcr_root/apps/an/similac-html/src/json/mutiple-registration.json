@@ -1,0 +1,725 @@
+{
+  "formTitle": "Registraion Form ",
+  "formName": "registraionForm",
+  "eventCategory": "registration",
+  "eventType": "strongmom",
+  "actionPath": "https://dev.similac.com/api/public/registration/register-user",
+  "disclaimer": "Disclaimer",
+  "successMsgHeading": "Success Message Heading",
+  "successMsgText": "Success Message Text",
+  "redirectOnSuccessURL": "/strongmoms/core-welcome.html",
+  "redirectOnSuccessURLNeosure": "/strongmoms/neosure/welcome.html",
+  "redirectToPreviousPage": "false",
+  "socialRegisterMessage": "<p><strong>You are almost Done!</strong></p><p>Please verify your information below and fill out any remaining areas to complete your registration.</p>",
+  "fields": [
+    {
+      "categoryType": "others",
+      "label": "Fill out the required information (*) in the form below.",
+      "name": "REQUIRED_INFORMATION",
+      "type": "htmltag"
+    },
+    {
+      "categoryType": "others",
+      "label": "Physician Information",
+      "name": "PHYSICIAN_INFORMATION",
+      "type": "htmltag",
+      "tagName": "h2"
+    },
+    {
+      "type": "formError"
+    },
+    {
+      "categoryType": "userInfo",
+      "label": "Physician Name*",
+      "name": "physicianName",
+      "type": "textbox",
+      "maxLength": "50",
+      "validations": [
+        {
+          "errorType": "required",
+          "errorMessage": "Physician Name is required."
+        },
+        {
+          "errorType": "stringPLASH",
+          "errorMessage": "Physician Name must contain only letters, spaces, apostrophes, hyphens, and periods."
+        }
+      ]
+    },
+    {
+      "categoryType": "userInfo",
+      "label": "Physician NPI*",
+      "name": "physicianNPI",
+      "type": "textbox",
+      "maxLength": "50",
+      "validations": [
+        {
+          "errorType": "required",
+          "errorMessage": "Physician NPI is required."
+        }
+      ]
+    },
+    {
+      "categoryType": "others",
+      "label": "Baby's Information",
+      "name": "BABY'S_INFORMATION",
+      "type": "htmltag",
+      "tagName": "h2"
+    },
+    {
+      "categoryType": "children[]",
+      "label": "Number Of Babies*",
+      "name": "NumberOfBabies",
+      "maxLength": 3,
+      "type": "textbox",
+      "validations": [
+        {
+          "errorType": "required",
+          "errorMessage": "Number Of Babies required."
+        },
+        {
+          "errorType": "checkIsNumeric",
+          "errorMessage": "Number of Babies Should be Numeric"
+        },
+        {
+          "errorType": "checkGreater1",
+          "errorMessage": "Number of Babies Should be More than 1"
+        },
+        {
+          "errorType": "checkNamecount",
+          "errorMessage": "Number Of Babies Should Match the Name Of Babies"
+        }
+      ]
+    },
+    {
+      "categoryType": "children[]",
+      "label": "Birth Date of Babies*",
+      "name": "birthDate",
+      "type": "calender",
+      "validations": [
+        {
+          "errorType": "required",
+          "errorMessage": "Date is required"
+        },
+        {
+          "errorType": "checkDateFormatMMDDYYYY",
+          "errorMessage": "Date is required"
+        },
+        {
+          "errorType": "checkBabyBirthday",
+          "errorMessage": "Please check the year range allowed, max 5 years old baby"
+        }
+      ]
+    },
+    {
+      "categoryType": "children[]",
+      "label": "Babies’ Names Separated with a Comma (Ex: Baby 1, Baby 2)*",
+      "name": "BabiesName",
+      "type": "textbox",
+      "mappedField": "NumberOfBabies",
+     
+      "validations": [
+        {
+          "errorType": "required",
+          "errorMessage": "Babies name is required"
+        },
+        {
+          "errorType": "matchNameAndCount",
+          "errorMessage": "Babies name should match with number of babies"
+
+        }
+      ]
+    },
+    {
+      "categoryType": "others",
+      "label": "Hospital Details",
+      "name": "HOSPITAL_DETAILS",
+      "type": "htmltag",
+      "tagName": "h2"
+    },
+    {
+      "categoryType": "children[]",
+      "label": "Hospital Name*",
+      "name": "HospitalName",
+      "type": "textbox",
+      "validations": [
+        {
+          "errorType": "required",
+          "errorMessage": "Hospital Name is required"
+        }
+      ]
+    },
+    {
+      "categoryType": "userInfo",
+      "label": "Admitted to NICU",
+      "name": "AdmittedtoNICU",
+      "type": "checkbox"
+    },
+    {
+      "categoryType": "others",
+      "label": "Parent's Information",
+      "name": "Parent's_Information",
+      "type": "htmltag",
+      "tagName": "h2"
+    },
+    {
+      "categoryType": "userInfo",
+      "label": "Parent 1 First Name *",
+      "name": "Parent1firstName",
+      "type": "textbox",
+      "maxLength": "50",
+      "validations": [
+        {
+          "errorType": "required",
+          "errorMessage": "First Name is required."
+        },
+        {
+          "errorType": "stringPLASH",
+          "errorMessage": "First Name must contain only letters, spaces, apostrophes, hyphens, and periods."
+        }
+      ]
+    },
+    {
+      "categoryType": "userInfo",
+      "label": "Parent 1 Last Name *",
+      "name": "Parent1lastName",
+      "type": "textbox",
+      "maxLength": "50",
+      "validations": [
+        {
+          "errorType": "required",
+          "errorMessage": "Last Name is required."
+        },
+        {
+          "errorType": "stringPLASH",
+          "errorMessage": "Last Name must contain only letters, spaces, apostrophes, hyphens, and periods."
+        }
+      ]
+    },
+    {
+      "categoryType": "userInfo",
+      "label": "Parent 2 First Name",
+      "name": "Parent2firstName",
+      "type": "textbox",
+      "maxLength": "50"
+    },
+    {
+      "categoryType": "userInfo",
+      "label": "Parent 2 Last Name",
+      "name": "Parent2lastName",
+      "type": "textbox",
+      "maxLength": "50"
+    },
+    {
+      "categoryType": "others",
+      "label": "Address and Contact Information",
+      "name": "Address and Contact Information",
+      "type": "htmltag",
+      "tagName": "h2"
+    },
+    {
+      "label": "Address*",
+      "name": "address",
+      "type": "googleApi",
+      "maxLength": "255",
+      "validations": [
+        {
+          "errorType": "addressLineOne",
+          "errorMessage": "Please add street no, etc also"
+        },
+        {
+          "errorType": "addressCity",
+          "errorMessage": "please add city also"
+        },
+        {
+          "errorType": "addressState",
+          "errorMessage": "please add state also"
+        },
+        {
+          "errorType": "addressZipCode",
+          "errorMessage": "please add zip code also"
+        },
+        {
+          "errorType": "required",
+          "errorMessage": "Address is required"
+        }
+      ]
+    },
+    {
+      "label": "Add an apartment, unit, floor, etc.",
+      "name": "appartmentFloorUnitEtc",
+      "type": "textbox",
+      "maxLength": "255"
+    },
+    {
+      "categoryType": "addresses[]",
+      "label": "City",
+      "name": "city",
+      "type": "textbox",
+      "validations": [
+        {
+          "errorType": "required",
+          "errorMessage": "City is required."
+        },
+        {
+          "errorType": "cityValidation",
+          "errorMessage": "Street Address must contain only letters, numbers, spaces, comma, number signs, hyphens, and periods."
+        }
+      ]
+    },
+    {
+      "categoryType": "addresses[]",
+      "label": "State",
+      "name": "state",
+      "type": "dropdown",
+      "placeholder": "State",
+      "className": "customFormFields",
+      "validations": [
+        {
+          "errorType": "required",
+          "errorMessage": "Please select an item."
+        }
+      ],
+      "sourceValue": [
+        {
+          "label": "Alabama",
+          "value": "AL"
+        },
+        {
+          "label": "Alaska",
+          "value": "AK"
+        },
+        {
+          "label": "American Samoa",
+          "value": "AS"
+        },
+        {
+          "label": "Arizona",
+          "value": "AZ"
+        },
+        {
+          "label": "Arkansas",
+          "value": "AR"
+        },
+        {
+          "label": "California",
+          "value": "CA"
+        },
+        {
+          "label": "Colorado",
+          "value": "CO"
+        },
+        {
+          "label": "Connecticut",
+          "value": "CT"
+        },
+        {
+          "label": "Delaware",
+          "value": "DE"
+        },
+        {
+          "label": "District Of Columbia",
+          "value": "DC"
+        },
+        {
+          "label": "Federated States Of Micronesia",
+          "value": "FM"
+        },
+        {
+          "label": "Florida",
+          "value": "FL"
+        },
+        {
+          "label": "Georgia",
+          "value": "GA"
+        },
+        {
+          "label": "Guam",
+          "value": "GU"
+        },
+        {
+          "label": "Hawaii",
+          "value": "HI"
+        },
+        {
+          "label": "Idaho",
+          "value": "ID"
+        },
+        {
+          "label": "Illinois",
+          "value": "IL"
+        },
+        {
+          "label": "Indiana",
+          "value": "IN"
+        },
+        {
+          "label": "Iowa",
+          "value": "IA"
+        },
+        {
+          "label": "Kansas",
+          "value": "KS"
+        },
+        {
+          "label": "Kentucky",
+          "value": "KY"
+        },
+        {
+          "label": "Louisiana",
+          "value": "LA"
+        },
+        {
+          "label": "Maine",
+          "value": "ME"
+        },
+        {
+          "label": "Marshall Islands",
+          "value": "MH"
+        },
+        {
+          "label": "Maryland",
+          "value": "MD"
+        },
+        {
+          "label": "Massachusetts",
+          "value": "MA"
+        },
+        {
+          "label": "Michigan",
+          "value": "MI"
+        },
+        {
+          "label": "Minnesota",
+          "value": "MN"
+        },
+        {
+          "label": "Mississippi",
+          "value": "MS"
+        },
+        {
+          "label": "Missouri",
+          "value": "MO"
+        },
+        {
+          "label": "Montana",
+          "value": "MT"
+        },
+        {
+          "label": "Nebraska",
+          "value": "NE"
+        },
+        {
+          "label": "Nevada",
+          "value": "NV"
+        },
+        {
+          "label": "New Hampshire",
+          "value": "NH"
+        },
+        {
+          "label": "New Jersey",
+          "value": "NJ"
+        },
+        {
+          "label": "New Mexico",
+          "value": "NM"
+        },
+        {
+          "label": "New York",
+          "value": "NY"
+        },
+        {
+          "label": "North Carolina",
+          "value": "NC"
+        },
+        {
+          "label": "North Dakota",
+          "value": "ND"
+        },
+        {
+          "label": "Northern Mariana Islands",
+          "value": "MP"
+        },
+        {
+          "label": "Ohio",
+          "value": "OH"
+        },
+        {
+          "label": "Oklahoma",
+          "value": "OK"
+        },
+        {
+          "label": "Oregon",
+          "value": "OR"
+        },
+        {
+          "label": "Palau",
+          "value": "PW"
+        },
+        {
+          "label": "Pennsylvania",
+          "value": "PA"
+        },
+        {
+          "label": "Puerto Rico",
+          "value": "PR"
+        },
+        {
+          "label": "Rhode Island",
+          "value": "RI"
+        },
+        {
+          "label": "South Carolina",
+          "value": "SC"
+        },
+        {
+          "label": "South Dakota",
+          "value": "SD"
+        },
+        {
+          "label": "Tennessee",
+          "value": "TN"
+        },
+        {
+          "label": "Texas",
+          "value": "TX"
+        },
+        {
+          "label": "Utah",
+          "value": "UT"
+        },
+        {
+          "label": "Vermont",
+          "value": "VT"
+        },
+        {
+          "label": "Virgin Islands",
+          "value": "VI"
+        },
+        {
+          "label": "Virginia",
+          "value": "VA"
+        },
+        {
+          "label": "Washington",
+          "value": "WA"
+        },
+        {
+          "label": "West Virginia",
+          "value": "WV"
+        },
+        {
+          "label": "Wisconsin",
+          "value": "WI"
+        },
+        {
+          "label": "Wyoming",
+          "value": "WY"
+        }
+      ]
+    },
+    {
+      "categoryType": "addresses[]",
+      "label": "Zip Code*",
+      "name": "zipCode",
+      "maxLength": 5,
+      "type": "textbox",
+      "className": "customFormFields",
+      "validations": [
+        {
+          "errorType": "required",
+          "errorMessage": "This is required field"
+        },
+        {
+          "errorType": "lengthCheck",
+          "minAllowedLength": 5,
+          "maxAllowedLength": 5,
+          "errorMessage": "Minimum number of characters not met."
+        },
+        {
+          "errorType": "usZipCode",
+          "errorMessage": "Standard US Zip Code length - 5 digits\n or \n Standard 5 digits, a hyphen, and 4 digits format"
+        }
+      ]
+    },
+    {
+      "label": "Email Address*",
+      "name": "emailAddress",
+      "type": "textbox",
+      "validations": [
+        {
+          "errorType": "required",
+          "errorMessage": "Email Address is required."
+        },
+        {
+          "errorType": "email",
+          "errorMessage": "Email Address must contain a valid email address, e.g. \u0027name@server.com\u0027."
+        }
+      ]
+    },
+    {
+      "label": "Phone Number*",
+      "name": "phone",
+      "type": "tel",
+      "validations": [
+        {
+          "errorType": "required",
+          "errorMessage": "This is required field."
+        },
+        {
+          "errorType": "phoneNumberUS",
+          "errorMessage": "Phone Number format is (000) 000-0000."
+        }
+      ]
+    },
+    {
+      "categoryType": "others",
+      "label": "Other Information",
+      "name": "OTHER_INFORMATION",
+      "type": "htmltag",
+      "tagName": "h2"
+    },
+    {
+      "categoryType": "userInfo",
+      "label": "Are you 18 years of age or older?*",
+      "name": "adult",
+      "type": "checkbox",
+      "displayLabelFormat": "hName - (hCity)",
+      "validations": [
+        {
+          "errorType": "required",
+          "errorMessage": "Please Check 18 Years or Older."
+        }
+      ]
+    },
+    {
+      "categoryType": "userInfo",
+      "label": "Do you agree to our Terms and Conditions?*",
+      "name": "TermsAndConditions",
+      "type": "checkbox",
+      "displayLabelFormat": "hName - (hCity)",
+      "validations": [
+        {
+          "errorType": "required",
+          "errorMessage": "Please Check Terms and Conditions"
+        }
+      ]
+    },
+    {
+      "categoryType": "userInfo",
+      "label": "Do you agree to our Privacy Policy?  *",
+      "name": "PrivacyPolicy",
+      "type": "checkbox",
+      "displayLabelFormat": "hName - (hCity)",
+      "validations": [
+        {
+          "errorType": "required",
+          "errorMessage": "Please Check Privacy Policy"
+        }
+      ]
+    },
+    {
+      "categoryType": "userInfo",
+      "label": "Receive Communications from Partners",
+      "name": "CommunicationFromParters",
+      "type": "checkbox",
+      "displayLabelFormat": "hName - (hCity)"
+    },
+    {
+      "categoryType": "userInfo",
+      "label": "Are you interested in joining Similac® StrongMoms® Rewards?",
+      "name": "Rewards",
+      "type": "checkbox",
+      "displayLabelFormat": "hName - (hCity)"
+    },
+    {
+      "categoryType": "Others",
+      "label": "Product Information - Please Select One*",
+      "name": "productInfo",
+      "type": "radio",
+      "displayLabelFormat": "hName - (hCity)",
+      "fieldType": "boolean",
+      "initValue": "true",
+      "validations": [
+        {
+          "errorType": "required",
+          "errorMessage": "Please make a selection."
+        }
+      ],
+      "sourceValue": [
+        {
+          "label": "Similac Pro-Advance 32oz RTF [64248]",
+          "value": "true"
+        },
+        {
+          "label": "Similac Organic SimplePac [5082178]",
+          "value": "false"
+        },
+        {
+          "label": "Similac Pro-Sensitive 32oz RTF [64253]",
+          "value": "false"
+        },
+        {
+          "label": "Similac Soy Isomil 32oz RTF [67012]",
+          "value": "false"
+        },
+        {
+          "label": "Similac for Spit-Up SimplePac [5372976]",
+          "value": "false"
+        },
+        {
+          "label": "Similac Pro-Total Comfort SimplePac [66939]",
+          "value": "false"
+        },
+        {
+          "label": "Similac NeoSure 32oz RTF [5745578]",
+          "value": "false"
+        },
+        {
+          "label": "Similac Alimentum 32oz RTF [57512]",
+          "value": "false"
+        }
+      ]
+    },
+    {
+      "label": "Additional information/Special instructions",
+      "name": "AdditionalInfo",
+      "type": "textarea",
+      "row": 10,
+      "className": "text-area",
+      "validations": [
+        {
+          "errorType": "preventHtmlTags",
+          "errorMessage": "Please do not enter HTML tags."
+        }
+      ]
+    },
+    {
+      "label": "I'm not a robot",
+      "name": "captchaValue",
+      "type": "captcha",
+      "size": "normal",
+      "theme": "light",
+      "render": "explicit",
+      "sitekey": "6Lc3sw0UAAAAABgnNBgjmvOYKMZSyhx5M8LfQfbA",
+      "validations": [
+        {
+          "errorType": "required",
+          "errorMessage": "This is required field."
+        }
+      ]
+    },
+    {
+      "label": "SUBMIT",
+      "name": "submit",
+      "type": "submit",
+      "btnClassName": "btn btn-primary col-lg-3 col-md-6 col-sm-12 mt-4"
+    },
+    {
+      "label": "captchaValue",
+      "name": "captchaValue",
+      "type": "hidden",
+      "initValue": "unknown"
+   }
+  ]
+}

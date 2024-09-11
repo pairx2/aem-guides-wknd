@@ -1,0 +1,19 @@
+<div id="${component.id}"  class="container ${customConfig.className}"
+	 data-sly-use.imageWithAnimation="com.abbott.aem.platform.common.components.models.ImageWithAnimation"
+	 data-sly-use.component="com.adobe.cq.wcm.core.components.models.Component"
+	 data-sly-use.customConfig="com.abbott.aem.platform.common.components.models.CustomConfig"
+	 data-sly-use.template="core/wcm/components/commons/v1/templates.html">
+	<div class="m-imagewithanimation js-iwa-component">
+		<div class="m-imagewithanimation__container">
+			<img class="container__image-layer image-layer--main-layer" src="${imageWithAnimation.mainImageFileReference}" alt="" />
+			<img class="container__image-layer image-layer--play-layer js-iwa-animated-layer" src="${imageWithAnimation.animatedImageFileReference}" alt="" />
+			<img class="container__image-layer image-layer--pause-layer js-iwa-still-layer" src="${imageWithAnimation.staticImageFileReference}" alt="" />
+
+			<a class="container__button js-iwa-button" data-state="play" href="">
+				<span class="button__icon abt-icon abt-icon-pause js-iwa-button-icon"></span>
+			</a>
+		</div>
+	</div>
+
+	<sly data-sly-call="${template.placeholder @ isEmpty=true}"></sly>
+</div>

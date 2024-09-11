@@ -1,0 +1,120 @@
+.m-mega-menu {
+  &__mobile-item-wrapper {
+    display: flex;
+    align-items: center;
+    & > * {
+      width: 100%;
+    }
+  }
+  &__list-var-wrapper {
+    .a-link, .a-link:hover {
+      font-size: var(--mega-menu-list-h4-font-size);
+      line-height: var(--mega-menu-list-h4-line-height);
+    }
+    .a-link {
+      &:hover {
+        .a-link__text, .a-link__text:hover {
+          color: var(--white-color);
+        }
+
+      }
+    }
+  }
+  &__nested-menu-wrapper {
+    .m-link-stack {
+      .a-link {
+        color: var(--link-stack-color);
+        &:hover {
+          .a-link__text {
+            color: var(--white-color);
+          }
+        }
+      }
+    }
+  }
+  &__default {
+    .m-mega-menu__nested-menu-wrapper {
+      .m-mega-menu__side-nav {
+        .m-link-stack {
+          .a-link {
+            &:active, &:hover, &:focus {
+              .a-link__text {
+                color: var(--white-color);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+}
+.menu-root-labProfile {
+  &:hover{
+    border-bottom: 5px solid transparent;
+  }
+  // styling for the lab profile dropdown
+  .a-dropdown__container {
+    display: flex;
+    align-items: center;
+    .a-dropdown__field {
+      padding: 4px 48px 4px 16px;
+      min-height: 32px;
+      width: 200px;
+      .a-dropdown-selected {
+        line-height: 22px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        max-width: 200px;
+        display: block;
+        overflow: hidden;
+      }
+      .a-dropdown__menu {
+        li {
+          padding: 10px 20px;
+          span {
+            padding: 4px 16px;
+            &:first-child {
+              padding: 0;
+            }
+          }
+        }
+      }
+      .a-dropdown__placeholder {
+        white-space: nowrap;
+        overflow: hidden;
+        display: block;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+  .a-input-field .form-group .a-dropdown__title.a-input-label {
+    margin-right: 1rem;
+    margin-bottom: 0;
+  }
+  .compact-mobile & {
+    @include media-breakpoint-down(md) {
+      .a-input-field {
+        margin-bottom: 0;
+      }
+    }
+  }
+  &.m-mega-menu__mobile-item-wrapper {
+    // override default layout
+    margin-left: 0;
+    margin-right: auto;
+  }
+  @include media-breakpoint-up(lg) {
+    &.m-mega-menu__mobile-item-wrapper {
+      padding-right: 0;
+      padding-top: 5px;
+      margin-left: auto;
+      margin-right: 15px;
+    }
+  }
+  @include media-breakpoint-down(lg) {
+    .options {
+      padding: var(--mega-menu-mobile-item);
+    }
+  }
+}

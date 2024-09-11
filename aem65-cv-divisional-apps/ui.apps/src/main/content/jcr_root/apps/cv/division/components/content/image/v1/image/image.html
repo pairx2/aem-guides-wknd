@@ -1,0 +1,72 @@
+<div data-sly-use.component="com.adobe.cq.wcm.core.components.models.Component"
+	data-sly-use.img="com.abbott.aem.cv.division.core.components.models.ImageDivisional"
+	data-sly-use.templates="core/wcm/components/commons/v1/templates.html"
+	data-sly-test="${img.src}" data-cmp-is="image"
+	data-cmp-lazy="${img.lazyEnabled}"
+	data-cmp-lazythreshold="${img.lazyThreshold}"
+	data-cmp-src="${img.srcUriTemplate ? img.srcUriTemplate : img.src}"
+	data-cmp-widths="${img.widths}" data-asset="${img.fileReference}"
+	data-asset-id="${img.uuid}" data-title="${img.title || img.alt}"
+	id="${component.id}" data-cmp-data-layer="${img.data.json}"
+	class="cmp-image${!wcmmode.disabled ? ' cq-dd-image' : ''}${img.parallaxFileReference ? ' parallax-wrapper' : ''}"
+	itemscope itemtype="http://schema.org/ImageObject">
+
+	<div class="container">
+
+			<div class="align-top-${img.captionAlignment} caption-${img.imageAlignment}" style="max-width:${img.imageWidth @ context='styleString'}px">
+			<sly data-sly-test="${img.captionPlacement == 'top'}">
+			<sly data-sly-test="${!img.displayPopupTitle}">
+				<div class="heading-${img.captionPlacement}" >
+					<span> ${img.title @ context='html'}</span>
+				</div>
+			</sly>
+			</sly>
+			</div>
+
+
+
+		<div class="image ${img.imageAlignment}" style="max-width:${img.imageWidth @ context='styleString'}px max-height:${img.imageHeight @ context='styleString'}px" >
+			<sly data-sly-test="${img.urlAction == 'none'}"
+				data-sly-include="image_urlAction.html" />
+
+
+			<sly data-sly-test="${img.urlAction == 'openUrl'}"
+				data-sly-include="image_openUrl.html" />
+
+			<sly data-sly-test="${img.urlAction == 'gotoAnchor'}"
+				data-sly-include="image_anchor.html" />
+
+			<sly data-sly-test="${img.urlAction == 'downloadAsset'}"
+				data-sly-include="image_downloadAsset.html" />
+
+			<sly data-sly-test="${img.urlAction == 'playYoutubeVideo'}"
+				data-sly-include="image_youtubeVideo.html" />
+
+			<sly data-sly-test="${img.urlAction == 'playLimelightVideo'}"
+				data-sly-include="image_limelightVideo.html" />
+
+			
+
+		</div>
+
+
+			<div class="align-bottom-${img.captionAlignment} caption-${img.imageAlignment}" style="max-width:${img.imageWidth @ context='styleString'}px">
+			<sly data-sly-test="${img.captionPlacement == 'bottom'}">
+			<sly data-sly-test="${!img.displayPopupTitle}">
+				<div class="heading-${img.captionPlacement}" >
+					<span> ${img.title @ context='html'}</span>
+				</div>
+			</sly>
+			</sly>
+			</div>
+    </div>
+	<img src="${img.parallaxFileReference}"
+		class="parallax-wrapper__parallax-image"
+		data-sly-test="${img.parallaxFileReference}" alt="parallax" />
+	<span class="cmp-image__title" itemprop="caption"
+		data-sly-test="${!img.displayPopupTitle && img.title}"></span>
+	<meta itemprop="caption" content="${img.title}"
+		data-sly-test="${img.displayPopupTitle && img.title}">
+</div>
+
+<sly data-sly-call="${templates.placeholder @ isEmpty = !img.src, classAppend = 'cmp-image cq-dd-image'}"></sly>

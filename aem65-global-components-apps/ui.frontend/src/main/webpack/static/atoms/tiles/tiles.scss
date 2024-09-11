@@ -1,0 +1,259 @@
+
+.a-tile {
+    $self: &;
+    max-width: max-content;
+
+    &__link {
+        padding: var(--tiles-padding);
+        box-sizing: border-box;
+        display: inline-block;
+        border-radius: var(--tiles-border-radius);
+        position: relative;
+        box-shadow: var(--tiles-box-shadow);
+        overflow: hidden;
+        background-color: var(--tiles-bg);
+        z-index: 2;
+
+        &:after {
+            border-radius: var(--tiles-border-radius);
+            transition: var(--tiles-bg-transition);
+            background-color: var(--tiles-bg);
+            border-top: var(--tiles-border-top);
+            content: '';
+            position: absolute;
+            z-index: 1;
+            width: 100%;
+            height: 12px;
+            top: 0;
+            left: 0;
+        }
+
+        &:hover {
+
+            color: var(--tiles-bg-hover-color);
+            text-decoration: none;
+
+            &:after {
+                height: 100%;
+                 background-color: var(--tiles-bg-hover);
+                 border-top: var(--tiles-border-top-hover);
+            }
+
+            #{$self}__title,
+            #{$self}__title-text,
+            #{$self}__para, p {
+                color: var(--tiles-bg-hover-color);
+                text-decoration: none;
+            }
+
+            #{$self}__tile-icon, i{
+                color: var(--tiles-bg-hover-color) !important;
+            }
+
+            #{$self}__icon {
+                color: var(--tiles-bg-hover-color);
+            }
+
+        }
+    }
+
+    &__title,
+    &-text {
+        color: var(--tiles-bg-color);
+        font-weight: bold;
+        position: relative;
+        z-index: 5;
+    }
+
+    &__icon {
+        display: none;
+        font-size: var(--tiles-icon-size);
+        position: relative;
+        z-index: 5;
+    }
+
+    &__para {
+        color: var(--tiles-bg-color);
+        margin-top: var(--tiles-para-margin-top);
+        font-family: var(--tiles-font-family);
+        position: relative;
+        z-index: 5;
+        p {
+          font-family: var(--tiles-para-font-family);
+        }
+    }
+
+    &__tile-icon {
+        color: var(--tiles-bg-color);
+        margin-top: $spacers-4;
+        position: relative;
+        @include rem(height, 48px);
+        @include rem(width, 48px);
+        z-index: 5;
+        i {
+            @include rem(font-size, 48px);
+        }
+    }
+
+
+    @include media-breakpoint-down(sm) {
+        min-width: inherit;
+        max-width: inherit;
+        width: 100%;
+    }
+
+    &--xsmall {
+        #{$self}__link {
+            min-height: var(--tiles-xsmall-height);
+            height: auto;
+            width: var(--tiles-xsmall-width);
+
+        @include media-breakpoint-down(md) {
+            width: var(--tiles-xsmall-width-tablet);
+        }
+
+        @include media-breakpoint-down(sm) {
+            min-height: var(--tiles-xsmall-height-mobile);
+        }
+        }
+
+    }
+
+    &--small {
+        #{$self}__link {
+            min-height: var(--tiles-medium-height);
+            height: auto;
+            width: var(--tiles-xsmall-width);
+
+            @include media-breakpoint-down(md) {
+                width: var(--tiles-xsmall-width-tablet);
+            }
+
+            @include media-breakpoint-down(sm) {
+               min-height: var(--tiles-small-height-mobile);
+            }
+        }
+    }
+
+    &--medium {
+        #{$self}__link {
+            width: var(--tiles-medium-width);
+            min-height:var(--tiles-medium-height);
+            height: auto;
+            @include media-breakpoint-down(md) {
+                width: var(--tiles-medium-width-tablet);
+            }
+
+            @include media-breakpoint-down(sm) {
+                min-height: var(--tiles-medium-height-mobile);
+            }
+         }
+    }
+
+    &--large {
+        #{$self}__link {
+            width: var(--tiles-large-width);
+            min-height: var(--tiles-large-height);
+            height: auto;
+
+            @include media-breakpoint-down(md) {
+                width: var(--tiles-large-width-tablet);
+            }
+
+            @include media-breakpoint-down(sm) {
+                min-height: var(--tiles-large-height-mobile);
+            }
+        }
+    }
+
+    &--xsmall,
+    &--small,
+    &--medium,
+    &--large {
+        #{$self}__link {
+            @include media-breakpoint-down(sm) {
+                width: 100%;
+
+                #{$self}__icon {
+                    position: absolute;
+                    top: 22px;
+                    right: 10px;
+                    display: block;
+                    color: var(--tiles-icon-color);
+                }
+            }
+
+            &:hover {
+                #{$self}__icon {
+                    color: var(--tiles-icon-color-hover);
+                }
+            }
+        }
+    }
+
+    &--dark {
+        #{$self}__link {
+
+            background-color: var(--tiles-bg-dark);
+            border-color: var(--tiles-border-color-dark);
+            color: var(--tiles-color-dark);
+
+            &:after {
+                height: 0;
+                border-color: var(--tiles-border-color-dark);
+            }
+
+            #{$self}__title,
+            #{$self}__title-text,
+            #{$self}__para, p {
+                color: var(--tiles-color-dark);
+            }
+
+            #{$self}__tile-icon, i {
+                color: var(--tiles-color-dark);
+            }
+
+            &:hover {
+                color: var(--tiles-color-dark-hover);
+
+                &:after {
+                    background-color: var(--tiles-bg-dark-hover)!important;
+                    border-color: var(--tiles-border-color-dark-hover);
+                    height: 100%!important;
+                    z-index: 1;
+                }
+
+
+                #{$self}__title-text {
+                    &:after {
+                        display: block;
+                        position: relative;
+                        bottom: -8px;
+                        width: 88px;
+                        height: 4px;
+                        content: ' ';
+                        background-color: var(--tiles-title-border-line-dark-hover);
+                    }
+                }
+
+                #{$self}__title,
+                #{$self}__title-text,
+                #{$self}__para, p {
+                    text-decoration: none;
+                    color: var(--tiles-color-dark-hover);
+                    position: relative;
+                    z-index: 2;
+                }
+
+                #{$self}__tile-icon, i {
+                    color: var(--tiles-color-dark-hover) !important;
+                }
+
+                #{$self}__icon {
+                    color: var(--tiles-icon-color-hover);
+                }
+            }
+        }
+
+    }
+}

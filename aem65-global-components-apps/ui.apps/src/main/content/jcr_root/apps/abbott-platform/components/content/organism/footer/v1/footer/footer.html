@@ -1,0 +1,49 @@
+<!--/* Footer */-->
+<sly data-sly-use.footer="com.abbott.aem.platform.common.components.models.Footer"
+   data-sly-use.component="com.adobe.cq.wcm.core.components.models.Component"
+	data-sly-use.customConfig="com.abbott.aem.platform.common.components.models.CustomConfig"
+	 data-sly-use.template="core/wcm/components/commons/v1/templates.html">
+	
+	<!--/* terms section content */-->
+	<sly data-sly-include="footer_terms.html"></sly>
+	
+   <div class="o-footer bg-black ${customConfig.className}" id="${component.id}">
+      <div class="container o-footer__top">
+         <div class="row">
+            <!--/* linkStack links */-->
+            <sly data-sly-include="footer_linkstack.html"></sly>
+            <!--/* linkStack links */-->
+         </div>
+      </div>
+      <span aria-hidden="true" class="container horizontal-divider"> </span>
+      <div class="container o-footer__bottom">
+         <div class="row o-footer__bottom__row-1">
+            <div class="col-12">
+               <div class="o-footer__bottom-section">
+                  <!--/* logo comp */-->
+                  <sly data-sly-include="footer_logo.html"></sly>
+                  <!--/* logo comp */-->
+                  <!--/* social media icons */-->
+                  <sly data-sly-include="footer_socialmedia.html"></sly>
+                  <!--/* social media icons */-->
+               </div>
+            </div>
+         </div>
+         <sly data-sly-test.disclaimerSize="${footer.listOfDisclaimer.size > 0 ? '' : 'no-links'}" />
+         <div class="row o-footer__bottom__row-2 ${disclaimerSize}">
+            <div class="col-12 col-lg-6 order-lg-12">
+               <!--/* disclaimer links */-->
+               <sly data-sly-include="footer_disclaimer.html"></sly>
+               <!--/* disclaimer links */-->
+            </div>
+            <!--/* Copyright text */-->
+            <div class="col-12 col-lg-6 order-lg-1">
+               <p class="o-footer__copyright">${footer.copyrightText @ context='html'}</p>
+            </div>
+            <!--/* Copyright text */-->
+         </div>
+      </div>
+   </div>
+   <!--/* Footer component code end here */-->
+</sly>
+<sly data-sly-call="${template.placeholder @ isEmpty=true}"></sly>

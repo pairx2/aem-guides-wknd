@@ -1,0 +1,104 @@
+@import "./global/mixins.less";
+@import './global/variables.less';
+
+.o-hero-carousel {
+    cursor:pointer;
+	.slick-prev {
+ 	   	margin: 0 1.875rem;
+        @media @lg-only {
+			display: none !important;	// SB HCP-503 hiding arrow in tablet
+        } 
+	}
+    .slick-next {
+	    margin: 0 1.875rem;
+         @media @lg-only {
+			display: none !important;	// SB HCP-503 hiding arrow in tablet
+        }
+    }
+
+    @media @lg-only {
+        .m-hero--short {
+			.m-hero__media {
+                .m-hero__image {
+                    .cmp-image__image {
+                        object-fit: fill;	// SB HCP-503 fixing image cropping
+                    }
+                }
+            }
+        }
+    }
+    .m-hero {
+		   --hero-tablet-short-height: 470px;	// SB HCP-503 Sign up button will not cut
+        .m-hero__content {
+            @media @lg-up {
+                padding-left: 2.5rem;
+                padding-right: 0 !important;
+                    h1 {
+                        font-size: 3.75rem !important;		// 60px size for H1 as per Figma
+                    }
+            }
+            .m-hero__extras {			// START SB HCP-526 fixing button in the bottom for screen > 768px
+				position: sticky;		// START SB HCP-959 fixing button stretch issue on banner 
+                top: 100%;               
+            }							
+            @media @md-down {
+				min-height: 350px;		// SB HCP-706 button overlap text fix
+            }							// END
+		}
+    }
+	.m-hero__media {
+		@media @lg-down {
+			.cmp-image__image {
+				object-fit: contain;
+			}
+		}
+	}
+	.m-hero--short {
+		@media @lg-down {
+			height: auto;
+		}
+	}
+}
+
+// SB HCP-777 dots overlapping on image in TH
+.o-hero-carousel--tall.o-hero-carousel .slick-dots {
+    @media @lg-down {
+		top: var(--hero-carousel-slick-dots-top);
+    	bottom: var(--hero-carousel-slick-dots-bottom);
+    }
+	@media @md-down{
+		bottom:0;
+	}
+
+}
+
+// SB HCP bug 287 - To remove the top spacing 
+.responsivegrid .aem-Grid>.aem-GridColumn:not(.experiencefragment) {
+    margin-top: 0 !important;
+}
+
+#rdpComponent, .rdpComponent {
+	.m-hero--short {
+		@media @lg-down {
+			height: auto;
+			margin-bottom: 0;
+			padding-bottom: 0;
+		}
+	}
+}
+.m-hero.m-hero--short {
+	.m-hero__media {
+		@media @lg-down {
+			height: 0;
+			padding-bottom: 57%;
+		}
+		@media @md-down {
+			padding-bottom: 55%;
+		}
+	}
+	@media @lg-down {
+		height: auto;
+		margin-bottom: 0;
+		padding-bottom: 0;
+	}
+}

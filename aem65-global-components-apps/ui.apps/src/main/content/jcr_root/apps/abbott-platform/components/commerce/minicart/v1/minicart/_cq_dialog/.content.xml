@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Mini Cart"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                maximized="{Boolean}true">
+                <items jcr:primaryType="nt:unstructured">
+                    <properties
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Properties"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <iconPicker
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="/libs/granite/ui/components/coral/foundation/include"
+                                                fieldLabel="Cart Icon"
+                                                required="{Boolean}true"
+                                                path="/apps/abbott-platform/components/core/iconpicker/v1/iconpicker/cq:dialog/content/items/icon">
+                                            </iconPicker>
+                                            <header
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Header Text"
+                                                fieldDescription="Text that displays next to the icon in the header."
+                                                name="./header"/>
+                                            <readAllowed
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Read Allowed"
+                                                fieldDescription="Screen reader text"
+                                                name="./readAllowed"/>
+                                            <cartHeader
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Cart Header"
+                                                fieldDescription="Text that displays at the top of the cart fly out."
+                                                required="{Boolean}true"
+                                                name="./cartHeader"/>
+                                            <priceToShow
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                fieldLabel="Price to Display"
+                                                fieldDescription="Select the price to show for the mini cart."
+                                                id="priceToShow"
+                                                name="./priceToShow"
+                                                required="{Boolean}true">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <addToCart
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="Price"
+                                                        value="normal"/>
+                                                    <pdpLink
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="VAT price"
+                                                        value="vat"/>
+                                                    <both
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="Both"
+                                                        value="all"/>
+                                                </items>
+                                            </priceToShow>
+                                            <emptyCartMessage
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:include="/apps/abbott-platform/components/core/text/v1/text"
+                                                sling:resourceType="cq/gui/components/authoring/dialog/richtext"
+                                                fieldLabel="Empty Cart Message"
+                                                name="./emptyCartMessage"
+                                                required="{Boolean}true"
+                                                useFixedInlineToolbar="{Boolean}true">
+                                                <rtePlugins
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceSuperType="/apps/abbott-platform/components/core/text/v1/text/rtePlugins"/>
+                                                <uiSettings
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceSuperType="/apps/abbott-platform/components/core/text/v1/text/uiSettings"/>
+                                                <htmlRules
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceSuperType="/apps/abbott-platform/components/core/text/v1/text/htmlRules"/>
+                                            </emptyCartMessage>
+                                            <enableTax
+												granite:class="cq-dialog-checkbox-showhide" 
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                fieldDescription="Tax will be displayed by enabling checkbox "
+                                                fieldLabel="Enable Tax"
+                                                name="./enableTax"
+                                                text="Enable Tax"
+                                                uncheckedValue="{Boolean}false"
+                                                value="{Boolean}true">
+												<granite:data 
+                                                    jcr:primaryType="nt:unstructured" 
+                                                    cq-dialog-checkbox-showhide-target=".subtotalwithouttax-enable-showhide-target"/>
+											</enableTax>
+											<subtotalWithoutTaxContainer 
+                                                granite:class="hide subtotalwithouttax-enable-showhide-target" 
+                                                jcr:primaryType="nt:unstructured" 
+                                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                <items 
+                                                    jcr:primaryType="nt:unstructured">	
+													<subtotalWithoutTax
+													jcr:primaryType="nt:unstructured"
+													sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+													fieldDescription="Sub total without tax will be displayed by enabling checkbox "
+													fieldLabel="Sub Total Without Tax/VAT"
+													name="./subtotalWithoutTax"
+													text="Sub Total Without Tax/VAT"
+													uncheckedValue="{Boolean}false"
+													value="{Boolean}true"/>
+												</items>
+                                                <granite:data 
+                                                    jcr:primaryType="nt:unstructured" 
+                                                    showhidetargetvalue="true"/>
+                                            </subtotalWithoutTaxContainer>
+                                            <incompatibleProductMessage
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:include="/apps/abbott-platform/components/core/text/v1/text"
+                                                sling:resourceType="cq/gui/components/authoring/dialog/richtext"
+                                                fieldDescription="Incompatible Product Message"
+                                                fieldLabel="Incompatible Product Message"
+                                                name="./incompatibleProductMessage"
+                                                useFixedInlineToolbar="{Boolean}true"/>
+                                            <miniAddToCartAATracking jcr:primaryType="nt:unstructured"
+												sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+												name="./miniAddToCartAATracking"
+												text="Enable Adobe Analytics Datalayer Tracking For Add To Cart"
+												uncheckedValue="{Boolean}false" value="{Boolean}true" />
+											<miniRemoveCartAATracking jcr:primaryType="nt:unstructured"
+												sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+												name="./miniRemoveCartAATracking"
+												text="Enable Adobe Analytics Datalayer Tracking For Remove Cart"
+												uncheckedValue="{Boolean}false" value="{Boolean}true" /> 
+                                            <showSpaceInPrice
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                name="./showSpaceInPrice"
+                                                text="Show space between Currency and Amount of any Price"
+                                                uncheckedValue="{Boolean}false"
+                                                value="{Boolean}true"/>     
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </properties>
+                    <action
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Action"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <buttons
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                                fieldLabel="Number on Buttons"
+                                                max="{Long}2"
+                                                min="{Long}0"
+                                                name="./numberOfButtons"/>
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </action>
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>

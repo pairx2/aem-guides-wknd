@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0"
+  xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+  xmlns:granite="http://www.adobe.com/jcr/granite/1.0"
+  jcr:primaryType="nt:unstructured"
+  jcr:title="Wizard Stepper Component"
+  sling:resourceType="cq/gui/components/authoring/dialog">
+  <content
+    granite:class="tabselection"
+    jcr:primaryType="nt:unstructured"
+    sling:resourceType="granite/ui/components/coral/foundation/container">
+    <items jcr:primaryType="nt:unstructured">
+      <tabs
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/tabs"
+        maximized="{Boolean}true">
+        <items jcr:primaryType="nt:unstructured">
+          <wizardSteps
+            jcr:primaryType="nt:unstructured"
+            jcr:title="Wizard Steps"
+            sling:resourceType="granite/ui/components/coral/foundation/container"
+            margin="{Boolean}true">
+            <items jcr:primaryType="nt:unstructured">
+              <columns
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                margin="{Boolean}true">
+                <items jcr:primaryType="nt:unstructured">
+                  <column
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/container">
+                    <items jcr:primaryType="nt:unstructured">
+                      <multi
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                        composite="{Boolean}true">
+                        <field
+                          jcr:primaryType="nt:unstructured"
+                          sling:resourceType="granite/ui/components/coral/foundation/container"
+                          margin="{Boolean}true"
+                          name="./steps"
+                          variant="large">
+                          <items jcr:primaryType="nt:unstructured">
+                            <stepLabel
+                              jcr:primaryType="nt:unstructured"
+                              fieldLabel="Step Label"
+                              sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                              name="./stepLabel"/>
+                            <stepPoints
+                              jcr:primaryType="nt:unstructured"
+                              fieldLabel="Step Points"
+                              sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                              name="./stepPoints"/>
+                            <stepId
+                              jcr:primaryType="nt:unstructured"
+                              fieldLabel="Step ID"
+                              sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                              name="./stepId"/>
+                            <icon
+                              granite:class="abbott-icon-picker"
+                              jcr:primaryType="nt:unstructured"
+                              sling:resourceSuperType="abbott-platform/components/core/iconpicker/v1/iconpicker/cq:dialog/content/items/icon"
+                              sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                              fieldLabel="Icon"
+                              name="./icon"/>
+                          </items>
+                        </field>
+                      </multi>
+                    </items>
+                  </column>
+                </items>
+              </columns>
+            </items>
+          </wizardSteps>
+          <configItem
+              jcr:primaryType="nt:unstructured"
+              jcr:title="ID/Class Config"
+              sling:resourceType="granite/ui/components/coral/foundation/container"
+              margin="{Boolean}true">
+              <items jcr:primaryType="nt:unstructured">
+                  <columns
+                      jcr:primaryType="nt:unstructured"
+                      sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                      margin="{Boolean}true">
+                      <items jcr:primaryType="nt:unstructured">
+                          <column
+                              jcr:primaryType="nt:unstructured"
+                              sling:resourceType="granite/ui/components/coral/foundation/container">
+                              <items jcr:primaryType="nt:unstructured">
+                                  <configTab
+                                      jcr:primaryType="nt:unstructured"
+                                      sling:resourceType="/libs/granite/ui/components/coral/foundation/include"
+                                      path="/apps/abbott-platform/components/core/customconfig/v1/customconfig/cq:dialog/content/items/tabs/items/configItem/items/columns/items/column"/>
+                              </items>
+                          </column>
+                      </items>
+                  </columns>
+              </items>
+          </configItem>
+        </items>
+      </tabs>
+    </items>
+  </content>
+</jcr:root>

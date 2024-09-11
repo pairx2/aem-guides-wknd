@@ -1,0 +1,598 @@
+.searchbar.headersearch.search-bar--core-view {
+  .m-search-bar {
+    .search__heading {
+      background-color: transparent;
+      margin: 0px;
+      left: 0px;
+      .m-search-bar__container {
+        position: relative;
+        width: auto;
+        margin: auto;
+        .m-search-bar__button {
+          position: absolute;
+          right: 2px;
+          top: 2px;
+          .search-button {
+            width: 30px;
+            height: 20px;
+            border-radius: 0 3px 3px 0;
+            float: left;
+            position: relative;
+            .btn:hover {
+              box-shadow: unset;
+            }
+            .btn {
+              width: 30px;
+              height: 20px;
+              background: @abbott-light-gray;
+              padding: 0px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              box-shadow: none;
+              span {
+                font-family: @font-brandon-grotesque-regular, sans-serif;
+                font-size: @font-size-12 !important;
+                line-height: 15px;
+                text-transform: none;
+              }
+            }
+          }
+        }
+        .m-search-bar__input {
+          width: auto;
+          margin: auto;
+          .m-search-bar__close.show {
+            display: none;
+          }
+          .m-search-bar__autocomplete {
+            .m-search-bar__autocomplete-item {
+              background-color: @white;
+            }
+            .m-search-bar__autocomplete-item:hover {
+              background-color: @abbott-search-gray;
+            }
+          }
+          input.form-control.m-search-bar__input-field:focus {
+            box-shadow: none;
+            border: 2px solid @abbott-dark-gray !important;
+          }
+          input.form-control.m-search-bar__input-field {
+            border: 1px solid @abbott-search-gray;
+            border-radius: 3px;
+            padding: 3px 5px 0;
+            width: 150px;
+            font-size: 12px;
+            line-height: 15px;
+            font-weight: 400;
+            max-height: 24px;
+            color: @abbott-dark-gray;
+          }
+        }
+      }
+    }
+  }
+}
+
+//Search-results styles:
+// Style system for search results page
+
+.searchresults {
+  .o-search-res {
+      .pb-5 {
+          padding-bottom: 0 !important;
+      }
+
+      .m-search-bar {
+          margin: 0;
+
+          .m-search-bar__container {
+              @media @lg-only {
+                  .m-search-bar__input {
+                      margin-right: 0;
+                      --searchbar-md-input-width: 400px;
+
+                      .m-search-bar__input-field {
+                          width: 85%;
+                      }
+
+                      .m-search-bar__close {
+                          right: 20%;
+                      }
+
+                      .m-search-bar__autocomplete {
+                          width: 85%;
+                      }
+                  }
+
+              }
+
+              .m-search-bar__button {
+                  @media @md-down {
+                      .search-button {
+                          .btn {
+                              height: 3rem;
+                              width: 3.25rem;
+                          }
+                      }
+                  }
+              }
+          }
+      }
+
+      .o-search-res__container {
+          .o-search-res__header {
+              padding-bottom: 0;
+              border-bottom: 1px solid @abbott-fog-gray;
+
+              .o-search-res__header-title {
+                  margin-bottom: 0;
+              }
+          }
+
+          .o-search-res__results {
+              .a-result {
+                  border-bottom: 1px solid @abbott-fog-gray;
+                  padding: 1rem 0 2rem 0;
+
+                  .a-result__title {
+                      margin: 0;
+
+                      * {
+                          color: @abbott-blue;
+                          text-transform: uppercase;
+                      }
+                  }
+
+                  .a-result__description {
+                      color: @abbott-bastille;
+                      margin-bottom: 0;
+                  }
+
+                  &:hover {
+                      background: @abbott-light-gray-hover;
+                  }
+              }
+          }
+      }
+
+      .a-pagination {
+          text-align: center;
+
+          //Style system to display Pagination center aligned in mobile view, to decrease width
+          @media @md-down {
+              display: flex;
+              justify-content: space-evenly;
+              text-align: center;
+
+              .a-pagination__pages {
+                  justify-content: space-evenly;
+
+                  .a-pagination__page {
+
+                      .a-pagination__link {
+                          padding: 7px 10px;
+                          border-left: 0;
+                          border-right: 0;
+
+                          .abt-icon {
+                              font-size: 14px;
+                          }
+                      }
+                  }
+              }
+          }
+
+          .a-pagination__pages {
+              border: 1px solid @abbott-pagination-border-silver;
+
+              .a-pagination__page {
+                  border: 1px solid @abbott-pagination-border-silver;
+
+                  .a-pagination__link {
+                      color: @abbott-hover-medialibrary-blue;
+                      padding: 7px 10px;
+                      border-left: 0;
+                      border-right: 0;
+
+                      &:hover {
+                          background-color: @abbott-pagination-hover-color;
+                          border: none;
+                          font-weight: normal;
+
+                      }
+                  }
+
+                  &.a-pagination--active {
+                      background-color: @abbott-pagination-bg-active-link;
+
+                      .a-pagination__link {
+                          color: @white;
+
+                          &:hover {
+                              background-color: @abbott-pagination-bg-active-link;
+                          }
+
+                      }
+
+                      &::after {
+                          display: none;
+                      }
+                  }
+              }
+          }
+      }
+  }
+
+  // Style system to remove left margin for search results
+  &.remove-margin--left {
+      .o-search-res__container .offset-md-2 {
+          @media @md-up {
+              margin-left: 0;
+          }
+      }
+  }
+
+  /* Font variations for title for search results - starts here */
+
+  &.search-results-title--font-bold {
+
+      .o-search-res__results .a-result .a-result__title,
+      .o-search-res__results .a-result .a-result__title * {
+          .font--bold();
+      }
+  }
+
+  &.search-results-title--font-medium {
+
+      .o-search-res__results .a-result .a-result__title,
+      .o-search-res__results .a-result .a-result__title * {
+          .font--medium();
+      }
+  }
+
+  &.search-results-title--font-black {
+
+      .o-search-res__results .a-result .a-result__title,
+      .o-search-res__results .a-result .a-result__title * {
+          .font--black();
+      }
+  }
+
+  &.search-results-title--font-regular {
+
+      .o-search-res__results .a-result .a-result__title,
+      .o-search-res__results .a-result .a-result__title * {
+          .font--regular();
+      }
+  }
+
+  &.search-results-title--font-thin {
+
+      .o-search-res__results .a-result .a-result__title,
+      .o-search-res__results .a-result .a-result__title * {
+          .font--thin();
+      }
+  }
+
+  &.search-results-title--font-italic {
+
+      .o-search-res__results .a-result .a-result__title,
+      .o-search-res__results .a-result .a-result__title * {
+          .font--italic();
+      }
+  }
+
+  /* Font variations for title for search results - ends here */
+
+  //font families for title of search result
+  &.search-results-title--font-arial {
+      --search-results-font-family-title: @font-arial;
+  }
+
+  &.search-results-title--font-brandon-grotesque-medium {
+      --search-results-font-family-title: @font-brandon-grotesque-medium;
+  }
+
+  &.search-results-title--font-brandon-grotesque-black {
+      --search-results-font-family-title: @font-brandon-grotesque-black;
+  }
+
+  &.search-results-title--font-brandon-grotesque-regular {
+      --search-results-font-family-title: @font-brandon-grotesque-regular;
+  }
+
+  &.search-results-title--font-brandon-grotesque-bold {
+      --search-results-font-family-title: @font-brandon-grotesque-bold;
+  }
+
+  &.search-results-title--font-georgia {
+      --search-results-font-family-title: @font-georgia;
+  }
+
+  &.search-results-title--font-meiryo {
+      --search-results-font-family-title: @font-meiryo;
+  }
+
+  &.search-results-title--font-segoe-ui {
+      --search-results-font-family-title: @font-segoe-ui;
+  }
+
+  &.search-results-title--font-times-new-roman {
+      --search-results-font-family-title: @font-times-new-roman;
+  }
+
+  &.search-results-title--font-extazy-black {
+      --search-results-font-family-title: @font-extazy-black;
+  }
+
+  &.search-results-title--font-extazy-bold {
+      --search-results-font-family-title: @font-extazy-bold;
+  }
+
+  &.search-results-title--font-extazy-light {
+      --search-results-font-family-title: @font-extazy-light;
+  }
+
+  &.search-results-title--font-extazy-regular {
+      --search-results-font-family-title: @font-extazy-regular;
+  }
+
+  &.search-results-title--font-microsoft-ya-hei {
+      --search-results-font-family-title: @font-microsoft-ya-hei;
+  }
+
+  &.search-results-title--font-calibri {
+      --search-results-font-family-title: @font-calibri;
+  }
+
+  &.search-results-title--font-brandon-medium {
+      --search-results-font-family-title: @font-brandon-medium;
+  }
+
+  &.search-results-title--font-brandon-bold {
+      --search-results-font-family-title: @font-brandon-bold;
+  }
+
+  &.search-results-title--font-brandon-regular {
+      --search-results-font-family-title: @font-brandon-regular;
+  }
+
+  /* Font variations for description for search results - starts here */
+
+  &.search-results-description--font-bold {
+      .o-search-res__results .a-result .a-result__description {
+          .font--bold();
+      }
+  }
+
+  &.search-results-description--font-medium {
+      .o-search-res__results .a-result .a-result__description {
+          .font--medium();
+      }
+  }
+
+  &.search-results-description--font-black {
+      .o-search-res__results .a-result .a-result__description {
+          .font--black();
+      }
+  }
+
+  &.search-results-description--font-regular {
+      .o-search-res__results .a-result .a-result__description {
+          .font--regular();
+      }
+  }
+
+  &.search-results-description--font-thin {
+      .o-search-res__results .a-result .a-result__description {
+          .font--thin();
+      }
+  }
+
+  &.search-results-description--font-italic {
+      .o-search-res__results .a-result .a-result__description {
+          .font--italic();
+      }
+  }
+
+  /* Font variations for description for search results - ends here */
+
+  //font families for description for search result
+  &.search-results-description--font-arial {
+      --search-results-font-family-description: @font-arial;
+  }
+
+  &.search-results-description--font-brandon-grotesque-medium {
+      --search-results-font-family-description: @font-brandon-grotesque-medium;
+  }
+
+  &.search-results-description--font-brandon-grotesque-black {
+      --search-results-font-family-description: @font-brandon-grotesque-black;
+  }
+
+  &.search-results-description--font-brandon-grotesque-regular {
+      --search-results-font-family-description: @font-brandon-grotesque-regular;
+  }
+
+  &.search-results-description--font-brandon-grotesque-bold {
+      --search-results-font-family-description: @font-brandon-grotesque-bold;
+  }
+
+  &.search-results-description--font-georgia {
+      --search-results-font-family-description: @font-georgia;
+  }
+
+  &.search-results-description--font-meiryo {
+      --search-results-font-family-description: @font-meiryo;
+  }
+
+  &.search-results-description--font-segoe-ui {
+      --search-results-font-family-description: @font-segoe-ui;
+  }
+
+  &.search-results-description--font-times-new-roman {
+      --search-results-font-family-description: @font-times-new-roman;
+  }
+
+  &.search-results-description--font-extazy-black {
+      --search-results-font-family-description: @font-extazy-black;
+  }
+
+  &.search-results-description--font-extazy-bold {
+      --search-results-font-family-description: @font-extazy-bold;
+  }
+
+  &.search-results-description--font-extazy-light {
+      --search-results-font-family-description: @font-extazy-light;
+  }
+
+  &.search-results-description--font-extazy-regular {
+      --search-results-font-family-description: @font-extazy-regular;
+  }
+
+  &.search-results-description--font-microsoft-ya-hei {
+      --search-results-font-family-description: @font-microsoft-ya-hei;
+  }
+
+  &.search-results-description--font-calibri {
+      --search-results-font-family-description: @font-calibri;
+  }
+
+  &.search-results-description--font-brandon-medium {
+      --search-results-font-family-description: @font-brandon-medium;
+  }
+
+  &.search-results-description--font-brandon-bold {
+      --search-results-font-family-description: @font-brandon-bold;
+  }
+
+  &.search-results-description--font-brandon-regular {
+      --search-results-font-family-description: @font-brandon-regular;
+  }
+
+  /* Font variations for header for search results - starts here */
+
+  &.search-results-header--font-bold {
+
+      .o-search-res__header .o-search-res__header-title,
+      .o-search-res__header .o-search-res__header-title * {
+          .font--bold();
+      }
+  }
+
+  &.search-results-header--font-medium {
+
+      .o-search-res__header .o-search-res__header-title,
+      .o-search-res__header .o-search-res__header-title * {
+          .font--medium();
+      }
+  }
+
+  &.search-results-header--font-black {
+
+      .o-search-res__header .o-search-res__header-title,
+      .o-search-res__header .o-search-res__header-title * {
+          .font--black();
+      }
+  }
+
+  &.search-results-header--font-regular {
+
+      .o-search-res__header .o-search-res__header-title,
+      .o-search-res__header .o-search-res__header-title * {
+          .font--regular();
+      }
+  }
+
+  &.search-results-header--font-thin {
+
+      .o-search-res__header .o-search-res__header-title,
+      .o-search-res__header .o-search-res__header-title * {
+          .font--thin();
+      }
+  }
+
+  &.search-results-header--font-italic {
+
+      .o-search-res__header .o-search-res__header-title,
+      .o-search-res__header .o-search-res__header-title * {
+          .font--italic();
+      }
+  }
+
+  /* Font variations for header for search results - ends here */
+
+  //font families for header of search result
+  &.search-results-header--font-arial {
+      --search-results-font-family-header: @font-arial;
+  }
+
+  &.search-results-header--font-brandon-grotesque-medium {
+      --search-results-font-family-header: @font-brandon-grotesque-medium;
+  }
+
+  &.search-results-header--font-brandon-grotesque-black {
+      --search-results-font-family-header: @font-brandon-grotesque-black;
+  }
+
+  &.search-results-header--font-brandon-grotesque-regular {
+      --search-results-font-family-header: @font-brandon-grotesque-regular;
+  }
+
+  &.search-results-header--font-brandon-grotesque-bold {
+      --search-results-font-family-header: @font-brandon-grotesque-bold;
+  }
+
+  &.search-results-header--font-georgia {
+      --search-results-font-family-header: @font-georgia;
+  }
+
+  &.search-results-header--font-meiryo {
+      --search-results-font-family-header: @font-meiryo;
+  }
+
+  &.search-results-header--font-segoe-ui {
+      --search-results-font-family-header: @font-segoe-ui;
+  }
+
+  &.search-results-header--font-times-new-roman {
+      --search-results-font-family-header: @font-times-new-roman;
+  }
+
+  &.search-results-header--font-extazy-black {
+      --search-results-font-family-header: @font-extazy-black;
+  }
+
+  &.search-results-header--font-extazy-bold {
+      --search-results-font-family-header: @font-extazy-bold;
+  }
+
+  &.search-results-header--font-extazy-light {
+      --search-results-font-family-header: @font-extazy-light;
+  }
+
+  &.search-results-header--font-extazy-regular {
+      --search-results-font-family-header: @font-extazy-regular;
+  }
+
+  &.search-results-header--font-microsoft-ya-hei {
+      --search-results-font-family-header: @font-microsoft-ya-hei;
+  }
+
+  &.search-results-header--font-calibri {
+      --search-results-font-family-header: @font-calibri;
+  }
+
+  &.search-results-header--font-brandon-medium {
+      --search-results-font-family-header: @font-brandon-medium;
+  }
+
+  &.search-results-header--font-brandon-bold {
+      --search-results-font-family-header: @font-brandon-bold;
+  }
+
+  &.search-results-header--font-brandon-regular {
+      --search-results-font-family-header: @font-brandon-regular;
+  }
+}

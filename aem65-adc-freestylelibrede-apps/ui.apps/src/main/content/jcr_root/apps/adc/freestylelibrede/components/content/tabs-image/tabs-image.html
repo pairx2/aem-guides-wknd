@@ -1,0 +1,63 @@
+<sly data-sly-use.i18n_no_cost="${'com.abbott.aem.cloud.platform.core.models.I18nFetcher' @ key = 'no_cost'}" />
+<div data-sly-test="${!properties.enableTabs}" data-sly-use.tabs="com.adobe.cq.wcm.core.components.models.Tabs" class="cmp-tabs container px-1 px-md-3" data-cmp-is="tabs">
+    <ol data-sly-test="${tabs.items && tabs.items.size > 0}" role="tablist" class="row tablist-panelless adc-horizontal-list__list list-unstyled ${tabs.items.size == 1 ? 'justify-content-center' : 'justify-content-between'}" aria-multiselectable="false" data-tab-count="${tabs.items.size}">
+        <sly data-sly-list.item="${tabs.items}">
+            <sly data-sly-use.tabModelProvider="${'com.abbott.aem.adc.freestylelibrede.models.TabModelProvider' @ path=item.path}">
+                <li data-sly-test.tabModel="${tabModelProvider.tabModel}" role="tab" class="adc-horizontal-list__list-item d-flex flex-column${item.name == tabs.activeItem ? ' cmp-tabs__tab--active' : ''}" data-cmp-hook-tabs="tab">
+				<a href="#${tabModel.deepLinkTarget}">
+                  <div class="p-relative adc-horizontal-list__list-item-imgblock">
+                        <img class="adc-horizontal-list__list-item-image" src="${tabModel.image}" alt=${tabModel.heading} />
+                        <img data-sly-test="${tabModel.displayThumbnail}" class="adc-app-thumbnail" src="${tabModel.thumbnailImage}" alt=${tabModel.heading}/>
+                   </div>
+                   <h5 class="adc-horizontal-list__list-item-title mt-1 mb-2">${tabModel.heading}</h5>
+				    ${tabModel.subheading} 
+                    <p data-sly-test="${tabModel.productTab && tabModel.displayPrice}" class="adc-horizontal-list__list-item-sub-title lspacing-point3" data-react-component="productPrice" data-json-string="{&quot;sku&quot;:&quot;${tabModel.sku}&quot;,&quot;currency&quot;:&quot;EUR&quot;}"></p>
+                    <p data-sly-test="${!tabModel.productTab}" class="adc-horizontal-list__list-item-sub-title">${i18n_no_cost.title}</p>
+				</a>
+                </li>
+            </sly>
+        </sly>
+    </ol>
+    <sly data-sly-test="${wcmmode.edit}">
+    <sly data-sly-list.item="${tabs.items}">
+        <div data-sly-resource="${item.name @ decorationTagName='div'}" role="tabpanel"
+             class="cmp-tabs__tabpanel${item.name == tabs.activeItem ? ' cmp-tabs__tabpanel--active' : ''}"
+             data-cmp-hook-tabs="tabpanel">
+        </div>
+    </sly>
+    <sly data-sly-resource="${resource.path @ resourceType='wcm/foundation/components/parsys/newpar', appendPath='/*', decorationTagName='div', cssClassName='new section aem-Grid-newComponent'}"
+         data-sly-test="${(wcmmode.edit || wcmmode.preview) && tabs.items.size < 1}"></sly>
+
+	</sly>
+</div>
+
+<div data-sly-test="${properties.enableTabs}" data-sly-use.tabs="com.adobe.cq.wcm.core.components.models.Tabs" class="cmp-tabs container" data-cmp-is="tabs">
+    <ol data-sly-test="${tabs.items && tabs.items.size > 0}" role="tablist" class="row adc-horizontal-list__list list-unstyled ${tabs.items.size == 1 ? 'justify-content-center' : 'justify-content-between'}" aria-multiselectable="false" data-tab-count="${tabs.items.size}">
+        <sly data-sly-list.item="${tabs.items}">
+            <sly data-sly-use.tabModelProvider="${'com.abbott.aem.adc.freestylelibrede.models.TabModelProvider' @ path=item.path}">
+                <li data-sly-test.tabModel="${tabModelProvider.tabModel}" role="tab" class="adc-horizontal-list__list-item d-flex flex-column${item.name == tabs.activeItem ? ' cmp-tabs__tab--active' : ''}" data-cmp-hook-tabs="tab" id="${tabModel.deepLinkTarget}">
+                    <div class="p-relative d-block d-sm-none">
+                        <img class="adc-horizontal-list__list-item-image" src="${tabModel.image}" alt=${tabModel.heading}/>
+                        <img data-sly-test="${tabModel.displayThumbnail}" class="adc-app-thumbnail" src="${tabModel.thumbnailImage}" alt=${tabModel.heading}/>
+                    </div>
+                    <h5 class="adc-horizontal-list__list-item-title">${tabModel.heading}</h5>
+                    <p data-sly-test="${tabModel.productTab &&tabModel.subheading}" class="adc-horizontal-list__sub-heading text-center"> ${tabModel.subheading} </p>
+					<p data-sly-test="${tabModel.productTab && tabModel.displayPrice}" class="adc-horizontal-list__list-item-sub-title" data-react-component="productPrice" data-json-string="{&quot;sku&quot;:&quot;${tabModel.sku}&quot;,&quot;currency&quot;:&quot;EUR&quot;}"></p>
+                    <p data-sly-test="${!tabModel.productTab}" class="adc-horizontal-list__list-item-sub-title">${i18n_no_cost.title}</p>
+                    <div class="p-relative d-none d-sm-block">
+                        <img class="adc-horizontal-list__list-item-image" src="${tabModel.image}" alt=${tabModel.heading} />
+                        <img data-sly-test="${tabModel.displayThumbnail}" class="adc-app-thumbnail" src="${tabModel.thumbnailImage}" alt=${tabModel.heading}/>
+                    </div>
+                </li>
+            </sly>
+        </sly>
+    </ol>
+    <sly data-sly-list.item="${tabs.items}">
+        <div data-sly-resource="${item.name @ decorationTagName='div'}" role="tabpanel"
+             class="cmp-tabs__tabpanel${item.name == tabs.activeItem ? ' cmp-tabs__tabpanel--active' : ''}"
+             data-cmp-hook-tabs="tabpanel">
+        </div>
+    </sly>
+    <sly data-sly-resource="${resource.path @ resourceType='wcm/foundation/components/parsys/newpar', appendPath='/*', decorationTagName='div', cssClassName='new section aem-Grid-newComponent'}"
+         data-sly-test="${(wcmmode.edit || wcmmode.preview) && tabs.items.size < 1}"></sly>
+</div>

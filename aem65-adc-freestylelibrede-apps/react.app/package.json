@@ -1,0 +1,137 @@
+{
+  "name": "react-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "jest --silent && webpack --mode production",
+    "run": "webpack --mode development --watch",
+    "test": "jest --coverage",
+    "test watch": "jest --watch",
+    "build": "webpack --mode production",
+    "lint": "eslint --ext .jsx,.js src/",
+    "lint fix": "eslint --ext .jsx,.js src/ --fix",
+    "fix sort-comp": "react-codemod sort-comp src/ --force --extensions jsx"
+  },
+  "dependencies": {
+    "@aws-amplify/auth": "^5.2.0",
+    "@matsun/reactiscapslockactive": "^1.1.0",
+    "apollo-boost": "^0.4.4",
+    "apollo-link-http": "^1.5.16",
+    "axios": "^0.19.0",
+    "babel-plugin-if-then-else": "file:babel-plugin-if-then-else",
+    "core-js": "^3.6.5",
+    "custom-event-polyfill": "^1.0.7",
+    "date-fns": "^2.6.0",
+    "dompurify": "^3.0.1",
+    "graphql": "^14.5.8",
+    "isomorphic-unfetch": "^3.0.0",
+    "jest-transform-css": "^2.0.0",
+    "react": "^16.11.0",
+    "react-datepicker": "^2.9.6",
+    "react-dom": "^16.11.0",
+    "react-dropzone": "^10.1.10",
+    "react-form": "^3.5.7",
+    "react-google-recaptcha": "^2.0.1",
+    "react-intl-tel-input": "^7.1.1",
+    "react-js-pagination": "^3.0.3",
+    "react-onclickoutside": "^6.9.0",
+    "react-player": "^1.13.0",
+    "react-redux": "^7.1.1",
+    "react-select": "^3.0.8",
+    "react-select-fast-filter-options": "^0.2.3",
+    "redux": "^4.0.4",
+    "redux-devtools-extension": "^2.13.8",
+    "redux-form": "^8.2.6",
+    "redux-saga": "^1.1.1"
+  },
+  "babel": {
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "useBuiltIns": "usage",
+          "corejs": {
+            "version": 3,
+            "proposals": true
+          }
+        }
+      ],
+      "@babel/preset-react"
+    ],
+    "plugins": [
+      "@babel/plugin-proposal-class-properties"
+    ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.4.4",
+    "@babel/plugin-proposal-optional-chaining": "^7.6.0",
+    "@babel/preset-env": "^7.6.3",
+    "@babel/preset-react": "^7.6.3",
+    "@satazor/eslint-config": "^3.2.0",
+    "@testing-library/jest-dom": "^4.2.0",
+    "@testing-library/react": "^9.3.0",
+    "aem-clientlib-generator": "^1.4.4",
+    "babel-eslint": "^10.0.3",
+    "babel-jest": "^24.9.0",
+    "babel-loader": "^8.0.6",
+    "babel-minify-webpack-plugin": "^0.3.1",
+    "babel-polyfill": "^6.26.0",
+    "css-loader": "^3.2.0",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.15.1",
+    "enzyme-to-json": "^3.4.3",
+    "eslint": "^6.6.0",
+    "eslint-loader": "^3.0.2",
+    "eslint-plugin-react": "^7.16.0",
+    "file-loader": "^5.1.0",
+    "gulp": "^4.0.2",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^4.3.0",
+    "jest": "^24.9.0",
+    "jest-sonar-reporter": "^2.0.0",
+    "less": "^3.10.3",
+    "less-loader": "^5.0.0",
+    "mini-css-extract-plugin": "^0.8.0",
+    "prop-types": "^15.7.2",
+    "react-breakpoints": "^3.0.3",
+    "react-codemod": "^5.0.5",
+    "style-loader": "^1.0.0",
+    "terser-webpack-plugin": "^3.0.8",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.9",
+    "webpack-dev-server": "^3.9.0"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      ".+\\.(css|styl|less|sass|scss)$": "jest-transform-css"
+    },
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}",
+      "src/**/{sagas}/*.js",
+      "src/**/*.{saga}.{js,jsx}",
+      "!src/**/{index,serviceWorker}.js",
+      "!src/**/schemas/*.js",
+      "!src/**/api/*.js",
+      "!src/redux/middleware/*.js",
+      "!src/**/{actions,reducers}/*.js",
+      "!src/**/*.{action,reducer,api,config,service}.{js,jsx}",
+      "!**/node_modules/**",
+      "!**/vendor/**"
+    ],
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ],
+    "testResultsProcessor": "jest-sonar-reporter",
+    "coverageThreshold": {
+      "./src/": {
+        "branches": 1,
+        "statements": 1
+      }
+    }
+  },
+  "author": "",
+  "license": "ISC"
+}

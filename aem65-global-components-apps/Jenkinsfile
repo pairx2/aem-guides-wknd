@@ -1,0 +1,136 @@
+def agentLabelPrefix = 'AEM65_'
+def controlJobBaseName = 'BTS_191_AEM_65/AEM Cloud/aem65-platformcontrol-apps-trigger/'
+def controlJobName = controlJobBaseName + java.net.URLEncoder.encode(BRANCH_NAME.replaceAll('^release/cloud', 'release/'), 'UTF-8')
+
+def environment = getEnvironment(env.BRANCH_NAME)
+def agentLabel = agentLabelPrefix + getAgentSuffix(environment)
+def controlEnvName =java.net.URLEncoder.encode(BRANCH_NAME.replaceAll('^release/', ''), 'UTF-8').toUpperCase()
+pipeline {
+  agent { label agentLabel }
+
+  options {
+    disableConcurrentBuilds()
+    buildDiscarder(logRotator(numToKeepStr: '30', daysToKeepStr: '60'))
+  }
+
+  stages {
+    stage('Build') {
+      steps {
+        withCredentials([usernamePassword(credentialsId: 'ARTIFACTORY7_CRED', passwordVariable: 'PASSWORD_VAR', usernameVariable: 'USERNAME_VAR')])
+        {
+        withMaven(maven: 'Maven-3-6',
+          mavenSettingsConfig: 'aem_local_settings',
+          mavenLocalRepo: "${env.WORKSPACE}/.m2") {
+          sh 'mvn -B -U clean package -Dserver.username=${USERNAME_VAR} -Dserver.password=${PASSWORD_VAR}'
+        }
+        }
+      }
+    }
+
+    stage('Deploy Snapshot') {
+      when {
+        branch 'release/clouddev'
+      }
+      steps {
+        rtMavenResolver (
+          id: 'mavenResolver',
+          serverId: 'Toolchain-Artifactory-7',
+          releaseRepo: 'bts-aem-191-maven-virtual',
+          snapshotRepo: 'bts-aem-191-maven-virtual'
+        )
+        rtMavenDeployer (
+          id: 'mavenDeployer',
+          serverId: 'Toolchain-Artifactory-7',
+          releaseRepo: 'bts-aem-191-releases-maven-local',
+          snapshotRepo: 'bts-aem-191-maven-snapshots-local',
+        )
+        rtMavenRun (
+          tool: 'Maven-3-5-3',
+          pom: 'pom.xml',
+          goals: 'clean install -B -U',
+          resolverId: 'mavenResolver',
+          deployerId: 'mavenDeployer'
+        )
+      }
+    }
+    
+    stage('Sonar Code Analysis') {
+      when {
+        branch 'release/*'
+      }
+      steps {
+        script {
+          if (controlEnvName in ['CLOUDSTABLE','CLOUDDEV', 'CLOUDDEV2', 'CLOUDQA', 'CLOUDQA2']){
+            echo "Trigarring sonarqube for controlEnvName: ${controlEnvName} "
+            scannerHome = tool 'sonarscanner-prod'
+            withSonarQubeEnv(credentialsId: 'sonarqube-token', installationName:'SonarQube') {
+              sh "${scannerHome}/bin/sonar-scanner \
+              -Dsonar.projectKey=191_CLOUD_AEM65-GLOBAL-COMPONENTS_${controlEnvName} \
+              -Dsonar.projectName=191_CLOUD_AEM65-GLOBAL-COMPONENTS_${controlEnvName} \
+              -Dsonar.projectVersion='1.0' \
+              -DsonarRunner.aemVersion='6.6' \
+              -Dsonar.sources='core/src/main/java, ui.apps/src/main/content/jcr_root' \
+              -Dsonar.java.source='11' \
+              -Dsonar.java.binaries='./' \
+              -Dsonar.sourceEncoding='UTF-8'\
+              -Dsonar.java.libraries='**/target/classes/*'\
+              -Dsonar.coverage.jacoco.xmlReportPaths='core/target/site/jacoco/jacoco.xml'\
+              -Dsonar.test.exclusions='ui.apps/src/main/content/jcr_root/apps/**, **/models/*.java'\
+              -Dsonar.coverage.exclusions='ui.apps/src/main/content/jcr_root/apps/**, **/models/*.java'"
+            } 
+          }
+        }
+      }
+    }
+
+    stage('Trigger Control Build') {
+      when {
+        branch 'release/cloud*'
+      }
+      steps {
+        build(job: controlJobName, propagate: false, wait: false)
+      }
+    }
+
+    stage('Trigger ThemeBuilder/StoryBook downstream job') {
+      steps {
+        script {
+          if (env.BRANCH_NAME == 'release/clouddev') {
+              //build(job: 'BTS_191_AEM_65/Themebuilder-deploy', propagate: false, wait: false,
+              //parameters: [[$class: 'StringParameterValue', name: 'branch', value: 'release/clouddev'], [$class: 'StringParameterValue', name: 'envdir', value: 'dev']])
+              echo "Theme Builder Job triggered for Environment:dev & Branch:release/clouddev "
+          } 
+          if (env.BRANCH_NAME == 'release/clouddev2') {
+              //build(job: 'BTS_191_AEM_65/Themebuilder-deploy', propagate: false, wait: false,
+              //parameters: [[$class: 'StringParameterValue', name: 'branch', value: 'release/clouddev2'], [$class: 'StringParameterValue', name: 'envdir', value: 'dev2']])
+              echo "Theme Builder Job triggered for Environment:dev2 & Branch:release/clouddev2 "
+          } 
+          if (env.BRANCH_NAME == 'release/cloudstable') {
+              //build(job: 'BTS_191_AEM_65/Themebuilder-deploy', propagate: false, wait: false,
+              //parameters: [[$class: 'StringParameterValue', name: 'branch', value: 'release/clouduat'], [$class: 'StringParameterValue', name: 'envdir', value: 'stable']])
+              echo "Theme Builder Job triggered for Environment:stable & Branch:release/clouduat "
+          }
+        }
+      }
+    }  
+  }
+  
+  post {
+    cleanup {
+       cleanWs() /* clean up our workspace */
+    }
+  }
+}
+
+String getEnvironment(branch) {
+  def branchParts = branch.split('/')
+  return branchParts[branchParts.length - 1]
+}
+
+String getAgentSuffix(environment) {
+  if (environment.startsWith('release/cloudqa')) {
+    return 'QA'
+  } else {
+    return 'DEV'
+  }
+}

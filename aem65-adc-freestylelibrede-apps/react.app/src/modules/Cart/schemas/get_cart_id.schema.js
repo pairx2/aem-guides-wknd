@@ -1,0 +1,1 @@
+export const GET_CUSTOMER_CART_ID_SCHEMA = 'mutation { adcGetOrCreateCartId }';

@@ -1,0 +1,104 @@
+{{#if input_text}}
+
+	<div class="form-row {{custom_class}}">
+        <div class="input-group col" id={{group_id}}>
+        	<div class="input-field">
+    			<input id="{{input_id}}" name="{{input_name}}" type="{{type}}" value="" class="{{input_class}}" placeholder="{{placeholder}}" {{custom_attributes}} {{#if required}} required {{/if}}>
+                {{#if image_path}}
+                <span class="sim-icons input-icon" data-icon="{{image_path}}"></span>
+                {{/if}}
+                {{#if label_text}}
+            	   <label class="floating-label">{{label}}</label>
+                {{/if}}
+    		</div>
+    	</div>
+    </div>
+
+
+{{/if}}
+
+
+
+{{#if input_email}}
+	<div class="form-row {{custom_class}}">
+        <div class="input-group col" id={{group_id}}>
+        	<div class="input-field">
+    			<input id="{{input_id}}" name="{{input_name}}" type="{{type}}" value="" placeholder="{{placeholder}}" {{custom_attributes}} {{#if required}} required {{/if}}>
+              
+    		</div>
+    	</div>
+    </div>
+{{/if}}
+
+
+{{#if input_password}}
+	<div class="form-row {{custom_class}}">
+        <div class="input-group col" id={{group_id}}>
+        	<div class="input-field">
+    			<input id="{{input_id}}" name="{{input_name}}" type="{{type}}" value="" placeholder="{{placeholder}}" {{custom_attributes}} {{#if required}} required {{/if}}>
+               
+    		</div>
+    	</div>
+    </div>
+{{/if}}
+
+{{#if tel_number}}
+	<div class="form-row {{custom_class}}">
+        <div class="input-group col" id={{group_id}}>
+        	<div class="input-field">
+    			<input id="{{input_id}}" type="{{type}}" value="" placeholder="{{placeholder}}" {{custom_attributes}} {{#if required}} required {{/if}}>
+               
+    		</div>
+    	</div>
+    </div>
+{{/if}}
+
+
+
+
+
+{{#if dropdown}}
+<div class="custom-select-wrapper">
+  <span class="sim-icons" data-icon="arrow-down-color"></span>
+  <select id="{{custom_id}}" class="custom-select {{custom_class}}" data-iconpos="noicon">
+
+    {{#each data}}
+    <option value="{{this.value}}">{{this.text}}</option>
+{{/each}}
+   
+
+ </select>
+</div>
+{{/if}}
+
+{{#if stepper}}
+
+<div class="input-group mb-3 stepper-control {{custom_class}}">
+  <div class="input-group-prepend">
+    <button class="btn btn-remove-one-item" type="button">
+     <span class="sim-icons" data-icon="minus"></span>
+   </button>
+ </div>
+ <input type="number" value="1" min="1" max="10" class="form-control text-center {{input_class}}" aria-label="" aria-describedby="basic-addon1"/>
+ <div class="input-group-append">
+  <button class="btn btn-add-one-item" type="button">
+   <span class="sim-icons" data-icon="add"></span>            
+ </button>
+</div>
+</div>
+
+{{/if}}
+
+{{#if radio}}
+<label for="{{custom_id}}" class="abbott-radio {{custom_class}}">
+ <input type="radio" id="{{custom_id}}" name="buy-type" class="abbott-radio__input" value="{{value}}"   {{#if checked}} checked {{/if}} />
+ <span class="abbott-radio__label">{{label}} <span id="{{inner_id}}"></span></span>
+</label>
+{{/if}}
+
+{{#if checkbox_field}}
+<label for="{{custom_id}}" class="abbott-checkbox {{custom_class}}">
+   <input type={{type}} id="{{custom_id}}" name="buy-type" class="abbott-checkbox__input" value="{{value}}"   {{#if checked}} checked {{/if}} />
+   <span class="abbott-checkbox__label">{{label}}</span>
+</label>
+{{/if}}

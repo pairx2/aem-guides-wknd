@@ -1,0 +1,663 @@
+.m-custom-list h1,
+.m-custom-list h2,
+.m-custom-list h3,
+.m-custom-list h4,
+.m-custom-list h5,
+.m-custom-list h6 {
+  margin-bottom: var(--custom-list-heading-margin);
+}
+.m-custom-list p:not(.h3):not(.h4):not(.m-custom-list__title) {
+  margin-bottom: var(--custom-list-para-margin);
+  font-size: var(--custom-list-para-font-size);
+  line-height: var(--custom-list-para-line-height);
+}
+.m-custom-list__wrapper {
+  counter-reset: my-list-counter;
+  padding-left: 0;
+}
+.m-custom-list__content {
+  position: relative;
+  list-style: none;
+}
+.m-custom-list__heading {
+  padding: var(--custom-list-padding-y) 0 var(--custom-list-padding-y)
+    var(--custom-list-padding-x);
+}
+.m-custom-list__heading:before {
+  counter-increment: my-list-counter;
+  font-size: var(--custom-list-font-size) / var(--custom-list-line-height);
+}
+.m-custom-list__heading h1,
+.m-custom-list__heading h2,
+.m-custom-list__heading h3,
+.m-custom-list__heading h4,
+.m-custom-list__heading h5,
+.m-custom-list__heading h6,
+.m-custom-list__heading .h3,
+.m-custom-list__heading .h4 {
+  margin-bottom: var(--custom-list-heading-bottom-margin);
+}
+.m-custom-list__heading a {
+  color: var(--custom-list-title-link);
+}
+.m-custom-list__heading a:hover {
+  text-decoration: underline;
+  color: var(--custom-list-title-link-hover);
+}
+.m-custom-list__heading .m-custom-list__title {
+  font-size: var(--custom-list-title-font-size);
+  line-height: var(--custom-list-title-line-height);
+  margin-bottom: var(--custom-list-heading-margin);
+  font-weight: normal;
+}
+.m-custom-list__heading--empty {
+  padding-bottom: 2px;
+}
+.m-custom-list__para {
+  padding-left: var(--custom-list-padding-x);
+  margin-bottom: var(--custom-list-para-margin);
+}
+.m-custom-list .m-custom-list__heading::before {
+  position: absolute;
+  left: 0;
+}
+.m-custom-list--bullet .m-custom-list__heading::before {
+  content: counter(my-list-counter, disc);
+  width: 1rem;
+  height: 1rem;
+  background-color: var(--custom-list-dark);
+  font-size: 0;
+  border-radius: 50%;
+  top: var(--custom-list-bullet-position-top);
+}
+.m-custom-list--number .m-custom-list__heading::before,
+.m-custom-list--icon .m-custom-list__heading::before {
+  content: counter(my-list-counter, decimal-leading-zero);
+}
+.m-custom-list--number .m-custom-list__heading,
+.m-custom-list--number .m-custom-list__para,
+.m-custom-list--icon .m-custom-list__heading,
+.m-custom-list--icon .m-custom-list__para {
+  padding-left: var(--custom-list-padding-xl);
+}
+.m-custom-list--number-without-zero
+  .m-custom-list--number
+  .m-custom-list__heading::before {
+  content: counter(my-list-counter, decimal);
+}
+.m-custom-list--alphabet .m-custom-list__heading::before {
+  content: counter(my-list-counter, upper-latin);
+}
+.m-custom-list--non-indented .m-custom-list__heading,
+.m-custom-list--non-indented .m-custom-list__para {
+  padding-left: 0;
+}
+.m-custom-list--bullet .m-custom-list__icon-wrapper,
+.m-custom-list--number .m-custom-list__icon-wrapper,
+.m-custom-list--number-without-zero .m-custom-list__icon-wrapper,
+.m-custom-list--alphabet .m-custom-list__icon-wrapper,
+.m-custom-list--non-indented .m-custom-list__icon-wrapper {
+  display: none;
+}
+.m-custom-list__icon-wrapper {
+  position: absolute;
+  top: 7px;
+  left: 0;
+  display: block;
+}
+.m-custom-list--icon .m-custom-list__heading::before {
+  content: " ";
+  color: var(--custom-list-light);
+}
+.m-custom-list__icon--extrasmall .m-custom-list__icon-wrapper .abt-icon {
+  font-size: var(--custom-list-icon-font-size-xs);
+}
+.m-custom-list__icon--extrasmall .m-custom-list__heading,
+.m-custom-list__icon--extrasmall .m-custom-list__para {
+  padding-left: var(--custom-list-icon-padding-left-xs);
+}
+.m-custom-list__icon--small .m-custom-list__icon-wrapper .abt-icon {
+  font-size: var(--custom-list-icon-font-size-sm);
+}
+.m-custom-list__icon--small .m-custom-list__heading,
+.m-custom-list__icon--small .m-custom-list__para {
+  padding-left: var(--custom-list-icon-padding-left-sm);
+}
+.m-custom-list__icon--medium .m-custom-list__icon-wrapper .abt-icon {
+  font-size: var(--custom-list-icon-font-size-md);
+}
+.m-custom-list__icon--medium .m-custom-list__heading,
+.m-custom-list__icon--medium .m-custom-list__para {
+  padding-left: var(--custom-list-icon-padding-left-md);
+}
+.m-custom-list__icon--large .m-custom-list__icon-wrapper .abt-icon {
+  font-size: var(--custom-list-icon-font-size-lg);
+}
+.m-custom-list__icon--large .m-custom-list__heading,
+.m-custom-list__icon--large .m-custom-list__para {
+  padding-left: var(--custom-list-icon-padding-left-lg);
+}
+.m-custom-list--dark .m-custom-list__heading::before,
+.m-custom-list__list-icon--default .m-custom-list__heading::before {
+  color: var(--custom-list-dark);
+  font-weight: bold;
+}
+.m-custom-list--dark .m-custom-list__icon-wrapper,
+.m-custom-list__list-icon--default .m-custom-list__icon-wrapper {
+  color: var(--custom-list-dark);
+}
+.m-custom-list--dark .m-custom-list--bullet .m-custom-list__heading::before,
+.m-custom-list__list-icon--default
+  .m-custom-list--bullet
+  .m-custom-list__heading::before {
+  background-color: var(--custom-list-dark);
+}
+.m-custom-list--primary .m-custom-list__heading::before,
+.m-custom-list__list-icon--primary .m-custom-list__heading::before {
+  color: var(--custom-list-primary);
+  font-weight: bold;
+}
+.m-custom-list--primary .m-custom-list__icon-wrapper,
+.m-custom-list__list-icon--primary .m-custom-list__icon-wrapper {
+  color: var(--custom-list-primary);
+}
+.m-custom-list--primary .m-custom-list--bullet .m-custom-list__heading::before,
+.m-custom-list__list-icon--primary
+  .m-custom-list--bullet
+  .m-custom-list__heading::before {
+  background-color: var(--custom-list-primary);
+}
+.m-custom-list--secondary .m-custom-list__heading::before,
+.m-custom-list__list-icon--secondary .m-custom-list__heading::before {
+  color: var(--custom-list-secondary);
+  font-weight: bold;
+}
+.m-custom-list--secondary .m-custom-list__icon-wrapper,
+.m-custom-list__list-icon--secondary .m-custom-list__icon-wrapper {
+  color: var(--custom-list-secondary);
+}
+.m-custom-list--secondary
+  .m-custom-list--bullet
+  .m-custom-list__heading::before,
+.m-custom-list__list-icon--secondary
+  .m-custom-list--bullet
+  .m-custom-list__heading::before {
+  background-color: var(--custom-list-secondary);
+}
+.m-custom-list--light .m-custom-list__heading::before,
+.m-custom-list__list-icon--alternate .m-custom-list__heading::before {
+  color: var(--custom-list-light);
+  font-weight: bold;
+}
+.m-custom-list--light .m-custom-list__icon-wrapper,
+.m-custom-list__list-icon--alternate .m-custom-list__icon-wrapper {
+  color: var(--custom-list-light);
+}
+.m-custom-list--light .m-custom-list--bullet .m-custom-list__heading::before,
+.m-custom-list__list-icon--alternate
+  .m-custom-list--bullet
+  .m-custom-list__heading::before {
+  background-color: var(--custom-list-light);
+}
+.m-custom-list-title--dark .m-custom-list__heading h1,
+.m-custom-list-title--dark .m-custom-list__heading h2,
+.m-custom-list-title--dark .m-custom-list__heading h3,
+.m-custom-list-title--dark .m-custom-list__heading h4,
+.m-custom-list-title--dark .m-custom-list__heading h5,
+.m-custom-list-title--dark .m-custom-list__heading h6,
+.m-custom-list-title--dark .m-custom-list__heading .h3,
+.m-custom-list-title--dark .m-custom-list__heading .h4,
+.m-custom-list-title--dark .m-custom-list__heading .m-custom-list__title,
+.m-custom-list-title--default .m-custom-list__heading h1,
+.m-custom-list-title--default .m-custom-list__heading h2,
+.m-custom-list-title--default .m-custom-list__heading h3,
+.m-custom-list-title--default .m-custom-list__heading h4,
+.m-custom-list-title--default .m-custom-list__heading h5,
+.m-custom-list-title--default .m-custom-list__heading h6,
+.m-custom-list-title--default .m-custom-list__heading .h3,
+.m-custom-list-title--default .m-custom-list__heading .h4,
+.m-custom-list-title--default .m-custom-list__heading .m-custom-list__title,
+.m-custom-list__title--dark .m-custom-list__heading h1,
+.m-custom-list__title--dark .m-custom-list__heading h2,
+.m-custom-list__title--dark .m-custom-list__heading h3,
+.m-custom-list__title--dark .m-custom-list__heading h4,
+.m-custom-list__title--dark .m-custom-list__heading h5,
+.m-custom-list__title--dark .m-custom-list__heading h6,
+.m-custom-list__title--dark .m-custom-list__heading .h3,
+.m-custom-list__title--dark .m-custom-list__heading .h4,
+.m-custom-list__title--dark .m-custom-list__heading .m-custom-list__title,
+.m-custom-list__title--default .m-custom-list__heading h1,
+.m-custom-list__title--default .m-custom-list__heading h2,
+.m-custom-list__title--default .m-custom-list__heading h3,
+.m-custom-list__title--default .m-custom-list__heading h4,
+.m-custom-list__title--default .m-custom-list__heading h5,
+.m-custom-list__title--default .m-custom-list__heading h6,
+.m-custom-list__title--default .m-custom-list__heading .h3,
+.m-custom-list__title--default .m-custom-list__heading .h4,
+.m-custom-list__title--default .m-custom-list__heading .m-custom-list__title {
+  color: var(--custom-list-title-dark);
+}
+.m-custom-list-title--light .m-custom-list__heading h1,
+.m-custom-list-title--light .m-custom-list__heading h2,
+.m-custom-list-title--light .m-custom-list__heading h3,
+.m-custom-list-title--light .m-custom-list__heading h4,
+.m-custom-list-title--light .m-custom-list__heading h5,
+.m-custom-list-title--light .m-custom-list__heading h6,
+.m-custom-list-title--light .m-custom-list__heading .h3,
+.m-custom-list-title--light .m-custom-list__heading .h4,
+.m-custom-list-title--light .m-custom-list__heading .m-custom-list__title,
+.m-custom-list-title--alternate .m-custom-list__heading h1,
+.m-custom-list-title--alternate .m-custom-list__heading h2,
+.m-custom-list-title--alternate .m-custom-list__heading h3,
+.m-custom-list-title--alternate .m-custom-list__heading h4,
+.m-custom-list-title--alternate .m-custom-list__heading h5,
+.m-custom-list-title--alternate .m-custom-list__heading h6,
+.m-custom-list-title--alternate .m-custom-list__heading .h3,
+.m-custom-list-title--alternate .m-custom-list__heading .h4,
+.m-custom-list-title--alternate .m-custom-list__heading .m-custom-list__title,
+.m-custom-list__title--light .m-custom-list__heading h1,
+.m-custom-list__title--light .m-custom-list__heading h2,
+.m-custom-list__title--light .m-custom-list__heading h3,
+.m-custom-list__title--light .m-custom-list__heading h4,
+.m-custom-list__title--light .m-custom-list__heading h5,
+.m-custom-list__title--light .m-custom-list__heading h6,
+.m-custom-list__title--light .m-custom-list__heading .h3,
+.m-custom-list__title--light .m-custom-list__heading .h4,
+.m-custom-list__title--light .m-custom-list__heading .m-custom-list__title,
+.m-custom-list__title--alternate .m-custom-list__heading h1,
+.m-custom-list__title--alternate .m-custom-list__heading h2,
+.m-custom-list__title--alternate .m-custom-list__heading h3,
+.m-custom-list__title--alternate .m-custom-list__heading h4,
+.m-custom-list__title--alternate .m-custom-list__heading h5,
+.m-custom-list__title--alternate .m-custom-list__heading h6,
+.m-custom-list__title--alternate .m-custom-list__heading .h3,
+.m-custom-list__title--alternate .m-custom-list__heading .h4,
+.m-custom-list__title--alternate .m-custom-list__heading .m-custom-list__title {
+  color: var(--custom-list-title-light);
+}
+.m-custom-list-title--primary .m-custom-list__heading h1,
+.m-custom-list-title--primary .m-custom-list__heading h2,
+.m-custom-list-title--primary .m-custom-list__heading h3,
+.m-custom-list-title--primary .m-custom-list__heading h4,
+.m-custom-list-title--primary .m-custom-list__heading h5,
+.m-custom-list-title--primary .m-custom-list__heading h6,
+.m-custom-list-title--primary .m-custom-list__heading .h3,
+.m-custom-list-title--primary .m-custom-list__heading .h4,
+.m-custom-list-title--primary .m-custom-list__heading .m-custom-list__title,
+.m-custom-list__title--primary .m-custom-list__heading h1,
+.m-custom-list__title--primary .m-custom-list__heading h2,
+.m-custom-list__title--primary .m-custom-list__heading h3,
+.m-custom-list__title--primary .m-custom-list__heading h4,
+.m-custom-list__title--primary .m-custom-list__heading h5,
+.m-custom-list__title--primary .m-custom-list__heading h6,
+.m-custom-list__title--primary .m-custom-list__heading .h3,
+.m-custom-list__title--primary .m-custom-list__heading .h4,
+.m-custom-list__title--primary .m-custom-list__heading .m-custom-list__title {
+  color: var(--custom-list-title-primary);
+}
+.m-custom-list-title--secondary .m-custom-list__heading h1,
+.m-custom-list-title--secondary .m-custom-list__heading h2,
+.m-custom-list-title--secondary .m-custom-list__heading h3,
+.m-custom-list-title--secondary .m-custom-list__heading h4,
+.m-custom-list-title--secondary .m-custom-list__heading h5,
+.m-custom-list-title--secondary .m-custom-list__heading h6,
+.m-custom-list-title--secondary .m-custom-list__heading .h3,
+.m-custom-list-title--secondary .m-custom-list__heading .h4,
+.m-custom-list-title--secondary .m-custom-list__heading .m-custom-list__title,
+.m-custom-list__title--secondary .m-custom-list__heading h1,
+.m-custom-list__title--secondary .m-custom-list__heading h2,
+.m-custom-list__title--secondary .m-custom-list__heading h3,
+.m-custom-list__title--secondary .m-custom-list__heading h4,
+.m-custom-list__title--secondary .m-custom-list__heading h5,
+.m-custom-list__title--secondary .m-custom-list__heading h6,
+.m-custom-list__title--secondary .m-custom-list__heading .h3,
+.m-custom-list__title--secondary .m-custom-list__heading .h4,
+.m-custom-list__title--secondary .m-custom-list__heading .m-custom-list__title {
+  color: var(--custom-list-title-secondary);
+}
+.m-custom-list-title--dark .m-custom-list__heading h1 a,
+.m-custom-list-title--dark .m-custom-list__heading h2 a,
+.m-custom-list-title--dark .m-custom-list__heading h3 a,
+.m-custom-list-title--dark .m-custom-list__heading h4 a,
+.m-custom-list-title--dark .m-custom-list__heading h5 a,
+.m-custom-list-title--dark .m-custom-list__heading h6 a,
+.m-custom-list-title--dark .m-custom-list__heading .h3 a,
+.m-custom-list-title--dark .m-custom-list__heading .h4 a,
+.m-custom-list-title--dark .m-custom-list__heading .m-custom-list__title a,
+.m-custom-list-title--default .m-custom-list__heading h1 a,
+.m-custom-list-title--default .m-custom-list__heading h2 a,
+.m-custom-list-title--default .m-custom-list__heading h3 a,
+.m-custom-list-title--default .m-custom-list__heading h4 a,
+.m-custom-list-title--default .m-custom-list__heading h5 a,
+.m-custom-list-title--default .m-custom-list__heading h6 a,
+.m-custom-list-title--default .m-custom-list__heading .h3 a,
+.m-custom-list-title--default .m-custom-list__heading .h4 a,
+.m-custom-list-title--default .m-custom-list__heading .m-custom-list__title a,
+.m-custom-list-title--light .m-custom-list__heading h1 a,
+.m-custom-list-title--light .m-custom-list__heading h2 a,
+.m-custom-list-title--light .m-custom-list__heading h3 a,
+.m-custom-list-title--light .m-custom-list__heading h4 a,
+.m-custom-list-title--light .m-custom-list__heading h5 a,
+.m-custom-list-title--light .m-custom-list__heading h6 a,
+.m-custom-list-title--light .m-custom-list__heading .h3 a,
+.m-custom-list-title--light .m-custom-list__heading .h4 a,
+.m-custom-list-title--light .m-custom-list__heading .m-custom-list__title a,
+.m-custom-list-title-alternate .m-custom-list__heading h1 a,
+.m-custom-list-title-alternate .m-custom-list__heading h2 a,
+.m-custom-list-title-alternate .m-custom-list__heading h3 a,
+.m-custom-list-title-alternate .m-custom-list__heading h4 a,
+.m-custom-list-title-alternate .m-custom-list__heading h5 a,
+.m-custom-list-title-alternate .m-custom-list__heading h6 a,
+.m-custom-list-title-alternate .m-custom-list__heading .h3 a,
+.m-custom-list-title-alternate .m-custom-list__heading .h4 a,
+.m-custom-list-title-alternate .m-custom-list__heading .m-custom-list__title a,
+.m-custom-list-title--primary .m-custom-list__heading h1 a,
+.m-custom-list-title--primary .m-custom-list__heading h2 a,
+.m-custom-list-title--primary .m-custom-list__heading h3 a,
+.m-custom-list-title--primary .m-custom-list__heading h4 a,
+.m-custom-list-title--primary .m-custom-list__heading h5 a,
+.m-custom-list-title--primary .m-custom-list__heading h6 a,
+.m-custom-list-title--primary .m-custom-list__heading .h3 a,
+.m-custom-list-title--primary .m-custom-list__heading .h4 a,
+.m-custom-list-title--primary .m-custom-list__heading .m-custom-list__title a,
+.m-custom-list-title--secondary .m-custom-list__heading h1 a,
+.m-custom-list-title--secondary .m-custom-list__heading h2 a,
+.m-custom-list-title--secondary .m-custom-list__heading h3 a,
+.m-custom-list-title--secondary .m-custom-list__heading h4 a,
+.m-custom-list-title--secondary .m-custom-list__heading h5 a,
+.m-custom-list-title--secondary .m-custom-list__heading h6 a,
+.m-custom-list-title--secondary .m-custom-list__heading .h3 a,
+.m-custom-list-title--secondary .m-custom-list__heading .h4 a,
+.m-custom-list-title--secondary .m-custom-list__heading .m-custom-list__title a,
+.m-custom-list__title--dark .m-custom-list__heading h1 a,
+.m-custom-list__title--dark .m-custom-list__heading h2 a,
+.m-custom-list__title--dark .m-custom-list__heading h3 a,
+.m-custom-list__title--dark .m-custom-list__heading h4 a,
+.m-custom-list__title--dark .m-custom-list__heading h5 a,
+.m-custom-list__title--dark .m-custom-list__heading h6 a,
+.m-custom-list__title--dark .m-custom-list__heading .h3 a,
+.m-custom-list__title--dark .m-custom-list__heading .h4 a,
+.m-custom-list__title--dark .m-custom-list__heading .m-custom-list__title a,
+.m-custom-list__title--default .m-custom-list__heading h1 a,
+.m-custom-list__title--default .m-custom-list__heading h2 a,
+.m-custom-list__title--default .m-custom-list__heading h3 a,
+.m-custom-list__title--default .m-custom-list__heading h4 a,
+.m-custom-list__title--default .m-custom-list__heading h5 a,
+.m-custom-list__title--default .m-custom-list__heading h6 a,
+.m-custom-list__title--default .m-custom-list__heading .h3 a,
+.m-custom-list__title--default .m-custom-list__heading .h4 a,
+.m-custom-list__title--default .m-custom-list__heading .m-custom-list__title a,
+.m-custom-list__title--light .m-custom-list__heading h1 a,
+.m-custom-list__title--light .m-custom-list__heading h2 a,
+.m-custom-list__title--light .m-custom-list__heading h3 a,
+.m-custom-list__title--light .m-custom-list__heading h4 a,
+.m-custom-list__title--light .m-custom-list__heading h5 a,
+.m-custom-list__title--light .m-custom-list__heading h6 a,
+.m-custom-list__title--light .m-custom-list__heading .h3 a,
+.m-custom-list__title--light .m-custom-list__heading .h4 a,
+.m-custom-list__title--light .m-custom-list__heading .m-custom-list__title a,
+.m-custom-list__title-alternate .m-custom-list__heading h1 a,
+.m-custom-list__title-alternate .m-custom-list__heading h2 a,
+.m-custom-list__title-alternate .m-custom-list__heading h3 a,
+.m-custom-list__title-alternate .m-custom-list__heading h4 a,
+.m-custom-list__title-alternate .m-custom-list__heading h5 a,
+.m-custom-list__title-alternate .m-custom-list__heading h6 a,
+.m-custom-list__title-alternate .m-custom-list__heading .h3 a,
+.m-custom-list__title-alternate .m-custom-list__heading .h4 a,
+.m-custom-list__title-alternate .m-custom-list__heading .m-custom-list__title a,
+.m-custom-list__title--primary .m-custom-list__heading h1 a,
+.m-custom-list__title--primary .m-custom-list__heading h2 a,
+.m-custom-list__title--primary .m-custom-list__heading h3 a,
+.m-custom-list__title--primary .m-custom-list__heading h4 a,
+.m-custom-list__title--primary .m-custom-list__heading h5 a,
+.m-custom-list__title--primary .m-custom-list__heading h6 a,
+.m-custom-list__title--primary .m-custom-list__heading .h3 a,
+.m-custom-list__title--primary .m-custom-list__heading .h4 a,
+.m-custom-list__title--primary .m-custom-list__heading .m-custom-list__title a,
+.m-custom-list__title--secondary .m-custom-list__heading h1 a,
+.m-custom-list__title--secondary .m-custom-list__heading h2 a,
+.m-custom-list__title--secondary .m-custom-list__heading h3 a,
+.m-custom-list__title--secondary .m-custom-list__heading h4 a,
+.m-custom-list__title--secondary .m-custom-list__heading h5 a,
+.m-custom-list__title--secondary .m-custom-list__heading h6 a,
+.m-custom-list__title--secondary .m-custom-list__heading .h3 a,
+.m-custom-list__title--secondary .m-custom-list__heading .h4 a,
+.m-custom-list__title--secondary
+  .m-custom-list__heading
+  .m-custom-list__title
+  a {
+  color: var(--custom-list-title-link);
+}
+.m-custom-list-title--dark .m-custom-list__heading h1 a:hover,
+.m-custom-list-title--dark .m-custom-list__heading h2 a:hover,
+.m-custom-list-title--dark .m-custom-list__heading h3 a:hover,
+.m-custom-list-title--dark .m-custom-list__heading h4 a:hover,
+.m-custom-list-title--dark .m-custom-list__heading h5 a:hover,
+.m-custom-list-title--dark .m-custom-list__heading h6 a:hover,
+.m-custom-list-title--dark .m-custom-list__heading .h3 a:hover,
+.m-custom-list-title--dark .m-custom-list__heading .h4 a:hover,
+.m-custom-list-title--dark
+  .m-custom-list__heading
+  .m-custom-list__title
+  a:hover,
+.m-custom-list-title--default .m-custom-list__heading h1 a:hover,
+.m-custom-list-title--default .m-custom-list__heading h2 a:hover,
+.m-custom-list-title--default .m-custom-list__heading h3 a:hover,
+.m-custom-list-title--default .m-custom-list__heading h4 a:hover,
+.m-custom-list-title--default .m-custom-list__heading h5 a:hover,
+.m-custom-list-title--default .m-custom-list__heading h6 a:hover,
+.m-custom-list-title--default .m-custom-list__heading .h3 a:hover,
+.m-custom-list-title--default .m-custom-list__heading .h4 a:hover,
+.m-custom-list-title--default
+  .m-custom-list__heading
+  .m-custom-list__title
+  a:hover,
+.m-custom-list-title--light .m-custom-list__heading h1 a:hover,
+.m-custom-list-title--light .m-custom-list__heading h2 a:hover,
+.m-custom-list-title--light .m-custom-list__heading h3 a:hover,
+.m-custom-list-title--light .m-custom-list__heading h4 a:hover,
+.m-custom-list-title--light .m-custom-list__heading h5 a:hover,
+.m-custom-list-title--light .m-custom-list__heading h6 a:hover,
+.m-custom-list-title--light .m-custom-list__heading .h3 a:hover,
+.m-custom-list-title--light .m-custom-list__heading .h4 a:hover,
+.m-custom-list-title--light
+  .m-custom-list__heading
+  .m-custom-list__title
+  a:hover,
+.m-custom-list-title-alternate .m-custom-list__heading h1 a:hover,
+.m-custom-list-title-alternate .m-custom-list__heading h2 a:hover,
+.m-custom-list-title-alternate .m-custom-list__heading h3 a:hover,
+.m-custom-list-title-alternate .m-custom-list__heading h4 a:hover,
+.m-custom-list-title-alternate .m-custom-list__heading h5 a:hover,
+.m-custom-list-title-alternate .m-custom-list__heading h6 a:hover,
+.m-custom-list-title-alternate .m-custom-list__heading .h3 a:hover,
+.m-custom-list-title-alternate .m-custom-list__heading .h4 a:hover,
+.m-custom-list-title-alternate
+  .m-custom-list__heading
+  .m-custom-list__title
+  a:hover,
+.m-custom-list-title--primary .m-custom-list__heading h1 a:hover,
+.m-custom-list-title--primary .m-custom-list__heading h2 a:hover,
+.m-custom-list-title--primary .m-custom-list__heading h3 a:hover,
+.m-custom-list-title--primary .m-custom-list__heading h4 a:hover,
+.m-custom-list-title--primary .m-custom-list__heading h5 a:hover,
+.m-custom-list-title--primary .m-custom-list__heading h6 a:hover,
+.m-custom-list-title--primary .m-custom-list__heading .h3 a:hover,
+.m-custom-list-title--primary .m-custom-list__heading .h4 a:hover,
+.m-custom-list-title--primary
+  .m-custom-list__heading
+  .m-custom-list__title
+  a:hover,
+.m-custom-list-title--secondary .m-custom-list__heading h1 a:hover,
+.m-custom-list-title--secondary .m-custom-list__heading h2 a:hover,
+.m-custom-list-title--secondary .m-custom-list__heading h3 a:hover,
+.m-custom-list-title--secondary .m-custom-list__heading h4 a:hover,
+.m-custom-list-title--secondary .m-custom-list__heading h5 a:hover,
+.m-custom-list-title--secondary .m-custom-list__heading h6 a:hover,
+.m-custom-list-title--secondary .m-custom-list__heading .h3 a:hover,
+.m-custom-list-title--secondary .m-custom-list__heading .h4 a:hover,
+.m-custom-list-title--secondary
+  .m-custom-list__heading
+  .m-custom-list__title
+  a:hover,
+.m-custom-list__title--dark .m-custom-list__heading h1 a:hover,
+.m-custom-list__title--dark .m-custom-list__heading h2 a:hover,
+.m-custom-list__title--dark .m-custom-list__heading h3 a:hover,
+.m-custom-list__title--dark .m-custom-list__heading h4 a:hover,
+.m-custom-list__title--dark .m-custom-list__heading h5 a:hover,
+.m-custom-list__title--dark .m-custom-list__heading h6 a:hover,
+.m-custom-list__title--dark .m-custom-list__heading .h3 a:hover,
+.m-custom-list__title--dark .m-custom-list__heading .h4 a:hover,
+.m-custom-list__title--dark
+  .m-custom-list__heading
+  .m-custom-list__title
+  a:hover,
+.m-custom-list__title--default .m-custom-list__heading h1 a:hover,
+.m-custom-list__title--default .m-custom-list__heading h2 a:hover,
+.m-custom-list__title--default .m-custom-list__heading h3 a:hover,
+.m-custom-list__title--default .m-custom-list__heading h4 a:hover,
+.m-custom-list__title--default .m-custom-list__heading h5 a:hover,
+.m-custom-list__title--default .m-custom-list__heading h6 a:hover,
+.m-custom-list__title--default .m-custom-list__heading .h3 a:hover,
+.m-custom-list__title--default .m-custom-list__heading .h4 a:hover,
+.m-custom-list__title--default
+  .m-custom-list__heading
+  .m-custom-list__title
+  a:hover,
+.m-custom-list__title--light .m-custom-list__heading h1 a:hover,
+.m-custom-list__title--light .m-custom-list__heading h2 a:hover,
+.m-custom-list__title--light .m-custom-list__heading h3 a:hover,
+.m-custom-list__title--light .m-custom-list__heading h4 a:hover,
+.m-custom-list__title--light .m-custom-list__heading h5 a:hover,
+.m-custom-list__title--light .m-custom-list__heading h6 a:hover,
+.m-custom-list__title--light .m-custom-list__heading .h3 a:hover,
+.m-custom-list__title--light .m-custom-list__heading .h4 a:hover,
+.m-custom-list__title--light
+  .m-custom-list__heading
+  .m-custom-list__title
+  a:hover,
+.m-custom-list__title-alternate .m-custom-list__heading h1 a:hover,
+.m-custom-list__title-alternate .m-custom-list__heading h2 a:hover,
+.m-custom-list__title-alternate .m-custom-list__heading h3 a:hover,
+.m-custom-list__title-alternate .m-custom-list__heading h4 a:hover,
+.m-custom-list__title-alternate .m-custom-list__heading h5 a:hover,
+.m-custom-list__title-alternate .m-custom-list__heading h6 a:hover,
+.m-custom-list__title-alternate .m-custom-list__heading .h3 a:hover,
+.m-custom-list__title-alternate .m-custom-list__heading .h4 a:hover,
+.m-custom-list__title-alternate
+  .m-custom-list__heading
+  .m-custom-list__title
+  a:hover,
+.m-custom-list__title--primary .m-custom-list__heading h1 a:hover,
+.m-custom-list__title--primary .m-custom-list__heading h2 a:hover,
+.m-custom-list__title--primary .m-custom-list__heading h3 a:hover,
+.m-custom-list__title--primary .m-custom-list__heading h4 a:hover,
+.m-custom-list__title--primary .m-custom-list__heading h5 a:hover,
+.m-custom-list__title--primary .m-custom-list__heading h6 a:hover,
+.m-custom-list__title--primary .m-custom-list__heading .h3 a:hover,
+.m-custom-list__title--primary .m-custom-list__heading .h4 a:hover,
+.m-custom-list__title--primary
+  .m-custom-list__heading
+  .m-custom-list__title
+  a:hover,
+.m-custom-list__title--secondary .m-custom-list__heading h1 a:hover,
+.m-custom-list__title--secondary .m-custom-list__heading h2 a:hover,
+.m-custom-list__title--secondary .m-custom-list__heading h3 a:hover,
+.m-custom-list__title--secondary .m-custom-list__heading h4 a:hover,
+.m-custom-list__title--secondary .m-custom-list__heading h5 a:hover,
+.m-custom-list__title--secondary .m-custom-list__heading h6 a:hover,
+.m-custom-list__title--secondary .m-custom-list__heading .h3 a:hover,
+.m-custom-list__title--secondary .m-custom-list__heading .h4 a:hover,
+.m-custom-list__title--secondary
+  .m-custom-list__heading
+  .m-custom-list__title
+  a:hover {
+  text-decoration: underline;
+  color: var(--custom-list-title-link-hover);
+}
+.m-custom-list__header-title--default .m-custom-list__header-title > h1,
+.m-custom-list__header-title--default .m-custom-list__header-title > h2,
+.m-custom-list__header-title--default .m-custom-list__header-title > h3,
+.m-custom-list__header-title--default .m-custom-list__header-title > h4,
+.m-custom-list__header-title--default .m-custom-list__header-title > h5,
+.m-custom-list__header-title--default .m-custom-list__header-title > h6,
+.m-custom-list__header-title--default .m-custom-list__header-title > .h3,
+.m-custom-list__header-title--default .m-custom-list__header-title > .h4 {
+  color: var(--custom-list-header-title-default);
+}
+.m-custom-list__header-title--reversed .m-custom-list__header-title > h1,
+.m-custom-list__header-title--reversed .m-custom-list__header-title > h2,
+.m-custom-list__header-title--reversed .m-custom-list__header-title > h3,
+.m-custom-list__header-title--reversed .m-custom-list__header-title > h4,
+.m-custom-list__header-title--reversed .m-custom-list__header-title > h5,
+.m-custom-list__header-title--reversed .m-custom-list__header-title > h6,
+.m-custom-list__header-title--reversed .m-custom-list__header-title > .h3,
+.m-custom-list__header-title--reversed .m-custom-list__header-title > .h4 {
+  color: var(--custom-list-header-title-reversed);
+}
+.m-custom-list__header-title--primary .m-custom-list__header-title > h1,
+.m-custom-list__header-title--primary .m-custom-list__header-title > h2,
+.m-custom-list__header-title--primary .m-custom-list__header-title > h3,
+.m-custom-list__header-title--primary .m-custom-list__header-title > h4,
+.m-custom-list__header-title--primary .m-custom-list__header-title > h5,
+.m-custom-list__header-title--primary .m-custom-list__header-title > h6,
+.m-custom-list__header-title--primary .m-custom-list__header-title > .h3,
+.m-custom-list__header-title--primary .m-custom-list__header-title > .h4 {
+  color: var(--custom-list-header-title-primary);
+}
+.m-custom-list__header-title--alternate .m-custom-list__header-title > h1,
+.m-custom-list__header-title--alternate .m-custom-list__header-title > h2,
+.m-custom-list__header-title--alternate .m-custom-list__header-title > h3,
+.m-custom-list__header-title--alternate .m-custom-list__header-title > h4,
+.m-custom-list__header-title--alternate .m-custom-list__header-title > h5,
+.m-custom-list__header-title--alternate .m-custom-list__header-title > h6,
+.m-custom-list__header-title--alternate .m-custom-list__header-title > .h3,
+.m-custom-list__header-title--alternate .m-custom-list__header-title > .h4 {
+  color: var(--custom-list-header-title-alternate);
+}
+.m-custom-list__list-size--default .m-custom-list__heading::before {
+  font-size: var(--custom-list-bullet-font-size-default);
+}
+.m-custom-list__list-size--large .m-custom-list__heading::before {
+  font-size: var(--custom-list-bullet-font-size-large);
+}
+.m-custom-list .m-custom-list__header-title > h3:empty {
+  display: none;
+}
+.m-custom-list {
+  text-align: right;
+}
+.m-custom-list__content:before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: inherit;
+}
+.m-custom-list__heading {
+  padding: var(--custom-list-padding-y) var(--custom-list-padding-x)
+    var(--custom-list-padding-y) 0;
+}
+.m-custom-list__heading::before {
+  right: 0;
+  left: inherit;
+}
+.m-custom-list__para {
+  padding-right: var(--custom-list-padding-x);
+  padding-left: 0;
+}
+.m-custom-list--number .m-custom-list__heading,
+.m-custom-list--number .m-custom-list__para,
+.m-custom-list--icon .m-custom-list__heading,
+.m-custom-list--icon .m-custom-list__para {
+  padding-right: var(--custom-list-padding-xl);
+  padding-left: 0;
+}
+.m-custom-list--number-without-zero .m-custom-list__content::before {
+  right: 0;
+}
+.m-custom-list__icon-wrapper {
+  position: absolute;
+  top: 2px;
+  right: 0;
+  left: inherit;
+}

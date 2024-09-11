@@ -1,0 +1,96 @@
+<sly data-sly-use.template="core/wcm/components/commons/v1/templates.html" />
+<div data-sly-use.textImage="com.abbott.aem.ardx.division.core.components.models.TextImage">
+  <div class="o-textimage-section ${textImage.noWrapUpText ? 'o-textimage-section--image-text-wrap' : ''} ">
+    <div class="container">
+      <div class="o-textimage-section__row ${textImage.imagePlacement}  m-std">
+        <div
+          class="o-textimage-section__image-wrapper ${textImage.imagePlacement} ${textImage.imageAlignment} ${textImage.fullWidthImage ? 'full-width' : ' '} default">
+          <div class="o-textimage-section__image-column m-std}">
+
+            <sly data-sly-test="${textImage.imageCta == 'none'}">
+              <sly data-sly-test="${textImage.imageAsset}">
+                <img src="${textImage.imageAsset}" alt="${textImage.altText}" title="${textImage.imageTitle}"
+                  class="o-textimage-section__image cmp-image__image--desktop " />
+              </sly>
+              <sly data-sly-test="${textImage.tabletImage || textImage.imageAsset}">
+                <img src="${textImage.tabletImage ? textImage.tabletImage : textImage.imageAsset}"
+                  alt="${textImage.altText}" title="${textImage.imageTitle}"
+                  class="o-textimage-section__image cmp-image__image--tablet " />
+              </sly>
+              <sly data-sly-test="${textImage.mobileImage || textImage.imageAsset}">
+                <img src="${textImage.mobileImage ? textImage.mobileImage : textImage.imageAsset}"
+                  alt="${textImage.altText}" title="${textImage.imageTitle}"
+                  class="o-textimage-section__image cmp-image__image--mobile " />
+              </sly>
+            </sly>
+
+            <sly data-sly-test="${textImage.imageCta == 'imageUrl'}">
+              <a target="${textImage.targetUrlNewWindow ? '_blank' : '_self'}"
+                href="${textImage.targetUrl @ context = 'html'}" data-redirect-confirm="${textImage.external ? 'true' : 'false'}">
+                <sly data-sly-test="${textImage.imageAsset}">
+                  <img src="${textImage.imageAsset}" alt="${textImage.altText}" title="${textImage.imageTitle}"
+                    class="o-textimage-section__image cmp-image__image--desktop " />
+                </sly>
+                <sly data-sly-test="${textImage.tabletImage || textImage.imageAsset}">
+                  <img src="${textImage.tabletImage ? textImage.tabletImage : textImage.imageAsset}"
+                    alt="${textImage.altText}" title="${textImage.imageTitle}"
+                    class="o-textimage-section__image cmp-image__image--tablet " />
+                </sly>
+                <sly data-sly-test="${textImage.mobileImage || textImage.imageAsset}">
+                  <img src="${textImage.mobileImage ? textImage.mobileImage : textImage.imageAsset}"
+                    alt="${textImage.altText}" title="${textImage.imageTitle}"
+                    class="o-textimage-section__image cmp-image__image--mobile " />
+                </sly>
+              </a>
+            </sly>
+
+            <sly data-sly-test="${textImage.imageCta == 'modalPopup'}">
+              <div class="m-popup" data-toggle="modal" data-fullwidth-section="${textImage.fullScreenPopup}"
+                data-target="#text-image${resource.path.hashCode}-modal">
+                <div id="text-image${resource.path.hashCode}">
+                  <sly data-sly-test="${textImage.imageAsset}">
+                    <img src="${textImage.imageAsset}" alt="${textImage.altText}" title="${textImage.imageTitle}"
+                      class="o-textimage-section__image cmp-image__image--desktop " />
+                  </sly>
+                  <sly data-sly-test="${textImage.tabletImage || textImage.imageAsset}">
+                    <img src="${textImage.tabletImage ? textImage.tabletImage : textImage.imageAsset}"
+                      alt="${textImage.altText}" title="${textImage.imageTitle}"
+                      class="o-textimage-section__image cmp-image__image--tablet " />
+                  </sly>
+                  <sly data-sly-test="${textImage.mobileImage || textImage.imageAsset}">
+                    <img src="${textImage.mobileImage ? textImage.mobileImage : textImage.imageAsset}"
+                      alt="${textImage.altText}" title="${textImage.imageTitle}"
+                      class="o-textimage-section__image cmp-image__image--mobile " />
+                  </sly>
+                </div>
+                <div class="m-popup-content" id="#text-image${resource.path.hashCode}-modal"></div>
+              </div>
+            </sly>
+
+
+          </div>
+        </div>
+        <div class="p-md-0 o-textimage-section__content ${textImage.imagePlacement}">
+          <div class="o-textimage-section__richtext">
+            ${textImage.text @context='html'}
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <sly data-sly-test="${textImage.imageCta=='modalPopup'}">
+
+    <div class="title-image-popup ${wcmmode.edit || wcmmode.design ? '' : 'hide'}"
+      data-text-image-popup="text-image${resource.path.hashCode}-modal"
+      data-sly-test="${textImage.imageCta == 'modalPopup'}">
+
+      <div class="title-image-popup-content"
+        data-sly-resource="${@path='textimage', resourceType='wcm/foundation/components/parsys'}"></div>
+
+    </div> 
+
+  </sly>
+
+</div>
+<sly data-sly-call="${template.placeholder @ isEmpty=!text}" />

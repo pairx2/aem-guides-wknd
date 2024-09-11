@@ -1,0 +1,207 @@
+/*
+Accordion Component
+*/
+
+.accordion {
+    &.accordion--variation1 {
+        .m-accordion {
+            flex-direction: column-reverse;
+
+            .m-accordion__options {
+                display: flex;
+                justify-content: flex-start;
+
+                .coll-exp-title {
+                    &:not(span) {
+                        padding: 1rem 0 0 0;
+                    }
+
+                    span {
+                        &.m-accordion__collapse-title:not(:empty) {
+                            &::before {
+                                content: "_";
+                                color: @abbott-deep-sky-blue;
+                                font-size: 2rem;
+                                margin-top: -15px;
+                                padding-right: 0.5rem;
+                            }
+                        }
+
+                        &.m-accordion__expand-title:not(:empty) {
+                            &::before {
+                                content: "+";
+                                color: @abbott-deep-sky-blue;
+                                font-size: 2rem;
+                                padding-right: 0.5rem;
+                            }
+                        }
+
+                        &.show {
+                            color: @abbott-midnight-blue;
+                            display: flex;
+                            font-family: @font-avenir-next-rounded-bold;
+                            justify-content: flex-start;
+                        }
+                    }
+                }
+            }
+
+            .m-accordion__content {
+                .m-accordion__content-items {
+                    border: none !important;
+
+                    &:last-child {
+                        @media @md-down {
+                            margin-bottom: 0;
+                        }
+                    }
+
+                    @media @md-down {
+                        margin-bottom: 1.25rem;
+                    }
+
+                    .m-accordion__header {
+                        border-bottom: 2px solid @abbott-gray;
+                        flex-direction: row-reverse;
+                        justify-content: flex-end;
+
+                        @media @md-down {
+                            align-items: flex-start;
+                        }
+
+                        .m-accordion__title-wrapper {
+                            padding: 1.25rem 0 0.5rem 0;
+                            width: 95%;
+
+                            @media @md-down {
+                                padding-top: 0;
+                            }
+
+                            h1,
+                            h2,
+                            h3,
+                            h4,
+                            h5,
+                            h6 {
+                                color: @abbott-gray;
+                                font-family: @font-avenir-next-rounded-bold;
+                                font-size: 1rem;
+                                line-height: 1.25rem;
+                            }
+                        }
+
+                        .m-accordion__icon-wrapper {
+                            justify-content: flex-start;
+                            padding: 1.25rem 0.7rem 0.5rem 0;
+                            width: fit-content;
+
+                            @media @md-down {
+                                padding-top: 0.25rem;
+                            }
+
+                            .m-accordion-icon {
+                                .abt-icon {
+                                    background: @abbott-deep-sky-blue;
+                                    color: @white;
+                                    font-weight: bold;
+                                    padding: 2px;
+                                }
+                            }
+                        }
+                    }
+
+                    .m-accordion__body {
+                        background: @abbott-gainsboro;
+                        padding: 0;
+
+                        .text {
+                            padding: 1.25rem 1rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &.accordion--variation2 {
+        .accordion--variation1;
+
+        .m-accordion {
+            .m-accordion__options {
+
+                .coll-exp-title {
+                    &:not(span) {
+                        padding: 1rem 0 0 0;
+
+                        @media @md-down {
+                            padding: 0.5rem 0 0 0;
+                        }
+                    }
+
+                    span {
+                        &.m-accordion__collapse-title:not(:empty) {
+                            &::before {
+                                margin-top: -15px;
+                                position: absolute;
+                                left: 0;
+                            }
+                        }
+
+                        &.m-accordion__expand-title:not(:empty) {
+                            &::before {
+                                position: absolute;
+                                left: 0;
+                            }
+                        }
+
+                        &.show {
+                            display: block;
+                            padding-left: 2rem;
+                            text-decoration: underline;
+                        }
+                    }
+                }
+            }
+
+            .m-accordion__content {
+                .m-accordion__content-items {
+                    border: none !important;
+
+                    @media @md-down {
+                        margin-bottom: 0;
+                    }
+
+                    .m-accordion__header {
+                        border-bottom: none;
+
+                        .m-accordion__title-wrapper {
+                            padding: 0.5rem 0 0.5rem 0;
+                        }
+
+                        .m-accordion__icon-wrapper {
+                            padding: 0.5rem 0.7rem 0.5rem 0;
+                        }
+                    }
+
+                    .m-accordion__body {
+                        border-top: 2px solid @abbott-gray;
+
+                        .video {
+                            @media @md-up {
+                                margin-bottom: 1rem;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &.accordion--no-toggle-options {
+        .m-accordion {
+            .m-accordion__options {
+                display: none;
+            }
+        }
+    }
+}

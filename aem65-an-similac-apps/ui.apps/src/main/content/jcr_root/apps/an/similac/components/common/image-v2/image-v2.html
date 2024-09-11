@@ -1,0 +1,9 @@
+<sly data-sly-use.templates="an/similac/components/content/templates.html"/>
+<div  class="cq-placeholder section"  data-emptytext="Configure Image Component in EDIT Mode" data-sly-test.author="${(wcmmode.edit || wcmmode.design)}" ></div>
+
+     <sly data-sly-use.image="${'com.abbott.aem.an.similac.core.models.ImageModel'}"/>
+    <picture>
+            <source media="(max-width: 575.98px)" srcset="${properties.imagePathMob @ context='uri'}" data-sly-test="${properties.imagePathMob @ context='uri'}">
+            <source media="(max-width: 991.98px)" srcset="${properties.imagePathTab @ context='uri'}" data-sly-test="${properties.imagePathTab @ context='uri'}">
+            <img class="card-img-top" src="${properties.imgSrc @ context='uri'}"  alt="${properties.alttext || pageProperties.jcr:title }"  data-sly-test="${properties.imgSrc @ context='uri'}">
+         </picture>

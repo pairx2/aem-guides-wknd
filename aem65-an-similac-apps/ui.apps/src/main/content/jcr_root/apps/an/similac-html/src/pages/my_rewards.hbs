@@ -1,0 +1,97 @@
+{{#> layout/base title="My Rewards" }} {{#*inline "content-block"}}
+{{> includes/bread-crumb }}
+<script>
+
+
+    var jsonData = Object.freeze(JSON.parse("{{{jsonFile 'myRewards.json'}}}"));
+
+</script>
+
+
+
+<div class="container my-rewards">
+    <div class="row">
+        <div class="col-12 col-md-4 col-lg-3">
+            {{> includes/side_nav}}
+        </div>
+        <div class="col-12 col-md-8 col-lg-9">
+
+            <div>
+                <div class="para-content">
+                    <h2>Rewards</h2>
+
+
+                    <h4 class="borderedTitle">My Rewards Points</h4>
+                </div>
+                {{> includes/show-rewards}}
+                <div class="para-content">
+                    <h4 class="borderedTitle">3 easy steps to FREE* Similac®</h4>
+                </div>
+
+
+            </div>
+
+            <div class="reversible-cart-block row section my-rewards-reversible-cart shaded-bg">
+
+                <!--To hide image in mobile and tablet -->
+
+                <div class="col-lg-3 col-md-3 d-none d-lg-flex">
+
+
+
+                    <div class="cmp-teaser__image">
+                        <div data-cmp-src="/content/an/similac/global/en/account/rewards/_jcr_content/root/column_control/2colpar2/text_image_copy.coreimg.80{.width}.jpeg/1598251144935/160-160.jpeg"
+                            data-cmp-widths="210,540" data-asset="/content/dam/an/similac/commons/160_160.jpg"
+                            class="image-block cmp-image" itemscope="" itemtype="http://schema.org/ImageObject">
+
+                            <img class="card-img-top lazy cmp-image__image" itemprop="contentUrl"
+                                data-cmp-hook-image="image" alt=""
+                                src="resources/img/160_160.jpg">
+
+
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <div class="col-lg-9 col-md-12">
+
+
+                    <div class="row">
+                        <div class="col-lg-12">
+
+                            <h3 class="cmp-teaser__title">
+                                Get Coupons
+                            </h3>
+
+                            <div class="cmp-teaser__description">
+                                <p>Use the Similac savings coupons you receive in the mail to get more points.</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="my-lg-3_375 my-md-2_625 my-sm-1_875">
+
+
+
+            </div>
+            {{#each myreward.data}}
+
+            {{> includes/rewards-card title=this.title description=this.description imgSrc=this.imgSrc btn=this.buttons common=@root.common}}
+
+            {{/each}}
+
+
+            <p class="extra-terms my-3_75">*Free Similac comes as a $17 coupon good toward a 12-oz powder can. Terms and
+                conditions apply.</p>
+
+        </div>
+    </div>
+</div>
+{{/inline}}
+
+
+{{/layout/base}}

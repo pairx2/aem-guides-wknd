@@ -1,0 +1,67 @@
+<sly data-sly-use.templates="core/wcm/components/commons/v1/templates.html"/>
+<sly data-sly-use.details="${'com.abbott.aem.an.abbottstore.models.ProdListModel' @ variation=inheritedPageProperties.themeType}" />
+<sly data-sly-test.productDetailsList="${details.productDetails}"/>
+
+<sly data-sly-test.similacVariant="${details.listType == 'similac'}">
+	<div class="container product-list__container">
+		<div class="row no-gutters" data-sly-list.productsList="${details.productDetails}">
+			<div class="product-list-card" id="sku-${productsList.skuId}">
+				<sly data-sly-test='${productsList.customDiscount}'>
+            		<div class="savings-image">Save ${productsList.customDiscount}% today</div>
+            	</sly>
+				<div class="product-details-wrapper">
+					<div class="product-image-wrapper">
+						<img class="product-image" src="${productsList.image}" alt="${productsList.name}"/>
+					</div>
+					<div class="product-size">${productsList.sizeOrWeight}</div>
+					<div class="product-title">${productsList.name}</div>
+					<div class="product-detail h-100">
+						<div class="product-description">
+							${productsList.description @context='html'}
+							<div class="show-description">...read more</div>
+							<div class="hide-description">read less</div>
+						</div>
+					</div>
+				</div>
+				<div class="product-actions">
+					<div class="action__container">
+						<div class="actual-price canx-price">${productsList.price}</div>
+						<div class="discount-price canx-discount-price">${productsList.specialPrice}</div>
+						<button class="add-to-cart canx-btn" aria-label="CansX">${productsList.cansX}</button>
+					</div>
+					<div class="action__container">
+						<div class="actual-price cany-price">${productsList.price}</div>
+						<div class="discount-price cany-discount-price">${productsList.specialPrice}</div>
+						<button class="add-to-cart cany-btn" aria-label="CansY">${productsList.cansY}</button>
+					</div>
+					<div class="product-backorder">Item currently on back order.</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</sly>
+
+<sly data-sly-test.glucernaVariant="${details.listType == 'glucerna'}">
+	<div class="glucerna-product-list__container" style="background-color: ${details.bgColor @context='styleToken'}">
+		<h2 class="glucerna-title" style="color: ${details.titleColor @context='styleToken'}}">${details.title @context='html'}</h2>
+		<div class="glucerna-product-list" data-sly-list.productsList="${details.productDetails}">
+			<div class="glucerna-product-item">
+				<a title="${productsList.name}" href="${productsList.pagePath}" class="glucerna-subtitle">${productsList.name}</a>
+				<div 
+					class="glucerna-product-image-wrapper"
+					data-name="${productsList.properties['name']}"
+					data-sku="${productsList.properties['sku']}"
+					data-brand="${productsList.properties['brand']}"
+					data-flavor="${productsList.properties['product_flavor']}"
+					data-form="${productsList.properties['product_form']}">
+					<a href="${productsList.pagePath}">
+						<img class="glucerna-product-image" src="${productsList.image}" alt="${productsList.name}"/>
+					</a>
+					<div class="glucerna-product-item-note">${details.disclaimerText}</div>
+				</div>
+			</div>
+		</div>
+		<div class="glucerna-product-note">${details.disclaimerText}</div>
+	</div>
+</sly>
+<sly data-sly-call="${templates.placeholder @ isEmpty = !(similacVariant || glucernaVariant)}"></sly>

@@ -1,0 +1,125 @@
+<template data-sly-template.features="${@ dynamicProductCompare, multiproduct}">
+
+	<div class="row bottomSection">
+		<div class="col-3 grayBackColor">
+
+
+			<div class="leftSection">
+
+			<div class="leftTitleSection">
+			<div class="row">
+				<div class="col-12">
+
+				<div class="productdata">
+						<p></p>
+				</div>
+				</div>
+			</div>
+			</div>
+				<div class="leftTitle nutritionTitle">
+					<p class="title">Nutrition Data</p>
+					<div class="dynamicTitle"></div>
+				</div>
+				
+				<div class="leftTitle vitaminTitle">
+					<p class="title">Vitamins</p>
+					<div class="dynamicTitle"></div>
+				</div>
+				
+				<div class="leftTitle mineralTitle">
+					<p class="title">Minerals</p>
+					<div class="dynamicTitle"></div>
+				</div>
+			</div>
+		</div>
+		
+		
+		<div class="col-9">
+		
+			<div class="rightSection">
+				<div class="mainData">
+					<div class="row mainDataRow">
+					<sly data-sly-list.productItem="${multiproduct}">
+
+						<div class="col-3" id="product_${productItem.id}">
+
+					<div class="productdata productdataTitle">
+						<div class="row">
+							<div class="col">
+								<p class="topTitle">Amount Per Serving</p>
+							</div>
+							<div class="col">
+								<p class="topTitle">%DV<span class="dv_asterisk">*</span></p>
+							</div>
+						</div>
+					</div>
+
+						<input class="productDataJson" type="hidden" id="${productItem.id}" name="${productItem.id}" value="[${productItem.ProductJson}]">
+							<div class="productdata nutrientValues">
+								<div class="row">
+									<div class="col serving">
+										<p class="blanktitle"></p>
+										<div class="dynamicData">
+
+										</div>
+									</div>
+									<div class="col perDiv">
+										<p class="blanktitle"></p>
+										<div class="dynamicData">
+
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							<div class="productdata vitaminValues">
+								<div class="row">
+									<div class="col serving">
+										<p class="blanktitle"></p>
+										<div class="dynamicData">
+
+										</div>
+									</div>
+									<div class="col perDiv">
+										<p class="blanktitle"></p>
+										<div class="dynamicData">
+
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="productdata mineralValues">
+								<div class="row">
+									<div class="col serving">
+										<p class="blanktitle"></p>
+										<div class="dynamicData">
+
+										</div>
+									</div>
+									<div class="col perDiv">
+										<p class="blanktitle"></p>
+										<div class="dynamicData">
+
+										</div>
+									</div>
+								</div>
+							</div>
+
+						<div class="cmp-product-detail__buttons">
+							<div class="button link a-button a-button--md a-button--primary ">
+								<a data-id="btn_${productItem.id}" id="internal-link_product-comparison_learn-more" aria-label="${dynamicProductCompare.buttonLabel}" class="learnMore btn" href="${productItem.Learnmore}" target="_blank">
+									<span>${dynamicProductCompare.buttonLabel}</span> 
+								</a>
+							</div>
+						</div>
+						</div>
+					</sly>	
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</template>

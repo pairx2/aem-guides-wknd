@@ -1,0 +1,104 @@
+@import "../global/media-queries.less";
+@import "../global/variables.less";
+
+:root {
+    --tiles-border-radius: 0;
+    --tiles-bg: #009cde;
+    --tiles-box-shadow: none;
+    --tiles-bg-hover: #222731;
+    --tiles-bg-hover-color: #fff;
+    --tiles-bg-color: #fff;
+    --tiles-font-family: @georgias;
+    --tiles-icon-color: #888b8d;
+    --tiles-icon-color-hover: #fff;
+    --tiles-icon-size: 1.25rem;
+    --tiles-para-font-family: @georgias;
+    --tiles-padding: 9px 24px 20px;
+
+}
+
+.m-tile-list {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    .a-tile {
+        margin: 5px 5px 5px 5px;
+        flex: 0 0 33.33%;
+        max-width: 32.4%;
+
+        @media @lg-down {
+            max-width: 32%;
+            flex: 0 0 32%;
+        }
+
+        @media @md-down {
+            flex: 0 0 100%;
+            max-width: 100%;
+            margin: 0;
+        }
+
+        &__title {
+            &-text {
+                p {
+                    font-size: 1.313rem;
+                    line-height: 27px;
+                    font-family: @brandon-bold;
+                    text-transform: uppercase;
+                    word-wrap: initial;
+                    @media @md-down
+                    {
+                        font-size: 1.125rem !important;
+                        line-height: 24px;
+                        padding-right: 10px;
+                    }
+                }
+            }
+        }
+
+        &__link {
+            display: block;
+            &::after {
+                border-top: 0 solid transparent;
+                border-radius: 0;
+            }
+            .a-tile__icon {
+                @media @md-down {
+                    position: absolute;
+                    top: 11px;
+                    display: block;
+                    right: 20px;
+                    color: @color-white;
+                }
+                .abt-icon{
+                    &.abt-icon-right-arrow{
+                        @media @md-down {
+                            display: block;
+                        }
+                    }
+                }
+                
+                .abt-icon-right-arrow:before {
+                    @media @md-down {
+                        font-weight: bold;
+                    }
+                }
+            }
+            @media @md-down {
+                padding-bottom: 1px;
+                display: block;
+                margin-bottom: 10px;
+            }
+        }
+
+        &__para {
+            color: @color-white;
+            font-size: 1rem;
+            line-height: 1.25em;
+            word-wrap: initial;
+            @media @md-down {
+                display: none;
+            }
+        }
+
+    }
+
+}

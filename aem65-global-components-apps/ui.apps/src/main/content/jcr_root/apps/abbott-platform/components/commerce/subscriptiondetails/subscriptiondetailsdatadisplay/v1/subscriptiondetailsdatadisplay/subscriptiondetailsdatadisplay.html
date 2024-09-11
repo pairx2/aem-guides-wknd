@@ -1,0 +1,18 @@
+<sly data-sly-use.commonTemplates="core/wcm/components/commons/v1/templates.html"
+    data-sly-use.subscriptionDetailsDataDisplayModel="com.abbott.aem.platform.common.components.models.commerce.SubscriptionDetailsDataDisplay">
+</sly>
+<div class="m-subscriptiondetails-datadisplay">
+    <h4 data-sly-test="${subscriptionDetailsDataDisplayModel.title}">
+        ${subscriptionDetailsDataDisplayModel.title}
+    </h4>
+    <div class="m-subscriptiondetails-datadisplay__container">
+        <div id="subscriptiondetailsdatadisplay" data-source="${subscriptiondetailsDataDisplayModel.dataSource}"
+            data-display-output="${subscriptionDetailsDataDisplayModel.displayOutput}"
+            class="${subscriptionDetailsDataDisplayModel.displayOutput == '${status}' ? 'subscription-status': ''}">
+            <sly data-sly-test="${subscriptionDetailsDataDisplayModel.displayOutput == '${status}'}">
+                <span class="badge ${status}"></span>
+            </sly>
+        </div>
+    </div>
+</div>
+<sly data-sly-call="${commonTemplates.placeholder @ isEmpty= true}"></sly>

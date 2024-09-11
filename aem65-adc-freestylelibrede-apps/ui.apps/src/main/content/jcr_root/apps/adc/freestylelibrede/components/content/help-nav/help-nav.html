@@ -1,0 +1,40 @@
+<div class="cmp-help-nav"
+	data-sly-use.template="core/wcm/components/commons/v1/templates.html"
+	data-sly-use.helpNav="com.abbott.aem.adc.freestylelibrede.models.HelpNavModel"
+	data-sly-test="${wcmmode.edit}"
+	data-sly-unwrap="${helpNav.variationType}"></div>
+<sly data-sly-call="${template.placeholder @ isEmpty=true}"></sly>
+<div class="help-nav ${helpNav.variationType == 'resourceVariation' ? 'h-nav-list-icon' : ''}">
+	<ul class="h-nav-list mb-0 justify-content-left justify-content-center">
+		<sly data-sly-test="${helpNav.variationType == 'imageVariation'}">
+			<sly data-sly-list="${helpNav.imageVariation}">
+            		<li class="h-nav-list__item ${request.requestURL.toString == item.link ? 'h-nav-list__item--active' : ''}">
+					<a href="${item.link @extension ='html'}" target="${item.openTab}"
+							class="h-nav-list__link">
+						<div class="h-nav__icon ${helpNav.hideMobileImage  ? 'h-nav__icon--hide' : ''}">
+							<img class="h-nav__icon-image" src="${item.imagePath}" alt="${item.title}">
+						</div>
+						<p class="h-nav__text h-nav__text--lg">${item.title}</p>
+						<p class="h-nav__text h-nav__text--mb">${item.mobileNavText}</p>
+					</a>
+				</li>
+			</sly>
+		</sly>
+		<sly data-sly-test="${helpNav.variationType == 'resourceVariation'}">
+		<sly data-sly-list="${helpNav.resourceIconVariation}">
+		<li class="h-nav-list__item ${request.requestURL.toString == item.link ? 'h-nav-list__item--active' : ''}  col-lg-1 col-md-2 col-3 m-0 ml-md-3 mr-md-3 pl-0 pr-0">
+			<a href="${item.link @extension ='html'}" target="${item.openTab}"
+					class="h-nav-list__link">	
+				<div class="h-nav__icon ${helpNav.hideMobileImage ? 'h-nav__icon--hide' : ''}"> 
+					<sly data-sly-include="${item.icon}"></sly>
+				</div>
+				<p class="h-nav__text h-nav__text-icon h-nav__text--lg">${item.title}</p>
+				<p class="h-nav__text h-nav__text-icon h-nav__text--mb">${item.mobileNavText}</p>
+			</a>
+		</li>
+		</sly> </sly>
+	  <li class="submenuone">
+	    <div>${properties.text @ context="html"}</div>
+	  </li>
+	</ul>
+</div>

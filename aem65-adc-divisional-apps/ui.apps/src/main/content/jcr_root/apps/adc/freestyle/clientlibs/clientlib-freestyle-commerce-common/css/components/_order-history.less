@@ -1,0 +1,80 @@
+.m-orderhistory {
+  --orderhistory-tr-height: unset;
+  --orderhistory-tr-border-bottom: 0.0625rem solid @gray-lighter-color;
+  --orderhistory-titles-size: @spacer-18;
+  margin: 0 0 @spacer-40;
+  padding: @spacer 0;
+  @media @md-up {
+    padding: @spacer @spacer-24;
+  }
+  @media @lg-up {
+    padding: @spacer-24 @spacer-40;
+    border: 0.0625rem solid @gray-lighter-color;
+    border-radius: 0.25rem;
+    background-color: @white-color;
+  }
+  &__table {
+    tr {
+      &:last-child {
+        td {
+          padding-bottom: 0;
+        }
+      }
+    }
+    th,
+    td {
+      padding: @spacer-12 0.5rem @spacer-12 0;
+      @media @md-up {
+        padding: @spacer 0;
+      }
+      &:nth-child(1) {
+        display: none;
+        @media @md-up {
+          display: block;
+        }
+      }
+      &:nth-child(3) {
+        display: none;
+        @media @lg-up {
+          display: block;
+        }
+      }
+    }
+    th {
+      padding-top: 0;
+      font-size: @spacer-14;
+      line-height: @spacer-20;
+      @media @md-up {
+        font-size: @spacer-18;
+        line-height: @spacer-24;
+      }
+    }
+    td {
+      font-size: @spacer-14;
+      line-height: @spacer-20;
+    }
+    &--date {
+      display: none;
+      &-formatted {
+        display: block;
+      }
+    }
+    &--total {
+      font-weight: normal;
+    }
+    &--actions {
+      a {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        &:after {
+          font-family: 'Abbott-icon', sans-serif;
+          content: '\e913';
+          display: block;
+          font-size: @spacer-16;
+          margin-left: 0.25rem;
+        }
+      }
+    }
+  }
+}

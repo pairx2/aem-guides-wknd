@@ -1,0 +1,50 @@
+@import '../mixin.less';
+@import '../media-queries.less';
+@import '../variables.less';
+
+/**
+ * CUSTOM TEXT LIST - COMPONENT
+**/
+
+.m-custom-list {
+    --custom-list-circle-secondary: @secondary-color;
+}
+
+[id*='circledNumberList'] {
+    .m-custom-list {
+        li {
+            .m-custom-list__heading::before {
+                width: 54px;
+                height: 54px;
+                border: 1px solid var(--custom-list-circle-secondary);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 50%;
+                font-weight: bold;
+                left: -40px;
+                top: 10px;
+                background: @color-white;
+
+                @media @md-down {
+                    width: 40px;
+                    height: 40px;
+                    left: -20px;
+                }
+            }
+
+            .m-custom-list__icon-wrapper {
+                & + .m-custom-list__heading::before {
+                    display: none;
+                }
+            }
+        }
+    }
+
+}
+
+.generate-gradient-circle-list(2);
+.generate-gradient-circle-list(3);
+.generate-gradient-circle-list(4);
+.generate-gradient-circle-list(5);
+.generate-gradient-circle-list(6);

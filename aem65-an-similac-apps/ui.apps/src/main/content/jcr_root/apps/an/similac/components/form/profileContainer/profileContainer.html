@@ -1,0 +1,31 @@
+<sly data-sly-test="${wcmmode.edit}">
+	<form name="${container.name}"
+      enctype="${container.enctype}" class="similac-form"
+      data-sly-use.container="com.adobe.cq.wcm.core.components.models.form.Container"
+      data-sly-use.grid="com.day.cq.wcm.foundation.model.responsivegrid.ResponsiveGrid">
+      <sly data-sly-repeat.paragraph="${grid.paragraphs}"
+         data-sly-resource="${paragraph.path @ resourceType=paragraph.resourceType, decorationTagName='div'}" ></sly>
+      <sly data-sly-resource="${resource.path @ resourceType=container.resourceTypeForDropArea, appendPath='/*', decorationTagName='div'}" ></sly>
+   </form>
+</sly>
+
+<sly data-sly-test="${!wcmmode.edit}">
+<sly data-sly-test="${properties.variation == 'personalInfo'}">
+ <sly data-sly-use.obj="${'com.abbott.aem.an.similac.core.models.ProfileFormContainerModel'}">
+		 <script>
+				function onloadCallback() { };
+            	var personalInfo_label = Object.freeze(JSON.parse("${obj.profileFormJson @ context='scriptString'}"));
+            </script>
+ </sly>
+
+ <div class="profile">
+  
+       <div id="personalInfo"></div>
+
+
+</div>
+</sly>
+</sly>
+
+
+

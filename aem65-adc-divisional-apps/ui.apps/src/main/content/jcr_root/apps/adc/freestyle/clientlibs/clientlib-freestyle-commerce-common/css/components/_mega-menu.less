@@ -1,0 +1,182 @@
+:root {
+  --mega-menu-list-font-size: @spacer-16;
+  --mega-menu-list-line-height: @spacer-24;
+}
+
+.m-mega-menu {
+  @self: m-mega-menu;
+  .version1 & {
+    &__nested-menu {
+      left: 0 !important;
+      .@{self}__nested-menu-wrapper {
+        min-height: 23rem;
+        padding: @spacer-16;
+        @media @xl-up {
+          padding: @spacer-16 @spacer-40;
+        }
+        .@{self}__side-nav {
+          .m-link-stack {
+            width: 13rem;
+            @media @xl-up {
+              width: 16rem;
+            }
+            .a-link {
+              padding: @spacer-12 @spacer-16;
+              border-top: none;
+              &__text {
+                font-size: @spacer-16;
+                line-height: @spacer-24;
+                color: @gray-darkest-color;
+              }
+            }
+          }
+        }
+        .@{self}__nested-menu-img-list {
+          min-width: unset;
+          max-width: unset;
+          padding: @spacer-16;
+          @media @xl-up {
+            padding: @spacer-16 @spacer-30;
+          }
+          .@{self}__side-nav-item {
+            min-width: unset;
+            max-width: unset;
+            margin-right: @spacer-16;
+            @media @xl-up {
+              margin-right: @spacer-24;
+            }
+            &:last-child {
+              margin: 0;
+            }
+            .@{self}__item-info {
+              padding: 0.375rem @spacer-16;
+              width: 10rem;
+            }
+          }
+          .@{self}__show-more {
+            min-width: unset;
+            .@{self}__link {
+              white-space: nowrap;
+              font-size: @spacer-14;
+              line-height: @spacer-20;
+              text-decoration: underline;
+              min-width: unset;
+            }
+            .abt-icon {
+              font-size: @spacer-18;
+              margin-left: @spacer-12;
+              &:before {
+                display: inline-block;
+              }
+            }
+          }
+          .@{self}__item-img {
+            width: 100%;
+            margin-right: 0;
+            margin-bottom: @spacer-16;
+            img {
+              max-height: var(--mega-menu-item-img);
+            }
+          }
+        }
+        .@{self}__item {
+          &-title {
+            font-size: @spacer-18;
+            line-height: @spacer-24;
+            color: @gray-darkest-color;
+          }
+        }
+      }
+    }
+  }
+  &__mobile {
+    .menu-active {
+      &:before {
+        display: none;
+      }
+    }
+    &-item {
+      &-wrapper {
+        &.menu-border-top {
+          border: none;
+        }
+        > .a-link {
+          .a-link__text {
+            font-size: var(--mega-menu-list-font-size);
+            line-height: var(--mega-menu-list-line-height);
+            @media @lg-up {
+              font-size: @spacer-14;
+              line-height: @spacer-20;
+            }
+          }
+        }
+      }
+    }
+    .navbar {
+      &-nav {
+        .nav-link {
+          font-size: @spacer-14;
+          line-height: @spacer-20;
+        }
+      }
+      &-collapse {
+        .languagenavigation {
+          @media @sm-up {
+            display: none;
+          }
+          .m-link-stack {
+            padding: 0;
+            .m-link-stack__dropdown-wrapper {
+              padding: 0 0 0 @spacer-16;
+            }
+            &__container {
+              padding: 0;
+            }
+            &__link {
+              padding: @spacer-12 0.5rem;
+              .a-link {
+                align-items: center;
+                > .abt-icon {
+                  order: unset;
+                  margin-right: var(--header-v2-icon-spacing);
+                  color: @primary-color;
+                }
+                &__text {
+                  font-size: var(--mega-menu-list-font-size);
+                  line-height: var(--mega-menu-list-line-height);
+                  color: @primary-color;
+                }
+              }
+            }
+            .m-link-stack__title {
+              padding: @spacer-12 @spacer-16;
+              h4 {
+                margin: 0;
+                padding: 0;
+                font-size: var(--mega-menu-list-font-size);
+                line-height: var(--mega-menu-list-line-height);
+                color: @gray-darker-color;
+                font-weight: normal;
+              }
+            }
+            .m-link-stack__list {
+              margin: 0;
+              &-item {
+                padding: 0;
+                &:hover {
+                  background-color: transparent;
+                }
+                .a-link__text {
+                  color: @black-color;
+                  &.active {
+                    font-weight: bold;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

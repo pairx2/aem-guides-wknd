@@ -1,0 +1,17 @@
+<sly data-sly-use.videoModel = "com.abbott.aem.platform.common.components.models.Video"/>
+ <div class="brightCove-video-wrapper">
+	<video-js class="brightCove-video video-js a-video__player-source video-control" 
+		   data-account="${videoModel.accountID}" 
+		   data-player="${videoModel.playerID}" 
+		   data-embed="default" 
+		   controls="${videoModel.videoControlOn || 'false'}" 
+		   data-video-id="${videoModel.videoID}" 
+		   data-playlist-id="" 
+		   data-application-id="" 
+           data-mobile-autoplay="${videoModel.autoplayMobileView ? 'true' : 'false'}"
+		   autoPlay="${videoModel.autoPlay && !wcmmode.edit}"
+           muted="${videoModel.audioControlOn ? 'false' : '' @context = 'text'}"
+           loop="${videoModel.loopOn}">
+   </video-js>
+</div>
+<script defer src="https://players.brightcove.net/${videoModel.accountID}/${videoModel.playerID}_default/index.min.js"></script>

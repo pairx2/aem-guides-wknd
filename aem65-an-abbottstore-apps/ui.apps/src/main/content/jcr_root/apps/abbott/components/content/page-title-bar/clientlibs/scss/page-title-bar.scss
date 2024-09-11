@@ -1,0 +1,101 @@
+@import "../../../../../clientlibs/clientlib-base/scss/base/functions";
+@import "../../../../../clientlibs/clientlib-base/scss/base/variables";
+@import "../../../../../clientlibs/clientlib-base/scss/base/mixins";
+
+.title-bar {
+    background-color: $cerulean;
+    color: $white;
+    font: normal 400 30px/38px $font-brandon-text-bold;
+    letter-spacing: .5px;
+    padding: 35px;
+    position: relative;
+    text-align: center;
+    z-index: -1;
+
+    @media(max-width: 767px) { 
+        font-size: 17.5px;
+        line-height: 25px;
+        padding: 20px;
+    }
+
+    &:after {
+        border-left: 20px solid transparent;
+        border-right: 20px solid transparent;
+        border-top: 20px solid $white;
+        bottom: -1px;
+        clear: both;
+        content: '';
+        height: 0;
+        left: 49%;
+        position: absolute;
+        transform: rotate(180deg);
+        width: 0;
+
+        @media(max-width: 767px) { 
+            display: none;
+        }
+    }
+}
+
+@keyframes placeHolderShimmer{
+    0%{
+        background-position: -468px 0
+    }
+    100%{
+        background-position: 468px 0
+    }
+}
+
+.animated-background {
+    animation-duration: 1.25s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-name: placeHolderShimmer;
+    animation-timing-function: linear;
+    background: darken($gray-100, 3%);
+    background: linear-gradient(to right, darken($gray-100, 1%) 8%, darken($gray-100, 3%) 18%, darken($gray-100, 1%) 33%);
+    background-size: 800px 104px;
+    position: relative;
+}
+
+.placeholder__title-bar {
+    background-color: $cerulean;
+    color: $white;
+    padding: 35px;
+    position: relative;
+    text-align: center;
+    z-index: -1;
+
+    @media(max-width: 767px) {
+        padding: 20px;
+    }
+
+    &:after {
+        border-left: 20px solid transparent;
+        border-right: 20px solid transparent;
+        border-top: 20px solid $white;
+        bottom: -1px;
+        clear: both;
+        content: '';
+        height: 0;
+        left: 49%;
+        position: absolute;
+        transform: rotate(180deg);
+        width: 0;
+
+        @media(max-width: 767px) { 
+            display: none;
+        }
+    }
+
+    .loader {
+        height: 38px;
+        @extend .animated-background;
+
+        @media(max-width: 767px) { 
+            height: 25px;
+        }
+    }
+
+}
+

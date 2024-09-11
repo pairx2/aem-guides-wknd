@@ -1,0 +1,510 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+          jcr:primaryType="nt:unstructured"
+          jcr:title="Custom Table"
+          sling:resourceType="cq/gui/components/authoring/dialog"
+          extraClientlibs="[abbott-platform.customtable.clientlibs]">
+    <content
+            granite:class="tabselection"
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                    maximized="{Boolean}true">
+                <items jcr:primaryType="nt:unstructured">
+                    <tableoptions
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Table Options"
+                            sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                            margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <column
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/container">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <enablePrimaryButton
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                            fieldDescription="Include button component in the table"
+                                            fieldLabel="Enable Primary Button"
+                                            name="./enablePrimaryButton"
+                                            text="Enable Primary Button"
+                                            uncheckedValue="false"
+                                            value="true"/>
+                                    <enableDownloadButton
+                                            granite:class="cq-dialog-checkbox-showhide"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                            fieldDescription="Include button component in the table. If this field is checked then show Download Data Source field"
+                                            fieldLabel="Enable Download Button"
+                                            name="./enableDownloadButton"
+                                            text="Enable Download Button"
+                                            uncheckedValue="false"
+                                            value="true">
+                                        <granite:data
+                                                jcr:primaryType="nt:unstructured"
+                                                cq-dialog-checkbox-showhide-target=".show-hide-download-checkbox"/>
+                                    </enableDownloadButton>
+                                    <downloadDataSource
+                                            granite:class="hide show-hide-download-checkbox"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <downloadDataSource
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                    fieldDescription="Please select Download Data Source"
+                                                    fieldLabel="Download Data Source"
+                                                    id="downloadDataSource"
+                                                    name="./downloadDataSource">
+                                                <datasource
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="abbott-platform/datasource/dropdown"
+                                                        lookuptype="/api/public/lookup/referencedata?referenceType=serviceslist"/>
+                                            </downloadDataSource>
+                                        </items>
+                                        <granite:data
+                                                jcr:primaryType="nt:unstructured"
+                                                showhidetargetvalue="true"/>
+                                    </downloadDataSource>
+                                    <enableLink
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                            fieldDescription="Include link stack component in the table"
+                                            fieldLabel="Enable Link"
+                                            name="./enableLink"
+                                            text="Enable Link"
+                                            uncheckedValue="false"
+                                            value="true"/>
+                                    <enableSearch
+                                            granite:class="cq-dialog-checkbox-showhide"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                            fieldLabel="Enable Search"
+                                            name="./enableSearch"
+                                            text="Enable Search"
+                                            uncheckedValue="false"
+                                            value="true">
+                                        <granite:data
+                                                jcr:primaryType="nt:unstructured"
+                                                cq-dialog-checkbox-showhide-target=".show-hide-search-checkbox"/>
+                                    </enableSearch>
+                                    <searchLabelText
+                                            granite:class="hide show-hide-search-checkbox"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <searchLabelText
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    fieldLabel="Search Label Text"
+                                                    name="./searchLabelText"/>
+                                        </items>
+                                        <granite:data
+                                                jcr:primaryType="nt:unstructured"
+                                                showhidetargetvalue="true"/>
+                                    </searchLabelText>
+                                    <enablePagination
+                                            granite:class="cq-dialog-checkbox-showhide"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                            fieldLabel="Enable Pagination"
+                                            name="./enablePagination"
+                                            text="Enable Pagination"
+                                            uncheckedValue="false"
+                                            value="true">
+                                        <granite:data
+                                                jcr:primaryType="nt:unstructured"
+                                                cq-dialog-checkbox-showhide-target=".show-hide-initial-row-count"/>
+                                    </enablePagination>
+                                    <initialRowCount
+                                            granite:class="hide show-hide-initial-row-count"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <initialRowCount
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                                    fieldDescription="Total Number of rows to be displayed per page in the table. Default value is 12."
+                                                    fieldLabel="Table Row Count"
+                                                    min="{Decimal}1"
+                                                    name="./tableRowCount"
+                                                    value="{Decimal}12"/>
+                                        </items>
+                                        <granite:data
+                                                jcr:primaryType="nt:unstructured"
+                                                showhidetargetvalue="true"/>
+                                    </initialRowCount>
+                                    <enableBulkSelect
+                                            granite:class="cq-dialog-checkbox-showhide"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                            fieldLabel="Enable Bulk Select"
+                                            name="./enableBulkSelect"
+                                            text="Enable Bulk Select"
+                                            uncheckedValue="false"
+                                            value="true">
+                                        <granite:data
+                                                jcr:primaryType="nt:unstructured"
+                                                cq-dialog-checkbox-showhide-target=".show-hide-bulk-select-container"/>
+                                    </enableBulkSelect>
+                                    <bulkSelectContainer
+                                            granite:class="show-hide-bulk-select-container"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <resetText
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    fieldLabel="Bulk Select Label Text"
+                                                    name="./bulkSelectLabelText"/>
+                                        </items>
+                                        <granite:data
+                                                jcr:primaryType="nt:unstructured"
+                                                showhidetargetvalue="true"/>
+                                    </bulkSelectContainer>
+                                    <enableEditTableRowResult
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                        fieldDescription="Include link stack component in the table"
+                                        fieldLabel="Enable Edit option for Table Results"
+                                        name="./editTableRowResult"
+                                        text="Enable Edit option for Table Result"
+                                        uncheckedValue="false"
+                                        value="true"/>
+                                    <enableDeleteTableRowResult
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                        fieldDescription="Include link stack component in the table"
+                                        fieldLabel="Enable Delete option for Table Results"
+                                        name="./deleteTableRowResult"
+                                        text="Enable Delete option for Table Result"
+                                        uncheckedValue="false"
+                                        value="true"/>
+                                     <disableDefaultSorting
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                            fieldDescription="Disable default sorting in the table"
+                                            fieldLabel="Check to disable default sorting for Table Results"
+                                            name="./disableDefaultSorting"
+                                            text="Check to disable default sorting for Table Results"
+                                            uncheckedValue="false"
+                                            value="true"/>        
+                                </items>
+                            </column>
+                        </items>
+                    </tableoptions>
+                    <tableColumns
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Table Columns"
+                            sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                            margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <column
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/container">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <dataSourceType
+                                            granite:class="cq-dialog-dropdown-showhide"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:orderBefore="id"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                            fieldLabel="Data Source"
+                                            id="dataSource"
+                                            name="./dataSourceType">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <eslDataSource
+                                                    jcr:primaryType="nt:unstructured"
+                                                    text="ESL as a source"
+                                                    value="eslDataSource"/>
+                                            <jsonDataSource
+                                                    jcr:primaryType="nt:unstructured"
+                                                    text="JSON as a Source"
+                                                    value="jsonDataSource"/>
+                                        </items>
+                                        <granite:data
+                                                jcr:primaryType="nt:unstructured"
+                                                cq-dialog-dropdown-showhide-target=".type-showhide-target"/>
+                                    </dataSourceType>
+                                    <jsonContainer
+                                            granite:class="hide type-showhide-target"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:orderBefore="id"
+                                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <granite:data
+                                                jcr:primaryType="nt:unstructured"
+                                                showhidetargetvalue="jsonDataSource"/>
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <jsonPath
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                    fieldLabel="JSON Path "
+                                                    name="./jsonPath"
+                                                    rootPath="/content/dam"/>
+                                        </items>
+                                    </jsonContainer>
+                                    <tableContainer
+                                            granite:class="hide type-showhide-target"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:orderBefore="id"
+                                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <granite:data
+                                                jcr:primaryType="nt:unstructured"
+                                                showhidetargetvalue="eslDataSource"/>
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <tableDataSource
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                    fieldDescription="Please select Table Data Source"
+                                                    fieldLabel="Table Data Source"
+                                                    id="tableDataSource"
+                                                    name="./tableDataSource">
+                                                <datasource
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="abbott-platform/datasource/dropdown"
+                                                        lookuptype="/api/public/lookup/referencedata?referenceType=serviceslist"/>
+                                            </tableDataSource>
+                                        </items>
+                                    </tableContainer>
+                                    <noResultFoundText
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldDescription="Enter text if there is no data returned from ESL service"
+                                            fieldLabel="No Result Found Text"
+                                            name="./noTableDataFoundText"/>
+                                    <invalidCoulumnKeyText
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldDescription="Enter error message for invalid column key"
+                                            fieldLabel="Invalid Column Key Text"
+                                            name="./invalidCoulumnKeyText"/>
+                                    <enableReset
+                                            granite:class="cq-dialog-checkbox-showhide"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                            fieldLabel="Enable Reset"
+                                            name="./enableReset"
+                                            text="Enable Reset"
+                                            uncheckedValue="false"
+                                            value="true">
+                                        <granite:data
+                                                jcr:primaryType="nt:unstructured"
+                                                cq-dialog-checkbox-showhide-target=".show-hide-reset-container"/>
+                                    </enableReset>
+                                    <resetContainer
+                                            granite:class="show-hide-reset-container"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <resetText
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    fieldLabel="Reset Text"
+                                                    name="./resetText"/>
+                                        </items>
+                                        <granite:data
+                                                jcr:primaryType="nt:unstructured"
+                                                showhidetargetvalue="true"/>
+                                    </resetContainer>
+                                    <tableColumnItems
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                            composite="{Boolean}true"
+                                            fieldDescription="Click on the + button to add column name  in a table."
+                                            fieldLabel="Table Columns">
+                                        <field
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/container"
+                                                name="./tableColumnlist">
+                                            <items jcr:primaryType="nt:unstructured">
+                                                <columnkey
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                        fieldDescription="Column key used to map the response key from JSON"
+                                                        fieldLabel="Column Key"
+                                                        name="./columnKey"/>
+                                                <columnlabel
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                        fieldLabel="Column name to be displayed in the table"
+                                                        name="./columnLabel"/>
+                                                <enableColFilter
+                                                        granite:class="cq-dialog-checkbox-showhide-multifield"
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                        fieldLabel="Enable Column Dropdown Filter"
+                                                        name="./enableColFilter"
+                                                        text="Enable Column Dropdown Filter"
+                                                        uncheckedValue="false"
+                                                        value="true">
+                                                    <granite:data
+                                                            jcr:primaryType="nt:unstructured"
+                                                            cq-dialog-checkbox-showhide-target=".show-hide-col-filter-checkbox"/>
+                                                </enableColFilter>
+                                                <filterContainer
+                                                        granite:class="hide show-hide-col-filter-checkbox&#xa;"
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                    <items jcr:primaryType="nt:unstructured">
+                                                        <filterLabelText
+                                                                jcr:primaryType="nt:unstructured"
+                                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                fieldLabel="Default Column Filter Placeholder"
+                                                                name="./filterLabelText"/>
+                                                        <enableHiddenColFilter
+                                                                jcr:primaryType="nt:unstructured"
+                                                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                                fieldLabel="Is Column Hidden"
+                                                                name="./enableHiddenColFilter"
+                                                                text="Is Column Hidden"
+                                                                uncheckedValue="true"
+                                                                value="false"/>
+                                                    </items>
+                                                    <granite:data
+                                                            jcr:primaryType="nt:unstructured"
+                                                            showhidetargetvalue="true"/>
+                                                </filterContainer>
+                                                <enableRangeFilter
+                                                        granite:class="cq-dialog-checkbox-showhide-multifield"
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                        fieldLabel="Enable Range Filter"
+                                                        name="./enableRangeFilter"
+                                                        text="Enable Range Filter"
+                                                        uncheckedValue="false"
+                                                        value="true">
+                                                    <granite:data
+                                                            jcr:primaryType="nt:unstructured"
+                                                            cq-dialog-checkbox-showhide-target=".show-hide-col-range-filter-checkbox"/>
+                                                </enableRangeFilter>
+                                                <RangeContainer
+                                                        granite:class="hide show-hide-col-range-filter-checkbox&#xa;"
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                    <items jcr:primaryType="nt:unstructured">
+                                                        <rangeFilterLabelText
+                                                                jcr:primaryType="nt:unstructured"
+                                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                fieldLabel="Range Filter Placeholder Text"
+                                                                name="./rangeFilterLabelText"/>
+                                                        <rangeFilterType
+                                                                granite:class="cq-dialog-dropdown-showhide"
+                                                                jcr:primaryType="nt:unstructured"
+                                                                sling:orderBefore="id"
+                                                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                                fieldLabel="Range Filter Type"
+                                                                id="rangeFilterType"
+                                                                name="./rangeFilterType">
+                                                            <items jcr:primaryType="nt:unstructured">
+                                                                <field
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        text="Field"
+                                                                        value="field"/>
+                                                                <datepicker
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        text="Date Picker"
+                                                                        value="datepicker"/>
+                                                            </items>
+                                                            <granite:data jcr:primaryType="nt:unstructured"/>
+                                                        </rangeFilterType>
+                                                        <minRangeLabelText
+                                                                jcr:primaryType="nt:unstructured"
+                                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                fieldLabel="Min Range Label Text"
+                                                                name="./minRangeLabelText"/>
+                                                        <maxRangeLabelText
+                                                                jcr:primaryType="nt:unstructured"
+                                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                fieldLabel="Max Range Label Text"
+                                                                name="./maxRangeLabelText"/>
+                                                        <closeText
+                                                                jcr:primaryType="nt:unstructured"
+                                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                fieldLabel="Close Text"
+                                                                name="./closeText"/>
+                                                    </items>
+                                                    <granite:data
+                                                            jcr:primaryType="nt:unstructured"
+                                                            showhidetargetvalue="true"/>
+                                                </RangeContainer>
+                                            </items>
+                                        </field>
+                                    </tableColumnItems>
+                                </items>
+                            </column>
+                        </items>
+                    </tableColumns>
+                    <advanced
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Advanced"
+                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                            margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                    margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <updateRequest
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    fieldDescription="Enter the function name which is defined in the ClientLibs. (This should be provided by a developer)"
+                                                    fieldLabel="Update Request Function"
+                                                    name="./updateRequest"
+                                                    required="{Boolean}false"/>
+                                             <updateResponse
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    fieldDescription="Enter the function name which is defined in the ClientLibs. (This should be provided by a developer)"
+                                                    fieldLabel="Update Response Function"
+                                                    name="./updateResponse"
+                                                    required="{Boolean}false"/>
+                                            <updateCreatedRow
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    fieldDescription="Enter the function name which is defined in the ClientLibs. (This should be provided by a developer)"
+                                                    fieldLabel="Update Row Function"
+                                                    name="./updateCreatedRow"
+                                                    required="{Boolean}false"/>
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </advanced>
+                    <configItem
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="ID/Class Config"
+                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                            margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                    margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <configTab
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="/libs/granite/ui/components/coral/foundation/include"
+                                                    path="/apps/abbott-platform/components/core/customconfig/v1/customconfig/cq:dialog/content/items/tabs/items/configItem/items/columns/items/column"/>
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </configItem>
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>

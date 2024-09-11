@@ -1,0 +1,41 @@
+{{#> layout/base title="Coupons and Samples" }}
+
+{{#*inline "content-block"}}
+
+
+{{> includes/drawer }}
+
+{{> includes/bread-crumb }}
+<div class="container coupons-container">
+			{{> includes/reversible-cart-block
+						title=CouponsandSamples.blockContent.cartData.title
+						description=CouponsandSamples.blockContent.cartData.description
+						image=CouponsandSamples.blockContent.cartData.image
+						buttons=CouponsandSamples.blockContent.cartData.buttons
+						custom_class_left=CouponsandSamples.blockContent.cartData.custom_class_left
+						custom_class_right=CouponsandSamples.blockContent.cartData.custom_class_right
+						reversible=CouponsandSamples.blockContent.cartData.reversible
+						custom_class_top=CouponsandSamples.blockContent.cartData.custom_class
+			}}
+
+<div class="row">
+{{#each CouponsandSamples.cards.cardData}}
+				<div class="{{@root.CouponsandSamples.cards.customClass}}"> 
+					{{> includes/card title=this.title description=this.description btn_text=this.btnText img_lazy_src=this.imgLazySrc  img_src=this.imgSrc img_md_src=this.imgMdSrc img_sm_src=this.imgSmSrc alt_text=this.altText btn=this.buttons border_color=this.borderColor custom_class=this.customClass href=this.href}}
+				</div>
+				{{/each}}
+				
+                </div>  
+
+                <div class="row">
+{{#each CouponsandSamples.cards.cardDataCallout}}
+				<div class="{{@root.CouponsandSamples.cards.customClassCallout}}"> 
+					{{> includes/content-callout title=this.title description=this.description btn_text=this.btnText img_lazy_src=this.imgLazySrc  img_src=this.imgSrc img_md_src=this.imgMdSrc img_sm_src=this.imgSmSrc alt_text=this.altText btn=this.buttons border_color=this.borderColor custom_class=this.customClass href=this.href text_btn="true"}}
+				</div>
+				{{/each}}
+				
+                </div> 
+                </div>  
+{{/inline}}
+
+{{/layout/base}}

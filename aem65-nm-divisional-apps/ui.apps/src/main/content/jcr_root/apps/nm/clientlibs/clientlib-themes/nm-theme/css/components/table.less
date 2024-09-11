@@ -1,0 +1,72 @@
+@import '../variables.less';
+@import '../mixin.less';
+@import "../media-queries.less";
+
+table {
+    border: 1px solid @color-table-border;
+    min-width: 100%;
+
+    p {
+        margin-bottom: 0;
+    }
+
+    th {
+        .font-style(450);
+        background-color: @color-medium-blue;
+        padding: 16px;
+        vertical-align: baseline;
+        &,
+        p {
+            color: @color-white;
+            .font-size(18px, 26px);
+            @media @xl-up {
+                width: auto;
+            }
+
+            @media @xl-down {
+                .font-size(12px, 20px);
+                padding: 10px;
+            }
+
+            @media @sm-down {
+                .font-size(10px, 15px);
+                word-break: break-all;
+            }
+        }
+    }
+
+    tr:nth-child(odd) {
+        background-color: @color-table-bg;
+    }
+
+    td {
+        .font-style(390);
+        padding: 16px;
+
+        @media @xl-down {
+            padding: 10px;
+        }
+
+        @media @sm-down {
+            padding: 5px;
+        }
+
+        &, p {
+            .font-size(18px, 24px);
+
+            color: @color-table-content;
+
+            @media @xl-down {
+                .font-size(12px, 16px);
+            }
+
+            @media @sm-down {
+                .font-size(10px, 14px);
+            }
+        }
+    }
+
+    tr {
+        border-bottom: 1px solid @color-table-border;
+    }
+}

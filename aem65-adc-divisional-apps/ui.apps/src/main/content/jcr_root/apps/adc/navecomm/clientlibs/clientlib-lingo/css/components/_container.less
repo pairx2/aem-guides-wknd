@@ -1,0 +1,160 @@
+.a-container {
+  @media @md-down {
+    overflow-x: hidden;
+  }
+
+  @media @md-up {
+    &--container-rounded-corners {
+      border-radius: var(--container-rounded-corners);
+
+      overflow: hidden;
+    }
+  }
+
+  &--title-text-spacing {
+    margin-top: var(--container-small-spacing-margin-top) !important;
+    margin-bottom: var(--container-small-spacing-margin-bottom) !important;
+
+    @media @lg-up {
+      margin-top: var(--container-small-spacing-lg-margin-top) !important;
+      margin-bottom: var(--container-small-spacing-lg-margin-bottom) !important;
+    }
+
+    .title {
+      margin-bottom: var(
+        --container-small-spacing-title-margin-bottom
+      ) !important;
+
+      .cmp-title__text {
+        @media @md-down {
+          font-size: var(--container-small-spacing-title-mb-font-size);
+        }
+      }
+    }
+    .text {
+      margin-top: 0 !important;
+
+      @media @lg-up {
+        font-size: var(--container-small-spacing-text-lg-font-size);
+      }
+    }
+  }
+
+  &--accent-1 {
+    background: var(--container-accent1-bg);
+  }
+  &--accent-2 {
+    background: var(--container-accent2-bg);
+  }
+
+  &--accent-3 {
+    background: var(--container-accent3-bg);
+  }
+
+  &--accent-4 {
+    background: var(--container-accent4-bg);
+  }
+
+  &--surface-warm {
+    background: var(--container-surface-warm);
+  }
+
+  &--shadow-box {
+    box-shadow: 0 2px 4px 1px #d4d4d4;
+  }
+}
+
+// Checkout section to set edit address fragment url
+#section-showInAuthorOnly {
+  display: none;
+}
+
+.aem-AuthorLayer-Edit {
+  #section-showInAuthorOnly {
+    display: block;
+  }
+}
+
+html:not(.aem-AuthorLayer-Edit) {
+  #order-summary-alerts,
+  #order-summary-alerts-mobile {
+    margin-left: -0.938rem;
+    margin-right: -0.938rem;
+  }
+
+  #order-summary-alerts-mobile {
+    display: none;
+
+    @media @md-down {
+      display: block;
+    }
+  }
+
+  #order-summary-alerts {
+    @media @md-down {
+      display: none;
+    }
+  }
+
+  .container-desktop-web {
+    display: block;
+
+    &.container-full-width {
+      .cmp-container {
+        max-width: none;
+        padding: 0;
+      }
+    }
+  }
+
+  .container-mobile-app {
+    display: none;
+  }
+
+  .ab-mobile-app .container-desktop-web {
+    display: none;
+  }
+
+  .ab-mobile-app .container-mobile-app {
+    display: block;
+  }
+}
+
+.shipping-spinner-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+
+  position: absolute;
+  top: 3.125rem;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  margin: 0 !important;
+
+  background: var(--container-shipping-loader-checkout-bg);
+}
+
+// Put spinner in first position with CSS in container
+#my-account-cards-form,
+#my-account-address-form {
+  display: flex;
+  flex-direction: column;
+
+  > .a-spinner {
+    order: -1;
+  }
+}
+
+html:not(.aem-AuthorLayer-Edit)
+  #order-summary-page
+  #resend-email-form
+  .container {
+  padding: 0;
+
+  #send-email-again-modal-btn {
+    display: none;
+  }
+}

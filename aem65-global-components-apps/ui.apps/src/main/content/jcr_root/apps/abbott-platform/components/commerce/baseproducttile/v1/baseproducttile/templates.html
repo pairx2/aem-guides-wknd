@@ -1,0 +1,90 @@
+<!-- General templates to centralize specific product attributes -->
+<template data-sly-template.productTile="${@ model}">
+  <article class="product-tile">
+    <sly data-sly-call="${badge @model=model}" />
+    <header class="product-tile__header">
+      <sly data-sly-call="${productName @model=model}" />
+      <div
+        class="js-product-price"
+        data-sku="${model.sku}"
+        data-price-to-show="${model.priceToShow}"
+        data-free-delivery="${model.showFreeDeliveryLabel}"
+        data-aa-tracking-viewproduct="${model.viewProductAATracking}"
+      ></div>
+    </header>
+    <sly data-sly-call="${includes @model=model}" />
+    <div class="product-tile__cta">
+      <sly data-sly-call="${productDescription @model=model}" />
+
+      <sly data-sly-call="${addtocart @model=model}" />
+    </div>
+  </article>
+</template>
+
+<template data-sly-template.productName="${@ model}">
+  <div class="product-tile__name" data-sly-test.name="${model.name}">
+    <h3>${name @context='html'}</h3>
+  </div>
+</template>
+
+<template data-sly-template.productDescription="${@ model}">
+  <div
+    class="product-tile__description"
+    data-sly-test.description="${model.description}"
+  >
+    <sly
+      data-sly-use.i18nFetcher="${'com.abbott.aem.cloud.platform.core.models.I18nFetcher' @ key = 'product-label-short-description'}"
+    />
+    <h3>${i18nFetcher.title}</h3>
+    <div
+      class="product-description"
+      data-sly-test.description="${model.description}"
+    >
+      ${description @context='html'}
+    </div>
+  </div>
+</template>
+
+<template data-sly-template.badge="${@ model}">
+  <div class="product-tile__badge" data-sly-test.badge="${model.badge}">
+    <strong>${badge}</strong>
+  </div>
+</template>
+
+<template data-sly-template.includes="${@ model}">
+  <div
+    class="a-product-tile-details"
+    data-sly-test="${model.includes && model.includes.size > 0}"
+  >
+    <sly
+      data-sly-use.i18nFetcher="${'com.abbott.aem.cloud.platform.core.models.I18nFetcher' @ key = 'product-label-includes'}"
+    />
+
+    <h3 class="a-product-tile-details__title">${i18nFetcher.title}</h3>
+    <ul
+      data-sly-list.optionItem="${model.includes}"
+      class="a-product-tile-details__list"
+    >
+      <li
+        class="js-product-tile-include a-product-tile-details__list-item"
+        data-id="${optionItem}"
+      ></li>
+    </ul>
+  </div>
+</template>
+
+<template data-sly-template.addtocart="${@ model}">
+
+    <div
+        class="js-add-to-cart"
+        data-sku="${model.sku}"
+        data-cta-override="${model.ctaOverride}"
+        data-pdp-url="${model.pdpLinkUrl @extension='html'}"
+        data-out-of-stock-title="${model.outOfStockTitle}"
+        data-out-of-stock-message="${model.outOfStockMessage}"
+        data-stock-alert-link-text="${model.stockAlertLinkText}"
+        data-stock-alert-static-text="${model.stockAlertStaticText}"
+        data-aa-tracking-addtocart="${model.addToCartAATracking}"
+        data-buy-now-button="${model.showBuyNowButton}"
+    ></div>
+</template>

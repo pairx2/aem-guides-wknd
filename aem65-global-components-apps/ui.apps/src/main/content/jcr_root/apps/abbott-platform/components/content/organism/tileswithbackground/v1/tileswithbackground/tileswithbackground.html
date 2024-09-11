@@ -1,0 +1,35 @@
+<sly data-sly-use.tiles="com.abbott.aem.platform.common.components.models.TilesWithBackgroundImage"
+   data-sly-use.component="com.adobe.cq.wcm.core.components.models.Component" data-sly-use.imageTemplate="image.html"
+   data-sly-use.templates="core/wcm/components/commons/v1/templates.html"
+   data-sly-test.hasContent="${tiles.sectionTitleRequired || tiles.fileReference || tiles.link}"></sly>
+<!--/* Tiles with background image */-->
+<section id="section_${component.id}">
+      <style data-sly-test="${tiles.startColor && tiles.endColor}">
+         #section_${component.id @context='styleToken'} {
+         --tiles-start-color: ${tiles.startColor @context='styleToken'};
+         --tiles-start-position: ${tiles.startColorPosition  @context='styleToken'}%;
+         --tiles-end-color: ${tiles.endColor  @context='styleToken'};
+         --tiles-end-position: ${tiles.endColorPosition  @context='styleToken'}%;
+         }
+      </style>
+<div class="o-tiles" id="${component.id}">
+   <sly data-sly-call="${imageTemplate.image @ image=tiles}"></sly>
+   <div class="o-tiles__container">
+      <div class="o-tiles__row">
+         <div data-sly-test="${tiles.sectionTitleRequired}" class="o-tiles__heading">
+            <sly
+               data-sly-resource="${'sTitle' @resourceType=tiles.titleProxyPath, decorationTagName='div'}">
+            </sly>
+         </div>
+         <div class="o-tiles__stack-wrapper">
+            <!--/* Tiles List Starts */-->
+            <sly
+               data-sly-resource="${@path=tileList , resourceType=tiles.tilelistProxyPath,decoration=true}" />
+            <!--/* Tiles List Ends */-->
+         </div>
+      </div>
+   </div>
+</div>
+</section>
+<!--/* Tiles with background image */-->
+<sly data-sly-call="${templates.placeholder @ isEmpty=!hasContent}"></sly>

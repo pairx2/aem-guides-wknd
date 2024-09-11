@@ -1,0 +1,22 @@
+<sly data-sly-use.tiles="com.abbott.aem.ardx.division.core.components.models.TilesWithBackgroundImageArdx"
+    data-sly-use.component="com.adobe.cq.wcm.core.components.models.Component" data-sly-use.imageTemplate="image.html"
+    data-sly-use.templates="core/wcm/components/commons/v1/templates.html"
+    data-sly-test.hasContent="${tiles.sectionTitleRequired || tiles.fileReference || tiles.link}"></sly>
+<div class="o-tiles o-tiles-divisional o-tiles__pannel-hover-${tiles.panelHoverColor} o-tiles__stack-wrapper o-tiles__pannel-theme-${tiles.headingTheme} "
+    id="${component.id}">
+    <sly data-sly-call="${imageTemplate.image @ image=tiles}"></sly>
+    <div class="o-tiles__container container a-container">
+        <div class="o-tiles__row">
+            <div data-sly-test="${tiles.sectionTitleRequired}" class="o-tiles__heading ">
+                <sly data-sly-resource="${'sTitle' @resourceType=tiles.titleProxyPath, decorationTagName='div'}">
+                </sly>
+            </div>
+            <div class="o-tiles__heading-theme-${tiles.textTheme}  o-tiles__heading-hover-${tiles.textHoverColor}">
+                <!--/* Tiles List Starts */-->
+                <sly data-sly-resource="${@path=tileList , resourceType=tiles.tilelistProxyPath,decoration=true}" />
+                <!--/* Tiles List Ends */-->
+            </div>
+        </div>
+    </div>
+</div>
+<sly data-sly-call="${templates.placeholder @ isEmpty=!hasContent}"></sly>

@@ -1,0 +1,136 @@
+<sly data-sly-use.filters="com.abbott.aem.bts.cybersecurity.components.model.ArcherProp">
+<div data-sly-test="${wcmmode.edit}" class="cq-placeholder" data-emptyText="Download Model"></div>
+<div class="product-list">
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div id="product-categories-wrapper">
+                    <div class="product-filter">
+                        <h4>${'productlist.filterText'@i18n}</h4>
+                        <h5>${'productlist.productCategoryHeading'@i18n}</h5>
+                        <div id="product-filter-category__wrapper" class="product-filter__wrapper">
+                            <sly data-sly-list.category="${filters.categories}">
+                                <div class="a-checkbox a-checkbox--horizontal">
+                                    <label class="a-checkbox__label" for="category_id_${categoryList.index}">
+                                        <input type="checkbox" class="a-checkbox__input" name="categories" id="category_id_${categoryList.index}" data-value="${category}" autocomplete="off">
+                                        <span class="a-checkbox__text"> ${category} </span>
+                                        <span class="a-checkbox__custom"></span>
+                                    </label>
+                                </div>
+                            </sly>
+                        </div>
+                        <h5>${'productlist.productTypeText'@i18n}</h5>
+                        <div id="product-filter-type__wrapper" class="product-filter__wrapper">
+                            <sly data-sly-list.productType="${filters.productTypes}">
+                                <div class="a-checkbox a-checkbox--horizontal">
+                                    <label class="a-checkbox__label" for="producttype_id_${productTypeList.index}">
+                                        <input type="checkbox" class="a-checkbox__input" name="product-filter" 
+                                        id="producttype_id_${productTypeList.index}"  data-value="${productType}" autocomplete="off">
+                                        <span class="a-checkbox__text"> ${productType} </span>
+                                        <span class="a-checkbox__custom"></span>
+                                    </label>
+                                </div>
+                            </sly>    
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="product-list-header">
+                    <div class="product-card__view">
+                        <span id="product-card__page-count" data-label="${'productlist.showResultsText'@i18n}" class="product-card__pagination-message hide">
+                        </span>
+                        <span class="product-card__list-button product-card__view-button" data-type="list">
+                            <em class="abt-icon abt-icon-hambuerger-menu"></em>
+                        </span>
+                        <span class="product-card__grid-button  product-card__view-button" data-type="grid">
+                            <em class="abt-icon abt-icon-squares"></em>
+                        </span>
+                        <span class="product-card__sort-text">Sort by</span>
+                        <div class="dropdown product-card__sort-option">
+                            <button class="dropdown-toggle productsortoptionbtn" type="button" id="sortbtn_cnt">
+                                ${'dropdownvalue.asec'@i18n}
+                            </button>
+                            <div class="dropdown-menu">
+                              <a class="dropdown-item selected" href="#" data-value="ASC">${'dropdownvalue.asec'@i18n}</a>
+                              <a class="dropdown-item" href="#" data-value="DESC">${'dropdownvalue.dsec'@i18n}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="product-card__wrapper" class="row product-card">
+
+                </div>
+                <div id="pagination-wrapper" class="pagination-group hide"> 
+                <div id="product-card_pagesize" class="pagesize">
+                    <span class="results-msg">${'productlist.dropdownBeforeText'@i18n}</span>
+
+                    <div class="dropdown product-card__pagesize-option">
+                        <button class="dropdown-toggle productspagesizebtn" type="button" id="pagerbtn_cnt">
+                            ${'dropdownvalue.twelve'@i18n}
+                        </button>
+                        <div class="dropdown-menu">
+                          <a class="dropdown-item selected" href="#" data-value="12">${'dropdownvalue.twelve'@i18n}</a>
+                          <a class="dropdown-item" href="#" data-value="24">${'dropdownvalue.tfour'@i18n}</a>
+                          <a class="dropdown-item" href="#" data-value="36">${'dropdownvalue.thsix'@i18n}</a>
+                          <a class="dropdown-item" href="#" data-value="All">${'dropdownvalue.all'@i18n}</a>
+                        </div>
+                    </div>
+
+                    <span id="results-count" class="results-msg">${'productlist.dropdownAfterText'@i18n}</span>
+                </div>
+                
+                <div id="product-card_pagination" class="product-pagination">
+
+                </div>
+                </div>
+                <div class="loading-screen screen-loader">
+					<img src="${properties.loadingImage}" alt="${properties.altTextLoadingImage}"/>
+                    <span>${'productlist.loadingResultText'@i18n}</span>
+                </div>
+                <div class="no-result-screen screen-loader d-none">
+					<img src="${properties.noResultsImage}" alt="${properties.altTextNoResultsImage}"/>
+                    <span>${'productlist.noResultText'@i18n}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</sly>
+
+<template id="product-filter-template">
+    <div class="a-checkbox a-checkbox--horizontal">
+        <label class="a-checkbox__label" for="{{CHECKBOX_ID}}">
+            <span class="a-checkbox__text">{{TITLE}}</span>
+            <input type="checkbox" class="a-checkbox__input" name="product-filter" id="{{CHECKBOX_ID}}">
+            <span class="a-checkbox__custom"></span>
+        </label>
+    </div>
+</template>
+
+<template id="product-card-template">
+    <div class="{{VIEWCLASS}}">
+        <div class="m-card__body m-card__hasImage">
+            <img src="{{IMAGE}}" class="m-card__image product-list__image" onerror="this.src='/content/dam/bts/cybersecurity/us/en/images/product-tile/defaultimage.jpeg'"
+                 alt="{{TITLE}}" />
+            <h2 class="m-card__title h4">{{TITLE}} <span></span></h2>
+            <div class="m-card__meta-data">
+                <p class="m-card__product-type">{{TYPE}}</p>
+            </div>
+            <div class="m-card-button-wrapper">
+                <div class="m-card__btn--download">
+                    <a role="link" data-href="{{LINK_PATH}}" target="_self" aria-label="{{TITLE}}">
+                        ${'button.moreDetails'@i18n}
+                    </a>
+                </div>
+                <div class="m-card__btn--favourite">
+                    <button type="button" data-id="{{PRODUCT_ID}}">
+                        <em class="abt-icon {{HEART_ICON}}"></em>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

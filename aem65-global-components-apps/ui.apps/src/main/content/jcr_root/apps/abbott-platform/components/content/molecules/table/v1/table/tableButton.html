@@ -1,0 +1,11 @@
+<template data-sly-template.buttonComp="${ @ button=button, anchorCss=anchorCss}">
+    <div data-sly-test="${button.url}" class="new-btn-parent">
+        <a data-sly-test="${button.contextUnsafeRequired}"
+            href="${button.url @ context='unsafe'}"
+            data-sly-attribute.target="${button.target}"
+            data-sly-attribute.rel="${button.target == '_blank' ? 'noopener noreferrer' : ''}"
+            class="new-btn ${anchorCss} dt-text-${button.textColor} dt-text-bg-${button.buttonColor} dt-text-bg-${button.buttonHoverColor}_hover dt-text-${button.textHoverColor}_hover">
+            <span class="new-btn__text">${button.title @ context='html'}</span>
+        </a>
+    </div>
+</template>

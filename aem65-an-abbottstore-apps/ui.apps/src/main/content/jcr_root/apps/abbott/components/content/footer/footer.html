@@ -1,0 +1,11 @@
+<!--/* FOOTER */-->
+<sly data-sly-use.configurationHelpTemplate="abbott/components/content/templates.html">
+   <sly data-sly-use.footerModel="${'com.abbott.aem.an.abbottstore.models.FooterModel' @ footerResourcePath=currentPage.path}">
+        <sly data-sly-use.variationTemplate="${footerModel.variation}.html">            
+            <sly data-sly-test="${!footerModel.templatePage}" data-sly-call="${variationTemplate.template @relativeResourcePath = footerModel.relativeFooterPath}" />
+            <sly data-sly-test="${footerModel.templatePage}">
+                <sly data-sly-call="${configurationHelpTemplate.placeholder @isEmpty = 'true', classAppend = '', emptyTextAppend = 'Configure Footer Component on the home page of the site.'}" />
+            </sly>
+        </sly>
+    </sly>
+</sly>

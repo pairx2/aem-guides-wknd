@@ -1,0 +1,45 @@
+@import '../variables.less';
+@import '../media-queries.less';
+@import '../mixin.less';
+
+.a-pagination {
+    ul {
+        border: 1px solid transparent;
+        li {
+            a {                   
+                &:hover,&:active,&:focus {
+                    font-family: @brandonbold;
+                    background-color: @color-medium-blue;
+                    color: @color-white;
+                    border: 1px solid transparent;
+                }
+                &.no-click {
+                    color: @border-light-gray;
+                    cursor: auto;
+                    &:hover {
+                        color: @border-light-gray;
+                        background-color: transparent;
+                    }
+                }
+                @media @md-down {
+                    padding: 10px;
+                }
+            }
+            &.a-pagination--active {
+                position: relative;
+                &::after {
+                    background-color: @color-medium-blue;
+                    color: @color-white;
+                }
+            }
+        }
+        .a-pagination--next,.a-pagination--previous{
+            a:hover,a:active,a:focus {
+                font-family: @brandonbold;
+                background-color: @color-medium-blue;
+                    color: @color-white;
+                border: 1px solid transparent;
+            }
+        }
+    }
+}

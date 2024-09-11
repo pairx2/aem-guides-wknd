@@ -1,0 +1,241 @@
+@import "./global/variable.less";
+
+// Temporary fix since global font has been changed.
+@font-face {
+    font-family: "brandon_grotesqueregular";
+    src: url("../../../../../abbott-platform/clientlibs/clientlib-site/resources/fonts/brandon/brandongrotesque-regular-webfont.woff2") format("woff2"),url("../../../../../abbott-platform/clientlibs/clientlib-site/resources/fonts/brandon/brandongrotesque-regular-webfont.woff") format("woff");
+    font-weight: normal;
+    font-style: normal
+  }
+
+/* Header part start */
+body {
+    padding-top: 262px;
+
+    @media (min-width:320px) and (max-width:767px) {
+        padding-top: 160px;
+    }
+
+    #med-affair-header {
+        .cmp-title__link {
+            color: #fff;
+            text-decoration: none;
+
+            &:hover {
+                color: #fff;
+                text-decoration: none;
+            }
+        }
+    }
+
+}
+
+body>.abbott-wrapper:first-of-type {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 99;
+
+    .xf-content-height {
+        .responsivegrid {
+            max-width: 100%;
+
+            .columncontrol {
+                margin: 0 !important;
+                &:first-child {
+                    background-color: #fff;
+                    z-index: 1;
+                    position: relative;
+
+                    .row {
+                        align-items: center;
+                        height: 60px;
+
+                        @media (min-width:320px) and (max-width:767px) {
+                            .columncontrol__column {
+                                max-width: 50%;
+                                display: inline-block;
+                                vertical-align: middle;
+                                margin-bottom: 0;
+
+                            }
+                        }
+
+                        .col-md-6 {
+                            .a-logo-comp {
+                                img {
+                                    width: 120px;
+                                }
+                            }
+                        }
+
+                        .text {
+                            p {
+                                text-align: right;
+                                margin: 0;
+                                font-size: 16px;
+                                line-height: 20px;
+                                font-family: @fontBrandongrotesque;
+                                font-weight: bold;
+                                a {
+                                    color: @dark-grey;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                &:last-child {
+                    background: linear-gradient(270.9deg, #272936 -3.46%, #25333A 97.16%);
+                    border: 1px solid #363A41;
+                    box-shadow: 0px -1px 58px 15px rgba(0, 0, 0, 0.23);
+
+                    .columncontrol__column {
+                        @media (max-width: 991.98px) {
+                            margin-bottom: 0;
+                        }
+                    }
+
+                    .row {
+                        height: 200px;
+                        align-items: center;
+                        transition: height 0.25s ease-in;
+
+                        @media (min-width:320px) and (max-width:767px) {
+                            height: 100px;
+                        }
+
+                        .title {
+                            h1 {
+                                font-size: 36px;
+                                line-height: 51px;
+                                font-family: @fontBrandongrotesque;
+                                font-weight: 300;
+                                color: @white-color;
+
+                                @media (min-width:320px) and (max-width:1023px) {
+                                    font-size: 26px;
+                                    line-height: 1.2;
+                                }
+                            }
+                        }
+
+                        .text {
+                            p {
+                                color: @white-color;
+                                font-size: 18px;
+                                line-height: 32px;
+                                font-family: @fontBrandongrotesque;
+                                margin-bottom: 0;
+
+                                @media (min-width:320px) and (max-width:767px) {
+                                    text-align: left !important;
+                                    line-height: 1;
+                                }
+
+                                &:after {
+                                    content: attr(data-abstracts);
+                                    margin-left: 8px;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .container {
+                    max-width: 100%;
+                    width: 1457px;
+                    margin: 0 auto;
+                    padding-left: 45px;
+                    padding-right: 45px;
+
+                    @media (min-width:320px) and (max-width:767px) {
+                        padding-left: 15px;
+                        padding-right: 15px;
+                    }
+                }
+
+                .row>[class*="col-"] {
+                    @media (max-width: 991.98px) {
+                        margin-bottom: 0;
+                    }
+                }
+            }
+        }
+    }
+}
+
+body#mf-abstracts-home {
+    .responsivegrid {
+        @media (min-width:320px) and (max-width:767px) {
+            padding: 15px;
+        }
+    }
+
+    .a-button {
+        @media (min-width:320px) and (max-width:767px) {
+            max-width: 540px;
+            margin: 1rem auto;
+            a{
+                max-width: 540px!important; 
+            }
+        }
+    }
+}
+
+body.sticky-header {
+    >.abbott-wrapper:first-of-type .xf-content-height {
+        .responsivegrid {
+            .columncontrol {
+                &:last-child {
+                    .row {
+                        height: 100px;
+
+                        @media (min-width:320px) and (max-width:767px) {
+                            height: 100px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &#mf-abstracts-home {
+        >.abbott-wrapper:first-of-type .xf-content-height {
+            .responsivegrid {
+                .columncontrol {
+                    &:last-child {
+                        .row {
+                            .text {
+                                display: none;
+                            }
+
+                            @media (min-width:320px) and (max-width:767px) {
+                                height: 140px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        >.responsivegrid {
+            .aem-Grid {
+                .a-button {
+                    a {
+                        @media (min-width:320px) and (max-width:767px) {
+                            top: 139px;
+                            right: auto;
+                            padding: 11px 30px;
+                            max-width: 92%;
+                            font-size: 16px;
+                        }
+                    }
+                }
+            }
+        }
+
+
+    }
+}

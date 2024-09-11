@@ -1,0 +1,162 @@
+@import "filepond.scss";
+
+ .m-file-uploader {
+	position: relative;
+    width: 432px;
+    overflow: hidden;
+    max-width: 100%;
+    &__drag-drop {
+        display: flex;
+        align-items: center;
+        .abt-icon {
+            font-size: 28px;
+            margin-right: 12px;
+        }
+    }
+    .filepond--root {
+        height: 122px;
+    }
+    .filepond--label-action {
+        font-weight: bold;
+    }
+    &:before {
+        content: '';
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        position: absolute;
+        height: 0px;
+        width: 100%;
+        z-index: 9;
+        vertical-align: middle;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        opacity: 0;
+        top: 80px;
+        -webkit-transition: all linear 0.3s 0.1s;
+        -o-transition: all linear 0.3s 0.1s;
+        transition: all linear 0.3s 0.1s;
+    }
+    img {
+        display: block;
+        max-width: 100%;
+        width: 100%;
+        height: 100%;
+    }
+    &__cropcontainer {
+        overflow: hidden;
+        -webkit-transition: all linear 0.2s;
+        -o-transition: all linear 0.2s;
+        transition: all linear 0.2s;
+        -webkit-transform: translateY(0%);
+        -ms-transform: translateY(0%);
+        transform: translateY(0%);
+        opacity: 1;
+        height: 100%;
+        display: none;
+    }
+    &__cropconfirm {
+        margin-top: 16px;
+    }
+    &__imgcontainer {
+        max-width: 100%;
+    }
+    &__croppedimg {
+        -webkit-transition: all linear 0.2s 2s;
+        -o-transition: all linear 0.2s 2s;
+        transition: all linear 0.2s 2s;
+        -webkit-transform: translateY(-10%);
+        -ms-transform: translateY(-10%);
+        transform: translateY(-10%);
+        opacity: 0;
+        position: absolute;
+        img {
+            max-width: 300px;
+            -webkit-transition: all cubic-bezier(0.22, 0.61, 0.36, 1) 0.2s 2.3s;
+            -o-transition: all cubic-bezier(0.22, 0.61, 0.36, 1) 0.2s 2.3s;
+            transition: all cubic-bezier(0.22, 0.61, 0.36, 1) 0.2s 2.3s;
+            -webkit-transform: translateY(-10%);
+            -ms-transform: translateY(-10%);
+            transform: translateY(-10%);
+            opacity: 0;
+            scroll-behavior: smooth;
+        }
+    }    
+    &__filedetails {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
+        margin-bottom: 20px;
+        &-label {
+            width: 100%;
+            font-weight: bold;
+        }
+    }
+    &__filename {
+        display: flex;
+        justify-content: flex-start;
+        width: 60%;
+        align-items: center;
+    }
+    &__name {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        margin-left: 5px;
+    }
+    &__size {
+        white-space: nowrap;
+        margin-left: 10px;
+    }
+    &__removefile {
+        align-items: center;
+        display: flex;
+        cursor: pointer;
+        em {
+            margin-right: 8px;
+        }
+    }
+    &__croplabel{
+        font-weight: bold;
+    }
+    &.show-loader:before {
+       // content: 'Cropping...';
+        opacity: 1;
+        height: calc(100% - 80px);
+    }
+    .cropper-modal{
+        background-color: rgba(107,107,107,0.59);
+        opacity: 1;
+    }
+    .cropper-view-box {
+        outline: none;
+    }
+    &.show-result {
+        .m-file-uploader {
+            &__cropcontainer {
+                -webkit-transform: translateY(10%);
+                -ms-transform: translateY(10%);
+                transform: translateY(10%);
+                opacity: 0;
+                height: 0;
+            }
+            &__croppedimg {
+                -webkit-transform: translateY(0%);
+                -ms-transform: translateY(0%);
+                transform: translateY(0%);
+                opacity: 1;
+                position: relative;
+                img {
+                    -webkit-transform: translateY(0%);
+                    -ms-transform: translateY(0%);
+                    transform: translateY(0%);
+                    opacity: 1;
+                }
+            }    
+        }
+    }
+}

@@ -1,0 +1,104 @@
+@import './global/variables.less';
+@import './global/mixins.less';
+
+#columndashboard {
+    .row {
+        #consent-title{
+        	position: relative;
+            top: -10rem;
+        	text-align: center;
+            @media @sm-up {
+				top: 0;
+                text-align: left;
+                padding: 1rem 1rem 2rem 1rem;
+            }
+        }
+
+        #consentsigndates {
+            padding: 0 1rem;
+			@media @md-down {
+						margin-top: -50px;
+             }		
+            .row {
+                justify-content: left;
+                .columncontrol__column:first-child {
+                    padding-left: 1rem;
+                    @media @md-down {
+						margin-bottom: 3rem !important;
+                    }
+                    p:last-child {
+						margin-bottom: 0;
+                    }
+                }
+            }
+
+        }
+
+        .socialtext, .marketingsocialdatacontainer, .educationalsocialdatacontainer{
+            color : @color-dark-grey;
+            position: relative;
+            display : inline-block;
+            //padding-right: 0.5rem;
+            margin-bottom: 0;
+        }
+		// Revanth HCP-461 comma changes
+		.socialtext ~ .socialtext::before, .marketingsocialdatacontainer ~ .marketingsocialdatacontainer::before , .educationalsocialdatacontainer ~ .educationalsocialdatacontainer::before{
+        	content: ", ";
+		}        
+
+        .accordion {
+            h3 {
+				//padding-bottom: 1rem;
+            }
+            .a-container {
+				padding: 0;
+            }
+            .m-accordion__title-wrapper {
+				padding: 1rem;
+            }
+            .m-accordion__body {
+				padding: 0 1rem;
+            }
+        }
+
+        // HCP - preffered date time
+        #preferredtimedata {
+			padding: 0 1rem;
+
+            #preferredbadges {
+                .row {
+					.a-badges {
+                        background-color: @color-white;
+                        box-sizing: border-box;
+                        border : 1px solid #D9D9D6;
+                        .a-badges--text{
+                            color : @color-darker-grey;
+                        }
+                    }
+                    .col-3 {
+						max-width: 15% !important;
+                        margin: 0.5rem !important;
+                        padding: 0;
+                        @media @sm-up {
+							max-width: 100%;
+                        }
+                    }
+                    @media @sm-up {
+                        justify-content: left;
+                    }
+                }
+            }
+
+            #savechanges {
+				color: @color-hcp-blue;
+                background: @color-white;
+                border: 1px solid @color-hcp-blue;
+            }
+
+            .options {
+				margin: 0;
+            }
+        }
+    }
+}
+

@@ -1,0 +1,249 @@
+@import "../../../../../clientlibs/clientlib-base/scss/base/functions";
+@import "../../../../../clientlibs/clientlib-base/scss/base/variables";
+@import "../../../../../clientlibs/clientlib-base/scss/base/mixins";
+
+.subscription-calculator {
+    background-color: $white;
+    border: solid 3px $light-cerulean;
+    border-radius: $border-radius-calculator;
+    padding-bottom: 18px;
+
+    &__container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 0 40px;
+
+        @include media-breakpoint-down(lg) {
+            justify-content: left;
+            padding: 0 20px;
+        }
+
+        @include media-breakpoint-down(sm) {
+            padding: 0;
+            justify-content: left;
+            margin: 0 auto;
+            max-width: 288px;
+        }
+    }
+
+    .similac-subtitle {
+        padding: 40px 0 35px 0;
+    }
+
+    &-item {
+        display: inline-flex;
+        cursor: pointer;
+        flex-direction: column;
+        width: 130px;
+        margin: 0; 
+        
+        @include media-breakpoint-down(lg) {
+            width: 122px;
+        }
+
+        @include media-breakpoint-down(sm) {
+            width: 96px;
+            margin-bottom: 35px;
+
+            &:nth-child(3n) {
+                .subscription-calculator-item-plan {
+                    border-right-color: $white;
+                }
+            }
+        }
+
+        &-plan {
+            height: 86px;
+            text-align: center;
+            border-right: solid 1px $alto;
+            order: 1;
+
+            .plan {
+                &-heading {
+                    display: block;
+                    margin-bottom: 0;
+                    color: $sea-buckthorn-light;
+                    padding: 5px 0 5px 0;
+                    font: 400 16px/25px $font-brandon-text-regular;
+                }
+
+                &-month {
+                    position: relative;
+
+                em {
+                        font-size: 40px;
+                        font-weight: lighter;
+                        color: $sea-buckthorn-light;
+                        left: 0;
+                        position: absolute;
+                        transform: translate3d(0, -10%, 0);
+                        width: 100%;
+                    }
+                    
+                    &-number {
+                        color: $sea-buckthorn-light;
+                        display: block;
+                        font: 900 24px/25px $font-brandon-text-bold;
+                        padding-top: 9px;
+                        text-align: center;
+                    }
+                }
+            }
+        }
+
+        &:last-child {
+            .subscription-calculator-item-plan {
+                border-right-color: $white;
+            }
+        }
+
+        &-saving {
+            background-color: $foam;
+            display: flex;
+            flex-direction: column;
+            height: 86px;
+            justify-content: flex-end;
+            border-right: solid 1px $white;
+            order: 3;
+
+            @include media-breakpoint-down(sm) {
+                height: 94px;
+            }
+
+            .saving {
+                color: $white;
+                display: none;
+                justify-content: center;
+                margin-bottom: 0;
+                text-align: center;
+
+                .save {
+                    display: inline-block;
+                    font: 51px $font-pacific-northwest;
+                    justify-content: center;
+                    letter-spacing: -2px;
+                    line-height: 1;
+                    text-align: center;
+                }
+
+                .upto {
+                    color: $white;
+                    display: inline-block;
+                    font: 16px/1 $font-pacific-northwest; 
+                    letter-spacing: normal;
+                    margin: auto 10px 6px 0;
+
+                    @include media-breakpoint-down(sm) {
+                        margin-right: 5px;
+                    }
+                }
+
+                &-text {
+                    color: $white;
+                    display: none;
+                    font: 16px/1.5 $font-brandon-text-medium;
+                    justify-content: center;
+                    margin-bottom: 3px;
+                    text-align: center;
+                }
+            }
+
+            @include media-breakpoint-down(sm) {
+                display: none;
+            }
+
+        }
+
+        &:hover {
+            .subscription-calculator-item-plan {
+                background-color: $off-yellow;
+            }
+        }
+
+        .savings-accordion {
+            background-color: $sea-buckthorn-light;
+            display: none;
+            height: 16px;
+            order: 2;
+            width: 100%;
+            text-align: center;
+
+            em.ai-caret-down-wide {
+                color: $white;
+                display: block;
+            }
+
+            em.ai-caret-up-wide {
+                display: none;
+            }
+
+            @include media-breakpoint-down(sm) {
+                display: block;
+            }
+        }
+
+        &.active {
+            .subscription-calculator-item {
+                &-plan {
+                    background-color: $sea-buckthorn-light;
+    
+                    .plan {
+                        &-heading {
+                            color: $white;
+                        }
+    
+                        &-month {
+                            &-number, em{
+                                color: $white;
+                            }
+                        }
+                    }
+                }
+
+                &-saving {
+                    background-color: $light-cerulean;
+                    display: flex;
+                    order: 2;
+
+                    .saving {
+                        display: inline-flex;
+
+                        &-text {
+                            display: block;
+                        }
+                    }
+
+                }
+            }
+
+            .savings-accordion {
+                order: 3;
+
+                em.ai-caret-down-wide {
+                    display: none;
+                }
+
+                em.ai-caret-up-wide {
+                    color: $white;
+                    display: block; 
+                }
+            }
+        }
+
+        &.semi-active {
+
+            @include media-breakpoint-down(sm) {
+                .subscription-calculator-item {
+                    &-saving {
+                        display: flex;
+                    }
+                }
+            }
+        }
+    }
+
+    @include media-breakpoint-down(sm) {
+        margin: 9px;
+    }
+}

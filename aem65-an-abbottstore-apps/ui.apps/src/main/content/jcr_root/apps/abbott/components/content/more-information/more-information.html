@@ -1,0 +1,31 @@
+<sly data-sly-use.templates="core/wcm/components/commons/v1/templates.html"/>
+<sly data-sly-use.data ="com.abbott.aem.an.abbottstore.models.MoreInformationModel" />
+<sly data-sly-set.moreInfo=" ${data.productFlavor || data.caseOfProduct || data.productForm || data.caseOfX || data.caseOfY}"/>
+<div class= "${data.hasMoreInformation==true ? ' ' : ' remove'}"> </div>
+<table class="pdp-tab__more-info" aria-describedby="more-info-is-rush">
+	<tr data-sly-test="${data.isRush}">
+        <th class="pdp-tab__more-info-label" id='more-info-is-rush'>Is Rush</th>
+        <td class="pdp-tab__more-info-data">Yes</td>
+    </tr>
+    <tr data-sly-test="${data.productFlavor}">
+        <th class="pdp-tab__more-info-label" id="more-info-flavors">Flavor</th>
+        <td class="pdp-tab__more-info-data">${data.productFlavor}</td>
+    </tr>
+    <tr data-sly-test="${data.caseOfProduct}">
+        <th class="pdp-tab__more-info-label" id="more-info-sizes">Size</th>
+        <td class="pdp-tab__more-info-data">${data.caseOfProduct}</td>
+    </tr>
+    <tr data-sly-test="${data.productForm}">
+        <th class="pdp-tab__more-info-label" id="more-info-form">Form</th>
+        <td class="pdp-tab__more-info-data">${data.productForm}</td>
+    </tr>
+    <tr data-sly-test="${data.caseOfX}">
+        <th class="pdp-tab__more-info-label" id="more-info-case-x">Case of X</th>
+        <td class="pdp-tab__more-info-data">${data.caseOfX}</td>
+    </tr>
+    <tr data-sly-test="${data.caseOfY}">
+        <th class="pdp-tab__more-info-label" id="more-info-case-y">Case of Y</th>
+        <td class="pdp-tab__more-info-data">${data.caseOfY}</td>
+    </tr>
+</table>
+<sly data-sly-call="${templates.placeholder @ isEmpty = !moreInfo}"></sly>

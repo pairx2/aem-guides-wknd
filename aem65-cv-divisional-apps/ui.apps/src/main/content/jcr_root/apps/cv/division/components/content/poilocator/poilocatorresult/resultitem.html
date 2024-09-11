@@ -1,0 +1,203 @@
+<template data-sly-template.resultItem="${@poiSearchResults='POI Locator Result item'}">
+    <sly data-sly-use.PoiLocatorResults="com.abbott.aem.cv.division.core.components.models.PoiLocatorResult">
+        <sly data-sly-test="${poiSearchResults.mapAlignment == 'horizontal'}">
+            <li class="m-poi-locator-results__list-item" data-locator-id="{id}">
+			<input type="hidden" class="poi-locater-kilometers" name="kilometers" value="${PoiLocatorResults.kmSelection ? PoiLocatorResults.kmSelection : ''}"/>
+                <div class="m-poi-locator-results__list-item-number">{listNumber}</div>
+                <div class="m-poi-locator-results__list-item-detail">
+                    <h3 class="m-poi-locator-results__list-item-detail--store-name">{name}</h3>
+					<sly data-sly-test="${PoiLocatorResults.kmSelection}">
+						<p class="m-poi-locator-results__list-item-detail--store-kilometers">
+							{distance} ${PoiLocatorResults.kmSelection}
+						</p>
+					</sly>
+					<sly data-sly-test="${!PoiLocatorResults.kmSelection}">
+						<sly data-sly-test="${poiSearchResults.distanceLabelText}">
+							<p class="m-poi-locator-results__list-item-detail--store-miles">{distance}
+								${poiSearchResults.distanceLabelText}</p>
+						</sly>
+					</sly>
+                    <sly data-sly-test="${poiSearchResults.addressLabelText}">
+                        <div class="m-poi-locator-results__list-item-detail--store-address-label">
+                            ${poiSearchResults.addressLabelText}</div>
+                    </sly>
+                    <div class="m-poi-locator-results__list-item-detail--store-address">{addressOne} {addressTwo}</div>
+                    <sly data-sly-test="${poiSearchResults.telephoneLabelText}">
+                        <div class="m-poi-locator-results__list-item-detail--store-contact-label">
+                            ${poiSearchResults.telephoneLabelText}</div>
+                    </sly>
+                    <div class="m-poi-locator-results__list-item-detail--store-contact">
+                        <a href="tel:{phone}" role="link">{phone}</a>
+                    </div>
+                    <div class="m-poi-locator-results__list-item-detail--get-direction a-link a-link--icon-left">
+                        <a href="https://www.google.com/maps/dir/?api=1&origin={Origlatitude},{Origlongitude}&destination={latitude},{longitude}"
+                            target="_blank" class="a-link__text"><i class="${poiSearchResults.getDirectionIcon}"
+                                aria-hidden="true"> </i>${poiSearchResults.getDirectionsLinkLabelText}</a>
+                    </div>
+                </div>
+            </li>
+        </sly>
+        <sly
+            data-sly-test="${poiSearchResults.mapAlignment == 'vertical' && PoiLocatorResults.displayType == 'twoColumn'}">
+            <li class="m-poi-locator-results__list-item" data-locator-id="{id}">
+			<input type="hidden" class="poi-locater-kilometers" name="kilometers" value="${PoiLocatorResults.kmSelection ? PoiLocatorResults.kmSelection : ''}"/>
+                <div class="m-poi-locator-results__list-item-detail row">
+                    <div class="m-poi-locator-results__left-block col-md-6 col-sm-6">
+                        <div class="m-poi-locator-results__list-item-number list-item-number--left">{listNumber}</div>
+                        <h3 class="m-poi-locator-results__list-item-detail--store-name d-none">{hospital}</h3>
+                        <sly data-sly-list.poiResult="${poiSearchResults.poiLocatorResultList}">
+                            <sly data-sly-test.isPhone="${poiResult.resultKey == 'phone'}">
+                                <div class="m-poi-locator-results__list-item-detail--store-contact-details">
+                                    <div class="m-poi-locator-results__list-item-detail--store-contact-label">
+                                        <a href="tel:{phone}" role="link">${poiResult.resultLabel}</a></div>
+                                    <div class="m-poi-locator-results__list-item-detail--store-contact">
+                                        <a href="tel:{phone}" role="link">{${poiResult.resultKey}}</a>
+                                    </div>
+                                </div>
+                            </sly>
+                            <sly data-sly-test.isDoctor="${poiResult.resultKey == 'name'}">
+                                <div
+                                    class="m-poi-locator-results__list-item-detail--store-${poiResult.resultKey} additional-fields doctor">
+                                    <div class="m-poi-locator-results__list-item-detail__label d-inline-block mr-1">${poiResult.resultLabel}</div>
+                                    <div class="m-poi-locator-results__list-item-detail__name d-inline-block">
+                                        {${poiResult.resultKey}}</div>
+                                </div>
+                            </sly>
+                            <sly data-sly-test="${!isPhone && !isDoctor}">
+                                <div
+                                    class="m-poi-locator-results__list-item-detail--store-${poiResult.resultKey} ${poiResult.resultKey} additional-fields">
+                                    <div class="m-poi-locator-results__list-item-detail__label d-inline-block mr-1">
+                                        ${poiResult.resultLabel}:</div>
+                                    <div class="m-poi-locator-results__list-item-detail__name d-inline-block">
+                                        {${poiResult.resultKey}}</div>
+                                </div>
+                            </sly>
+                        </sly>
+                    </div>
+                    <div class="m-poi-locator-results__right-block col-md-6 col-sm-6">
+                        <div class="m-poi-locator-results__list-item-number list-item-number--right">{listNumber}</div>
+                        <h3 class="m-poi-locator-results__list-item-detail--store-name">{hospital}</h3>
+						<sly data-sly-test="${PoiLocatorResults.kmSelection}">
+						<p class="m-poi-locator-results__list-item-detail--store-kilometers">
+							{distance} ${PoiLocatorResults.kmSelection}
+						</p>
+						</sly>
+						<sly data-sly-test="${!PoiLocatorResults.kmSelection}">
+							<sly data-sly-test="${poiSearchResults.distanceLabelText}">
+								<p class="m-poi-locator-results__list-item-detail--store-miles">{distance}
+                                ${poiSearchResults.distanceLabelText}</p>
+							</sly>
+						</sly>
+                        <sly data-sly-test="${poiSearchResults.addressLabelText}">
+                            <div class="m-poi-locator-results__list-item-detail--store-address-label">
+                                ${poiSearchResults.addressLabelText}</div>
+                        </sly>
+                        <div class="m-poi-locator-results__list-item-detail--store-address-details">
+                            <div class="m-poi-locator-results__list-item-detail--store-address-one">{addressOne},
+                                {addressTwo}</div>
+                            <div class="m-poi-locator-results__list-item-detail--store-address-two">{city}, {zone},
+                                {zipCode}</div>
+                            <div class="m-poi-locator-results__list-item-detail--store-country">{country}</div>
+                        </div>
+                        <sly data-sly-test="${poiSearchResults.websiteUrlLabelText}">
+                            <div
+                                class="m-poi-locator-results__list-item-detail--visit-website a-link a-link--icon-left">
+                                <a data-href="{website}" target="_blank" class="a-link__text" role="link"><i
+                                        class="${poiSearchResults.getWebsiteIcon}" aria-hidden="true">
+                                    </i><span>${poiSearchResults.websiteUrlLabelText}</span><span
+                                        class="print-website d-none">{website}</span></a>
+                            </div>
+                        </sly>
+                        <sly data-sly-test="${poiSearchResults.getDirectionsLinkLabelText}">
+                            <div
+                                class="m-poi-locator-results__list-item-detail--get-direction a-link a-link--icon-left">
+                                <a href="https://www.google.com/maps/dir/?api=1&origin={Origlatitude},{Origlongitude}&destination={latitude},{longitude}"
+                                    target="_blank" class="a-link__text"><i class="${poiSearchResults.getDirectionIcon}"
+                                        aria-hidden="true"> </i>${poiSearchResults.getDirectionsLinkLabelText}</a>
+                            </div>
+                        </sly>
+                    </div>
+                </div>
+            </li>
+        </sly>
+
+        <sly
+            data-sly-test="${poiSearchResults.mapAlignment == 'vertical' && PoiLocatorResults.displayType == 'oneColumn'}">
+            <li class="m-poi-locator-results__list-item" data-locator-id="{id}">
+			<input type="hidden" class="poi-locater-kilometers" name="kilometers" value="${PoiLocatorResults.kmSelection ? PoiLocatorResults.kmSelection : ''}"/>
+                <div class="m-poi-locator-results__list-item-detail list-item-detail--clinic">
+                    <div class="m-poi-locator-results__list-item-number list-item-number--clinic">{listNumber}</div>
+                    <h3 class="m-poi-locator-results__list-item-detail--store-name store-name--clinic">{hospital}</h3>
+                    <sly data-sly-list.poiResult="${poiSearchResults.poiLocatorResultList}">
+                        <sly data-sly-test.isPhone="${poiResult.resultKey == 'phone'}">
+                            <div class="m-poi-locator-results__list-item-detail--store-contact-details">
+                                <div class="m-poi-locator-results__list-item-detail--store-contact-label">
+                                    <a href="tel:{phone}" role="link">${poiResult.resultLabel}</a></div>
+                                <div class="m-poi-locator-results__list-item-detail--store-contact">
+                                    <a href="tel:{phone}" role="link">{${poiResult.resultKey}}</a>
+                                </div>
+                            </div>
+                        </sly>
+                        <sly data-sly-test.isDoctor="${poiResult.resultKey == 'name'}">
+                            <div
+                                class="m-poi-locator-results__list-item-detail--store-${poiResult.resultKey}-details--clinic ${poiResult.resultKey} additional-fields doctor">
+                                <div class="m-poi-locator-results__list-item-detail__label d-inline-block mr-1">
+                                    ${poiResult.resultLabel}</div>
+                                <div class="m-poi-locator-results__list-item-detail__name d-inline-block">
+                                    {${poiResult.resultKey}}</div>
+                            </div>
+                        </sly>
+                        <sly data-sly-test="${!isPhone && !isDoctor}">
+                            <div
+                                class="m-poi-locator-results__list-item-detail--store-${poiResult.resultKey}-details--clinic ${poiResult.resultKey} additional-fields">
+                                <div class="m-poi-locator-results__list-item-detail__label d-inline-block mr-1">
+                                    ${poiResult.resultLabel}:</div>
+                                <div class="m-poi-locator-results__list-item-detail__name d-inline-block">
+                                    {${poiResult.resultKey}}</div>
+                            </div>
+                        </sly>
+                    </sly>
+					<sly data-sly-test="${PoiLocatorResults.kmSelection}">
+						<p class="m-poi-locator-results__list-item-detail--store-kilometers">
+							{distance} ${PoiLocatorResults.kmSelection}
+						</p>
+					</sly>
+					<sly data-sly-test="${!PoiLocatorResults.kmSelection}">
+						<sly data-sly-test="${poiSearchResults.distanceLabelText}">
+							<p class="m-poi-locator-results__list-item-detail--store-miles">{distance}
+								${poiSearchResults.distanceLabelText}</p>
+                        </sly>
+					</sly>
+                    <sly data-sly-test="${poiSearchResults.addressLabelText}">
+                        <div class="m-poi-locator-results__list-item-detail--store-address-label">
+                            ${poiSearchResults.addressLabelText}</div>
+                    </sly>
+                    <div class="m-poi-locator-results__list-item-detail--store-address-details">
+                        <div class="m-poi-locator-results__list-item-detail--store-address-one">{addressOne},
+                            {addressTwo}
+                        </div>
+                        <div class="m-poi-locator-results__list-item-detail--store-address-two">{city}, {zone},
+                            {zipCode}
+                        </div>
+                        <div class="m-poi-locator-results__list-item-detail--store-country">{country}</div>
+                    </div>
+                    <sly data-sly-test="${poiSearchResults.websiteUrlLabelText}">
+                        <div class="m-poi-locator-results__list-item-detail--visit-website a-link a-link--icon-left">
+                            <a data-href="{website}" target="_blank" class="a-link__text" role="link"><i
+                                    class="${poiSearchResults.getWebsiteIcon}" aria-hidden="true">
+                                </i><span>${poiSearchResults.websiteUrlLabelText}</span><span
+                                    class="print-website d-none">{website}</span></a>
+                        </div>
+                    </sly>
+                    <sly data-sly-test="${poiSearchResults.getDirectionsLinkLabelText}">
+                        <div class="m-poi-locator-results__list-item-detail--get-direction a-link a-link--icon-left">
+                            <a href="https://www.google.com/maps/dir/?api=1&origin={Origlatitude},{Origlongitude}&destination={latitude},{longitude}"
+                                target="_blank" class="a-link__text"><i class="${poiSearchResults.getDirectionIcon}"
+                                    aria-hidden="true"> </i>${poiSearchResults.getDirectionsLinkLabelText}</a>
+                        </div>
+                    </sly>
+                </div>
+            </li>
+        </sly>
+    </sly>
+</template>

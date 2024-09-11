@@ -1,0 +1,30 @@
+<sly data-sly-use.productImage="com.abbott.aem.platform.common.components.models.AssetsGallery"></sly>
+<div data-sly-test="${(wcmmode.edit || wcmmode.design) && !productImage.productImageList}" class="cq-placeholder"
+    data-emptytext="Configure ${component.title} Component"></div>
+<div data-sly-test="${productImage.productImageList}" class="multi-product-image carousel slide">
+    <script src="//fast.wistia.com/assets/external/E-v1.js" async></script>
+    <div class="carousel-inner assetsgallery-${productImage.thumbnailPosition}-thumb" data-js-component="carousel"
+        data-no-indicators="false" data-left-icon="abt-icon abt-icon-left-arrow"
+        data-right-icon="abt-icon abt-icon-right-arrow">
+        <sly data-sly-list="${productImage.productImageList}">
+            <div class="product-image item ${itemList.first ? 'active' : ''}">
+                <div data-sly-test="${item.assetType=='wistiaVideo'}" data-sly-unwrap="${!item.wistiaID}"
+                    class="wistia_embed wistia_async_${item.wistiaID} popover=true popoverContent=html">
+                    <a data-sly-unwrap="${!item.wistiaID}" href="#wistia_${item.wistiaID}"
+                        class="wistia-video__has-image test-${item.assetType}">
+                        <img src="${item.largeImage}" alt="${item.altText @ context='attribute'}" class="product-large-image"/>
+                    </a>
+                </div>
+                <sly data-sly-test="${item.assetType=='image'}">
+                    <img src="${item.largeImage}" alt="${item.altText @ context='attribute'}" class="product-large-image"/>
+                </sly>
+            </div>
+        </sly>
+    </div>
+</div>
+<div class="product-thumbnail-wrapper">
+    <div data-sly-repeat="${productImage.productImageList}" data-slide-to="${itemList.index}"
+        class="product-thumbnail ${item.assetType}">
+        <img src="${item.smallImage}" alt="${item.altText}"/>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+<div data-sly-use.formcontainer="com.abbott.aem.platform.common.components.models.FormContainer"
+	 data-sly-use.customConfig="com.abbott.aem.platform.common.components.models.CustomConfig"
+	 data-sly-use.template="core/wcm/components/commons/v1/templates.html"
+	 data-sly-test.container="${formcontainer.formMode}" id="${formcontainer.id}" data-recaptcha="${formcontainer.recaptcha}"
+	 data-site-key="${formcontainer.reCaptchaKey}" data-kount="${formcontainer.kountEnable}"
+	 data-captcha-script-src="${formcontainer.recaptchaScriptsrc}" 
+	 class="${container == 'formcontainer' ? 'o-form-container' : 'o-wizard'} ${customConfig.className}" 
+	 data-js-component="${formcontainer.formMode}" 
+	 data-event-tracking="${properties.formEventTracking}" 
+	 data-event-tracking-type="${properties.formEventTracking == 'true' ? (properties.formEventTrackingType == null ? 'gtm' : properties.formEventTrackingType) : ''}"
+	 data-form-name="${properties.customFormName ? properties.customFormName : properties.formName}">
+	<div class="o-form-container__wrapper">
+		<!--/* Form  content here */-->
+		<div class="o-form-container__outer">
+			<div class="container">
+				<div class="row o-form-container__parent">
+					<div class="o-form-container__element">
+						<sly data-sly-include="container-hiddenfields.html"></sly>
+						<sly data-sly-test="${container == 'formcontainer'}" data-sly-include="container-formcontainer.html"></sly>
+						<sly data-sly-test="${container == 'wizard'}" data-sly-include="container-wizard.html"></sly>
+						<div class="${formcontainer.formMode == 'formcontainer' ? 'o-form-container__success-msg' : 'o-wizard-container__success-msg'}" role="alert"></div>
+						<div class="${formcontainer.formMode == 'formcontainer' ? 'o-form-container__error-msg' : 'o-wizard-container__error-msg'}" role="alert"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+<sly data-sly-call="${template.placeholder @ isEmpty=!formcontainer.successMessage}"></sly>

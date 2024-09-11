@@ -1,0 +1,75 @@
+<sly
+	data-sly-use.languageNavigation="com.abbott.aem.platform.common.components.models.PlatformLanguageNavigation"
+	data-sly-use.component="com.adobe.cq.wcm.core.components.models.Component"
+	data-sly-use.customConfig="com.abbott.aem.platform.common.components.models.CustomConfig"
+	data-sly-use.commonsTemplates="core/wcm/components/commons/v1/templates.html"
+	data-sly-use.groupTemplate="group.html"
+	data-sly-test.hasContent="${languageNavigation.items.size > 0}"
+	data-sly-use.searchTemplate="search.html"
+	data-sly-use.page="com.abbott.aem.platform.common.components.models.PlatformPage" />
+
+
+<div data-cmp-data-layer="${languageNavigation.data.json}"
+	id="${component.id}"
+	class="m-link-stack m-link-stack--dropdown js-m-link-stack-dropdown m-link-stack__country-select m-link-stack__countrylang--select ${customConfig.className}">
+	<div class="m-link-stack__link" data-js-component="link-stack-dropdown">
+		<sly data-sly-list.itemList="${languageNavigation.items}">
+		<div data-sly-test="${itemList.active}"
+			class="a-link a-link--icon-right">
+			<div class="a-link a-link--icon-right">
+				<a class="a-link__text" href="${itemList.URL}" target="_blank" rel="noopener">
+					<em class="abt-icon abt-icon-down-arrow" aria-hidden="true"> </em>
+					<span class="flag-icon flag-icon-${inheritedPageProperties.countryCode}"></span> <span
+					class="a-link__text--primary-country"> <sly
+							data-sly-set.displayCountryKey="${inheritedPageProperties.countryCode}" /> <sly
+							data-sly-use.i18n_displayCountryTitle="${'com.abbott.aem.cloud.platform.core.models.I18nFetcher' @ key = displayCountryKey, language = page.language}" />
+						${i18n_displayCountryTitle.title}
+				</span>| <span class="a-link__text--primary-lang">${itemList.page.language.ISO3Language}</span>
+				</a>
+			</div>
+		</div>
+		</sly>
+	</div>
+	<div
+		class="m-link-stack__dropdown-wrapper js-collapsable-links-dropdown d-none">
+		<div class="m-link-stack__container">
+			<sly data-sly-test.isRequired="${languageNavigation.searchRequired}"
+				data-sly-call="${searchTemplate.search @ languageNavigation=languageNavigation}" />
+
+			<sly
+				data-sly-test.isColumnHeaderRequired="${languageNavigation.columnHeaderRequired}">
+			<sly
+				data-sly-use.i18n_navigatorCountryLabel="${'com.abbott.aem.cloud.platform.core.models.I18nFetcher' @ key = 'navigator-countrylabel', language = page.language}" />
+			<sly
+				data-sly-use.i18n_navigatorLanguageLabel="${'com.abbott.aem.cloud.platform.core.models.I18nFetcher' @ key = 'navigator-languagelabel', language = page.language}" />
+			<div class="m-link-stack__country-header">
+				<span class="m-link-stack__country-header__title">${i18n_navigatorCountryLabel.title}</span>
+				<span class="m-link-stack__country-header__language">${i18n_navigatorLanguageLabel.title}</span>
+			</div>
+			</sly>
+			<ul class="m-link-stack__list ${languageNavigation.ascendingOrder ? 'm-link-stack__country-select__sort' : ''}"
+				data-sly-list.item="${languageNavigation.items}">
+				<li class="m-link-stack__list-item" data-sly-test="${!item.active}">
+					<div class="a-link">
+						<sly data-sly-set.itemCountryKey="${item.page.properties['countryCode'] ? item.page.properties['countryCode'] : item.title}" />
+						<sly
+							data-sly-use.i18n_itemCountryTitle="${'com.abbott.aem.cloud.platform.core.models.I18nFetcher' @ key = itemCountryKey, language = page.language}" />
+						<a class="a-link__text"
+							aria-label="${i18n_itemCountryTitle.title}" role="link"
+							href="${item.URL}" target="" data-id="menu-2"> <span
+							class="flag-icon flag-icon-${itemCountryKey}"></span> <span
+							class="m-link-stack__country-name">${i18n_itemCountryTitle.title}</span>
+							<span class="m-link-stack__lang m-link-stack__country-lang">
+								${item.page.language.ISO3Language} </span>
+						</a>
+					</div>
+				</li>
+			</ul>
+
+		</div>
+	</div>
+</div>
+<sly data-sly-test="${!languageNavigation.items && !wcmmode.disabled}">
+<div>Language navigation has no languages to show. Please check
+	configuration.</div>
+</sly>

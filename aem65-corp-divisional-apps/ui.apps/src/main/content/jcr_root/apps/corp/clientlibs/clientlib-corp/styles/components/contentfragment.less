@@ -1,0 +1,80 @@
+/**********************************
+Content fragment component
+**********************************/
+.contentfragment {
+  //style system for categoryfilter component
+  &.cf-variation--categoryfilter {
+    .category-filter-anchor-mixin();
+
+    @media @md-down {
+      .cmp-contentfragment__elements {
+        margin: 0;
+      }
+    }
+
+    // cf stories style system to acheive mobile side by side look
+    &.cf-stories-mob--variation {
+      @media @md-down {
+        border-bottom: 1px solid @abbott-pantone-cool-grey;
+        margin-top: 6px !important;
+        padding: 0 5px 0 5px;
+
+        .article-ahnchor {
+          display: inline-block;
+          width: 100%;
+
+          .cmp-contentfragment__elements
+            .cmp-contentfragment__element.cmp-contentfragment__element--mainimage {
+            margin: 0 !important;
+
+            .cmp-contentfragment__element-value {
+              margin: 0 !important;
+            }
+          }
+        }
+
+        .cmp-contentfragment__element.cmp-contentfragment__element--subheading {
+          padding-right: 8px;
+          width: 70%;
+        }
+
+        .cmp-contentfragment__elements {
+          display: flex;
+          flex-direction: row-reverse;
+          margin: 0 !important;
+
+          .cmp-contentfragment__element--heading {
+            display: none;
+          }
+
+          .cmp-contentfragment__element--detaildescription {
+            display: none;
+          }
+
+          .cmp-contentfragment__element.cmp-contentfragment__element--publishdate {
+            display: none;
+          }
+
+          .cmp-contentfragment__element.cmp-contentfragment__element--mainimage
+            .cmp-contentfragment__element-value
+            img {
+            width: 180px !important;
+            height: auto !important;
+          }
+
+          .cmp-contentfragment__element.cmp-contentfragment__element--duration
+            .cmp-contentfragment__element-value {
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.6);
+            height: 100%;
+            left: 0px;
+            padding: 10px 10px 0 10px;
+            top: -2px;
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+

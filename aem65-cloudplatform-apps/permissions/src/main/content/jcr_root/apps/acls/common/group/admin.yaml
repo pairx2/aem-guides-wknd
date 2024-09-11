@@ -1,0 +1,62 @@
+# Environment types in [DEV,QA,STG,PRD]
+- DEF environmentType=$[env:AB_ACL_ENVIRONMENT_TYPE;default=PRD]
+
+- DEF groupPrefix="APP-Adobe-AEM-DM-${environmentType}"
+- DEF groupPrefixAll="APP-Adobe-AEM-DM-ALL"
+
+- group_config:
+
+    - ${groupPrefixAll}-user-admin:
+
+        - name: User Admin (Abbott)
+          description: Users expected to do access management
+          externalId: "${groupPrefixAll}-user-admin;ims"
+
+    - ${groupPrefix}-administrators:
+
+        - name: Admin (Abbott)
+          description: Users with Administrator privileges
+          isMemberOf: administrators
+          externalId: "${groupPrefix}-administrators;ims"
+
+- ace_config:
+
+    - ${groupPrefixAll}-user-admin:
+
+        - path: /
+          permission: allow
+          actions: read,acl_read
+
+        - path: /conf
+          permission: allow
+          actions: acl_read
+
+        - path: /etc
+          permission: allow
+          actions: acl_read
+
+        - path: /oak:index
+          permission: allow
+          actions: acl_read
+
+        - path: /var
+          permission: allow
+          actions: acl_read
+
+        - path: /home
+          permission: allow
+          privileges: jcr:read,rep:userManagement
+
+        - path: /home/users
+          permission: allow
+          privileges: crx:replicate,rep:write,jcr:modifyAccessControl
+
+        - path: /home/users/system
+          permission: allow
+          actions: read,acl_read
+
+        - path: /home/groups
+          permission: deny
+          actions: read
+          restrictions:
+            rep:glob: '/*/*administrators'

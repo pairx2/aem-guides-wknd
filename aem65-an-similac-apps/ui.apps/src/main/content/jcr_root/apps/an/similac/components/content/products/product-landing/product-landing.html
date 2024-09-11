@@ -1,0 +1,29 @@
+<sly data-sly-test="${wcmmode.edit}"> Configure Product landing component </sly>
+<sly data-sly-use.config="${'com.abbott.aem.an.similac.core.models.SimilacConfigModel'}"/>
+<sly data-sly-use.prod="${'com.abbott.aem.an.similac.core.models.ProductComponentModel'}">
+<input type="hidden" value=${config.storeUrl} />
+<input type="hidden" value=${config.storeName} />
+<input type="hidden" id="aem-base-url" value=${config.storeDomain} />
+<input type="hidden" id="aem-default-image-url" value=${config.defaultImage} />
+
+<sly data-sly-test="${properties.variation != 'prodSubscription'}">
+   <script>
+	function onloadCallback() { };
+		var jsonData = Object.freeze(JSON.parse("{}"));
+		var products_label = Object.freeze(JSON.parse("${prod.productJson @ context='scriptString'}"));
+   </script>
+   </sly>
+   <div class="container products">
+   <div id="productsLanding"></div> </div> </sly>
+
+
+ <sly data-sly-test="${properties.variation == 'prodSubscription'}">
+ <script>
+ function onloadCallback() { };
+	var jsonData = Object.freeze(JSON.parse("{}"));
+    var subscriptionProducts_label = Object.freeze(JSON.parse("${prod.productJson @ context='scriptString'}"));
+</script>
+<div class="container subscription-products">
+<div id="subscriptionProducts"></div> </div>
+
+ </sly>

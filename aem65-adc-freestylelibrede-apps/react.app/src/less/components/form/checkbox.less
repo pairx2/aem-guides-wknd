@@ -1,0 +1,108 @@
+.checkbox-container {
+	display: block;
+	position: relative;
+	padding-left: 35px;
+	margin-bottom: 12px;
+	cursor: pointer;
+	.font-size-rems(16);
+	user-select: none;
+	line-height: 24px;
+
+	a{
+		letter-spacing: 0.3px;
+		text-decoration: underline;
+	}
+
+	&.disable {
+		color:@color-fsl-grey-4;
+		cursor: default;
+	}
+	/* On mouse-over, add a grey background color */
+	&:hover .checkbox-container__input ~ .checkbox-container__checkmark {
+		background-color: @color-fsl-grey-1;
+	}
+
+	/* Style the checkmark/indicator */
+	& .checkbox-container__checkmark:after {
+		left: 6px;
+		top: 2px;
+		width: 5px;
+		height: 10px;
+		border: solid @color-fsl-white;
+		border-width: 0 2px 2px 0;
+		transform: rotate(45deg);
+	}
+
+	/* Hide the browser's default checkbox */
+	& .checkbox-container__input {
+		position: absolute;
+		opacity: 0;
+		cursor: pointer;
+		height: 0;
+		width: 0;
+
+		/* When the checkbox is checked, add a blue background */
+		&:checked ~ .checkbox-container__checkmark {
+			background-color: @color-fsl-blue;
+
+			/* Show the checkmark when checked */
+			&:after {
+				display: block;
+			}
+		}
+		&:checked ~ .checkbox-container__checkmark-right {
+			background-color: @color-fsl-blue;
+
+			/* Show the checkmark when checked */
+			&:after {
+				display: block;
+			}
+		}
+	}
+
+	/* Create a custom checkbox */
+	&__checkmark {
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 26px;
+		width: 26px;
+		background-color: transparent;
+		border-radius: 4px;
+		border: 1px solid @color-fsl-blue;
+
+		/* Create the checkmark/indicator (hidden when not checked) */
+		&:after {
+			content: "";
+			position: absolute;
+			display: none;
+			margin: 4px;
+		}
+	}
+	&__checkmark-right {
+		position: absolute;
+		top: 0;
+		right: 0;
+		height: 26px;
+		width: 26px;
+		background-color: transparent;
+		border-radius: 4px;
+		border: 1px solid grey;
+
+		/* Create the checkmark/indicator (hidden when not checked) */
+		&:after {
+			content: "";
+			position: absolute;
+			display: none;
+			margin: 4px;
+			right: 6px;
+			top: 2px;
+			width: 5px;
+			height: 10px;
+			border: solid @color-fsl-white;
+			border-width: 0 2px 2px 0;
+			transform: rotate(45deg);
+		}
+	}
+
+}

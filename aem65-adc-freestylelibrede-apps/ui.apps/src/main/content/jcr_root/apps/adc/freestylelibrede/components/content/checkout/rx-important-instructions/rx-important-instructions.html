@@ -1,0 +1,28 @@
+<div class="cmp-rx-important-instructions"
+     data-sly-use.template="core/wcm/components/commons/v1/templates.html"
+     data-sly-use.rxInstructionModel="com.abbott.aem.adc.freestylelibrede.models.RxImportantInstructionsModel"
+     data-sly-test="${wcmmode.edit}"
+     data-sly-use.icon="adc/freestylelibrede/components/content/templates/icon/icon.html"
+     data-sly-unwrap="${rxInstructionModel.heading}">
+</div>
+
+<sly data-sly-call="${template.placeholder @ isEmpty=true}"></sly>
+
+<div class="adc-important-instruction-rx adc-card bg-white px-5 py-4 rounded">
+    <h4 class="adc-title adc-title--blue  adc-title--border-bottom">
+        ${rxInstructionModel.heading}
+    </h4>
+
+
+        <div data-sly-test.hasIcon="${rxInstructionModel.icon}" class="pb-3 d-flex align-items-center">
+            <span class="adc-important-instruction-rx__message w-75 pr-1">
+                ${rxInstructionModel.message @ context="html"}
+            </span>
+            <sly data-sly-use.icon="adc/freestylelibrede/components/content/templates/icon/icon.html" data-sly-call="${icon.icon @ size='xxl',name=rxInstructionModel.icon,cssClass='ml-auto'}"></sly>
+        </div>
+
+
+    <sly data-sly-test="${!hasIcon}">
+        ${rxInstructionModel.message @ context="html"}
+    </sly>
+</div>

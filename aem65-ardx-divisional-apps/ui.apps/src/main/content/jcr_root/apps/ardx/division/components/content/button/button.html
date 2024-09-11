@@ -1,0 +1,14 @@
+<!--/* Button Component Starts */-->
+<sly data-sly-use.button="com.abbott.aem.ardx.division.core.components.models.ButtonArdx"
+   data-sly-use.template="core/wcm/components/commons/v1/templates.html" />
+<div class="a-button--inline">
+<div class="a-button-bg--${button.buttonColor} a-button-bghover--${button.buttonHoverColor} a-button-text--${button.textColor} a-button-texthover--${button.textHoverColor}"
+   style="margin-top:${button.topMargin @ context ='styleToken'}px;  margin-bottom:${button.bottomMargin @context ='styleToken'}px; margin-right: ${button.rightMargin @context='styleToken'}px;  margin-left: ${button.leftMargin @context='styleToken'}px; ">
+   <sly data-sly-test.form="${button.buttonType == 'withoutDestination' && button.text}" data-sly-include="button_form.html"></sly>
+   <sly data-sly-test.cancel="${button.buttonType == 'cancelButton' && button.text}" data-sly-include="cancel_button.html" />
+   <sly data-sly-test.wistia="${button.buttonType == 'wistiaVideo' && button.wistiaVideoId}" data-sly-include="wistia.html" />
+   <sly data-sly-test="${!form && !cancel && !wistia && (button.text || button.buttonType == 'imageButton')}" data-sly-include="button_cta.html"></sly>
+</div>
+</div>
+<sly data-sly-call="${template.placeholder @ isEmpty=!button.text}"></sly>
+<!--/* Button Component Ends */-->

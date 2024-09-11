@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Embed"
+    sling:resourceType="cq/gui/components/authoring/dialog"
+    extraClientlibs="[core.wcm.components.embed.v1.editor]"
+    helpPath="https://www.adobe.com/go/aem_cmp_embed_v1"
+    trackingFeature="core-components:embed:v1">
+    <content
+        granite:class="cmp-embed__editor"
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                maximized="{Boolean}true">
+                <items jcr:primaryType="nt:unstructured">
+                    <properties
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Properties"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <type
+                                                granite:class="cmp-embed-dialog-edit__type"
+                                                granite:hide="${(cqDesign.urlDisabled &amp;&amp; cqDesign.embeddablesDisabled &amp;&amp; cqDesign.htmlDisabled)}"
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/radiogroup"
+                                                deleteHint="{Boolean}true"
+                                                fieldLabel="Type"
+                                                name="./type"
+                                                vertical="{Boolean}false">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <marketo
+                                                        granite:hide="${cqDesign.marketoDisabled}"
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="Marketo"
+                                                        value="marketo"/>
+                                                    <actonForms
+                                                        granite:hide="${cqDesign.marketoDisabled}"
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="ActonForms"
+                                                        value="actonforms"/>
+                                                    <externalFrame
+                                                        granite:hide="${cqDesign.externalFrameDisabled}"
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="ExternalFrame"
+                                                        value="externalFrame"/>
+                                                </items>
+                                            </type>
+                                            <marketoFormId
+                                                granite:hide="${cqDesign.marketoDisabled}"
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                                fieldLabel="Marketo Form Id"
+                                                name="./marketoFormId"
+                                                wrapperClass="foundation-toggleable">
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    cmp-embed-dialog-edit-showhidetargetvalue="marketo"
+                                                    cmp-embed-dialog-edit-type="true"/>
+                                            </marketoFormId>
+                                            <marketoMunchkinId
+                                                granite:hide="${cqDesign.marketoDisabled}"
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldDescription="Munchkin ID of the marketo subscription."
+                                                fieldLabel="Marketo Munchkin Id"
+                                                name="./marketoMunchkinId"
+                                                wrapperClass="foundation-toggleable">
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    cmp-embed-dialog-edit-showhidetargetvalue="marketo"
+                                                    cmp-embed-dialog-edit-type="true"/>
+                                            </marketoMunchkinId>
+                                            <actonScript
+                                                granite:hide="${cqDesign.actonformsDisabled}"
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
+                                                fieldDescription="Script for act-on form"
+                                                fieldLabel="Act-on Script"
+                                                name="./actonScript"
+                                                wrapperClass="foundation-toggleable">
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    cmp-embed-dialog-edit-showhidetargetvalue="actonforms"
+                                                    cmp-embed-dialog-edit-type="true"/>
+                                            </actonScript>
+                                            <linktoExternalPage
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldDescription="Paste the full URL to the page that will be displayed."
+                                                fieldLabel="Link to External Page"
+                                                name="./linktoExternalPage"
+                                                wrapperClass="foundation-toggleable">
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    cmp-embed-dialog-edit-showhidetargetvalue="externalFrame"
+                                                    cmp-embed-dialog-edit-type="true"/>
+                                            </linktoExternalPage>
+                                            <appendParameter
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                name="./appendParameter"
+                                                text="Append URL parameter"
+                                                uncheckedValue="false"
+                                                value="true"
+                                                wrapperClass="foundation-toggleable">
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    cmp-embed-dialog-edit-showhidetargetvalue="externalFrame"
+                                                    cmp-embed-dialog-edit-type="true"/>
+                                            </appendParameter>
+                                            <allowGeoLocation
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                name="./allowGeoLocation"
+                                                text="Allow Geo Location"
+                                                uncheckedValue="false"
+                                                value="true"
+                                                wrapperClass="foundation-toggleable">
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    cmp-embed-dialog-edit-showhidetargetvalue="externalFrame"
+                                                    cmp-embed-dialog-edit-type="true"/>
+                                            </allowGeoLocation>
+                                            <title
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldDescription="Provide title for the iframe, needed for accessibility purpose."
+                                                fieldLabel="Frame Title"
+                                                name="./title"
+                                                wrapperClass="foundation-toggleable">
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    cmp-embed-dialog-edit-showhidetargetvalue="externalFrame"
+                                                    cmp-embed-dialog-edit-type="true"/>
+                                            </title>
+                                            <scrollToTop
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                fieldDescription="Select if page need to scroll to Top as page loads"
+                                                name="./scrollToTop"
+                                                text="Enable Scroll to top"
+                                                value="true"
+                                                wrapperClass="foundation-toggleable">
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    cmp-embed-dialog-edit-showhidetargetvalue="externalFrame"
+                                                    cmp-embed-dialog-edit-type="true"/>
+                                            </scrollToTop>
+                                            <lazyLoading
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                name="./lazyLoading"
+                                                text="Enable lazy loading"
+                                                uncheckedValue="false"
+                                                value="true"
+                                                wrapperClass="foundation-toggleable">
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    cmp-embed-dialog-edit-showhidetargetvalue="externalFrame"
+                                                    cmp-embed-dialog-edit-type="true"/>
+                                            </lazyLoading>
+                                            <width
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"                                               
+                                                fieldDescription="Width of the iFrame is calculated in % ."
+                                                fieldLabel="Width (%)"
+                                                max="{Long}100"
+                                                min="{Long}0"
+                                                name="./width"
+                                                wrapperClass="foundation-toggleable">
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    cmp-embed-dialog-edit-showhidetargetvalue="externalFrame"
+                                                    cmp-embed-dialog-edit-type="true"/>
+                                            </width>
+                                            <height
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                                defaultValue=""
+                                                fieldDescription="Height of the iFrame. If nothing provided it will be blank, good for responsive iframes."
+                                                fieldLabel="Height"
+                                                min="{Long}0"
+                                                name="./height"
+                                                wrapperClass="foundation-toggleable">
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    cmp-embed-dialog-edit-showhidetargetvalue="externalFrame"
+                                                    cmp-embed-dialog-edit-type="true"/>
+                                            </height>
+                                            <actonForms
+                                                granite:hide="${cqDesign.actonFormsDisabled}"
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/container"
+                                                name="./actonForms"
+                                                wrapperClass="foundation-toggleable">
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    cmp-embed-dialog-edit-showhidetargetvalue="actonForms"
+                                                    cmp-embed-dialog-edit-type="true"/>
+                                            </actonForms>
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </properties>
+                    <tab3
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Success Message"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <successMessage
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="cq/gui/components/authoring/dialog/richtext"
+                                                fieldDescription="Provide Success Message"
+                                                fieldLabel="Success Message"
+                                                id="successmessage"
+                                                name="./successMessage"
+                                                useFixedInlineToolbar="{Boolean}true">
+                                                <rtePlugins
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceSuperType="/apps/abbott-platform/components/core/text/v1/text/rtePlugins"/>
+                                                <uiSettings
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceSuperType="/apps/abbott-platform/components/core/text/v1/text/uiSettings"/>
+                                                <htmlRules
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceSuperType="/apps/abbott-platform/components/core/text/v1/text/htmlRules"/>
+                                            </successMessage>
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </tab3>
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>

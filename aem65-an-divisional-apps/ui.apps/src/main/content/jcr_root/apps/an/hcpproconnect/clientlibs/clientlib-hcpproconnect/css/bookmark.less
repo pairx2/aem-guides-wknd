@@ -1,0 +1,239 @@
+@import "./global/mixins.less";
+@import './global/variables.less';
+
+.bookmark-container {
+    position: absolute;
+    top: 189px;
+    right: 0;
+    border-radius: 100px 0 0 100px;
+    max-width: 235px;
+    min-width: 80px;
+    height: 70px;
+    padding-right: 10px;
+    background: #009cde;
+    transition: all 0.5s ease;
+    display: none;
+
+    @media @md-down {
+         top: 180px;
+         min-width: 45px;
+         height: 40px;
+    }
+
+    .bookmark-icon,
+    .bookmarked-icon,
+    .bookmark-hover-icon,
+    .bookmark-link {
+        height: 40px !important;
+        width: 40px !important;
+        @media @md-down {
+            height: 20px !important;
+            width: 20px !important;
+        }
+    }
+
+    &.bookmarked {
+        background: #fff;
+        border-left: 1px solid #009cde;
+        border-top: 1px solid #009cde;
+        border-bottom: 1px solid #009cde;
+        justify-content: flex-end;
+        align-items: center;
+
+        h5 {
+            display: none;
+        }
+
+        img.bookmark-hover-icon,
+        img.bookmark-icon {
+            display: none;
+        }
+
+        img.bookmarked-icon {
+            display: inline-block;
+        }
+
+        a {
+            cursor: default;
+            pointer-events: none;
+        }
+    }
+
+    a {
+        text-decoration: none;
+        width: 100%;
+    }
+
+    .disable-multiple-clicks {
+        cursor: default;
+        pointer-events: none;
+    }
+
+    &.bookmark {
+        justify-content: flex-end;
+        align-items: center;
+        z-index: 9;
+
+        .bookmark-link {
+            display: flex;
+            flex-direction: row-reverse;
+            gap: 6px;
+            align-items: center;
+        }
+
+        img.bookmark-hover-icon,
+        img.bookmarked-icon {
+            display: none;
+        }
+
+        img.bookmark-icon {
+            display: inline-block;
+        }
+                    
+        &:hover {
+            display: flex;
+            background: #fff;
+            border: 1px solid #004f71;
+            border-width: 1px 0 1px 1px;
+            width: 235px;
+
+            img {
+                &.bookmark-icon {
+                    display: none;
+                }
+
+                &.bookmark-hover-icon {
+                    display: inline-block;
+                }
+            }
+
+            a {
+                width: 235px !important;
+                h5 {
+                    display: inline-block;
+                }
+            }
+        }
+    }
+
+    h5 {
+        font-size: 14px;
+        color: #002A3A;
+        font-family: @base-font-family-bold, Arial, Helvetica, sans-serif;
+        text-align: right;
+        display: none;
+        line-height: 20.02px;
+        font-weight: 500;
+        margin: 0;
+        width: 170px;
+        height: 40px;
+        top: 15px;
+        left: 23px;
+    }
+
+    img.bookmark-hover-icon,
+    img.bookmarked-icon {
+        display: none;
+    }
+}
+
+.bookmark-table-wrapper {
+    @media screen and (max-width:992px) {
+        padding: 0 10px;
+    }
+
+    table {
+        border-collapse: collapse;
+        background: transparent;
+        border: 0;
+
+        tr {
+            th {
+                background: transparent;
+                border-bottom: 1px solid #D9D9D6;
+                padding: 10px 0;
+                font-size: 18px;
+                color: #002A3A;
+                font-family: brandon_grotesquebold, sans-serif;
+
+                &:first-child {
+                    width: 80%;
+                    text-align: left;
+                }
+            }
+
+            td {
+                border: 0;
+                border-bottom: 1px solid #D9D9D6;
+                border-left-style: none;
+                padding: 10px 0;
+                font-size: 18px;
+                font-family: Calibri, sans-serif;
+
+                &:first-child {
+                    width: 80%;
+                    text-align: left;
+                }
+            }
+        }
+
+        a {
+            &.delete-bookmark {
+                display: inline-block;
+
+                img {
+                    min-width: 25px;
+                    height: auto;
+                }
+            }
+        }
+    }
+}
+
+.bookmark-success-message {
+    display: none;
+    background: #00b140;
+    padding: 15px;
+    max-width: 1144px;
+    margin: 25px auto;
+    width: 100%;
+    align-items: center;
+
+    p {
+        margin: 0;
+        color: #fff;
+        font-size: 19px;
+        font-family: brandon_grotesqueregular, sans-serif;
+        padding: 0 10px;
+        line-height: 20px;
+
+        @media @lg-down {
+            width: 90%;
+        }
+        @media @sm-down {
+            width: 75%;
+        }
+    }
+
+    a {
+        font-family: brandon_grotesquebold, sans-serif;
+        line-height: 20px;
+        margin: 0;
+        color: #fff;
+        font-size: 19px;
+        text-decoration: underline;
+    }
+
+    .abt-icon-cancel {
+        color: #fff;
+        margin: 0 10px;
+        cursor: pointer;
+    }
+}
+
+.bookmark-adjusted-breadcrumb {
+    @media @md-down {
+        width: 88%;
+    }
+}
+

@@ -1,0 +1,322 @@
+# Environment types in [DEV,QA,STG,PRD]
+- DEF environmentType=$[env:AB_ACL_ENVIRONMENT_TYPE;default=PRD]
+- DEF groupPrefix="APP-AEM-DM-${environmentType}"
+- DEF groupPrefixAll="APP-AEM-DM-ALL"
+# Authoring groups for ARDX EIFU
+-  group_config:
+   -  ${groupPrefix}-ardx-eifu-div-authors:
+      -  name: ARDx eIFU Divisional Author
+         description: Authoring group for ARDx eIFU ${upperCase(bu)} BU
+         isMemberOf: base-abbott
+         externalId: "${groupPrefix}-ardx-eifu-div-authors;ims"
+   -  FOR bu IN CHILDREN OF /content/ardx/eifu/mappings:
+      -  ${groupPrefix}-ardx-eifu-${bu.name}-authors:
+         -  name: ARDx eIFU ${upperCase(bu.name)} BU Author
+            description: Authoring group for ARDx eIFU ${upperCase(bu.name)} BU
+            isMemberOf: base-abbott
+            externalId: "${groupPrefix}-ardx-eifu-${bu.name}-authors;ims"
+      -  FOR site IN CHILDREN OF /content/ardx/eifu/mappings/${bu.name}:
+         -  ${groupPrefix}-ardx-eifu-${bu.name}-${site.name}-authors:
+            -  name: ARDx eIFU ${upperCase(bu.name)} BU ${upperCase(site.name)} Site Author
+               description: Authoring group for ARDx eIFU ${upperCase(bu.name)} ${upperCase(site.name)} Site
+               isMemberOf: base-abbott
+               externalId: "${groupPrefix}-ardx-eifu-${bu.name}-${site.name}-authors;ims"
+-  ace_config:
+   -  ${groupPrefix}-ardx-eifu-div-authors:
+      -  path: /apps
+         permission: allow
+         privileges: jcr:read
+      -  path: /libs
+         permission: allow
+         privileges: jcr:read
+      -  path: /libs/dam/content/schemaeditors/forms/insights/items/tabs/items/tab3
+         permission: deny
+         privileges: jcr:all        
+      -  path: /content/ardx
+         permission: allow
+         privileges: jcr:read
+         restrictions:
+            rep:glob: ''
+      -  path: /content/ardx/eifu
+         permission: allow
+         actions: read,modify,create,delete,replicate
+      -  path: /content/cq:tags/ardx
+         permission: allow
+         privileges: jcr:read
+      -  FOR node IN [business-unit,categories,keywords,languages,mfg-site,products,user-role]:
+         -  path: /content/cq:tags/ardx/eifu/${node}
+            permission: allow
+            actions: read,modify,create,delete,replicate
+      -  FOR denybu IN [tox,informatics,cmi]:
+         -  path: /content/cq:tags/ardx/eifu/business-unit/${denybu}
+            permission: deny
+            actions: read,modify,create,delete,replicate
+            keepOrder: true                  
+      -  FOR denysite IN [oslo-ecoa,san-diego]:
+         -  path: /content/cq:tags/ardx/eifu/mfg-site/${denysite}
+            permission: deny
+            actions: read,modify,create,delete,replicate
+            keepOrder: true
+      -  path: /conf
+         permission: allow
+         actions: read,replicate
+      -  path: /content/dam/ardx
+         permission: allow
+         actions: read,modify,create,delete,replicate
+      -  path: /content/launches
+         permission: allow
+         privileges: jcr:read
+      -  path: /content/experience-fragments/ardx
+         permission: allow
+         privileges: jcr:read
+         restrictions:
+            rep:glob: ''
+      -  path: /content/experience-fragments/ardx/eifu
+         permission: allow
+         actions: read,modify,create,delete,replicate
+      -  FOR denyread IN [default,properties,workflow,i18n,experience-fragments,abbott,campaigns,bts,add,an,av,corp,cv,epd,nm,vc,email-templates,abbott,glucerna,abbott-platform,adc]:
+         -  path: /content/${denyread}
+            permission: deny
+            actions: read
+            keepOrder: true
+         -  path: /content/dam/${denyread}
+            permission: deny
+            actions: read
+            keepOrder: true
+         -  path: /content/experience-fragments/${denyread}
+            permission: deny
+            actions: read
+            keepOrder: true   
+         -  path: /content/cq:tags/${denyread}
+            permission: deny
+            actions: read
+            keepOrder: true             
+   -  FOR bu IN CHILDREN OF /content/ardx/eifu/mappings:
+      -  ${groupPrefix}-ardx-eifu-${bu.name}-authors:
+         -  path: /apps
+            permission: allow
+            privileges: jcr:read
+         -  path: /libs/dam/content/schemaeditors/forms/insights/items/tabs/items/tab3
+            permission: deny
+            privileges: jcr:all
+         -  path: /content/ardx
+            permission: allow
+            privileges: jcr:read
+            restrictions:
+               rep:glob: ''
+         -  path: /content/ardx/eifu
+            permission: allow
+            actions: read
+         -  path: /libs
+            permission: allow
+            privileges: jcr:read
+         -  path: /conf
+            permission: allow
+            actions: read,replicate
+         -  path: /conf/divisions/eifu
+            permission: allow
+            actions: read,modify,create,delete,replicate
+         -  path: /content/dam/ardx
+            permission: allow
+            actions: read,modify,create,delete,replicate
+         -  path: /content/dam/ardx/eifu/${bu.name}
+            permission: allow
+            actions: read,modify,create,delete,replicate
+            initialContent: |
+                <jcr:root jcr:primaryType="sling:OrderedFolder">
+                    <jcr:content jcr:primaryType="nt:unstructured"
+                        jcr:title="${upperCase(bu.name)}">
+                    </jcr:content>
+                </jcr:root>
+         -  path: /content/cq:tags/ardx
+            permission: allow
+            privileges: jcr:read
+         -  path: /content/cq:tags/ardx/eifu/business-unit/${bu.name}
+            permission: allow
+            actions: read,modify,create,delete,replicate
+            initialContent: |
+                <jcr:root jcr:primaryType="cq:Tag"
+                    jcr:title="${upperCase(bu.name)}"
+                    sling:resourceType="cq/tagging/components/tag">
+                </jcr:root>
+         - IF ${contains(bu.name, 'cmi')}:
+            -  path: /content/cq:tags/ardx/eifu/business-unit/cm&i
+               permission: allow
+               actions: read,modify,create,delete,replicate
+         - IF ${contains(bu.name, 'tox')}:
+            -  path: /content/cq:tags/ardx/eifu/business-unit/us-tox
+               permission: allow
+               actions: read,modify,create,delete,replicate
+         - IF ${contains(bu.name, 'informatics')}:
+            -  path: /content/cq:tags/ardx/eifu/business-unit/ardx-informatics
+               permission: allow
+               actions: read,modify,create,delete,replicate
+         -  FOR denybu IN [tox,informatics,cmi]:
+            -  path: /content/cq:tags/ardx/eifu/business-unit/${denybu}
+               permission: deny
+               actions: read,modify,create,delete,replicate
+               keepOrder: true                  
+         -  FOR denysite IN [oslo-ecoa,san-diego]:
+            -  path: /content/cq:tags/ardx/eifu/mfg-site/${denysite}
+               permission: deny
+               actions: read,modify,create,delete,replicate
+               keepOrder: true
+         -  FOR site IN CHILDREN OF /content/ardx/eifu/mappings/${bu.name}:
+            -  path: /content/cq:tags/ardx/eifu/mfg-site/${site.name}
+               permission: allow
+               actions: read,modify,create,delete,replicate
+               initialContent: |
+                    <jcr:root jcr:primaryType="cq:Tag"
+                        jcr:title="${upperCase(site.name)}"
+                        sling:resourceType="cq/tagging/components/tag">
+                    </jcr:root>    
+         -  FOR node IN [keywords,languages,products]:
+            -  path: /content/cq:tags/ardx/eifu/${node}
+               permission: allow
+               actions: read,modify,create,delete,replicate
+            -  path: /content/launches
+               permission: allow
+               privileges: jcr:read
+         -  path: /content/experience-fragments/ardx
+            permission: allow
+            privileges: jcr:read
+            restrictions:
+               rep:glob: ''
+         -  path: /content/experience-fragments/ardx/eifu
+            permission: allow
+            actions: read,modify,create,delete,replicate
+         -  FOR denyread IN [default,properties,workflow,i18n,experience-fragments,abbott,campaigns,bts,add,an,av,corp,cv,epd,nm,vc,email-templates,abbott,glucerna,abbott-platform,adc]:
+            -  path: /content/${denyread}
+               permission: deny
+               actions: read
+               keepOrder: true 
+            -  path: /content/dam/${denyread}
+               permission: deny
+               actions: read
+               keepOrder: true 
+            -  path: /content/experience-fragments/${denyread}
+               permission: deny
+               actions: read
+               keepOrder: true 
+            -  path: /content/cq:tags/${denyread}
+               permission: deny
+               actions: read
+               keepOrder: true 
+      -  FOR site IN CHILDREN OF /content/ardx/eifu/mappings/${bu.name}:
+         -  ${groupPrefix}-ardx-eifu-${bu.name}-${site.name}-authors:
+            -  path: /apps
+               permission: allow
+               privileges: jcr:read
+            -  path: /libs/dam/content/schemaeditors/forms/insights/items/tabs/items/tab3
+               permission: deny
+               privileges: jcr:all
+            -  path: /content/ardx
+               permission: allow
+               privileges: jcr:read
+               restrictions:
+                  rep:glob: ''
+            -  path: /content/ardx/eifu
+               permission: allow
+               actions: read
+            -  path: /libs
+               permission: allow
+               privileges: jcr:read
+            -  path: /conf
+               permission: allow
+               actions: read,replicate
+            -  path: /conf/divisions/eifu
+               permission: allow
+               actions: read,modify,create,delete,replicate
+            -  path: /content/dam/divisions/eifu
+               permission: allow
+               actions: read,modify,create,delete,replicate
+            -  FOR node IN [ardx,ardx/eifu]:
+               -  path: /content/dam/${node}
+                  permission: allow
+                  actions: read
+                  restrictions:
+                     rep:glob: ''
+            -  path: /content/dam/ardx/eifu/${bu.name}
+               permission: allow
+               actions: read
+               restrictions:
+                  rep:glob: ''
+            -  path: /content/dam/ardx/eifu/contact-us-fragments
+               permission: allow
+               actions: read,modify,create,delete,replicate
+            -  path: /content/dam/ardx/eifu/${bu.name}/${site.name}
+               permission: allow
+               actions: read,modify,create,delete,replicate
+               initialContent: |
+                   <jcr:root jcr:primaryType="sling:OrderedFolder">
+                       <jcr:content jcr:primaryType="nt:unstructured"
+                       		jcr:title="${upperCase(site.name)}">
+                       </jcr:content>
+                   </jcr:root>
+            -  FOR node IN [ardx,ardx/eifu,ardx/eifu/mfg-site]:
+               -  path: /content/cq:tags/${node}
+                  permission: allow
+                  actions: read
+                  restrictions:
+                     rep:glob: ''
+            - IF ${contains(site.name, 'san-diego')}:
+               -  path: /content/cq:tags/ardx/eifu/mfg-site/san-diego--cmi
+                  permission: allow
+                  actions: read,modify,create,delete,replicate                 
+            - IF ${contains(site.name, 'oslo-ecoa')}:
+               -  path: /content/cq:tags/ardx/eifu/mfg-site/oslo-e-coa
+                  permission: allow
+                  actions: read,modify,create,delete,replicate
+            -  FOR denybu IN [tox,informatics,cmi]:
+               -  path: /content/cq:tags/ardx/eifu/business-unit/${denybu}
+                  permission: deny
+                  actions: read,modify,create,delete,replicate
+                  keepOrder: true                  
+            -  FOR denysite IN [oslo-ecoa,san-diego]:
+               -  path: /content/cq:tags/ardx/eifu/mfg-site/${denysite}
+                  permission: deny
+                  actions: read,modify,create,delete,replicate
+                  keepOrder: true
+            -  path: /content/cq:tags/ardx/eifu/mfg-site/${site.name}
+               permission: allow
+               actions: read
+               restrictions:
+                  rep:glob: ''
+            -  FOR node IN [business-unit,categories,keywords,languages,products,user-role]:
+               -  path: /content/cq:tags/ardx/eifu/${node}
+                  permission: allow
+                  actions: read
+            -  path: /content/cq:tags/ardx/eifu/mfg-site/${site.name}
+               permission: allow
+               actions: read,modify,create,delete,replicate
+            -  path: /content/cq:tags/ardx/eifu/products
+               permission: allow
+               actions: read,modify,create,delete,replicate
+            -  path: /content/launches
+               permission: allow
+               privileges: jcr:read
+            -  path: /content/experience-fragments/ardx
+               permission: allow
+               privileges: jcr:read
+               restrictions:
+                  rep:glob: ''
+            -  path: /content/experience-fragments/ardx/eifu
+               permission: allow
+               actions: read,modify,create,delete,replicate
+            -  FOR denyread IN [default,properties,workflow,i18n,experience-fragments,abbott,campaigns,bts,add,an,av,corp,cv,epd,nm,vc,email-templates,abbott,glucerna,abbott-platform,adc]:
+               -  path: /content/${denyread}
+                  permission: deny
+                  actions: read
+                  keepOrder: true
+               -  path: /content/dam/${denyread}
+                  permission: deny
+                  actions: read
+                  keepOrder: true
+               -  path: /content/experience-fragments/${denyread}
+                  permission: deny
+                  actions: read
+                  keepOrder: true 
+               -  path: /content/cq:tags/${denyread}
+                  permission: deny
+                  actions: read
+                  keepOrder: true                   

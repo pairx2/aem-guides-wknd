@@ -1,0 +1,37 @@
+<sly data-sly-use.searchResults="com.abbott.aem.platform.common.components.models.SearchResults"
+	data-sly-use.customConfig="com.abbott.aem.platform.common.components.models.CustomConfig"
+	data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
+<input type="hidden" name="Content-Type" value="text/plain" data-header="true" />
+<div class="container o-search-res ${wcmmode.edit ? 'p-4' : ''} ${customConfig.className}"
+	data-results-header="${searchResults.showResultCount?'true':'false'}"
+	data-results="${wcmmode.edit ? '1' : '-1'}"
+	data-js-component="search-results"
+    id="${searchResults.id}"
+	data-api-url="${searchResults.searchEndPtUrl}"
+	data-search-type="${searchResults.searchType}"
+	data-page-size="${searchResults.searchResultsPerPage}">
+	<input data-sly-test.onSuccess=${searchResults.onSuccess} type="hidden" name="onSuccess" value="${onSuccess}">
+	<div class="col-12 pb-5" >
+		<sly data-sly-include="searchresults-searchbar.html"></sly>
+		<sly data-sly-resource="${'tabsearch' @resourceType=searchResults.tabsearchProxyPath,decorationTagName='div'}" />
+	</div>
+	<div class="row o-search-res__container">
+		<div class="col-md-3">
+			<!-- /* Search Facet */-->
+			<sly data-sly-resource="${'searchfacet' @resourceType=searchResults.searchfacetProxyPath,decorationTagName='div'}" />
+			<!--/* Top Search */-->
+			<sly data-sly-include="searchresults-topsearch.html"></sly>
+		</div>
+		<div class="col-md-8">
+			<!--/* Card Carousal */-->
+			<sly data-sly-resource="${'cardcarousel' @resourceType=searchResults.cardcarouselProxyPath,decorationTagName='div'}" />
+			<!--/* Results Section */-->
+			<sly data-sly-include="searchresults-results.html"></sly>
+			<!-- /* Container to hold search results based on content type start */-->
+			<sly data-sly-resource="${'responsivegrid' @ resourceType='wcm/foundation/components/responsivegrid',decorationTagName='div'}"></sly>
+			<!-- /* Container to hold search results based on content type end */-->
+		</div>
+	</div>
+</div>
+</sly>
+<sly data-sly-call="${templates.placeholder @ isEmpty=!searchResults.searchResultsHeading}"></sly>

@@ -1,0 +1,58 @@
+<sly data-sly-use.storeUrlModel="${'com.abbott.aem.an.abbottstore.models.UrlServiceModel' @ themeType=inheritedPageProperties.themeType}"/>
+<a 
+  href="${storeUrlModel.loginUrl}"
+  class="login__popup-trigger" 
+  id="login-popup-trigger">
+    ${properties.loginLabel}<em class="ai-keyboard-down"></em>
+</a>
+
+<div class="login-modal position-absolute d-none" id="login-modal" >
+  <form name="user-login" method="POST" action="${storeUrlModel.loginUrl}Post">
+    <input type="hidden" name="form_key" value="" id="login-form-key" />
+    <div class="form-group">
+      <input 
+        type="text" 
+        class="form-control" 
+        name="login[username]"
+        id="login-username"
+		maxlength="255"
+        placeholder="${properties.emailId}" 
+        aria-describedby="usernameHelp" 
+        data-validation="required email"
+        data-error-email="Please enter a valid email address (Ex: johndoe@domain.com)." />
+      <small id="usernameHelp" class="form-text text-muted d-none">This is a required field.</small>
+    </div>
+
+    <div class="form-group">
+      <input 
+        type="password" 
+        class="form-control" 
+        name="login[password]"
+        id="login-password"
+        placeholder="${properties.emailPassword}"
+        autocomplete="off"
+        aria-describedby="passwordHelp" 
+        data-validation="required password"
+        data-error-password="Please enter 6 or more characters. Leading and trailing spaces will be ignored." />
+      <small id="passwordHelp" class="form-text text-muted d-none">This is a required field.</small>
+    </div>
+
+    <button class="login-modal__btn btn-block" type="submit">
+      ${properties.loginModalLabel}
+    </button>
+    <div class="text-center mt-md-3">
+      <a
+        href="${storeUrlModel.forgotPasswordUrl}"
+        class="login-modal__link d-inline-block"
+        >${properties.forgotPasswordLabel}</a>
+    </div>
+  </form>
+</div>
+<div class="abbott-topbar__action-link abbott-greet d-none" id="header-user-name">
+  <span class="greet-text">${properties.welcomeLabel},</span> <span class="name"></span>
+</div>
+<a href="${storeUrlModel.accountUrl}" class="abbott-topbar__action-link d-none" id="account-link">${properties.loggedInAccountLabel} </a>
+<a href="${storeUrlModel.logoutUrl}"
+  class="abbott-topbar__action-link logout-link d-none"
+  id="logout-link" >${properties.loggedOutLabel}
+</a>

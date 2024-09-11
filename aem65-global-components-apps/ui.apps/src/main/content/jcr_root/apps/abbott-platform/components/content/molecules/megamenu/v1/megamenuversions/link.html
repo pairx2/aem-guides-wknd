@@ -1,0 +1,30 @@
+<template data-sly-template.item="${@ item='The navigation item', class='class', url='url'}"
+		  data-sly-use.linkexternaltemplate="abbott-platform/components/content/atoms/link/v1/link/linkexternaltemplate.html"
+		  data-sly-use.linknormaltemplate="abbott-platform/components/content/atoms/link/v1/link/linknormaltemplate.html">
+
+	<sly data-sly-test="${item.external}">
+		<sly data-sly-call="${linkexternaltemplate.item @ id=item.id, url=url || item.URL, action=item.action, class=class, text=item.title, data=item.data}"></sly>
+	</sly>
+
+	<sly data-sly-test="${! item.external}">
+		<sly data-sly-call="${linknormaltemplate.item @ id=item.id, url=url || item.URL, action=item.action, class=class, text=item.title, data=item.data}"></sly>
+	</sly>
+
+</template>
+
+<template data-sly-template.mobileItem="${@ item='The Mobile navigation item', class='class', url='url'}"
+		  data-sly-use.linkexternaltemplateMobile="abbott-platform/components/content/atoms/link/v1/link/linkexternaltemplate.html"
+		  data-sly-use.linknormaltemplateMobile="abbott-platform/components/content/atoms/link/v1/link/linknormaltemplate.html">
+
+	<sly data-sly-test="${item.external}">
+		<sly data-sly-test.itemID = "${'{0}-{1}' @ format=['mobile' , item.id]}"/>
+		<sly data-sly-call="${linkexternaltemplateMobile.item @ id=itemID, url=url || item.URL, action=item.action, class=class, text=item.title, data=item.data}"></sly>
+	</sly>
+
+	<sly data-sly-test="${! item.external}">
+		<sly data-sly-test.itemID = "${'{0}-{1}' @ format=['mobile' , item.id]}"/>
+		<sly data-sly-call="${linknormaltemplateMobile.item @ id=itemID, url=url || item.URL, action=item.action, class=class, text=item.title, data=item.data}"></sly>
+	</sly>
+
+</template>
+

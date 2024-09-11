@@ -1,0 +1,177 @@
+<!--/* 
+* Copyright (c)  Abbott Laboratories
+* Program Name :  storygrid.html
+* Application  :  Abbott.ADC.FreeStyleLibre US
+* Purpose      :  See description
+* Description  :  This is Story Grid component to display patient stories in grid format
+* Modification History:
+* ---------------------
+*    Date                                Modified by                                       Modification Description
+*-----------                            ----------------                                    -------------------------
+*  10-Dec-2021                				IBM                                              Initial Creation
+*-----------                           ----------------                                      -------------------------
+
+*/-->
+<div data-sly-test="${wcmmode.edit && !wcmmode.preview}" class="cq-placeholder section"
+  data-emptytext="Story Grid Component">Edit Story Grid Component</div>
+
+<sly data-sly-use.storygrid="com.abbott.aem.adc.division.models.StoryGridModel">
+<input type="hidden" id="grid_11" value="${storygrid.block11Image}" />
+<input type="hidden" id="grid_12" value="${storygrid.block12Image}" />
+<input type="hidden" id="grid_13" value="${storygrid.block13Image}" />
+<input type="hidden" id="grid_14a" value="${storygrid.block14Image}" />
+<input type="hidden" id="grid_21" value="${storygrid.block21Image}" />
+<input type="hidden" id="grid_22" value="${storygrid.block22Image}" />
+<input type="hidden" id="grid_23" value="${storygrid.block23Image}" />
+<input type="hidden" id="grid_33" value="${storygrid.block33Image}" />
+
+<input type="hidden" id="cta1_14b" value="${storygrid.cta14ImageV1}" />
+<input type="hidden" id="cta1_14b_quote" value="${storygrid.cta14QuoteV1}" />
+<input type="hidden" id="cta1_14b_text" value="${storygrid.cta14TextV1}" />
+<input type="hidden" id="cta1_14b_link" value="${storygrid.cta14LinkV1}" />
+<input type="hidden" id="cta_31a" value="${storygrid.cta31Image1V1}" />
+<input type="hidden" id="cta_31a_quote" value="${storygrid.cta31QuoteV1}" />
+<input type="hidden" id="cta_31a_text" value="${storygrid.cta31TextV1}" />
+<input type="hidden" id="cta_31a_link" value="${storygrid.cta31LinkV1}" />
+<input type="hidden" id="cta_31b" value="${storygrid.cta31Image1V2}" />
+<input type="hidden" id="cta_31b_quote" value="${storygrid.cta31QuoteV2}" />
+<input type="hidden" id="cta_31b_text" value="${storygrid.cta31TextV2}" />
+<input type="hidden" id="cta_31b_link" value="${storygrid.cta31LinkV2}" />
+<input type="hidden" id="cta_31c" value="${storygrid.cta31Image1V3}" />
+<input type="hidden" id="cta_31c_quote" value="${storygrid.cta31QuoteV3}" />
+<input type="hidden" id="cta_31c_text" value="${storygrid.cta31TextV3}" />
+<input type="hidden" id="cta_31c_link" value="${storygrid.cta31LinkV3}" />
+<input type="hidden" id="cta_32a" value="${storygrid.cta32Image2V1}" />
+<input type="hidden" id="cta_32a_quote" value="${storygrid.cta32QuoteV1}" />
+<input type="hidden" id="cta_32a_text" value="${storygrid.cta32TextV1}" />
+<input type="hidden" id="cta_32a_link" value="${storygrid.cta32LinkV1}" />
+<input type="hidden" id="cta_32b" value="${storygrid.cta32Image2V2}" />
+<input type="hidden" id="cta_32b_quote" value="${storygrid.cta32QuoteV2}" />
+<input type="hidden" id="cta_32b_text" value="${storygrid.cta32TextV2}" />
+<input type="hidden" id="cta_32b_link" value="${storygrid.cta32LinkV2}" />
+
+<div class="stories-grid-container section">
+    <section class="py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <h2 class="mb-md-4 mb-2">${storygrid.header}</h2>
+                    <h4 class="mb-4 s_des mx-auto">${storygrid.description}</h4>
+                </div>
+            </div>
+            <div class="story-filter">
+                <form action="">
+                    <div class="row mb-4">
+                        <div class="filter-field col-sm-3 mb-3 mb-sm-0 pl-sm-0">
+                            <div class="select_wrapper">
+                                <select class="select form-control" id="grid_story_type" name="grid_story_type">
+                                    <option value="0">${storygrid.storyType}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="filter-field col-sm-3 mb-3 mb-sm-0 pl-sm-0">
+                            <div class="select_wrapper">
+                                <select class="select form-control" id="grid_story_topic" name="grid_story_topic">
+                                    <option value="0">${storygrid.storyTopic}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="filter-field col-sm-3 mb-3 mb-sm-0 pl-sm-0">
+                            <div class="select_wrapper">
+                                <select class="select form-control" id="grid_product" name="grid_select_product">
+                                    <option value="0">${storygrid.productType}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="filter-field col-sm-3 mb-3 mb-sm-0 pl-sm-0 pr-sm-0">
+                            <div class="select_wrapper">
+                                <select class="select form-control" id="grid_age" name="grid_select_age">
+                                    <option value="0">${storygrid.ageRange}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class='grid' id="story_grid"></div>
+            <div class="show-more-stories text-center my-4" style="display:none">
+              <div class="button link a-button a-button--primary a-button--md">
+                <a href="javascript:void(0)" class="btn">${storygrid.seeMoreText}</a>
+              </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+
+<input type="hidden" value="${storygrid.fbShareLabel}" id="fbshare"/>
+<input type="hidden" value="${storygrid.twitterShareLabel}" id="twshare"/>
+
+<div class="modal fade patient-testimonial-modal user-full-story" id="fullStory" tabindex="-1" role="dialog"
+aria-labelledby="fullStory">
+    <div class="story-nav prev-btn d-none d-md-block"><img src="${storygrid.leftArrowImage}" alt="&lt;" /></div>
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header bgYellow">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
+        <h3 class="modal-title fontMedium text-center" id="fullStory"></h3>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-xs-12 d-block d-md-none text-center px-0 mb-3">
+              <div class="story-nav prev-btn"><img src="${storygrid.leftArrowImage}" alt="&lt;" /></div>
+              <img src="" alt="" class="user-img"/>
+              <div class="story-nav next-btn"><img src="${storygrid.rightArrowImage}" alt="&gt;" /></div>
+          </div>
+          <div id="story_popup_container" class="col-md-7">
+            <h3 id="story_popup_header" class="mb-4"><em></em></h3>
+            <p id="story_popup_content" class="mb-4 mt-2">
+            </p>
+          </div>
+          <div class="col-md-5">
+            <img src="" alt="" class="user-img d-none d-md-block" />
+            <ul class="category">
+              <li>
+                <p><strong>${storygrid.storyPopupStoryType}: </strong></p>
+                <p>Person living with diabetes</p>
+              </li>
+              <li>
+                <p><strong>${storygrid.storyPopuStoryTopic}: </strong></p>
+                <p>Freedom</p>
+              </li>
+              <li>
+                <p><strong>${storygrid.storyPopupProductType}: </strong></p>
+                <p>FreeStyle Libre 14 day system</p>
+              </li>
+              <li>
+                <p><strong>${storygrid.storyPopupAgeRange}: </strong></p>
+                <p>55-64</p>
+              </li>
+            </ul>
+            <div class="mt-3 mt-md-4 mb-3 mb-md-0 tc-md">
+              <div class="button link a-button a-button--primary a-button--md">
+                <a href="${storygrid.targetLink}" class="btn">${storygrid.learnMore}</a>
+              </div>                
+            </div>
+          </div>
+			<div class="col-md-12">${storygrid.storyPopupShareStoryText}</div>
+      <div class="col-md-12 share-stroy my-3 tc-md">
+        <div class="bgGray full-width-container py-2">
+                    
+            <!-- Go to www.addthis.com/dashboard to customize your tools -->
+            <div class="addthis_inline_share_toolbox"></div>
+        
+        </div>
+      </div>
+                <div class="col-md-12 disclaimer">${storygrid.disclaimer @context="html"}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="story-nav next-btn d-none d-md-block"><img src="${storygrid.rightArrowImage}" alt="&gt;" /></div>
+</div>
+</sly>

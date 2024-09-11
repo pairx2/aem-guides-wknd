@@ -1,0 +1,49 @@
+.m-masked-container {
+    &.masked {
+        section {
+            max-height: 500px;
+            overflow: hidden;
+            position: relative;
+
+            &:after {
+                content: '';
+                display: block;
+                position: absolute;
+                background: rgb(255,255,255);
+                background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 50%, rgba(255,255,255,1) 100%);
+                width: 100%;
+                height: 100%;
+                top: 0;
+            }
+        }
+
+        .m-masked-container__login-form {
+            display: flex;
+        }
+    }
+
+    .m-masked-container__login-form {
+        display: none;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        top: -250px;
+        width: 100%;
+        z-index: 1;
+
+        > div {
+            flex-basis: 400px;
+        }
+    }
+
+    .aem-AuthorLayer-Edit &.masked {
+        section {
+            max-height: initial;
+            overflow: visible;
+
+            &:after {
+                display: none;
+            }
+        }
+    }
+}

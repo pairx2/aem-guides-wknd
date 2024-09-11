@@ -1,0 +1,31 @@
+# authoring groups for APOC 
+
+-  DEF groupPrefixAll="APP-Adobe-AEM-DM-ALL"
+-  group_config:
+   -  ${groupPrefixAll}-ardx-apoc-content-editor:
+        -  name: ARDX APOC Content Editor
+           description: Country Specific Content Editor
+           isMemberOf: ardx-base
+           externalId: ${groupPrefixAll}-ardx-apoc-content-editor;ims
+   -  ${groupPrefixAll}-ardx-apoc-admin-content-editor:
+        -  name: ARDX APOC Admin Content Editor
+           description: Country Specific Admin Content Editor
+           isMemberOf: ardx-base
+           externalId: ${groupPrefixAll}-ardx-apoc-admin-content-editor;ims            
+    
+            
+-  ace_config:
+   -  ${groupPrefixAll}-ardx-apoc-content-editor:
+        -  path: /content/ardx/globalpointofcare/language-masters
+           permission: allow
+           actions: create,modify,delete
+           restrictions:
+            rep:glob: '*/apoc/*'
+   -  ${groupPrefixAll}-ardx-apoc-admin-content-editor:
+        -  path: /content/ardx/globalpointofcare/language-masters
+           permission: allow
+           actions: create,modify,delete,replicate
+           restrictions:
+            rep:glob: '*/apoc/*'
+
+        

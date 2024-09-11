@@ -1,0 +1,209 @@
+/**********************************
+Card-Carousel Component
+**********************************/
+//Style system for image carousel component
+.o-cards-carousel {
+    &.image-cards-carousel {
+        .abt-icon-right-arrow {
+            height: 60px;
+            width: 60px;
+            right: -60px;
+
+            &:before {
+                font-size: 40px;
+                color: @abbott-light-gray;
+            }
+        }
+
+        .abt-icon-left-arrow {
+            height: 60px;
+            width: 60px;
+            left: -60px;
+
+            &:before {
+                font-size: 40px;
+                color: @abbott-light-gray;
+            }
+        }
+
+        .slick-dots .slick-active button {
+            background-color: @abbott-primary-blue  !important;
+            border: none;
+        }
+
+        .slick-dots button {
+            border: none;
+            background-color: @abbott-silver;
+        }
+
+        .cmp-image .cmp-image__image {
+            height: 100%;
+        }
+
+        .cmp-image .cmp-image__image:hover {
+            filter: brightness(50%);
+        }
+    }
+
+    //Style System to display left and right icons in tablet view
+    &.o-cards-carousel--display-icons--tablet-view {
+        @media @lg-only {
+
+            .abt-icon-left-arrow,
+            .abt-icon-right-arrow {
+                display: block !important;
+            }
+        }
+    }
+
+    //Style system to match look of products image section panel in 6.3
+    &.products-image-panel {
+
+        &.o-cards-carousel .slick-slide>div,
+        .o-cards-carousel .slick-slide>div>* {
+            height: unset;
+        }
+
+        //desktop/ipad  carousel icon styles
+        .abt-icon {
+            &.slick-arrow {
+                height: 64px !important;
+                width: 64px !important;
+            }
+
+            &:before {
+                color: @abbott-light-gray;
+                font-size: 4rem;
+
+                @media @lg-only {
+                    font-size: 55px;
+                }
+            }
+
+            &.slick-prev {
+                left: -9%;
+                top: 43%;
+
+                @media @lg-only {
+                    display: block !important;
+                    left: -9%;
+                }
+            }
+
+            &.slick-next {
+                right: -9%;
+                top: 41%;
+
+                @media @lg-only {
+                    display: block !important;
+                    right: -9%;
+                }
+            }
+        }
+
+        .slick-list {
+            .slick-slide {
+                height: 320px;
+
+                @media @lg-only {
+                    height: 320px;
+                }
+
+                @media @md-down {
+                    border: 1px solid @abbott-light-gray;
+                    height: 385px;
+                }
+            }
+
+            .m-card {
+                background: @white;
+                margin-right: 3px;
+
+                .m-card__media {
+                    height: 160px !important;
+                }
+
+                @media @md-down {
+                    margin-right: 0;
+                }
+
+                .m-card-link {
+
+                    &:hover,
+                    &:active,
+                    &:focus {
+
+                        .m-card__body .m-card__title,
+                        .m-card__body .m-card__title *,
+                        .m-card__body .m-card__description,
+                        .m-card__body .m-card__description * {
+                            color: @abbott-card-carousel-hover-color;
+                        }
+                    }
+                }
+
+                //mobile view button styles
+                .m-card__body {
+                    --card-body-padding: 1rem 0.2rem;
+
+                    & .m-card__description {
+                        padding: 0.7rem 0;
+                    }
+
+                    & * {
+                        line-height: 1.3em;
+                        margin: 0;
+                    }
+                }
+
+                .nonClickableLink {
+                    & p {
+                        &:after {
+                            content: "^";
+                            font-size: 1.3rem;
+                            left: 100%;
+                            position: absolute;
+                            top: 0;
+                            transform: rotate(90deg);
+                        }
+
+                        &:empty:after {
+                            left: 50% !important;
+                            right: 50%;
+                            transform: translateY(-100%) rotate(90deg);
+                        }
+                    }
+
+                    background:@abbott-bastille;
+                    color: @abbott-card-carousel-button-color;
+                    display:none;
+                    margin: auto;
+                    padding:5px;
+                    text-align: center;
+                    width: 100%;
+
+                    & * {
+                        display: inline-block;
+                        font-family: @font-helvetica-neue  !important;
+                        margin: 0 5px 0 0;
+                        position: relative;
+                        text-transform: uppercase;
+                    }
+
+                    @media @md-down {
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
+
+    // Style system to have the arrow indicators white in color
+    &.arrow-indicators--white {
+
+        .abt-icon-left-arrow:before,
+        .abt-icon-right-arrow:before {
+            color: @white  !important;
+        }
+    }
+}

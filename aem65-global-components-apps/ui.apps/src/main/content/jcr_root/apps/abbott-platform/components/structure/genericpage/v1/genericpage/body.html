@@ -1,0 +1,90 @@
+<!--/*
+Overriding the body.html from page v2 of core.
+This is to add the header, footer, breadcrumb, etc for every page.
+*/-->
+<div class="abbott-wrapper" data-sly-use.page="com.abbott.aem.platform.common.components.models.PlatformPage">
+	<div class="m-alert--wrapper ${page.alertSticky ? 'm-alert--sticky' : ''}" data-sly-test="${page.alertFragmentPath && page.alertAboveHeader}"
+    	 data-sly-resource ="${@path=page.alertFragmentPath, selectors='content', wcmmode='disabled'}">
+    </div>
+
+	<sly data-sly-test="${page.headerFragmentPath}"
+    	 data-sly-resource ="${@path=page.headerFragmentPath, selectors='content', wcmmode='disabled'}">
+    </sly>
+
+    <div class="m-alert--wrapper" data-sly-test="${page.alertFragmentPath && !page.alertAboveHeader}"
+    	 data-sly-resource ="${@path=page.alertFragmentPath, selectors='content', wcmmode='disabled'}">
+    </div>
+
+    <div class="a-backtotop--wrapper" data-sly-test="${page.backToTopFragmentPath && !page.hideBackToTopFromChildPages}">
+        <sly data-sly-test="${page.backToTopFragmentPath}" data-sly-resource ="${@path=page.backToTopFragmentPath, selectors='content', wcmmode='disabled'}"></sly>
+    </div>
+</div>
+
+<input type="hidden" name="x-preferred-language" value="${page.languageCode}" data-header="true"/>
+<input type="hidden" name="x-country-code" value="${page.countryCode}" data-header="true"/>
+<input type="hidden" name="x-application-id" value="${page.sitename}" data-header="true"/>
+<input type="hidden" id="session-api-url" value="${page.sessionEndPointURL}"/>
+<input type="hidden" name="search-register-api-url" value="${page.searchRegisterEndPointURL}"/>
+
+<input type="hidden" name="data-cookie-expire-period" value="${page.cookieExpirationTime}" />
+<input type="hidden" name="data-create-cookie-response" value="${page.cookieHidden}" />
+
+<div id="pageContent" >
+<sly data-sly-use.templatedContainer="com.day.cq.wcm.foundation.TemplatedContainer"
+     data-sly-repeat.child="${templatedContainer.structureResources}"
+     data-sly-resource="${child.path @ resourceType=child.resourceType, decorationTagName='div'}"></sly>
+</div>
+<div class="abbott-wrapper">
+    <sly data-sly-test.authorMode="${wcmmode.edit}"></sly>
+    <div class="${authorMode?'cookie-bar-edit' :''}">
+		<sly data-sly-test="${page.cookieFragmentPath}" data-sly-resource ="${@path=page.cookieFragmentPath, selectors='content', wcmmode='disabled'}"></sly>
+	</div>
+    <sly data-sly-test="${page.footerFragmentPath}" data-sly-resource ="${@path=page.footerFragmentPath, selectors='content', wcmmode='disabled'}"></sly>
+</div>
+
+<div id="site-leaving-popup-content" class="${wcmmode.edit ? '' : 'modal'}">
+    <div class="m-popup-content">
+        <sly data-sly-test="${page.siteLeavingPopupFragmentPath}" data-sly-resource="${@path=page.siteLeavingPopupFragmentPath, selectors='content', wcmmode='disabled'}"></sly>
+    </div>
+</div>
+<!-- Block for site entering popup starts-->
+<div id="site-entering-popup-content" class="${wcmmode.edit ? '' : 'modal'}" data-api-url="${page.geolocationEndPointURL}" 
+	data-wcm-edit-mode = "${wcmmode.edit ? 'true' : 'false'}"
+	data-site-entering-popup-required = "${page.siteEnteringPopupFragmentPath ? 'true' : 'false'}">
+	<div class="m-popup-content">
+        <sly data-sly-test="${page.siteEnteringPopupFragmentPath}" data-sly-resource="${@path=page.siteEnteringPopupFragmentPath, selectors='content', wcmmode='disabled'}"></sly>
+    </div>
+</div>
+<!-- Block for site entering popup ends-->
+<sly data-sly-test="${page.siteEnteringPopupNoGeoFragmentPath}" >
+	<div id="site-entering-popup-nogeo-content" class="popup-wrapper" style="display:none" data-wcm-edit-mode = "${wcmmode.edit ? 'true' : 'false'}">
+		<div class="m-popup-content">
+			<div class="popup-container">
+				 <div class="popup-text notes">
+					<sly data-sly-resource="${@path=page.siteEnteringPopupNoGeoFragmentPath, selectors='content', wcmmode='disabled'}"></sly>
+				</div>
+			</div>
+		</div>
+	</div>
+</sly>
+<sly data-sly-test="${page.siteSectionSpecificFragmentPath}" >
+	<div id="site-section-popup-content" class="popup-wrapper" style="display:none" data-wcm-edit-mode = "${wcmmode.edit ? 'true' : 'false'}">
+		<div class="m-popup-content">
+			<div class="popup-container" >
+				 <div class="popup-text notes">
+					<sly data-sly-resource="${@path=page.siteSectionSpecificFragmentPath, selectors='content', wcmmode='disabled'}"></sly>
+				</div>
+			</div>
+		</div>
+	</div>
+</sly>
+<div id="tender-product-disclaimer-content" class="popup-wrapper" style="display:none" data-wcm-edit-mode = "${wcmmode.edit ? 'true' : 'false'}">
+	<div class="m-popup-content">
+		<div class="popup-container" >
+			 <div class="popup-text notes">
+				<span id="tender-product-disclaimer-palceholder"></span>		
+			</div>
+		</div>
+	</div>
+</div>
+

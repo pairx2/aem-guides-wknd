@@ -1,0 +1,17 @@
+<sly data-sly-test="${WCMMode.edit}"> Edit the Faq Result Item (QnA) Component</sly>
+<sly data-sly-use.faqitem="com.abbott.aem.adc.division.models.FaqResultItemQnA">
+  <div data-sly-test.faqData="${faqitem.faqTitle && faqitem.faqDescription}" class="container" itemscope itemtype="https://schema.org/FAQPage">
+    <article class="a-result a-result--border-bottom a-result-faq" itemscope itemprop="mainEntity"
+             itemtype="https://schema.org/Question">
+      <h3 class="a-result__title" itemprop="name">${faqitem.faqTitle @ context='html' }</h3>
+      <div itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+        <div class="a-result__description" itemprop="text"> ${faqitem.faqDescription @ context='html'}</div>
+      </div>
+    </article>
+  </div>
+  <div class="container" data-sly-test="${!faqData}">
+    <article class="a-result a-result--border-bottom a-result-faq">
+      ${faqitem.noFaqText @ context='html'}
+    </article>
+  </div>
+</sly>

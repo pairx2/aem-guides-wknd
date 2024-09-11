@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Cart List"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/tabs">
+                <items jcr:primaryType="nt:unstructured">
+                    <general
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="General"
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+                            <cartHeading
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Cart Heading"
+                                name="./cartHeading"/>
+                            <colHeader1
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Product Column Heading"
+                                name="./productColHeading"/>
+                            <colHeader2
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Quantity Column Heading"
+                                name="./qtyColHeading"/>
+                            <colHeader3
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Price Column Heading"
+                                name="./priceColHeading"/>
+                            <checkout-page
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="/libs/granite/ui/components/coral/foundation/form/pathfield"
+                                    fieldLabel="Checkout Page"
+                                    rootPath="/content/adc/freestylelibrede"
+                                    name="./checkoutPage"/>
+                            <login-page
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="/libs/granite/ui/components/coral/foundation/form/pathfield"
+                                    fieldLabel="Login Page"
+                                    rootPath="/content/adc/freestylelibrede"
+                                    name="./loginPage"/>
+                        </items>
+                    </general>
+                    <empty-cart
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Empty Cart"
+                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+                            <emptyCartMsg
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldLabel="Empty Cart Message"
+                                    name="./emptyCartMsg"/>
+                            <emptyCartImg
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="/libs/granite/ui/components/coral/foundation/form/pathfield"
+                                    fieldLabel="Empty Cart Image"
+                                    name="./emptyCartImg"/>
+                            <emptyCartCtaDest
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="/libs/granite/ui/components/coral/foundation/form/pathfield"
+                                    fieldLabel="Empty Cart CTA destination"
+                                    name="./emptyCartCtaDest"/>
+                            <emptyCartCta-action
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="/libs/granite/ui/components/coral/foundation/form/select"
+                                    fieldDescription="Select to open the link in a new tab or the existing tab."
+                                    fieldLabel="New Tab ?"
+                                    name="./emptyCartCtaTarget">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <new-tab
+                                            jcr:primaryType="nt:unstructured"
+                                            text="Open in New Tab"
+                                            value="_blank"/>
+                                    <existing-tab
+                                            jcr:primaryType="nt:unstructured"
+                                            text="Open in Existing Tab"
+                                            value="_self"/>
+                                </items>
+                            </emptyCartCta-action>
+                            <emptyCartCta-style
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="/libs/granite/ui/components/coral/foundation/form/select"
+                                    fieldDescription="CTA Style"
+                                    fieldLabel="Empty Cart CTA Style"
+                                    name="./emptyCartCtaStyle">
+                                <datasource
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="abbott-platform/datasource/generic-list"
+                                        path="/apps/adc/freestylelibrede/authoring/datasources/cta-types"/>
+                            </emptyCartCta-style>
+                        </items>
+                    </empty-cart>
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>

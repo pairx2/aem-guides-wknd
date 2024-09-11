@@ -1,0 +1,40 @@
+<!--/* VARIATION - GLUCERNA */-->
+<template data-sly-template.template="${@ relativeResourcePath}">
+    <sly data-sly-use.templates="abbott/components/content/templates.html"/>
+    <sly
+        data-sly-call="${templates.includeResource @ relativeResourcePath=relativeResourcePath, nodeName='notification', slingResourceType='abbott/components/content/notification-menu'}"
+    />
+    <!-- GlucernaStore: HEADER-->
+    <header class="glucerna-header ${properties.isSticky ? 'is-sticky': ''}">
+        <div class="container glucerna-header__container">
+            <div class="row">
+            <div class="col-3 col-md-5 col-lg-6 align-self-center">
+                <div class="glucerna-header__logo float-left">
+					<sly data-sly-call="${templates.includeResource @ relativeResourcePath=relativeResourcePath, nodeName='logo', slingResourceType='abbott/components/content/logo'}"/>
+                </div>
+            </div>
+            <div class="col-9 col-md-7 col-lg-6 align-self-center">
+                <div class="glucerna-header__actions">
+                <ul class="glucerna-header__actions-list">
+                    <li class="action__trail">
+                     <sly data-sly-call="${templates.includeResource @ relativeResourcePath=relativeResourcePath, nodeName='ctabutton', slingResourceType='abbott/components/content/ctabutton'}"/>
+                    </li>
+                    <li>
+                        <span></span>
+                    </li>
+                    <li class="action__login">
+                    <sly data-sly-call="${templates.includeResource @ relativeResourcePath=relativeResourcePath, nodeName='login', slingResourceType='abbott/components/content/login'}"/>
+                    </li>
+                </ul>
+                </div>
+            </div>
+            </div>
+        </div>
+        <div class="glucerna-header__marketing-banner">
+            <sly data-sly-call="${templates.includeResource @ relativeResourcePath=relativeResourcePath, nodeName='sticky-menu', slingResourceType='abbott/components/content/sticky-menu'}"/>
+        </div>
+    </header>
+    <div class="container">
+        <div id="app-message" class="app-message"></div>
+    </div>
+</template>

@@ -1,0 +1,349 @@
+// Styles for the container that has the search & sort dropdowns
+
+.instruments-lab-incidents-link {
+  margin-bottom: 3%;
+  font-size: .75em;
+}
+
+.instrument-search {
+  position: relative;
+  margin-bottom: -2rem;
+
+  tr {
+    border-bottom: 0.5px solid var(--gray-lightest-color);
+  }
+
+  th {
+    padding: 18px 18px 6px 18px;
+
+    span.up {
+      margin-left: 4px;
+    }
+
+    &.sortable {
+      cursor: pointer;
+    }
+  }
+
+  td {
+    padding: 25px 10px 15px 10px;
+    vertical-align: top;
+  }
+
+  th,
+  td {
+    font-family: var(--label-font-family);
+    font-size: 14px;
+    font-weight: normal;
+
+    .a-link__text {
+      text-decoration: underline;
+    }
+  }
+
+  .title {
+    color: var(--secondary-50-color);
+    font-family: var(--heading-1-hero-font-family);
+    font-size: 20px;
+    font-weight: 500;
+
+    @include media-breakpoint-down(sm) {
+      display: none;
+    }
+  }
+
+  .result-numbers {
+    font-weight: bolder;
+    font-size: 14px;
+    color: var(--secondary-75-color);
+  }
+
+  .download {
+    margin: 15px 0px 15px;
+
+    .btn {
+      line-height: 10px;
+      font-weight: 500;
+    }
+  }
+
+  table {
+    column-count: 4;
+
+    th {
+      font-family: var(--heading-2-font-family);
+      color: var(--primary-color);
+
+      span.up {
+        color: var(--charcoal-75-color);
+      }
+    }
+  }
+
+  @include media-breakpoint-down(sm) {
+    thead {
+      display: none;
+    }
+
+    table tbody tr {
+      border: 2px solid var(--secondary-50-color);
+      display: block;
+      border-radius: 10px;
+      margin: 10px 0px 10px;
+
+      td {
+        display: flex;
+        border-bottom: unset;
+        justify-content: center;
+        padding: 5px;
+
+        &.checkbox {
+          justify-content: flex-start;
+
+        }
+
+        &:first-child {
+          border-radius: 10px 0 0 10px;
+        }
+
+        &:last-child {
+          border-radius: 0 10px 10px 0;
+        }
+
+        .product_Name {
+          display: none;
+        }
+
+      }
+
+    }
+
+    table tbody td {
+      &[data-th]::before {
+        content: attr(data-th);
+      }
+
+      &.cplotnumber {
+        font-weight: 700;
+      }
+    }
+
+  }
+
+
+}
+
+// Styles specifically for mobile phones
+
+@include media-breakpoint-down(sm) {
+  .instrument-product-filter {
+    width: 100%;
+  }
+
+  .instrument-search {
+    width: 92%;
+    justify-content: center;
+    margin-left: 3%;
+    margin-bottom: -2rem;
+  }
+
+  .instrument-results-container {
+    margin-top: 4rem;
+    justify-content: center;
+    margin-left: 0px;
+    width: 92%;
+  }
+
+  .instrument-pin-sort {
+    width: 100%;
+  }
+
+}
+
+// Styles for the container that has the instrument cards
+
+.instrument-results-container {
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  column-gap: 15px;
+  row-gap: 10px;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-content: flex-start;
+}
+
+.instrument-card-item {
+  display: flex;
+  flex: 0 1 auto;
+  align-self: flex-start;
+}
+
+
+.instrument-search-input-section {
+  display: flex;
+  width: 100%;
+  column-gap: 10px;
+
+  .flex-2 {
+    flex: 2 !important;
+  }
+
+  @include media-breakpoint-down(sm) {
+    display: block;
+
+    // this class serves both Product Type and Name/Serial Number dropdowns
+    .instrument-product-filter {
+      width: 100%;
+    }
+
+    .instrument-pin-sort {
+      width: 100%;
+    }
+  }
+
+  .a-dropdown {
+    flex: 1;
+  }
+
+  .a-button {
+    display: block !important;
+    align-self: flex-end;
+    padding-bottom: 32px;
+
+    button {
+      padding-top: 15px;
+      padding-bottom: 15px;
+    }
+  }
+}
+
+.instrument-product-filter {
+  width: 40%;
+}
+
+.instrument-pin-sort {
+  width: 20%;
+}
+
+.custom-search-results {
+  &.loading {
+    filter: grayscale(1);
+    opacity: 0.5;
+    min-height: 300px;
+  }
+
+  &__loading-mask {
+    position: absolute;
+    width: 100%;
+    top: 100px;
+  }
+}
+
+// Media queries for other sizes - keeping the cards centered as a group and left-justified 
+
+@media (min-width: 576px) {
+  .instrument-results-container {
+    margin-left: 20%;
+  }
+}
+
+@media screen and (mid-width: 720px) {
+  .instrument-results-container {
+    margin-left: 15%;
+  }
+}
+
+@media (min-width: 720px) {
+  .instrument-results-container {
+    margin-left: 15%;
+  }
+}
+
+@media (min-width: 768px) {
+  .instrument-results-container {
+    margin-left: 10%;
+  }
+}
+
+@media (min-width: 992px) {
+  .instrument-results-container {
+    margin-left: 7.5%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .instrument-results-container {
+    margin-left: 2%;
+  }
+}
+
+.my-instruments-header {
+  font-family: #{$base-font-family};
+  font-size: 1.5em;
+  margin-right: 5px;
+  color: var(--secondary-75-color);
+  padding-bottom: 2%;
+}
+
+.instrument-header-tooltip {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  .tooltip-inner{
+    width: 100%;
+    max-width: 300px!important;
+  }
+  .tooltip {
+    margin: 0;
+    opacity: 1;
+    z-index: 1050;
+  }
+  .bs-tooltip-bottom {
+    margin-left: 13px;
+    right: 13px;
+    .arrow {
+      top: 0px;
+      right: 10px;
+    }
+  }
+
+  .bs-tooltip-right {
+    left: auto;
+    top: -13px;
+    margin-left: 20px;
+    .arrow {
+      top: 17px;
+    }
+  }
+
+  .my-instruments-header-container{
+    display: flex;
+
+    .a-tooltip {
+      top: 5px;
+      left: 5px;
+      position: relative;
+    }
+    .tooltip {
+      left: -96px;
+      top: 24px;
+      margin-left: 0;
+      right: auto;
+    }
+    .tooltip-inner{
+      width: 200px;
+      max-width: 300px!important;
+    }
+    .arrow {
+      display: none;
+    }
+  }
+}
+
+@include media-breakpoint-down(md) {
+  .my-instrument-header-tooltip{
+    display: block;
+  }
+}

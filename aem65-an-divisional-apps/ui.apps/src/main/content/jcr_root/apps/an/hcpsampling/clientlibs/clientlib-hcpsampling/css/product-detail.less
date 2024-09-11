@@ -1,0 +1,188 @@
+@import './global/variables.less';
+@import './global/mixins.less';
+
+.cmp-product-detail {
+  .cmp-carousel {
+    padding: 0 50px;
+  }
+
+  .a-dropdown__container .a-dropdown__menu li {
+    padding: 15px;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &__dropdowns {
+    margin-top: 25px;
+  }
+
+  &__buttons {
+    .button:first-child {
+      margin-bottom: 16px;
+    }
+    @media @md-up {
+      display: flex;
+      margin: auto 0 35px 0;
+      .button:first-child {
+        margin-right: 16px;
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &__clinical-information {
+    margin-top: 35px;
+    @media @md-up {
+      margin-bottom: 35px;
+    }
+  }
+
+  &__gratis-error {
+    margin-left: -22px;
+    a {
+      padding: 7px 10px 0 11px;
+    }
+    &.warning a {
+      color: #e4002b;
+    }
+  }
+}
+
+.cmp-product-detail__formulation-dropdown,
+.cmp-product-detail__serving-dropdown {
+  margin-bottom: 16px;
+  @media @lg-up {
+    width: 325px;
+  }
+}
+
+.cmp-product-detail__formulation-filter {
+  .cmp-product-detail__formulation-filter--item {
+    display: none;
+    &:first-child {
+      display: block;
+    }
+  }
+}
+
+.cmp-product-detail__serving-filter {
+  .cmp-product-detail__serving-filter--item {
+    display: none;
+    &:first-child {
+      display: block;
+    }
+  }
+}
+
+// Product Detail Tables
+.cmp-product-detail__nutrition-tables {
+  @media @md-up {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  table {
+    align-self: flex-start;
+    color: @color-dark-blue;
+    margin-bottom: 48px;
+    border:none;
+
+    @media @md-down {
+      width: 100%;
+    }
+
+    th {
+      @media @md-down {
+        text-align: center;
+      }
+    }
+  }
+
+  table:first-child {
+    width: 100%;
+  }
+
+  table + table {
+    @media @md-up {
+      margin-right: 16px;
+      flex: 1;
+      th {
+        text-align: center;
+      }
+    }
+  }
+
+  table + table + table {
+    @media @md-up {
+      margin-right: 0;
+      margin-left: 16px;
+    }
+  }
+
+  th, td {
+    padding: 12px;
+    border-left:none;
+    border-right:none;
+  }
+
+  tr:first-child {
+    th {
+      //border-top-color:@color-medium-grey;
+      //border-right-color:@color-medium-grey;
+      //border-left-color:@color-medium-grey;
+      border-color:@color-medium-grey;
+    }
+  }
+
+  th {
+    font-size: 1.25rem;
+    font-weight: normal;
+    white-space: nowrap;
+    background-color: @color-medium-grey;
+  }
+
+  td {
+    border:none;
+    border-bottom: 1px solid @color-medium-grey;
+    font-size: 1rem;
+  }
+
+  th:first-child,
+  td:first-child {
+    @media @md-up {
+      padding-left: 38px;
+    }
+  }
+
+  th:last-child,
+  td:last-child {
+    @media @md-up {
+      padding-right: 38px;
+    }
+  }
+
+  th + th,
+  td + td {
+    text-align: right;
+  }
+
+  tr + tr th {
+    background-color: @color-lighter-grey;
+    text-align: right;
+    font-size: 0.75rem;
+    border-left-color:@color-lighter-grey;
+    border-right-color:@color-lighter-grey;
+  }
+}
+
+[id^=gratisError] {
+  display: none;
+}
+
+#gratisErrorModal-modal .text {
+  margin: 0;
+}

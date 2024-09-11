@@ -1,0 +1,385 @@
+@import "./global/mixins.less";
+@import './global/variables.less';
+
+#ph-sample-request-strip {
+    &, &--gold {
+        --light-bg: rgba(0, 156, 222, 0.1);
+    
+        > .row {
+            align-items: center;
+            position: relative;
+            flex-flow: row nowrap;
+    
+            @media @lg-up {
+                &:before {
+                    content: "";
+                    position: absolute;
+                    width: 100%;
+                    height: 50%;
+                    min-height: 130px;
+                    background: var(--light-bg);
+                }
+            }
+    
+            @media @lg-down {
+                text-align: center;
+                flex-flow: column nowrap;
+    
+                > [class*="col-"] {
+                    flex: 0 0 100%;
+                    max-width: 100%;
+                    position: relative;
+                    margin-bottom: 0;
+    
+                    &:before {
+                        content: "";
+                        position: absolute;
+                        top: 0;
+                        width: 100%;
+                        height: 100%;
+                        background: var(--light-bg);
+                        left: 0;
+                        z-index: -1;
+                    }
+                }
+    
+                > :nth-child(1) {
+                    padding-top: 40px;
+                    padding-bottom: 20px
+                }
+    
+                > :nth-child(2) {
+                    order: 2;
+    
+                     &:before {
+                        height: 50%;
+                    }
+                }
+    
+                > :nth-child(3) {
+                    padding-bottom: 35px;
+                }
+    
+                .a-button .btn {
+                    width: 100%;
+                }
+            }
+    
+            @media @sm-down {
+                > [class*="col-"] {
+                    &:before {
+                        width: calc(~"100% + 30px");
+                        left: -15px;
+                    }
+                }
+    
+            }
+    
+            @media @lg-up {
+                > :nth-child(1) {
+                    padding-left: 44px;
+                }
+        
+                > :nth-child(3) {
+                    padding-right: 44px;
+                }
+            }
+    
+            .image {
+                .cmp-image__image {
+                    width: auto;
+                    height: 236px;
+                }
+            }
+        }
+    }
+
+    &--gold {
+        --light-bg: rgba(197, 138, 53, 0.1);
+
+        .a-button {
+            --button-primary-bg: #C58A35 !important;
+        }
+    }
+}
+
+#ph-latest-promotions {
+    .columncontrol__column {
+        @media @lg-down {
+            padding: 0;
+        }
+    }
+
+    .m-card {
+        width: 100%;
+
+        &:before {
+            display: none;
+        }
+
+        &__media {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 100%;
+        }
+
+        &__body {
+            padding-left: 0;
+            padding-right: 0;
+
+            @media @lg-down {
+                padding-bottom: 0;
+            }
+        }
+    }
+}
+
+#ph-life-stages {
+    &--left, &--right {
+        padding: 0;
+
+        > .row {
+            > .columncontrol__column {
+                @media @lg-down {    
+                    -webkit-box-flex: 0;
+                    -ms-flex: 0 0 100%;
+                    flex: 0 0 100%;
+                    max-width: 100%;
+                }
+
+                @media @lg-down {    
+                    margin-bottom: 30px;
+
+                    &:last-child {
+                        margin-bottom: 0;
+                    }
+                }
+
+                > .container {
+                    padding: 0;
+
+                    .columncontrol {
+                        margin-bottom: 0;
+
+                        + .columncontrol {
+                            margin-top: 20px;
+                        }
+
+                        .container {
+                            padding: 0;
+            
+                            .columncontrol__column {
+                                margin-bottom: 0;
+            
+                                @media @md-down {
+                                    + .columncontrol__column {
+                                        margin-top: 20px;
+                                    }
+                                }
+            
+                                .a-button {
+                                    --button-tertiary-bg: #EFEFEF;
+                                    --button-tertiary-color: #212121;
+            
+                                    margin-bottom: 0; 
+            
+                                    + .a-button {
+                                        margin-top: 20px;
+                                    }
+                
+                                    &--tertiary {
+                                        .btn {
+                                            --button-border-radius: 5px;
+                                            --button-padding: 14px 60px 11px 20px;
+                
+                                            text-align: left;
+                                            padding: var(--button-padding);
+                                            width: 100%;
+                                            display: flex;
+                                            align-items: center;
+                                            text-transform: none;
+                                            font-size: @font-size-base;
+                                            line-height: 20px;
+                                            min-height: 66px;
+            
+                                            span {
+                                                padding-right: 0;
+                                            }
+                
+                                            .abt-icon {
+                                                top: 50%;
+                                                transform: translateY(-50%);
+                                                border: var(--button-icon-border);
+                                                color: var(--button-icon-color);
+                                                border-radius: 50%;
+                                                font-weight: bold;
+                                                padding: 5px;
+                                            }
+            
+                                            &:hover {
+                                                background: var(--button-tertiary-bg);
+            
+                                                .abt-icon {
+                                                    &:before {
+                                                        color: var(--button-icon-color);
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+
+        .title {
+            margin-bottom: 0;
+
+            + .text {
+                margin-top: 12px;
+            }
+        }
+
+        .text {
+			@media @md-down {
+                margin-bottom: 0;
+                
+                + .container {
+                    margin-top: 35px;
+                }
+            }
+        }
+
+        .image {
+            @media @lg-up {
+                margin-right: 48px;
+            }
+
+            img {
+                border-radius: 8px;
+            }
+        }
+    }
+
+    &--right {
+        .image {
+            @media @lg-up {
+                margin-right: 0;
+                margin-left: 48px;
+            }
+        }
+
+        > .row {
+            @media @lg-down {    
+                flex-direction: column-reverse;
+
+                .columncontrol__column {
+                    margin-bottom: 0;
+
+                    &:last-child {
+                        margin-bottom: 30px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Our leading brands 
+#ph-our-brands {
+    padding: 0;
+    .image {
+		margin-bottom: 15px;
+    }
+    .title {
+        margin: 0;
+    }
+
+    .row {
+        @media @md-down {
+            justify-content: left;
+        }
+    }
+
+    .columncontrol__column {
+		width: 25%;
+        flex: none;
+
+        @media @md-down {
+            width: 50%;
+            margin-bottom: 20px;
+        }
+
+        .image {
+            margin-bottom: 5px;
+
+            img {
+				border-radius: 10px 10px 0 0;
+            }
+        }
+
+        .title {
+            .cmp-title__text {
+                margin-bottom: 5px;
+            }
+        }
+
+        .text {
+            margin: 0;
+            p {
+				margin-bottom: 10px;
+            }
+
+            a {
+                text-decoration: underline;
+                font-weight: bold;
+            }
+        }
+    }
+}
+.columncontrol-tab-mb-0 {
+	.columncontrol__column {
+		@media @lg-down {
+			margin-bottom: 0 !important;
+		}
+	}
+}
+
+// homecare connect page
+.homecare-connect{
+    .cmp-container{
+        .columncontrol{
+            .columncontrol__column{
+                @media @md-down{
+                    margin-bottom: 0 !important;
+                }
+                .m-card{                   
+                    .m-card__body{
+                        .m-card__description{
+                            --card-description-color-light: #616161;
+                            p{
+                                font-family: 'Noto Sans', sans-serif;
+                                white-space: nowrap;
+                            }
+                        }
+                        .m-card__title{
+                            color: #004F71;
+                            text-align: center;
+                            font-size: 24px;
+                            line-height: normal;
+                        }
+                    }
+                    &::before{
+                        border: none;
+                        box-shadow: none;
+                    }
+                }
+            }
+        }
+    }
+}

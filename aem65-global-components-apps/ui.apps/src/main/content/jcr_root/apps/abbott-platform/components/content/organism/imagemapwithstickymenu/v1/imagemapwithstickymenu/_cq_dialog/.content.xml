@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Image Map With Sticky menu"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+        granite:class="cmp-image__editor"
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                maximized="{Boolean}true">
+                <items jcr:primaryType="nt:unstructured">
+                    <imagemapconfig
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Image Map Config"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <hideStickyMenu
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                fieldDescription="Please specify if sticky menu needs to be hidden"
+                                                name="./hideStickyMenu"
+                                                text="Hide Sticky Menu"
+                                                uncheckedValue="false"
+                                                value="{Boolean}true"/>
+                                            <viewstorytext
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="View Story text"
+                                                name="./viewStoryText"/>
+                                            <choseanotherstorytext
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Choose Another Story text"
+                                                name="./mapTitle"/>
+                                            <backtomap
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Back to Map Text"
+                                                name="./backToMap"/>
+                                            <selecttext
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Dropdown Select text"
+                                                id="title"
+                                                name="./select"/>
+                                            <iconcolor
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/colorfield"
+                                                fieldDescription="Please specify the color of the icon in map"
+                                                fieldLabel="Icon Color"
+                                                name="./iconColor"/>
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </imagemapconfig>
+                    <mapconfig
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Story Config"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <popupPosition
+                                                granite:class="cq-dialog-dropdown-showhide-multival"
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                fieldLabel="Select Compnent Type"
+                                                id="component type"
+                                                name="./variation">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <default
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="Default"
+                                                        value="default"/>
+                                                    <compact
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="Compact"
+                                                        value="compact"/>
+                                                </items>
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    cq-dialog-dropdown-showhide-target=".popupPosition-showhide"/>
+                                            </popupPosition>
+                                            <contents
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                                composite="{Boolean}true"
+                                                fieldDescription="Add stories by clicking Add"
+                                                fieldLabel="Content config">
+                                                <field
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/container"
+                                                    name="./contentConfig">
+                                                    <layout
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                                        margin="{Boolean}false"/>
+                                                    <items jcr:primaryType="nt:unstructured">
+                                                        <storypositon
+                                                            granite:class="popupPosition-showhide"
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                            <items jcr:primaryType="nt:unstructured">
+                                                                <popupPosition
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                                    fieldLabel="Select Popup Position"
+                                                                    name="./position">
+                                                                    <items jcr:primaryType="nt:unstructured">
+                                                                        <right
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            text="Right"
+                                                                            value="right"/>
+                                                                        <left
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            text="Left"
+                                                                            value="left"/>
+                                                                    </items>
+                                                                </popupPosition>
+                                                            </items>
+                                                            <granite:data
+                                                                jcr:primaryType="nt:unstructured"
+                                                                showhidetargetvalue="compact"/>
+                                                        </storypositon>
+                                                        <storyId
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                            fieldDescription="Tag Story Id Same as used in Image Map Path"
+                                                            fieldLabel="Story ID"
+                                                            name="./storyId"/>
+                                                        <storytitle
+                                                            granite:class="popupPosition-showhide"
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                            <items jcr:primaryType="nt:unstructured">
+                                                                <storytitle
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                    fieldDescription="Story title to be displayed in popup"
+                                                                    fieldLabel="Story Title"
+                                                                    name="./storyTitle"/>
+                                                            </items>
+                                                            <granite:data
+                                                                jcr:primaryType="nt:unstructured"
+                                                                showhidetargetvalue="default"/>
+                                                        </storytitle>
+                                                        <storytitledropdown
+                                                            granite:class="popupPosition-showhide"
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                            <items jcr:primaryType="nt:unstructured">
+                                                                <storyTitleDropdown
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                    fieldDescription="StoryTitle to be displayed in Dropdown"
+                                                                    fieldLabel="Story Title in Dropdown"
+                                                                    name="./storyTitleDropdown"/>
+                                                            </items>
+                                                            <granite:data
+                                                                jcr:primaryType="nt:unstructured"
+                                                                showhidetargetvalue="default"/>
+                                                        </storytitledropdown>
+                                                        <storybgimage
+                                                            granite:class="popupPosition-showhide"
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                            <items jcr:primaryType="nt:unstructured">
+                                                                <storyIcon
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                                    fieldDescription="Story background image to be displayed in popup"
+                                                                    fieldLabel="Story Icon Path"
+                                                                    name="./storyIcon"
+                                                                    rootPath="/content/dam"/>
+                                                            </items>
+                                                            <granite:data
+                                                                jcr:primaryType="nt:unstructured"
+                                                                showhidetargetvalue="default"/>
+                                                        </storybgimage>
+                                                        <stortTagline
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="cq/gui/components/authoring/dialog/richtext"
+                                                            fieldLabel="Story Tagline"
+                                                            name="./storyTagline"
+                                                            useFixedInlineToolbar="{Boolean}true">
+                                                            <rtePlugins
+                                                                jcr:primaryType="nt:unstructured"
+                                                                sling:resourceSuperType="abbott-platform/components/core/text/v1/text/rtePlugins"/>
+                                                            <uiSettings
+                                                                jcr:primaryType="nt:unstructured"
+                                                                sling:resourceSuperType="abbott-platform/components/core/text/v1/text/uiSettings"/>
+                                                            <htmlRules
+                                                                jcr:primaryType="nt:unstructured"
+                                                                sling:resourceSuperType="abbott-platform/components/core/text/v1/text/htmlRules"/>
+                                                        </stortTagline>
+                                                    </items>
+                                                </field>
+                                            </contents>
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </mapconfig>
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>

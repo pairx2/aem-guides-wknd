@@ -1,0 +1,29 @@
+<!--/* Icon List Component Starts */-->
+<sly
+  data-sly-use.imageListModel="com.abbott.aem.platform.common.components.models.commerce.ImageList"
+  data-sly-use.commonTemplates="core/wcm/components/commons/v1/templates.html"
+></sly>
+
+<div class="a-image-list" id="${imageListModel.id}">
+  <sly
+    data-sly-test.images="${imageListModel.imageList}"
+    data-sly-list.image="${images}"
+  >
+    <div class="a-image-list__image">
+      <sly data-sly-test.script="${image.imageScript || image.scriptTag}">
+        <sly data-sly-test.tag="${image.scriptTag}"
+          >${tag @context='unsafe'}</sly
+        >
+        <script
+          data-sly-test.scriptLink="${image.imageScript}"
+          src="${scriptLink}"
+        ></script>
+      </sly>
+      <sly data-sly-test="${!script}">
+        <img src="${image.imagePath}" alt="${image.altText}" />
+      </sly>
+    </div>
+  </sly>
+</div>
+
+<sly data-sly-call="${commonTemplates.placeholder @ isEmpty=!imageListModel.imageList}"></sly>

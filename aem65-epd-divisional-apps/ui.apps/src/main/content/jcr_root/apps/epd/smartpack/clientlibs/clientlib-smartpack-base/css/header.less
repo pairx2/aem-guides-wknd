@@ -1,0 +1,68 @@
+@import './global/media-queries.less';
+@import './global/variables.less';
+
+.header {
+  // Smartpack specific hero-like image in header
+  .xf-content-height & + .image {
+    margin-top: 0 !important;  // override base component spacing
+  }
+
+  .o-header {
+    .o-header__wrapper {
+      /* Header STICKY section - common styles */
+      .o-header__sticky-section {
+        .o-header__logo-section {
+          height: @mega-menu-mobile-static-logo-section-height;
+
+          .container {
+            height: 100%;
+
+            > .row {
+              height: 100%;
+
+              .col-5 {
+                height: 100%;
+                padding-left: 0;
+
+                @media @sm-down {
+                  flex: 0 0 33.33333%;
+                  max-width: 33.33333%;
+                }
+              }
+            }
+          }
+
+          .o-header__logo-right {
+            height: 100%;
+
+            .a-logo-comp--image {
+              max-height: 100%;
+            }
+          }
+        }
+
+        .o-header__mega-menu {
+          background-color: var(--mega-menu-mobile-active-bg-color);
+
+          @media @lg-up {
+            background-color: transparent;
+          }
+        }
+
+        /* Header is stciky - page is scrolled down */
+        &.sticky {
+          .o-header__logo-section {
+            height: @mega-menu-mobile-sticky-logo-section-height;
+          }
+        }
+      }
+    }
+
+    .sticky {
+      .o-header__logo-right {
+        display: flex;
+        opacity: 1;
+      }
+    }
+  }
+}

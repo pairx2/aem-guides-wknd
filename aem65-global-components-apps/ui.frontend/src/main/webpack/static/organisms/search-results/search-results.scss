@@ -1,0 +1,126 @@
+.o-search-res{
+  $self: &;
+  background-color: var(--search-results-background-color);
+
+  .mobile-carousel {
+    scroll-snap-type: x mandatory;
+    scroll-padding-left: 1px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+
+    [data-js-component="carousel"] {
+      display: flex;
+      padding: 2px 4px 2px 2px;
+    }
+
+    .o-features-card {
+      width: 100%;
+      scroll-snap-align: start;
+    }
+
+  }
+
+  &[data-results="0"] {
+
+    #{$self}__no-results {
+      display: block;
+    }
+
+    #{$self}__header, #{$self}__results, .a-pagination {
+      display: none;
+    }
+  }
+
+  &:not([data-results-header="true"]) {
+
+    #{$self}__header {
+      display: none;
+    }
+
+  }
+
+
+  &__no-results{
+    display: none;
+  }
+
+  .a-tabs__content {
+    position: absolute;
+    left: -9999px;
+    top: -9999px;
+  }
+
+  &__header{
+    padding-bottom: var(--search-results-header-bottom);
+    border-bottom: var(--search-results-border-bottom);
+    &-title{
+      @include media-breakpoint-down(md) {
+        font-size: var(--search-results-mobile-title-font-size);
+        line-height: var(--search-results-mobile-title-line-height);
+      }
+      @include media-breakpoint-up(md) {
+        line-height: var(--search-results-header-title-line-height);
+      }
+    }
+  }
+
+  &__result{
+
+    border-bottom: var(--search-results-border-bottom);
+    @include media-breakpoint-down(md) {
+      padding: var(--search-results-mobile-result-padding);
+    }
+    @include media-breakpoint-up(md) {
+      padding: var(--search-results-result-padding);
+    }
+    &-title{
+      &-link {
+        color: var(--search-results-title-color);
+        @include media-breakpoint-down(md) {
+          font-size: var(--search-results-result-mobile-font-size);
+          font-weight: 400;
+        }
+
+      }
+    }
+    &-desc{
+      @include media-breakpoint-down(md) {
+        margin-top: var(--search-results-mobile-desc-space-top);
+      }
+      @include media-breakpoint-up(md) {
+        margin-top: var(--search-results-desc-space-top);
+      }
+    }
+  }
+
+  .m-search-bar {
+    margin: var(--search-results-search-bar-spacing);
+  }
+
+  .a-pagination{
+    margin: var(--search-results-pagination-spacing);
+  }
+
+  &__container {
+    .o-cards-carousel {
+      .slick-slide {
+        @include media-breakpoint-down(sm) {
+          text-align: center;
+        }
+      }
+      .m-card {
+        width: auto;
+        &:before {
+          box-shadow: none;
+        }
+        .cmp-image__image {
+          object-fit: contain;
+        }
+      }
+    }
+  }
+
+  .chipslist {
+    position: relative;
+  }
+}

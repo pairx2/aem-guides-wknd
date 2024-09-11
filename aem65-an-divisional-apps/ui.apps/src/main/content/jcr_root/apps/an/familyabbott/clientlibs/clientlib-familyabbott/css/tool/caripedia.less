@@ -1,0 +1,1375 @@
+@import "../global/mixins.less";
+@import '../global/variables.less';
+
+.caripediaPopup(){
+    width: calc(~"100% - 12px");
+    max-width: 730px;
+    margin: auto;
+    padding: 23px 30px 40px;
+    box-shadow: 0px 10px 25px rgba(0,0,0,0.1);
+    border-radius: 5px;
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9991;
+    display: none;
+    height: auto;
+    overflow: hidden;
+    max-height: 524px;
+
+    @media @md-down {
+        padding: 20px 15px;
+        max-height: 693px;
+    }
+
+    &.active {
+        display: block;
+    }
+}
+
+.caripediaContainer(){  
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 0;
+    max-height: 616px;
+
+    @media @md-up {
+        max-height: 393px;
+    }
+}
+
+.caripediaTitleText(){
+    > .text,
+    > .title {
+        margin: 0;
+    }
+
+    > .title {
+        .cmp-title__text {
+            @media @md-down {
+                font-size: @font-size-16; 
+            }
+        }
+    }
+}
+
+.caripediaScrollBar(@a, @b){
+  scrollbar-width: thin;
+  scrollbar-color: @b #ffffff;
+  
+  &::-webkit-scrollbar {
+    width: @a;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #ffffff;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: @b;
+    border-radius: @a;
+    border: 3px solid #ffffff;
+  }
+}
+
+#ph-caripedia {
+    --button-border-radius: 500px;
+    --button-box-shadow: rgba(0, 0, 0, 0.05) 0px 15px 25px;
+
+    position: relative;
+
+    &-map {
+        width: 100%;
+        height: 622px;
+
+        @media @md-down {
+            height: 700px;
+        }
+
+        &-container {
+            position: relative;
+
+            > .embed,
+            > .hidden,
+            > .button {
+                margin: 0;
+            }
+
+            &.popup-overlay {
+                &:before {
+                     position: absolute;
+                     content: "";
+                     top: 50%;
+                     left: 50%;
+                     transform: translate(-50%, -50%);
+                     width: 100%;
+                     height: 100%;
+                     background-color: black;
+                     z-index: 9990;
+                     opacity: .5;
+                }
+            }
+        }
+    }
+
+    #ph-popup-close {
+        top: 22px;
+        right: 16px;
+
+        @media @md-up {
+            top: 30px;
+            right: 30px;
+        }
+
+        &:before {
+            font-size: @font-size-16;
+        }
+    }
+
+    #ph-container-non-full--center {
+        @media @md-down {
+            .title {
+                text-align: left;
+            }
+        }
+    }
+
+    .ph-caripedia-full-width {
+        + .container {
+            padding-top: 20px;
+
+            @media @md-up {
+                padding-top: 38px;
+            }
+        }
+
+        @media @md-down {
+            width: 100%;
+            max-width: none;
+            padding: 0;
+
+            #ph-caripedia-filter-top {
+                > .button {
+                    padding-left: 15px;
+                }
+
+                > .options {
+                    padding-right: 15px;
+                }
+            }
+        }
+    }
+
+    .a-button {
+        --button-active-text-color: #470A68;
+        --button-active-color: #ece6ef;
+        --button-active-border: 1px solid #ece6ef;
+    }
+
+    &-gps {
+        .caripediaPopup();
+
+        &.cmp-container{
+            padding-top: 40px;
+            padding-bottom: 40px;
+        }
+
+        .image {
+            margin-bottom: 14px;
+
+            img {
+                width: 46px;
+                height: auto;
+            }
+
+            + .text {
+                margin-top: 0;
+                margin-bottom: 14px;
+            }
+        }
+
+        .text {
+            p {
+                font-size: 18px;
+                line-height: 37px;
+            }
+
+            + .button {
+                margin: 0;
+            }
+        }
+
+        .button {
+            a {
+                width: 100%;
+                max-width: 254px;
+
+                @media @md-down {
+                    max-width: 247px;
+                }
+            }
+
+            + .button {
+                margin-top: 10px;
+            }
+        }
+    }
+
+    &-popup-modal {
+        .caripediaPopup();
+
+        &.active {
+            padding-right: 30px;
+
+            @media @md-up {
+                padding-top: 40px;
+            }
+        }
+
+        > div {
+            margin: 0;
+
+            p {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    .a-input-field,
+    .a-checkbox, 
+    .a-radio,
+    .a-dropdown {
+        --input-border-color: 1px solid #470A68;
+        --input-text-color: #470A68;
+        --input-selected-color: #ece6ef;
+        --input-selected-border: 1px solid #ece6ef;
+    }
+
+    .a-checkbox, 
+    .a-radio {
+        border: var(--input-border-color);
+        border-radius: 500px;
+        padding: 0;
+        font-size: @font-size-14;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        text-align: center;
+
+        &:last-of-type {
+            margin-right: 0;
+        }
+
+        &.selected {
+            border: var(--input-selected-border);
+            background: var(--input-selected-color);
+        }
+
+        &__label { 
+            margin: 0;
+            padding: 0 32px;
+            cursor: pointer;
+
+            @media @lg-up {
+                padding: 0 30px;
+            }
+        }
+
+        &-label { 
+            margin: 0;
+            padding: 0;
+        }
+
+        &__custom {
+            display: none;
+        }
+
+        &__text {
+            color: var(--input-text-color);
+            font-weight: 700;
+            text-align: center;
+        }
+    }
+
+    &-filter {
+        .caripediaPopup();
+        .caripediaTitleText();
+
+        &.active {
+            padding-left: 17px;
+            padding-right: 17px;
+
+            @media @md-up {
+                padding-left: 22px;
+                padding-right: 22px;
+            }
+        }
+
+        > .container {
+            margin: 0;
+            padding: 0;
+        }
+
+        > .title {
+            margin-bottom: 20px;
+        }
+
+        &-top {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 0;
+            margin: auto;
+
+            .caripediaScrollBar(1px, #fff);
+    
+            .a-button,
+            .options {
+                margin: 0;
+            }
+
+            @media @lg-down {
+                justify-content: flex-start;
+                overflow-x: auto;
+            }
+
+            .a-button {
+                .btn {
+                    --button-padding: 15px 30px;
+                    
+                    color: var(--button-active-text-color);
+                    background: var(--button-active-color);
+                    border: var(--button-active-border);
+
+                    @media @md-down {
+                        --button-padding: 11px 30px;
+                    }
+                }
+            }
+
+            .options {
+                margin-left: 10px;
+
+                @media @lg-down {
+                    white-space: nowrap;
+                }
+
+                .a-checkbox {
+                    padding: 0;
+                    margin-bottom: 0;
+                    margin-right: 6px;
+
+                    @media @lg-up {
+                        margin-bottom: 10px;
+                    }
+
+                    &__label {
+                        padding: 8px 30px 9px;
+
+                        @media @md-up {
+                            padding: 11px 30px 12px;
+                        }
+
+                        @media @lg-up {
+                            padding: 12px 29px 13px;
+                        }
+                    }
+
+                    label {
+                        margin-bottom: 0;
+                    }
+
+                    &__text {
+                        font-size: @font-size-16;
+                        text-transform: uppercase;
+
+                        @media @lg-up {
+                            font-size: @font-size-18;
+                        }
+                    }
+
+                    &:last-of-type {
+                        margin-right: 0;
+                    }
+                }
+            }
+        }
+
+        &-container {
+            > div {
+                margin: 0;
+
+                + .options {
+                    margin-top: 10px;
+                }
+            }
+
+            > .title {
+                margin-top: 5px;
+
+                @media @md-up {
+                    margin-top: 10px;
+                }
+
+                .cmp-title__text {
+                    color: #616161;
+                }
+            }
+
+            > .container {
+                margin: 0;
+                padding: 0;
+
+                @media @md-up {
+                    margin-top: 10px;
+                }
+            }
+        }
+
+        &-location {
+            display: flex;    
+            flex-direction: column;
+            justify-content: space-evenly;
+
+            @media @md-up {
+                flex-direction: row;
+            }
+
+            .options {
+                width: 100%;
+                margin: 0;
+                margin-right: 20px;
+
+                @media @md-down {
+                    margin-top: 10px;
+                    margin-right: 0;
+
+                    + .options {
+                        margin-top: 10px;
+                    }
+                }
+
+                .a-dropdown {
+                    --dropdown-field-border-radius: 10px;
+                    --dropdown-field-border: 1px solid #470A68;
+                    --dropdown-field-font-size: @font-size-14;
+                    --dropdown-field-line-height: 16px;
+                    --dropdown-field-padding: 7px 32px 7px 10px;
+                    --dropdown-field-height: 30px;
+                    --dropdown-menu-max-height: 80px;
+                    --dropdown-disabled-bg-color: #fff;
+                    --dropdown-disabled-border: 1px solid #470A68;
+
+                    @media @lg-up {
+                        --dropdown-menu-max-height: 95px;
+                    }
+
+                    @media @md-up {
+                        --dropdown-menu-max-height: 110px;
+                    }
+
+                    &__placeholder {
+                        font-weight: 400 !important;
+                    }
+
+                    &__field {
+                        padding: 5px 7px;
+                        cursor: pointer;
+
+                        &.disabled {
+                            pointer-events: none;
+                        }
+
+                        &::after {
+                            right: 10px;
+                        }
+                    }
+                }
+
+                &:last-child{
+                    margin-right: 0;
+                }
+            }
+        }
+
+        &-openhour {
+            .a-button {
+                display: inline-block;
+                margin: 0 10px 10px 0;
+
+                .btn {
+                    --button-font-size: @font-size-14;
+                    --button-padding: 2px 30px;
+
+                    @media @md-up {
+                        --button-padding: 2px 32px;
+                    }
+
+                    font-weight: 700;
+                    text-transform: none;
+
+                    &:focus {
+                        box-shadow: none;
+                        -webkit-box-shadow: none;
+                    }
+
+                    &.selected {
+                        background-color: var(--button-active-color);
+                        border: var(--button-active-border);
+                    }
+                }
+
+                &:last-child {
+                    margin-right: 0;
+                }
+            }
+
+            @media @md-down {
+                display: flex;
+                justify-content: space-between;
+
+                .a-button {
+                    width: 50%;
+                }
+            }
+        }
+
+        #ph-caripedia-searchIcon {
+            width: 16px;
+            height: 16px;
+            position: absolute;
+            left: 10px;
+            top: 3px;
+            z-index: 199;
+        }
+
+        .a-input-field {
+            margin-right: 0;
+        }
+
+        &-hours-options {
+            @media @md-down {
+                display: flex;
+                justify-content: space-evenly;
+
+                .a-checkbox {
+                    width: 50%;
+                    margin-right: 10px;
+
+                    + .a-checkbox {
+                        margin-right: 0;
+                    }
+                }
+            }
+        }
+
+        > .button {
+            margin: 20px 0 0;
+
+            @media @md-up {
+                margin-top: 30px;
+            }
+
+            + .button {
+                margin-top: 5px;
+            }
+        }
+
+        &-reset {
+            padding: 0;
+            text-transform: none;
+            font-size: @font-size-16;
+            border: none;
+            border-radius: 0;
+        }
+
+        #ph-caripedia-searchbar {
+            padding: 4px 10px 4px 36px;
+            border-radius: 10px;
+            border: var(--input-border-color);
+            height: auto;
+        }
+
+        &-search {
+            width: 100%;
+
+            @media @md-up {
+                width: auto;
+                min-width: 315px;
+            }
+        }
+    }
+
+    &-tabfilter {
+        max-width: 987px;
+        margin: 32px auto auto;
+
+        @media @md-up {
+            margin-top: 16px;
+        }
+
+        > .columncontrol {
+            margin: 0 0 24px;
+
+            @media @md-down {
+                margin-bottom: 20px;
+            }
+        }
+
+        > .container {
+            padding: 0;
+        }
+    }
+
+    &-tab {
+        .columncontrol__column {
+            margin: 0;
+            padding-left: 0;
+            padding-right: 0;
+
+            + .columncontrol__column {
+                margin-top: 10px;
+            }
+
+            @media @md-up {
+                padding-left: 0;
+                padding-right: 5px;
+
+                + .columncontrol__column {
+                    padding-right: 0;
+                    margin-top: 0;
+                    padding-left: 5px;
+                }
+            }
+        }
+
+        .a-button {
+            .btn {
+                width: 100%;
+
+                @media @md-down {
+                    --button-padding: 11px 32px;
+                }
+            }
+
+            &.active {
+                border-radius: 500px;
+                background: var(--button-primary-bg);
+            }
+        }
+    }
+
+    .ph-caripedia-item {
+        --caripedia-border-color: #e0e0e0;
+        --caripedia-time-status-close-color: #ff3838;
+        --caripedia-time-status-open-color: #4cd301;
+
+        border-bottom: thin solid;
+        border-bottom-color: var(--caripedia-border-color);
+        margin: 0;
+        padding-bottom: 40px;
+
+        @media @md-up {
+            padding-bottom: 20px;
+        }
+
+        &:last-child {
+            border: none;
+            padding-bottom: 0;
+
+            @media @md-down {
+                padding-bottom: 20px;
+            }
+        }
+
+        + .ph-caripedia-item {
+            margin-top: 40px;
+
+            @media @md-up {
+                margin-top: 20px;
+            }
+        }
+
+        .container {
+            padding: 0;
+        }
+
+        .a-button {
+            margin: 0;
+
+            @media @md-up {
+                width: auto;
+
+                + .a-button {
+                    margin-top: 10px;
+                }
+            }
+
+            .btn {
+                --button-padding: 9px 10px 7px;
+                --button-width: 100%;
+
+                width: var(--button-width);
+
+                @media @md-up {
+                    min-width: 135px;
+                }
+            }
+        }    
+        
+        &__main {
+            padding: 0;
+            margin-bottom: 14px;
+            
+            @media @md-up { 
+                margin-bottom: 0;
+                
+                &.col-md-9 {
+                    padding-right: 10px;
+                    -ms-flex: 0 0 calc(~"100% - 160px");
+                    flex: 0 0 calc(~"100% - 160px");
+                    max-width: calc(~"100% - 160px");
+                }
+            }
+        }
+
+        &__title {
+            .cmp-title__text { 
+                margin-bottom: 12px;
+
+                @media @md-down {
+                    font-size: @font-size-16;
+                    line-height: 25px;
+                }
+            }
+        }
+        
+        .ph-caripedia-icon {
+            width: auto;
+            height: 22px;
+            margin-right: 10px;
+            position: relative;
+            top: -1px;
+        }
+
+        &__info {
+            margin-bottom: 14px;
+        }
+
+        &__type {
+            display: inline-block;
+
+            &::after {
+                content: '•';
+                margin-left: 2px;
+                margin-right: 2px;
+            }
+        }
+
+        &__distance {
+            display: inline-block;
+        }
+
+        &__time {
+            font-weight: 700;
+
+            > div {
+                display: inline-block;
+            }
+
+            &-status {
+                text-transform: uppercase;
+                color: var(--caripedia-time-status-close-color);
+
+                &-Buka {
+                    color: var(--caripedia-time-status-open-color);
+                }
+            }
+
+            &-details {
+                &::before {
+                    content: '•';
+                    margin-left: 2px;
+                    margin-right: 2px;
+                }
+            }
+        }
+
+        &__addr {
+            margin-top: 13px;
+            display: flex;
+
+            @media @md-up {
+                margin-top: 18px;
+            }
+
+            span {
+                display: block;
+            }
+        }
+
+        &__button {
+            @media @md-up { 
+                &.col-md-3 {
+                    -ms-flex: 0 0 160px;
+                    flex: 0 0 160px;
+                    max-width: 160px;
+                }
+            }
+
+            &-left,
+            &-right {
+                padding: 0;
+                margin: 0;
+            }
+
+            &-left {
+                .a-button {
+                    justify-content: right;
+                }
+
+                @media @md-down {
+                    .a-button {
+                        width: 100%;
+                        margin-right: 5px;
+                        display: inline-block;
+                        justify-content: left;
+
+                        &:nth-last-child(n+2):nth-last-child(-n+2):first-child,
+                        &:nth-last-child(n+2):nth-last-child(-n+2):first-child ~ .a-button {
+                            width: calc(~"50% - 5px");
+                        }
+
+                        + .a-button {
+                            margin-left: 5px;
+                            margin-right: 0;
+                        }
+                    }
+                }
+            }
+
+            &-right {
+                @media @md-down {
+                    margin-top: 20px;
+
+                    .a-button {
+                        .btn {
+                            --button-width: 100%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &-outlet {
+        .caripediaPopup();
+
+        &.active {
+            padding-bottom: 40px;
+        }
+        
+        &.a-container {
+            padding-top: 29px;
+        }
+
+        > .container {
+            padding: 0;
+        }
+
+        &-subtitle {
+            font-size: 12px;
+
+            p {
+                margin-bottom: 20px;
+
+                @media @md-up { 
+                    margin-bottom: 10px;
+                }
+            }
+        }
+
+        .ph-caripedia-item {
+            border: none;
+            padding-bottom: 0;
+
+            &:last-child {
+                padding-bottom: 0;
+            }
+
+            &__main {
+                width: 100%;
+                margin-bottom: 20px;
+
+                @media @md-up { 
+                    margin-bottom: 40px;
+                }
+            }
+
+            &__info {
+                margin-bottom: 0;
+            }
+
+            &__info,
+            &__time {
+                display: inline-block;
+            }
+
+            &__button {
+                &-left {
+                    .a-button {
+                        display: inline-block;
+                        justify-content: left;
+
+                        @media @md-up { 
+                            margin-right: 10px;
+                        }
+
+                        + .a-button {
+                            margin-top: 0;
+                        }
+                    }
+                }
+
+                @media @md-up { 
+                    &-right {
+                        .a-button {
+                            justify-content: right;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &-outlet,
+    &-search-result {
+       .caripediaTitleText();
+    }
+
+    &-search {
+        &-btn {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-transform: uppercase;
+            max-width: calc(~"100% - 30px");
+            display: none;
+
+            @media @md-up {
+                min-width: 469px;
+            }
+
+            &.active {
+                display: block;
+            }
+
+            img {
+                width: auto;
+                height: 20px;
+            }
+
+            &.no-result {
+                pointer-events: none;
+
+                @media @lg-up {
+                    white-space: nowrap;
+                }
+            }
+        }
+
+        &-list {
+            padding-right: 7px;
+
+            @media @md-up {
+                padding-right: 18px;
+            }
+        }
+
+        &-result {
+            .caripediaPopup();
+
+            &.active {
+                padding-bottom: 0;
+                padding-right: 14px;
+
+                @media @md-up {
+                    padding-bottom: 40px;
+                    padding-right: 30px;
+                }
+            }
+
+            > .container {
+                .caripediaContainer();
+                .caripediaScrollBar(10px, #d9d9d9);
+            }
+
+            &__title {
+                margin-bottom: 20px;
+
+                @media @md-up {
+                    margin-bottom: 34px;
+                }
+            }
+        }
+    }
+
+    .ph-caripedia-btn-locator {
+        background-color: white;
+        font-size: 12px;
+        font-weight: 400;
+        padding: 8px 15px;
+        text-align: center;
+        border-radius: var(--button-border-radius);
+        border: 1px solid #e0e0e0;
+        margin-top: 10px;
+
+        img {
+            width: 17px;
+            height: auto;
+            margin-right: 4px;
+            margin-top: -3px
+        }
+    }
+
+    .map-control-wrapper {
+        margin-right: 20px;
+
+        @media @md-down {
+            margin-bottom: 70px;
+        }
+
+        button {
+            background: white;
+            border-radius: 50%;
+            display: block;
+            width: 45px;
+            height: 45px;
+            margin-top: 10px;
+            box-shadow: var(--button-box-shadow);
+            border: none;
+
+            img {
+                width: 24px;
+                height: auto;
+            }
+
+            &[class*='zoom-control-'] {
+                img {
+                    width: 30px;
+                }
+            }
+        }
+    }
+
+    &-products {
+        .cmp-experiencefragment {
+            > .xf-content-height {
+                min-height: auto;
+                
+                > .root {
+                    > .aem-Grid {
+                        > .container {
+                            padding-left: 0;
+                            padding-right: 0;
+
+                            @media @md-up {
+                                max-width: 965px;
+                                margin-left: 50px
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        &-pediasure,
+        &-pediacomplete {
+            display: none;
+
+            &.selected-product {
+                display: block;
+            }
+
+            > .container {
+                padding-left: 0;
+                padding-right: 0;
+            }
+        }
+
+        &-main {
+            > .columncontrol {
+                > .container {
+                    > .row {
+                        > .columncontrol__column {
+                            @media @md-up {
+                                width: 499px;
+                                max-width: 499px;
+                                flex: 0 0 499px;
+
+                                &:first-child {
+                                    width: calc(~"100% - 499px");
+                                    max-width: calc(~"100% - 499px");
+                                    flex: 0 0 calc(~"100% - 499px");
+                                }
+                            }
+
+                            @media @md-down {
+                                &:first-child {
+                                    margin-bottom: 20px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .columncontrol__column {
+                > .title {
+                    margin-top: 0;
+                    margin-bottom: 15px;
+
+                    @media @md-up {
+                        .cmp-title__text {
+                            font-style: @font-size-16;
+                            line-height: 20px;
+                        }
+                    }
+                }
+
+                > .container {
+                    padding: 0;
+                }
+            }
+        }
+
+        &-img {
+            @media @md-up {
+                padding-right: 20px;
+            }
+
+            > .image {
+                display: none;
+                margin: 0;
+
+                &.show {
+                    display: block;
+                }
+
+                .cmp-image__image {
+                    width: 100%;
+                }
+            }
+        }
+
+        &-flavours {
+            @color-product-details-flavor-border: #404040;  
+            @color-product-details-flavor-bg: #FFF7E6;
+
+            margin-bottom: 30px;
+
+            .row {
+                display: flex;
+                justify-content: flex-start;
+                padding: 0 !important;
+            }
+    
+            .columncontrol__column {
+                width: 90px; 
+                max-width: 90px;
+                height: auto;
+                --card-box-shadow: none;
+                border: 1px solid transparent;
+                border-radius: 5px;
+                padding: 0;
+                margin-right: 20px;
+                margin-bottom: 10px;
+                display: none;
+
+                &.show {
+                    display: block;
+
+                    &:last-child {
+                        margin-right: 0;
+                    }
+                }
+
+                &.selected {
+                    border: 2px solid @color-product-details-flavor-border;
+                    background: @color-product-details-flavor-bg;
+                    
+                    .m-card__title {
+                        color: @color-product-details-flavor-border;
+                        font-weight: @font-weight-700;
+                    }
+                }
+    
+                @media @lg-down {
+                    margin-right: 15px;
+                    margin-bottom: 15px;
+                }
+    
+                @media @sm-down {
+                    margin-right: 18px;
+                    margin-bottom: 18px;
+                }
+            }
+    
+            .m-card {
+                --card-media-height: auto;
+                --card-media-height-mobile: auto;
+                --card-large-media-height: auto;
+                --card-large-media-height-mobile: auto;
+    
+                height: auto !important;
+                width: 90px !important;
+                --card-box-shadow: none;
+                border-radius: 5px;
+                margin: 0 !important;
+    
+    
+                @media @sm-down {
+                    margin-bottom: -20px;
+                }
+    
+    
+                &__title {
+                    text-align: center;
+                    font-size: @font-size-16;
+                    color: @color-text-body;
+                    font-weight: @font-weight-400;
+                    line-height: normal;
+                    margin-bottom: 0px;
+                }
+    
+                &__media {
+                    position: initial;
+                    height: 100%;
+                    margin-top: 5px;
+                }
+    
+                &__wrap {
+                    height: 100%;
+                }
+    
+                &__image {
+                    position: relative;
+    
+                        img {
+                            max-width: 100%;
+                        width: 100% !important;
+                        height: 50px !important;
+                        position: relative;
+    
+                        @media @md-down {
+                            width: 100%;
+                            height: auto;
+                        }
+                    }
+                }
+    
+                &__body {
+                    margin: 0;
+                    padding: 10px 3px 10px;
+                    word-break: normal !important;
+                }
+    
+                &__description,
+                .nonClickableLink {
+                    display: none;
+                }
+            }
+        }
+
+        &-variations {
+            margin-bottom: 30px;
+
+            @media @md-up {
+                padding: 0;
+            }
+
+            .columncontrol__column {
+                .button {
+                    display: none;
+                    margin: 0 10px 10px 0!important;
+
+                    .btn {
+                        @media @md-up {
+                            --button-padding: 15px 25px;
+                        }
+                    }
+
+                    &.show {
+                        display: inline-block;
+
+                        &:last-child {
+                            margin-right: 0 !important;
+                        }
+                    }
+
+                    &.selected {
+                        .btn {
+                            background-color: var(--button-active-color);
+                            border: var(--button-active-border);
+                        }
+                    }
+                }
+            }
+        }
+
+        &-buynow {
+            .button {
+                display: none;
+                margin: 0;
+
+                &.show {
+                    display: block;
+                }
+
+                .btn {
+                    width: 100%;
+                }
+            }
+        }
+
+        &-faq {
+            .accordion {
+                margin-bottom: 20px;
+
+                + .text {
+                    margin-top: 0;
+                }
+
+                .m-accordion {
+                    --accordion-title-padding-sm: 7px 0 5px 26px;
+                    --accordion-title-padding-lg: 7px 0 5px 24px;
+                    --accordion-margin: 0;
+
+                    @media @md-down {
+                        --accordion-title-font-size: @font-size-18;
+                    }
+                    &__title-wrapper {
+                        h3 {
+                            padding-left: 0;
+                        }
+                    }
+
+                    @media @md-up {
+                        &__title-wrapper {
+                            width: 93%;
+                        }
+    
+                        &__icon-wrapper {
+                            width: 7%;
+                        }
+
+                    }
+                }
+            }
+        }
+    }
+}

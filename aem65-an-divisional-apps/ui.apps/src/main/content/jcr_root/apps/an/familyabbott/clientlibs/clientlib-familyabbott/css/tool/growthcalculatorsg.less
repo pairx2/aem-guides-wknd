@@ -1,0 +1,203 @@
+@import "../global/mixins.less";
+@import '../global/variables.less';
+
+// Growth Calculator
+#ph-growth-sg {
+    .text:has(.pediasure-gc-sg) {
+        visibility: visible;
+        height: auto;
+    }
+    &-results {
+        --light-purple-background: #d6d7ef;
+        --grey-background: #d4d4d4;
+        --legend-orange-color: #dd7a05;
+        --legend-purple-color: #692c94;
+        --legend-pink-color: #fe235b;
+        --legend-green-color: #029c00;
+
+        > .embed {
+            margin: 0;
+        }
+
+        > .accordion {
+            margin-top: 0;
+        }
+
+        .m-accordion__content-items {
+            .m-accordion__body {
+                padding-left: 0;
+                padding-right: 0;
+            }
+        }
+
+        .title {
+            margin-top: 0;
+            margin-bottom: 0;
+
+            + .text {
+                margin-top: 20px;
+            }
+        }
+
+        .columncontrol {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        &__barchart-container,
+        &__line-chart,
+        &__report {
+            margin-bottom: 20px;
+        }
+
+        &__fail {
+            display: none;
+
+            &-track {
+                display: none;
+            }
+        }
+
+        &__height-boy,
+        &__height-girl,
+        &__weight-boy,
+        &__weight-girl {
+            display: none;
+        }
+
+        &__weight-boy,
+        &__weight-girl {
+            margin-top: 30px;
+        }
+
+        &__barchart {
+            margin-bottom: 30px;
+        }
+
+        &__line-chart {
+            &-height,
+            &-weight {
+                margin-bottom: 30px;
+            }
+
+            &-legend {
+                .columncontrol__column {
+                    &:first-child {
+                        @media @md-down {
+                            margin-bottom: 20px;
+                        }
+                    }
+                }
+
+                &-orange,
+                &-purple,
+                &-pink,
+                &-green {
+                    position: relative;
+                    padding-left: 28px;
+
+                    p {
+                        margin-bottom: 0;
+
+                        + .p {
+                            margin-top: 10px;
+                        }
+                    }
+
+                    &:before {
+                        content: "";
+                        position: absolute;
+                        left: 0;
+                        top: 3px;
+                        width: 20px;
+                        height: 20px;
+                        border-radius: 50%;
+                    }
+                }
+
+                &-orange:before {
+                    background: var(--legend-orange-color);
+                }
+
+                &-purple:before {
+                    background: var(--legend-purple-color);
+                }
+
+                &-pink:before {
+                    background: var(--legend-pink-color);
+                }
+
+                &-green:before {
+                    border: 7px solid var(--legend-green-color);
+                    background: transparent;
+                    border-radius: 0;
+                    width: 0;
+                    height: 0;
+                    top: 7px;
+                    left: 4px;
+                    transform: rotate(45deg);
+                    -moz-transform: rotate(45deg);
+                    -webkit-transform: rotate(45deg);
+                    -ms-transform: rotate(45deg);
+                    -o-transform: rotate(45deg);
+                }
+            }
+        }
+    }
+
+    &-columns {
+        .a-rule {
+            margin-top: 2.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .text + .columncontrol {
+             margin-top: 2.5rem;
+        }
+
+        &__height,
+        &__height-report {
+            .row {
+                margin-left: 0;
+                margin-right: 0;
+
+                @media @md-up {
+                    gap: 20px;
+                }
+            }
+
+            .columncontrol__column {
+                border-radius: 10px;
+                padding: 15px;
+
+                @media @md-up {
+                    flex: 1;
+                    margin-bottom: 0;
+                }
+
+                .text {
+                    margin-bottom: 0;
+
+                    + .title {
+                        margin-top: -10px;
+
+                        label {
+                            margin-left: 4px;
+                            font-size: 80%;
+                        }
+
+                        h4 {
+                            margin-bottom: 0;
+                        }
+                    }
+                }
+
+                &:first-child {
+                    @media @md-down {
+                        margin-bottom: 20px;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,128 @@
+<template data-sly-template.nutritions="${@ product}">
+    <div data-sly-list.servingSizeList="${product.servingSize}">
+        <div class="text" data-val='${servingSizeList.acode}-${servingSizeList.id}'>
+            <h3>${servingSizeList.servingSizeName @ context='html'}</h3>
+            <div class="cmp-product-detail__formulation-filter">
+                <div class="cmp-product-detail__formulation-filter--item">
+                    <div class="cmp-product-detail__serving-filter row">
+                        <div class="cmp-product-detail__serving-filter--item col-12 col-md-8 col-lg-12 nutritionSection">
+                            <h4><sly data-sly-use.nutritionData_i18="${'com.abbott.aem.cloud.platform.core.models.I18nFetcher' @ key = 'nutritionData'}"/>${nutritionData_i18.title}</h4>
+                            <div class="cmp-product-detail__nutrition-tables">
+                                <table aria-describedby="Nutrition Table">
+                                    <tr class="width100">
+                                        <th class="width45" scope="col"></th>
+                                        <th class="text-right width45" scope="col"><sly data-sly-use.amountPerServing_i18="${'com.abbott.aem.cloud.platform.core.models.I18nFetcher' @ key = 'amountPerServing'}"/>${amountPerServing_i18.title}</th>
+                                        <th class="text-right width10" scope="col"><sly data-sly-use.percentDV_i18="${'com.abbott.aem.cloud.platform.core.models.I18nFetcher' @ key = 'percentDV'}"/>${percentDV_i18.title}${servingSizeList.percentDVSymbol @context='html'}</th>
+                                    </tr>
+                                    <div data-sly-list.nutritionalInfoDataList="${servingSizeList.nutritionalInfoData}">
+                                        <tr class='${servingSizeList.acode}-${servingSizeList.id}'>
+
+                                       <div>
+                                        <sly data-sly-test= "${nutritionalInfoDataList.indentCount==''}">
+                                        <td class="width45">${nutritionalInfoDataList.nutritionName @ context='html'}
+                                            </td>
+                                        </sly>
+                                            <sly data-sly-test= "${nutritionalInfoDataList.indentCount=='1'}">
+                                        <td class="padding1">${nutritionalInfoDataList.nutritionName @ context='html'}
+                                            </td>
+                                        </sly>
+
+                                       <sly data-sly-test= "${nutritionalInfoDataList.indentCount=='2'}">
+                                        <td class="padding2">${nutritionalInfoDataList.nutritionName @ context='html'}
+                                            </td>
+                                        </sly>
+                                        </div>
+                                            <td class="text-right width45">${nutritionalInfoDataList.nutritionValue
+                                                @ context='html'}
+                                            </td>
+                                            <td class="text-right width10">${nutritionalInfoDataList.percentDV @
+                                                context='html'}</td>
+                                        </tr>
+                                    </div>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="cmp-product-detail__serving-filter--item col-12 col-md-8 col-lg-6 vitaminSection">
+                            <h4 class="mt-55"><sly data-sly-use.vitamins_i18="${'com.abbott.aem.cloud.platform.core.models.I18nFetcher' @ key = 'vitamins'}"/>${vitamins_i18.title}</h4>
+                            <div class="cmp-product-detail__nutrition-tables">
+                                <table aria-describedby="Vitamins Table">
+                                    <tr class="width100">
+                                        <th class="width45" scope="col"></th>
+                                        <th class="text-right width45" scope="col"><sly data-sly-use.amountPerServing_i18="${'com.abbott.aem.cloud.platform.core.models.I18nFetcher' @ key = 'amountPerServing'}"/>${amountPerServing_i18.title}</th>
+                                        <th class="text-right width10" scope="col"><sly data-sly-use.percentDV_i18="${'com.abbott.aem.cloud.platform.core.models.I18nFetcher' @ key = 'percentDV'}"/>${percentDV_i18.title}${servingSizeList.percentDVSymbol @context='html'}</th>
+                                    </tr>
+                                    <div data-sly-list.nutritionalInfoVitaminsList="${servingSizeList.nutritionalInfoVitamins}">
+                                        <tr class='${servingSizeList.acode}-${servingSizeList.id}'>
+
+                                        <div>
+                                        <sly data-sly-test= "${nutritionalInfoVitaminsList.indentCount==''}">
+                                        <td class="width45">${nutritionalInfoVitaminsList.nutritionName @ context='html'}
+                                            </td>
+                                        </sly>
+                                            <sly data-sly-test= "${nutritionalInfoVitaminsList.indentCount=='1'}">
+                                        <td class="padding1">${nutritionalInfoVitaminsList.nutritionName @ context='html'}
+                                            </td>
+                                        </sly>
+
+                                       <sly data-sly-test= "${nutritionalInfoVitaminsList.indentCount=='2'}">
+                                        <td class="padding2">${nutritionalInfoVitaminsList.nutritionName @ context='html'}
+                                            </td>
+                                        </sly>
+                                        </div>
+                                            <td class="text-right width45">
+                                                ${nutritionalInfoVitaminsList.nutritionValue @
+                                                context='html'}</td>
+                                            <td class="text-right width10">${nutritionalInfoVitaminsList.percentDV @
+                                                context='html'}
+                                            </td>
+                                        </tr>
+                                    </div>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="cmp-product-detail__serving-filter--item col-12 col-md-8 col-lg-6 mineralSection">
+                            <h4 class="mt-55"><sly data-sly-use.minerals_i18="${'com.abbott.aem.cloud.platform.core.models.I18nFetcher' @ key = 'minerals'}"/>${minerals_i18.title}</h4>
+                            <div class="cmp-product-detail__nutrition-tables">
+                                <table aria-describedby="Minerals Table">
+                                    <tr class="width100">
+                                        <th class="width45" scope="col"></th>
+                                        <th class="text-right width45" scope="col"><sly data-sly-use.amountPerServing_i18="${'com.abbott.aem.cloud.platform.core.models.I18nFetcher' @ key = 'amountPerServing'}"/>${amountPerServing_i18.title}</th>
+                                        <th class="text-right width10" scope="col"><sly data-sly-use.percentDV_i18="${'com.abbott.aem.cloud.platform.core.models.I18nFetcher' @ key = 'percentDV'}"/>${percentDV_i18.title}${servingSizeList.percentDVSymbol @context='html'}</th>
+                                    </tr>
+                                    <div data-sly-list.nutritionalInfoMineralsList="${servingSizeList.nutritionalInfoMinerals}">
+                                        <tr class='${servingSizeList.acode}-${servingSizeList.id}'>
+                                        <div>
+                                        <sly data-sly-test= "${nutritionalInfoMineralsList.indentCount==''}">
+                                        <td class="width45">${nutritionalInfoMineralsList.nutritionName @ context='html'}
+                                            </td>
+                                        </sly>
+                                            <sly data-sly-test= "${nutritionalInfoMineralsList.indentCount=='1'}">
+                                        <td class="padding1">${nutritionalInfoMineralsList.nutritionName @ context='html'}
+                                            </td>
+                                        </sly>
+
+                                       <sly data-sly-test= "${nutritionalInfoMineralsList.indentCount=='2'}">
+                                        <td class="padding2">${nutritionalInfoMineralsList.nutritionName @ context='html'}
+                                            </td>
+                                        </sly>
+                                        </div>
+                                            <td class="text-right width45">
+                                                ${nutritionalInfoMineralsList.nutritionValue @
+                                                context='html'}</td>
+                                            <td class="text-right width10">${nutritionalInfoMineralsList.percentDV @
+                                                context='html'}
+                                            </td>
+                                        </tr>
+                                    </div>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div data-sly-list.footNoteList="${servingSizeList.footnotes}">
+                <p class="note">${footNoteList.footnoteSymbol}${footNoteList.footnoteValue @context='html'}</p>
+            </div>
+        </div>
+    </div>
+</template>

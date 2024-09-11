@@ -1,0 +1,34 @@
+<template data-sly-template.available="${@ dynamicProductDetail, product}">
+    <div class="text">
+        <div class="cmp-product-detail__formulation-filter">
+            <div class="cmp-product-detail__formulation-filter--item">
+                <div class="cmp-product-detail__serving-filter">
+                    <div class="cmp-product-detail__serving-filter--item">
+                        <div class="cmp-product-detail__nutrition-tables">
+                            <table aria-describedby="Nutrition Table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" class="width25 dynamic-product-detail-availability-header"><sly data-sly-use.listNumber_i18="${'com.abbott.aem.cloud.platform.core.models.I18nFetcher' @ key = 'listNumber'}"/>${listNumber_i18.title}</th>
+                                        <th scope="col" class="width45 dynamic-product-detail-availability-header"><sly data-sly-use.item_i18="${'com.abbott.aem.cloud.platform.core.models.I18nFetcher' @ key = 'item'}"/>${item_i18.title}</th>
+                                        <th scope="col" class="width30 dynamic-product-detail-availability-header"><sly data-sly-use.market_i18="${'com.abbott.aem.cloud.platform.core.models.I18nFetcher' @ key = 'market'}"/>${market_i18.title}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <div data-sly-list.avail="${product.availability}">
+                                        <tr data-val='${avail.acode}'>
+                                            <td class="width25">${avail.displayListNumber @ context='html'}</td>
+                                            <td class="width45">${avail.description @ context='html'}</td>
+                                            <td class="width30">${avail.marketSegment @ context='html'}</td>
+                                        </tr>
+                                    </div>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <p class="d-none d-md-block note">
+                        ${dynamicProductDetail.institutionalMessage @ context='html'}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

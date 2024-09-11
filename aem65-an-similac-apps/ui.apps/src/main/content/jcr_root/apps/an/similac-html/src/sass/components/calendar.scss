@@ -1,0 +1,169 @@
+@import "../common-imports";
+.calendar-wrapper {
+    width: 21.5563rem;
+    min-height: 25.375rem;
+    display: inline-block;
+    border: solid 1px #029ce8;
+    background-color: #f2f8fb;
+    padding: 1.25rem 0.938rem 1.875rem;
+    font-size: 0rem;
+    .error-label {
+        font-family: $font-roboto-reg;
+        font-size: 1rem;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.38;
+        letter-spacing: normal;
+        color: $err_red;
+        text-align: center;
+    }
+    .cal-row {
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        display: flex;
+    }
+    .cal-col-content {
+        -ms-flex-preferred-size: 0;
+        flex-basis: 0;
+        -ms-flex-positive: 0;
+        flex-grow: 0;
+        max-width: 100%;
+        display: inline-table;
+    }
+    .cal-col-auto {
+        -ms-flex-preferred-size: 0;
+        flex-basis: 0;
+        -ms-flex-positive: 1;
+        flex-grow: 1;
+        max-width: 100%;
+    }
+    .month-set {
+        .month-btn {
+            width: 6.313rem;
+            flex: 1 0 33.33%;
+            margin-bottom: 0.625rem;
+        }
+    }
+    button:focus {
+        outline: none;
+    }
+    .day-set-disabled {
+        background-color: transparent !important;
+        color: #474747 !important;
+    }
+    .days-set {
+        button {
+            width: calc(100% / 7);
+            margin-bottom: 0.625rem;
+        }
+        div:last-child {
+            button {
+                margin-bottom: 0;
+            }
+        }
+    }
+    .year-set {
+        button {
+            min-width: 4.688rem;
+            margin-bottom: 0.625rem;
+        }
+    }
+    button {
+        &:not(:disabled):hover {
+            outline: 1px solid $tangerine;
+        }
+        &:active {
+            outline: 1px solid $tangerine;
+            background-color: $tangerine;
+            color: $white;
+        }
+        &:disabled {
+            background-color: $mild_grey;
+            color: $white;
+            cursor: default;
+        }
+        &.selected {
+            background-color: $tangerine;
+            color: $white;
+        }
+        cursor: pointer;
+        min-width: 2.438rem;
+        min-height: 2.438rem;
+        background-color: transparent;
+        border: none;
+        font-family: $font-brandon-text-bold;
+        font-size: 1rem;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.13;
+        letter-spacing: normal;
+        text-align: center;
+        color: $charcoal;
+        padding: 0 0.625rem;
+    }
+    label {
+        font-family: $font-roboto-reg;
+        font-size: 1.125rem;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.33;
+        letter-spacing: normal;
+        text-align: center;
+        color: #002f87;
+        display: block;
+        margin-bottom: 0.625rem;
+    }
+    .head {
+        button {
+            position: relative;
+            &+button::before {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                display: block;
+                content: "";
+                width: 0.188rem;
+                left: -0.188rem;
+                background-color: $grey;
+            }
+            &.current {
+                background-color: $tangerine;
+                color: $white;
+            }
+            &.pre-active {
+                background-color: $seagull;
+                color: $charcoal;
+                position: relative;
+            }
+            &.error {
+                color: $err_red;
+            }
+        }
+    }
+    .hide-btn {
+        opacity: 0;
+        cursor: default;
+        pointer-events: none;
+    }
+    .selected {
+        background-color: $tangerine;
+        color: $white;
+    }
+    hr {
+        background-color: $grey;
+        height: 1px;
+        border: none;
+        margin: 1.25rem 0 0.625rem;
+    }
+    /****/
+    .text-center {
+        text-align: center;
+    }
+}
+
+.calendar-wrapper .cal-row:last-child {
+    display: block;
+}

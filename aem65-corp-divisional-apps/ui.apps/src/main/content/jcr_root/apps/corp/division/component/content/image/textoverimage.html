@@ -1,0 +1,26 @@
+<!--* Created this file as complete block of code is common for all variations /*-->
+<sly data-sly-use.image="com.adobe.cq.wcm.core.components.models.Image"
+     data-sly-use.component="com.adobe.cq.wcm.core.components.models.Component"
+     data-sly-use.templates="core/wcm/components/commons/v1/templates.html"
+     data-sly-use.abbottImage="com.abbott.aem.corp.division.core.components.models.Image"
+     data-sly-use.clientlib="/libs/granite/sightly/templates/clientlib.html"
+     data-sly-call="${clientlib.css @ categories='abbott.corp.image.clientlibs'}">
+
+</sly>
+<a data-sly-unwrap="${!image.link}"
+   class="cmp-image__link" href="${image.link}"
+   data-redirect-confirm="${properties.external}"
+   data-cmp-clickable="${image.data ? true : false}"
+   data-cmp-hook-image="link" target="${properties.external ? '_blank' : ''}">
+		<div class="${abbottImage.imageOverlay=='yes'?'imghover':''}">
+        <noscript data-sly-unwrap="${!image.lazyEnabled && image.widths.length <= 1 && !image.areas}"
+                  data-cmp-hook-image="noscript">
+            <sly data-sly-include="imagetag.html"></sly>
+            <!--/* Including Text Over Image value /*-->
+            <span class="${abbottImage.textPosition} ${abbottImage.textColor} ${abbottImage.hoverTextColor}">${abbottImage.textOverImage @context='html'}</span>
+            <!--/* Condition to add black border box on the image /*-->
+			<div class="image-overlay" data-sly-test="${abbottImage.backBorder=='yes'}"></div>
+            <sly data-sly-include="maptag.html"></sly>
+        </noscript>
+	    </div>
+</a>

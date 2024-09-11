@@ -1,0 +1,105 @@
+
+.adc-progress-bar {
+	counter-reset: step;
+	padding: 0;
+	justify-content: space-around;
+	display: flex;
+	float: none;
+	position: relative;
+	z-index: 1;
+
+
+	&__step {
+		list-style-type: none;
+		.font-size-rems(12);
+		font-weight: @weight-bold;
+		position: relative;
+		text-align: center;
+		text-transform: capitalize;
+		color: @color-fsl-grey-3;
+		flex: 1 1 0px;
+		&:before {
+			width: 35px;
+			height: 35px;
+			content: counter(step);
+			counter-increment: step;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			margin: 0 auto 5px;
+			border-radius: 50%;
+			background-color: @color-fsl-grey-3;
+			color: @color-fsl-white;
+		}
+
+		.step-line {
+			width: ~"calc(80% - 42px)"; //80% of width between two orbs - width of orb - 2px so the arrow fits on the line
+			left: ~"calc(-40% + 20px)";
+			position: absolute;
+			z-index: -1;
+			background: @color-fsl-grey-2;
+			height: 2px;
+			top: 20px;
+			&:after{
+				content:"";
+				position: absolute;
+				.icon(Arrow_Forth_disabled);
+				right: -2px; //shift arrow by 2px so the line isn't visible through the point of the arrow
+				top: 50%;
+				transform: translateY(-50%);
+				height: 30px;
+				width: 30px;
+				background-position: right;
+				background-size: contain;
+				background-repeat: no-repeat;
+				@media @mobile-break{
+					content: "";
+				}
+			}
+
+        }
+
+		&--active, &--complete{
+			.step-line {
+				background: @color-fsl-blue;
+				&:after{
+					.icon(Arrow_Forth_blue);
+				}
+
+			}
+		}
+
+		&--active {
+			color: @color-fsl-blue;
+			font-weight: @weight-bold;
+
+			&:before {
+				background-color: @color-fsl-blue;
+			}
+        }
+
+
+
+		&--complete {
+			color: @color-fsl-blue;
+			font-weight: @weight-bold;
+
+			&:before {
+				background: @color-fsl-green no-repeat center;
+				.icon(tick_white);
+				color: @color-fsl-white;
+				content: "";
+			}
+		}
+
+
+		&:first-child {
+			&:after {
+				content: none;
+			}
+			.step-line{
+				display: none;
+			}
+		}
+	}
+}

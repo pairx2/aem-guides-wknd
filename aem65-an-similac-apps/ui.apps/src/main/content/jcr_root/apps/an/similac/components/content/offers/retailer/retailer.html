@@ -1,0 +1,60 @@
+<div  class="cq-placeholder section" 
+	data-emptytext="Configure Retailer Component in EDIT Mode" 
+    data-sly-test.author="${(wcmmode.edit || wcmmode.design)}" >
+</div>
+
+<sly data-sly-test ="${properties.retailerVariation == 'myOffers'}">
+	<p class="profile__sub-title">${properties.title}</p>
+	<p class="font-roboto-reg text-smalt">${properties.subTitle}</p>
+	<a class="font-brandon-bold text-tangerine">UPDATE</a>
+	<div class="row bg-alice-blue py-4 my-4 mx-0 ">
+		<div class="col-6 col-md-5 col-lg-3"><img src="" class="w-100" alt="Retailer Logo"></div>
+		<div class="col-6 col-md-7 col-lg-9 px-0">
+			<p class="font-roboto-bold text-smalt">Retailer</p>
+		</div>
+	</div>
+</sly>
+
+<sly data-sly-test ="${properties.retailerVariation == 'selectRetailer'}">
+	<p class="font-brandon-bold text-smalt">${properties.title}</p>
+	<div class="row" data-sly-use.retailerMultiItem="${resource.path}/retailerList" data-sly-list.retailer="${retailerMultiItem.listChildren}">
+		<div class="col-12 col-md-6 mb-3 mb-md-0">
+			<div class="row bg-alice-blue py-4 mx-0 ">
+				<div class="col-6 col-md-5 col-lg-3">
+					<img src="${retailer.imgUrl}" class="w-100" alt="Retailer Logo">
+				</div>
+				<div class="col-6 col-md-7 col-lg-9 px-0">
+					<p class="font-roboto-bold text-smalt">
+						${retailer.label}
+					</p>
+					<a class="font-brandon-bold text-tangerine mt-3">
+						Select Retailer
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<a class="font-roboto-reg text-tangerine d-flex my-5">${properties.deSelectRetailerLabel}</a>
+</sly>
+
+<sly data-sly-test ="${properties.retailerVariation == 'selectRetailerPwa'}">
+	<p class="font-brandon-bold text-smalt">${properties.title}</p>
+	<div class="row" data-sly-use.retailerMultiItem="${resource.path}/retailerList" data-sly-list.retailer="${retailerMultiItem.listChildren}">
+		<div class="col-12 col-md-6 mb-3 mb-md-0">
+			<div class="row bg-alice-blue py-4 mx-0 ">
+				<div class="col-6 col-md-5 col-lg-3">
+					<img src="${retailer.imgUrl}" class="w-100" alt="Retailer Logo">
+				</div>
+				<div class="col-6 col-md-7 col-lg-9 px-0">
+					<p class="font-roboto-bold text-smalt">
+						${retailer.label}
+					</p>
+					<a class="font-brandon-bold text-tangerine mt-3">
+						Select Retailer PWA
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<a class="font-roboto-reg text-tangerine d-flex my-5">${properties.deSelectRetailerLabel}</a>
+</sly>

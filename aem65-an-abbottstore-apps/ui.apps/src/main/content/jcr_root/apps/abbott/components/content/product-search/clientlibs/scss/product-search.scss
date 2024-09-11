@@ -1,0 +1,432 @@
+@import "../../../../../clientlibs/clientlib-base/scss/base/functions";
+@import "../../../../../clientlibs/clientlib-base/scss/base/variables";
+@import "../../../../../clientlibs/clientlib-base/scss/base/mixins";
+
+.search-modal {
+  align-items: center;
+  cursor: default;
+  display: flex;
+  height: 100%;
+  left: 0;
+  justify-content: center;
+  position: fixed;
+  top: -100%;
+  transition: .5s top;
+  width: 100%;
+  z-index: 999;
+
+  &.is-open {
+    top: 0;
+  }
+
+  &__container {
+    background: $white;
+    border: 1px solid $regal-blue;
+    color: $black;
+    padding: 8px;
+    max-height: 90%;
+    max-width: 1110px;
+    overflow: auto;
+    width: 100%;
+    position: relative;
+    overflow-x: hidden;
+    height: 87vh;
+
+    &--title {
+      text-align: left;
+    }
+
+    .ai-close {
+      font-size: 30px;
+      cursor: pointer;
+      color: #009be1;
+    }
+  }
+
+  /*========= ABBOTT search modal  ===========*/
+  &__form {
+    position: sticky;
+    width: 100%;
+    top: 0;
+    bottom: auto;
+    z-index: 1;
+
+    .no-results {
+      text-align: left;
+      font-size: 12px;
+      text-transform: capitalize;
+      font-family: $fonts-poppins;
+      font-weight: 400;
+      margin: 20px;
+
+    }
+
+    .card-search {
+      display: block;
+      position: relative;
+      margin-top: 42px;
+
+      ::placeholder {
+        color: $white;
+      }
+
+      &__input {
+        background-color: $scorpion;
+        border: 0;
+        font-size: 18px;
+        border-radius: 0;
+        height: 66px;
+        font-family: $fonts-poppins;
+        font-weight: 500;
+        font-style: italic;
+        color: $white;
+
+        &:focus {
+          background-color: $scorpion;
+          color: $white;
+        }
+      }
+
+      &__spinner {
+        display: inline-block;
+        width: 80px;
+        height: 80px;
+        position: absolute;
+        right: 52px;
+        top: 8px;
+
+        div {
+          transform-origin: 39px 23px;
+          animation: spinner 1s linear infinite;
+
+          &:after {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 3px;
+            left: 37px;
+            width: 3px;
+            height: 12px;
+            border-radius: 20%;
+            background: #fff;
+          }
+
+          &:nth-child(1) {
+            transform: rotate(0deg);
+            animation-delay: -1.1s;
+          }
+
+          &:nth-child(2) {
+            transform: rotate(30deg);
+            animation-delay: -1s;
+          }
+
+          &:nth-child(3) {
+            transform: rotate(60deg);
+            animation-delay: -0.9s;
+          }
+
+          &:nth-child(4) {
+            transform: rotate(90deg);
+            animation-delay: -0.8s;
+          }
+
+          &:nth-child(5) {
+            transform: rotate(120deg);
+            animation-delay: -0.7s;
+          }
+
+          &:nth-child(6) {
+            transform: rotate(150deg);
+            animation-delay: -0.6s;
+          }
+
+          &:nth-child(7) {
+            transform: rotate(180deg);
+            animation-delay: -0.5s;
+          }
+
+          &:nth-child(8) {
+            transform: rotate(210deg);
+            animation-delay: -0.4s;
+          }
+
+          &:nth-child(9) {
+            transform: rotate(240deg);
+            animation-delay: -0.3s;
+          }
+
+          &:nth-child(10) {
+            transform: rotate(270deg);
+            animation-delay: -0.2s;
+          }
+
+          &:nth-child(11) {
+            transform: rotate(300deg);
+            animation-delay: -0.1s;
+          }
+
+          &:nth-child(12) {
+            transform: rotate(330deg);
+            animation-delay: 0s;
+          }
+        }
+      }
+
+
+      &__button {
+        position: absolute;
+        right: 3px;
+        top: 3px;
+        height: 59px;
+        padding: 0 22px;
+        background: $blue;
+        border: none;
+
+
+        &--icon {
+          color: $white;
+        }
+      }
+    }
+  }
+}
+
+.popular-products {
+  display: flex;
+  justify-content: space-between;
+  background: $gray-1000;
+  color: $black;
+  font-size: 12px;
+  font-family: $fonts-poppins;
+  font-style: normal;
+  font-weight: 400;
+  padding: 10px;
+  text-transform: uppercase;
+  margin-top: 15px;
+  margin-bottom: 8px;
+  margin-left: 25px;
+
+
+  @media (max-width: 767px) {
+    margin-left: 10px;
+  }
+
+
+  &__categories {
+    text-transform: capitalize;
+    color: $black;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+
+    &:hover {
+      text-decoration: none;
+      color: $black;
+    }
+
+    &--all {
+      padding: 0 5px;
+    }
+  }
+}
+
+
+/*========= ABBOTT popular suggestions  ===========*/
+.popular-suggestions {
+  margin-left: 10px;
+
+  &__title {
+    background: $gray-1000;
+    color: $black;
+    font-size: 12px;
+    font-family: $fonts-poppins;
+    font-style: normal;
+    font-weight: 400;
+    padding: 10px;
+    text-transform: uppercase;
+    text-align: initial;
+    margin-top: 15px;
+    margin-bottom: 8px;
+
+  }
+
+  &__list {
+    list-style-type: none;
+    padding: 0;
+
+    &--name {
+      margin-bottom: 0.8rem;
+
+      .items {
+        display: flex;
+        justify-content: space-between;
+        text-decoration: none;
+        font-size: 12px;
+        text-transform: capitalize;
+        color: $daintree;
+        cursor: pointer;
+        letter-spacing: 0.3px;
+        font-family: $fonts-poppins;
+        font-style: normal;
+        font-weight: 400;
+        text-align: initial;
+      }
+    }
+  }
+}
+
+.search-modal-product-cols {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin-top: 35px;
+
+  .product-details {
+    display: flex;
+    list-style-type: none;
+    padding-top: 15px;
+    margin-left: 0;
+    width: 100%;
+
+    li {
+      align-items: center;
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+      width: 100%;
+    }
+
+    @media (max-width: 767px) {
+      padding: 0;
+      margin: 0;
+      width: 100%;
+
+      li {
+        width: 100%;
+
+        .product-outofstock {
+          margin-left: auto;
+          text-align: left;
+          width: 60%;
+        }
+      }
+    }
+
+    &__wrapper {
+      //text-decoration: none ;
+      display: flex;
+      flex-direction: column;
+      max-width: 100%;
+      text-decoration: none;
+
+
+      &:hover {
+        text-decoration: none;
+
+      }
+
+      &--image {
+        img {
+
+          height: 80px;
+          width: 80px;
+        }
+
+      }
+
+      &--title {
+        color: $black;
+        text-transform: capitalize;
+        font-size: 15px;
+        text-decoration: none;
+        font-family: 'Poppins', Arial, sans-serif;
+        margin-top: 20px;
+        max-width: 100%;
+
+        &:hover {
+          color: $black;
+          text-decoration: underline;
+        }
+      }
+
+      &--button {
+        background: $blue;
+        border: none;
+        border-radius: 0;
+        color: $white;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        font-size: 12px;
+        font-weight: 700;
+        height: 46px;
+        justify-content: center;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 30px;
+        max-width: 140px;
+        padding: 0 22px;
+        text-transform: uppercase;
+
+
+        &:hover, &:disabled {
+          background: $regal-blue;
+          border: none;
+          transition: all .3s ease-in-out;
+          text-decoration: none;
+        }
+      }
+
+      &--price {
+        color: $black;
+        text-decoration: none;
+        display: block;
+        font-size: 13px;
+
+        &:hover {
+          color: $black;
+          text-decoration: none;
+        }
+      }
+
+      @include media-breakpoint-down(sm) {
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 100%;
+
+        &--image {
+          flex-basis: 40%;
+          position: relative;
+          top: 10px;
+        }
+
+        &--title {
+          flex-basis: 50%;
+          margin-top: 0;
+          text-align: left;
+        }
+
+        &--price {
+          flex-basis: 60%;
+          margin-left: auto;
+          text-align: left;
+        }
+
+        &--button {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+@keyframes spinner {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}

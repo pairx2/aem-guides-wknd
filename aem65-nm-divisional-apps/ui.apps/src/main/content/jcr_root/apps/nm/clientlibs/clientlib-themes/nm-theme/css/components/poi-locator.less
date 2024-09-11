@@ -1,0 +1,334 @@
+@import '../variables.less';
+@import '../mixin.less';
+@import "../media-queries.less";
+
+body {
+    .a-spinner {
+        position: fixed;
+    }
+    #therapy-type-options {        
+        max-width: 100%;
+        .a-input-field.form-group {
+            display: flex;
+            align-items: center;
+            @media @sm-down {
+                flex-direction: column;
+            }
+            .form-label__align {
+                padding-right: 20px;
+                margin: 0;
+                width: 230px;
+                @media @sm-down {
+                    width: 100%;
+                    margin-bottom: 7px;
+                }
+                .a-input-label {
+                    .font-size(18px, 24px);
+                    color: @color-megenta;
+                    font-family: @brandonregular;                   
+                }
+            }            
+            .a-dropdown__field {
+                height: 48px;
+                max-width: 390px;
+                @media @sm-down {
+                    width: 100%;
+                    max-width: 100%;
+                }
+            }
+        }
+    }
+    .responsivegrid .aem-Grid > .aem-GridColumn.o-poi-locator {
+        margin:0;
+    }
+    .therapy-type-container {
+        z-index: initial;
+    }
+    .o-poi-locator { 
+        .m-poi-locator-search-bar__wrap {
+            padding-bottom: 16px;
+            margin-bottom: 0;
+            border-bottom: 1px solid @color-shuttle-gray;
+            #POI-locator-form > .row {
+                > .col-lg-6 {
+                    flex: 100%;
+                    width: 100%;
+                    max-width: 100%;                    
+                    > .row {
+                        align-items: center;
+                        > .col-9, > .col-3 {
+                            @media @md-down { 
+                                flex: 100%;
+                                width: 100%;
+                                max-width: 100%;
+                                padding-left: 15px !important;
+                            }
+                        }
+                        > .col-9 {
+                            @media @xl-up {
+                                flex: 85%;
+                                width: 85%;
+                                max-width: 85%;
+                            }
+                        }
+                        > .col-3 {
+                            @media @xl-up {
+                                flex: 15%;
+                                width: 15%;
+                                max-width: 15%;
+                            }
+                        }
+                    }                    
+                }                
+                .m-poi-locator-search-bar__use-location {
+                    margin-top: 16px;
+                    display: flex;
+                    align-items: center;
+                    .or-text {
+                        .font-size(18px, 24px);
+                        color: @color-megenta;
+                        font-family: @brandonregular;
+                        font-weight: normal;
+                        margin: 0 20px 0 0;
+                    }
+                }
+            }
+            .m-poi-locator-search-bar__input {
+                .form-group {
+                    display: flex;
+                    align-items: center;
+                    @media @sm-down {
+                        flex-direction: column;
+                    }
+                    .a-input-label {
+                        .font-size(18px, 24px);
+                        color: @color-megenta;
+                        font-family: @brandonregular;
+                        font-weight: normal;
+                        margin: 0;
+                        padding-right: 20px;
+                        width: 230px;
+                        @media @sm-down {
+                            width: 100%;
+                            margin-bottom: 7px;
+                        }
+                    }
+                    .a-input-grp {
+                        width: ~'calc(100% - 230px)';
+                        @media @sm-down {
+                            width: 100%;
+                        }
+                        .m-poi-locator-search-bar__input-field {
+                            padding: 14px 16px;
+                            border: 1px solid @color-shuttle-gray;
+                            .font-size(18px, 24px);
+                            color: @color-shuttle-gray;
+                            font-family: @brandonregular;
+                            font-weight: normal;
+                        }
+                    }
+                }
+            }
+            .m-poi-locator-search-bar__button {
+                margin: 0;
+                .a-button {
+                    .btn {
+                        padding: 14px 28px;
+                        span {
+                            display: block;
+                        }
+                        @media @md-down { 
+                            margin-bottom: 15px;
+                            width: auto;
+                        }                    
+                    }
+                }
+            }
+        }        
+        
+        .m-poi-locator-results__no-resultfound {
+            .common-fontSize;
+            font-family: @brandonmedium;
+            font-weight: normal;
+            margin-top: 30px;
+        }
+        .m-poi-locator-results {
+            .row-result-map--vertical .m-poi-locator-results__map {
+                margin: 32px 0 28px;
+            }
+            &__count {
+                .d-none;
+            }
+            &__list {
+                &-item {
+                    padding: 0 0 50px 0;
+                    margin: 0 0 28px 0;
+                    border-bottom: 1px solid @color-shuttle-gray;
+                    &-number {
+                        .d-none;
+                    }
+                    &-detail {
+                        display: flex;
+                        flex-wrap: wrap;
+                        > div, > p, > h3 {
+                            flex: 50%;
+                            min-width: 50%;
+                            max-width: 50%;
+                            margin-bottom: 10px;
+                            @media @md-down {
+                                flex: 100%;
+                                min-width: 50%;
+                                max-width: 100%;
+                            }
+                        }
+                        &__label {
+                            .d-none;
+                            &.mr-1 {
+                                .d-block;
+                                margin-left: 0;
+                            }
+                        }
+                        &--store-name, 
+                        &--store-hospital .m-poi-locator-results__list-item-detail__name {
+                            .font-size(28px, 26px);
+                            margin: 0 0 10px 0;
+                            color: @color-medium-blue;
+                            order: 1;
+                            @media @xxl-up {
+                                .font-size(36px, 32px);
+                            }                    
+                            @media @md-down {
+                                .font-size(20px, 18px);
+                            }
+                        }
+                        &--store-address, &--store-city, &__label, &--store-miles, &--store-contact, 
+                        &--visit-website.a-link, &--get-direction.a-link {
+                            .font-size(18px, 24px);
+                            margin-left: 50%;
+                            color: @color-charcoal;
+                            font-family: @brandonregular;
+                            @media @xxl-up {
+                                .font-size(24px, 34px);
+                            }                    
+                            @media @md-down {
+                                .font-size(12px, 16px);
+                                margin-left: 0;
+                            }
+                        }
+                        &--store-address {
+                            order: 5;
+                        }
+                        &--store-city {
+                            order: 6;
+                            .m-poi-locator-results__list-item-detail__label {
+                                display: none !important;
+                            }
+                            .m-poi-locator-results__list-item-detail__name {
+                                margin-bottom: 0;
+                                .font-size(18px, 24px);
+                                color: @color-charcoal;
+                                font-family: @brandonregular;
+                                @media @xxl-up {
+                                    .font-size(24px, 34px);
+                                }                    
+                                @media @md-down {
+                                    .font-size(12px, 16px);
+                                    margin-left: 0;
+                                }
+                            }
+                        }
+                        &--store-miles {
+                            font-family: @brandonmedium;
+                            font-weight: normal;
+                            order: 4;
+                            margin-left: 0;
+                        }
+                        &--store-hospital {
+                            order: 2;
+                            .m-poi-locator-results__list-item-detail__label {
+                                display: none !important;
+                            }
+                            .m-poi-locator-results__list-item-detail__name {
+                                margin-bottom: 0;
+                            }
+                            @media @md-down {
+                                order: 3;
+                            }
+                        }
+                        &--store-contact-details {
+                            order: 3;
+                            .m-poi-locator-results__list-item-detail--store-contact {
+                                margin: 0;
+                            }
+                            @media @md-down {
+                                order: 2;
+                            }
+                        }
+                        &--visit-website {
+                            order: 7;
+                        }
+                        &--get-direction {
+                            order: 8;
+                        }
+                        &__label, &--store-contact, &--visit-website.a-link, &--get-direction.a-link {
+                            color: @color-purple;
+                            font-family: @brandonmedium;
+                            a.a-link__text {
+                                font-family: @brandonregular;
+                                color: @color-purple;
+                                .font-size(18px, 24px);
+                                font-weight: normal;
+                                @media @xxl-up {
+                                    .font-size(24px, 34px);
+                                }                    
+                                @media @md-down {
+                                    .font-size(12px, 16px);
+                                }
+                                .abt-icon {
+                                    top: 50%;
+                                    transform: translateY(-50%);
+                                    color: @color-purple;
+                                }
+                            }
+                        }
+                    }
+                }            
+            }
+        } 
+        .a-pagination {
+            margin: 10px 0 30px;
+            .a-pagination__pages {
+                border: none;
+                .abt-icon {
+                    font-weight: 600;
+                    font-size: 16px;
+                }
+                li.a-pagination__page {
+                    .a-pagination__link {
+                        font-family: @brandonregular;
+                        &:focus, &:active {
+                            border: 1px solid transparent;
+                            background-color: @color-light-purple;
+                        }
+                        &.no-click {
+                            color: @border-light-gray;
+                            cursor: auto;
+                            &:hover {
+                                background-color: transparent;
+                            }
+                        }
+                    }
+                    &.a-pagination--active { 
+                        .a-pagination__link {
+                            color: @color-charcoal;
+                            font-family: @brandonmedium;                            
+                        }
+                        &:after {
+                            content: none;
+                        }
+                    }
+                }
+            }
+        }
+    }   
+}

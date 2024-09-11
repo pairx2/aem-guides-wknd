@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Scroll Interactions"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                maximized="{Boolean}true">
+                <items jcr:primaryType="nt:unstructured">
+                    <scrollInteractions
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="General"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <layout
+                                                granite:class="cq-dialog-dropdown-showhide"
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                fieldLabel="Layout"
+                                                name="./layout">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <mediaLeft
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="Media Left"
+                                                        value="mediaLeft"/>
+                                                    <mediaRight
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="Media Right"
+                                                        value="mediaRight"/>
+                                                </items>
+                                            </layout>
+                                            <useContainer
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                fieldDescription="If checked, will provide a layout container for additional components"
+                                                name="./useContainer"
+                                                text="Use Container"
+                                                uncheckedValue="{Boolean}false"
+                                                value="{Boolean}true"/>
+                                            <layer
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                                composite="{Boolean}true"
+                                                fieldLabel="Layer">
+                                                <field
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/container"
+                                                    name="./layers">
+                                                    <items jcr:primaryType="nt:unstructured">
+                                                        <file
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="cq/gui/components/authoring/dialog/fileupload"
+                                                            allowUpload="{Boolean}false"
+                                                            autoStart="{Boolean}false"
+                                                            class="cq-droptarget"
+                                                            fieldLabel="Image"
+                                                            fileNameParameter="./fileName"
+                                                            fileReferenceParameter="./fileReference"
+                                                            mimeTypes="[image/gif,image/jpeg,image/png,image/tiff,image/svg+xml]"
+                                                            multiple="{Boolean}false"
+                                                            name="./layerImage"
+                                                            title="Upload Image Asset"
+                                                            uploadUrl="${suffix.path}"
+                                                            useHTML5="{Boolean}true"/>
+                                                        <effects
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:hideResource="{Boolean}true"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                                            composite="{Boolean}true"
+                                                            fieldLabel="Effects">
+                                                            <field
+                                                                jcr:primaryType="nt:unstructured"
+                                                                sling:resourceType="granite/ui/components/coral/foundation/container"
+                                                                name="./effects">
+                                                                <items jcr:primaryType="nt:unstructured">
+                                                                    <effects
+                                                                        granite:class="cq-dialog-dropdown-showhide"
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                                        fieldLabel="Options"
+                                                                        name="./options">
+                                                                        <items jcr:primaryType="nt:unstructured">
+                                                                            <none
+                                                                                jcr:primaryType="nt:unstructured"
+                                                                                text="None"
+                                                                                value=""/>
+                                                                            <zoom
+                                                                                jcr:primaryType="nt:unstructured"
+                                                                                text="Zoom"
+                                                                                value="zoom"/>
+                                                                            <slide
+                                                                                jcr:primaryType="nt:unstructured"
+                                                                                text="Slide"
+                                                                                value="slide"/>
+                                                                            <fade
+                                                                                jcr:primaryType="nt:unstructured"
+                                                                                text="Fade"
+                                                                                value="fade"/>
+                                                                        </items>
+                                                                    </effects>
+                                                                </items>
+                                                            </field>
+                                                        </effects>
+                                                    </items>
+                                                </field>
+                                            </layer>
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </scrollInteractions>
+                    <background
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Background Styling"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <gradientType
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                    granite:class="cq-dialog-dropdown-showhide-multival"
+                                                    fieldLabel="Gradient Type"
+                                                    name="./gradientType">
+                                                <granite:data
+                                                        jcr:primaryType="nt:unstructured"
+                                                        cq-dialog-dropdown-showhide-target=".gradient-type-showhide-target"/>
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <none
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="No Gradient - Regular background"
+                                                            value="none"/>
+                                                    <linear
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Linear"
+                                                            value="linear"/>
+                                                    <radial
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Radial"
+                                                            value="radial"/>
+                                                </items>
+                                            </gradientType>
+                                            <noGradient
+                                                    jcr:primaryType="nt:unstructured"
+                                                    granite:class="gradient-type-showhide-target"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                <granite:data
+                                                        jcr:primaryType="nt:unstructured"
+                                                        showhidetargetvalue="none"/>
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <backgroundColor
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/colorfield"
+                                                        fieldDescription="Please choose Background Color this will be a single color with no gradient"
+                                                        fieldLabel="Background Color (No Gradient)"
+                                                        name="./backgroundColor"
+                                                        showProperties="{Boolean}true"
+                                                        showSwatches="{Boolean}false"/>
+                                                </items>
+                                            </noGradient>
+                                            <showGradient
+                                                    jcr:primaryType="nt:unstructured"
+                                                    granite:class="gradient-type-showhide-target"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                <granite:data
+                                                        jcr:primaryType="nt:unstructured"
+                                                        showhidetargetvalue="linear,radial"/>
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <showRadialGradient
+                                                            jcr:primaryType="nt:unstructured"
+                                                            granite:class="gradient-type-showhide-target"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                        <granite:data
+                                                                jcr:primaryType="nt:unstructured"
+                                                                showhidetargetvalue="radial"/>
+                                                        <items jcr:primaryType="nt:unstructured">
+                                                            <radialGradientAlignment
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                                    granite:class="cq-dialog-dropdown-showhide"
+                                                                    fieldLabel="Radial Gradient Alignment"
+                                                                    name="./radialGradientAlignment">
+                                                                <granite:data
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        cq-dialog-dropdown-showhide-target=".gradientAlignment-showhide-target"/>
+                                                                <items jcr:primaryType="nt:unstructured">
+                                                                    <left
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            text="Left"
+                                                                            value="left"/>
+                                                                    <center
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            text="Center"
+                                                                            value="center"/>
+                                                                    <right
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            text="Right"
+                                                                            value="right"/>
+                                                                    <advanced
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            text="Advanced (user specified percentage)"
+                                                                            value="advanced"/>
+                                                                </items>
+                                                            </radialGradientAlignment>
+                                                            <showAdvancedGradientAlignment
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    granite:class="gradientAlignment-showhide-target"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                                <granite:data
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        showhidetargetvalue="advanced"/>
+                                                                <items jcr:primaryType="nt:unstructured">
+                                                                    <advancedGradientAlignment
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                                                            fieldDescription="The percentage goes from left to right examples: 25%, 50%, 75%, 100%, etc"
+                                                                            fieldLabel="Gradient Alignment percentage"
+                                                                            min="{Long}0"
+                                                                            name="./advancedGradientAlignment"/>
+                                                                </items>
+                                                            </showAdvancedGradientAlignment>
+                                                        </items>
+                                                    </showRadialGradient>
+                                                    <startColor
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/colorfield"
+                                                        fieldDescription="Please choose Start Color"
+                                                        fieldLabel="Start Color"
+                                                        name="./startColor"
+                                                        showProperties="{Boolean}true"
+                                                        showSwatches="{Boolean}false"/>
+                                                    <endColor
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/colorfield"
+                                                        fieldDescription="Please choose End Color"
+                                                        fieldLabel="End Color"
+                                                        name="./endColor"
+                                                        showProperties="{Boolean}true"
+                                                        showSwatches="{Boolean}false"/>
+                                                    <message
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="cq/gui/components/authoring/dialog/note"
+                                                        note="Starting gradient and ending gradient if not set in 'Additional Gradient Options' will start at 0% and end at 100%"/>
+                                                    <gradientOptions
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType = "granite/ui/components/coral/foundation/accordion">
+                                                        <items jcr:primaryType="nt:unstructured">
+                                                            <options
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/container"
+                                                                    jcr:title="Additional Gradient Options">
+                                                                <items jcr:primaryType="nt:unstructured">
+                                                                    <startColorPosition
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                                                        fieldDescription="Please choose Start Color Position"
+                                                                        fieldLabel="Start Color Position"
+                                                                        min="{Long}0"
+                                                                        name="./startColorPosition"/>
+                                                                    <endColorPosition
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                                                        fieldDescription="Please choose End Color Position"
+                                                                        fieldLabel="End Color Position"
+                                                                        min="{Long}0"
+                                                                        name="./endColorPosition"/>
+                                                                    <noGradient
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        granite:class="gradient-type-showhide-target"
+                                                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                                        <granite:data
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            showhidetargetvalue="radial"/>
+                                                                        <items jcr:primaryType="nt:unstructured">
+                                                                            <radialGradientSize
+                                                                                jcr:primaryType="nt:unstructured"
+                                                                                sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                                                                fieldDescription="If the size you want is know, you can select a specific size for the radial gradients (the size will use pixels)"
+                                                                                fieldLabel="Radial Gradient Size"
+                                                                                min="{Long}0"
+                                                                                name="./radialGradientSize"/>
+                                                                        </items>
+                                                                    </noGradient>
+                                                                </items>
+                                                            </options>
+                                                        </items>
+                                                    </gradientOptions>
+                                                </items>
+                                            </showGradient>
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </background>
+                    <configItem
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="ID/Class Config"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <configTab
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="/libs/granite/ui/components/coral/foundation/include"
+                                                path="/apps/abbott-platform/components/core/customconfig/v1/customconfig/cq:dialog/content/items/tabs/items/configItem/items/columns/items/column"/>
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </configItem>
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>

@@ -1,0 +1,108 @@
+<sly data-sly-test="${wcmmode.edit}">
+   <p data-sly-unwrap="${properties.title}" data-emptytext="Configure ${component.title}" class="cq-placeholder"></p>
+</sly>
+<sly data-sly-use.card="com.abbott.aem.adc.freestylelibrede.models.CardModel">
+   <div class="container">
+      <section class="card-info card-info-padding">
+         <sly data-sly-test="${card.imagePosition == 'left'}">
+            <div class="row  justify-content-center my-2 mx-md-0">
+               <div class="col-lg-4 col-md-4 mb-5 adc-card__image-container  text-center align-self-md-center mt-4 mt-md-0">
+                  <img data-src="${card.image}" class="img-fluid lazyload" alt="${card.imageAltText}">
+               </div>
+               <div class="col-lg-8 col-md-8 col-sm-12">
+                  <div class="card-info_left mt-lg-2">
+                     ${card.cardTitle @ context="html"}
+                     <p>${card.description @ context="html"}</p>
+                     <sly data-sly-test="${card.showCta}">
+                        <div class="row ml-0 mt-3 d-none d-xl-flex">
+                           <div data-sly-test="${card.ctaLabel}"
+                              class="${card.ctaStyling} col-lg-6  col-md-6 col-sm-12 pl-xl-0">
+                              <a href="${card.ctaLink}" target="${card.ctaAction}"
+                                 class="adc-button adc-button-${card.ctaStyling} text-center d-flex">
+                                 ${card.ctaLabel}
+                              </a>
+                           </div>
+                           <div data-sly-test="${card.secondaryCtaLabel}"
+                              class="${card.secondaryCtaStyling} col-lg-6 col-md-6 col-sm-12 pr-xl-0 mt-3 mt-md-0">
+                              <a href="${card.secondaryCtaLink}" target="${card.secondaryCtaAction}"
+                                 class="adc-button adc-button-${card.secondaryCtaStyling} text-center d-flex">
+                                 ${card.secondaryCtaLabel}
+                              </a>
+                           </div>
+                        </div>
+                     </sly>
+                  </div>
+               </div>
+            </div>
+            <sly data-sly-test="${card.showCta}">
+               <div class="row ml-md-0 d-xl-none">
+                  <div data-sly-test="${card.ctaLabel}"
+                     class="${card.ctaStyling} col-md-6  col-sm-12 pr-md-1 p-lg-0 mb-3 ${(card.secondaryCtaLabel) ? '' : 'offset-md-5 pl-md-0'}">
+                     <a href="${card.ctaLink}" target="${card.ctaAction}"
+                        class="adc-button adc-button-${card.ctaStyling} text-center d-flex">
+                        ${card.ctaLabel}
+                     </a>
+                  </div>
+                  <div data-sly-test="${card.secondaryCtaLabel}"
+                     class="${card.secondaryCtaStyling} col-md-6 col-sm-12 mt-lg-0 mb-3 mb-md-0">
+                     <a href="${card.secondaryCtaLink}" target="${card.secondaryCtaAction}"
+                        class="adc-button adc-button-${card.secondaryCtaStyling} text-center d-flex">
+                        ${card.secondaryCtaLabel}
+                     </a>
+                  </div>
+               </div>
+            </sly>
+         </sly>
+         <sly data-sly-test="${card.imagePosition == 'right'}">
+            <div class="row  justify-content-center mx-md-0">
+               <div class="col-lg-8 col-md-8 p-lg-0 order-md-1 col-sm-12 order-2">
+                  <div class="card-info_right mt-md-0 mt-5">
+                     <img src="${card.image}" class="img-fluid lazyload d-block d-md-none mb-4"
+                        alt="${card.imageAltText}">
+                     ${card.cardTitle @ context="html"}
+                     ${card.description @ context="html"}
+                     <sly data-sly-test="${card.showCta}">
+                        <div class="row ml-0 mt-3 d-none d-xl-flex">
+                           <div data-sly-test="${card.ctaLabel}" class="${card.ctaStyling} col-6 pl-0">
+                              <a href="${card.ctaLink}" target="${card.ctaAction}"
+                                 class="adc-button adc-button-${card.ctaStyling} text-center d-flex">
+                                 ${card.ctaLabel}
+                              </a>
+                           </div>
+                           <div data-sly-test="${card.secondaryCtaLabel}" class="${card.secondaryCtaStyling} col-6">
+                              <a href="${card.secondaryCtaLink}" target="${card.secondaryCtaAction}"
+                                 class="adc-button adc-button-${card.secondaryCtaStyling} text-center d-flex">
+                                 ${card.secondaryCtaLabel}
+                              </a>
+                           </div>
+                        </div>
+                     </sly>
+                  </div>
+               </div>
+               <div
+                  class="col-lg-4 p-md-0 mt-lg-2 col-md-4 order-md-2 col-sm-12 order-1 text-center align-self-center d-none adc-card__image-container d-md-block">
+                  <img src="${card.image}" class="img-fluid lazyload" alt="${card.imageAltText}">
+               </div>
+            </div>
+            <sly data-sly-test="${card.showCta}">
+               <div class="row ml-md-0 d-xl-none">
+                  <div data-sly-test="${card.ctaLabel}"
+                     class="${card.ctaStyling} col-lg-4 col-md-6 col-sm-12 pr-md-1 p-lg-0 mb-3">
+                     <a href="${card.ctaLink}" target="${card.ctaAction}"
+                        class="adc-button adc-button-${card.ctaStyling} text-center d-flex">
+                        ${card.ctaLabel}
+                     </a>
+                  </div>
+                  <div data-sly-test="${card.secondaryCtaLabel}"
+                     class="${card.secondaryCtaStyling} col-lg-4 col-md-6 col-sm-12 pr-md-1 pl-lg-3 mt-lg-0 p-lg-0">
+                     <a href="${card.secondaryCtaLink}" target="${card.secondaryCtaAction}"
+                        class="adc-button adc-button-${card.secondaryCtaStyling} text-center d-flex">
+                        ${card.secondaryCtaLabel}
+                     </a>
+                  </div>
+               </div>
+            </sly>
+         </sly>
+      </section>
+   </div>
+</sly>

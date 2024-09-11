@@ -1,0 +1,37 @@
+<template data-sly-template.item="${@pinIconPopUp='POI Locator Result item'}">
+    <div class="a-pin-icon-popup">
+
+        <sly data-sly-test="${pinIconPopUp.overridePinIconPopItem == 'true'}">
+            <sly data-sly-list.pinIconAddProp="${pinIconPopUp.overridePinIconPopUpList}">
+                <sly data-sly-test.isGetDirection="${pinIconAddProp.pinIconPopUpKey == 'getdirection'}">
+                    <div class="a-pin-icon-popup__item-box ${pinIconAddProp.pinIconPopUpKey}">
+                        <p class="a-pin-icon-popup__name"><a
+                                href="https://www.google.com/maps/dir/?api=1&origin={Origlatitude},{Origlongitude}&destination={latitude},{longitude}"
+                                target="_blank">${pinIconAddProp.pinIconPopUpLabel}</a></p>
+                    </div>
+                </sly>
+                <sly data-sly-test.isHospital="${pinIconAddProp.pinIconPopUpKey == 'hospital'}">
+                    <div class="a-pin-icon-popup__item-box ${pinIconAddProp.pinIconPopUpKey}">
+                        <p class="a-pin-icon-popup__label">${pinIconAddProp.pinIconPopUpLabel}</p>
+                        <p class="a-pin-icon-popup__name"><a data-href="{id}">{${pinIconAddProp.pinIconPopUpKey}}</a></p>
+                    </div>
+                </sly>
+                <sly
+                    data-sly-test.isCommaReq="${pinIconAddProp.pinIconPopUpKey == 'addressOne' || pinIconAddProp.pinIconPopUpKey == 'city' || pinIconAddProp.pinIconPopUpKey == 'zone'}">
+                </sly>
+                <sly data-sly-test="${!isGetDirection && !isHospital}">
+                    <div class="a-pin-icon-popup__item-box ${pinIconAddProp.pinIconPopUpKey}">
+                        <p class="a-pin-icon-popup__label">${pinIconAddProp.pinIconPopUpLabel}</p>
+                        <p class="a-pin-icon-popup__name">{${pinIconAddProp.pinIconPopUpKey}}<sly
+                                data-sly-test="${isCommaReq}">,</sly>
+                        </p>
+                    </div>
+                    <sly data-sly-test="${pinIconAddProp.pinIconPopUpKey == 'addressTwo'}"><br /></sly>
+                </sly>
+            </sly>
+        </sly>
+
+    </div>
+
+
+</template>

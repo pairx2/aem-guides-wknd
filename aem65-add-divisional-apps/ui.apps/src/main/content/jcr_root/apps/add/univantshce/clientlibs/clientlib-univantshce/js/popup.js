@@ -1,0 +1,1 @@
+$('#section-site-leaving-popup').parent().addClass('no-padding');

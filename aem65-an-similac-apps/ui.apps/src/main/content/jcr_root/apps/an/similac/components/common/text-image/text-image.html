@@ -1,0 +1,87 @@
+
+<sly data-sly-use.teaser="com.adobe.cq.wcm.core.components.models.Teaser"
+     data-sly-use.templates="core/wcm/components/commons/v1/templates.html"
+     data-sly-use.imageTemplate="image.html"
+     data-sly-use.titleTemplate="title.html"
+     data-sly-use.descriptionTemplate="description.html"
+     data-sly-use.actionsTemplate="actions.html"
+     data-sly-test.hasContent="${teaser.imageResource || teaser.title || teaser.description || teaser.actions.size > 0}">
+     
+
+		<sly data-sly-test = "${properties.componentWidth == 'col-3-9'}">
+        <div class="col-lg-3 col-md-3"></sly>
+				
+		<sly data-sly-test = "${properties.componentWidth == 'col-5-7'}">
+        <div class="col-lg-5 col-md-6"></sly>
+		
+		<sly data-sly-test = "${properties.componentWidth == 'col-7-5'}">
+        <div class="col-lg-7 mb-1_875"></sly>
+
+        <sly data-sly-test = "${properties.componentWidth == 'col-4-8'}">
+        <div class="col-lg-4 col-md-6"></sly>
+		
+		<!--To hide image in mobile and tablet 12-4-8 -->
+		 <sly data-sly-test = "${properties.componentWidth == 'col-12-4-8'}">
+        <div class="col-4 d-none d-lg-flex"></sly>
+
+        <!--To hide image in mobile and tablet 3-9-12 -->
+		 <sly data-sly-test = "${properties.componentWidth == 'col-3-9-12'}">
+        <div class="col-lg-3 col-md-12 d-none d-lg-flex"></sly>
+
+        <sly data-sly-test = "${properties.componentWidth == 'col-6-6'}">
+        <div class="col-lg-6 col-md-4 col-sm-12"></sly>
+        <sly data-sly-test="${!properties.youTubeVideo}">
+            <sly data-sly-call="${imageTemplate.image @ teaser=teaser}"></sly>
+        </sly>
+        <sly data-sly-test="${properties.youTubeVideo}">
+            <div class="videoPlayerWrapper">
+                <a href="javascript:void(0)" class="playVideo">
+                    <img src="${properties.imageUrl}" alt="Click to play the video"/>
+                </a>
+                <div class="videoPlayer d-none">
+                    <iframe id="yt-${properties.analyticsLabel}" width="${properties.youtubeWidth || '100%' @ context='scriptString'}"
+                height="${properties.youtubeHeight || '100%' @ context='scriptString'}"
+                src=""
+                data-attr="${'https://www.youtube.com/embed/{0}' @ format=[properties.youtubeVideoId]}"
+                allow="${'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture' @ context='attribute'}"
+                allowfullscreen title="video"
+                data-sly-test="${properties.youtubeVideoId}" data-event-label="${properties.analyticsLabel}"></iframe>
+                </div>
+            </div>
+        </sly>
+	     <div class="bold d-md-none mt-4" data-sly-test = ${properties.extraTerms}>${properties.extraTerms @ context="html"}</div> 
+        </div>
+		
+
+		<sly data-sly-test = "${properties.componentWidth == 'col-3-9'}">
+        <div class="col-lg-9 col-md-9"></sly>
+				
+		<sly data-sly-test = "${properties.componentWidth == 'col-5-7'}">
+        <div class="col-lg-7 col-md-6"></sly>
+
+		<sly data-sly-test = "${properties.componentWidth == 'col-7-5'}">
+		   <div class="col-lg-5"></sly>	
+
+        <sly data-sly-test = "${properties.componentWidth == 'col-4-8'}">
+		   <div class="col-lg-8 col-md-6"></sly>	
+		   
+		 <sly data-sly-test = "${properties.componentWidth == 'col-12-4-8'}">
+        <div class="col-12 col-lg-8"></sly>  
+
+        <sly data-sly-test = "${properties.componentWidth == 'col-3-9-12'}">
+        <div class="col-lg-9 col-md-12"></sly> 
+
+        <sly data-sly-test = "${properties.componentWidth == 'col-6-6'}">
+        <div class="col-lg-6 col-md-8 col-sm-12"></sly>
+            <div class="row">
+                <div class="col-lg-12">
+                	<sly data-sly-call="${titleTemplate.title @ teaser=teaser}"></sly>
+                	<sly data-sly-call="${descriptionTemplate.description @ teaser=teaser}"></sly>
+					 <div class="bold d-none d-md-block mt-4">${properties.extraTerms @ context="html"}</div>
+					<sly data-sly-call="${actionsTemplate.actions @ teaser=teaser}"></sly>
+                </div>
+            </div>
+        </div>
+</sly>
+<hr class="my-lg-3_375 my-md-2_625 my-sm-1_875">
+<sly data-sly-call="${templates.placeholder @ isEmpty=!hasContent, classAppend='cmp-teaser'}"></sly>

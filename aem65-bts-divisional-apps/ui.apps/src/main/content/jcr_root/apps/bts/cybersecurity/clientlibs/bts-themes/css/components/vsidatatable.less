@@ -1,0 +1,850 @@
+.container--grey {
+  background-color: @color-light-grey-300;
+}
+
+#vsiDataTable_wrapper {
+  width: 100%;
+  max-width: 1130px;
+  margin: 20px auto 0 auto;
+  box-sizing: border-box;
+
+  table {
+    width: 100% !important;
+    table-layout: fixed !important;
+  }
+
+  .dataTables_length,
+  #vsiDataTable_info {
+    display: none;
+  }
+
+  .vsi-return {
+    font-weight: bold;
+    position: relative;
+  }
+
+  h1.vsi {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    line-height: 1;
+  }
+
+  table.dataTable thead th,
+  table.dataTable thead td {
+    border: none !important;
+  }
+}
+
+#vsiDataTable_wrapper::after {
+  content: '';
+  display: table;
+  float: none;
+  clear: both;
+}
+
+/* FILTER BAR */
+#vsiFilters {
+  background: #efefef;
+  padding: 10px;
+  width: 100%;
+  max-width: 1130px;
+  margin: 0 auto;
+  position: relative;
+
+  .filter-title {
+    display: inline-block;
+    font-size: 15px;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+  }
+
+  .select-risk-range,
+  .select-date-range,
+  #selectDropdown {
+    display: inline-block;
+    position: relative;
+    border: 1px solid #000;
+    padding: 2px 7px;
+    border-radius: 5px;
+    font-size: 14px;
+    margin: 0 5px;
+    cursor: pointer;
+    z-index: 1;
+  }
+
+  #selectDropdown {
+    border: none;
+  }
+
+  #selectDropdown select {
+    border-radius: 5px;
+    background: #efefef;
+    padding: 5px 5px;
+    margin-left: 30px;
+    width: 150px;
+  }
+
+  #selectDropdown select option {
+    background: #fff;
+  }
+
+  #selectRiskRange,
+  #selectDateRange {
+    background: #fff;
+    padding: 15px;
+    box-shadow: 0 5px 10px -5px rgba(0, 0, 0, 0.5);
+    position: absolute;
+    display: none;
+    left: 60px;
+    top: 45px;
+    border-radius: 5px;
+  }
+
+  #selectDateRange {
+    left: 190px;
+  }
+
+  #selectRiskRange.active,
+  #selectDateRange.active {
+    display: block;
+    z-index: 9;
+  }
+
+  #selectRiskRange .sel-risk-wrap input,
+  #selectDateRange .date-range-wrap input {
+    padding: 10px 15px;
+  }
+
+  #selectRiskRange .sel-risk-wrap .close-btn,
+  #selectDateRange .date-range-wrap .close-btn {
+    display: inline-block;
+    font-size: 12px;
+    margin: 5px 0 0 0;
+    color: #003da5;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .minmaxtext {
+    font-size: 14px;
+  }
+
+  #vsiDataTable_filter {
+    display: inline-block;
+    position: relative;
+
+    &::before {
+      content: '\e914';
+      display: block;
+      font: 600 13px/1 @font-family-abt-icon;
+      font-style: normal;
+      font-variant: normal;
+      text-transform: none;
+      speak: never;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      left: 7px;
+      top: 7px;
+      position: absolute;
+    }
+  }
+
+  #vsiDataTable_filter:active {
+    border: none;
+  }
+
+  #vsiDataTable_filter label {
+    display: none;
+  }
+
+  #vsiDataTable_filter input {
+    width: 520px;
+    background: #fff;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.28);
+    padding: 2px 7px 2px 30px;
+  }
+
+  #clearFilters {
+    font-size: 14px;
+    font-weight: bold;
+  }
+}
+
+/* ASCEND DESCEND CSS */
+.vsidatatable table.dataTable thead .sorting,
+.vsidatatable table.dataTable thead .sorting_asc,
+.vsidatatable table.dataTable thead .sorting_desc,
+.vsidatatable table.dataTable thead .sorting_asc_disabled,
+.vsidatatable table.dataTable thead .sorting_desc_disabled {
+  cursor: pointer;
+  *cursor: hand;
+  background-repeat: no-repeat;
+}
+
+.vsidatatable table.dataTable thead .sorting_asc {
+  background-image: url("../../resources/images/vsidatatable/vsi-asc.png") !important;
+  background-position: 90% center;
+}
+
+.vsidatatable table.dataTable thead .sorting_desc {
+  background-image: url("../../resources/images/vsidatatable/vsi-desc.png") !important;
+  background-position: 90% center;
+}
+
+/* DATA TABLES CF LIST */
+.filter-bar {
+  margin-top: 20px;
+}
+
+.filter-head th {
+  color: #999;
+  font-size: 14px;
+  padding: 15px 0 15px 10px;
+}
+
+.filter-list {
+  padding: 0;
+  min-height: 900px;
+  border: none;
+}
+
+.filter-list td {
+  padding: 20px 10px !important;
+  text-overflow: ellipsis;
+}
+
+.filter-list>tr {
+  color: #333333;
+  font-size: 14px;
+  cursor: pointer;
+  background: #fff;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.filter-list>tr:hover {
+  background-color: #e8edfc;
+}
+
+.vsi-table thead>tr>th:nth-child(1),
+.filter-list>tr>td:nth-child(1) {
+  padding-left: 64px !important;
+  width: 207px !important;
+  background-position: 95% center;
+}
+
+.vsi-table thead>tr>th:nth-child(2),
+.filter-list>tr>td:nth-child(2) {
+  width: 130px !important;
+  background-position: 95% center;
+}
+
+.vsi-table thead>tr>th:nth-child(3),
+.filter-list>tr>td:nth-child(3) {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.vsi-table thead>tr>th:nth-child(4),
+.filter-list>tr>td:nth-child(4) {
+  width: 180px !important;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.vsi-table thead>tr>th:nth-child(5),
+.filter-list>tr>td:nth-child(5) {
+  width: 225px !important;
+  padding-right: 64px !important;
+  overflow: hidden;
+  white-space: nowrap;
+  background-position: 70% center;
+}
+
+/* PAGINATION */
+#vsiDataTable_paginate {
+  margin: 20px 0 0 0;
+  display: flex;
+}
+
+.dataTables_paginate {
+  border: 1px solid #d9d9d6;
+  margin: 20px auto 0;
+  border-radius: 5px;
+  margin-left: auto !important;
+}
+
+
+.dataTables_paginate a {
+  padding: 10px 15px;
+  font-size: 1rem;
+  display: inline-block;
+  color: #888b8d;
+  cursor: pointer;
+}
+
+.dataTables_paginate a:hover {
+  border-bottom: 2px solid #ffd100;
+}
+
+.dataTables_paginate a.current {
+  background: transparent;
+  border-bottom: 2px solid #001489;
+  font-weight: normal;
+  border-top: 0;
+  color: #001489;
+}
+
+.dataTables_paginate a:hover,
+.dataTables_paginate a:hover+.dataTables_paginate a.current {
+  background-color: #ffd100;
+  text-decoration: none;
+  color: #001489;
+  font-weight: bold;
+}
+
+.dataTables_paginate .paginate_button.previous,
+.dataTables_paginate .paginate_button.next {
+  font-size: 20px;
+}
+
+.filter-list>tr td[data-pending-status='pending'] {
+	color: #001489 !important;
+	font-weight: bold;
+	font-style: italic;
+}
+
+/* SIDEBAR CSS */
+.vsi-sidebar {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 430px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  transform: translateX(455px);
+  transition: transform ease-in-out 0.3s;
+  background-color: #fff;
+  padding: 20px 0 0 20px;
+  box-shadow: 0px 0px 15px 0px #999;
+  z-index: 1000;
+
+  .vsi-sidebar-body {
+    overflow-y: auto;
+    padding-bottom: 20px;
+    padding-top: 8px;
+  }
+
+  &.active {
+    transform: translateX(0);
+  }
+
+  .mt-20 {
+    margin-top: 20px;
+  }
+
+  .sb-border-bottom {
+    border-bottom: 1px solid #000;
+    padding-bottom: 20px;
+  }
+
+  .sidebar-close {
+    width: 100%;
+    cursor: pointer;
+    padding-bottom: 6px;
+    padding-right: 20px;
+    font-size: 16px;
+    color: #003da5;
+    font-weight: bold;
+    text-align: right;
+  }
+
+  .sidebar-close:hover {
+    color: #000;
+  }
+
+  .sidebar-tc div {
+    width: 49%;
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  .sidebar-tc p {
+    margin: 0;
+    padding: 0;
+  }
+
+  .cve {
+    max-height: 100px;
+    overflow: hidden;
+    overflow-y: auto;
+  }
+
+  .sidebar-tc p:nth-child(2) {
+    font-weight: bold;
+    font-size: 16px;
+  }
+
+  .sidebar-tiny {
+    font-size: 14px;
+    font-weight: 400;
+    color: #222731;
+  }
+
+  .sidebar-tiny span {
+    cursor: pointer;
+    color: #fff;
+    background: #003da5;
+    border-radius: 50%;
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+    text-align: center;
+    font-size: 10px;
+    line-height: 1.5;
+  }
+
+  .sidebar-details .sidebar-tiny,
+  .sidebar-remdate .sidebar-tiny {
+    margin: 0 0 5px;
+  }
+
+  .sidebar-details .details,
+  .sidebar-remdate .remdate {
+    font-weight: bold;
+  }
+}
+
+.vsi-scrollbar {
+  &::-webkit-scrollbar {
+    width: 25px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: white;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    width: 25px;
+    background: #003da5;
+    border-radius: 20px;
+    border: 8px solid white;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: #003da5;
+  }
+}
+
+/* MODAL CSS */
+.sidebar-modal {
+  display: none;
+  position: fixed;
+  z-index: 1001;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+
+  &.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Modal Content */
+  .modal-content {
+    width: 35%;
+    background: white;
+    border: 1px solid #333;
+    padding: 20px;
+  }
+
+  .modal-content p,
+  .modal-content ul {
+    color: #666;
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
+  }
+
+  .modal-content ul {
+    margin: 20px 20px 0;
+  }
+
+  /* The Close Button */
+  .closebtn {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .closebtn:hover,
+  .closebtn:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+}
+
+#vsiDataTable_wrapper .dataTables_length {
+  display: block;
+}
+
+#vsiDataTable_wrapper .bottom {
+  display: flex;
+  align-items: baseline;
+
+  label {
+    font: normal 1rem Helvetica, Arial, sans-serif;
+    color: #888b8d;
+
+    select {
+      margin: 0 5px;
+      border-radius: 4px;
+      border: 0;
+      outline: 0;
+      background-color: #fff;
+      box-shadow: 0 1px 2px 1px #0000001f;
+      color: #001489;
+      font-size: 1rem;
+      line-height: 17px;
+      padding: 15px 16px 12px 11px;
+      width: 75px;
+    }
+  }
+
+}
+
+/* Portrait and Landscape */
+.screen-below(@screen-xl - 1, {
+    #vsiDataTable_wrapper {
+      overflow: hidden;
+      overflow-x: auto;
+    }
+
+    .vsi-table thead > tr > th:nth-child(1),
+    .filter-list > tr > td:nth-child(1) {
+      padding-left: 5px !important;
+      width: 100px !important;
+    }
+
+    .vsi-table thead > tr > th:nth-child(2),
+    .filter-list > tr > td:nth-child(2) {
+      width: 135px !important;
+    }
+
+    .vsi-table thead > tr > th:nth-child(4),
+    .filter-list > tr > td:nth-child(4) {
+      width: 140px !important;
+    }
+
+    .vsi-table thead > tr > th:nth-child(5),
+    .filter-list > tr > td:nth-child(5) {
+      padding-right: 5px !important;
+      width: 140px !important;
+    }
+
+    .vsidatatable table.dataTable thead .sorting_asc {
+      background-position: right center;
+    }
+
+    #vsiFilters {
+      #vsiDataTable_filter input {
+        width: 250px;
+      }
+
+      #selectDropdown select {
+        width: 70px;
+        margin-left: 0px;
+      }
+
+      .sidebar-modal .modal-content {
+        width: 70%;
+        top: 5%;
+      }
+    }
+  }
+
+);
+
+.screen-below(@screen-md - 1, {
+
+    #vsiDataTable_wrapper .bottom {
+      display: grid;
+      align-items: baseline;
+    }
+
+    .dataTables_paginate {
+      margin-left: auto !important;
+      margin-right: auto !important;
+    }
+
+    #vsiDataTable_wrapper .dataTables_length {
+      display: grid;
+      margin: 10px auto;
+    }
+
+    #vsiDataTable_paginate {
+      margin: 0 0 20px 0;
+    }
+
+    .dataTables_paginate a {
+      padding: 10px;
+    }
+  }
+
+);
+
+/* Calendar Styles */
+div.dt-datetime {
+  position: absolute;
+  background-color: white;
+  z-index: 2050;
+  border: 1px solid #ccc;
+  box-shadow: 0 5px 10px -5px rgba(0, 0, 0, 0.5);
+  padding: 0 20px 6px 20px;
+  width: 275px;
+}
+
+div.dt-datetime.inline {
+  position: relative;
+  box-shadow: none;
+}
+
+div.dt-datetime div.dt-datetime-title {
+  text-align: center;
+  padding: 5px 0px 3px;
+}
+
+div.dt-datetime table {
+  border-spacing: 0;
+  margin: 12px 0;
+  width: 100%;
+}
+
+div.dt-datetime table.dt-datetime-table-nospace {
+  margin-top: -12px;
+}
+
+div.dt-datetime table th {
+  font-size: 0.8em;
+  color: #777;
+  font-weight: normal;
+  width: 14.285714286%;
+  padding: 0 0 4px 0;
+  text-align: center;
+}
+
+div.dt-datetime table td {
+  font-size: 0.9em;
+  color: #444;
+  padding: 0;
+}
+
+div.dt-datetime table td.selectable {
+  text-align: center;
+  color: #000;
+  background: #fff;
+}
+
+div.dt-datetime table td.selectable.disabled {
+  color: #aaa;
+  background: white;
+}
+
+div.dt-datetime table td.selectable.disabled button:hover {
+  color: #aaa;
+  background: white;
+}
+
+div.dt-datetime table td.selectable.now {
+  background: #fff;
+}
+
+div.dt-datetime table td.selectable.now button {
+  font-weight: bold;
+}
+
+div.dt-datetime table td.selectable.selected button {
+  color: #000;
+  background: #ffcc00;
+  border-radius: 50%;
+}
+
+div.dt-datetime table td.selectable button:hover {
+  border-radius: 50%;
+  color: #000;
+  background: #efefef;
+}
+
+div.dt-datetime table td.dt-datetime-week {
+  font-size: 0.7em;
+}
+
+div.dt-datetime table button {
+  width: 100%;
+  box-sizing: border-box;
+  border: none;
+  background: transparent;
+  font-size: inherit;
+  color: inherit;
+  text-align: center;
+  padding: 4px 0;
+  cursor: pointer;
+  margin: 0;
+}
+
+div.dt-datetime table button span {
+  display: inline-block;
+  min-width: 14px;
+  text-align: right;
+}
+
+div.dt-datetime table.weekNumber th {
+  width: 12.5%;
+}
+
+div.dt-datetime div.dt-datetime-calendar table {
+  margin-top: 0;
+}
+
+div.dt-datetime div.dt-datetime-label {
+  position: relative;
+  display: inline-block;
+  height: 30px;
+  padding: 5px 6px;
+  border: 1px solid transparent;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+div.dt-datetime div.dt-datetime-label:hover {
+  border: 1px solid #ddd;
+  border-radius: 2px;
+  background-color: #f5f5f5;
+}
+
+div.dt-datetime div.dt-datetime-label select {
+  position: absolute;
+  top: 6px;
+  left: 0;
+  cursor: pointer;
+  opacity: 0;
+}
+
+div.dt-datetime.horizontal {
+  width: 550px;
+}
+
+div.dt-datetime.horizontal div.dt-datetime-date,
+div.dt-datetime.horizontal div.dt-datetime-time {
+  width: 48%;
+}
+
+div.dt-datetime.horizontal div.dt-datetime-time {
+  margin-left: 4%;
+}
+
+div.dt-datetime div.dt-datetime-date {
+  position: relative;
+  float: left;
+  width: 100%;
+}
+
+div.dt-datetime div.dt-datetime-time {
+  position: relative;
+  float: left;
+  width: 100%;
+  text-align: center;
+}
+
+div.dt-datetime div.dt-datetime-time>span {
+  vertical-align: middle;
+}
+
+div.dt-datetime div.dt-datetime-time th {
+  text-align: left;
+}
+
+div.dt-datetime div.dt-datetime-time div.dt-datetime-timeblock {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+div.dt-datetime div.dt-datetime-iconLeft,
+div.dt-datetime div.dt-datetime-iconRight,
+div.dt-datetime div.dt-datetime-iconUp,
+div.dt-datetime div.dt-datetime-iconDown {
+  width: 30px;
+  height: 30px;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.3;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+div.dt-datetime div.dt-datetime-iconLeft:hover,
+div.dt-datetime div.dt-datetime-iconRight:hover,
+div.dt-datetime div.dt-datetime-iconUp:hover,
+div.dt-datetime div.dt-datetime-iconDown:hover {
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  background-color: #f0f0f0;
+  opacity: 0.6;
+}
+
+div.dt-datetime div.dt-datetime-iconLeft button,
+div.dt-datetime div.dt-datetime-iconRight button,
+div.dt-datetime div.dt-datetime-iconUp button,
+div.dt-datetime div.dt-datetime-iconDown button {
+  border: none;
+  background: transparent;
+  text-indent: 30px;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+}
+
+div.dt-datetime div.dt-datetime-iconLeft {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAeCAYAAAAsEj5rAAAAUklEQVR42u3VMQoAIBADQf8Pgj+OD9hG2CtONJB2ymQkKe0HbwAP0xucDiQWARITIDEBEnMgMQ8S8+AqBIl6kKgHiXqQqAeJepBo/z38J/U0uAHlaBkBl9I4GwAAAABJRU5ErkJggg==");
+}
+
+div.dt-datetime div.dt-datetime-iconRight {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAeCAYAAAAsEj5rAAAAU0lEQVR42u3VOwoAMAgE0dwfAnNjU26bYkBCFGwfiL9VVWoO+BJ4Gf3gtsEKKoFBNTCoCAYVwaAiGNQGMUHMkjGbgjk2mIONuXo0nC8XnCf1JXgArVIZAQh5TKYAAAAASUVORK5CYII=");
+}
+
+div.dt-datetime div.dt-datetime-iconUp {
+  height: 20px;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAALCAMAAABf9c24AAAAFVBMVEX///99fX1+fn57e3t6enoAAAAAAAC73bqPAAAABnRSTlMAYmJkZt92bnysAAAAL0lEQVR4AWOgJmBhxCvLyopHnpmVjY2VCadeoCxIHrcsWJ4RlyxCHlMWCTBRJxwAjrIBDMWSiM0AAAAASUVORK5CYII=");
+}
+
+div.dt-datetime div.dt-datetime-iconDown {
+  height: 20px;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAALCAMAAABf9c24AAAAFVBMVEX///99fX1+fn57e3t6enoAAAAAAAC73bqPAAAABnRSTlMAYmJkZt92bnysAAAAMElEQVR4AWOgDmBiRQIsmPKMrGxQgJDFlEfIYpoPk8Utz8qM232MYFfhkQfKUg8AANefAQxecJ58AAAAAElFTkSuQmCC");
+}
+
+div.dt-datetime-error {
+  clear: both;
+  padding: 0 1em;
+  max-width: 240px;
+  font-size: 11px;
+  line-height: 1.25em;
+  text-align: center;
+  color: #b11f1f;
+}

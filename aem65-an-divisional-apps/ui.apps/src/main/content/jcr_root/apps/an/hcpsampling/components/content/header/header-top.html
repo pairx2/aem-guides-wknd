@@ -1,0 +1,76 @@
+<template data-sly-template.headerTop="${@ header}">
+    <div class="o-header__secondary-top-nav d-none d-lg-block an-header-top">
+        <div class="container">
+            <div class="row">
+                <!--/* Search Overlay */-->
+                <div data-sly-test="${!header.hideSearchInNav}" class="o-header__search d-none" data-search-icon="search">
+                    <div class="${wcmmode.edit ? 'edit-search':''}" data-sly-unwrap="${!wcmmode.edit}">
+                        <sly data-sly-resource="${'header-search' @ resourceType=header.headersearchProxyPath}" />
+                    </div>
+                </div>
+                <!--/* Search Overlay */-->
+                <div class="col o-header__user-activity">
+                    <div class="row o-header__utility-nav justify-content-end">
+                        <!--/* Left Links */-->
+                        <div class="col o-header__left-links">
+                            <div class="row">
+                                <div class="header-left-link1 header-left-link">
+                                    <sly
+                                        data-sly-resource="${'left-link' @resourceType=header.linkProxyPath,decoration=true}" />
+                                </div>
+                                <div class="header-left-link2 header-left-link">
+                                    <div data-sly-unwrap="${!wcmmode.edit}">
+                                        <sly
+                                            data-sly-resource="${'hdr-util-link-stack' @resourceType=header.linkstackProxyPath}" />
+                                    </div>
+                                </div>
+                                <div class="header-left-link2 header-left-link">
+                                    <div data-sly-unwrap="${!wcmmode.edit}">
+                                        <sly
+                                            data-sly-resource="${'hdr-homelink' @resourceType=header.linkProxyPath,decoration=true}" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/* Right Links */-->
+                        <div class="col o-header__right-links">
+                            <div class="row justify-content-end">
+                                <div class="header-right-link welcome-text d-none">
+                                    <div data-sly-unwrap="${!wcmmode.edit}">
+                                        <sly
+                                            data-sly-resource="${'welcome-text' @ resourceType=header.textProxyPath}" />
+                                    </div>
+                                </div>
+                                <div class="header-right-link d-none my-account">
+									<span class="badgeAccount d-none"></span>
+                                    <div data-sly-unwrap="${!wcmmode.edit}">
+                                        <sly
+                                            data-sly-resource="${'hdr-my-acct' @resourceType=header.linkstackProxyPath}" />
+                                    </div>
+                                </div>
+                                <div class="header-right-link d-none desktop-notification notification">
+                                    <div data-sly-unwrap="${!wcmmode.edit}">
+                                        <sly
+                                            data-sly-resource="${'hdr-notification' @resourceType=header.linkstackProxyPath}" />
+                                    </div>
+                                </div>
+                                <div class="header-right-link1 header-right-link abt-icon abt-icon-user login">
+                                    <div data-sly-unwrap="${!wcmmode.edit}">
+                                        <sly
+                                            data-sly-resource="${'hdr-login' @resourceType=header.linkProxyPath,decoration=true}" />
+                                    </div>
+                                </div>						
+                                <div class="header-right-link2 header-right-link abt-icon abt-icon-search search">
+                                    <div data-sly-unwrap="${!wcmmode.edit}">
+                                        <sly
+                                            data-sly-resource="${'hdr-search' @resourceType=header.linkProxyPath,decoration=true}" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,24 @@
+<sly data-sly-use.img="com.abbott.aem.cv.division.core.components.models.ImageDivisional"
+      data-sly-use.component="com.adobe.cq.wcm.core.components.models.Component">
+
+      <a class="cmp-image__link" href="#${img.anchorName}" data-cmp-clickable="${img.data ? true : false}"
+            data-cmp-hook-image="link" target="${img.external ? '_blank' : ''}">
+            <sly data-sly-test="${img.fileReference && img.isDecorative}">
+                  <img src="${img.fileReference}"
+                        style="width:${img.imageWidth @ context='styleString'}px; height:${img.imageHeight @ context='styleString'}px;"
+                        data-id="${component.id}-myModal" class="${img.displayOriginalImage ? 'a-image__original' : ''}"
+                        itemprop="contentUrl" data-cmp-hook-image="image"
+                        data-sly-attribute.usemap="${img.areas ? usemap : ''}" alt=""
+                        title="${img.displayPopupTitle && img.title}" />
+            </sly>
+            <sly data-sly-test="${img.fileReference && !img.isDecorative}">
+                  <img src="${img.fileReference}"
+                        style="width:${img.imageWidth @ context='styleString'}px; height:${img.imageHeight @ context='styleString'}px;"
+                        data-id="${component.id}-myModal" class="${img.displayOriginalImage ? 'a-image__original' : ''}"
+                        itemprop="contentUrl" data-cmp-hook-image="image"
+                        data-sly-attribute.usemap="${img.areas ? usemap : ''}" alt="${img.alt}"
+                        title="${img.displayPopupTitle && img.title}" />
+            </sly>
+      </a>z
+
+</sly>

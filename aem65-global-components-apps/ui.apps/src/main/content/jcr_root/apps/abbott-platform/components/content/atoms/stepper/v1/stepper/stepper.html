@@ -1,0 +1,31 @@
+<sly data-sly-use.stepper="com.abbott.aem.platform.common.components.models.Stepper"
+   data-sly-use.component="com.adobe.cq.wcm.core.components.models.Component"
+   data-sly-use.customConfig="com.abbott.aem.platform.common.components.models.CustomConfig"
+   data-sly-use.template="core/wcm/components/commons/v1/templates.html">
+   <!--/* Stepper Component starts here */-->
+   <div id="${component.id}" class="a-stepper ${customConfig.className}">
+      <div class="js-a-stepper a-stepper__input-wrapper">
+      <span class="a-stepper__input-grp-btn js-a-stepper__input-grp-btn" ontouchstart data-component="stepper"
+         data-options="{json:object}">
+      <a type="link" role="link" href="javascript:void(0)" class="a-stepper--btn a-stepper--btn-minus abt-icon-minus js-a-stepper--btn"
+         data-type="minus" aria-label="minus icon" data-field="quant[2]"></a>
+      </span>
+      <input type="text" name="quant[2]" class="form-control a-stepper__number input-number " aria-label="stepper"
+         value="${stepper.defVal}" min="${stepper.minVal}" max="${stepper.maxVal}"
+         size="4">
+      <span class="a-stepper__input-grp-btn js-a-stepper__input-grp-btn" ontouchstart data-component="stepper"
+         data-options="{json:object}">
+      <a type="link" role="link" href="javascript:void(0)" class="a-stepper--btn a-stepper--btn-plus abt-icon-plus js-a-stepper--btn" data-type="plus" aria-label="minus icon"
+         data-field="quant[2]"></a>
+      </span>
+   </div>
+	  
+      <div class="a-stepper__min-error">${stepper.minErrorMessage}</div>
+   
+      <div class="a-stepper__max-error">${stepper.maxErrorMessage}</div>
+   
+   </div>
+   
+   <!--/* Stepper Component ends here */-->
+</sly>
+<sly data-sly-call="${template.placeholder @ isEmpty=!stepper.minVal}"></sly>

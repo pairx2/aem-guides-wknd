@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Stories Component"
+    sling:resourceType="cq/gui/components/authoring/dialog"
+    extraClientlibs="cq.dropdown.dialog.multi">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <tab
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                maximized="{Boolean}true">
+                <items jcr:primaryType="nt:unstructured">
+                    <tab1
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Enter Details"
+                        sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <column
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <sectiontitlecheckbox
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                        fieldDescription="Select Check Box To Display Section Title"
+                                        name="./sectionTitleRequired"
+                                        text="Display Section tite"
+                                        uncheckedValue="false"
+                                        value="{Boolean}true"/>
+                                    <displayType
+                                        granite:class="cq-dialog-dropdown-showhide"
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                        fieldLabel="Select Component View"
+                                        name="./displayType">
+                                        <granite:data
+                                            jcr:primaryType="nt:unstructured"
+                                            cq-dialog-dropdown-showhide-target=".type-showhide-target"/>
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <pagination
+                                                jcr:primaryType="nt:unstructured"
+                                                text="With Pagination"
+                                                value="withPagination"/>
+                                            <link
+                                                jcr:primaryType="nt:unstructured"
+                                                text="With See All Link"
+                                                value="withLink"/>
+                                        </items>
+                                    </displayType>
+                                    <container
+                                        granite:class="hide type-showhide-target"
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:orderBefore="id"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <granite:data
+                                            jcr:primaryType="nt:unstructured"
+                                            showhidetargetvalue="withLink"/>
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <seealltext
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Enter The See All Stories Text"
+                                                name="./seeAllText"/>
+                                            <hyperlink
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                fieldLabel="Enter The See All Stories HyperLink"
+                                                name="./viewAllLink"/>
+                                        </items>
+                                    </container>
+                                </items>
+                            </column>
+                        </items>
+                    </tab1>
+                    <tab2
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Enter Article Details"
+                        sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <column
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <stories
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                        composite="{Boolean}true"
+                                        fieldLabel="Enter Article Details">
+                                        <field
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/fieldset"
+                                            acs-commons-nested="NODE_STORE"
+                                            name="./storyPanels">
+                                            <items jcr:primaryType="nt:unstructured">
+                                                <column
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                    <items jcr:primaryType="nt:unstructured">
+                                                        <storytype
+                                                            granite:class="storyType"
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                            fieldDescription="Please choose the type of panel"
+                                                            fieldLabel="Story Type"
+                                                            name="./storyType">
+                                                            <items jcr:primaryType="nt:unstructured">
+                                                                <videoStory
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    text="Video Story"
+                                                                    value="videoStory"/>
+                                                                <imageStory
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    text="Image Story"
+                                                                    value="imageStory"/>
+                                                            </items>
+                                                        </storytype>
+                                                        <dynamicaldata
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                            defaultValue="false"
+                                                            fieldDescription="Enable Check Box To Display  Data Dynamically"
+                                                            name="./dynamicData"
+                                                            text="Select checkbox to pull details dynamically"
+                                                            uncheckedValue="{Boolean}false"
+                                                            value="{Boolean}true"/>
+                                                        <showdynamicdetails
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                            <items jcr:primaryType="nt:unstructured">
+                                                                <storypath
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                                    fieldLabel="Enter The Article Path"
+                                                                    name="./rootPath"
+                                                                    rootPath="/content/corp/abbott"/>
+                                                            </items>
+                                                        </showdynamicdetails>
+                                                        <showmanualdetails
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                            <items jcr:primaryType="nt:unstructured">
+                                                                <headline
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                    fieldLabel="Enter Story Head Line"
+                                                                    name="./storyHeadline"/>
+                                                                <headingcolor
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                                    fieldLabel="Select Story Title Color"
+                                                                    name="./titleColor">
+                                                                    <items jcr:primaryType="nt:unstructured">
+                                                                        <lightBlue
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            text="Abbott Light Blue"
+                                                                            value="color-light-blue"/>
+                                                                        <mediumBlue
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            text="Abbott Medium Blue"
+                                                                            value="color-medium-blue"/>
+                                                                        <mint
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            text="Abbott Mint"
+                                                                            value="color-mint"/>
+                                                                        <mediumGreen
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            text="Abbott Medium Green"
+                                                                            value="color-medium-green"/>
+                                                                        <gold
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            text="Abbott Gold"
+                                                                            value="color-gold"/>
+                                                                        <red
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            text="Abbott Red"
+                                                                            value="color-red"/>
+                                                                        <magenta
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            text="Abbott Magenta"
+                                                                            value="color-magenta"/>
+                                                                        <purple
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            text="Abbott Purple"
+                                                                            value="color-purple"/>
+                                                                        <gray
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            text="Abbott Gray"
+                                                                            value="color-gray"/>
+                                                                        <mediumRed
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            text="Abbott Medium Red"
+                                                                            value="color-medium-red"/>
+                                                                    </items>
+                                                                </headingcolor>
+                                                                <imagepath
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                                    fieldLabel="Enter The Image Path"
+                                                                    name="./storyImage"
+                                                                    rootPath="/content/dam/corp/abbott"/>
+                                                                <hyperlink
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                                    fieldLabel="Enter The Article HyperLink"
+                                                                    name="./storyLink"
+                                                                    rootPath="/content/corp/abbott"/>
+                                                                <alttext
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                    fieldLabel="Enter Image Alternate Text"
+                                                                    name="./altText"/>
+                                                                <storytitle
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                    fieldLabel="Enter Story Tilte"
+                                                                    name="./storyTitle"/>
+                                                                <articledescription
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
+                                                                    fieldLabel="Enter Story Description"
+                                                                    name="./storyDescription"/>
+                                                                <typeofvideo
+                                                                    granite:class="videoType"
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                                    fieldLabel="Type of video"
+                                                                    name="./videoType">
+                                                                    <items jcr:primaryType="nt:unstructured">
+                                                                        <youtube
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            text="Youtube Video"
+                                                                            value="youtube"/>
+                                                                        <limelightvideo
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            text="Limelight Video"
+                                                                            value="limelightvideo"/>
+                                                                    </items>
+                                                                </typeofvideo>
+                                                                <limelightcontainer
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                                    <items jcr:primaryType="nt:unstructured">
+                                                                        <playerid
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                            fieldLabel="Player ID"
+                                                                            name="./playerId"/>
+                                                                        <mediaid
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                            fieldLabel="Media ID"
+                                                                            name="./mediaId"/>
+                                                                    </items>
+                                                                </limelightcontainer>
+                                                                <youtubecontainer
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                                    <items jcr:primaryType="nt:unstructured">
+                                                                        <videoscript
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
+                                                                            fieldLabel="Youtube Video Script"
+                                                                            name="./videoScript"/>
+                                                                    </items>
+                                                                </youtubecontainer>
+                                                            </items>
+                                                        </showmanualdetails>
+                                                        <date
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/datepicker"
+                                                            displayedFormat="MMM. DD, YYYY"
+                                                            fieldLabel="Enter Story Date"
+                                                            name="./storyDate"
+                                                            type="date"
+                                                            typeHint="date"
+                                                            valueFormat="MMM. DD, YYYY"/>
+                                                        <readmore
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                            fieldLabel="Enter Story Hover Text"
+                                                            name="./readMore"/>
+                                                        <ctalinknewtab
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                            fieldDescription="Open story in new tab"
+                                                            name="./newTab"
+                                                            text="Open story in new tab"
+                                                            uncheckedValue="_self"
+                                                            value="_blank"/>
+                                                    </items>
+                                                </column>
+                                            </items>
+                                        </field>
+                                    </stories>
+                                </items>
+                            </column>
+                        </items>
+                    </tab2>
+                </items>
+            </tab>
+        </items>
+    </content>
+</jcr:root>

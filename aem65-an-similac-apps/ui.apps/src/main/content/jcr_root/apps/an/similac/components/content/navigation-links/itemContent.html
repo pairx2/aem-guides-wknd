@@ -1,0 +1,16 @@
+<template data-sly-template.itemContent="${@ item='The navigation item', index}">
+	<sly data-sly-use.linkHelper="${'com.abbott.aem.an.similac.core.models.LinkHelperModel' @ href=item.path}" />
+    <sly data-sly-use.analyticsConfig="${'com.abbott.aem.an.similac.core.models.AnalyticsConfigModel' @ sectionTitle =item.title}" /> 
+<sly data-sly-test.eventCategory="${properties.eventCategory ? properties.eventCategory : 'navigation'}"/>
+<sly data-sly-test.eventAction="${properties.eventAction ? properties.eventAction : 'select'}" />
+<sly data-sly-test.eventLabel="${properties.eventLabel ?  properties.eventLabel : analyticsConfig.eventLabel}" />
+<sly data-sly-test.gtmValue="${'{0}{1}{2}{3}{4}' @ format=[eventCategory, '|',eventAction,'|',eventLabel]}" />
+
+    <a x-cq-linkchecker="skip" class="nav-link dropdown-toggle" data-gtm="${gtmValue @context='attribute'}" href="${linkHelper.linkHrefDomain}" id="navbarDropdown${index}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="unsetPLP()" data-sly-test="${item.level == 0}">
+          ${item.page.pageTitle || item.title}</a>
+		<span class="dropdown-toggle" id="navbarDropdown1${index}" role="button" data-toggle="dropdown" data-sly-test="${item.level == 0}">
+			<span class="sim-icons plus-icon" data-icon="add"></span>
+			<span class="sim-icons minus-icon" data-icon="minus"></span>
+		</span>
+	<a x-cq-linkchecker="skip" href="${linkHelper.linkHrefDomain}" data-gtm="${gtmValue @context='attribute'}" data-sly-test="${item.level == 1}">${item.page.pageTitle || item.title}</a>
+</template>

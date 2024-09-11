@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Product Marketing"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/container"
+                maximized="{Boolean}true">
+                <items jcr:primaryType="nt:unstructured">
+                    <optionTypes
+                        granite:class="cq-dialog-dropdown-showhide"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                        fieldDescription="Set the type of the Test menu"
+                        fieldLabel="Select the type of Test">
+                        <granite:data
+                            jcr:primaryType="nt:unstructured"
+                            cq-dialog-dropdown-showhide-target=".testType-showhide-target"/>
+                        <items jcr:primaryType="nt:unstructured">
+                            <choose-test
+                                jcr:primaryType="nt:unstructured"
+                                jcr:title="Choose test"
+                                text="---select---"/>
+                            <condition-testmenu
+                                jcr:primaryType="nt:unstructured"
+                                jcr:title="Condition Test Menu"
+                                text="Condition Test menu"
+                                value="condition"/>
+                            <product-testmenu
+                                jcr:primaryType="nt:unstructured"
+                                jcr:title="Product Test Menu"
+                                text="Product Test menu"
+                                value="product"/>
+                            <tabular-testmenu
+                                jcr:primaryType="nt:unstructured"
+                                jcr:title="Tabular Test Menu"
+                                text="Tabular Test menu"
+                                value="tabular"/>
+                        </items>
+                    </optionTypes>
+                    <condition-testmenu
+                        granite:class="hide testType-showhide-target"
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Condition Test Menu"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        text="Condition Test menu">
+                        <granite:data
+                            jcr:primaryType="nt:unstructured"
+                            showhidetargetvalue="condition"/>
+                        <items jcr:primaryType="nt:unstructured">
+                            <anchorname
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Anchor Name"
+                                name="./anchorname"/>
+                            <selecttests
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                fieldLabel="Select Tests"
+                                multiple="{Boolean}true"
+                                name="./selecttests">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <test1
+                                        jcr:primaryType="nt:unstructured"
+                                        text="test1"/>
+                                    <test2
+                                        jcr:primaryType="nt:unstructured"
+                                        text="test2"/>
+                                    <test3
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Test3"/>
+                                </items>
+                            </selecttests>
+                        </items>
+                    </condition-testmenu>
+                    <product-testmenu
+                        granite:class="hide testType-showhide-target"
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Product Test Menu"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        text="Product Test menu">
+                        <granite:data
+                            jcr:primaryType="nt:unstructured"
+                            showhidetargetvalue="product"/>
+                        <items jcr:primaryType="nt:unstructured">
+                            <tabname
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Tab Name"
+                                name="./tabname"/>
+                            <anchorname
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Anchor Name"
+                                name="./anchorname"/>
+                            <tabcolor
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                fieldLabel="Tab Color"
+                                multiple="{Boolean}true"
+                                name="./tabcolor">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <tabcolor1
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Magneta"/>
+                                    <tabcolor2
+                                        jcr:primaryType="nt:unstructured"
+                                        text="color2"/>
+                                    <tabcolor3
+                                        jcr:primaryType="nt:unstructured"
+                                        text="color3"/>
+                                </items>
+                            </tabcolor>
+                            <productname
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                fieldLabel="Product Name"
+                                multiple="{Boolean}true"
+                                name="./productname">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <tabcolor1
+                                        jcr:primaryType="nt:unstructured"
+                                        text="product 1"/>
+                                    <tabcolor2
+                                        jcr:primaryType="nt:unstructured"
+                                        text="product 2"/>
+                                    <tabcolor3
+                                        jcr:primaryType="nt:unstructured"
+                                        text="product 3"/>
+                                </items>
+                            </productname>
+                        </items>
+                    </product-testmenu>
+                    <tabular-testmenu
+                        granite:class="hide testType-showhide-target"
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Tabular Test Menu"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        text="Tabular Test menu">
+                        <granite:data
+                            jcr:primaryType="nt:unstructured"
+                            showhidetargetvalue="tabular"/>
+                        <items jcr:primaryType="nt:unstructured">
+                            <tabname
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Tab Name"
+                                name="./tabname"/>
+                            <tabcolor
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                fieldLabel="Tab Color"
+                                name="./tabcolor">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <tabcolor1
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Magneta"/>
+                                    <tabcolor2
+                                        jcr:primaryType="nt:unstructured"
+                                        text="color2"/>
+                                    <tabcolor3
+                                        jcr:primaryType="nt:unstructured"
+                                        text="color3"/>
+                                </items>
+                            </tabcolor>
+                        </items>
+                    </tabular-testmenu>
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>

@@ -1,0 +1,32 @@
+@import "dropdown.scss";
+
+.a-dropdown {
+	$self: &;
+	&__container {
+		#{ $self }__field {
+			padding: var(--dropdown-field-padding-rtl);
+			text-align: right;
+
+			#{ $self }__menu {
+				padding: 0;
+				text-align: right;
+				li {
+					span {
+						padding: var(--dropdown-menu-option-padding-rtl);
+					}
+				}
+			}
+
+			#{ $self }-selected {
+				text-align: right;
+			}
+
+			&::after {
+				@include setPosition(absolute, right auto left 1rem top 50%);
+			}
+		}
+	}
+	&__title {
+		display: flex;
+	}
+}

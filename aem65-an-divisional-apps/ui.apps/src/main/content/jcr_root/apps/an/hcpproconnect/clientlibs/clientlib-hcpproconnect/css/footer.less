@@ -1,0 +1,118 @@
+@import "./global/mixins.less";
+@import './global/variables.less';
+
+// SB New code for Footer styling
+.o-footer {
+    --footer-bg-color: @color-core-dark-blue;	// SB HCP - footer BG fix
+	.o-footer__link-wrapper {
+        @media @lg-up {
+            flex: 0 0 16.66%;
+			justify-content:center;
+        }
+        .m-link-stack {
+			--link-stack-h6-color: @color-white;
+        }
+	}
+	.a-logo-comp {
+         @media @lg-up {
+    		padding-left: 38px;
+        }
+    }
+	.o-footer__social-media {
+         @media @lg-up {
+    		padding-right: 30px;
+        }
+    }
+	.order-lg-1 {
+         @media @lg-up {
+    		padding-left: 50px;
+            padding-top: 38px;
+        }
+    }
+	.order-lg-12 {
+         @media @lg-up {
+    		padding-right: 50px;
+        }
+    }
+    
+    .a-link {
+    	--link-color: @color-white;
+	}
+    .o-footer__bottom {
+        .o-footer__social-media {
+            .m-social-media--title {
+				--social-media-font-size: @font-size-14;
+            }
+        }
+        .o-footer__disclaimer-section {
+            @media @lg-down {
+				padding-left: 0;
+            }
+        }
+    }
+    .horizontal-divider {
+		margin-left: auto;
+        margin-right: auto;
+		border-color: @color-white;
+        max-width: 65rem; //1140px-30px
+        @media @xl-only {
+			max-width: 58.125rem;
+        }
+    }
+}
+
+.abbott-wrapper:has(.footer.aem-GridColumn) .embed.aem-GridColumn,
+.abbott-wrapper:has(.footer.aem-GridColumn) .button.link.a-button,
+.abbott-wrapper:has(.footer.aem-GridColumn) .hidden.aem-GridColumn {
+    margin:0;
+}
+.abbott-wrapper:has(.footer.aem-GridColumn) .xf-content-height {
+    min-height: unset;
+}
+/* patient-footer-logo updates*/
+.text {
+	&:has(.patient-footer) {
+		padding: 2.5rem 2.5rem 3px;
+		color: #fff;
+		background-color: #002a3a;
+		&::after {
+			content: "";
+			display: block;
+			max-width: 65rem;
+			border: .5px solid rgba(255,255,255,0.32);
+			margin-top: 1.5rem;
+			border-color: #fff;
+			margin-left: auto;
+			margin-right: auto;
+			@media @xl-only{
+				max-width: 58.125rem;
+			}
+            @media @lg-up{
+				margin-top: 2rem;
+			}
+		}
+		@media @md-down{
+			padding: 2rem .9375rem 3px;
+		}
+		
+	}
+	
+	.patient-footer {
+			.inline-content {
+				margin-left: auto;
+				margin-right: auto;
+				@media @xl-up{
+				max-width: 65rem;
+				}
+				@media @xl-only{
+				max-width: 58.125rem;
+				}
+				p {
+				color: #fff;
+				}
+			}
+		}	
+}
+.aem-Grid:has(.patient-footer-bg){
+    background-color: #002a3a;
+}

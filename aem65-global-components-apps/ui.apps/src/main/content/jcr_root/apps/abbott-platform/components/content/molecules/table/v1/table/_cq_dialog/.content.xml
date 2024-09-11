@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Table Component"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+        granite:class="tabselection"
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                maximized="{Boolean}true">
+                <items jcr:primaryType="nt:unstructured">
+                    <properties
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Properties"
+                        sling:hideResource="{Boolean}true"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true"/>
+                    <tableProperties
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Table Properties"
+                        sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <column
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <tableCaption
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Table Caption"
+                                        name="./tableCaption"/>
+                                    <numberOfColumns
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                        fieldDescription="Number of columns in the table.(Default is 5)"
+                                        fieldLabel="Number of columns in the table"
+                                        min="0"
+                                        name="./numberofColumns"
+                                        required="{Boolean}true"
+                                        value="5"/>
+                                    <numberOfRows
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                        fieldDescription="Number of rows in the table.(Default is 5)"
+                                        fieldLabel="Number of rows in the table"
+                                        min="0"
+                                        name="./numberofRows"
+                                        required="{Boolean}true"
+                                        value="5"/>
+                                    <addCopyHtmlButton
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                        name="./addCopyHtmlButton"
+                                        text="Add a button to copy html of the table?"
+                                        uncheckedValue="false"
+                                        value="true"/>
+                                    <id
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldDescription="HTML ID attribute to apply to the component"
+                                        fieldLabel="Component ID"
+                                        name="./id"/>
+                                </items>
+                            </column>
+                        </items>
+                    </tableProperties>
+                    <tableStyles
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Table Styles"
+                        sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <column
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <tableWidth
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                        fieldDescription="Width of the table in pixels."
+                                        fieldLabel="Table Width"
+                                        name="./tableWidth"/>
+                                    <cssClass
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                        fieldDescription="CSS class for the table."
+                                        fieldLabel="CSS class"
+                                        name="./cssClass">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <select
+                                                jcr:primaryType="nt:unstructured"
+                                                text="Select"
+                                                value=""/>
+                                            <plain-table
+                                                jcr:primaryType="nt:unstructured"
+                                                text="Plain Table"
+                                                value="plain-table"/>
+                                            <with-border
+                                                jcr:primaryType="nt:unstructured"
+                                                text="With Border"
+                                                value="with-border"/>
+                                            <product-specific
+                                                jcr:primaryType="nt:unstructured"
+                                                text="Apoc Product Table"
+                                                value="product-specific"/>
+                                            <gpoc-table
+                                                jcr:primaryType="nt:unstructured"
+                                                text="Gpoc Product Table"
+                                                value="table-border--bottom"/>
+                                        </items>
+                                    </cssClass>
+                                    <columnWidth
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldDescription=" Specifies proportionate width for each column in a table as a comma-separated list. For example, if you specify 1,2,3,4 as the column width for a four-column table, the total table width will be distributed as 1/10, 2/10, 3/10, and 4/10 among the first, second, third, and fourth columns, respectively."
+                                        fieldLabel="Column Width"
+                                        name="./columnWidth"/>
+                                    <bordercolortheme
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                        fieldDescription="Color theme for Border"
+                                        fieldLabel="Color theme for Border"
+                                        name="./borderTheme">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <default
+                                                jcr:primaryType="nt:unstructured"
+                                                text="Default&#xa;"
+                                                value=""/>
+                                            <darkgray
+                                                jcr:primaryType="nt:unstructured"
+                                                text="Abbott Dark Gray"
+                                                value="colorPalette_DarkGray"/>
+                                            <gold
+                                                jcr:primaryType="nt:unstructured"
+                                                text="Abbott Gold"
+                                                value="colorPalette_DarkOrange"/>
+                                            <green
+                                                jcr:primaryType="nt:unstructured"
+                                                text="Abbott Green"
+                                                value="colorPalette_Green"/>
+                                            <lightgray
+                                                jcr:primaryType="nt:unstructured"
+                                                text="Abbott Light Gray"
+                                                value="colorPalette_LightGray"/>
+                                            <magenta
+                                                jcr:primaryType="nt:unstructured"
+                                                text="Abbott Magenta"
+                                                value="colorPalette_Magenta"/>
+                                            <mediumblue
+                                                jcr:primaryType="nt:unstructured"
+                                                text="Abbott Medium Blue"
+                                                value="colorPalette_MediumBlue"/>
+                                            <lightgreen
+                                                jcr:primaryType="nt:unstructured"
+                                                text="Abbott light Green"
+                                                value="colorPalette_LightGreen"/>
+                                            <purple
+                                                jcr:primaryType="nt:unstructured"
+                                                text="Abbott Purple"
+                                                value="colorPalette_Purple"/>
+                                            <red
+                                                jcr:primaryType="nt:unstructured"
+                                                text="Abbott Red"
+                                                value="colorPalette_Red"/>
+                                            <white
+                                                jcr:primaryType="nt:unstructured"
+                                                text="White"
+                                                value="colorPalette_White"/>
+                                            <yellow
+                                                jcr:primaryType="nt:unstructured"
+                                                text="Abbott Yellow"
+                                                value="colorPalette_Yellow"/>
+                                            <cyan
+                                                jcr:primaryType="nt:unstructured"
+                                                text="Cyan"
+                                                value="colorPalette_Cyan"/>
+                                            <black
+                                                jcr:primaryType="nt:unstructured"
+                                                text="Black"
+                                                value="colorPalette_Black"/>
+                                            <primaryblue
+                                                jcr:primaryType="nt:unstructured"
+                                                text="Primary Blue"
+                                                value="colorPalette_PrimaryBlue"/>
+                                            <darkblue
+                                                jcr:primaryType="nt:unstructured"
+                                                text="Dark Blue"
+                                                value="colorPalette_DarkBlue"/>
+                                            <lightblue
+                                                jcr:primaryType="nt:unstructured"
+                                                text="Light Blue"
+                                                value="colorPalette_LightBlue"/>
+                                            <mint
+                                                jcr:primaryType="nt:unstructured"
+                                                text="Mint"
+                                                value="colorPalette_Mint"/>
+                                            <orange
+                                                jcr:primaryType="nt:unstructured"
+                                                text="Orange"
+                                                value="colorPalette_Orange"/>
+                                            <charcoal
+                                                jcr:primaryType="nt:unstructured"
+                                                text="Charcoal"
+                                                value="colorPalette_Charcoal"/>
+                                            <mediumGray
+                                                jcr:primaryType="nt:unstructured"
+                                                text="Medium light gray"
+                                                value="colorPalette_mediumLight-gray"/>
+                                        </items>
+                                    </bordercolortheme>
+                                </items>
+                            </column>
+                        </items>
+                    </tableStyles>
+                    <tableLegendProperties
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Table Legend Properties"
+                        sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <column
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <tableLegends
+                                        granite:class="lists-multi"
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                        composite="{Boolean}true"
+                                        fieldLabel="Table Legends">
+                                        <field
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                                            name="./tableLegends">
+                                            <layout
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                                margin="{Boolean}false"/>
+                                            <items jcr:primaryType="nt:unstructured">
+                                                <legendColor
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                    emptyText="Select"
+                                                    fieldDescription="Colour of the legend"
+                                                    fieldLabel="Legend Color"
+                                                    name="./legendColor"
+                                                    required="{Boolean}true">
+                                                    <items jcr:primaryType="nt:unstructured">
+                                                        <default
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Default&#xa;"
+                                                            value=""/>
+                                                        <darkgray
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Abbott Dark Gray"
+                                                            value="colorPalette_DarkGray"/>
+                                                        <gold
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Abbott Gold"
+                                                            value="colorPalette_DarkOrange"/>
+                                                        <green
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Abbott Green"
+                                                            value="colorPalette_Green"/>
+                                                        <lightgray
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Abbott Light Gray"
+                                                            value="colorPalette_LightGray"/>
+                                                        <magenta
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Abbott Magenta"
+                                                            value="colorPalette_Magenta"/>
+                                                        <mediumblue
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Abbott Medium Blue"
+                                                            value="colorPalette_MediumBlue"/>
+                                                        <lightgreen
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Abbott light Green"
+                                                            value="colorPalette_LightGreen"/>
+                                                        <purple
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Abbott Purple"
+                                                            value="colorPalette_Purple"/>
+                                                        <red
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Abbott Red"
+                                                            value="colorPalette_Red"/>
+                                                        <white
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="White"
+                                                            value="colorPalette_White"/>
+                                                        <yellow
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Abbott Yellow"
+                                                            value="colorPalette_Yellow"/>
+                                                        <cyan
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Cyan"
+                                                            value="colorPalette_Cyan"/>
+                                                        <black
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Black"
+                                                            value="colorPalette_Black"/>
+                                                        <primaryblue
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Primary Blue"
+                                                            value="colorPalette_PrimaryBlue"/>
+                                                        <darkblue
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Dark Blue"
+                                                            value="colorPalette_DarkBlue"/>
+                                                        <lightblue
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Light Blue"
+                                                            value="colorPalette_LightBlue"/>
+                                                        <mint
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Mint"
+                                                            value="colorPalette_Mint"/>
+                                                        <orange
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Orange"
+                                                            value="colorPalette_Orange"/>
+                                                        <charcoal
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Charcoal"
+                                                            value="colorPalette_Charcoal"/>
+                                                        <mediumGray
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Medium light gray"
+                                                            value="colorPalette_mediumLight-gray"/>
+                                                    </items>
+                                                </legendColor>
+                                                <legendText
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    fieldDescription="Text for the legend"
+                                                    fieldLabel="Legend Text"
+                                                    name="./legendText"
+                                                    required="{Boolean}true"/>
+                                            </items>
+                                        </field>
+                                    </tableLegends>
+                                </items>
+                            </column>
+                        </items>
+                    </tableLegendProperties>
+                    <gradient
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="/libs/granite/ui/components/coral/foundation/include"
+                        path="abbott-platform/components/core/backgroundoptions/v1/backgroundoptions/cq:dialog/content/items/tabs/items/gradient"/>
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>

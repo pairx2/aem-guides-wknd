@@ -1,0 +1,10 @@
+<template data-sly-template.placeholder="${@ isEmpty, classAppend, emptyTextAppend}">
+    <div class="cq-placeholder  cq-width-similac cq-Overlay--placeholder ${classAppend} cq-width-similac" style="width:50%"		
+        data-emptytext="${component.properties.jcr:title @ context='text'}${emptyTextAppend @ context='text' && ' - '}${emptyTextAppend @ context='text'}" data-sly-test="${(wcmmode.edit || wcmmode.preview) && isEmpty}"></div>
+</template>
+
+<template data-sly-template.includeResource="${@ relativeResourcePath, nodeName, slingResourceType}">
+	 <sly data-sly-test.resourcePath="${'{0}{1}{2}' @ format=[relativeResourcePath, '/' ,nodeName]}"/>
+     <sly data-sly-resource="${@path=resourcePath, resourceType=slingResourceType, decoration='true', selectors=resourceSelectors}"/>
+</template>
+

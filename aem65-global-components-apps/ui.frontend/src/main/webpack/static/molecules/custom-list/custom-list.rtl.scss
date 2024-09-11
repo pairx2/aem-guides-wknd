@@ -1,0 +1,52 @@
+@import 'custom-list.scss';
+
+.m-custom-list {
+    $self: &;
+    text-align: right;
+
+    &__content {
+
+        &:before{
+            @include setPosition(absolute, top 0 right 0);
+            left: inherit;
+        }
+    }
+
+    &__heading {
+        @include rem(padding, var(--custom-list-padding-y) var(--custom-list-padding-x) var(--custom-list-padding-y) 0);
+        &::before {
+            right: 0;
+            left: inherit;
+        }
+    }
+
+    &__para {
+        @include rem(padding-right, var(--custom-list-padding-x));
+        padding-left: 0;
+    }
+
+    &--number,
+    &--icon {
+
+        #{ $self }__heading, #{ $self }__para { 
+            padding-right: var(--custom-list-padding-xl);
+            padding-left: 0;
+        }
+    }
+
+    &--number-without-zero {
+
+        #{ $self }__content {
+
+            &::before {
+                right: 0;
+            }
+        }
+
+    }
+
+    &__icon-wrapper {
+        @include setPosition(absolute, top 2px right 0);
+        left: inherit;
+    }
+}

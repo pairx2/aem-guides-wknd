@@ -1,0 +1,45 @@
+
+<sly data-sly-use.templates="an/similac/components/content/templates.html"/>
+   <div class="card product-card ${wcmmode.disabled ? 'h-100' : ''}"
+     data-sly-test="${properties.cardVariation == 'product'}"  
+     data-sly-use.product="${'com.abbott.aem.an.similac.core.models.ProductCardModel'}" 
+     data-sly-test.productDetails="${product.productBean}">
+      <a href="${productDetails.link}">
+         <picture>
+            <source media="(max-width: 575.98px)" data-srcset="${productDetails.mobileImage @ context = 'uri'}">
+            <source media="(max-width: 991.98px)" data-srcset="${productDetails.tabletImage @ context = 'uri'}">
+            <img class="card-img-top" data-src="${productDetails.image @ context='uri'}" src="${productDetails.desktopImage}" alt="${productDetails.name || true}" data-sly-test="${productDetails.desktopImage}">
+         </picture>
+      </a>
+      <div class="card-body" data-product-sku="${productDetails.sku @ context='attribute'}">
+         <p class="text-center article-card-title"><a href="${productDetails.link}" class="card-title">${productDetails.name}</a></p>
+         <p class="quantity text-center article-card-body">${productDetails.sizeOrWeight}</p>
+         <div class="d-flex flex-column justify-content-center align-items-center mt-3">
+            <a class="btn btn-primary add-cart">${"Add to Cart" @ i18n, context='html'}</a>
+         </div>
+      </div>
+   </div>
+   <div class="card product-card h-100"
+     data-product-sku=""
+     data-sly-test="${properties.cardVariation == 'article'}"
+     data-sly-use.article="com.adobe.cq.wcm.core.components.models.Teaser"
+     data-sly-use.imageTemplate="image.html">
+      <sly data-sly-call="${imageTemplate.image @ teaser=article}"></sly>
+
+<sly data-sly-use.analyticsConfig="${'com.abbott.aem.an.similac.core.models.AnalyticsConfigModel' @ pageName=currentPage.name, sectionTitle =article.title , linkName=properties.ctaLabel}" />
+<sly data-sly-test.eventCategory="${properties.eventCategory ? properties.eventCategory : 'callout'}"/>
+<sly data-sly-test.eventAction="${properties.eventAction ? properties.eventAction : 'click'}" />
+<sly data-sly-test.eventLabel="${properties.eventLabel ? properties.eventLabel : analyticsConfig.eventLabel}" />
+<sly data-sly-test.gtmValue="${'{0}{1}{2}{3}{4}' @ format=[eventCategory, '|',eventAction,'|',eventLabel]}" />
+
+
+      <div class="card-body">
+         <p class="text-center article-card-title"><a href="${article.linkURL}" class="card-title">${article.title}</a></p>
+         <div class="quantity text-center article-card-body">${article.description  @ context='html'}</div>
+         <div class="d-flex flex-column justify-content-center align-items-center mt-3">
+            <a href="${article.linkURL}" data-gtm="${gtmValue @context='attribute'}" class="btn btn-primary ">${properties.ctaLabel}</a>
+         </div>
+      </div>
+   </div>
+<sly data-sly-call="${templates.placeholder @isEmpty = 'true', classAppend = '', emptyTextAppend = 'Please configure Article Product Card Component.' }"/>
+

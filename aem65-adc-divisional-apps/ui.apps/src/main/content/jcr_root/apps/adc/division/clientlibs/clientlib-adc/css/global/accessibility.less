@@ -1,0 +1,139 @@
+@import '../mixin.less';
+@import '../media-queries.less';
+@import '../variables.less';
+
+.m-cookiebar {
+  &.hide {
+    display: none;
+  }
+}
+
+@ele: 'radio', 'checkbox';
+
+.focusEle(@i) when (@i > 0) {
+  .focusEle((@i - 1));
+  @classname: e(extract(@ele, @i));
+
+  .a-@{classname} {
+    &__input {
+      &:focus {
+        &+.a-@{classname} {
+          &__custom:before {
+            content: '';
+            width: 1.5rem;
+            height: 1.5rem;
+            display: block;
+            position: absolute;
+            left: -3px;
+            top: -3px;
+            border: 1px solid @focus-border;
+            border-radius: inherit;
+          }
+        }
+      }
+    }
+  }
+}
+
+.focusEle(length(@ele));
+
+.a-dropdown {
+  &__container {
+    .a-dropdown__field{
+      &:focus {
+        border-color: var(--dropdown-active-border-color);
+        outline: 0 none;
+      }
+    }
+  }
+}
+
+// Search Bar close icon alignment
+.a-search--expand {
+  .a-search--icon-right {
+    border: 2px solid transparent;
+    top: 2px;
+    padding: 6px;
+    &:focus-visible {
+      outline: 0;
+      border-color: @focus-border;
+    }
+    em {
+      vertical-align: middle;
+    }
+  }
+}
+
+//accessibility focus issue code start here
+.a-link__text:focus,
+a.nav-item:focus,
+a.a-logo-comp--link:focus,
+span.a-checkbox__text a:focus,
+.m-popup a:focus,
+.cmp-download a:focus,
+.m-custom-list a:focus,
+a.btn:focus,
+.coll-exp-title:focus,
+.m-link-stack a:focus-visible,
+.cmp-image__image:focus,
+.o-footer__social-media a.a-logo-comp--link:focus,
+.footer-list .a-link__text:focus,
+.o-footer .m-link-stack a:focus,
+.a-logo-comp--image:focus-visible,
+.modal-header .generic-modal--close:focus,
+.o-footer__disclaimer-section .a-link__text:focus,
+.m-cookiebar__text p a:focus,
+.m-accordion__content-items .m-accordion__body a:focus,
+.o-product-section .o-product-section__content .o-product-section__para p a:focus,
+.o-content-section .o-content-section__list li a:focus,
+.cmp-text a:focus,
+.modal .modal-header .generic-modal--close:focus,
+.m-search-bar .m-search-bar__close:focus,
+.m-mega-menu__nested-menu .a-link .a-link__text:focus,
+.m-mega-menu__mobile-header:focus,
+.m-mega-menu__mobile-item-link:focus,
+.navbar-toggler:focus,
+.navbar-toggler.abt-icon-cancel:focus,
+.o-header__sticky-section .o-header__sticky-search .a-search:focus
+{
+  outline: 1px solid #0081B8;
+}
+
+/* When mouse is detected, ALL focused elements have outline removed. */
+body.using-mouse :focus {
+  outline: none !important;
+}
+
+.footer .o-footer .o-footer__link-wrapper a:not(.btn):not(.abt-icon-down-arrow):hover,
+.a-checkbox a:not(.btn),
+.m-accordion__body a:not(.btn),
+.promosection a:not(.btn),
+.o-cta-section a:not(.btn),
+.cmp-text a:not(.btn),
+.m-card__body a:not(.btn),
+.cmp-title a:not(.btn),
+.m-custom-list__content a:not(.btn),
+.o-product-section .o-product-section__content .o-product-section__para p a:not(.btn) {
+  text-decoration: underline;
+}
+//accessibility focus issue code end here
+
+
+.o-footer__copyright {
+  color: @color-white;
+}
+
+//social media icon hover effect
+.o-footer__social-media {
+  .a-logo-comp--link {
+    display: inline-block;
+    transition: all .1s ease-in-out;
+
+    &:hover {
+      transform: translateY(-4px);
+      text-decoration: none;
+    }
+  }
+}
+
+//accessibility focus issue code end here

@@ -1,0 +1,27 @@
+<template data-sly-template.item="${@ searchResultItem}">
+    <sly data-sly-test="${searchResultItem.designType == 'cardView'}" data-sly-use.cardItemTemplate="searchResultCardView.html">
+		<sly data-sly-call="${cardItemTemplate.cardItem @ searchResultItem = searchResultItem}"/>
+	</sly>
+
+	<sly data-sly-test="${searchResultItem.designType == 'listView'}" data-sly-use.listItemTemplate="searchResultListView.html">
+		<sly data-sly-call="${listItemTemplate.listItem @searchResultItem = searchResultItem}"/>
+	</sly>
+
+	    <sly data-sly-test="${searchResultItem.designType == 'corpnewsroom'}" data-sly-use.corpTemplate="searchResultCorpNews.html">
+		<sly data-sly-call="${corpTemplate.corpItem @ searchResultItem = searchResultItem}"/>
+	</sly>
+
+	<sly data-sly-test="${searchResultItem.designType == 'category'}" data-sly-use.categoryTemplate="searchResultCategory.html">
+		<sly data-sly-call="${categoryTemplate.categoryItem @searchResultItem = searchResultItem}"/>
+	</sly>
+
+	<sly data-sly-test="${searchResultItem.designType == 'experts'}" data-sly-use.categoryTemplate="searchResultExpert.html">
+		<sly data-sly-call="${categoryTemplate.categoryItem @searchResultItem = searchResultItem}"/>
+	</sly>
+
+
+	<sly data-sly-test="${searchResultItem.designType == 'executive'}" data-sly-use.categoryTemplate="searchResultExecutive.html">
+		<sly data-sly-call="${categoryTemplate.categoryItem @searchResultItem = searchResultItem}"/>
+	</sly>
+
+</template>

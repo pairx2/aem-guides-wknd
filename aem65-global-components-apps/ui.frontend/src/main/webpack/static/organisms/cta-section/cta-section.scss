@@ -1,0 +1,279 @@
+.container{
+    .ctasection{
+        margin-left: 0%;
+        margin-right: 0%;
+        padding-top:0%;
+        padding-bottom:0%;
+    }
+}
+.container-full-width{
+    .ctasection{
+        max-width: 960px;
+        margin:0 auto;
+    }
+}
+.ctasection{
+    .o-cta-section {
+        &__content {
+            p {
+                color: var(--cta-section--description-default);
+                margin-bottom: 24px;
+            }
+        }
+        &__title{
+            h3 {
+                color: var(--cta-section--description-default);
+            }
+        }
+        &__sub-title {
+            h4 {
+                color: var(--cta-section--description-default);
+            }
+        }
+
+        &__button-wrap{
+            .a-button{
+                margin:0 8px 0 0;
+                a {
+                justify-content: center;
+                width:100%;
+                margin-top:0px;
+                margin-bottom:0px;
+                }
+            } 
+        }
+        @include media-breakpoint-down(sm) {
+            &__content {
+                p {
+                    color: var(--cta-section--description-default);
+                    margin-bottom: 33px;
+                }
+            }
+            &__button-wrap{
+                .a-button{
+                    margin:8px 0 0 0;
+                    a {
+                        margin-top:0px;
+                        margin-bottom:0px;
+                        }
+                } 
+            }
+    }
+    }
+}
+.o-cta-section {
+    $self:&;
+
+    &__content {
+        font-size: var(--cta-section-para-font-size);
+        line-height: var(--cta-section-para-line-height);
+        color: var(--cta-section-para-color);
+    }
+
+    &__title,
+    &__sub-title {
+        margin-bottom: var(--cta-section-title-margin-bottom);
+        h4 {
+			color: var(--cta-section--description-default);
+		}
+    }
+
+    &__button-wrap {
+        display: flex;
+        height: 100%;
+
+        .a-button {
+            margin: var(--cta-section-button-margin-r);
+        }
+
+        @include media-breakpoint-down(md) {
+            padding-top: var(--cta-section-button-wrap-padding-t);
+        }
+
+        @include media-breakpoint-down(sm) {
+            display: block;
+
+            .a-button {
+                margin: var(--cta-section-button-margin-mob);
+                display: block;
+
+                .a-button {
+                    display: block;
+                }
+            }
+        }
+
+    }
+    &--top-space {
+        margin-top: 48px;
+    }
+    &--bottom-space {
+        margin-bottom: 48px;
+    }
+    &--m-none{
+        margin-top:0px;
+        margin-bottom:0px;
+    }
+
+    @include media-breakpoint-down(sm) {
+        .container {
+            padding: 0;
+        }
+    }
+
+    &--button-bottom {
+        #{$self}__button-wrap {
+            padding-top: var(--cta-section-button-wrap-padding-t);
+        }
+        #{$self}__column {
+            flex: 0 0 100%;
+            max-width: 100%;
+        }
+    }
+     &--button-right {
+		 #{$self}__button-wrap {
+		   justify-content: flex-end;
+	 	}
+	 }
+
+    //CSS added for title color
+     &--titlecolor-default {
+        #{$self}__title {
+            p, h3 {
+                color: var(--cta-section--titlecolor-default);
+            }
+        }
+     }
+
+     &--titlecolor-reversed {
+        #{$self}__title {
+            p, h3 {
+                color: var(--cta-section--titlecolor-reversed);
+            }
+        }
+     }
+
+     &--titlecolor-primary {
+        #{$self}__title {
+            p, h3 {
+                color: var(--cta-section--titlecolor-primary);
+            }
+        }
+     }
+
+     &--titlecolor-alternate {
+        #{$self}__title {
+            p, h3 {
+                color: var(--cta-section--titlecolor-alternate);
+            }
+        }
+     }
+     //CSS added for subtitle color
+     &--subtitle-default {
+        #{$self}__sub-title {
+            p, h4 {
+                color: var(--cta-section--subtitle-default);
+            }
+        }
+     }
+
+     &--subtitle-reversed {
+        #{$self}__sub-title {
+            p, h4 {
+                color: var(--cta-section--subtitle-reversed);
+            }
+        }
+     }
+
+     &--subtitle-primary {
+        #{$self}__sub-title {
+            p, h4 {
+                color: var(--cta-section--subtitle-primary);
+            }
+        }
+     }
+
+     &--subtitle-alternate {
+        #{$self}__sub-title {
+            p, h4 {
+                color: var(--cta-section--subtitle-alternate);
+            }
+        }
+     }
+     //CSS added for description color
+     &--description-default {
+        #{$self}__description {
+            p, h1, h2, h3, h4, h5, h6, pre, blockquote {
+                color: var(--cta-section--description-default);
+            }
+        }
+     }
+
+     &--description-reversed {
+        #{$self}__description {
+            p, h1, h2, h3, h4, h5, h6, pre, blockquote {
+                color: var(--cta-section--description-reversed);
+            }
+        }
+     }
+
+     &--description-primary {
+        #{$self}__description {
+            p, h1, h2, h3, h4, h5, h6, pre, blockquote {
+                color: var(--cta-section--description-primary);
+            }
+        }
+     }
+
+     &--description-alternate {
+        #{$self}__description {
+            p, h1, h2, h3, h4, h5, h6, pre, blockquote {
+                color: var(--cta-section--description-alternate);
+            }
+        }
+     }
+     
+     @include media-breakpoint-up(lg) {
+        &--button-bottom.cta-large {
+                & #{$self}--alertbanner-large {
+                    width: 50%;
+                    margin-left:0;
+                    margin-right:0;
+                }
+            }
+            &--button-bottom.cta-medium {
+                & #{$self}--alertbanner-medium {
+                    width: 66%;
+                    margin-left:0;
+                    margin-right:0;
+                }
+            }
+            &--button-bottom.cta-small {
+                & #{$self}--alertbanner-small {
+                    width: 75%;
+                    margin-left:0;
+                    margin-right:0;
+                }
+            
+        }  		
+    }
+}
+.ctasection {
+  &.responsivegrid {
+    &.container {
+      &.o-cta-section--padding-none {
+        padding-top: 0px;
+        padding-bottom: 0px;
+      }
+    }
+  }
+}
+@include media-breakpoint-down(sm){
+    .container{
+        .ctasection{
+            padding-left: 15px;
+            margin-left: 0%;
+            margin-right: 0%;
+        }
+    }
+}

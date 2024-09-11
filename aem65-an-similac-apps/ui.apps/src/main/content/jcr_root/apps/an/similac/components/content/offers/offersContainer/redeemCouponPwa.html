@@ -1,0 +1,22 @@
+<div  class="cq-placeholder section" 
+	data-emptytext="Configure Offers Container Component in EDIT Mode" 
+    data-sly-test.author="${(wcmmode.edit || wcmmode.design)}" >
+</div>
+
+<sly data-sly-test="${!wcmmode.edit}">
+    <sly data-sly-use.obj="${'com.abbott.aem.an.similac.core.models.OffersContainerModel'}">
+        <sly data-sly-test="${obj.myOffersJson}">
+            <script>
+                function onloadCallback() {}
+                var redeemCouponPwa_label = Object.freeze(JSON.parse("${obj.myOffersJson @ context='scriptString'}"));
+            </script>
+        </sly>
+    </sly>
+</sly>
+<sly data-sly-use.templates="an/similac/components/content/templates.html" />
+<div class="container redeem-coupon">
+
+	<div id="redeem_coupon_pwa">
+		<sly data-sly-call="${templates.includeResource @ relativeResourcePath=resource.path, nodeName='currentOffers', slingResourceType='/apps/an/similac/components/content/offers/currentOffers'}" data-sly-test="${wcmmode.edit}"/>
+	</div>
+</div>

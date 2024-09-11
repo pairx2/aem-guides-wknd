@@ -1,0 +1,23 @@
+<!--/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  ~ Copyright 2017 Adobe Systems Incorporated
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/-->
+<template data-sly-template.itemContent="${@ item='The language navigation item'}">
+	<sly data-sly-test.hasChildren="${item.children.size > 0}"></sly>
+     <sly data-sly-use.linkHelper="${'com.abbott.aem.an.similac.core.models.LinkHelperModel' @ href=item.URL}" />
+     <sly data-sly-use.analyticsConfig="${'com.abbott.aem.an.similac.core.models.AnalyticsConfigModel' @sectionTitle = item.title, linkName='Language Link'}" />
+	<a class="cmp-languagenavigation__item-link" href="${linkHelper.linkHrefDomain}"
+       hreflang="${item.language}" lang="${item.language}" rel="alternate" title="${item.title}"
+	   data-gtm="language|click|${analyticsConfig.eventLabel @context='attribute'}" data-sly-test="${!hasChildren}">${item.title}</a>
+</template>

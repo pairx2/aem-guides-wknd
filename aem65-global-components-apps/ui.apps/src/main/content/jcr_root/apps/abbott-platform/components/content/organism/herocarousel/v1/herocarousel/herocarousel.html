@@ -1,0 +1,52 @@
+<div id="${carousel.id}"
+     class="cmp-carousel ${customConfig.className}"
+     role="group"
+     aria-label="${carousel.accessibilityLabel}"
+     aria-live="polite"
+     data-cmp-is="carousel"
+     data-cmp-autoplay="${(wcmmode.edit || wcmmode.preview) ? '' : carousel.autoplay}"
+     data-cmp-delay="${carousel.delay}"
+     data-cmp-autopause-disabled="${carousel.autopauseDisabled}"
+     data-cmp-data-layer="${carousel.data.json}"
+     data-sly-use.carousel="com.abbott.aem.platform.common.components.models.CustomCarousel"
+     data-sly-use.templates="core/wcm/components/commons/v1/templates.html"
+	 data-sly-use.component="com.adobe.cq.wcm.core.components.models.Component"
+	 data-sly-use.customConfig="com.abbott.aem.platform.common.components.models.CustomConfig">
+<sly data-sly-test.crdsPerScreen="${(carousel.cardsPerScreen) ? carousel.cardsPerScreen : ''}"/>
+<sly data-sly-test.crdsPerScroll="${(carousel.cardsPerScroll) ? carousel.cardsPerScroll : ''}"/>
+<div data-js-component="${wcmmode.edit ? '' : 'carousel'}" 
+	data-no-indicators="${(carousel.hideIndicators) ? 'true' : 'false'}" 
+	data-left-icon="${carousel.iconLeft}"
+    data-right-icon="${carousel.iconRight}"
+	data-cards-per-screen="${crdsPerScreen}"
+	data-cards-per-scroll="${crdsPerScroll}"
+	data-transition-autoplay="${carousel.autoplay  @context='styleToken'}" 
+	data-transition-autopause-disable="${carousel.autopauseDisabled  @context='styleToken'}" 
+    data-responsive="true"
+    data-tablet-cards-per-screen="2" 
+    data-tablet-cards-per-scroll="1" 
+    data-mobile-cards-per-screen="1" 
+    data-mobile-cards-per-scroll="1"
+	data-transition-delay="${carousel.delay}">
+        <sly class="cmp-carousel__content"
+             aria-atomic="false"
+             aria-live="${carousel.autoplay ? 'off' : 'polite'}"
+             data-sly-test="${carousel.items && carousel.items.size > 0}">
+            <sly data-sly-repeat.item="${carousel.items}">
+				<sly data-sly-test="${wcmmode.edit}">
+	            	Author the Slide ${itemList.count}
+				</sly>
+                        <div id="${item.id}"
+                             class="cmp-carousel__item${itemList.first ? ' cmp-carousel__item--active' : ''}"
+                             role="tabpanel"
+                             aria-roledescription="slide"
+                             aria-label="${'Slide {0} of {1}' @ format=[itemList.count, carousel.items.size], i18n}"
+                             data-cmp-data-layer="${item.data.json}"
+                             data-cmp-hook-carousel="item"
+                             data-sly-resource="${item.name @ decorationTagName='div'}"></div>  
+            </sly>  
+        </sly>
+	</div>
+    <sly data-sly-resource="${resource.path @ resourceType='wcm/foundation/components/parsys/newpar', appendPath='/*', decorationTagName='div', cssClassName='new section aem-Grid-newComponent'}"
+         data-sly-test="${(wcmmode.edit || wcmmode.preview) && carousel.items.size < 1}"></sly>
+</div>

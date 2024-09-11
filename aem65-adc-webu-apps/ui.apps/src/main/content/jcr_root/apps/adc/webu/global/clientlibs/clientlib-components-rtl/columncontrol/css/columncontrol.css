@@ -1,0 +1,92 @@
+.columncontrol .column-divider {
+  margin-bottom: 10px;
+}
+.columncontrol .column-divider::after {
+  content: "";
+  width: 100px;
+  height: 0;
+  border-bottom: var(--column-border-normal);
+  left: 50%;
+  right: 50%;
+  position: absolute;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
+}
+.columncontrol .column-divider:last-child::after {
+  display: none;
+}
+@media (min-width: 768px) {
+  .columncontrol .column-divider {
+    margin-bottom: 0;
+  }
+  .columncontrol .column-divider::after {
+    width: 0;
+    height: 80px;
+    border-right: var(--column-border-light);
+    left: auto;
+    top: 50%;
+    bottom: 50%;
+    right: 0px;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  .columncontrol .column-divider:nth-child(2n + 2)::after {
+    display: none;
+  }
+  .columncontrol .column-divider:last-child::after {
+    display: none;
+  }
+}
+@media (min-width: 992px) {
+  .columncontrol .column-divider:nth-child(2n + 2)::after {
+    display: block;
+  }
+  .columncontrol .column-divider:last-child::after {
+    display: none;
+  }
+}
+.columncontrol-full-width.container,
+.columncontrol-full-width .container {
+  max-width: 100%;
+}
+.columncontrol.column-align--left .row {
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+}
+.columncontrol.column-align--right .row {
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+.columncontrol.column-align--center .row {
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+.columncontrol.column-align--space-around .row {
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
+}
+.columncontrol.column-align--space-between .row {
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+.columncontrol.column-align--space-evenly .row {
+  -webkit-box-pack: space-evenly;
+  -ms-flex-pack: space-evenly;
+  justify-content: space-evenly;
+}
+.columncontrol {
+  text-align: right;
+}
+@media (min-width: 768px) {
+  .columncontrol .column-divider::after {
+    border-left: var(--column-border-light);
+    right: auto;
+    left: 0px;
+  }
+}

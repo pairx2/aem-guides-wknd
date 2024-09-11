@@ -1,0 +1,25 @@
+<sly data-sly-use.commonTemplates="core/wcm/components/commons/v1/templates.html"
+     data-sly-use.orderDetailsContainerModel="com.abbott.aem.platform.common.components.models.commerce.OrderDetailsContainer"></sly>
+<div id="orderdetailscontainer" class="m-orderdetailscontainer" data-icon="${orderDetailsContainerModel.icon}" data-order-label="${orderDetailsContainerModel.orderLabel}"
+     data-print-invoice-text="${orderDetailsContainerModel.printInvoiceText}">
+    <div class="m-orderdetailscontainer__content">
+        <div class="m-orderdetailscontainer__header container">
+            <h2 class="m-orderdetailscontainer__title">${orderDetailsContainerModel.orderLabel || 'Order'}</h2>
+            <div>
+                <div class="a-button a-button--md a-button--primary m-orderdetailscontainer__button--credit-memo">
+                    <button class="btn">
+                        <em class="abt-icon-print"></em><span>${orderDetailsContainerModel.printCreditMemoText || 'Credit Memo'}</span>
+                    </button>
+                </div>
+                <div class="a-button a-button--md a-button--primary m-orderdetailscontainer__button--invoice">
+                    <button class="btn">
+                        <em class="abt-icon-print"></em><span>${orderDetailsContainerModel.printInvoiceText || 'Print Invoice'}</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="container" data-sly-resource="${@path='content', resourceType='wcm/foundation/components/parsys'}">
+        </div>
+    </div>
+</div>
+<sly data-sly-call="${commonTemplates.placeholder @ isEmpty=true}"></sly>

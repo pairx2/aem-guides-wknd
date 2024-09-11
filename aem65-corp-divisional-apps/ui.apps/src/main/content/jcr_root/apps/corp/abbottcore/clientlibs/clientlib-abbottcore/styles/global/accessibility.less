@@ -1,0 +1,213 @@
+/**********************************
+Accessibility Styling
+**********************************/
+
+// Accessibility contrast section
+.accessbility-contrast {
+    position: absolute;
+    top: 101px;
+    right: 0;
+    width: 47px;
+    z-index: 5;
+
+    @media only screen and (max-width: 1440px) {
+        top: 200px;
+    }
+
+    .accessibilty-image {
+        width: 100%;
+        cursor: pointer;
+        background: url(/content/dam/corp/abbott/global/contrast-accessibility-button.png) left center no-repeat @abbott-primary-blue;
+        background-size: 40px 40px;
+        height: 49px;
+        display: block;
+    }
+
+    .menu {
+        list-style: none;
+        background-color: @abbott-navy-light-blue;
+        color: @white;
+        width: 120px;
+        float: right;
+        padding: 2px;
+        text-align: center;
+
+        li a {
+            color: @white;
+            display: block;
+
+            &:hover,
+            &:focus {
+                text-decoration: none;
+            }
+        }
+
+        html[lang*='il'] & {
+            li a {
+                background-color: @abbott-fuscia;
+                color: @black;
+            }
+        }
+    }
+}
+
+// After constrasted class is appended to body by clicking on Accessiblity constrast section, styling the components/page
+.page.contrasted {
+    .accessbility-contrast .menu li a {
+        background-color: @abbott-contrast-yellow  !important;
+        color: @black  !important;
+    }
+
+    a,
+    h1,
+    h1 *,
+    h2,
+    h2 *,
+    h3,
+    h3 *,
+    h4,
+    h4 *,
+    h5,
+    h5 *,
+    h6,
+    h6 *,
+    p,
+    li,
+    span:not([class*="abt-icon"]),
+    .btn,
+    input,
+    input::placeholder {
+        color: @abbott-contrast-yellow  !important;
+        --text-color: @abbott-contrast-yellow  !important;
+        --info-section-text-color: @abbott-contrast-yellow  !important;
+        --info-section-text-mob-color: @abbott-contrast-yellow  !important;
+    }
+
+    #pageContent,
+    h1,
+    h1 *,
+    h2,
+    h2 *,
+    h3,
+    h3 *,
+    h4,
+    h4 *,
+    h5,
+    h5 *,
+    h6,
+    h6 *,
+    p,
+    .btn,
+    .bg-color--light-gray,
+    input {
+        background-color: @black  !important;
+    }
+
+    .btn,
+    input {
+        border: 1px solid @abbott-contrast-yellow  !important;
+        --info-section-heading-mob-color: @black  !important;
+    }
+
+    .o-header {
+
+        --header-top-bar-bg: @black;
+
+        &.o-header--full-width .o-header__search .abt-icon {
+            color: @white;
+        }
+
+        .o-header__sticky-section {
+            .o-header__mega-menu {
+                .m-mega-menu__mobile .navbar {
+                    .m-mega-menu__mobile-item-wrapper {
+                        background-color: @black  !important;
+                    }
+
+                    .navbar-collapse {
+                        @media @lg-down {
+                            --mega-menu-mob-bg: @black;
+                        }
+                    }
+                }
+
+                .o-header__search .a-search:not(.a-search--expand) .a-search__input {
+                    @media @md-down {
+                        border: 0 !important;
+                    }
+                }
+            }
+        }
+
+        .m-mega-menu__nested-menu {
+            &:before {
+                border-bottom: 12px solid @abbott-contrast-yellow  !important;
+            }
+
+            .m-mega-menu__side-nav .m-link-stack {
+                @media @lg-up {
+                    background-color: @black;
+                    border: 1px solid @abbott-contrast-yellow;
+                }
+            }
+        }
+
+        .o-header__secondary-top-nav {
+            .m-link-stack__dropdown-wrapper {
+                @media @lg-up {
+                    background-color: @black;
+                    border: 1px solid @abbott-contrast-yellow;
+                }
+
+                &::before {
+                    --link-stack-dropdown-bg-color: @abbott-contrast-yellow;
+                }
+
+                .m-link-stack__list-item {
+
+                    &:hover,
+                    &:focus {
+                        background-color: @black;
+                    }
+                }
+            }
+        }
+    }
+
+    .mblcontainer {
+        .mblmenu {
+            background-color: @black;
+
+            span,
+            a {
+                color: @abbott-contrast-yellow  !important;
+            }
+        }
+    }
+
+    .m-hero {
+        .m-hero__content {
+
+            .m-hero__header,
+            .m-hero__body {
+                background-color: @black  !important;
+            }
+        }
+    }
+
+    .abbott-breadcrumb {
+        background-color: @black;
+
+        .a-breadcrumb__item {
+
+            &,
+            & .a-breadcrumb--active {
+                color: @abbott-contrast-yellow  !important;
+            }
+        }
+    }
+
+    .o-info-section {
+        background-color: @black  !important;
+    }
+}

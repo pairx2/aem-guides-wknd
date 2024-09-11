@@ -1,0 +1,54 @@
+<sly data-sly-test="${wcmmode.edit}">
+  Edit Navlinks here...
+</sly>
+
+
+
+<sly data-sly-use.navlinks="com.abbott.aem.adc.freestylelibrede.models.NavLinksModel">
+   <section class="card-info">
+         <sly data-sly-test ="${navlinks.imagePosition == 'left'}" >
+            <a href="${navlinks.targetLink}" class="row align-items-center justify-content-center my-2 ${(navlinks.cardTitle || navlinks.description) ? 'nav-dropdown-item-section' : ''}">
+                   <div class="col-lg-3 col-md-4 text-center align-self-center card-info-img-section p-0">
+                       <img  data-sly-test ="${navlinks.image}" src="${navlinks.image}" class="img-fluid" alt="${navlinks.imageAltText}">
+                   </div>
+
+               <div class="col-lg-9 col-md-8 p-0">
+                  <div class="sidenav-item-list-title">
+                     <h4 class="blue card-info-title">${navlinks.cardTitle}</h4>
+						<img data-sly-test ="${navlinks.sideNavCardIconImg}" alt="${navlinks.imageAltText}" class="side-nav-card-icon-img" src="${navlinks.sideNavCardIconImg}" />
+                    <p class="card-info-desc">${navlinks.description @ context="html"}</p>
+                     <sly data-sly-test="${navlinks.showCta}">
+                        <div>   
+                           <a href="${navlinks.ctaLink @extension ='html'}" target="${navlinks.ctaAction}" class="button-primary button-mb-block">
+                           ${navlinks.ctaLabel}
+                           </a>
+                        </div>
+                     </sly>
+                  </div>
+               </div>
+            </a>
+         </sly>
+         <sly data-sly-test ="${navlinks.imagePosition == 'right'}" >
+            <a href="${navlinks.targetLink}" class="row align-items-center ${(navlinks.cardTitle || navlinks.description) ? 'nav-dropdown-item-section' : ''}">
+               <div class="col-9 col-lg-9 col-md-8 order-md-1 order-1 pl-0">
+               	  <div class="sidenav-item-list-title">
+                      <h3 class="blue card-info-title">${navlinks.cardTitle}</h3>
+                       <img  data-sly-test ="${navlinks.sideNavCardIconImg}" alt="${navlinks.imageAltText}" class="side-nav-card-icon-img" src="${navlinks.sideNavCardIconImg}" />
+                  </div>
+                  <p class="card-info-desc">${navlinks.description @ context="html"}</p>
+                  <sly data-sly-test="${navlinks.showCta}">
+                     <div>
+                        <a href="${navlinks.ctaLink @extension ='html'}" target="${navlinks.ctaAction}" class="button-primary button-mb-block">
+                        ${navlinks.ctaLabel}
+                        </a>
+                     </div>
+                  </sly>
+               </div>
+
+                   <div class="col-3 col-lg-3 col-md-4 order-md-2 order-2 text-center align-self-center card-info-img-section p-0">
+                       <img data-sly-test ="${navlinks.image}" src="${navlinks.image}" class="img-fluid" alt="${navlinks.imageAltText}">
+                   </div>
+            </a>
+         </sly>
+   </section>
+</sly>

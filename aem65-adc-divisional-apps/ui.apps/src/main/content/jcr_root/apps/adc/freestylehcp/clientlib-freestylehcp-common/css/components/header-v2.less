@@ -1,0 +1,111 @@
+@import '../media-queries.less';
+@import '../variables.less';
+
+.o-header-v2-global {
+  --header-v2-main-padding: @spacer 0;
+
+  --mega-menu-navbar-wrapper-md: 0;
+  --mega-menu-nav-md: 0 0.5rem;
+  --mega-menu-mobile-item: @spacer-12 @spacer-48 @spacer-12 0.5rem;
+  z-index: 100;
+  .a-logo-comp {
+    --logo-max-height-des: 3.125rem;
+    --logo-max-height-tab: 2.25rem;
+    --logo-max-height-mob: 1.875rem;
+  }
+  .m-link-stack {
+    --link-stack-list-font-size: 1rem;
+    --link-stack-list-line-height: 1.5rem;
+    &__list-item {
+      padding: 0;
+      .a-link__text {
+        padding: @spacer-12 @spacer;
+        font-size: var(--link-stack-list-font-size);
+        line-height: var(--link-stack-list-line-height);
+      }
+    }
+  }
+  .user-circle-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: @spacer-24;
+    height: @spacer-24;
+    background-color: @primary-color;
+    border-radius: 50%;
+    color: @color-white;
+    font-size: @spacer-14;
+    line-height: @spacer-20;
+  }
+  #myAccountMobile,
+  #myAccountSticky,
+  #myAccountTop {
+    .m-link-stack {
+      &__link {
+        .a-link__text {
+          column-gap: 0;
+          font-size: 0;
+          color: @primary-color;
+          @media @sm-up {
+            column-gap: var(--header-v2-icon-spacing);
+            font-size: @spacer-14;
+          }
+        }
+        .abt-icon {
+          display: none;
+        }
+      }
+      &__dropdown-wrapper {
+        right: -@spacer-24;
+        @media @sm-up {
+          right: 0;
+        }
+        &[data-position='right'] {
+          left: -@spacer-24;
+          @media @sm-up {
+            left: 0;
+          }
+        }
+      }
+    }
+  }
+  #languageSelectorMobile,
+  #languageSelectorSticky,
+  #languageSelectorTop {
+    display: none;
+    @media @sm-up {
+      display: block;
+    }
+    .m-link-stack {
+      &__title {
+        display: none;
+      }
+      &__link {
+        .a-link {
+          flex-direction: row-reverse;
+          align-items: center;
+          &__text {
+            color: @primary-color;
+            .abt-icon {
+              display: none;
+            }
+          }
+          .abt-icon {
+            top: unset;
+            right: unset;
+            left: unset;
+            margin-right: var(--header-v2-icon-spacing);
+            color: @primary-color;
+          }
+        }
+      }
+      &__list-item {
+        .a-link__text {
+          &.active {
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+}

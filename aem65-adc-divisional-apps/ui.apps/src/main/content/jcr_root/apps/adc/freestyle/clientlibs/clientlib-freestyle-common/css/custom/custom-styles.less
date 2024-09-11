@@ -1,0 +1,158 @@
+@import '../mixin.less';
+@import '../media-queries.less';
+@import '../variables.less';
+
+/**
+ * Site Specific global styles
+**/
+
+//page spinner
+#page-spinner {
+    display: none;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1040;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.25);
+
+    .a-spinner {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        position: fixed;
+    }
+}
+
+//api error messages
+#apierror,
+#apierror_500,
+#apierror_400,
+#invalidpass_apierror_400 {
+
+    &, & .generic-modal__content-body p {
+        font-size: @font-size-14;
+        line-height: 20px;
+        color: @color-danger;
+        display: none;
+
+        [id^="LGN-USER"], [id^="VRF-ACCT"], [id^="REG-USER"], [id^="DEV-CMPT"],
+        [id^="ACC-CODE"], [id^="SBM-QSTN"], [id^="SBM-ORD"], [id^="OFFLN-USER"],
+        [id^="AUTH-"], [id^="GNL-"], [id^="CM-"], [id^="PM-"], [id="400"] {
+            display: none;
+        }
+    }
+}
+
+.modal.generic-modal {
+    [id^="LGN-USER"], [id^="VRF-ACCT"], [id^="REG-USER"], [id^="DEV-CMPT"],
+    [id^="ACC-CODE"], [id^="SBM-QSTN"], [id^="SBM-ORD"], [id^="OFFLN-USER"],
+    [id^="AUTH-"], [id^="GNL-"], [id^="CM-"], [id^="PM-"], [id="400"] {
+        display: none;
+    }
+}
+
+//error 500 modal
+#error_500 {
+    text-align: center;
+}
+
+#redirect-buttons, #custom-modal-button {
+    display: none;
+}
+
+.modal {
+    &#siteEnteringPopupFragmentPath,
+    &#siteLeavingPopupFragmentPathModal {
+        z-index: 1100;
+    }
+}
+
+.formcontainer {
+    /*hide consents on form*/
+    [id*="hiddenConsents"] {
+        display: none;
+    }
+}
+
+//custom site entering
+[id*=btnModalCustomSiteEntering] {
+    .promosection {
+        padding: 0;
+        .o-promo {
+            --promo-section-logo-padding: 0 0 @spacer-8;
+            --promo-section-title-padding: 0 0 @spacer-8;
+            --promo-section-btn-padding: 0 0 @spacer-20;
+            &__wrapper {
+                @media @lg-only {
+                    display: flex;
+                }
+            }
+            &__btn {
+                @media @lg-down {
+                    display: block;
+                }
+                .btn {
+                    display: flex;
+                    align-items: center;
+                }
+                .abt-icon {
+                    font-size: @spacer-24!important;
+                    left: 15px;
+                }
+                &:last-child {
+                    @media @lg-down {
+                        padding-bottom: 0;
+                    }
+                }
+            }
+
+            .a-logo-comp img {
+                @media @lg-down {
+                    max-height: 51px;
+                    width: auto;
+                }
+            }
+        }
+    }
+}
+
+/*****Authoring mode styles****/
+.cq-Editable-dom {
+    #page-spinner {
+        display: block!important;
+        width: 200px;
+        height: 50px;
+        position: relative;
+        .a-spinner {
+            position: relative;
+        }
+    }
+    #apierror,
+    #apierror_500,
+    #apierror_400,
+    #invalidpass_apierror_400 {
+        display: block!important;
+
+        [id^="LGN-USER"], [id^="VRF-ACCT"], [id^="REG-USER"], [id^="DEV-CMPT"],
+        [id^="ACC-CODE"], [id^="SBM-QSTN"], [id^="SBM-ORD"], [id^="OFFLN-USER"],
+        [id^="AUTH-"], [id^="GNL-"], [id^="CM-"], [id^="PM-"], [id="400"] {
+            display: block!important;
+        }
+    }
+    .modal.generic-modal {
+        [id^="LGN-USER"], [id^="VRF-ACCT"], [id^="REG-USER"], [id^="DEV-CMPT"],
+        [id^="ACC-CODE"], [id^="SBM-QSTN"], [id^="SBM-ORD"], [id^="OFFLN-USER"],
+        [id^="AUTH-"], [id^="GNL-"], [id^="CM-"], [id^="PM-"], [id="400"] {
+            display: block!important;
+        }
+    }
+    #redirect-buttons {
+        display: block;
+    }
+    [id*="hiddenConsents"] {
+        display: block!important;
+    }
+}

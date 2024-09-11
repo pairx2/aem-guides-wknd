@@ -1,0 +1,20 @@
+{
+  "externalizer.domains":[
+    "local $[env:externalizerDomainLocal;default=http://localhost:4502]",
+    "author $[env:externalizerDomainAuthor;default=http://localhost:4502]",
+    "publish $[env:externalizerDomainPublish;default=http://localhost:4503]",
+    "preview $[env:externalizerDomainPreview;default=https://preview-p33328-e114754.adobeaemcloud.com]",
+{{#each sites}}
+{{#if isCloudSubdomainRequired}}
+  {{#ifEquals name "abbott.com"}}
+    "{{id}} https://$[env:AB_ENVIRONMENT_PREFIX;default=dev].aem.{{name}}"{{#unless @last}},{{/unless}}
+  {{/ifEquals}}
+  {{#ifNotEquals name "abbott.com"}}
+    "{{id}} https://$[env:AB_ENVIRONMENT_PREFIX;default=dev].cloud.{{name}}"{{#unless @last}},{{/unless}}
+  {{/ifNotEquals}}
+{{else}}
+    "{{id}} https://$[env:AB_ENVIRONMENT_PREFIX;default=dev].{{name}}"{{#unless @last}},{{/unless}}
+{{/if}}
+{{/each}}
+  ]
+}

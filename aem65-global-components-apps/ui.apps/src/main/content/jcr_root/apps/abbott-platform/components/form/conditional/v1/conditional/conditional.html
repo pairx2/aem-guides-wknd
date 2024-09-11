@@ -1,0 +1,29 @@
+<sly data-sly-use.conditional="com.abbott.aem.platform.common.components.models.FormConditional"
+     data-sly-use.template="core/wcm/components/commons/v1/templates.html"
+     data-sly-test.uniqueId="${conditional.uniqueId}"
+     data-sly-test.uniqueCheckboxId="${conditional.uniqueId}"></sly>
+
+<div class="conditional-container" id="${uniqueId}" data-conditional-variable="${conditional.variableName}" data-edit-mode="${wcmmode.edit @ context='text'}">
+    <div data-sly-test.variable="${conditional.dynamic}">
+        <sly data-sly-list.variableValue="${conditional.conditionalItems}">
+            <div data-sly-test="${variableValue.valueIsNotBlank}" class="conditional__case" data-conditional-case="${variableValue.variableValue}">
+                <div data-sly-test="${wcmmode.edit}">Display for condition - ${conditional.variableName} = ${variableValue.variableValue}</div>
+                <div data-sly-resource="${@path=variableValue.variableValue ,resourceType='wcm/foundation/components/parsys'}"></div>
+            </div>
+        </sly>
+    </div>
+    <div data-sly-test="${!variable}" class="a-checkbox a-checkbox--default">
+        <label class="a-checkbox__label" for="${uniqueCheckboxId}">
+            <span class="a-checkbox__text">${conditional.label}</span>
+            <input type="checkbox" class="a-checkbox__input" checked="selected" value="${conditional.value}" name="${conditional.name}" id="${uniqueCheckboxId}">
+            <span class="a-checkbox__custom"></span>
+        </label>
+        <script type="application/json">
+            ${conditional.conditionalJson @context='unsafe'}
+        </script>
+    </div>
+    <div data-sly-test="${!variable}" class="conditional__case  checkbox__case"
+         data-sly-resource="${@path='conditionalCheckbox' ,resourceType='wcm/foundation/components/parsys'}"></div>
+</div>
+
+<sly data-sly-call="${template.placeholder @ isEmpty=!conditional.conditionalType, classAppend='cmp-form-options'}"></sly>

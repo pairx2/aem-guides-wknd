@@ -1,0 +1,196 @@
+@import "../../clientlib-base/scss/base/functions";
+@import "../../clientlib-base/scss/base/mixins";
+@import "../../clientlib-base/scss/base/variables";
+
+.cart-popup{
+    &__wrapper {
+        background-color: $white;
+        box-shadow: 0 1px 3px $gainsboro;
+        bottom: 5px;
+        color: $dusty-gray;
+        display: none;
+        position: absolute;
+        right: 0;
+        transform: translateY(100%);
+        width: 340px;
+        z-index: 5;
+
+        @include media-breakpoint-down(sm) {
+            bottom: 0;
+            display: none;
+            width: auto;
+        }
+
+        &.active {
+            display: block;
+
+            @include media-breakpoint-down(sm) {
+                display: block;
+            }
+        }
+    }
+
+    &-empty {
+        font: 400 11px/1.4 $font-brandon-text-regular;
+        padding: 40px 20px 30px;
+        text-align: center;
+    }
+
+    &-item {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        flex-basis: 100%;
+        margin-bottom: 20px;
+    }
+
+    &-close {
+        line-height: 1;
+        position: absolute;
+        right: 12px;
+        top: 12px;
+
+        i {
+            cursor: pointer;
+            font-size: 20px;
+
+            &:hover {
+                color: $sea-buckthorn;
+            }
+        }
+    }
+
+    &-description {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding: 20px 20px 15px 20px;
+
+        .description-label {
+            display: flex;
+            flex-basis: 50%;
+            font: 400 11px/1.5 $font-brandon-text-regular;
+            padding: 0 10px 4px;
+            text-transform: uppercase; 
+        }
+
+        .checkout {
+            background: $sea-buckthorn;
+            border: 1px solid $sea-buckthorn;
+            border-radius: 3px;
+            color: $white;
+            display: block;
+            font: 500 11px/2 $font-brandon-text-bold;
+            margin: 15px 10px;
+            padding: 14px 17px;
+            text-align: center;
+            text-transform: uppercase;
+            width: 100%;
+
+            &:hover {
+                background-color: $white;
+                color: $sea-buckthorn;
+            }
+        }
+
+        .count {
+            color: $mine-shaft-light;
+            font: 700 11px/1.5 $font-brandon-text-regular;
+        }
+
+        .subtotal {
+            color: $mine-shaft-light;
+            font: 700 18px/1 $font-brandon-text-regular;
+        }
+    }
+
+    &-product-details {
+        border: 1px solid $whisper;
+        display: flex;
+        flex-wrap: wrap;
+        height: 152px;
+        overflow-x: hidden; 
+        overflow-y: auto;
+        padding: 15px;
+
+        .cart-popup-image {
+            display: block;
+            margin: 0;
+            width: 88px;
+            object-fit: contain;
+
+            &-wrapper {
+                display: flex;
+                flex-basis: 38%;
+                justify-content: center;
+            }
+        }
+    }
+
+    &-details {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        width: 100%;
+
+        &-wrapper {   
+            display: flex;
+            flex-basis: 60%;
+            margin-bottom: 20px;
+        }
+
+        &-name, &-size, &-price, &-qty {
+            font: 400 11px/1.5 $font-brandon-text-regular;
+        }
+
+        &-name {
+            font-family: $fonts-poppins;
+            margin-bottom: 10px;
+        }
+
+        &-price {
+            color: $mine-shaft-light;
+            font-weight: 700;
+            margin: 4px 0;
+        }
+
+        &-qty {
+            color: $mine-shaft;
+            font-family: $font-brandon-text-bold;
+            line-height: 3;
+            padding: 0 16px;
+            position: relative;
+
+            .cart-popup-delete {
+                cursor: pointer;
+                bottom: 0;
+                position: absolute;
+                right: 0;
+
+                i {
+                    color: $gray;
+                    font-size: 14px;
+
+                    &:hover {
+                        color: $mine-shaft;
+                    }
+                }
+            }
+        }
+    }
+
+    &-product {
+        a.cart-popup-cart-link {
+            color: $dusty-gray;
+            display: block;
+            font: 400 11px/1.5 $font-brandon-text-regular;
+            padding: 15px 20px;
+            text-align: center;
+
+            &:hover {
+                color: $sea-buckthorn;
+            }
+        }
+    }
+}

@@ -1,0 +1,26 @@
+<template data-sly-template.item="${@ item='The navigation item', iconClass='iconClass', linkClass='linkClass'}">
+
+	<sly data-sly-test="${item.seeMoreText}">
+
+		<a data-sly-test="${item.seeMoreExternal}" id="${item.id}-seemore" class="${linkClass ? linkClass : 'm-mega-menu__show-more'}"
+		   aria-label="${item.seeMoreText}" role="link"
+		   href="${item.seeMoreUrl}"
+		   data-id="${item.id}-seemore"
+		   data-redirect-confirm="true" data-target="#site-leaving-popup-content" rel="noopener noreferrer"
+		   itemprop="url"
+		   data-cmp-clickable="${item.data ? true : false}"
+		   data-cmp-data-layer="${item.data.json}">
+			${item.seeMoreText}<em class="${iconClass}" aria-hidden="true"></em>
+		</a>
+		<a data-sly-test="${!item.seeMoreExternal}" id="${item.id}-seemore" href="${item.URL}"
+		   class="${linkClass ? linkClass : 'm-mega-menu__show-more'}" aria-label="${item.seeMoreText}" role="link"
+		   href="${item.seeMoreUrl}"
+		   target="${item.seeMoreAction}" rel="${item.action=='_blank'?'noopener':''}"
+		   data-id="${item.id}-seemore"
+		   itemprop="url"
+		   data-cmp-clickable="${item.data ? true : false}"
+		   data-cmp-data-layer="${item.data.json}">${item.seeMoreText}<em class="${iconClass}" aria-hidden="true"></em>
+		</a>
+	</sly>
+
+</template>

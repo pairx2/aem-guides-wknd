@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Language Navigation"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                maximized="{Boolean}true">
+                <items jcr:primaryType="nt:unstructured">
+                    <properties
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Properties"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <structureDepth
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                                default="1"
+                                                name="./structureDepth"/>
+                                            <placeholder
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldDescription="Please enter Search Placeholder text"
+                                                fieldLabel="Search Placeholder Text"
+                                                name="./placeholder"/>
+											<ascending
+												jcr:primaryType="nt:unstructured"
+												sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+												name="./ascendingOrder"
+												text="Display in ascending order"
+												uncheckedValue="false"
+												checked="{Boolean}false"
+												value="{Boolean}true"/>
+                                            <navigatorType
+                                            	granite:class="cq-dialog-dropdown-showhide"
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                name="./navigatorType"
+                                                fieldLabel="Navigator Type"
+                                                fieldDescription="Select Default to display navigation as 'Title (Country-Lang)'. Select Tabular to display navigation as 'Flag | Country | Language'">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                	<default
+                                                		jcr:primaryType="nt:unstructured"
+                                                		checked="{Boolean}true"
+                                                		text="Default display [Title (Country-Lang)]"
+                                                		value="simple"/>
+                                                	<tabular
+                                                		jcr:primaryType="nt:unstructured"
+                                                		text="Tabular display [Flag | Country | Language]"
+                                                		value="tabular"/>
+													<simple
+														jcr:primaryType="nt:unstructured"
+														text="Simple display [Title | Language]"
+														value="default"/>
+                                                </items>
+                                                <granite:data
+                                                   jcr:primaryType="nt:unstructured"
+                                                   cq-dialog-dropdown-showhide-target=".options-showhide-target"/>
+                                           </navigatorType>
+                                           <optionsContainer
+                                                granite:class="hide options-showhide-target"
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                <items jcr:primaryType="nt:unstructured">
+		                                            <search
+		                                                jcr:primaryType="nt:unstructured"
+		                                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+		                                                fieldDescription="Uncheck if search bar is not required inside Language navigation dropdown;"
+		                                                name="./searchRequired"
+		                                                text="Is Search Bar required"
+		                                                uncheckedValue="false"
+		                                                checked="{Boolean}true"
+		                                                value="{Boolean}true"/>
+		                                            <hideLanguage
+		                                                jcr:primaryType="nt:unstructured"
+		                                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+		                                                fieldDescription="Check if you want to hide language in navigation ex. Ireland (IE)"
+		                                                name="./hideLanguage"
+		                                                text="Hide language key in links"
+		                                                uncheckedValue="false"
+		                                                checked="{Boolean}false"
+		                                                value="{Boolean}true"/>
+		                                            <hideCountry
+		                                                jcr:primaryType="nt:unstructured"
+		                                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+		                                                fieldDescription="Check if you want to hide country in navigation ex. Ireland (en)"
+		                                                name="./hideCountry"
+		                                                text="Hide country key in links"
+		                                                uncheckedValue="false"
+		                                                checked="{Boolean}false"
+		                                                value="{Boolean}true"/>
+		                                         </items>
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    showhidetargetvalue="simple"/>
+		                                    </optionsContainer>
+		                                    <headerContainer
+                                                granite:class="hide options-showhide-target"
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                <items jcr:primaryType="nt:unstructured">
+		                                            <columnHeader
+		                                                jcr:primaryType="nt:unstructured"
+		                                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+		                                                fieldDescription="Uncheck if column header (Country | Language) is not required inside Language navigation dropdown"
+		                                                name="./columnHeaderRequired"
+		                                                text="Is Column Header required"
+		                                                uncheckedValue="false"
+		                                                checked="{Boolean}true"
+		                                                value="{Boolean}true"/>
+		                                         </items>
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    showhidetargetvalue="tabular"/>
+		                                    </headerContainer>
+                                             <id
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:hideResource="{Boolean}true"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                name="./id"/> 
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </properties>
+                    <configItem
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="ID/Class Config"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <configTab
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="/libs/granite/ui/components/coral/foundation/include"
+                                                path="/apps/abbott-platform/components/core/customconfig/v1/customconfig/cq:dialog/content/items/tabs/items/configItem/items/columns/items/column"/>
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </configItem>
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>

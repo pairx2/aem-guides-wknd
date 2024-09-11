@@ -1,0 +1,18 @@
+<sly data-sly-use.videoModel="com.abbott.aem.platform.common.components.models.Video"/>
+<div data-sly-test="${videoModel.wistiaVideoID}">
+   <script charset="ISO-8859-1" src="//fast.wistia.com/assets/external/E-v1.js" async></script>
+   <div data-sly-test="${videoModel.embedOption == 'true'}">
+      <div class="wistia_responsive_padding">
+         <div class="wistia_responsive_wrapper">
+            <div data-wistia-embedOption="${videoModel.embedOption == 'true' ? 'true' : 'false'}" class="wistia_embed wistia_async_${videoModel.wistiaVideoID} videoFoam=true" style="height:100%;width:100%"></div>
+         </div>
+      </div>
+   </div>
+   <div data-sly-test="${videoModel.embedOption != 'true'}">
+      <div data-wistia-embedOption="${videoModel.embedOption == 'true' ? 'true' : 'false'}" class="wistia_embed wistia_async_${videoModel.wistiaVideoID} popover=true popoverContent=html" data-img-src="${videoModel.imagePath}" data-img-alt="${videoModel.imageAltText}">
+         <a href="#" class="wistia-video__has-image">
+         <img src="${videoModel.imagePath}" alt="${videoModel.imageAltText}">
+         </a>
+      </div>
+   </div>
+</div>

@@ -1,0 +1,280 @@
+@import "../../clientlib-base/scss/base/functions";
+@import "../../clientlib-base/scss/base/mixins";
+@import "../../clientlib-base/scss/base/variables";
+
+/* ============ Glucerna Styles ============== */
+.glucerna-header {
+  background-color: $white;
+  font-family: $fonts-poppins;
+  margin: 0 auto;
+  vertical-align: middle;
+  justify-content: center;
+  transition: top 0.8s ease-in-out;
+  top: -10%;
+
+  &.fixed-top {
+    top: 0;
+
+    .glucerna-header__logo img {
+      width: 77px;
+      padding: 15px 0 10px;
+
+      @media (max-width: 767px) {
+        width: 60px;
+        padding: 15px 0 20px;
+      }
+    }
+  }
+
+  @media (max-width: 993px) {
+    top: -5%;
+
+    &__container {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  }
+
+  &__logo img {
+    width: 110px;
+    padding: 25px 0;
+    max-width: 100%;
+
+    @media (max-width: 767px) {
+      padding: 15px 0 20px;
+    }
+  }
+
+  &__actions-list {
+    display: flex;
+    justify-content: flex-end;
+    margin: 0;
+    padding-left: 0;
+    align-items: center;
+
+    li {
+      display: inline-block;
+      margin: 0;
+      padding-left: 15px;
+      text-transform: capitalize;
+
+      @media (min-width: 768px) {
+        min-width: 70px;
+      }
+
+      .abbott-topbar__action-link.abbott-greet {
+        color: $biscay;
+        font: 900 18px/27px $fonts-poppins;
+
+        .name, .greet-text {
+          font-weight: 500;
+        }
+
+        a i {
+          display: none;
+        }
+  
+        @include media-breakpoint-down(sm) {
+          .greet-text, .name {
+            display: none;
+          }
+  
+          a {
+            background-color: $pattens-blue;
+            border-radius: 50%;
+            display: block;
+            height: 38px;
+            width: 38px;
+  
+            i {
+              color: $scooter;
+              display: flex;
+              font-size: 26px;
+              flex-direction: column;
+              height: 100%;
+              justify-content: flex-end;
+            }
+          }
+        }
+      }
+    }
+
+    @media (max-width: 767px) {
+      padding-left: 0;
+
+      li {
+        padding-left: 5px;
+      }
+    }
+  }
+
+  &__marketing-banner {
+    line-height: 22px;
+    text-align: center;
+    text-transform: uppercase;
+    width: 100%;
+
+    &-loggedin,
+    &-loggedout {
+      background-color: $indigo;
+      color: $white;
+      display: block;
+      font-family: $fonts-poppins;
+      letter-spacing: 0.5px;
+      font-size: 18px;
+      font-weight: 400;
+      padding: 15px 0;
+
+      @media (max-width: 767px) {
+        font-size: 12px;
+        padding: 10px 0;
+      }
+    }
+
+    @media (max-width: 767px) {
+      line-height: 17px;
+    }
+
+    @keyframes placeHolderShimmer{
+      0%{
+          background-position: -468px 0
+      }
+      100%{
+          background-position: 468px 0
+      }
+    }
+    
+    .animated-title-background {
+      animation-duration: 1.25s;
+      animation-fill-mode: forwards;
+      animation-iteration-count: infinite;
+      animation-name: placeHolderShimmer;
+      animation-timing-function: linear;
+      background: darken($gray-100, 3%);
+      background: linear-gradient(to right, darken($gray-100, 1%) 8%, darken($gray-100, 3%) 18%, darken($gray-200, 1%) 33%);
+      background-size: 800px 104px;
+      position: relative;
+    }
+    
+    .placeholder__glucerna-header__marketing-banner {
+      background-color: $indigo;
+      color: $white;
+      display: block;
+      padding: 15px;
+    
+      @media (max-width: 767px) {
+        padding: 10px;
+      }
+    
+      .loader {
+        height: 18px;
+        @extend .animated-title-background;
+    
+        @media (max-width: 767px) {
+          height: 12px;
+        }
+      }
+    }
+  }
+
+  a.action__trail-subscribe {
+    background: $hot-cinnamon;
+    border: 1px solid $dark-orange;
+    border-radius: 10px;
+    box-sizing: border-box;
+    color: $white !important;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 13px;
+    padding: 15px 15px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    vertical-align: middle;
+
+    &:hover {
+      background: $deep-cerulean;
+      border: 1px solid $deep-cerulean;
+      color: $white;
+      text-decoration: none;
+    }
+
+    @media (max-width: 767px) {
+      font-size: 10px;
+      padding: 12px 15px;
+      white-space: nowrap;
+    }
+  }
+
+  .action__login a {
+    color: $biscay;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 27px;
+    text-align: center;
+
+    &:hover {
+      text-decoration: none;
+    }
+
+    @media (max-width: 767px) {
+      font-size: 20px;
+      line-height: 25px;
+      white-space: nowrap;
+    }
+  }
+}
+
+.scroll-top {
+  color: $white;
+  cursor: pointer;
+  display: none;
+  bottom: 15px;
+  backface-visibility: hidden;
+  background: $indigo;
+  border: 1px solid $indigo;
+  height: 38px;
+  opacity: 0;
+  padding: 10px 15px;
+  position: fixed;
+  right: 15px;
+  transition: all 500ms ease;
+  z-index: 99;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    background: $white;
+    border: 1px solid $indigo;
+    color: $indigo;
+  }
+
+  i {
+    font: normal bold 16px $font-brandon-text-bold;
+    line-height: normal;
+  }
+
+  &.active {
+    display: block;
+    opacity: 1;
+    animation: fadeInFromNone 1s ease;
+  }
+
+  @keyframes fadeInFromNone {
+    0% {
+        display: none;
+        opacity: 0;
+    }
+
+    1% {
+        display: block;
+        opacity: 0;
+    }
+
+    100% {
+        display: block;
+        opacity: 1;
+    }
+  }
+}

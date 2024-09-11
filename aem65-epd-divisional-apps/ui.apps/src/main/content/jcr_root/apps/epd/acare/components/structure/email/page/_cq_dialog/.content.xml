@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Page Configuration"
+    sling:resourceType="cq/gui/components/authoring/dialog"
+    helpPath="">
+    <content
+        granite:class="cq-dialog-content-page"
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                maxmized="{Boolean}true">
+                <items jcr:primaryType="nt:unstructured">
+                    <email-template
+                        cq:showOnCreate="{Boolean}false"
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Email Template"
+                        sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <column
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <siteFavicon
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                        emptyText="Add the path for Site's favicon"
+                                        fieldLabel="Site Favicon"
+                                        name="./siteFavicon"
+                                        renderReadOnly="{Boolean}true"
+                                        rootPath="/content/dam"/>
+                                    <assetDomain
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Asset Prefix Domain"
+                                        name="./assetDomain"/>
+                                    <bgconf
+                                        jcr:mixinTypes="[cq:ReplicationStatus]"
+                                        jcr:primaryType="nt:unstructured"
+                                        jcr:title="Background Configuration"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/fieldset">
+                                        <items
+                                            jcr:mixinTypes="[cq:ReplicationStatus]"
+                                            jcr:primaryType="nt:unstructured">
+                                            <bgColor
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/colorfield"
+                                                fieldLabel="Email Template Background Color"
+                                                name="./bgColor"
+                                                showDefaultColors="{Boolean}false"
+                                                showProperties="{Boolean}true"
+                                                showSwatches="{Boolean}false">
+                                                <datasource
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="core/wcm/components/commons/datasources/allowedcolorswatches/v1"/>
+                                            </bgColor>
+                                            <footerBGColor
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/colorfield"
+                                                fieldLabel="Email - Footer Background Color"
+                                                name="./footerBGColor"
+                                                showDefaultColors="{Boolean}false"
+                                                showProperties="{Boolean}true"
+                                                showSwatches="{Boolean}false">
+                                                <datasource
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="core/wcm/components/commons/datasources/allowedcolorswatches/v1"/>
+                                            </footerBGColor>
+                                        </items>
+                                    </bgconf>
+                                </items>
+                            </column>
+                        </items>
+                    </email-template>
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>

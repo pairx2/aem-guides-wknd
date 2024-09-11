@@ -1,0 +1,69 @@
+def AGENT_LABEL = 'AEM65_DEV'
+def controlJobBaseName = 'BTS_191_AEM_65/AEM Cloud/aem65-platformcontrol-apps-trigger/'
+def controlJobName = controlJobBaseName + java.net.URLEncoder.encode(BRANCH_NAME, "UTF-8")
+
+pipeline {
+  agent { label AGENT_LABEL }
+
+  options {
+    disableConcurrentBuilds()
+    buildDiscarder(logRotator(numToKeepStr: '30', daysToKeepStr: '60'))
+  }
+
+  stages {
+    stage('Build') {
+      steps {
+        withCredentials([usernamePassword(credentialsId: 'ARTIFACTORY7_CRED', passwordVariable: 'PASSWORD_VAR', usernameVariable: 'USERNAME_VAR')])
+        {
+        withMaven(maven: 'Maven-3-6',
+          mavenSettingsConfig: 'aem_local_settings',
+          mavenLocalRepo: "${env.WORKSPACE}/.m2") {
+          sh 'mvn -B -U clean package -Dserver.username=${USERNAME_VAR} -Dserver.password=${PASSWORD_VAR}'
+        }
+        }
+      }
+    }
+
+    stage('Deploy Snapshot') {
+      when {
+        branch 'master'
+      }
+      steps {
+        rtMavenResolver (
+          id: 'mavenResolver',
+          serverId: 'Toolchain-Artifactory-7',
+          releaseRepo: 'bts-aem-191-maven-virtual',
+          snapshotRepo: 'bts-aem-191-maven-virtual'
+        )
+        rtMavenDeployer (
+          id: 'mavenDeployer',
+          serverId: 'Toolchain-Artifactory-7',
+          releaseRepo: 'bts-aem-191-releases-maven-local',
+          snapshotRepo: 'bts-aem-191-maven-snapshots-local'
+        )
+        rtMavenRun (
+          tool: 'Maven-3-5-3',
+          pom: 'pom.xml',
+          goals: 'clean install -B -U',
+          resolverId: 'mavenResolver',
+          deployerId: 'mavenDeployer'
+        )
+      }
+    }
+
+    stage('Trigger Control Build') {
+      when {
+        branch 'release/*'
+      }
+      steps {
+        build(job: controlJobName, propagate: false, wait: false)
+      }
+    }
+  }
+
+  post {
+    cleanup {
+      cleanWs() /* clean up our workspace */
+    }
+  }
+}

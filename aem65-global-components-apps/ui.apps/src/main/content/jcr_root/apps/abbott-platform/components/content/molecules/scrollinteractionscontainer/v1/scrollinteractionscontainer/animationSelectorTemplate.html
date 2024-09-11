@@ -1,0 +1,63 @@
+<!--/*  
+	Default Animation
+	the current animations that follow the lingo designs only support 3 panels
+	where the first panel has 3 images and the second panel has 2 images
+	the first panel has a radial gradient background
+	the second panel has a blue background 
+	the third panel has a radial gradient background like panle 1
+*/-->
+<template data-sly-template.default="${@scrollInteractionsContainer}">
+	<sly data-sly-use.component="com.adobe.cq.wcm.core.components.models.Component" id="${component.id}">
+		<sly data-sly-test.jsonConfig="${scrollInteractionsContainer.jsonConfig}"/>
+		<sly data-sly-list="${scrollInteractionsContainer.scrollInteractions}">
+			<sly data-sly-test="${itemList.index == 0}" data-sly-set.panel1bg="${item.backgroundColorStyle}" data-sly-set.panel1="${item}"/>
+			<sly data-sly-test="${itemList.index == 1}" data-sly-set.panel2bg="${item.backgroundColorStyle}" data-sly-set.panel2="${item}"/>
+			<sly data-sly-test="${itemList.index == 2}" data-sly-set.panel3bg="${item.backgroundColorStyle}" data-sly-set.panel3="${item}"/>
+		</sly>
+		
+		<section id="section-${component.id}" class="js-scrollcontainer">
+			<div class="scrollinteractionscontainer__background js-scroll-bg"
+				data-sly-attribute="${scrollInteractionsContainer.scrollInteractionsAnimations.backgroundStylesDataAttributes @context='unsafe'}"
+				style='background: ${panel1.backgroundColorStyle @ context="styleString" };'>
+			</div>
+
+			<div class="scrollinteractionscontainer__wrapper">
+				<div class="scrollinteractionscontainer__media js-scroll-pin">
+					<div class="scrollinteractionscontainer__title">
+						<h3>${scrollInteractionsContainer.title}</h3>
+					</div>
+					<div class="media__wrapper js-scroll-media-layers">
+						<!--/*only need panel 2*\-->
+						<!-- Datapoints revealed -->
+						<sly data-sly-list.panel2Layers="${panel2.layers}">
+							<div data-sly-test="${panel2LayersList.first}"
+								 class="media__layer media__layer--layer-data-point media__layer--data-right js-scroll-data-right">
+								<img src="${panel2Layers.fileReference @ context='text'}" alt="" />
+							</div>
+							<div data-sly-test="${panel2LayersList.index == 1}"
+								 class="media__layer media__layer--layer-data-point media__layer--data-bottom js-scroll-data-bottom">
+								<img src="${panel2Layers.fileReference @ context='text'}" alt="" />
+							</div>
+						</sly>
+						<!--/*only need panel 1*\-->
+						<!-- Layer main images -->
+						<sly data-sly-list.panel1Layers="${panel1.layers}">
+							<div data-sly-test="${panel1LayersList.first}" class="media__layer media__layer--layer-zoom">
+								<img src="${panel1Layers.fileReference @ context='text'}" class="js-scroll-main-image" alt="" />
+							</div>
+							<div data-sly-test="${panel1LayersList.index == 1}" class="media__layer media__layer--layer-parallax">
+								<img src="${panel1Layers.fileReference @ context='text'}" class="js-scroll-parallax-image" alt="" />
+							</div>
+							<div data-sly-test="${panel1LayersList.index == 2}"
+								 class="media__layer media__layer--layer-fade">
+								<img src="${panel1Layers.fileReference @ context='text'}" class="js-scroll-fade-image" alt="" />
+							</div>
+						</sly>
+					</div>
+				</div>
+
+				<sly data-sly-include="section.html"></sly>
+			</div>
+		</section>
+	</sly>
+</template>

@@ -1,0 +1,13 @@
+<sly data-sly-use.videoModel="com.abbott.aem.platform.common.components.models.Video" />
+<sly data-sly-test="${videoModel.playerType == 'embed'}">
+	<div data-sly-test="${videoModel.fileReference}" class="play-icon" id="video${resource.path.hashCode}">
+         <img src="${videoModel.fileReference}" alt="${videoModel.alt}" />
+         <button class="btn popup-button" id="play_button">►</button>
+   </div>
+</sly>
+  <div class="limeLight-video-wrapper limeLight-video video-js a-video__player-source limelight-player" 
+     data-player-ID="${videoModel.limelightPlayerID}"
+     data-media-ID="${videoModel.mediaID}">
+     <div id="limelight_player_${videoModel.limelightPlayerID}"></div>    
+     <script async src="https://video.limelight.com/player/limelightjs-player.js?orgId=${videoModel.orgID}"></script>
+  </div>

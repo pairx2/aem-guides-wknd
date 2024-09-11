@@ -1,0 +1,888 @@
+/*
+* Copyright (c) Abbott
+*/
+package com.abbott.aem.cloud.platform.core.errorpagehandler.impl;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.util.AbstractMap.SimpleEntry;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Dictionary;
+import java.util.HashSet;
+import java.util.Hashtable;
+import java.util.Locale;
+import java.util.Map;
+import java.util.SortedMap;
+import java.util.TreeMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import javax.management.DynamicMBean;
+import javax.management.NotCompliantMBeanException;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.sling.api.SlingConstants;
+import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.api.SlingHttpServletResponse;
+import org.apache.sling.api.request.RequestProgressTracker;
+import org.apache.sling.api.resource.LoginException;
+import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.api.resource.ResourceResolverFactory;
+import org.apache.sling.api.resource.ResourceUtil;
+import org.apache.sling.api.wrappers.SlingHttpServletRequestWrapper;
+import org.apache.sling.auth.core.AuthUtil;
+import org.apache.sling.commons.auth.Authenticator;
+import org.osgi.framework.ServiceRegistration;
+import org.osgi.service.component.ComponentContext;
+import org.osgi.service.component.annotations.Activate;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Deactivate;
+import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.metatype.annotations.Designate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.abbott.aem.cloud.platform.core.errorpagehandler.ErrorPageHandlerConfiguration;
+import com.abbott.aem.cloud.platform.core.errorpagehandler.ErrorPageHandlerService;
+import com.abbott.aem.cloud.platform.core.errorpagehandler.cache.impl.ErrorPageCache;
+import com.abbott.aem.cloud.platform.core.errorpagehandler.cache.impl.ErrorPageCacheImpl;
+import com.abbott.aem.cloud.platform.core.util.InfoWriter;
+import com.abbott.aem.cloud.platform.core.wcm.ComponentHelper;
+import com.day.cq.commons.PathInfo;
+import com.day.cq.commons.inherit.HierarchyNodeInheritanceValueMap;
+import com.day.cq.commons.inherit.InheritanceValueMap;
+import com.day.cq.commons.jcr.JcrConstants;
+
+@Component(service = ErrorPageHandlerService.class, immediate = true)
+@Designate(ocd = ErrorPageHandlerConfiguration.class)
+@SuppressWarnings("squid:CallToDeprecatedMethod")
+public final class ErrorPageHandlerImpl implements ErrorPageHandlerService {
+
+    private static final Logger log = LoggerFactory.getLogger(ErrorPageHandlerImpl.class);
+
+    public static final String DEFAULT_ERROR_PAGE_NAME = "errors";
+
+    public static final String ERROR_PAGE_PROPERTY = "errorPages";
+
+    private static final String REDIRECT_TO_LOGIN = "redirect-to-login";
+
+    /* Enable/Disable */
+    private boolean enabled = true;
+    
+    /* Enable/Disable Vanity Dispatch check*/
+    private boolean vanityDispatchCheckEnabled = true;
+
+    /* Error Page Extension */
+    private String errorPageExtension = "html";
+
+    /* Fallback Error Code Extension */
+    private String fallbackErrorName = "500";
+
+    /* System Error Page Path */
+    private String systemErrorPagePath = "";
+
+    /* Search Paths */
+    private SortedMap<String, String> pathMap = new TreeMap<>();
+
+    /* Not Found Default Behavior */
+    private String notFoundBehavior = "respond-with-404";
+
+    /* Not Found Path Patterns */
+    private ArrayList<Pattern> notFoundExclusionPatterns = new ArrayList<>();
+
+    /* Enable/Disables error images */
+    private boolean errorImagesEnabled = false;
+
+    /* Relative placeholder image path */
+    private String errorImagePath = ".img.png";
+
+    /* Error image extensions to handle */
+    private static final String SERVICE_NAME = "error-page-handler";
+
+    private String[] errorImageExtensions = {"jpg", "jpeg", "png", "gif"};
+
+    @Reference
+    private ResourceResolverFactory resourceResolverFactory;
+
+	@Reference
+    private Authenticator authenticator;
+
+    @Reference
+    private ComponentHelper componentHelper;
+    
+    
+
+    private ErrorPageCache cache;
+
+    private ServiceRegistration cacheRegistration;
+
+    /**
+     * Find the JCR full path to the most appropriate Error Page.
+     *
+     * @param request
+     * @param errorResource
+     * @return
+     */
+    @Override
+    @SuppressWarnings("squid:S3776")
+    public String findErrorPage(SlingHttpServletRequest request, Resource errorResource) {
+        if (!isEnabled()) {
+            return null;
+        }
+
+        final String errorsPath = findErrorsPath(request, errorResource);
+
+        Resource errorPage = null;
+        if (StringUtils.isNotBlank(errorsPath)) {
+            final ResourceResolver resourceResolver = errorResource.getResourceResolver();
+            final String errorPath = errorsPath + "/" + getErrorPageName(request);
+            errorPage = getResource(resourceResolver, errorPath);
+
+            if (errorPage == null && StringUtils.isNotBlank(errorsPath)) {
+                log.trace("No error-specific errorPage could be found, use the 'default' error errorPage for the Root content path");
+                errorPage = resourceResolver.resolve(errorsPath);
+            }
+        }
+
+        String errorPagePath = null;
+        if (errorPage == null || ResourceUtil.isNonExistingResource(errorPage)) {
+            log.trace("no custom error page could be found");
+            if (this.hasSystemErrorPage()) {
+                errorPagePath = this.getSystemErrorPagePath();
+                log.trace("using system error page [ {} ]", errorPagePath);
+            }
+        } else {
+            errorPagePath = errorPage.getPath();
+        }
+
+        if (errorImagesEnabled && this.isImageRequest(request)) {
+
+            if (StringUtils.startsWith(this.errorImagePath, "/")) {
+                // Absolute path
+                return this.errorImagePath;
+            } else if (StringUtils.isNotBlank(errorPagePath)) {
+                // Selector or Relative path; compute path based off found error page
+
+                if (StringUtils.startsWith(this.errorImagePath, ".")) {
+                    final String selectorErrorImagePath = errorPagePath + this.errorImagePath;
+                    log.debug("Using selector-based error image: {}", selectorErrorImagePath);
+                    return selectorErrorImagePath;
+                } else {
+                    final String relativeErrorImagePath = errorPagePath + "/"
+                            + StringUtils.removeStart(this.errorImagePath, "/");
+                    log.debug("Using relative path-based error image: {}", relativeErrorImagePath);
+                    return relativeErrorImagePath;
+                }
+            } else {
+                log.warn("Error image path found, but no error page could be found so relative path cannot "
+                        + "be applied: {}", this.errorImagePath);
+            }
+        } else if (StringUtils.isNotBlank(errorPagePath)) {
+            errorPagePath = StringUtils.stripToNull(applyExtension(errorPagePath));
+            log.debug("Using resolved error page: {}", errorPagePath);
+            return errorPagePath;
+        } else {
+            log.debug("Abbott Error Page Handler is enabled but mis-configured. A valid error image"
+                    + " handler nor a valid error page could be found.");
+        }
+        return null;
+    }
+
+    /**
+     * Searches for a resource specific error page.
+     *
+     * @param errorResource
+     * @return path to the default error page or "root" error page
+     */
+    private String findErrorsPath(SlingHttpServletRequest request, Resource errorResource) {
+        final String errorResourcePath = errorResource.getPath();
+        Resource real = findFirstRealParentOrSelf(request, errorResource);
+
+        String errorsPath = null;
+        if (real != null) {
+            log.trace("Found real resource at [ {} ]", real.getPath());
+            if (!JcrConstants.JCR_CONTENT.equals(real.getName())) {
+                Resource tmp = real.getChild(JcrConstants.JCR_CONTENT);
+                if (tmp != null) {
+                    real = tmp;
+                }
+            }
+            final InheritanceValueMap pageProperties = new HierarchyNodeInheritanceValueMap(real);
+            errorsPath = pageProperties.getInherited(ERROR_PAGE_PROPERTY, String.class);
+        } else {
+            log.trace("No page found for [ {} ]", errorResource);
+        }
+
+        if (errorsPath == null) {
+            log.trace("could not find inherited property for [ {} ]", errorResource);
+            for (final Map.Entry<String, String> mapPage : pathMap.entrySet()) {
+                if (errorResourcePath.startsWith(mapPage.getKey())) {
+                    log.trace("found error path in map [ {} ]", mapPage.getKey());
+                    errorsPath = mapPage.getValue();
+                    break;
+                }
+            }
+        }
+
+        log.debug("Best matching errors path for request is: {}", errorsPath);
+        return errorsPath;
+    }
+
+    /**
+     * Gets the resource object for the provided path.
+     * <p>
+     * Performs checks to ensure resource exists and is accessible to user.
+     *
+     * @param resourceResolver
+     * @param path
+     * @return
+     */
+    private Resource getResource(ResourceResolver resourceResolver, String path) {
+        // Double check that the resource exists and return it as a match
+        final Resource resource = resourceResolver.getResource(path);
+
+        if (resource != null && !ResourceUtil.isNonExistingResource(resource)) {
+            return resource;
+        }
+
+        return null;
+    }
+
+    /** HTTP Request Data Retrieval Methods **/
+
+    /**
+     * Get Error Status Code from Request or Default (500) if no status code can be found.
+     *
+     * @param request
+     * @return
+     */
+    @Override
+    public int getStatusCode(SlingHttpServletRequest request) {
+        Integer statusCode = (Integer) request.getAttribute(SlingConstants.ERROR_STATUS);
+
+        if (statusCode != null) {
+            return statusCode;
+        } else {
+            return ErrorPageHandlerService.DEFAULT_STATUS_CODE;
+        }
+    }
+
+    /**
+     * Get the Error Page's name (all lowercase) that should be used to render the page for this error.
+     * <p>
+     * This looks at the Status code delivered via by Sling into the error page content
+     *
+     * @param request
+     * @return
+     */
+    @Override
+    public String getErrorPageName(SlingHttpServletRequest request) {
+        // Get status code from request
+        // Set the servlet name ot find to statusCode; update later if needed
+        String servletName = String.valueOf(getStatusCode(request));
+
+        // Only support Status codes as error exception lookup scheme is too complex/expensive at this time.
+        // Using the 500 response code/default error page should suffice for all errors pages generated from exceptions.
+
+        servletName = StringUtils.lowerCase(servletName);
+
+        log.debug("Error page name to (try to) use: {} ", servletName);
+
+        return servletName;
+    }
+
+    /** OSGi Component Property Getters/Setters **/
+
+    /**
+     * Determines if this Service is "enabled". If it has been configured to be "Disabled" the Service still exists
+     * however it should not be used.
+     * This OSGi Property toggle allows error page handler to be toggled on an off without via OSGi means without
+     * throwing Null pointers, etc.
+     *
+     * @return true is the Service should be considered enabled
+     */
+    @Override
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    /**
+     * Checks if the System Error Page has been configured.
+     *
+     * @return
+     */
+    public boolean hasSystemErrorPage() {
+        return StringUtils.isNotBlank(this.getSystemErrorPagePath());
+    }
+
+    /**
+     * Get the configured System Error Page Path.
+     *
+     * @return
+     */
+    public String getSystemErrorPagePath() {
+        return StringUtils.strip(this.systemErrorPagePath);
+    }
+
+    /**
+     * Gets the Error Pages Path for the provided content root path.
+     *
+     * @param rootPath
+     * @param errorPagesMap
+     * @return
+     */
+    public String getErrorPagesPath(String rootPath, Map<String, String> errorPagesMap) {
+        if (errorPagesMap.containsKey(rootPath)) {
+            return errorPagesMap.get(rootPath);
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * Check if this is an image request.
+     *
+     * @param request the current {@link SlingHttpServletRequest}
+     * @return true if this request should deliver an image.
+     */
+    private boolean isImageRequest(final SlingHttpServletRequest request) {
+        if (StringUtils.isBlank(errorImagePath)) {
+            log.warn("Abbott error page handler enabled to handle error images, "
+                    + "but no error image path was provided.");
+            return false;
+        }
+
+        final String extension = StringUtils.stripToEmpty(StringUtils.lowerCase(
+                request.getRequestPathInfo().getExtension()));
+
+        return ArrayUtils.contains(errorImageExtensions, extension);
+    }
+
+    /**
+     * Given the Request path, find the first Real Parent of the Request (even if the resource doesnt exist).
+     *
+     * @param request the request object
+     * @param errorResource the error resource
+     * @return
+     */
+    private Resource findFirstRealParentOrSelf(SlingHttpServletRequest request, Resource errorResource) {
+        if (errorResource == null) {
+            log.debug("Error resource is null");
+            return null;
+        }
+
+        log.trace("Finding first real parent for [ {} ]", errorResource.getPath());
+
+        final ResourceResolver resourceResolver = errorResource.getResourceResolver();
+
+        // Get the lowest aggregate node ancestor for the errorResource
+        String path = StringUtils.substringBefore(errorResource.getPath(), JcrConstants.JCR_CONTENT);
+
+        Resource resource = errorResource;
+
+        if (!StringUtils.equals(path, errorResource.getPath())) {
+            // Only resolve the resource if the path of the errorResource is different from the cleaned up path; else
+            // we know the errorResource and what the path resolves to is the same
+            // #1415 - First try to get the resource at the direct path; this look-up is very fast (compared to rr.resolve and often what's required)
+            resource = resourceResolver.getResource(path);
+
+            if (resource == null) {
+                // #1415 - If the resource is not available at the direct path, then try to resolve (handle sling:alias).
+                // First map the path, as the resolve could duplicate pathing.
+                resource = resourceResolver.resolve(request, resourceResolver.map(request, path));
+            }
+        }
+
+        // If the resource exists, then use it!
+        if (!ResourceUtil.isNonExistingResource(resource)) {
+            log.debug("Found real aggregate resource at [ {} }", resource.getPath());
+            return resource;
+        }
+
+        // Quick check for the Parent; Handles common case of deactivated pages
+        final Resource parent = resource.getParent();
+        if (parent != null && !ResourceUtil.isNonExistingResource(resource)) {
+            log.debug("Found real aggregate resource via getParent() at [ {} ]", parent.getPath());
+            return parent;
+        }
+
+        // Start checking the path until the first real ancestor is found
+        final PathInfo pathInfo = new PathInfo(resource.getPath());
+        String[] parts = StringUtils.split(pathInfo.getResourcePath(), '/');
+
+        for (int i = parts.length - 1; i >= 0; i--) {
+            String[] tmpArray =  ArrayUtils.subarray(parts, 0, i);
+            String candidatePath = "/".concat(StringUtils.join(tmpArray, '/'));
+
+            // #1415 - First try to get the resource at the direct path; this look-up is
+            // very fast (compared to rr.resolve and often what's required)
+            final Resource candidatePathResource = resourceResolver.getResource(candidatePath);
+            if (candidatePathResource != null) {
+                return candidatePathResource;
+            }
+
+            final Resource candidateResource = resourceResolver.resolve(request, candidatePath);
+
+            if (!ResourceUtil.isNonExistingResource(candidateResource)) {
+                log.debug("Found first real aggregate parent via path look-up at [ {} ]", candidateResource.getPath());
+                return candidateResource;
+            }
+        }
+
+        log.debug("Could not find real parent for [ {} ]", errorResource.getPath());
+        return null;
+    }
+
+    /**
+     * Add extension as configured via OSGi Component Property.
+     * <p>
+     * Defaults to .html
+     *
+     * @param path
+     * @return
+     */
+    private String applyExtension(String path) {
+        if (path == null) {
+            return null;
+        }
+
+        if (StringUtils.isBlank(errorPageExtension)) {
+            return path;
+        }
+
+        return StringUtils.stripToEmpty(path).concat(".").concat(errorPageExtension);
+    }
+
+    /** Script Support Methods **/
+
+    /**
+     * Determines if the request has been authenticated or is Anonymous.
+     *
+     * @param request
+     * @return
+     */
+    protected boolean isAnonymousRequest(SlingHttpServletRequest request) {
+        return (request.getAuthType() == null || request.getRemoteUser() == null);
+    }
+
+    /**
+     * Attempts to invoke a valid Sling Authentication Handler for the request.
+     *
+     * @param request
+     * @param response
+     *
+     * @return true if the request will be authenticated, false is the request could not trigger authentication
+     */
+    protected boolean authenticateRequest(SlingHttpServletRequest request, SlingHttpServletResponse response) {
+        if (authenticator == null) {
+            log.warn("Cannot login: Missing Authenticator service");
+            return false;
+        }
+
+        authenticator.login(request, response);
+        return true;
+    }
+
+    /**
+     * Determine is the request is a 404 and if so handles the request appropriately base on some CQ idiosyncrasies.
+     * <p>
+     * Mainly forces an authentication request in Authoring modes (!WCMMode.DISABLED)
+     * @param request
+     * @param response
+     */
+    @Override
+    public boolean doHandle404(SlingHttpServletRequest request, SlingHttpServletResponse response) {
+        String path = request.getResource().getPath();
+
+        if (StringUtils.isBlank(path)) {
+            path = request.getPathInfo();
+        }
+
+
+        if (log.isDebugEnabled()) {
+
+            InfoWriter iw = new InfoWriter();
+
+            iw.title("Abbott - Error Page Handler 404 Handling");
+
+            iw.message("Status code: {}", this.getStatusCode(request));
+            iw.message("Is anonymous: {}", isAnonymousRequest(request));
+            iw.message("Is browser request: {}", AuthUtil.isBrowserRequest(request));
+            iw.message("Is redirect to login page: {}", this.isRedirectToLogin(path));
+            iw.message("Default 404 Behavior: {}", this.notFoundBehavior);
+
+            iw.line();
+
+            log.debug(iw.toString());
+        }
+
+        if (this.getStatusCode(request) == HttpServletResponse.SC_NOT_FOUND
+                && this.isAnonymousRequest(request)
+                && AuthUtil.isBrowserRequest(request)
+                && this.isRedirectToLogin(path)) {
+
+            // Authenticate Request
+            // If an authenticator cannot be found, then process as a normal 404
+        	
+            return !authenticateRequest(request, response);
+
+        } else {
+            log.debug("Allow error page handler to handle request");
+
+            return true;
+        }
+    }
+
+    /**
+     * Determines if the request should redirect to login or respond with 404 based on the Error Page Handler's config.
+     *
+     * @param path the request path
+     * @return true to indicate a redirect to login, false to indicate a respond w 404
+     */
+    private boolean isRedirectToLogin(final String path) {
+        log.debug("Not Found Behavior: {}", this.notFoundBehavior);
+
+        if (StringUtils.equals(REDIRECT_TO_LOGIN, this.notFoundBehavior)) {
+            // Default behavior redirect to login
+            for (final Pattern p : this.notFoundExclusionPatterns) {
+                final Matcher m = p.matcher(path);
+                if (m.matches()) {
+                    // Path is an exclusion to "redirect to login" ~> "respond w/ 404"
+                    log.debug("Path is an exclusion to \"redirect to login\" ~> \"respond w/ 404\"");
+                    return false;
+                }
+            }
+            // Path did NOT match exclusions for "redirect to login" ~> "redirect to login"
+            log.debug("Path did NOT match exclusions for \"redirect to login\" ~> \"redirect to login\"");
+            return true;
+        } else {
+            // Default behavior is to respond w/ 404
+            for (final Pattern p : this.notFoundExclusionPatterns) {
+                final Matcher m = p.matcher(path);
+                if (m.matches()) {
+                    // Path is an exclusion to "respond w/ 404" ~> "redirect to login"
+                    log.debug("Path is an exclusion to \"respond w/ 404\" ~> \"redirect to login\"");
+                    return true;
+                }
+            }
+
+            // Path did NOT match exclusions for "respond w/ 404" ~> "respond w/ 404"
+            log.debug("Path did NOT match exclusions for \"respond w/ 404\" ~> \"respond w/ 404\"");
+            return false;
+        }
+    }
+
+    /**
+     * Returns the Exception Message (Stacktrace) from the Request.
+     *
+     * @param request
+     * @return
+     */
+    @Override
+    public String getException(SlingHttpServletRequest request) {
+        StringWriter stringWriter = new StringWriter();
+        if (request.getAttribute(SlingConstants.ERROR_EXCEPTION) instanceof Throwable) {
+            Throwable throwable = (Throwable) request.getAttribute(SlingConstants.ERROR_EXCEPTION);
+
+            if (throwable == null) {
+                return "";
+            }
+
+            if (throwable instanceof ServletException) {
+                ServletException se = (ServletException) throwable;
+                while (se.getRootCause() != null) {
+                    throwable = se.getRootCause();
+                    if (throwable instanceof ServletException) {
+                        se = (ServletException) throwable;
+                    } else {
+                        break;
+                    }
+                }
+            }
+
+            log.error("Exception on request: {}", stringWriter);
+        }
+
+        return stringWriter.toString();
+    }
+
+    /**
+     * Returns a String representation of the RequestProgress trace.
+     *
+     * @param request
+     * @return
+     */
+    @Override
+    public String getRequestProgress(SlingHttpServletRequest request) {
+        StringWriter stringWriter = new StringWriter();
+        if (request != null) {
+            RequestProgressTracker tracker = request.getRequestProgressTracker();
+            tracker.dump(new PrintWriter(stringWriter, true));
+        }
+        return stringWriter.toString();
+    }
+
+    /**
+     * Reset response attributes to support printing out a new page (rather than one that potentially errored out).
+     * This includes clearing clientlib inclusion state, and resetting the response.
+     * <p>
+     * If the response is committed, and it hasnt been closed by code, check the response AND jsp buffer sizes and
+     * ensure they are large enough to NOT force a buffer flush.
+     *
+     * @param request
+     * @param response
+     * @param statusCode
+     */
+    @Override
+    public void resetRequestAndResponse(SlingHttpServletRequest request, SlingHttpServletResponse response,
+                                        int statusCode) {
+        // Clear client libraries. Would be better if there was a proper API call for this, but there isn't at present.
+        request.setAttribute("com.day.cq.widget.HtmlLibraryManager.included",
+                new HashSet<String>());
+
+        request.setAttribute("com.adobe.granite.ui.clientlibs.HtmlLibraryManager.included",
+                new HashSet<String>());
+
+        //Reset the component context attribute to remove inclusion of response from top level components
+        request.removeAttribute("com.day.cq.wcm.componentcontext");
+
+        // Clear the response
+        response.reset();
+        response.setContentType("text/html");
+        response.setStatus(statusCode);
+    }
+
+    /**
+     * Util for parsing Service properties in the form &gt;value&lt;&gt;separator&lt;&gt;value&lt;.
+     *
+     * @param value
+     * @param separator
+     * @return
+     */
+    private SimpleEntry<String, String> toSimpleEntry(String value, String separator) {
+        String[] tmp = StringUtils.split(value, separator);
+
+        if (tmp == null) {
+            return null;
+        }
+
+        if (tmp.length == 2) {
+            return new SimpleEntry<>(tmp[0], tmp[1]);
+        } else {
+            return null;
+        }
+    }
+
+    @Activate
+    protected void activate(ErrorPageHandlerConfiguration config, ComponentContext componentContext) {
+        configure(config, componentContext);
+    }
+
+    @Deactivate
+    protected void deactivate(ComponentContext componentContext) {
+        enabled = false;
+        if (cacheRegistration != null) {
+            cacheRegistration.unregister();
+            cacheRegistration = null;
+        }
+    }
+
+    @SuppressWarnings("squid:S1149")
+    private void configure(ErrorPageHandlerConfiguration config, ComponentContext componentContext) {
+        
+        this.enabled = config.enabled();
+        
+        this.vanityDispatchCheckEnabled = config.vanity_dispatch_enabled();
+
+        /** Error Pages **/
+
+        this.systemErrorPagePath = config.errorpage_systempath();
+
+        this.errorPageExtension = config.errorpage_extension();
+
+        this.fallbackErrorName = config.errorpage_fallbackname();
+
+        this.pathMap = configurePathMap(config.paths());
+
+        /** Not Found Handling **/
+        this.notFoundBehavior = config.notfound_behavior();
+
+        String[] tmpNotFoundExclusionPatterns = config.notfound_exclusionpathpatterns();
+
+        this.notFoundExclusionPatterns = new ArrayList<>();
+        for (final String tmpPattern : tmpNotFoundExclusionPatterns) {
+            this.notFoundExclusionPatterns.add(Pattern.compile(tmpPattern));
+        }
+
+
+        /** Error Page Cache **/
+
+        int ttl = config.cache_ttl();
+
+        boolean serveAuthenticatedFromCache = config.cache_serveauthenticated();
+		
+        try {
+            cache = new ErrorPageCacheImpl(ttl, serveAuthenticatedFromCache);
+
+            Dictionary<String, Object> serviceProps = new Hashtable<>();
+            serviceProps.put("jmx.objectname", "com.abbott.aem.platform.common:type=ErrorPageHandlerCache");
+
+            cacheRegistration = componentContext.getBundleContext().registerService(DynamicMBean.class.getName(),
+                    cache, serviceProps);
+        } catch (NotCompliantMBeanException e) {
+            log.error("Unable to create cache", e);
+        }
+
+        /** Error Images **/
+
+        this.errorImagesEnabled = config.errorimages_enabled();
+
+        this.errorImagePath = config.errorimages_path();
+
+        // Absolute path
+        if (StringUtils.startsWith(this.errorImagePath, "/")) {
+            Map<String, Object> authInfo = Collections.singletonMap(ResourceResolverFactory.SUBSERVICE, (Object) SERVICE_NAME);
+            try (ResourceResolver serviceResourceResolver = resourceResolverFactory.getServiceResourceResolver(authInfo)) {
+                final Resource resource = serviceResourceResolver.resolve(this.errorImagePath);
+
+                if (resource.isResourceType(JcrConstants.NT_FILE)) {
+                    final PathInfo pathInfo = new PathInfo(this.errorImagePath);
+
+                    if (!StringUtils.equals("img", pathInfo.getSelectorString())
+                            || StringUtils.isBlank(pathInfo.getExtension())) {
+
+                        log.warn("Absolute Error Image Path paths to nt:files should have '.img.XXX' "
+                                + "selector.extension");
+                    }
+                }
+            } catch (LoginException e) {
+                log.error("Could not get admin resource resolver to inspect validity of absolute errorImagePath");
+            }
+        }
+
+        this.errorImageExtensions = config.errorimages_extensions();
+
+        for (int i = 0; i < errorImageExtensions.length; i++) {
+            this.errorImageExtensions[i] = StringUtils.lowerCase(errorImageExtensions[i], Locale.ENGLISH);
+        }
+
+        final StringWriter sw = new StringWriter();
+        final PrintWriter pw = new PrintWriter(sw);
+
+        pw.println();
+        pw.printf("Enabled: %s", this.enabled).println();
+        pw.printf("System Error Page Path: %s", this.systemErrorPagePath).println();
+        pw.printf("Error Page Extension: %s", this.errorPageExtension).println();
+        pw.printf("Fallback Error Page Name: %s", this.fallbackErrorName).println();
+
+        pw.printf("Resource Not Found - Behavior: %s", this.notFoundBehavior).println();
+        pw.printf("Resource Not Found - Exclusion Path Patterns %s", Arrays.toString(tmpNotFoundExclusionPatterns)).println();
+
+        pw.printf("Cache - TTL: %s", ttl).println();
+        pw.printf("Cache - Serve Authenticated: %s", serveAuthenticatedFromCache).println();
+
+        pw.printf("Error Images - Enabled: %s", this.errorImagesEnabled).println();
+        pw.printf("Error Images - Path: %s", this.errorImagePath).println();
+        pw.printf("Error Images - Extensions: %s", Arrays.toString(this.errorImageExtensions)).println();
+
+        if (log.isDebugEnabled()) {
+        	log.debug(sw.toString());
+        }
+    }
+
+    /**
+     * Convert OSGi Property storing Root content paths:Error page paths into a SortMap.
+     *
+     * @param paths
+     * @return
+     */
+    private SortedMap<String, String> configurePathMap(String[] paths) {
+        SortedMap<String, String> sortedMap = new TreeMap<>(new StringLengthComparator());
+
+        for (String path : paths) {
+            if (StringUtils.isBlank(path)) {
+                continue;
+            }
+
+            final SimpleEntry<String, String> tmp = toSimpleEntry(path, ":");
+
+            if (tmp == null) {
+                continue;
+            }
+
+            String key = StringUtils.strip(tmp.getKey());
+            String val = StringUtils.strip(tmp.getValue());
+
+            // Only accept absolute paths
+            if (StringUtils.isBlank(key) || !StringUtils.startsWith(key, "/")) {
+                continue;
+            }
+
+            // Validate page name value
+            if (StringUtils.isBlank(val)) {
+                val = key + "/" + DEFAULT_ERROR_PAGE_NAME;
+            } else if (StringUtils.equals(val, ".")) {
+                val = key;
+            } else if (!StringUtils.startsWith(val, "/")) {
+                val = key + "/" + val;
+            }
+
+            sortedMap.put(key, val);
+        }
+
+        return sortedMap;
+    }
+
+    @Override
+    public void includeUsingGET(final SlingHttpServletRequest request, final SlingHttpServletResponse response,
+                                final String path) {
+        if (cache == null
+                || (errorImagesEnabled && this.isImageRequest(request))) {
+            final RequestDispatcher dispatcher = request.getRequestDispatcher(path);
+
+            if (dispatcher != null) {
+                try {
+                    dispatcher.include(new GetRequest(request), response);
+                } catch (IOException | ServletException e) {
+                    log.warn("Exception swallowed while including error page", e);
+                }
+            }
+        } else {
+            final String responseData = cache.get(path, new GetRequest(request), response);
+            try {
+                response.getWriter().write(responseData);
+            } catch (IOException e) {
+                log.warn("Exception swallowed while including error page", e);
+            }
+        }
+    }
+
+    /**
+     * Forces request to behave as a GET Request.
+     */
+    private static class GetRequest extends SlingHttpServletRequestWrapper {
+
+        public GetRequest(SlingHttpServletRequest wrappedRequest) {
+            super(wrappedRequest);
+        }
+
+        @Override
+        public String getMethod() {
+            return "GET";
+        }
+    }
+
+    @Override
+    public boolean isVanityDispatchCheckEnabled(){
+        return this.vanityDispatchCheckEnabled;
+    }
+
+}

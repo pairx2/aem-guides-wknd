@@ -1,0 +1,227 @@
+@import "../global/media-queries.less";
+@import "../global/variables.less";
+
+.m-accordion {
+  --accordion-title-color-sm: #004f71;
+  --accordion-title-font-size: 1.5rem;
+  --accordion-title-color: #004f71;
+  --accordion-title-font-size-sm: 1.5rem;
+  --accordion-title-line-height-sm: 2.25rem;
+  --accordion-icon-color: #004f71;
+  --accordion-title-padding-lg: 16px 15px 16px 15px;
+  --accordion-body-padding-lg: 4px 24px 20px 20px;
+  --accordion-title-padding-sm: 13px 20px 25px 0px;
+  --accordion-body-padding-sm: 13px 0px 25px 0px;
+  --accordion-lg-max-width: 1140px;
+  --accordion-title-line-height: 34.2857px;
+  
+  &.cmp-accordion {
+    .m-accordion__icon-wrapper {
+      .abt-icon {
+        font-weight: bolder;
+        font-size: 1rem;
+      }
+    }
+    .m-accordion__content-items {
+      border-top: none;
+      .m-accordion__header {
+        .m-accordion__title-wrapper {
+          h3 {
+            font-size: 1rem !important;
+            line-height: 23px;
+          }
+        }
+      }
+      &:nth-last-child(1) {
+        border-bottom: none;
+      }
+    }
+  }
+}
+
+.accordion {
+  padding-top: 0 !important;
+
+  .m-accordion {
+    @media @lg-down {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    @media @md-down {
+      padding-left: 0;
+      padding-right: 0;
+    }
+    &__options{
+      margin-bottom:0;
+    }
+    &__title-wrapper {
+      padding: 0;
+
+      h3 {
+        font-size: @spacer-24  !important;
+        text-transform: uppercase;
+
+        &:hover {
+          color: @color-cerulean;
+        }
+
+        @media @md-down {
+          line-height: 34.2857px;
+        }
+      }
+
+      &:hover {
+        &+.m-accordion__icon-wrapper {
+          .abt-icon {
+            color: @color-cerulean;
+          }
+        }
+
+        h3 {
+          color: @color-cerulean;
+        }
+      }
+    }
+
+    &__icon-wrapper {
+      font-weight: normal;
+
+      .abt-icon {
+        color: @color-deep-sea-blue;
+
+        @media @md-down {
+          display: block;
+        }
+
+        &:hover {
+          color: @color-cerulean;
+
+        }
+      }
+
+      &:hover {
+        &+.m-accordion__title-wrapper {
+          .abt-icon {
+            color: @color-cerulean;
+          }
+        }
+      }
+    }
+
+    &__body {
+      @media @md-down {
+        padding: 0 15px;
+      }
+
+      .cmp-accordion__panel {
+        .text {
+          margin-top: .75rem;
+          .cmp-text {
+            ul {
+              margin-left: 17px;
+              @media @lg-down {
+                margin-left: 0;
+              }
+              @media @md-down {
+                margin-left: 5px;
+              }
+            }
+          } 
+        }
+      } 
+
+      p {
+        font-size: @spacer;
+        color: @color-charcoal;
+
+        strong {
+          font-family: @georgias !important;
+          font-size: @spacer  !important;
+        }
+
+        a {
+          color: @color-deep-sea-blue;
+          font-family: @georgias  !important;
+          font-size: @spacer  !important;
+
+          &:hover {
+            color: @color-cerulean;
+            text-decoration: underline;
+          }
+        }
+      }
+
+      .container {
+        padding-top: 0 !important;
+        padding-left: 0;
+
+        .cmp-container:nth-child(1) {
+          width: auto;
+        }
+      }
+    }
+  }
+}
+
+.m-accordion__content-items:has(.m-accordion__body.collapse.show) {
+  .m-accordion__header {
+    .m-accordion__icon-wrapper {
+      .abt-icon {
+        color: @color-cerulean;
+      }
+    }
+    .m-accordion__title-wrapper {
+      h3 {
+        color: @color-cerulean;
+      }
+    }
+  }
+}
+
+.m-accordion__header:hover{
+ 
+.m-accordion__title-wrapper h3
+{
+  color: @color-cerulean;
+}
+.m-accordion__icon-wrapper .abt-icon
+{
+  color: @color-cerulean;
+}
+}
+
+#product-specifications{
+  .text{
+    .cmp-text{
+      ul{
+        li{
+          list-style: none;
+          padding: 28px 15px 23px 50px;
+          border-bottom: 1px solid @color-Metallic-Silver;
+          position: relative;
+          font-family: @georgias;
+          font-size: @spacer-18;
+          line-height: @spacer-24;
+          @media @md-down{
+            padding: 18px 15px 16px 50px;
+          }
+          &::before{
+            content: "\e905";
+            left: 0;
+            font-size: @spacer-22;
+            position: absolute;
+            color: @color-gray-medium;
+            font-family: @abbott-icon !important;
+          }
+          &:last-child{
+            border: none;
+          }
+          &:first-child{
+            padding-top: @spacer-22;
+          }
+        }
+      }              
+    }
+  }
+}

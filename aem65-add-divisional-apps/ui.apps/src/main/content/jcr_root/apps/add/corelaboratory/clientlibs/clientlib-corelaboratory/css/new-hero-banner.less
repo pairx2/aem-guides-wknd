@@ -1,0 +1,552 @@
+/* hero banner updated styles */
+
+@import "../../clientlib-corelaboratory/css/global/variables.less";
+
+.m-hero {
+    --hero-color-light: @white-color;
+    padding-top: 0;
+    padding-bottom: 0;
+    
+    .container {
+        max-width: 100%;
+        padding: 0;
+    }
+    .m-hero__extras{
+        margin: 0;
+        padding-bottom: 40px;
+    }
+    &.m-hero--full-width{
+        .m-hero__content {
+            position: absolute;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            margin-left: 0;
+            padding: 40px 13% 0;
+            @media (max-width: 1023px){
+                padding-left: 5% !important;
+                padding-top: 8%;
+            }
+        }
+        &.m-hero--container{
+            max-width: 100%;
+            height: 240px;
+            @media (min-width: 300px) and (max-width: 479px){
+                height: 125.13px;
+            }
+            @media (min-width: 480px) and (max-width: 767px){
+                height: 125.13px;
+            }
+            @media (min-width: 768px) and (max-width: 1023px){
+                height: 120px;
+                padding-top: 25px;
+            }
+            .m-hero__content{
+                top: 46%;
+                bottom: auto;
+                transform: translateY(-50%);
+                .m-hero__header{
+                    margin-top: 4%;
+                    @media (min-width: 300px) and (max-width: 479px){
+                        margin-top: 0%;
+                        color: @white-color;
+                        margin-bottom: 0%;
+                    }
+                    @media (min-width: 480px) and (max-width: 767px){
+                        margin-top: 0%;
+                        color: @white-color;
+                    }
+                    @media (min-width: 768px) and (max-width: 1023px){
+                        margin-top: 0%;
+                        color: @white-color;
+                    }
+                }
+            }
+            
+        }
+    }
+
+    .m-hero__media,
+    .m-hero__image,
+    .m-hero__parallax-image,
+    .cmp-image__image {
+        position: static;
+    }
+    /*hero banner font styles*/
+    h1 {
+        font-family: @fontBrandonBlack;
+        font-size: 1.875rem!important;
+        @media (min-width:1024px) {
+            font-size: 3.75rem!important;
+        }
+        p{
+            font-family: @fontBrandonBlack;
+            font-size: 1.875rem!important;
+            @media (min-width:1024px) {
+                font-size: 3.75rem!important;
+                line-height: 3.95rem!important;
+            }
+        }
+    }
+    /*When you don't have button on hero banner but it occupies unwanted space*/
+    &.m-hero--button-vertical{
+        .m-hero__extras{
+            display: none;
+        }
+    }
+    /*content vertical center*/
+    &.m-hero--text-vertical-align-center {
+        > section {
+            height: auto;
+        }
+        .m-hero__content {
+            padding: 0 0 0 13%;
+            align-self: center;
+            @media (max-width:1023px) {
+                padding: 30px 5% !important;
+            }
+        }
+    }
+
+    /*content Horizontal center*/
+    &.m-hero--text-align-center{
+        .m-hero__content{
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+    /* // Banner title - white */
+    &.m-hero--light {
+        .m-hero__content {
+            .h1-hero,p,.h2-hero,h5,h3{
+                color: @white-color;
+            }
+        }
+    }
+
+    /* // Banner title - Black */
+    &.m-hero--dark {
+        .m-hero__content {
+            .h1-hero,p,.h2-hero{
+                color: @black-color!important; 
+            }
+        }
+    }
+
+    /* Hero Banner Short */
+    &.m-hero--short{
+        height: auto;
+        overflow: hidden;
+        min-height: auto;
+        @media(min-width:480px) and (max-width:1023px) {
+            .m-hero__media{
+                height: 140px;
+                position: relative;
+                .m-hero__image{
+                    .cmp-image__image{
+                        position: absolute;
+                        width: auto;
+                        height: auto;
+                        &.cmp-image__no-image{
+                            height: 125px;
+                        }
+                    
+                    }
+                }
+            }
+        }
+        @media (max-width:479px) {
+            .m-hero__header{
+                    margin-top: 0;
+                    margin-bottom: 10px;  
+                }            
+            .m-hero__media{
+                height: 160px;
+                position: relative;
+                .m-hero__image{
+                    .cmp-image__image{
+                        position: absolute;
+                        width: auto;
+                        height: auto;
+                        &.cmp-image__no-image{
+                            height: 125px;
+                        }
+                    }
+                }
+            }
+        }
+        .m-hero__media{
+            .m-hero__image{
+                .cmp-image__no-image{
+                    height: 240px;
+                    display: block;
+                }
+            }            
+        }
+    }
+    /* Hero Banner Medium */
+    &.m-hero--medium{
+        height: auto;
+        @media(min-width:480px) and (max-width:1023px) {
+            .m-hero__media{
+                height: auto!important;
+                overflow: hidden;
+                position: relative;
+                .m-hero__image{
+                    .cmp-image__image{
+                        position: static;
+                        width: 100%;
+                        height: 100%;
+                        &.cmp-image__no-image{
+                            height: 150px;
+                        }
+                    }
+                }
+            }
+        }
+        @media (max-width:479px) {
+            height: 385px;
+            .m-hero__media{
+                height: 150px!important;
+                overflow: hidden;
+                position: relative;
+                .m-hero__image{
+                    .cmp-image__image{
+                        position: absolute;
+                        width: 100%;
+                        min-height: 238px !important;
+                        height: auto !important;
+                        &.cmp-image__no-image{
+                            height: 150px;
+                        }
+                    }
+                }
+            }
+        }
+        &.m-hero--content-start{
+            height: auto;
+            .container {
+                max-width: 100%;
+                padding: 0;
+                position: relative;
+                .m-hero__content{
+                    position: absolute;
+                    @media (max-width:1023px) {
+                        position: static;
+                    }
+                    @media (max-width:768px){
+                            padding: 20px 20px 0 20px !important;
+                    }
+                }
+                .m-hero__media{
+                    position: static;
+                    width: 100%;
+                    height: 100% !important;
+                    .m-hero__image{
+                        position: static;
+                        .cmp-image__no-image{
+                            position: static;  
+                        }
+                    }  
+                    @media (max-width:1023px) {
+                        position: absolute;
+                        .m-hero__image{
+                            position: absolute;
+                            .cmp-image__no-image{
+                                position: absolute;  
+                            }
+                        } 
+                    }
+                }
+            }
+
+        }
+        .m-hero__media{
+            .m-hero__image{
+                .cmp-image__no-image{
+                    height: 448px;
+                }
+            }            
+        }
+        
+    }
+    /*auto content*/
+    &.m-hero--image-position{
+        .m-hero__content{
+            position: relative;
+            padding: 40px 0 0 0 !important;
+            @media (max-width:1024px){
+                width: 90%;
+                margin: 0 auto;                
+            }
+            .h1-hero{
+                div{
+                    @media (max-width:1024px){
+                    line-height: 27.2px;
+                    }
+                }
+            }
+        }
+        .m-hero__media{
+            position: absolute;
+            height: 100% !important;
+            .m-hero__image{
+                position: absolute;
+                height: 100%; 
+            }
+        }
+        &.m-hero-medium{
+            .m-hero__content{
+                padding-bottom: 40px !important;
+            }
+            
+        &.m-hero--text-vertical-align-center{
+            .m-hero__content{
+                padding: 100px 0 !important;
+                @media (max-width:767px){
+                    padding: 80px 0 !important;
+                }
+            }
+        }
+    }
+        }
+
+    /* responsive Image top and text bottom  */
+
+    &.m-hero--media-start{
+        @media (max-width:1023px) {
+            position: relative;
+            .m-hero__content{
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                margin: 0 auto;
+                padding: 25px;
+            }
+        }
+        @media (max-width:479px) {
+            position: relative;
+            background-color: @light-border-color;
+            height: auto;
+            .m-hero__content{
+                padding: 10px 20px;
+                position: relative;
+                top: auto;
+            }
+            &.m-hero--light {
+                .m-hero__content {
+                    .h1-hero,p,.h2-hero,h5,h3{
+                        color: @black-color;
+                    }
+                }
+            }
+        }
+        
+        
+    }
+    /* solid background color*/
+    &.m-hero--body-strong{
+        background-color: #aa0061;
+        z-index: auto;
+    }
+    &.m-hero--body-regular{
+        background-color: #009cde;
+        z-index: auto;
+        &.m-hero--gradient-start{
+            background-color: #002a3a;
+        }
+    }
+    //Hero Banner Align Right
+    &.m-hero--text-align-end{
+        &.m-hero--full-width{
+            &.m-hero--content-center{
+                &.m-hero--text-vertical-align-center{
+                    .m-hero__content{
+                        display: flex;
+                        align-items: end;
+                        flex-direction: column;
+                        padding-top: 35px;
+                        padding-bottom: 16px;
+                        position: relative;
+                        margin: 0 auto;
+                        width: 75%;
+                        @media (max-width:479px){
+                            width: 100%;
+                            padding: 0 6% 0 0;
+                            position: absolute;
+                        }
+                        }
+                        .m-hero__extras{
+                            width: 90%;
+                        }
+                        .m-hero__media {
+                            position: absolute;
+                            @media (max-width:479px){
+                                height:250px;
+                                position: relative;
+                            }
+                            .m-hero__image{
+                                @media (max-width:479px){
+                                position: absolute;
+                                }
+                                .cmp-image__image{
+                                    @media (max-width:479px){
+                                        position: absolute;
+                                        object-fit: none;
+                                        object-position: left;
+                                        } 
+                                }
+                            }
+                        }
+                        .button{
+                            margin-bottom: 10px;
+                        }
+                }
+            }
+        }
+    }
+    //banner which has border on left aligned middle
+    &.m-hero--media-end{
+        &.m-hero--text-vertical-align-center{
+            .m-hero__content{
+                padding: 0 0 30px 20px;
+                margin-left: 33% !important;
+                margin-top: 50px;
+                width: 67%;
+                @media (max-width:767px){
+                    padding: 30px 0 0 0;
+                    border-left: 0;
+                    margin-left: 0 !important;
+                    width: 100%;
+                }
+                @media(min-width:768px) and (max-width:1205px){
+                    margin-top:30px;
+                    margin-left: 10%!important;
+                    padding-right: 5%!important;
+
+                    }
+                span.text-white, p{
+                    @media (max-width:767px){
+                    color: @dark-grey !important;
+                    }
+                }
+                .h1-hero{
+                    margin-bottom: 10px;
+                }
+                .m-hero__body{
+                    width: 100%;
+                    margin: 0 0 30px 0;
+                }
+                .a-button{
+                    a{
+                        @media (max-width:767px){
+                            width: 100% !important;    
+                        }
+                    }
+                }
+                &::after{
+                    content: '';
+                    height: calc(~"100% - 150px");
+                    width: 1px;
+                    background: #757575;
+                    position: absolute;
+                    top: 5%;
+                    left: 0;
+                    @media (min-width:768px) and (max-width:1023px){
+                        top: 20%;
+                    }
+                    @media (max-width:767px){
+                        display: none;
+                    }
+                }
+            }
+            &.m-hero--text-align-start{
+                .m-hero__content{
+                    padding: 0 0 30px 2% !important;
+                    width: 50%;
+                    @media(max-width:991px){
+                        width: 95%;
+                        margin-top: 0;
+                        padding: 20px 5% 0 5% !important;
+                    }
+                }
+            }
+            .m-hero__media{
+                @media(min-width:768px) and (max-width:1205px){
+                position: inherit;
+                }
+            }
+            @media (max-width:767px){
+                background-color: transparent;
+            }
+        }
+    }    
+    &.m-hero--tall{
+        height: auto;
+        .m-hero__content{
+            @media (max-width:767px) {            
+                position: static;
+            }
+        }
+        .m-hero__media{
+            height: auto;
+            @media (max-width:1023px) {
+                > div{
+                    height: 100%;
+                }
+            }
+            @media (max-width:767px) {            
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                .m-hero__image{
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    .cmp-image__image{
+                        position: absolute;
+                        width: 100%;
+                        height: 100%;
+
+                    }
+                }
+            }
+        }
+        &.m-hero--content-start{
+            @media (max-width:767px) {
+                .m-hero__content{
+                    position: static;
+                }
+                .m-hero__media{
+                    position: absolute;
+                    height: 100%;
+                    width: 100%;
+                    .m-hero__image{
+                        position: absolute;
+                        height: 100%;
+                        width: 100%;
+                        .cmp-image__image{
+                            position: absolute;
+                            height: 100%;
+                            width: 100%;
+                        } 
+                    }
+                }
+            }
+        }
+        
+        
+    }
+    
+}
+
+#section-m-hero-video-content{
+    height: 448px;
+    overflow: hidden;
+    @media (max-width:479px) {
+        height: 150px;
+    }
+}

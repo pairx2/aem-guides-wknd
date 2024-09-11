@@ -1,0 +1,58 @@
+.m-social-media {
+    align-items: center;
+    display: flex;
+    
+    &--title {
+        @include media-breakpoint-up(lg){
+            display: inline-block;
+            @include rem(margin-right, var(--social-media-margin));
+        }
+        @include media-breakpoint-down(md){
+            display: none;
+        }
+
+        color: $black;
+        @include rem(font-size, var(--social-media-font-size));
+        @include rem(line-height, var(--social-media-line-height));
+        margin-bottom: 0;
+        
+        &-dark{
+            color: var(--social-media-dark-text-color);
+        }
+    }
+    &--icons {
+        @include rem(padding, var(--social-media-icons-padding));
+        display: flex;
+        margin-bottom: 0;
+
+        li {
+            list-style:none;
+            width: 24px;
+            height: 24px;
+            margin: 0 #{$spacers-012} 0 0;
+
+            &:last-child {
+                margin: 0;
+            }
+        }
+
+        .abt-icon {
+            @include rem(font-size, var(--social-media-icons-font-size));
+        }
+    }
+    &--image{
+        max-width: 50px;
+        vertical-align: middle;
+        border-radius: 50%;
+   }
+}
+.bg-black {
+    .m-social-media {
+        &--title{
+            color: var(--social-media-light-text-color);
+        }
+    }
+}
+.m-social-media .a-logo-comp--link {
+    text-decoration: none;
+}

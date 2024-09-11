@@ -1,0 +1,217 @@
+@import "../mixin.less";
+@import "../media-queries.less";
+@import "../variables.less";
+
+/**
+ * My-account page
+**/
+
+#myaccount-details {
+  // My info section & Email-password section
+  #myfreestyle-myUserInfo-update,
+  #myfreestyle-email-update,
+  #myfreestyle-password-update,
+  #myfreestyle-emailPassword-update,
+  #myfreestyle-mydetails-email-update,
+  #myfreestyle-mydetails-password-update {
+    .o-form-container {
+      &__main-form .form-container {
+        .title + .text {
+          margin-top: @spacer-40;
+          margin-bottom: @spacer-40;
+        }
+        .datepicker .a-input-field {
+          margin-top: 0;
+        }
+        .readonly-field {
+          background-color: @color-white;
+          border: 0;
+          padding-left: 0;
+          padding-top: 0;
+          & ~ .icon-right {
+            display: none;
+          }
+        }
+      }
+      &__buttons {
+        flex-direction: column;
+        .button.a-button {
+          margin-left: 0;
+          margin-right: 0;
+          &:first-child {
+            margin-top: @spacer-32;
+          }
+          &:not(:first-child) {
+            margin-top: @spacer-24;
+          }
+          .btn {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  // Email Section
+
+  #myfreestyle-mydetails-email-update {
+    // hide input field that is only used for populating request
+    #my-details-current-email {
+      display: none !important;
+    }
+
+    //remove margin of hidden field
+    //.form-container .fields.text:last-child(-1) {
+    .form-container .fields.text:nth-last-child(2) {
+      .a-input-field,
+      .form-group {
+        margin: 0;
+      }
+    }
+
+    .custom-validation-error {
+      label {
+        color: #e4002b;
+      }
+
+      input {
+        border-color: #e4002b;
+      }
+
+      .form-text.a-input-field--text-error {
+        display: block;
+        color: #e4002b;
+
+        em {
+          top: 1px;
+          font-size: 0.75rem;
+          padding-right: 0.5rem;
+          position: relative;
+        }
+      }
+    }
+  }
+
+  // Consent section
+  #marketingConsent-section {
+    .formcontainer {
+      margin-bottom: 0;
+      & + .link.button.a-link {
+        margin-top: 0;
+        margin-bottom: 0;
+        #marketingConsent-forget {
+          @media @sm-down {
+            margin-top: @spacer;
+          }
+        }
+      }
+      #myfreestyle-marketingConsent-form {
+        .o-form-container {
+          .form-container #marketingConsent-edit {
+            margin-top: @spacer;
+          }
+          &__buttons {
+            justify-content: center !important;
+            @media @sm-down {
+              flex-direction: column-reverse;
+            }
+            .button.a-button {
+              &:first-child {
+                @media @sm-up {
+                  margin-right: @spacer-8;
+                }
+                @media @sm-down {
+                  margin-top: @spacer-8;
+                }
+              }
+              &:last-child {
+                @media @sm-up {
+                  margin-left: @spacer-8;
+                }
+                @media @sm-down {
+                  margin-bottom: @spacer-8;
+                }
+              }
+              button {
+                @media @sm-up {
+                  margin-top: @spacer;
+                }
+              }
+            }
+          }
+          &__success-msg {
+            margin-bottom: 0;
+            &:empty {
+              margin-top: 0;
+            }
+          }
+        }
+      }
+      &.hidden-forgetme-form {
+        display: none;
+      }
+    }
+    #marketingConsent-forget {
+      margin-top: @spacer;
+    }
+    .experiencefragment .xf-content-height {
+      min-height: auto;
+    }
+  }
+}
+
+//My Rewards
+#my-rewards {
+  .m-tile-list {
+    .a-tile {
+      a.reward-tile-disabled {
+        cursor: not-allowed;
+        opacity: 0.5;
+        pointer-events: none;
+        text-decoration: none;
+        background-color: @color-light-gray;
+
+        &:after {
+          background-color: @color-light-gray;
+          border-top-color: @color-black-lighter;
+        }
+
+        .a-tile {
+          &__tile-icon {
+            i.abt-icon {
+              color: @color-black-lighter !important;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+//My Badge
+#my-badges {
+  #mb-earnedpoint-title {
+    font-size: @spacer-18;
+  }
+
+  #mb-more-badge {
+    margin-top: -@spacer-30;
+  }
+}
+
+//authoring style
+.cq-Editable-dom {
+  //course template
+  #ma-template,
+  .ma-template {
+    display: block !important;
+  }
+}
+
+//overlap fix for myfreestyle on ipad+
+@media only screen and (max-width: 991.98px) {
+  #myaccount-welcome .col-md-2 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}

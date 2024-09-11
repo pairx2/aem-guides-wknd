@@ -1,0 +1,26 @@
+<sly data-sly-use.commonTemplates="core/wcm/components/commons/v1/templates.html"
+     data-sly-use.formModel="com.abbott.aem.platform.common.components.models.FormData"></sly>
+<div class="m-form-data m-form-data__main">
+    <div data-sly-test="${formModel.title || formModel.buttonPosition == 'title'}"
+         class="m-form-data__header">
+        <h4 data-sly-test="${formModel.title}" class="m-form-data__title">${formModel.title}</h4>
+        <sly data-sly-test="${formModel.buttonPosition == 'title'}"
+             data-sly-include="formdata-buttons.html">
+        </sly>
+    </div>
+    <div class="m-form-data__container">
+        <div class="checkout-form-data"
+             data-source="${formModel.dataSource}"
+             data-target="${formModel.targetDataSource}"
+             data-display-output="${formModel.displayOutput}"
+        ></div>
+        <sly data-sly-test="${formModel.buttonPosition == 'side'}"
+             data-sly-include="formdata-buttons.html">
+        </sly>
+    </div>
+    <div data-sly-test="${formModel.buttonPosition == 'bottom'}"
+         class="m-form-data__footer">
+        <sly data-sly-include="formdata-buttons.html"></sly>
+    </div>
+</div>
+<sly data-sly-call="${commonTemplates.placeholder @ isEmpty= true}"></sly>

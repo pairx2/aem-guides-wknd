@@ -1,0 +1,105 @@
+@import "./global/mixins.less";
+@import './global/variables.less';
+
+
+#dynamic-pickUp {
+  .o-dynamic-card-list {
+    &:before {
+      content:"";
+      background: var(--dynamic-card-list-with-background);
+      position: absolute;
+      height: 30rem;
+      width: 130%;
+      left: -20%;
+      z-index: -1;
+    }
+	.m-card {
+    	background: @color-white;
+	}
+  }
+}
+.o-dynamic-card-list {
+	.viewAll {
+		color: @color-white;
+		background: @color-core-dark-blue;
+	}
+	.m-card:before {
+    	border: none;
+    	box-shadow: none;
+	}
+    .cmp-image__image{		
+        border-bottom: solid 1px @color-dropdown-border;
+    	border-radius: 25px 25px 0 0;
+	}
+    .m-card__body{
+		background: transparent;
+		height: 210px;
+    }
+    .m-card {
+    --card-border-radius: 30px;
+		.m-card__body {		  
+		  .a-chips--link {
+			color: @color-white;
+			background: @color-hcp-mint;
+			text-transform: uppercase; 
+		  }
+		  .m-card__title {
+			font-size: @font-size-18;
+			color: @color-core-dark-blue;
+			letter-spacing: 0.2px;
+			-webkit-line-clamp: 2;
+			-webkit-box-orient: vertical;
+			display: -webkit-box;
+			overflow: hidden;
+		  }
+		  .m-card__description {
+			color: @color-core-dark-blue;
+			font-size: @font-size-14;
+			-webkit-line-clamp: 2;
+			-webkit-box-orient: vertical;
+			display: -webkit-box;
+			overflow: hidden;
+		  }
+		  .card-text {
+			color: @color-dark-grey;
+			font-size:@font-size-14;
+		  }
+		}
+	}
+	.slick-initialized{
+        .slick-slide{
+			padding: @padding-all-0;
+            border: 1px solid var(--dynamic-card-list-card-border-color); 
+            border-radius: 25px;
+        }
+        .m-card__media{
+			height: 240px;
+        }
+    }
+} 
+#hcp-related-resources{
+    .m-card__body{
+		height: @height-m-card;
+    }
+    .m-card__media{
+		height: @height-m-card;
+    }
+}
+#hideContent
+{
+	display:none;
+}
+
+@media only screen and (min-width: 992px){
+    .o-dynamic-card-list .slick-initialized .pickUp{
+        max-width:@max-width-pickup-hcp;
+    }
+    .o-dynamic-card-list .similartags .m-card {
+        margin-right: 2.5rem !important;
+    }
+}
+a.related-article-anchor {
+	&:hover {
+		text-decoration: none;
+	}
+}

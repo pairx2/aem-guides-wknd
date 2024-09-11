@@ -1,0 +1,21 @@
+<template data-sly-template.item="${@ item='The navigation item'}"
+		  data-sly-use.groupTemplate="abbott-platform/components/content/molecules/megamenu/v1/megamenuversions/version3/secondarygroup.html"
+		  data-sly-use.itemContentTemplate="abbott-platform/components/content/molecules/megamenu/v1/megamenuversions/version3/primaryitemcontent.html"
+		  data-sly-use.defaultGroupTemplate="abbott-platform/components/content/molecules/megamenu/v1/megamenuversions/mobilesecondarygroup.html"
+		  data-sly-use.defaultPrimaryItemContentTemplate="abbott-platform/components/content/molecules/megamenu/v1/megamenuversions/mobileprimaryitemcontent.html">
+
+		<sly data-sly-call="${itemContentTemplate.itemContent @ item = item}"></sly>
+
+		<!--/* MOLECULE: MEGA MENU STARTS HERE-->
+		<sly data-sly-test="${item.children.size > 0}" data-sly-call="${groupTemplate.group @ items = item.children}"></sly>
+		<!--/* MOLECULE: MEGA MENU ENDS HERE-->
+
+		<!--/* Mobile menu starts */-->
+		<div class="m-mega-menu__item m-mega-menu__mobile-item d-block d-lg-none">
+			<sly data-sly-call="${defaultPrimaryItemContentTemplate.itemContent @ item = item}"></sly>
+			<div class="m-mega-menu__mobile-products d-none">
+				<sly data-sly-test="${item.children.size > 0}" data-sly-call="${defaultGroupTemplate.group @ items = item.children}"></sly>
+			</div>
+		</div>
+		<!--/* Mobile menu ends */-->
+</template>

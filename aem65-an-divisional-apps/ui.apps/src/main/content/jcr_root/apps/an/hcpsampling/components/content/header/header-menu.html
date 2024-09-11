@@ -1,0 +1,63 @@
+<template data-sly-template.headerMenu="${@ header}">
+	<div class="o-header__mega-menu an-header-menu">
+		<div class="container">
+			<div class="row justify-content-between">
+				<div class="o-header__menu-wrapper">
+					<!--/* Search */-->
+					<div data-sly-test="${!header.hideSearchInNav}" class="o-header__search d-lg-none" data-search-icon="search">
+						<div class="${wcmmode.edit ? 'edit-search':''}" data-sly-unwrap="${!wcmmode.edit}">
+							<sly data-sly-resource="${'header-search' @ resourceType=header.headersearchProxyPath}" />
+						</div>
+					</div>
+					<!--/* Search */-->
+					<div class="m-mega-menu__mobile d-none d-lg-block" data-js-component="mega-menu" data-sly-test="${!header.hideMegaMenuInNav}">
+						<sly data-sly-resource="${'mega-menu' @ resourceType=header.megamenuProxyPath, decoration=true}" />
+						<div class="m-mega-menu__mobile-extras header-left-link2 header-left-link d-lg-none">
+							<div data-sly-unwrap="${!wcmmode.edit}">
+								<sly
+									data-sly-resource="${'hdr-util-link-stack' @resourceType=header.linkstackProxyPath}" />
+							</div>
+						</div>
+						<div class="m-mega-menu__mobile-extras header-right-link1 header-right-link homelink d-lg-none">
+							<div data-sly-unwrap="${!wcmmode.edit}">
+								<sly
+									data-sly-resource="${'hdr-homelink' @resourceType=header.linkProxyPath}" />
+							</div>
+						</div>
+						<div class="m-mega-menu__mobile-extras header-right-link1 header-right-link abt-icon abt-icon-user login d-lg-none">
+							<div data-sly-unwrap="${!wcmmode.edit}">
+								<sly
+									data-sly-resource="${'hdr-login' @resourceType=header.linkProxyPath}" />
+							</div>
+						</div>
+						<div class="m-mega-menu__mobile-extras header-right-link d-none d-lg-none my-account">
+							<div data-sly-unwrap="${!wcmmode.edit}">
+								<sly
+									data-sly-resource="${'hdr-my-acct' @resourceType=header.linkstackProxyPath}" />
+							</div>
+						</div>
+						<div class="m-mega-menu__mobile-extras header-right-link d-none d-lg-none notification mobile-notification">
+                            <div data-sly-unwrap="${!wcmmode.edit}">
+                                <sly
+                                    data-sly-resource="${'hdr-notification' @resourceType=header.linkstackProxyPath}" />
+                            </div>
+                        </div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="header-right-link welcome-text d-none d-lg-none">
+					<div data-sly-unwrap="${!wcmmode.edit}">
+						<sly
+							data-sly-resource="${'welcome-text' @ resourceType=header.textProxyPath}" />
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--/* Search Placeholder */-->
+	<div data-sly-unwrap="${!wcmmode.edit}">
+		<sly data-sly-resource="${'search-placeholder' @resourceType='abbott-platform/components/form/hidden/v1/hidden'}" />
+	</div>
+	<!--/* Search Placeholder */-->
+</template>

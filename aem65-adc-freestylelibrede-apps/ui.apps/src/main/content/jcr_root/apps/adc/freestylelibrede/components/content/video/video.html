@@ -1,0 +1,53 @@
+<div class="cmp-video" data-sly-use.template="core/wcm/components/commons/v1/templates.html"
+data-sly-test="${properties.video}" data-sly-unwrap="${wcmmode.edit || wcmmode.preview}">
+</div>
+<sly data-sly-call="${template.placeholder @ isEmpty=true}"></sly>
+<sly data-sly-use.video="com.abbott.aem.adc.freestylelibrede.models.VideoModel">
+<sly data-sly-test.imageMobile="${(video.thumbnailImageMobile) ? video.thumbnailImageMobile : video.thumbnailImage}"></sly>
+<sly data-sly-test.imageTab="${(video.thumbnailImageTab) ? video.thumbnailImageTab : video.thumbnailImage}"></sly>
+<sly data-sly-set.imageYoutubeDesktop="https://img.youtube.com/vi/${video.videoId}/maxresdefault.jpg"></sly>
+<sly data-sly-set.imageYoutube="https://img.youtube.com/vi/${video.videoId}/hqdefault.jpg"></sly>
+<div data-sly-use.idgenerator="idgenerator.js">
+<div class="vid-player Banner_${idgenerator.id}" data-layout="${video.videoVariation}" data-playback="${video.videoPlayOption}" data-vid="${video.videoId}"
+    >
+    <div>
+        <style>
+            @media only screen and (max-width: 767px) {
+                .Banner_${idgenerator.id @ context='styleString'}{
+                    background-image:url('${(imageMobile) ? imageMobile : imageYoutube @ context='uri'}') !important;
+                }
+            }
+            @media only screen and (min-width: 768px) {
+                .Banner_${idgenerator.id @ context='styleString'}{
+                    background-image:url('${(imageTab) ? imageTab : imageYoutube @ context='uri'}')  !important;
+                }
+            }
+            @media only screen and (min-width: 1025px) {
+                .Banner_${idgenerator.id @ context='styleString'}{
+                    background-image:url('${(video.thumbnailImage) ? video.thumbnailImage : imageYoutubeDesktop @ context='uri'}')  !important;
+                }
+            }
+        </style>
+    </div>
+
+    <div class="container">
+        <div class="row">
+        <div class="vid-title ${video.videoVariation} video-content ${video.textAlignment} ${video.textVerticalAlignment}">
+                <h3 data-sly-element="${video.titleSize || 'h3'}" class="${video.titleTextColor}">${video.title}</h3>
+            <div class="video-content--desc">${video.subTitle @ context="html"}</div>
+            <div data-sly-list="${video.ctaList}">
+                <a href="${item.ctaLink}" target="${item.ctaAction}"
+                    class="adc-button adc-button-${item.ctaStyle} ml-0 border-0">
+                    ${item.ctaText}
+                </a>
+            </div>
+        </div>
+        </div>
+    </div>
+    <span data-sly-test="${video.videoId}" class="play-button ${video.videoVariation}"></span>
+    <a href="${video.deepLinkTarget}" class="adc-deep-link icon">
+        ${video.deepLinkText}
+    </a>
+</div>
+</div>
+</sly>

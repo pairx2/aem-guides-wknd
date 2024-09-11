@@ -1,0 +1,37 @@
+<!-- Variation One Abbott Store file-->
+<template data-sly-template.template="${@ relativeResourcePath}">
+   <sly data-sly-use.templates="abbott/components/content/templates.html"/>
+   <sly data-sly-use.footerModel="com.abbott.aem.an.abbottstore.models.FooterModel"/>
+   <section class="footer${wcmmode.edit ? ' edit-mode' : ''} footer__section abbott-footer">
+      <footer class="container abbott-footer__container">
+          <div class="${footerModel.variation} row content-padding">
+             <div class="col-md-4">
+                <div class="abbott-footer__logo">
+                     <div class="abbott-logo">
+                        <sly data-sly-call="${templates.includeResource @ relativeResourcePath=relativeResourcePath, nodeName='logo', slingResourceType='abbott/components/content/logo'}"/>
+                     </div>
+                </div>
+             </div>
+             <div class="col-md-2">
+                <sly data-sly-call="${templates.includeResource @ relativeResourcePath=relativeResourcePath, nodeName='list1', slingResourceType='abbott/components/content/list'}"/>
+             </div>
+             <div class="col-md-2">
+                <sly data-sly-call="${templates.includeResource @ relativeResourcePath=relativeResourcePath, nodeName='list2', slingResourceType='abbott/components/content/list'}"/>
+             </div>
+             <div class="col-md-2">
+                <sly data-sly-call="${templates.includeResource @ relativeResourcePath=relativeResourcePath, nodeName='list3', slingResourceType='abbott/components/content/list'}"/>
+             </div>
+             <div class="col-md-2">
+                <div class="abbott-footer__social-links">
+                   <sly data-sly-call="${templates.includeResource @ relativeResourcePath=relativeResourcePath, nodeName='socialshare', slingResourceType='abbott/components/content/socialshare'}"/>
+                </div>
+             </div>
+          </div>
+          <div class="row abbott-footer__copyright">
+          	<div class="abbott-footer__copyright--info">
+                   <sly data-sly-call="${templates.includeResource @ relativeResourcePath=relativeResourcePath, nodeName='text', slingResourceType='abbott/components/content/richtext'}"/>
+            </div>
+        </div>
+      </footer>
+   </section>
+</template>

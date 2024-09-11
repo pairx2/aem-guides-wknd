@@ -1,0 +1,84 @@
+<template data-sly-template.template="${@ relativeResourcePath}">
+  <sly data-sly-use.templates="abbott/components/content/templates.html" />
+  <section
+    class="header${wcmmode.edit ? ' edit-mode' : ''} header__section${properties.disableStickyHeader=='true' ? '' : ' header-sticky'}"
+  ></section>
+  <sly
+    data-sly-call="${templates.includeResource @ relativeResourcePath=relativeResourcePath, nodeName='notification', slingResourceType='abbott/components/content/notification-menu'}"
+  />
+
+  <!--/* SimilacStore HEADER */-->
+  <header class="similac-header">
+    <div class="container similac-header__container">
+      <div class="row no-gutters">
+        <div class="col-6 col-md-4 col-lg-5">
+          <div class="similac-header__logo float-left">
+            <sly
+              data-sly-call="${templates.includeResource @ relativeResourcePath=relativeResourcePath, nodeName='logo1', slingResourceType='abbott/components/content/logo'}"
+            />
+          </div>
+        </div>
+        <div class="col-6 col-md-8 col-lg-7">
+          <div class="row h-100 no-gutters">
+            <div class="d-none d-md-flex col-12 col-md-9">
+              <div class="similac-header__items">
+                <ul class="similac-header__actions">
+                  <li class="similac-header__actions-list" id="header-register-link">
+                    <sly
+                      data-sly-call="${templates.includeResource @ relativeResourcePath=relativeResourcePath, nodeName='register', slingResourceType='abbott/components/content/register'}"
+                    />
+                  </li>
+                  <li class="similac-header__actions-list similac-login" id="ss-login-desktop">
+                    <sly
+                      data-sly-call="${templates.includeResource @ relativeResourcePath=relativeResourcePath, nodeName='login', slingResourceType='abbott/components/content/login'}"
+                    />
+                  </li>
+                  <li class="similac-header__actions-list similac-header__cart">
+                    <sly
+                      data-sly-call="${templates.includeResource @ relativeResourcePath=relativeResourcePath, nodeName='cart', slingResourceType='abbott/components/content/cart'}"
+                    />
+                    <!--/* AbbottStore: MINI CART */-->
+                    <div id="mini-cart__comp" class="similac-minicart"></div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-12 col-md-3">
+              <div class="similac-header__items float-right">
+                <sly
+                  data-sly-call="${templates.includeResource @ relativeResourcePath=relativeResourcePath, nodeName='logo', slingResourceType='abbott/components/content/logo'}"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="similac-header--mobile align-items-center position-relative">
+      <ul class="similac-actions">
+        <li class="mobile-action" id="ss-login-mobile">
+        </li>
+        <li class="mobile-action" id="ss-register-mobile">
+          <a href="">
+            <span class="mobile-action-list">
+              <sly
+                data-sly-call="${templates.includeResource @ relativeResourcePath=relativeResourcePath, nodeName='register', slingResourceType='abbott/components/content/register'}"
+              />
+            </span>
+          </a>
+        </li>
+      </ul>
+      <div class="similac-header--mobile__cart">
+        <sly
+          data-sly-call="${templates.includeResource @ relativeResourcePath=relativeResourcePath, nodeName='cart', slingResourceType='abbott/components/content/cart'}"
+        />
+        <!--/* AbbottStore: MINI CART */-->
+        <div id="mini-cart__comp--mobile" class="similac-minicart"></div>
+      </div>
+    </div>
+  </header>
+  <div id="similac-cart-action" class="d-none"></div>
+  <div class="container">
+    <div id="app-message" class="app-message"></div>
+  </div>
+</template>

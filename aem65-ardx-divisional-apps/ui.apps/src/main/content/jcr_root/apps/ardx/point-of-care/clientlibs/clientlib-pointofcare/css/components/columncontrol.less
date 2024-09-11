@@ -1,0 +1,233 @@
+@import "../global/media-queries.less";
+@import "../global/variables.less";
+
+.columncontrol
+{
+    max-width: 1140px;
+    margin: 0 auto;
+     @media @lg-down{
+        padding: 0 20px;
+    }
+    @media @md-down{
+        padding: 0 10px;
+    } 
+    .container {
+        @media @md-down
+        {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+    }
+    .row
+    {
+        @media @md-down
+        {
+            margin-left: -10px;
+            margin-right: -10px;
+        }
+       
+        .columncontrol__column 
+        {
+            .o-hero-carousel{
+                @media @lg-down{
+                    width: 100%;
+                    margin-left: 0;
+                }
+                .cmp-carousel{
+                    .slick-list {
+                        @media @lg-only {
+                            min-height: 300px;
+                        }
+                    }
+                    .abt-icon-left-arrow, .abt-icon-right-arrow {
+                        width: auto;
+                        height: auto;
+                        &::before{
+                            font-size: 48px;
+                            line-height: 48px;
+                            color: #d9d9d6;
+                            width: 24px;
+                            height: 48px;
+                            position: absolute;
+                            background-image: none;
+                        }
+                    }
+                    .abt-icon-left-arrow{
+                        &::before{
+                            left: 10px;
+                            content: "\e90f";
+                        }
+                        @media @xl-up {
+                            left: 0;
+                        }
+                    }
+                    .abt-icon-right-arrow{
+                        &::before{
+                            right: 30px;
+                            left: auto;
+                            content: "\e913";
+                        }
+                        @media @xl-up {
+                            right: 0;
+                        }
+                    }
+                    .image{
+                        margin: 0 auto;
+                        @media @lg-up{
+                            width: 450px;
+                        }
+                        @media @lg-only{
+                            width: 100%;
+                            height: auto;
+                            padding: 45px 85px 0
+                        }
+                        @media @md-down{
+                            width: 354px;
+                        }
+                    }
+                    .slick-dots{
+                        bottom: 2px;
+                        @media @lg-only{
+                            top: 180px;
+                        }
+                        @media @md-down{
+                            top: auto;
+                            bottom: 0;
+                        }
+                    }
+                }
+            }
+            .container.a-container--gradient-center{
+                padding-top: 10px;
+                padding-bottom: 10px;
+                @media @md-down{
+                    padding: 0;
+                }
+                .cmp-container{
+                    @media @md-down{
+                        padding: 10px;
+                    }
+                    .text:first-child{
+                       margin-top: 0 !important;
+                    }
+                }
+            }
+            .container{
+                @media @md-up{
+                    padding: 0;
+                    .container{
+                        padding: 0;
+                    }
+                }
+                .a-container__content{
+                    @media @md-down{
+                        padding: 0;
+                    }
+                }
+            }
+            .link{
+                margin: 0 !important;
+                display: block;
+            }
+            .button.a-button {
+                display: flex;
+            }
+            .title{
+                margin-bottom: 10px !important;
+            }
+            @media @md-down
+            {
+            padding-left: 0;
+            padding-right: 0;
+            margin-bottom: 1.5rem !important;
+            }
+            &:last-child
+            {
+                @media @lg-down
+            {
+                margin-bottom: 1.5rem !important;
+            }
+            }
+        }
+        
+    }
+    .column-divider{
+        border-right: 1px solid @color-charcoal;
+        &:last-child{
+            border-right: none;
+        }
+        @media @md-down{
+            border-right: none;
+        }
+        &::after{
+            display: none !important;           
+        }
+    }
+    #static-countries-dropdown-options{
+        @media @lg-down{
+            width: 100%;
+        }
+    }
+}
+
+.container{
+    .columncontrol{
+        @media @lg-down{
+            padding: 0;
+        }
+        @media @md-down{
+            padding: 0;
+        } 
+    }
+}
+
+.columncontrol.column-align--left{
+    .column-divider{
+        border-right: 1px solid @color-white;
+        &:last-child{
+            border-right: none;
+        }
+        @media @md-down{
+            border-right: none;
+        }
+        &::after{
+            display: none;           
+        }
+    }
+}
+
+#col-image-inline-alignleft{
+    .columncontrol__column {
+        .image--float-left{
+            margin: 0 !important;
+            @media @lg-down{
+                width: 25%;
+            }
+             @media @md-down{
+                width: auto;
+                max-width: 100%;
+                img{
+                    width: 100%;
+                }
+            }
+        }
+        .image--align-left{
+            @media @lg-down{
+                margin: 0 !important;
+            }
+        }
+        @media @lg-only{
+            margin-bottom: 0 !important;
+        }
+    }
+}
+
+#tablet-only-four-grid {
+    .columncontrol__column {
+        @media @lg-only {
+            width: 25%;
+            max-width: 25%;
+            flex: 0 0 25%;
+        }
+    }
+}

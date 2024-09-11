@@ -1,0 +1,23 @@
+<sly data-sly-use.cardsModel='com.abbott.aem.bts.cybersecurity.components.model.ProductCategories'>
+    <div class ="product-categories container">
+        <div class="wrapper">
+            <div class="wrapper-content">
+                <div class ="title" data-sly-resource="${'title' @ resourceType='bts/cybersecurity/components/content/title'}"></div>
+                <div class ="title-link__desktop" data-sly-resource="${'desktop-link' @resourceType='bts/globals/components/content/link'}"></div>
+                <div class ="title-link__mobile" data-sly-resource="${'mobile-link' @resourceType='bts/globals/components/content/link'}"></div>
+            </div>
+
+            <div class= "product-grid row">
+                <sly data-sly-list.card="${cardsModel.cardList}">
+                    <div class='col-6 col-md-4 col-lg-3'>
+                        <div class ="content-cards" >
+                            <div class="category-card">
+                                <sly data-sly-resource="${ cardList.index @resourceType='bts/globals/components/content/cards'}"></sly>
+                            </div>
+                        </div>
+                    </div>
+                </sly>
+            </div>
+        </div>
+    </div>
+</sly>

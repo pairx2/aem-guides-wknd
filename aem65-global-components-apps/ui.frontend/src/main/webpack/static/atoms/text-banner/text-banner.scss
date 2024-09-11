@@ -1,0 +1,36 @@
+.a-text-banner {
+    @include rem(padding, 24px 15px);
+    @include rem(margin-bottom, 0);
+    background-color: var(--text-banner-bg-color);
+
+    @include media-breakpoint-down(md) {
+        text-align: center;
+    }
+
+    @include media-breakpoint-up(lg) {
+        @include rem(padding, 32px 30px 40px);
+    }
+
+    &--title {
+        @include rem(margin-bottom, 0);
+        color: var(--text-banner-title-color);
+    }
+}
+
+.a-text--banner--gradient-start {
+    .a-text-banner {
+        background: linear-gradient(90deg, var(--textBanner-start-color) var(--textBanner-start-position), var(--textBanner-end-color) var(--textBanner-end-position));
+    }
+}
+
+.a-text--banner--gradient-end {
+    .a-text-banner {
+        background: linear-gradient(-90deg, var(--textBanner-start-color) var(--textBanner-start-position), var(--textBanner-end-color) var(--textBanner-end-position));
+    }
+}
+
+.a-text--banner--gradient-center {
+    .a-text-banner {
+        background: radial-gradient(circle, var(--textBanner-start-color) var(--textBanner-start-position), var(--textBanner-end-color) var(--textBanner-end-position));
+    }
+}

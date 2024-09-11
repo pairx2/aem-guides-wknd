@@ -1,0 +1,33 @@
+- user_config:
+
+  - an-hcp-system-user:
+  
+    - name: an-hcp-system-user
+      description: Used for AN division hcp sampling to bookmark articles
+      path: /home/users/system/an
+      isSystemUser: true
+      isMemberOf: an-base,workflow-users
+      
+- ace_config:
+
+  - an-hcp-system-user:
+  
+    - path: /apps/an
+      permission: allow
+      privileges: jcr:read
+      
+    - path: /conf/an
+      permission: allow
+      privileges: jcr:read
+
+    - path: /content/an/hcpsampling
+      permission: allow
+      privileges: jcr:read
+      
+    - path: /content/an/hcpsampling/us/en/
+      permission: allow
+      actions: read,modify,create,delete,replicate
+
+    - path: /content/dam/an/hcpsampling
+      permission: allow
+      actions: read,replicate

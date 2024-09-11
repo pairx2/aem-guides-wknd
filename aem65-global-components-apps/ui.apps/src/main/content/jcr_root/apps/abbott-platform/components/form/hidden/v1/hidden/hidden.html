@@ -1,0 +1,13 @@
+<sly data-sly-use.field="com.abbott.aem.platform.common.components.models.Hidden"
+     data-sly-use.templates="core/wcm/components/commons/v1/templates.html"
+     data-sly-use.customConfig="com.abbott.aem.platform.common.components.models.CustomConfig">     
+<input data-sly-set.appendText="${field.name && 'name='}${field.name}${field.value && ' | value='}${field.value}"
+       data-sly-call="${templates.placeholder @ isEmpty = true, classAppend, emptyTextAppend = appendText}"
+       type="hidden" id="${field.id}" name="${field.name}"
+       class="${customConfig.className}"
+       data-sly-attribute.data-keep-in-session="${field.keepInSession}"  
+       data-sly-attribute.value="${field.value}" 
+       data-sly-attribute.data-request="${field.dataRequest}"
+       data-sly-attribute.data-key-name="${field.key}" 
+       data-sly-attribute.data-hidden-type="${field.source}" />
+</sly>

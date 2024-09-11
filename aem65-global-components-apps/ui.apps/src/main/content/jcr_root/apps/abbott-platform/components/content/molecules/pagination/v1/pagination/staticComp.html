@@ -1,0 +1,27 @@
+<template data-sly-template.staticComp="${ @ container}">
+   <sly data-sly-use.pagination="com.abbott.aem.platform.common.components.models.Pagination"
+     data-sly-use.component="com.adobe.cq.wcm.core.components.models.Component"
+     data-sly-use.customConfig="com.abbott.aem.platform.common.components.models.CustomConfig">
+      <sly data-sly-test="${wcmmode.edit}" data-sly-use.allowed="com.day.cq.wcm.foundation.AllowedComponentList"></sly>
+      <sly class="cmp-container${wcmmode.edit ? ' {0}': '' @ format=[allowed.cssClass]}"
+           data-sly-use.templates="core/wcm/components/commons/v1/templates.html"
+           style="${container.backgroundStyle @ context='styleString'}">
+         <div id="${component.id}" class="m-pagination-static ${customConfig.className}">
+            <div class="m-pagination-static__wrapper" data-js-component="pagination-static" auto-hide-previous="${pagination.hidePrevious ? 'true' : 'false'}"
+                 auto-hide-next="${pagination.hideNext ? 'true' : 'false'}" page-size="${pagination.pageSize}">
+               <div class="m-pagination-static__components">
+                  <div data-sly-repeat="${container.items}"
+                       data-sly-resource="${item.path @ decoration=true}">
+                  </div>
+               </div>
+               <!-- PAGINATION CONTENT DATA -->
+               <div class="m-pagination-static__content"></div>
+               <!-- PAGINATION LINKS -->
+               <div class="m-pagination-static__links"></div>
+            </div>
+         </div>
+         <sly data-sly-test="${!isAllowedApplicable && !wcmmode.disabled}"
+              data-sly-resource="${resource.path @ resourceType='core/wcm/components/container/v1/container/new', appendPath='/*', decorationTagName='div', cssClassName='new section m-mega-menu__mobile-item-wrapper'}"/>
+      </sly>
+   </sly>
+</template>

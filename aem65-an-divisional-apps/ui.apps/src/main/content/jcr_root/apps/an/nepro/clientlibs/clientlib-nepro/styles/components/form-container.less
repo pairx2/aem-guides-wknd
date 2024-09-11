@@ -1,0 +1,200 @@
+/**********************************
+Form Container Component
+**********************************/
+.formcontainer {
+    &.contact-us-form {
+
+        .o-form-container .o-form-container__outer>.container {
+            padding: 0;
+
+            .columncontrol {
+                &>.container {
+                    padding: 0;
+
+                    &>.row {
+                        &>.columncontrol__column {
+                            margin-bottom: 0;
+
+                            &:first-child {
+                                padding-right: 12.5px;
+                            }
+
+                            &:last-child {
+                                padding-left: 12.5px;
+                            }
+
+                            @media @md-down {
+                                flex: 0 0 50%;
+                                max-width: 50%;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .form-group:not(.a-input-field) {
+                margin-bottom: 0;
+            }
+
+            .fields,
+            .options {
+
+                .a-input-field {
+                    --input-field-label-color: @abbott-gray;
+                    --input-color: @abbott-gray;
+                    --input-field-border-radius: 0;
+                    --input-bg: @abbott-form-blue;
+                    --input-field-error-color: @abbott-red;
+                    --input-field-padding: .9375rem 0.625rem .8125rem;
+                    --input-field-margin: 0 0 20px 0;
+                    --input-field-focus-color: @abbott-form-blue;
+                    --input-field-border: 1px solid @abbott-form-blue;
+                    --input-field-form-text-font-size: .8rem;
+
+                    @media @lg-down {
+                        --input-field-margin: 0 0 15px 0;
+                    }
+
+                    .a-input-label {
+                        font-size: 20px;
+                        font-family: @font-georgia;
+                        letter-spacing: -0.98px;
+                        line-height: 17.64px;
+                        margin-left: 2px;
+                        margin-bottom: 6px;
+
+                        @media @lg-down {
+                            margin-bottom: 8px;
+                        }
+
+                        &:has(.a-input-field--required),
+                        &:has(.a-dropdown__title--required) {
+                            padding-left: 8px;
+                            position: relative;
+
+                            .a-input-field--required,
+                            .a-dropdown__title--required {
+                                left: 0;
+                                position: absolute;
+                            }
+                        }
+                    }
+
+                    .a-input-grp .a-input-control,
+                    .a-dropdown__field {
+                        height: 40px;
+                        --input-field-label-font-size: 20px;
+                    }
+
+                    .validation-regex,
+                    .validation-require,
+                    .validation-error {
+                        .a-input-label {
+                            --input-field-error-color: @abbott-gray;
+                        }
+
+                        .a-input-control {
+                            --input-bg: @abbott-misty-rose;
+                        }
+                    }
+
+                    .form-text[class*='a-input-field--text-'] {
+                        --input-field-error-color: @abbott-alarm;
+                        font-family: @font-avenir-next-rounded-bold;
+
+                        .abt-icon {
+                            font-weight: bold;
+                        }
+                    }
+                }
+            }
+
+            .fields {
+
+                textarea {
+                    min-height: 88px !important;
+                }
+            }
+
+            .options .drop-down {
+
+                .a-dropdown {
+                    .a-dropdown__field {
+                        --dropdown-field-bg-color: @abbott-form-blue;
+                        --dropdown-field-border-radius: 0;
+                        --dropdown-field-height: 42px;
+                        --dropdown-field-font-size: .835rem;
+                        --dropdown-field-padding: .575rem 1rem .6125rem .8125rem;
+                        --dropdown-field-border: 1px solid @abbott-form-blue;
+                        --dropdown-menu-bg-color: @abbott-form-blue;
+                        --dropdown-active-border-color: @abbott-form-blue;
+                        --dropdown-placeholder-color: @black;
+                        font-family: @font-arial;
+
+                        &::after {
+                            color: @black;
+                            font-size: 10px;
+                            font-weight: bold;
+                            right: 3px;
+                        }
+                    }
+
+                }
+
+                .validation-regex,
+                .validation-require,
+                .validation-error {
+
+                    .a-input-label {
+                        --input-field-error-color: @abbott-gray;
+                    }
+
+                    .a-dropdown__field {
+                        --dropdown-field-bg-color: @abbott-misty-rose;
+                        --dropdown-field-border: 1px solid @abbott-red;
+                        --dropdown-menu-bg-color: @abbott-misty-rose;
+                        --dropdown-active-border-color: @abbott-red;
+                    }
+                }
+            }
+
+            .o-form-container__buttons {
+                justify-content: start !important;
+
+                .button .btn {
+                    background-color: @abbott-light-palatinate-purple;
+                    --button-box-shadow: none;
+                    border-radius: 0;
+                    color: @white;
+                    letter-spacing: -0.35px;
+                    font-size: 14px;
+                    font-family: @font-brandon-grotesque-bold;
+                    padding: 4px 15px 0 15px;
+                    text-transform: none;
+
+                    @media @md-down {
+                        width: auto;
+                    }
+                }
+            }
+
+            .o-form-container__success-msg:not(:empty),
+            .o-form-container__error-msg:not(:empty) {
+                margin-top: 20px;
+
+                @media @lg-down {
+                    margin-top: 15px;
+                }
+            }
+        }
+    }
+
+    // Style option to hide success and failure messages of form
+    &.form--hide-container-message {
+
+        .o-form-container__success-msg,
+        .o-form-container__error-msg {
+            display: none;
+        }
+    }
+}

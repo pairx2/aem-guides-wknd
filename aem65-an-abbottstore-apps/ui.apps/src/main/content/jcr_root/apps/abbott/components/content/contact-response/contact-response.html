@@ -1,0 +1,13 @@
+
+<sly data-sly-use.templates="abbott/components/content/templates.html"/>
+<sly data-sly-use.responseModel="com.abbott.aem.an.abbottstore.models.ContactUsResponseModel" />
+<sly data-sly-test.response = "${responseModel.requestStatus}" />
+<sly data-sly-list.responseVal= ${responseModel.responseList}>
+      <section class="static-page pb-0">
+            <sly data-sly-test= "${responseVal.status == response}">
+                  ${responseVal.responseText @context='html'}
+            </sly>
+      </section>
+</sly>
+</section>
+<sly data-sly-call="${templates.placeholder @ isEmpty= !response}"></sly> 

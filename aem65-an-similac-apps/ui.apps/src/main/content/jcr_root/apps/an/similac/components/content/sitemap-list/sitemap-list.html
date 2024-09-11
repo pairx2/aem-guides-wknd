@@ -1,0 +1,27 @@
+<div class="site-map navigation">
+   <sly data-sly-test = "${properties.listTitle}">
+      <ul class="cmp-navigation__group">
+         <li class="cmp-navigation__item cmp-navigation__item--level-0">
+			<sly data-sly-test="${properties.listTitleUrl}" data-sly-use.listTitleUrl="${'com.abbott.aem.an.similac.core.models.LinkHelperModel' @ href=properties.listTitleUrl}"/>
+			<a href="${listTitleUrl.linkHref @ context = 'uri'}" title="${properties.listTitle}" class="cmp-navigation__item-link">${properties.listTitle}</a>
+            <ul class="navigation__group"
+			   data-sly-use.list="com.adobe.cq.wcm.core.components.models.List"
+               data-sly-list.item="${list.listItems}"
+               data-sly-use.template="core/wcm/components/commons/v1/templates.html"
+               data-sly-use.itemTemplate="item.html">
+               <li class="cmp-navigation__item cmp-navigation__item--level-1" data-sly-call="${itemTemplate.item @ list = list, item = item}"></li>
+            </ul>
+         </li>
+      </ul>
+   </sly>
+   <sly data-sly-test = "${!properties.listTitle}">
+      <ul class="cmp-navigation__group"
+		 data-sly-use.list="com.adobe.cq.wcm.core.components.models.List"
+         data-sly-list.item="${list.listItems}"
+         data-sly-use.template="core/wcm/components/commons/v1/templates.html"
+         data-sly-use.itemTemplate="item.html">
+         <li class="cmp-navigation__item cmp-navigation__item--level-0" data-sly-call="${itemTemplate.item @ list = list, item = item}"></li>
+      </ul>
+   </sly>
+</div>
+<sly data-sly-call="${template.placeholder @ isEmpty=list.listItems.size == 0, classAppend='cmp-list'}"></sly>

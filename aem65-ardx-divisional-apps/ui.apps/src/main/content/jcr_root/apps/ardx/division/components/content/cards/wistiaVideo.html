@@ -1,0 +1,29 @@
+<sly data-sly-use.cards="com.abbott.aem.ardx.division.core.components.models.CardArdx">
+<div >
+   <sly data-sly-test="${cards.modalIcon}"> <em class="${cards.modalIcon}"></em> </sly>
+   <sly data-sly-test="${cards.hoverText}">
+      <div class="toggle-overlay">
+         <span class="hover-text">${cards.hoverText}</span>
+         <div class="story-overlay"></div>
+      </div>
+</div>
+<script  src="//fast.wistia.com/assets/external/E-v1.js" async></script>
+<!--Embed Video -->
+<sly data-sly-test="${!cards.popup}">
+<div class="m-card__video" >
+<div class="wistia_responsive_padding">
+<div class="wistia_responsive_wrapper">
+<div class="wistia_embed wistia_async_${cards.videoID} videoFoam=true" ></div>
+</div>
+</div>
+</div>
+</sly>
+<!-- Popover Video -->
+<sly data-sly-test="${cards.popup}">
+<div class="m-card__video" >
+<div class="wistia_embed wistia_async_${cards.videoID} popover=true popoverContent=html">
+<img  src="${cards.imagePath}" alt="${cards.title}" />
+</div>
+</div>
+</sly>
+</sly>

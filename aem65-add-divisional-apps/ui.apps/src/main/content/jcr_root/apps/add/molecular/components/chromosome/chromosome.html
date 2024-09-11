@@ -1,0 +1,22 @@
+<div data-sly-test="${!wcmmode.disabled}" class="cq-placeholder" data-emptytext="Click here to Chromosome Component "></div>
+<sly data-sly-use.products="com.abbott.aem.add.division.core.components.models.ProductGallery" data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
+  <sly data-sly-test.componentType="${products.componentType}"></sly>  
+    <div data-sly-test="${componentType == 'probeinfo'}">
+        <div class="probeID" data-attr="${properties.productID}-${properties.probeID}">
+           <input type="hidden" name="chromosome_prodinfoid" value="${properties.productID}__${properties.probeID}" />
+           <h5>PROBE INFO</h5>
+           <div data-sly-resource="${'linktype' @resourceType='wcm/foundation/components/parsys'}"></div>
+           <input type="hidden" name="probeimagepath" value="${products.imagePath}" />
+           <div class="probecontainer"></div>
+        </div>
+	</div>
+    <div data-sly-test="${componentType == 'orderinfo'}">
+        <div class="orderID" data-attr="${properties.productID}-${properties.probeID}">
+        	<input type="hidden" name="chromosome_orderinfoid" value="${properties.productID}__${properties.probeID}" />
+        	<h5> ORDERING INFO</h5>
+        	<div class="ordercontainer">
+            <div class="order-request" data-sly-resource="${'orderBtn' @resourceType='wcm/foundation/components/parsys'}"></div>
+          </div>
+		</div>
+    </div>
+</sly>

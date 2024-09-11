@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- ====================================================================== -->
+    <!-- P A R E N T  P R O J E C T  D E S C R I P T I O N                      -->
+    <!-- ====================================================================== -->
+    <parent>
+        <groupId>com.abbott.aem.platform.cloud</groupId>
+        <artifactId>aem-abbott-platform-cloud.reactor</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+
+    <!-- ====================================================================== -->
+    <!-- P R O J E C T  D E S C R I P T I O N                                   -->
+    <!-- ====================================================================== -->
+    <artifactId>aem-abbott-platform-cloud.oakindex</artifactId>
+    <packaging>content-package</packaging>
+    <name>Abbott Cloud Platform - Custom Oak Indices</name>
+
+    <!-- ====================================================================== -->
+    <!-- B U I L D -->
+    <!-- ====================================================================== -->
+    <build>
+        <sourceDirectory>src/main/content/jcr_root</sourceDirectory>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.jackrabbit</groupId>
+                <artifactId>filevault-package-maven-plugin</artifactId>
+                <extensions>true</extensions>
+                <configuration>
+                    <group>${package.group}</group>
+                    <packageType>application</packageType>
+                    <filterSource>src/main/content/META-INF/vault/filter.xml</filterSource>
+                    <allowIndexDefinitions>true</allowIndexDefinitions>
+                    <properties>
+                        <noIntermediateSaves>true</noIntermediateSaves>
+						<cloudManagerTarget>none</cloudManagerTarget>
+                    </properties>
+                    <repositoryStructurePackages>
+                        <repositoryStructurePackage>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>aem-abbott-platform-cloud.ui.apps.structure</artifactId>
+                            <version>${project.version}</version>
+                        </repositoryStructurePackage>
+                    </repositoryStructurePackages>
+                    <validatorsSettings>
+                        <jackrabbit-packagetype>
+                        	<!-- https://issues.apache.org/jira/browse/JCRVLT-496 -->
+                        	<isDisabled>true</isDisabled>
+                        </jackrabbit-packagetype>
+                    </validatorsSettings>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.day.jcr.vault</groupId>
+                <artifactId>content-package-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>aem-abbott-platform-cloud.ui.apps.structure</artifactId>
+            <version>${project.version}</version>
+            <type>zip</type>
+        </dependency>
+    </dependencies>
+</project>

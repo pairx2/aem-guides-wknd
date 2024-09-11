@@ -1,0 +1,26 @@
+<header
+  data-sly-use.template="core/wcm/components/commons/v1/templates.html"
+  data-sly-use.model="com.abbott.aem.platform.common.components.models.Header"
+  data-sly-use.component="com.adobe.cq.wcm.core.components.models.Component"
+  data-sly-use.customConfig="com.abbott.aem.platform.common.components.models.CustomConfig"
+  class="o-header-v2-global ${customConfig.className}"
+  id="${component.id}"
+  data-js-component="header-v2"
+>
+
+  <div data-sly-test="${model.isSticky}" class="o-header-v2-global__placeholder"></div>
+  <div class="o-header-v2-global__sticky-section" data-sticky="${model.isSticky && 'true'}">
+    <section data-sly-test="${!model.hideTopUtilitySection}"
+      class="o-header-v2-global__section o-header-v2-global__section--utility-top"
+      data-sly-resource="${'section-utility-top' @ resourceType=model.headerV2SectionProxyPath, decoration=true}">
+    </section>
+    <section class="o-header-v2-global__section o-header-v2-global__section--main"
+      data-sly-resource="${'section-main' @ resourceType=model.headerV2SectionProxyPath, decoration=true}"></section>
+    <section data-sly-test="${!model.hideBottomUtilitySection}"
+      class="o-header-v2-global__section o-header-v2-global__section--utility-bottom"
+      data-sly-resource="${'section-utility-bottom' @ resourceType=model.headerV2SectionProxyPath, decoration=true}">
+    </section>
+  </div>
+</header>
+
+<sly data-sly-call="${template.placeholder @ isEmpty=false}"></sly>

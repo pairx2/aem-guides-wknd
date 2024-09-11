@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="My Account_Software Download"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                maximized="{Boolean}true">
+                <items jcr:primaryType="nt:unstructured">
+                    <general
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="General"
+                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                            margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <column
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/container">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <dontCheckPurchase
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="/libs/granite/ui/components/coral/foundation/form/checkbox"
+                                            defaultChecked="{Boolean}false"
+                                            fieldLabel="Show component when not purchased"
+                                            name="./dontCheckPurchase"
+                                            text="Show component when not purchased"
+                                            uncheckedValue="{Boolean}false"
+                                            value="{Boolean}true"/>
+                                    <heading
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Heading"
+                                            name="./heading"/>
+                                    <softwareInfo
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Software Information"
+                                            name="./softwareInfo"/>
+                                </items>
+                            </column>
+                        </items>
+                    </general>
+                    <download-links
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Download Links"
+                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                            margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <column
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/container">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <windowsUrl
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Windows CTA Destination URL"
+                                            name="./windowsUrl"/>
+                                    <windowsStyle
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                            fieldLabel="Windows CTA Style"
+                                            name="./windowsStyle">
+                                        <datasource
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="abbott-platform/datasource/generic-list"
+                                                path="/apps/adc/freestylelibrede/authoring/datasources/cta-types"/>
+                                    </windowsStyle>
+                                    <macUrl
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Mac CTA Destination URL"
+                                            name="./macUrl"/>
+                                    <macStyle
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                            fieldLabel="Mac CTA Style"
+                                            name="./macStyle">
+                                        <datasource
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="abbott-platform/datasource/generic-list"
+                                                path="/apps/adc/freestylelibrede/authoring/datasources/cta-types"/>
+                                    </macStyle>
+                                    <noDownloadError
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Mobile/Tablet Error Message"
+                                            name="./noDownloadError"/>
+                                </items>
+                            </column>
+                        </items>
+                    </download-links>
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>

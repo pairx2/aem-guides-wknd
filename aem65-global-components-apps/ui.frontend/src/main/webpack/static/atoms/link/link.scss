@@ -1,0 +1,91 @@
+@mixin common-style {
+	content: '';
+	display: inline-block;
+	vertical-align: text-top;
+}
+
+.a-link {
+	$self: &;
+	@include fontDefinitionWithSize(var(--link-font-family), var(--link-font-size), bold, var(--link-line-height));
+	display: inline-block;
+	color: var(--link-color);
+	cursor: pointer;
+
+	.abt-icon {
+		font-size: var(--link-icon-size);
+		color: var(--link-icon-color);
+		position: relative;
+		top: 5px;
+	}
+
+	&__text {
+		display: inline-block;
+
+		&:hover {
+
+			.abt-icon {
+				text-decoration: none;
+			}
+
+		}
+		&:focus {
+      color: var(--link-focus-color);
+    }
+    &:active{
+			color: var(--link-active-color);
+		}
+	}
+
+	&--icon {
+		font-weight: normal;
+
+		#{$self}__text {
+			&--has-icon {
+				padding-left: var(--link-padding-left);
+  				position: relative;
+			}
+			.abt-icon {
+				@include rem(margin-left, var(--link-icon-margin-left));
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+
+		}
+	}
+
+	&--icon-left {
+
+		#{$self}__text {
+			position: relative;
+
+			&--has-icon {
+				@include media-breakpoint-up(lg) {
+					padding-left: var(--link-padding-left);
+				}
+			}
+
+			.abt-icon {
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+		}
+
+	}
+
+	&--icon-right {
+
+		#{$self}__text {
+			position: relative;
+			padding-right: var(--link-padding-right);
+
+			.abt-icon {
+				position: absolute;
+				right: 0;
+				top: 0;
+			}
+		}
+
+	}
+}

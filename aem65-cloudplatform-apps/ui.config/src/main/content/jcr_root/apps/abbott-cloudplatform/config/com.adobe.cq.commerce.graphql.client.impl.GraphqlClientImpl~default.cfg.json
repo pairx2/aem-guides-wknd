@@ -1,0 +1,15 @@
+{
+	"identifier": "default",
+	"httpMethod": "POST",
+	"url": "$[env:COMMERCE_ENDPOINT]",
+	"connectionTimeout": 5000,
+	"socketTimeout": 5000,
+	"maxHttpConnections": 20,
+	"requestPoolTimeout": 2000,
+	"acceptSelfSignedCertificates": false,
+	"allowHttpProtocol": true,
+	"httpHeaders": [
+		"$[secret:COMMERCE_AUTH_HEADER;default= ]",
+		"$[secret:MAGENTO_ORIGIN_SECRET;default= ]"
+	]
+}

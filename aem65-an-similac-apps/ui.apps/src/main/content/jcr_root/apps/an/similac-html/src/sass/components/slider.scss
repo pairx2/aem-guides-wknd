@@ -1,0 +1,302 @@
+@import "../common-imports";
+
+.abbott-slider {
+  .offer-ribbon{
+    background-image: linear-gradient(to right, #f0d57b 2%, #d5a133 24%, #f5e08b 67%);
+    font-family: $font-roboto-bold;
+    font-weight: bold;
+    font-size: 1.25rem;
+    line-height: 1.3;
+    letter-spacing: normal;
+    color: $smalt;
+    position: absolute;
+    z-index: 1;
+    left: 12.35%;
+    text-align: center;
+    padding: 0 6px;
+ @include media-breakpoint-only(md){
+  left: 13.35%;
+ }
+
+    &:after {
+     content: "";
+     position: absolute;
+     display: block;
+     bottom: 0;
+     right: -0.65em;
+     border: 0.65em solid #f5e08b;
+     border-left-width: 0.05em;
+     border-right-color: transparent;
+     z-index: -1;
+   }
+ }
+
+
+ 
+ .fotorama {
+  &_custom__arr {
+   display: inline-flex;
+    margin: 25px 10px;
+    cursor: pointer;
+
+  }
+    // &__arr--next {
+    //   background-color: rgba( $white, .3);
+    //   height: 104%;
+    //   top: 0;
+
+    //   &:before {
+    //     content: '';
+    //     display: block;
+    //     height: 30px;
+    //     width: 30px;
+    //     position: absolute;
+    //     top: 50%;
+    //     right: 25%;
+    //     border-top: 2px solid $gray;
+    //     border-right: 2px solid $gray;
+    //     transform: rotate(45deg);
+    //   }
+
+    // }
+
+    // &__arr--prev {
+    //   background-color: rgba( $white, .3);
+    //   height: 104%;
+    //   top: 0;
+
+    //   &:before {
+    //     content: '';
+    //     display: block;
+    //     height: 30px;
+    //     width: 30px;
+    //     position: absolute;
+    //     top: 50%;
+    //     left: 25%;
+    //     border-left: 2px solid $gray;
+    //     border-bottom: 2px solid $gray;
+    //     transform: rotate(45deg);
+    //   }
+
+    // }
+
+    &__fullscreen-icon {
+      opacity: 0;
+    }
+
+    &__nav {
+      text-align: center;
+      width: auto !important;
+    margin: 0;
+      &-wrap {
+        margin-top:20px;
+        display: flex;
+        justify-content: center !important;
+      }
+      @media(max-width: 767px) {
+        text-align: center;
+      }
+
+      &__frame--thumb{
+
+        @media(max-width: 767px) {
+          background: $gray;
+          border-radius: 50%;
+          height: 10px !important;
+          padding: 0 !important;
+          width: 10px !important;
+          margin: 3px;
+        }
+
+      }
+
+      &__frame--thumb.fotorama__active {
+
+        @media(max-width: 767px) {
+          border: 0;
+          background: $black;
+        }
+
+      }
+
+    }
+
+    &__thumb-border{
+
+      border: 1px solid $tangerine;
+
+      @media(max-width: 767px) {
+        display: none;
+      }
+
+    }
+
+    &__thumb {
+
+      @media(max-width: 767px) {
+        display: none;
+      }
+
+    }
+
+  }
+
+}
+
+.fullscreen {
+
+  .fotorama { 
+
+    &--fullscreen {
+      background: $white;
+    }
+
+    &__stage {
+      background: $white;
+    }
+
+    &__arr--next {
+      background-color: rgba( $white, .3);
+      height: 100%;
+      top: 0;
+
+      &:before {
+        content: '';
+        display: block;
+        height: 30px;
+        width: 30px;
+        position: absolute;
+        top: 50%;
+        right: 50%;
+        border-top: 2px solid $gray;
+        border-right: 2px solid $gray;
+        transform: rotate(45deg);
+      }
+
+    }
+
+    &__arr--prev {
+      background-color: rgba( $white, .3);
+      height: 100%;
+      top: 0;
+
+      &:before {
+        content: '';
+        display: block;
+        height: 30px;
+        width: 30px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        border-left: 2px solid $gray;
+        border-bottom: 2px solid $gray;
+        transform: rotate(45deg);
+      }
+
+    }
+
+    &__fullscreen-icon {
+      font-family: $font-ai !important;
+      opacity: 1;
+      height: 35px;
+      width: 35px;
+
+      &:before {
+        content: "\e19e";
+        color: $gray;
+        font-size: 30px;
+      }
+
+    }
+
+    &__nav {
+      text-align: left;
+      background: $white;
+
+      @media(max-width: 767px) {
+        text-align: center;
+      }
+
+      &__frame--thumb {
+
+        @media(max-width: 767px) {
+          background: $white;
+          border: 1px solid $gray;
+          border-radius: 50%;
+          height: 6px !important;
+          padding: 0 !important;
+          width: 6px !important;
+          margin: 3px;
+        }
+
+      }
+
+      &__frame--thumb.fotorama__active {
+
+        @media(max-width: 767px) {
+          background-color: $pacific-blue;
+          border: 1px solid $pacific-blue;
+        }
+
+      }
+
+    }
+
+    &__thumb-border{
+
+      @include gradient-x (($white, .25), ($gray, .1), 25%, 75%);
+      border: 1px solid $gray;
+
+      @media(max-width: 767px) {
+        display: none;
+      }
+
+    }
+
+    &-zoom-in, &-zoom-out {
+      background: transparent;
+      color: transparent;
+      cursor: pointer;
+      font-family: $font-ai !important;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 80px;
+      text-align: center;
+      z-index: 9999;
+    }
+
+    &-zoom-in:before {
+      content: "\e7c3";
+      color: $gray;
+      font-size: 30px;
+    }      
+
+    &-zoom-out {
+      top: 80px;
+      
+      &:before {
+        content: "\e7b6";
+        color: $gray;
+        font-size: 30px;
+      } 
+
+    }   
+
+    &__thumb {
+
+      @media(max-width: 767px) {
+        display: none;
+      }
+
+    }
+
+  }
+
+}
+
+/*----------To change the zoom lens size--------*/
+.zoomLens {
+  width: 250px !important;
+  height: 250px !important;
+}

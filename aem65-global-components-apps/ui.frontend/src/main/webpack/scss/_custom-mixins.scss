@@ -1,0 +1,339 @@
+///////////////////////
+// Mixins
+//////////////////////
+
+// Positioning mixin - everything you need in one spot
+// Usage:- @include setPosition(absolute, left 112px top 160px);
+@mixin setPosition($position, $args: (), $z-indexing:null) {
+    $offsets: top right bottom left;
+    position: $position;
+    z-index: $z-indexing;
+
+    @each $offset in $offsets {
+        $index: index($args, $offset);
+
+        @if $index {
+            @if $index == length($args) {
+                #{$offset}: 0;
+            }
+            @else {
+                $next: nth($args, $index + 1);
+                @if is-valid-length($next) {
+                    #{$offset}: $next;
+                }
+                @else if index($offsets, $next) {
+                    #{$offset}: 0;
+                }
+                @else {
+                    @warn "Invalid value `#{$next}` for offset `#{$offset}`.";
+                }
+            }
+        }
+    }
+  }
+
+
+  // mixin for flex box; can be used as a flex centerer by default
+  //Usage:- @include flex(flex-start, center, column)
+  @mixin flex($main-axis:center, $cross-axis:center, $flex-dir:row) {
+    display: flex;
+    flex-direction: $flex-dir;
+    justify-content: $main-axis;
+    align-items: $cross-axis;
+  }
+
+
+  // Rem sizing anything
+  // Usage :- @include rem(font-size, 16px);
+  // Usage :- @include rem(margin, 0 24px 0 12px);
+  @function parseInt($n) {
+    @return $n / ($n * 0 + 1);
+  }
+
+  @mixin rem($property, $values) {
+    $px : ();
+    $rem: ();
+
+      $root: 16;
+
+      @each $value in $values {
+          @if $value == 0 or $value == auto {
+              $px : append($px , $value);
+              $rem: append($rem, $value);
+          }
+
+          @else if type-of($value) == number {
+              $unit: unit($value);
+        $val: parseInt($value);
+
+        @if unitless($number: $value) {
+          #{$property}: $value;
+        }
+        @else {
+          @if $unit == "px" {
+            $px : append($px,  $value);
+            $rem: append($rem, ($val / $root + rem));
+          }
+
+          @if $unit == "rem" {
+            $px : append($px,  ($val * $root + px));
+            $rem: append($rem, $value);
+          }
+        }
+          }
+
+          @else {
+              $px : append($px,  $value);
+              $rem: append($rem, $value);
+          }
+      }
+
+      @if $px == $rem {
+          #{$property}: $px;
+      } @else {
+          #{$property}: $rem;
+      }
+  }
+
+  // Mixin for generating common text styles
+  //Usage:- @include copy(17px, 1, $color-white, uppercase, 700, -0.8px);
+  //Usage:- @include copy(38px, 40px, $anotherGray, none, 300);
+  @mixin copy($fs, $lh:1, $color:inherit, $transform:none, $weight:normal, $kern:null) {
+    // font-family: $ff; //removed font-family as its constant
+    @include rem(font-size, $fs);
+    @include rem(line-height, $lh);
+    color: $color;
+    text-transform: $transform;
+    font-weight: $weight;
+    letter-spacing: $kern;
+  }
+
+  // Vendor Prefixing
+  //Usage :- @include prefix('box-sizing', 'border-box', moz webkit);
+  @mixin prefix($property, $value, $vendors: webkit moz ms o, $default: true) {
+    @if $vendors {
+      @each $vendor in $vendors {
+        #{"-" + $vendor + "-" + $property}: #{$value};
+      }
+    }
+    @if $default {
+      #{$property}: #{$value};
+    }
+  }
+
+
+// mixin to get container width minus gutter width
+// Usage :- width: get-container-width('lg');
+@function get-container-width($key: "md") {
+  @return (map-get($container-max-widths, $key) - $grid-gutter-width);
+}
+
+// mixin to get full container width
+// Usage :- width: get-full-width('lg');
+@function get-full-width($key: "md") {
+@return map-get($container-max-widths, $key);
+}
+
+// mixin to target browsers
+// Internet Explorer 10+ only
+@mixin ie-only() {
+  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    @content;
+  }
+}
+
+// Firefox only
+@mixin firefox() {
+  @at-root {
+    @-moz-document url-prefix() {
+      & {
+        @content;
+      }
+    }
+  }
+}
+
+// Chrome only
+@mixin chrome() {
+  @media all and (-webkit-min-device-pixel-ratio:0) and (min-resolution: .001dpcm) {
+    & { @content; }
+  }
+}
+
+// Safari only
+@mixin safari(){
+  @supports (overflow:-webkit-marquee) and (justify-content:inherit){
+    & {
+      @content;
+    }
+  }
+}
+
+// ios only
+@mixin ios(){
+  @supports (-webkit-text-size-adjust:none) and (not (-ms-accelerator:true)) and (not (-moz-appearance:none)){
+    & { @content; }
+  }
+}
+
+
+// Animation Keyframes
+//********************************************************//
+@mixin keyframes( $animationName )
+{
+    @-webkit-keyframes #{$animationName} {
+        @content;
+    }
+    @-moz-keyframes #{$animationName} {
+        @content;
+    }
+    @-o-keyframes #{$animationName} {
+        @content;
+    }
+    @keyframes #{$animationName} {
+        @content;
+    }
+}
+
+
+// Components Specific - Standard Spacing
+//********************************************************//
+@mixin standard-spacings($marginTop, $marginBottom) {
+  div:not(.experiencefragment), article {
+    margin-top: $marginTop;
+    margin-bottom: $marginBottom;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    &:only-child, &.container.a-container:not(.a-container--shadow-box), &.layoutcontainer {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+  }
+}
+
+@mixin spacing-for-organisms($marginTop) {
+  .spacing-py,
+  .video,
+  .m-tile-list,
+  .promosection,
+  .productsection,
+  .contentsection,
+  .ctasection,
+  .accordion,
+  .productcomparison {
+
+    &+.spacing-py,
+    &+.video,
+    &+.m-tile-list,
+    &+.promosection,
+    &+.productsection,
+    &+.contentsection,
+    &+.ctasection,
+    &+.accordion,
+    &+.container.a-container,
+    &+.layoutcontainer,
+    &+.productcomparison {
+      margin-top: $marginTop;
+    }
+
+  }
+}
+
+// mixin to table colors
+@mixin tableColorsMapping($tableColor-map){
+  @each $tableName,
+  $tableColor in $tableColor-map {
+    .m-table-component{
+      .dt-text-#{$tableName} {
+        color: $tableColor;
+
+        &_hover {
+          &:hover {
+            color: $tableColor !important;
+
+            span {
+              color: $tableColor !important;
+            }
+          }
+
+          &:active {
+            color: $tableColor !important;
+
+            span {
+              color: $tableColor !important;
+            }
+          }
+
+          &:focus {
+            color: $tableColor !important;
+
+            span {
+              color: $tableColor !important;
+            }
+          }
+        }
+      }
+
+      .dt-text-#{$tableName} * {
+        color: $tableColor;
+      }
+
+      .dt-text-bg-#{$tableName} {
+        background: $tableColor;
+        &_hover {
+          &:hover {
+            background: $tableColor !important;
+          }
+
+          &:active {
+            background: $tableColor !important;
+          }
+
+          &:focus {
+            background: $tableColor !important;
+          }
+        }
+      }
+
+      .plain-table.dt-text-bordercolor-#{$tableName} {
+        tbody {
+          tr {
+            td {
+              border-color: $tableColor;
+            }
+
+            th {
+              border-color: $tableColor;
+            }
+          }
+        }
+      }
+
+      .with-border.dt-text-bordercolor-#{$tableName}{
+        tbody {
+          tr {
+            td {
+              border-color: $tableColor;
+            }
+
+            th {
+              border-color: $tableColor;
+            }
+          }
+        }
+      }
+
+      .dt-txt-#{$tableName} {
+        background-color: rgba($tableColor, 0.9);
+      }
+    }
+
+    }
+  }

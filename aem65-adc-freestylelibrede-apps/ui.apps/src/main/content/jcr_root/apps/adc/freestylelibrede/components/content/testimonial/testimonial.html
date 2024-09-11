@@ -1,0 +1,23 @@
+<div class="cmp-testimonial" 
+	data-sly-use.template="core/wcm/components/commons/v1/templates.html"
+	data-sly-test="${properties.testimonials}"
+    data-sly-unwrap="${wcmmode.edit || wcmmode.preview}">
+</div>
+<sly data-sly-call="${template.placeholder @ isEmpty=true}"></sly>
+ <sly data-sly-use.testimonials="com.abbott.aem.adc.freestylelibrede.models.TestimonialModel"></sly>
+     <div class="col-lg-4">
+          <div class="card pd-v-15 testimonial border-0">
+            <img
+              class="card-img-top mx-auto d-block lazyload"
+              data-src="${testimonials.testimonialImage}"
+              alt="${testimonials.testimonialImageAltText}"
+            />
+            <div class="card-body">
+              <h5 class="card-title ">${testimonials.testimonialName}</h5>
+              <p class="card-text">
+                ${testimonials.testimonialQuote}
+              </p>
+               <a data-sly-test="${testimonials.ctaText}" href="${testimonials.ctaURL @extension='html'}" class="adc-button adc-button-${testimonials.ctaStyling} text-center" target="${testimonials.ctaAction}" >${testimonials.ctaText}</a>
+            </div>
+          </div>
+        </div>

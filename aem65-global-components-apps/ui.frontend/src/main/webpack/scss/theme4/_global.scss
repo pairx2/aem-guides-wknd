@@ -1,0 +1,426 @@
+@import "../custom-mixins";
+@import "variables";
+
+// Heading base styles
+h1, .h1 {
+	font-size: $h3-font-size;
+    line-height: $h3-line-height;
+
+	@include media-breakpoint-up(sm) {
+		font-size: $h2-font-size;
+		line-height: $h2-line-height;
+	}
+
+	@include media-breakpoint-up(lg) {
+		font-size: $h1-font-size;
+		line-height: $h1-line-height;
+		letter-spacing: $h1-letter-spacing;
+  }
+}
+
+.h1-hero{
+  font-size: $h1-hero-font-size;
+  line-height: $h1-hero-line-height;
+
+  @include media-breakpoint-down(sm) {
+		font-size: $h3-font-size;
+		line-height: $h3-line-height;
+  }
+
+  @include media-breakpoint-only(md) {
+		font-size: $h2-font-size;
+		line-height: $h2-line-height;
+	}
+
+}
+
+h2, .h2 {
+    font-size: $h2-font-size;
+    line-height: $h2-line-height;
+
+    @include media-breakpoint-down(sm) {
+		font-size: $h3-font-size;
+        line-height: $h3-line-height;
+	}
+}
+h3, .h3 {
+    font-size: $h3-font-size;
+    line-height: $h3-line-height;
+
+}
+h4, .h4 {
+    font-size: $h4-font-size;
+    line-height: $h4-line-height;
+}
+h5, .h5 {
+    font-size: $h5-font-size;
+    line-height: $h5-line-height;
+}
+h6, .h6 {
+    font-size: $h6-font-size;
+    line-height: $h6-line-height;
+    letter-spacing: $h6-letter-spacing;
+    text-transform: uppercase;
+}
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6{
+    font-family: $headings-font-family;
+    font-weight: bold;
+    color: $surface-background;
+}
+// Heading base styles End
+
+// Body Extra classes styles
+a {
+    color: $action-primary;
+    outline: none;
+    &:hover, &:focus {
+        color: $action-focused-light;
+        outline: none;
+        text-decoration: underline;
+    }
+    &:active {
+        color: $action-focused-light;
+        outline: none;
+    }
+}
+p {
+    font-family: $text-font-family;
+}
+body {
+    @include fontDefinitionWithSize($base-font-family, $font-size-base, normal, $h4-line-height);
+    color: $surface-background;
+    background-color: $white;
+
+    -webkit-font-smoothing: antialiased;
+}
+
+.font-small {
+    font-size: $font-size-sm;
+    line-height: $base-line-height * 1.25;
+}
+.btn-lg {
+    font-size: $font-size-base;
+    line-height: $base-line-height * 1.25;
+    letter-spacing: $base-letter-spacing;
+}
+.btn-sm {
+    font-size: $font-size-sm;
+    line-height: $base-line-height * 1.25;
+    letter-spacing: $base-letter-spacing * 0.6;
+}
+label, .label{
+    font-size: $font-size-sm;
+    line-height: $base-line-height * 1.25;
+}
+caption, .caption, .figure-caption{
+    font-size: $font-size-base * 0.75;
+    line-height: $base-line-height;
+}
+.color-text-gray {
+	color: $color-dark-gray;
+}
+
+.text-underline {
+    text-decoration: underline;
+}
+
+.horizontal-divider{
+    display: block;
+    border: 0.5px solid rgba($color-white,0.32); 
+}
+
+
+.generic__quotes {
+    color: $secondary-color;
+}
+
+.u-full-width {
+	.container {
+      max-width: 100%;
+  }
+}
+
+.abt-icon--rounded {
+    color: $color-white;
+    padding: 5px;
+    font-size: $font-size-20;
+    border-radius: 50%;
+    background-color: $color-black;
+    border: 1px $color-black solid;
+}
+
+.abt-icon--square {
+    color: $color-white;
+    padding: 5px;
+    font-size: $font-size-20;
+    border-radius: 4px;
+    background-color: $color-black;
+    border: 1px $color-black solid;
+}
+
+:dir(rtl),
+.rtl {
+    direction: rtl;
+    text-align: right;
+}
+
+.no-scroll-y {
+    overflow-y: hidden;
+}
+
+//carousel
+[data-js-component="carousel"] {
+  .slick-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 0;
+    padding: 0;
+  }
+
+  .slick-prev{
+    left: -25px;
+    [dir="rtl"] &{
+      right: -25px;
+      left: auto;
+    }
+  }
+
+  .slick-next{
+    right: -25px;
+    [dir="rtl"] &{
+      left: -25px;
+      right: auto;
+    }
+  }
+
+  .slick-dots{
+    font-size: 0;
+    line-height: 0;
+    margin: 0;
+  }
+}
+
+body .xf-content-height {
+    min-height: inherit; // to remove min height which is applied by default
+    margin: 0!important;
+}
+
+/***** Global Components Spacings - starts *****/
+.responsivegrid {
+  .aem-Grid {
+
+    // standard spacing top and bottom
+    >.aem-GridColumn {
+
+      &:not(.experiencefragment) {
+        margin-top: $spacers-8;
+        margin-bottom: $spacers-8;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      &:only-child {
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+
+    }
+
+    // components with padding top/bottom 40px
+    .spacing-py,
+    .video,
+    .m-tile-list,
+    .promosection,
+    .productsection,
+    .contentsection,
+    .ctasection,
+    .accordion {
+      padding-top: $spacers-8;
+      padding-bottom: $spacers-8;
+    }
+
+
+    // between two components with padding and margin both, spacing comes as 1.5x
+    // apply -ve margin to make spacing 1x
+    .spacing-py,
+    .video,
+    .m-tile-list,
+    .promosection,
+    .productsection,
+    .contentsection,
+    .ctasection,
+    .accordion,
+    .productcomparison {
+
+      &+.spacing-py,
+      &+.video,
+      &+.m-tile-list,
+      &+.promosection,
+      &+.productsection,
+      &+.contentsection,
+      &+.ctasection,
+      &+.accordion,
+      &+.container.a-container,
+      &+.layoutcontainer,
+      &+.productcomparison {
+        margin-top: - $spacers-8;
+      }
+
+    }
+
+    // container/layout-container
+    .container.a-container,
+    .layoutcontainer {
+      margin-top: 0;
+      margin-bottom: 0;
+      padding-top: $spacers-8;
+      padding-bottom: $spacers-8;
+
+      // special case : components after container/layout-container
+      &+.spacing-py,
+      &+.video,
+      &+.m-tile-list,
+      &+.promosection,
+      &+.productsection,
+      &+.contentsection,
+      &+.ctasection,
+      &+.accordion,
+      &+.container.a-container,
+      &+.layoutcontainer,
+      &+.productcomparison {
+        margin-top: 0;
+      }
+    }
+
+    // components spacings within "Container"
+    .container.a-container {
+      .cmp-container>div:not(.experiencefragment), .cmp-container>article {
+
+          margin-top: $spacers-8;
+          margin-bottom: $spacers-8;
+
+          &:first-child {
+            margin-top: 0;
+          }
+
+          &:last-child {
+            margin-bottom: 0;
+          }
+
+          &:only-child, &.container.a-container, &.layoutcontainer {
+            margin-top: 0;
+            margin-bottom: 0;
+          }
+
+      }
+
+      .cmp-container>div {
+        &.spacing-py,
+        &.video,
+        &.m-tile-list,
+        &.promosection,
+        &.productsection,
+        &.contentsection,
+        &.ctasection,
+        &.accordion,
+        &+.productcomparison {
+
+          // between two components with padding and margin both, spacing comes as 1.5x
+          // apply -ve margin to make spacing 1x
+          &+.spacing-py,
+          &+.video,
+          &+.m-tile-list,
+          &+.promosection,
+          &+.productsection,
+          &+.contentsection,
+          &+.ctasection,
+          &+.accordion,
+          &+.container.a-container,
+          &+.layoutcontainer,
+          &+.productcomparison {
+            margin-top: - $spacers-8;
+          }
+
+        }
+
+        &.container.a-container,
+        &.layoutcontainer {
+          &+.productcomparison {
+            margin-top: - $spacers-8;
+          }
+        }
+
+      }
+    }
+
+    // components spacings within "Tab"
+    .a-tabs .a-tabs__tab-pane>div {
+      &:first-child {
+        margin-top: $spacers-8;
+      }
+
+      &.spacing-py,
+      &.video,
+      &.m-tile-list,
+      &.promosection,
+      &.productsection,
+      &.contentsection,
+      &.ctasection,
+      &.accordion,
+      &.container.a-container,
+      &.layoutcontainer,
+      &.experiencefragment,
+      &.productcomparison {
+        &:first-child {
+          margin-top: 0;
+        }
+      }
+    }
+
+  }
+}
+
+/***** Mobile app styles *****/
+.ab-mobile-app {
+  background: var(--ab-mobile-app-background-color);
+  color: var(--ab-mobile-app-text-color);
+
+  &.article-page {
+    padding-top: var(--ab-mobile-app-article-padding-top);
+  }
+
+  h1,
+  .h1,
+  h2,
+  .h2,
+  h3,
+  .h3,
+  h4,
+  .h4,
+  h5,
+  .h5,
+  h6,
+  .h6,
+  p{
+    color: var(--ab-mobile-app-text-color);
+  }
+}
+
+
+/***** Global Components Spacings - ends *****/
+
+$border-width:                1px;
+$border-color:                $color-medium-gray;
+
+$border-radius:               .25rem; // 4px
+$border-radius-lg:            .625rem; //10px
+$border-radius-md:            .5rem; //8px
+$border-radius-sm:            .125rem; //2px
+
+
+@import 'global/main';
+
+@include tableColorsMapping($tableColor-map);

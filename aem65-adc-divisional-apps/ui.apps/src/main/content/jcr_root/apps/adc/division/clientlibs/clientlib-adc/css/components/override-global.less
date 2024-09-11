@@ -1,0 +1,115 @@
+@import '../mixin.less';
+@import '../media-queries.less';
+@import '../variables.less';
+
+//Header
+.o-header {
+
+  .sticky {
+    .o-header__logo-section {
+      --header-logo-section-border-bottom: 1px solid @header-separator-color;
+    }
+  }
+
+  &__wrapper {
+    .o-header__sticky-section {
+      .o-header__mega-menu {
+        .navbar {
+          .a-button-cta-wrapper {
+            >.a-button-cta {
+              >.btn {
+                --button-border-radius: 0;
+                --button-font-size: @spacer-14;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+//Mega-Menu
+.m-mega-menu {
+  &__mobile {
+    --mega-menu-border-hover: 4px solid @primary-color;
+  }
+
+  //version 2
+  &__list-var {
+    @media @lg-up {
+      --mega-menu-wrapper-width: @lg-width;
+    }
+    @media @xl-up {
+      --mega-menu-wrapper-width: @xl-width;
+    }
+  }
+}
+
+//Hero
+.m-hero {
+  @self : m-hero;
+  /*-----------------
+    Modifiers
+  /*----------------*/
+  &--default-banner {
+    --hero-header-font-size: @spacer-24;
+    --hero-header-line-height: @spacer-32;
+
+    @media @md-up {
+      --hero-header-font-size: @spacer-38;
+      --hero-header-line-height: @spacer-48;
+    }
+
+    @media @lg-up {
+      --hero-header-font-size: @spacer-48;
+      --hero-header-line-height: @spacer-64;
+    }
+
+    .m-hero--tall& {
+      @media @lg-up {
+        --hero-header-font-size: @spacer-60;
+        --hero-header-line-height: @spacer-80;
+      }
+    }
+  }
+
+  &--campaign-banner {
+    --hero-header-font-size: @spacer-40;
+    --hero-header-line-height: @spacer-38;
+
+    @media @md-up {
+      --hero-header-font-size: @spacer-80;
+      --hero-header-line-height: @spacer-72;
+    }
+  }
+
+  &--dark{
+    &:not([class*="@{self}--mobile-tab--bg"])  {
+      @media @lg-down {
+        --hero-color-dark: @color-black;
+      } 
+    }
+    @media @lg-up {
+      --hero-color-dark: @color-white;
+    }
+  }
+
+}
+
+.a-input-field, .a-search, .m-search-bar__input-field {
+  @media @md-down {
+    /* Styles for iPhone devices with Retina displays */
+    @media (-webkit-device-pixel-ratio: 2)  {
+      --input-field-label-font-size: @font-size-base;
+      --search-input-font-size: @font-size-base;
+      --searchbar-input-font-size:@font-size-base;
+    }
+    @media (-webkit-device-pixel-ratio: 3)  {
+      --input-field-label-font-size: @font-size-base;
+      --search-input-font-size: @font-size-base;
+      --searchbar-input-font-size:@font-size-base;
+    }
+  }
+}

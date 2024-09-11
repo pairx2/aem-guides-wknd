@@ -1,0 +1,21 @@
+<template data-sly-template.item="${@ item='The navigation item'}"
+		  data-sly-use.itemContent="abbott-platform/components/content/molecules/megamenu/v1/megamenuversions/version1/tertiaryitemcontent.html">
+
+	<sly data-sly-test="${item.title || item.subtitle}">
+			<a id="${item.id}" data-sly-test="${item.external}" class="m-mega-menu__side-nav-item" aria-label="${item.text}" role="link" href="${item.URL}" data-id="${item.id}"
+			   data-redirect-confirm="true" rel="noopener noreferrer"
+			   itemprop="url"
+			   data-cmp-clickable="${item.data ? true : false}"
+			   data-cmp-data-layer="${item.data.json}">
+				<sly data-sly-call="${itemContent.item @ item = item}"></sly>
+			</a>
+			<a id="${item.id}" data-sly-test="${!item.external}" href="${item.URL}" class="m-mega-menu__side-nav-item" aria-label="${item.title}" role="link" href="${item.URL}"
+			   target="${item.action}" rel="${item.action=='_blank'?'noopener':''}"
+			   data-id="${item.id}"
+			   itemprop="url"
+			   data-cmp-clickable="${item.data ? true : false}"
+			   data-cmp-data-layer="${item.data.json}">
+				<sly data-sly-call="${itemContent.item @ item = item}"></sly>
+			</a>
+	</sly>
+</template>

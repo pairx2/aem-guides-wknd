@@ -1,0 +1,59 @@
+<div data-sly-test="${wcmmode.edit}" class="cq-placeholder" data-emptyText="AN - Dynamic Product Comparison">
+</div>
+<!-- Header inclusion for PDF-->
+<div class="header-compare d-none">
+	<p>Product Comparison</p>
+	<div style="height:1px;background-color:#7F7F7F;"></div>
+</div>
+
+<sly data-sly-use.dynamicProductCompare="${'com.abbott.aem.an.division.core.components.models.DynamicProductCompare' @productId=request.requestParameterMap['productids'][0].toString}" data-sly-use.templates="core/wcm/components/commons/v1/templates.html" data-sly-set.multiproduct="${dynamicProductCompare.multiproduct}">
+	<div data-sly-test="${dynamicProductCompare.dataSource =='pimapi'}" class="productComparePageRun pageRun" id="products-compare-data">
+		<div class="container">
+		<input class="localStorageVar" type="hidden" value="${dynamicProductCompare.sessionStorageLoc}">
+		<input class="minProduct" type="hidden" dataSelect="${dynamicProductCompare.minComparision}">
+			<div class="topSection">
+				<div class="row">
+					<div class="col-3 grayBackColor"> </div>
+					<div class="col-9">
+						<div class="row">
+
+							<sly data-sly-use.productCompare="dynamic-product-comparison-products.html" data-sly-call="${productCompare.products @ dynamicProductCompare= dynamicProductCompare, multiproduct= multiproduct}"></sly>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<sly data-sly-test="${dynamicProductCompare.resultsLayout =='abbottnutrition-result-layout'}" data-sly-use.featureCompare="dynamic-product-comparison-features.html" data-sly-call="${featureCompare.features @ dynamicProductCompare= dynamicProductCompare, multiproduct= multiproduct}"></sly>
+		</div>
+	</div>
+	
+	<!-- Footer inclusion for PDF-->
+	<div class="footer-compare d-none">
+		<div style="height:1px;background-color:#7F7F7F;"></div>
+		<table class="footer d-none" id="footer" aria-describedby="footer-mydesc">
+		    <thead class="d-none">
+				<tr>
+					<th id="pdfFooter" colspan="5"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="col col-2">
+					<td class="tableImg"><img src="/content/dam/an/abbottnutrition/images/global/Abbott_Logo.png" alt="image"></td>
+					<td>
+						<p>Abbott Nutrition Abbott Laboratories <br/>Columbus, OH 12345-6789 <br><br/>1-800-227-5767</p>
+					</td>
+					<td>
+						<p>For more information contact your <br/>Abbott Nutrition Representative or visit: <br><br/>www.abbottnutrition.com</p>
+					</td>
+					<td>
+						<p>© <sly data-sly-use.copyrightYear="${'com.abbott.aem.cloud.platform.core.models.I18nFetcher' @ key = 'copyrightyear'}"/>${copyrightYear.title} Abbott Laboratories Inc.</p>
+					</td>
+					<td><br>
+						<h5>Page <span class="currentPage"></span> of <span class="totalPage"></span></h5>
+					</td>
+				</tr>
+			</tbody>
+		</table>	
+	</div>
+</sly>
+

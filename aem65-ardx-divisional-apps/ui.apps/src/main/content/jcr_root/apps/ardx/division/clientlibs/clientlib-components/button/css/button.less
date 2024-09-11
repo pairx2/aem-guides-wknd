@@ -1,0 +1,60 @@
+@import './media-queries.less';
+@import './variables.less';
+
+
+.button-color-variation(@names; @colors; @index)
+  when
+  (iscolor(extract(@colors, @index)))
+  and
+  (@index > 0) {
+  .button-color-variation(@names; @colors; (@index - 1));
+
+  @name: extract(@names, @index);
+  @color: extract(@colors, @index);
+
+    .a-button-bg--@{name} {
+      .btn {
+        background-color: @color !important;
+        border-radius:0; 
+      }
+    }
+    .a-button-bghover--@{name} {
+      .btn{
+         &:hover {
+          background-color: @color !important;
+        }
+        &::before {
+          background-color: @color !important;
+        }
+      }
+    }
+    .a-button-text--@{name} {
+      .btn{
+        color: @color !important;
+      }
+    }
+    .a-button-texthover--@{name} {
+      .btn{
+        &:hover {
+          color: @color !important;
+        }
+      }
+    }
+}
+
+.button-color-variation(@names; @colors; @length);
+
+.a-button--inline{
+    margin:0;
+    padding-left:5px;
+    padding-right:5px;
+ 	display: inline-block !important;
+}
+
+
+
+.button-wistia-width{
+	height: 35px;
+    width: 174.922px; 
+    position: relative;
+}

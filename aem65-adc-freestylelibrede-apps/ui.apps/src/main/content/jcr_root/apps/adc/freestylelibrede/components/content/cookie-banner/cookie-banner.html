@@ -1,0 +1,57 @@
+<sly data-sly-test="${wcmmode.edit}">
+  <p data-sly-unwrap="${properties.title}" data-emptytext="Configure ${component.title}" class="cq-placeholder"></p>
+</sly>
+<!-- cookie banner -->
+<sly data-sly-use.cookieBannerModel="com.abbott.aem.adc.freestylelibrede.models.CookieBannerModel">
+   <section class="container-fluid cookie-banner">
+     <div class="container">
+       <div class="cookie-banner-inner">
+           <div class="row cookie-content">
+             <div class="col-md-9">
+               <div class="row">
+                 <div class="col-lg-7">
+                   <h4>${cookieBannerModel.title}</h4>
+                   <p class="m-0">${cookieBannerModel.message} <a class="text-white ck-read-more" href="${cookieBannerModel.linkPath @extension='html'}">${cookieBannerModel.linkText}</a></p>
+                 </div>
+                 <div class="col-lg-5 ck-btn-section">
+                   <a href="#" onclick="saveCookieData()" class="white-border-btn mt-3 mt-lg-0">${cookieBannerModel.acceptCookieText}</a>
+                   <div class="mt-2">
+         <sly data-sly-test.author="${wcmmode.edit}">
+                     <ul class="list-inline cookie-links cookie-links-author m-0">
+                       <li class="list-inline-item">
+                        <div data-sly-resource="${'cta1' @ resourceType='adc/freestylelibrede/components/content/cta'}"></div>
+                       </li>
+                       <li class="list-inline-item">
+                         <div data-sly-resource="${'cta2' @ resourceType='adc/freestylelibrede/components/content/cta'}"></div>
+                       </li>
+                     </ul>
+           </sly>
+           <sly data-sly-test="${!author}">
+                     <ul class="list-inline cookie-links m-0">
+                       <li class="list-inline-item">
+                        <div data-sly-resource="${'cta1' @ resourceType='adc/freestylelibrede/components/content/cta'}"></div>
+                       </li>
+                       <li class="list-inline-item">
+                         <div data-sly-resource="${'cta2' @ resourceType='adc/freestylelibrede/components/content/cta'}"></div>
+                       </li>
+                     </ul>
+           </sly>
+                   </div>
+                 </div>
+               </div>
+             </div>
+
+             <div class="col-md-3 ck-right">
+               <div class="ck-right-inner">
+                   <p class="pt-1">${cookieBannerModel.countrySelectorMessage}<div class="w-100" data-sly-resource="${'experience-fragment' @ resourceType='cq/experience-fragments/editor/components/experiencefragment'}"></div></p>
+         
+
+               </div>
+             </div>
+
+           </div>
+       </div>
+     </div>
+   </section>
+</sly>
+   <!-- /cookie banner -->

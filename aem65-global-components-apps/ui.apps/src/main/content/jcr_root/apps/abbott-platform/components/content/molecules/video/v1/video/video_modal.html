@@ -1,0 +1,26 @@
+<sly data-sly-use.videoModel="com.abbott.aem.platform.common.components.models.Video" />
+<div class="m-popup m-video-popup ${videoModel.videoType}" data-toggle="modal" data-target="#video${resource.path.hashCode}-modal">
+  <div class="play-icon" id="video${resource.path.hashCode}">
+         <img src="${videoModel.fileReference}" alt="${videoModel.alt}" />
+         <button class="btn popup-button" id="play_button">►</button>
+  </div>
+  <div class="m-popup-content" id="videoModalMain" style="display: none;">
+
+      <div class="m-video" data-js-component="video">
+        <div id="${component.id}" class="a-video" data-mobile-autoplay="${videoModel.autoplayMobileView ? 'true' : 'false'}" data-controls="${videoModel.videoControlOn || 'false'}" data-muted="${videoModel.audioControlOn || 'false'}" data-loop="${videoModel.loopOn ? 'true' : 'false'}" data-autoplay="${videoModel.autoPlay && !wcmmode.edit ? 'true' : 'false'}" data-playertype="${videoModel.playerType}">
+          <div class="a-video__player global-video-popup">
+             <!--/* BrightCove Video */-->
+             <sly data-sly-test="${videoModel.videoType == 'brightCove'}" data-sly-include="video_brightcove_modal.html" />
+             <!--/* Limelight Video */-->
+             <sly data-sly-test="${videoModel.videoType == 'limeLight'}" data-sly-include="video_limelight.html" />
+             <!--/* Dam Video */-->
+             <sly data-sly-test="${videoModel.videoType == 'dam'}" data-sly-include="video_dam.html" />
+             <!--/* External Video */-->
+             <sly data-sly-test="${videoModel.videoType == 'videoURL'}" data-sly-include="video_external.html" />
+           </div>
+         </div>
+       </div>
+
+  </div>
+</div>
+

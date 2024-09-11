@@ -1,0 +1,34 @@
+<sly data-sly-use.layout="com.abbott.aem.platform.common.components.models.LayoutContainer"
+	 data-sly-use.template="core/wcm/components/commons/v1/templates.html"/>
+<sly data-sly-call="${template.placeholder @ isEmpty=!layout.columnCount}"/>
+<sly data-sly-list.item="${resource.listChildren}">
+	<sly data-sly-test="${item.name == 'section-title'}">
+		<sly data-sly-test.sectionTitle="${item.jcr:title}"/>
+	</sly>
+	<sly data-sly-test="${item.name == 'section-subtitle'}">
+		<sly data-sly-test.sectionSubTitle="${item.text}"/>
+	</sly>
+</sly>
+<sly data-sly-use.component="com.adobe.cq.wcm.core.components.models.Component">
+<div id="${component.id}" class="container column-layout-container">
+	<div class="section-info" data-sly-test="${wcmmode.edit || sectionTitle || sectionSubTitle}">
+		<div class="section-title" data-sly-test="${wcmmode.edit || sectionTitle}"
+			 data-sly-resource="${'section-title' @resourceType = layout.titleProxyPath,decoration=true}"></div>
+		<div class="section-subtitle" data-sly-test="${wcmmode.edit || sectionSubTitle}"
+			 data-sly-resource="${'section-subtitle' @resourceType=layout.textProxyPath}"></div>
+	</div>
+	<section class="a-container">
+		<div class="container">
+			<div class="row a-container__layout-section">
+				<sly data-sly-list="${layout.columnList}"> <sly
+					data-sly-test.col="${'{0}' @ format=[itemList.count] }" />
+				<div
+					class="a-container__column col-12 col-sm-12 col-md-6 ${layout.columnCount != 2 && layout.columnCount != 3 && layout.columnCount != 5 && layout.columnCount != 6 ? 'col-lg-3' : 'col-lg-4'}"
+					data-sly-resource="${'par{0}' @ format=[itemList.count], path=col ,resourceType='wcm/foundation/components/parsys'}"></div>
+				</sly>
+			</div>
+		</div>
+	</section>
+</div>
+</sly>
+<sly data-sly-call="${template.placeholder @ isEmpty=!layout.columnCount}"></sly>

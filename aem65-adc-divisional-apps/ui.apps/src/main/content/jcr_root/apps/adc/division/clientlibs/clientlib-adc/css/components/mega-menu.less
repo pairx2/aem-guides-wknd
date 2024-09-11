@@ -1,0 +1,78 @@
+@import '../mixin.less';
+@import '../media-queries.less';
+@import '../variables.less';
+
+/**
+ * MEGA MENU - COMPONENT
+**/
+.m-mega-menu {
+  @self : m-mega-menu;
+
+  &__nested-menu {
+
+    //mega-menu v1 alignment
+    &.@{self}__default {
+      @media @lg-up {
+        left: -30px !important;
+      }
+    }
+
+  }
+
+  &__mobile {
+    .navbar {
+      .navbar-collapse {
+        @media (max-width: 767px) and (orientation: landscape) {
+          height: auto !important;
+          max-height: 70vh;
+        }
+      }
+
+      /*fix the icon color in mobile and tablet*/
+      .navbar-toggler {
+        @media @lg-down {
+          color: @color-black !important;
+        }
+
+
+      }
+    }
+    .@{self}__mobile-item-wrapper {
+      @media @lg-up {
+        .version3.megamenuversions {
+          &--tertiary-menu-relative {
+            .@{self}__nested-menu {
+              .@{self}__side-nav-transparent {
+                top: auto;
+                margin-top: -15px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  /*-----------------
+  Modifiers
+  /*----------------*/
+  &__mobile .nav-small-text {
+    .@{self}__mobile-item-wrapper {
+      @media @lg-up {
+        margin-right: @mega-menu-margin-right;
+
+        .nav-link,
+        >.link .a-link {
+          font-size: @font-size-12;
+        }
+
+        html[dir="rtl"] & {
+          margin-right: 0;
+          margin-left: @mega-menu-margin-right;
+        }
+      }
+    }
+  }
+}
+
+

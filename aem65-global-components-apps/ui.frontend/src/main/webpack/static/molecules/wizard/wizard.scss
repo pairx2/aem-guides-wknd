@@ -1,0 +1,197 @@
+/**
+------------------------------------------------------------------------
+NOTE: THIS COMPONENT IS MOVED TO MOLECULES FOR CONSISTENCY WITH DSM.
+      TO AVOID ANY CHALLENGES, CLASS NAMES ARE NOT CHANGED
+------------------------------------------------------------------------
+*/
+
+.a-wizard {
+    $self: &;
+
+    &__icon {
+        @include setPosition(absolute, top 12px left calc(50% - 10px), 1);
+        height: 24px;
+        max-width: 24px;
+        margin: 0;
+    }
+
+    &__step--complete {
+        #{ $self }__steps--icon {
+            &:before {
+                background: var(--wizard-steps-icon-bg);
+            }
+        }
+
+        #{ $self }__icon {
+            display: inline-block;
+        }
+    }
+
+    &__steps {
+        overflow: hidden;
+        margin: var(--wizard-steps-margin);
+        text-align: center;
+        /* using css counters for the steps*/
+        counter-reset: wizard-step;
+        @include flex(space-between, flex-start);
+        padding-inline-start: 0;
+
+        #{ $self }__icon {
+            display: none;
+        }
+
+        li {
+            width: 100%;
+            list-style-type: none;
+            position: relative;
+
+            &:after {
+                content: "";
+                width: 82%;
+                height: 1px;
+                background: var(--wizard-steps-sep-color);
+
+                @include setPosition(absolute, top 24px left -41%, -1);
+                border-radius: 1.5px;
+            }
+
+            &:first-child {
+                &:after {
+                    content: none;
+                }
+            }
+
+            /*add through js*/
+            &.a-wizard-step--active,
+            &.a-wizard__step--complete {
+                display: block;
+
+                &:after {
+                    height: 3px;
+                }
+            }
+
+            &.a-wizard-step--active {
+                &:after {
+                    background-color: var(--wizard-step-active-color);
+                }
+            }
+
+            &.a-wizard__step--complete {
+                &:after {
+                    background-color: var(--wizard-step-complete-color);
+                }
+            }
+        }
+
+        &--icon {
+            @include flex(center, center);
+            position: relative;
+            background: var(--wizard-step-icon-complete-bg-color);
+            border-radius: 50%;
+            margin: var(--wizard-step-icon-margin);
+            @include rem(height, 48px);
+            @include rem(width, 48px);
+            font-size: var(--wizard-step-icon-font-size);
+            line-height: var(--wizard-step-icon-line-height);
+            color: var(--wizard-steps-inactive-color);
+            text-align: center;
+            border: 1px solid var(--wizard-steps-inactive-color);
+
+            &:before {
+                display: block;
+                color: var(--wizard-steps-inactive-color);
+                content: counter(wizard-step);
+                counter-increment: wizard-step;
+            }
+
+            .a-wizard__steps .a-wizard__step--complete.a-wizard-step--active & {
+                color: var(--wizard-step-active-color);
+                transition: border-color 0.3s ease-in-out, color 0.3s ease-in-out;
+
+                &:before {
+                    color: var(--wizard-step-active-color);
+                }
+            }
+
+            .a-wizard__steps .a-wizard__step--incomplete.a-wizard-step--active & {
+                border-color: var(--wizard-step-active-color);
+                transition-delay: 0.5s;
+
+                &:before {
+                    color: var(--wizard-step-active-color);
+                    transition-delay: 0.5s;
+                }
+            }
+
+            .a-wizard .a-wizard__step--complete & {
+                animation: bounce 0.5s ease-in-out;
+                @include prefix(animation-name, bounce, webkit);
+                @include prefix(animation-duration, 0.5s, webkit);
+                @include prefix(animation-timing-function, ease-in-out, webkit);
+                border-color: var(--wizard-step-complete-color);
+                color: var(--wizard-step-complete-color);
+
+                &:before {
+                    display: block;
+                    content: "\e921";
+                    font-size: var(--wizard-step-icon-complete-font-size);
+                    @include rem(height, 44px);
+                    color: var(--wizard-step-complete-color);
+                    border-color: var(--wizard-step-complete-color);
+                    font-family: var(--wizard-step-icon-complete-font-family);
+                    background: var(--wizard-step-icon-complete-bg-color) no-repeat center center;
+                }
+
+                &.default-fallback-icon {
+                    &:before {
+                        content: "";
+                    }
+                }
+            }
+        }
+    }
+
+    &__custom-icon {
+        #{ $self }__icon {
+            @include setPosition(absolute, top 15px left calc(50% - 10px), 1);
+            margin: 0;
+        }
+
+        #{ $self }__step--complete {
+            #{ $self }__steps--icon {
+                &:before {
+                    background: var(--wizard-step-icon-complete-bg-color);
+                }
+            }
+
+            #{ $self }__icon {
+                display: inline-block;
+            }
+        }
+    }
+
+    &__label {
+        font-size: var(--wizard-step-label-font-size);
+        line-height: var(--wizard-step-label-line-height);
+        color: var(--wizard-steps-inactive-color);
+        text-align: center;
+
+        .a-wizard .a-wizard__step--incomplete.a-wizard-step--inactive & {
+            color: var(--wizard-steps-inactive-color);
+        }
+
+        .a-wizard .a-wizard__step--incomplete.a-wizard-step--active & {
+            color: var(--wizard-step-active-color);
+        }
+
+        .a-wizard .a-wizard__step--complete & {
+            color: var(--wizard-step-complete-color);
+        }
+
+        .a-wizard .a-wizard-step--active & {
+            transition: color 0.3s ease-in-out;
+            transition-delay: 0.5s;
+        }
+    }
+}

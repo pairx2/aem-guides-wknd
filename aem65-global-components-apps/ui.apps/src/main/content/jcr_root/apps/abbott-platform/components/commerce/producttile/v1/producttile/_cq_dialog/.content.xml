@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Product Tile"
+    sling:resourceType="cq/gui/components/authoring/dialog"
+    extraClientlibs="[cif.shell.picker]">
+	<content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                maximized="{Boolean}true">
+                <items jcr:primaryType="nt:unstructured">
+                    <properties
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Properties"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <sku
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="commerce/gui/components/common/cifproductfield"
+                                                fieldDescription="The product that should be displayed by the product tile component."
+                                                fieldLabel="Product Selection"
+                                                required="{Boolean}true"
+                                                filter="folderOrProduct"
+                                                id="selection"
+                                                name="./selection"
+                                                selectionId="sku"/>
+                                            <productTitle
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:include="/apps/abbott-platform/components/core/text/v1/text"
+                                                sling:resourceType="cq/gui/components/authoring/dialog/richtext"
+                                                fieldDescription="Enter override product name text"
+                                                fieldLabel="Product Name"
+                                                id="productTitle"
+                                                name="./productTitle"
+                                                useFixedInlineToolbar="{Boolean}true">
+                                                <rtePlugins
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceSuperType="/apps/abbott-platform/components/core/text/v1/text/rtePlugins"/>
+                                                <uiSettings
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceSuperType="/apps/abbott-platform/components/core/text/v1/text/uiSettings"/>
+                                                <htmlRules
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceSuperType="/apps/abbott-platform/components/core/text/v1/text/htmlRules"/>
+                                            </productTitle>
+                                            <productLongDescription
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:include="/apps/abbott-platform/components/core/text/v1/text"
+                                                sling:resourceType="cq/gui/components/authoring/dialog/richtext"
+                                                fieldDescription="Enter override product description text"
+                                                fieldLabel="Product Description"
+                                                id="productLongDescription"
+                                                name="./productLongDescription"
+                                                useFixedInlineToolbar="{Boolean}true">
+                                                <rtePlugins
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceSuperType="/apps/abbott-platform/components/core/text/v1/text/rtePlugins"/>
+                                                <uiSettings
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceSuperType="/apps/abbott-platform/components/core/text/v1/text/uiSettings"/>
+                                                <htmlRules
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceSuperType="/apps/abbott-platform/components/core/text/v1/text/htmlRules"/>
+                                            </productLongDescription>
+                                             <subscriptionOptions
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                fieldLabel="Subscription Options"
+                                                fieldDescription="Select Subscription Options to show for the product tile."
+                                                id="subscriptionOptions"
+                                                name="./subscriptionOptions">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <singlePurchase
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="One time purchase"
+                                                        value="singlePurchase"/>
+                                                    <subscriptionPurchase
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="Subscription Advantage package"
+                                                        value="subscriptionPurchase"/>
+                                                    <both
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="Both"
+                                                        value="all"/>
+                                                </items>
+                                            </subscriptionOptions>
+                                            <badge
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldDescription="Enter override product badge text"
+                                                fieldLabel="Product Badge"
+                                                id="productBadge"
+                                                name="./productBadge"/>
+                                            <pdpLinkUrl
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                fieldDescription="Enter the PDP Link URL"
+                                                fieldLabel="PDP Link Url"
+                                                name="./pdpLinkUrl"
+                                                rootPath="/content"/>
+                                            <ctaOverride
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                fieldLabel="CTA"
+                                                fieldDescription="Select the call to action for the product tile."
+                                                id="ctaOverride"
+                                                name="./ctaOverride">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <addToCart
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="Add to Cart"
+                                                        value="addToCart"/>
+                                                    <pdpLink
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="PDP Link"
+                                                        value="pdpLink"/>
+                                                    <both
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="Both"
+                                                        value="both"/>
+                                                </items>
+                                            </ctaOverride>
+                                            <priceToShow
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                fieldLabel="Price to display"
+                                                fieldDescription="Select the price to show for the product tile."
+                                                id="priceToShow"
+                                                name="./priceToShow">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <addToCart
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="Price"
+                                                        value="normal"/>
+                                                    <pdpLink
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="VAT price"
+                                                        value="vat"/>
+                                                    <both
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="Both"
+                                                        value="all"/>
+                                                </items>
+                                            </priceToShow>
+                                            <showBuyNowButton
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                listOrder="4"
+                                                metaType="boolean"
+                                                name="./showBuyNowButton"
+                                                renderReadOnly="false"
+                                                showEmptyInReadOnly="true"
+                                                text="Enable buy now button"
+                                                valueType="boolean"
+                                                value="{Boolean}true"
+                                                checked="{Boolean}false"
+                                                uncheckedValue="{Boolean}false">
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"/>
+                                            </showBuyNowButton>
+                                            <showFreeDeliveryLabel
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                listOrder="4"
+                                                metaType="boolean"
+                                                name="./showFreeDeliveryLabel"
+                                                renderReadOnly="false"
+                                                showEmptyInReadOnly="true"
+                                                text="Show free delivery label"
+                                                valueType="boolean"
+                                                value="{Boolean}true"
+                                                checked="{Boolean}false"
+                                                uncheckedValue="{Boolean}false">
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"/>
+                                            </showFreeDeliveryLabel>
+                                            <outOfStockTitle
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldDescription="Enter Title of out of stock alert"
+                                                fieldLabel="Out of stock Title"
+                                                name="./outOfStockTitle"/>
+                                            <outOfStockMessage
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldDescription="Enter Message of out of stock alert"
+                                                fieldLabel="Out of stock Message"
+                                                name="./outOfStockMessage"/>
+                                            <stockAlertLinkText
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldDescription="Enter text for the stock alert notification link"
+                                                fieldLabel="Stock Alert link text"
+                                                name="./stockAlertLinkText"/>
+                                            <stockAlertStaticText
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldDescription="Enter text for the static text below the stock alert notification link"
+                                                fieldLabel="Stock Alert static text"
+                                                name="./stockAlertStaticText"/>
+                                            <viewProductAATracking 
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                checked="{Boolean}false" listOrder="4" metaType="boolean"
+                                                name="./viewProductAATracking" renderReadOnly="false"
+                                                showEmptyInReadOnly="true"
+                                                text="Enable Adobe Analytics Data Layer Tracking for View Product"
+                                                uncheckedValue="{Boolean}false" value="{Boolean}true"
+                                                valueType="boolean">
+                                                <granite:data jcr:primaryType="nt:unstructured" />
+                                            </viewProductAATracking>
+                                             <addToCartAATracking jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                checked="{Boolean}false" listOrder="4" metaType="boolean"
+                                                name="./addToCartAATracking" renderReadOnly="false"
+                                                showEmptyInReadOnly="true"
+                                                text="Enable Adobe Analytics Data Layer Tracking for Add To Cart and Buy Now Button"
+                                                uncheckedValue="{Boolean}false" value="{Boolean}true"
+                                                valueType="boolean">
+                                                <granite:data jcr:primaryType="nt:unstructured" />
+                                            </addToCartAATracking>
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </properties>
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>

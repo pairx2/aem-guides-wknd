@@ -1,0 +1,43 @@
+<sly data-sly-use.customList="com.abbott.aem.platform.common.components.models.CustomTextList"
+data-sly-use.customConfig="com.abbott.aem.platform.common.components.models.CustomConfig"
+	data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
+    <section id="section_${customList.id}" class="${customConfig.className}">
+        <style data-sly-test="${customList.startColor && customList.endColor}">
+         #section_${customList.id @context='styleToken'} {
+            --customList-start-color: ${customList.startColor @context='styleToken'};
+            --customList-start-position: ${customList.startColorPosition  @context='styleToken'}%;
+            --customList-end-color: ${customList.endColor  @context='styleToken'};
+            --customList-end-position: ${customList.endColorPosition  @context='styleToken'}%;
+            }
+         </style>
+<!--/* Custom List Starts */-->
+<div id="${customList.id}"
+     class="m-custom-list m-custom-list--${customList.listType}">
+     <div class="m-custom-list__header-title" data-sly-test="${customList.headerTitle}">
+        <h3>${customList.headerTitle @context='html'}</h3>
+     </div>
+	<p data-sly-test="${customList.textAboveList}">${customList.textAboveList @context='html'} </p>
+	<ul class="m-custom-list__wrapper">
+    	<sly data-sly-list.list="${customList.customLists}">
+            <li class="m-custom-list__content ${list.link || list.text ? 'm-custom-list__content--hasHeader' : ''}">
+                <div class="m-custom-list__icon-wrapper" data-sly-test="${list.icon}">
+                    <em class="abt-icon ${list.icon}">
+                    </em>
+                </div>
+                <div class="m-custom-list__heading ${list.link || list.text ? 'm-custom-list__heading--hasContent' : 'm-custom-list__heading--empty'}">
+        				<p class="h4 m-custom-list__title" data-sly-test="${list.text}">
+                            <a data-sly-unwrap="${!list.link}" href="${list.link}" target="${list.external ? '_blank' : '_self'}" data-redirect-confirm="${list.redirectConfirm ? 'true' : 'false'}">${list.text @context='html'}</a>
+                        </p>
+                </div>
+                <div class="m-custom-list__para">
+					${list.listText @context='html' }
+                </div>
+            </li>
+        </sly>
+	</ul>
+	<p data-sly-test="${customList.textBelowList}">${customList.textBelowList @context='html'}</p>
+</div>
+</section>
+</sly>
+<!--/* Custom List Ends */-->
+<sly data-sly-call="${templates.placeholder @ isEmpty=!customList.headerTitle}"></sly>

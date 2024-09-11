@@ -1,0 +1,26 @@
+<sly data-sly-test="${properties.variations != 'articlePage'}">
+   <sly data-sly-test.padding="${properties.padding}" />
+   <sly data-sly-test.devices="${properties.devices}" />
+   <sly data-sly-test.orientation="${properties.orientation}" />
+   <sly data-sly-test.margin="${properties.margin}" />
+   <sly data-sly-test.marginOrientation="${properties.marginOrientation}" />
+   <sly data-sly-test="${devices=='all'}">
+      <sly data-sly-test.classAtt="${'{0}{1}{2}' @ format=[orientation, '-',padding]}" />
+    	<sly data-sly-test.marginClassAtt="${'{0}{1}{2}' @ format=[marginOrientation, '-',margin]}" />
+ </sly>
+   <sly data-sly-test="${devices!='all'}">
+      <sly data-sly-test.classAtt="${'{0}{1}{2}{3}{4}' @ format=[orientation,'-',devices,'-',padding]}" />
+      <sly data-sly-test.marginClassAtt="${'{0}{1}{2}{3}{4}' @ format=[marginOrientation, '-',margin]}" />
+   </sly>
+   <sly data-sly-test.id="${properties.id}" />
+   <section id="${id}" class="bg-${properties.bgColor} ${classAtt} ${marginClassAtt}">
+      <div class="container">
+      	<div  class="cmp-container ${properties.class}" >
+         <sly  data-sly-resource="${'content' @ resourceType='wcm/foundation/components/parsys'}"></sly>
+      	</div>
+       </div>
+   </section>
+</sly>
+<div class="para-content" data-sly-test="${properties.variations == 'articlePage'}">
+   <sly data-sly-resource="${'content' @ resourceType='wcm/foundation/components/parsys'}"></sly>
+</div>

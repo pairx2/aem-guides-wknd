@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Testimonial Carousel"
+    sling:resourceType="cq/gui/components/authoring/dialog"
+    extraClientlibs="[cq.authoring.dialog.maxmultifield]">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                maximized="{Boolean}true">
+                <items jcr:primaryType="nt:unstructured">
+                    <properties
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Properties"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+							<heading
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldLabel="Heading Text"
+                                    fieldDescription="Heading"
+                                    name="./heading"/>
+                            <section-heading
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                    fieldLabel="Section Heading Text"
+                                    fieldDescription="Section Heading"
+                                    name="./sectionHeading"/>
+							<cta-text
+												jcr:primaryType="nt:unstructured"
+												sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+												fieldLabel="Call to Action Text"
+												name="./ctaText"/>
+							<cta-styling
+					                                jcr:primaryType="nt:unstructured"
+					                                sling:resourceType="/libs/granite/ui/components/coral/foundation/form/select"
+					                                fieldDescription="Choose CTA Styling"
+					                                fieldLabel="CTA Styling"
+					                                name="./ctaStyling">
+					                                <datasource
+							                            jcr:primaryType="nt:unstructured"
+							                            sling:resourceType="abbott-platform/datasource/generic-list"
+							                            path="/apps/adc/freestylelibrede/authoring/datasources/cta-types"/>
+                           </cta-styling>					
+							<cta-URL
+												jcr:primaryType="nt:unstructured"
+												sling:resourceType="cq/gui/components/coral/common/form/pagefield"
+												fieldDescription="Links the title. Path to a content page, external URL or page anchor."
+												fieldLabel="Call to Action Link"
+												name="./ctaURL"
+												rootPath="/content"/>
+							<cta-action
+												jcr:primaryType="nt:unstructured"
+												sling:resourceType="/libs/granite/ui/components/coral/foundation/form/select"
+												fieldDescription="Select to open the link in a new tab or the existing tab."
+												fieldLabel="New Tab ?"
+												name="./ctaAction">
+											<items jcr:primaryType="nt:unstructured">
+												<new-tab
+														jcr:primaryType="nt:unstructured"
+														text="Open in New Tab"
+														value="_blank"/>
+												<existing-tab
+														jcr:primaryType="nt:unstructured"
+														text="Open in Existing Tab"
+														value="_self"/>
+											</items>
+							</cta-action>		
+							<testimonials
+									jcr:primaryType="nt:unstructured"
+									sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+									composite="{Boolean}true"
+									fieldLabel="Testimonials">
+								<field
+										jcr:primaryType="nt:unstructured"
+										sling:resourceType="granite/ui/components/coral/foundation/container"
+										name="./testimonials">
+									<items jcr:primaryType="nt:unstructured">
+										<testimonial-image
+												jcr:primaryType="nt:unstructured"
+												sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+												fieldDescription="present instructional text *file formats: JPG or PNG"
+												fieldLabel="Testimonial Image"
+												name="./testimonialImage"
+												required="{Boolean}true"
+												rootPath="/content/dam"/>
+										<tm-image-alt-text
+												jcr:primaryType="nt:unstructured"
+												sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+												fieldLabel="Testimonial Image Alt Text"
+												fieldDescription="Alt text will be shown when the image is missing from the server."
+												name="./testimonialImageAltText"/>
+										<testimonial-image-mobile
+												jcr:primaryType="nt:unstructured"
+												sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+												fieldDescription="present instructional text *file formats: JPG or PNG if not defined - image will resort to the desktop"
+												fieldLabel="Testimonial Image Mobile"
+												name="./testimonialImageMobile"
+												rootPath="/content/dam"/>
+										<testimonial-name
+												jcr:primaryType="nt:unstructured"
+												sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+												fieldLabel="Testimonial Name"
+												fieldDescription="present instructional text input first name and last name"
+												name="./testimonialName"/>
+										<testimonial-quote
+												jcr:primaryType="nt:unstructured"
+												sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+												fieldLabel="Testimonial Quote"
+												name="./testimonialQuote"/>
+										<cta-text
+												jcr:primaryType="nt:unstructured"
+												sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+												fieldLabel="Call to Action Text"
+												name="./ctaText"/>
+										<cta-URL
+												jcr:primaryType="nt:unstructured"
+												sling:resourceType="cq/gui/components/coral/common/form/pagefield"
+												fieldDescription="Links the title. Path to a content page, external URL or page anchor."
+												fieldLabel="Call to Action Link"
+												name="./ctaURL"
+												rootPath="/content"/>
+										<cta-action
+												jcr:primaryType="nt:unstructured"
+												sling:resourceType="/libs/granite/ui/components/coral/foundation/form/select"
+												fieldDescription="Select to open the link in a new tab or the existing tab."
+												fieldLabel="New Tab ?"
+												name="./ctaAction">
+											<items jcr:primaryType="nt:unstructured">
+												<new-tab
+														jcr:primaryType="nt:unstructured"
+														text="Open in New Tab"
+														value="_blank"/>
+												<existing-tab
+														jcr:primaryType="nt:unstructured"
+														text="Open in Existing Tab"
+														value="_self"/>
+											</items>
+										</cta-action>
+									</items>
+								</field>
+							</testimonials>
+
+                        </items>
+                    </properties>
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>

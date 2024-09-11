@@ -1,0 +1,43 @@
+- user_config:
+
+  - gm-system-user:
+  
+    - name: gm-system-user
+      description: Used for CORP division to perform CRUD operations
+      path: /home/users/system/corp
+      isSystemUser: true
+      isMemberOf: corp-base
+      
+- ace_config:
+
+  - gm-system-user:
+  
+    - path: /apps/corp
+      permission: allow
+      privileges: jcr:read
+      
+    - path: /conf/corp
+      permission: allow
+      privileges: jcr:read
+
+    - path: /content/corp/abbott
+      permission: allow
+      privileges: jcr:read
+      
+    - path: /content/dam/corp/abbott
+      permission: allow
+      actions: read,modify,create,delete,replicate
+      restrictions:
+        rep:glob: /*/cnt-trending/*
+    
+    - path: /content/corp/abbott
+      permission: allow
+      actions: read,modify,create,replicate
+      restrictions:
+        rep:glob: /*/*/corpnewsroom/*
+    
+    - path: /content/corp/abbott
+      permission: allow
+      actions: read,modify,create,replicate
+      restrictions:
+        rep:glob: /*/*/careers/*

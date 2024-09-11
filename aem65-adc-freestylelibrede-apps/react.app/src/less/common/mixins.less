@@ -1,0 +1,172 @@
+
+// button
+.adc-button(@bg, @color, @font, @fontWeight, @letterSpacing){
+    color: @color !important;
+    background-color: @bg;
+    font-size: @font;
+    font-weight: @fontWeight;
+    letter-spacing: @letterSpacing;
+
+    &:hover{
+        text-decoration: none;
+        transition: 0.3s all ease-in-out;
+        .box-shadow(0px 2px 5px 0px rgba(0, 0, 0, 0.25), -2px 22px 10px -20px rgba(0, 0, 0, 0.5));
+    }
+    &:active{
+        text-decoration: none;
+        transition: 0.3s all ease-in-out;
+        .box-shadow(0px 2px 5px 0px rgba(0, 0, 0, 0.25));
+    }
+}
+// /button
+
+// padding
+.adc-padding(@t: 10px){
+    padding: @t @t @t @t;
+}
+.adc-padding(@t: 10px, @r: 10px, @b: 10px, @l : 10px){
+    padding: @t @r @b @l;
+}
+.adc-vh-padding(@v: 10px, @h: 10px){
+    padding: @v @h @v @h;
+}
+.adc-v-padding(@t, @b){
+    padding-top: @t;
+    padding-bottom: @b;
+}
+.adc-h-padding(@l, @r){
+    padding-left: @l;
+    padding-right: @r;
+}
+// /padding
+
+// margin
+.adc-margin(@t: 10px){
+    margin: @t @t @t @t;
+}
+.adc-margin(@t: 10px, @r: 10px, @b: 10px, @l : 10px){
+    margin: @t @r @b @l;
+}
+.adc-vh-margin(@v: 10px, @h: 10px){
+    margin: @v @h @v @h;
+}
+.adc-v-margin(@t, @b){
+    margin-top: ~'@{t}px';
+    margin-bottom: ~'@{b}px';
+}
+.adc-h-margin(@l, @r){
+    margin-left: @l;
+    margin-right: @r;
+}
+// /margin
+
+// transform
+.rotate(@angle){
+    transform: rotate(~'@{angle}deg');
+    -ms-transform: rotate(~'@{angle}deg');
+    -webkit-transform: rotate(~'@{angle}deg');
+    -moz-transform: rotate(~'@{angle}deg');
+}
+// /transform
+
+// box shadow
+.box-shadow(@shadow1) {
+    -webkit-box-shadow: @shadow1;
+    -moz-box-shadow: @shadow1;
+    box-shadow: @shadow1;
+}
+
+.box-shadow(@shadow1, @shadow2) {
+    -webkit-box-shadow: @shadow1, @shadow2;
+    -moz-box-shadow: @shadow1, @shadow2;
+    box-shadow: @shadow1, @shadow2;
+}
+
+// border radius
+.border-radius-all(@value: 4) {
+	-webkit-border-radius: ~"@{value}px";
+	-moz-border-radius: ~"@{value}px";
+	-ms-border-radius: ~"@{value}px";
+	-o-border-radius: ~"@{value}px";
+}
+.border-radius(@topleft: 5px, @topright: 5px, @bottomright: 5px, @bottomleft: 5px) {
+	border-radius: @topleft @topright @bottomright @bottomleft;
+}
+// round icon
+.round-icon(@size, @border, @background){
+    width: @size;
+    height: @size;
+    border-radius: 50%;
+    cursor: pointer;
+    border: @border;
+    background: transparent;
+    &.active{
+        background-color: @background;
+    }
+}
+.rect-shape(@size, @border-radius:0, @background){
+    width: @size;
+    height: @size;
+    border-radius: @border-radius;
+    background:@background;
+}
+// gradient
+
+.gradient (@startColor, @startPos, @endColor, @endPos, @pos) {
+    background: -webkit-gradient(linear, left top, left bottom, from(@startColor), to(@endColor));
+    background: -webkit-linear-gradient(@pos, @startColor @startPos, @endColor @endPos);
+    background: -moz-linear-gradient(@pos, @startColor @startPos, @endColor @endPos);
+    background: -ms-linear-gradient(@pos, @startColor @startPos, @endColor @endPos);
+    background: linear-gradient(to @pos, @startColor @startPos, @endColor @endPos);
+}
+.horizontal-gradient (@startColor: #eee, @endColor: white) {
+ 	background-color: @startColor;
+	background-image: -webkit-gradient(linear, left top, right top, from(@startColor), to(@endColor));
+	background-image: -webkit-linear-gradient(left, @startColor, @endColor);
+	background-image: -moz-linear-gradient(left, @startColor, @endColor);
+	background-image: -ms-linear-gradient(left, @startColor, @endColor);
+	background-image: -o-linear-gradient(left, @startColor, @endColor);
+}
+.no-bg-image(){
+    background-image:none;
+}
+.button-bg-image(@svgIcon, @posLeft, @posTop, @repeat:no-repeat, @size){
+    background-image: url(@svgIcon);
+    background-position: @posLeft, @posTop;
+    background-repeat: @repeat;
+    background-size: @size;
+    background-clip: border-box;
+}
+.link(@color, @hoverColor, @decoration){
+    color: @color;
+    text-decoration: @decoration;
+    &:hover, &:active{
+        color: @hoverColor;
+    }
+}
+.border-bottom(@color) {
+	border-bottom: 1px solid  @color;
+}
+.border-top(@color) {
+	border-top: 1px solid  @color;
+}
+.icon(@iconName, @extension: svg) {
+    background-image: url("@{icon-path}@{iconName}.@{extension}");
+}
+.icon-png(@iconName) {
+    background-image: url("@{icon-path}@{iconName}.png");
+}
+
+.flex-center(){
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.with-fade(@fade-size) {
+	-webkit-mask-image: linear-gradient(to right,
+	rgba(0, 0, 0, 0), rgba(0, 0, 0, 1) @fade-size, rgba(0, 0, 0, 1) @fade-size,
+	rgba(0, 0, 0, 1) ~"calc(100% - @{fade-size})", rgba(0, 0, 0, 1) ~"calc(100% - @{fade-size})", rgba(0, 0, 0, 0) 100%);
+
+}
+

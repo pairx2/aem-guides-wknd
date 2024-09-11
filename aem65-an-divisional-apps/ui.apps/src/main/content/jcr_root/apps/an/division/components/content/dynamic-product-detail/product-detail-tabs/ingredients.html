@@ -1,0 +1,15 @@
+<template data-sly-template.ingredient="${@ product}">
+    <div class="text">
+        <div>
+            <sly data-sly-list.ingredient="${product.ingredients}">
+                <h6 data-val='${ingredient.ACode}'>${ingredient.flavorName @ context='html'} ${ingredient.formulationType @ context='html'}</h6>
+            </sly>
+            <sly data-sly-list.ingredient="${product.ingredients}">
+                <p data-val='${ingredient.ACode}'>${ingredient.ingredients @ context='html'}</p>
+            </sly>
+            <sly data-sly-list.ingredient="${product.ingredients}">
+                <p data-val='${ingredient.ACode}'><strong>${ingredient.allergenStatement @ context='html'}</strong></p>
+            </sly>
+        </div>
+    </div>
+</template>

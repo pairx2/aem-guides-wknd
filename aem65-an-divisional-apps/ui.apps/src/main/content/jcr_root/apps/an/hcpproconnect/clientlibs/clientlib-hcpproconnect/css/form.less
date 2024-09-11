@@ -1,0 +1,626 @@
+@import "./global/mixins.less";
+@import './global/variables.less';
+
+// Form input fields
+.a-input-field {
+    --input-field-label-font-size: @font-size-14;
+    --input-field-label-color: @color-dark-grey;
+    --input-field-placeholder-color:@color-dropdown-border;
+    --input-field-border: 1px solid #D9D9D6;
+    --input-field-border-radius: 5px;
+    --input-field-focus-color: @color-hcp-blue;
+    --input-field-icon-padding-right: 0.5rem;
+    //Input Fields Label
+    .form-group {
+		.a-input-label {
+            font-family: @calibri-font-family, @base-font-family;
+			font-size: var(--input-field-label-font-size);
+			line-height: var(--input-field-label-line-height);
+			color: var(--input-field-label-color);
+			font-weight: 400;
+		}
+		//Input Fields Border
+        .a-input-grp {
+			.a-input-control {
+				border-radius: var(--input-field-border-radius);
+				box-sizing: border-box;
+				background: @color-white;
+				border: var(--input-field-border);
+                color: @color-core-dark-blue;						// SB HCP-487 changes
+                font-size: @font-size-16;							
+			}
+		}
+		//tooltip password label
+		.tooltip-pwd {
+			.tooltip-pwd-label {
+				font-family: @calibri-font-family, @base-font-family;
+				font-size: @font-size-14;
+				line-height: @font-size-20;
+				color: @color-dark-grey;
+				font-weight: 400;
+				display: flex;
+				align-items: center;
+			}
+            //tooltip password icon
+            .abt-icon {
+				color: @color-dark-grey;
+                font-size: 1rem;
+			}
+			.a-tooltip {
+                .tooltip {
+                    transform: translate3d(-214px, -285px, 0px);
+                    .tooltip-inner {
+                        .tooltip-pwd-title {
+							--input-field-password-tooltip-font-family: @base-font-family-bold;
+                        }
+                        .tooltip-pwd-table {
+                            .row {
+                                .col-9 {
+									padding-right: 0;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+		}
+	}
+	//Field label validation icon
+    .form-group.validation-require {
+        .a-input-field--text-require {
+			font-family: @calibri-font-family, @base-font-family;
+            .abt-icon {
+				color:@color-hcp-red;
+            }
+        }
+    }
+
+    .form-group.validation-error {
+		.a-input-field--text-error {
+            font-family: @calibri-font-family, @base-font-family;
+			.abt-icon {
+				color:@color-hcp-red;
+                margin-right: 0px;
+            }
+        }
+    }
+}
+
+//Title
+.cmp-title > .titleh1 {
+    font-family: @base-font-family-black;
+    font-size: @font-size-40;
+    line-height: @font-size-52;
+    letter-spacing: 0.05em;
+    color: @color-core-dark-blue;
+    font-weight: 900;
+    .tt-upper;
+}
+
+//checkbox
+.a-checkbox__custom {
+    background: @color-white;
+    //border: 1px solid @color-dropdown-border; SB HCP-849 changing border color as per comment
+    border: 1px solid black;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+
+.a-checkbox__text {
+    font-family: @calibri-font-family, @base-font-family;
+    font-weight:400;
+    font-size: 17px;
+    line-height: @font-size-24;
+    color: @color-core-dark-blue;
+}
+
+//text
+.cmp-text > .ptext {
+    font-size: @font-size-14 !important;
+    line-height:@font-size-21;
+    font-weight:400;
+    font-family: @calibri-font-family, @base-font-family;
+	color: @color-core-dark-blue;
+	margin-top: 0.5rem;
+}
+
+//text Link
+.ptext > .ptext_link {
+    font-size: @font-size-14 !important;
+    line-height:@font-size-21;
+    font-weight:400;
+    font-family: @calibri-font-family, @base-font-family;
+	color: @color-hcp-blue;
+	margin-top: 0.5rem;
+}
+
+//link
+#forgotlink .link .m-popup .a-link .a-link__text {
+    font-family: @calibri-font-family, @base-font-family;
+    font-weight: 700;
+    font-size: 17px;
+    line-height: @font-size-24;
+    color: @color-hcp-blue;
+}
+
+#forgotlink .link .m-popup .a-link .a-link__text .a-link__inner-text {
+    position: absolute;
+    top: -217px;
+    left: 250px;
+    right: 0px;
+}
+
+//link location
+#forgotlink > .link {
+	text-align: right;
+}
+
+//link mobile
+@media only screen and (max-width: 600px) {
+    #forgotlink .link .m-popup .a-link .a-link__text .a-link__inner-text {
+		position: relative;
+        top: -215px;
+        left: -5px;
+	}
+}
+
+//link tablet
+@media only screen and (min-width: 600px) and (max-width: 992px) {
+    #forgotlink .link .m-popup .a-link .a-link__text .a-link__inner-text {
+		position: relative;
+        top: -212px;
+        left: -5px;
+	}
+}
+
+// Checkbox
+.a-checkbox {
+    --checkbox-checked-bg: @color-core-dark-blue;
+}
+
+//Title H2
+.cmp-title > .titleh2 {
+    font-family: @base-font-family-black;
+    font-size: @font-size-18;
+    line-height: 23px;
+    letter-spacing: 0.02em;
+    color: @color-core-dark-blue;
+    font-weight: 700;
+    .tt-upper;
+}
+
+//Horizontal Separator
+.a-rule {
+	.a-horizontal-rule {
+		border: 1px solid #D9D9D6;
+	}
+}
+
+/** START SB HCPPORTAL-202 Badge section and form **/
+#initialregistrationbadge {
+	background: @color-hcp-light-grey;
+    border-radius: @font-size-20;
+    padding: 2rem 2.063rem;
+    // SB for just badges color on IR page
+    .abt-icon {
+		color: @color-hcp-blue;
+	}
+}
+
+.m-custom-list__icon-wrapper {
+    top: 19px;
+}
+
+
+#initialregtc {
+    p {
+        font-size: @font-size-14;
+        padding-top: @font-size-16;
+        a {
+			color: @color-hcp-blue;
+        }
+    }
+}
+
+.form-container .options .a-dropdown__field.active #dropdown-filter, 
+.form-container .options .a-dropdown__field.filter-active #dropdown-filter, 
+.form-container .options .a-dropdown__field.filter-active .a-dropdown__menu {
+    display: block;
+    pointer-events: auto;
+}
+
+.form-container .options .a-dropdown__field #dropdown-filter {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    padding: .9375rem 1rem .8125rem;
+    height: 48px;
+    max-height: 48px;
+}
+
+.form-container .options .a-dropdown__field #dropdown-filter ~ .a-dropdown__menu {
+    top: 92px;
+}
+
+// SB HCP-487 complete reg UI changes
+	.form-container {
+        //Form Fields Icons
+        .abt-icon-eye {
+            //color: @color-dark-grey;
+            color: @color-core-dark-blue;	// SB HCP-487 ui changes
+        }
+        .abt-icon-down-arrow {				// SB HCP-487 form dropdown
+            color: @color-core-dark-blue;		 
+            -webkit-text-stroke: 1px white;
+        }
+        .options {
+            >.checkbox#rememberUser-options {
+                @media @lg-only {
+                    justify-content: start;
+                }
+            }
+            .a-dropdown__container {
+                .a-input-label {
+                    font-family: @calibri-font-family, @base-font-family;
+                    font-size: var(--input-field-label-font-size);
+                    line-height: var(--input-field-label-line-height);
+                    color: var(--input-field-label-color);
+                    font-weight: 400;
+                }
+                .a-dropdown__field {
+                    --dropdown-disabled-selected-color: @color-core-dark-blue;
+                    --dropdown-placeholder-color: @color-neutral-light-gray;
+                    --dropdown-field-border: 1px solid @color-dropdown-border;
+
+                    .a-dropdown__placeholder {
+                        font-family: @calibri-font-family, @base-font-family;
+                        font-style: normal;
+                        font-weight: @font-weight-400;
+                        font-size: @font-size-16;
+                        line-height: @font-size-24;
+                    }
+
+                    .a-dropdown-selected {
+                        color: @color-core-dark-blue;
+                        -webkit-text-stroke: 0.1px;
+                    }
+                    .a-dropdown__menu li:hover{
+                        //border-bottom-color: transparent;
+                        //background-color: @color-transparent;
+                        background: @color-hcp-grey2;
+                        span {
+                            color: @color-hcp-blue;
+                        }
+                    }
+                    .a-dropdown__menu {
+                        -webkit-text-stroke: 0.1px;
+                        li {
+                            border-bottom: 0;
+                            span {
+                                color: @color-core-dark-blue;
+                            }
+                        }
+                    }
+                }
+            }
+            // SB HCP-849 To align * with checkbox 
+            .checkbox {
+                display: flex;
+                .a-dropdown__title--required {
+                    margin-right: 0.5rem;
+                }
+            }    	
+        }
+    }
+
+
+/** END **/
+
+.a-dropdown {
+	--dropdown-active-border-color: @color-hcp-blue;
+}
+
+//Eye Icon Slash
+.abt-icon-eye-slash .abt-icon-eye:after {
+    position: absolute;
+    content: "/";
+    color: #63666a;
+    font-weight: 700;
+    font-size: 1.5em;
+    left: 6px;
+    top: -2px;
+}
+
+.abt-icon-eye-slash {
+    padding-bottom: 5px;
+}
+
+//popup modal
+.generic-modal {
+    --modal-footer-padding-x: 0rem;
+    --modal-footer-padding-y: 0.7rem;
+    --modal-body-padding-y: 1.5rem;
+}
+
+//popup modal button
+#popupsubmit {
+	font-size: @font-size-16;
+    line-height: @font-size-14;
+    padding: 15px 45px;
+    border-radius: 100px;
+    font-weight: 450;
+}
+
+//popup modal mobile
+@media only screen and (max-width: 600px) {
+	.generic-modal .show {
+    	padding-right:0;
+    }
+}
+
+.a-input-field .form-group .a-input-grp input,
+.a-input-field .form-group .a-input-grp textarea,
+.a-input-field .a-dropdown__field .a-dropdown__placeholder,
+.a-input-field .a-dropdown__field .a-dropdown-selected {
+    font-family: @calibri-font-family, @base-font-family;
+    font-size: 18px !important;
+}
+
+#loginSubmit {
+    padding: 15px 85px;
+	font-family: @base-font-family-bold;
+}
+
+.a-input-field .form-group .a-input-grp input.a-input-control::-ms-reveal {
+    display: none;
+}
+.customtextlist .m-custom-list__header-title>h4 {
+color: @color-hcp-blue;
+}
+
+.tooltip .arrow {
+	left:204px;
+}
+
+.a-input-field .form-group .tooltip-pwd .tooltip-pwd-table .col-3 {
+    margin-bottom: 1.5rem;
+}
+
+//error snackbar
+#successErrorMessage, #loginsuccessErrorMessage {
+    display: none;
+	position: relative;
+    border-radius: 5px;
+    padding: 10px 33px 10px 22px;
+    margin-bottom: 30px;
+    margin-top: 30px;
+	p {
+		color:@color-white;
+		margin: 0;
+	}
+}
+
+.closeAtRight {
+    &.abt-icon-cancel:before {
+        color: #fff;
+        position: absolute;
+        top: 13px;
+    }
+
+    p {
+        padding-left: 25px;
+    }
+}
+
+#welcomeTextLogin {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+#loginColumnControl, #initialRegistraionForm, #initialRegistraionFormPopup {
+	.abt-icon-cancel:before {
+		content: "\e904";
+		position: absolute;
+		right: 10px;
+		font-size: 15px;
+		color: @color-white;
+		top: 50%;
+		transform: translateY(-50%);
+		cursor: pointer;
+	}
+}
+
+#consentForm .abt-icon-cancel:before {
+    content: "\e904";
+    position: absolute;
+    right: 30px;
+    padding-top: 7px;
+    font-size: 15px;
+    color: @color-white;
+}
+
+#consentForm #successErrorMessage
+{
+	display: none;
+    border-radius: 5px;
+    padding-top: 10px;
+    padding-left: 22px;
+    margin-top:-15px;
+}
+
+@media only screen and (max-width: 600px) {
+	#consentForm #successErrorMessage
+    {
+        margin-top:-60px;
+        margin-bottom: 80px;
+    }
+}
+
+#consentForm .accordion{
+    margin-top: 0;
+}
+
+
+//privacy page text
+#privacyText {
+    margin-bottom: -15px;
+}
+
+#privacyContainer ul {
+    margin-left: -20px;
+}
+
+//profile detail text
+#personalInfoTitle {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+#practiceInfoTitle {
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+#professionalInfoTitle {
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+#professionalInfoText {
+	margin-bottom: 10px;
+}
+
+#profileDetailColControl #loginSubmit {
+    margin-top: 10px;
+    margin-bottom: 100px;}
+
+.customtextlist .m-custom-list__heading .m-custom-list__title {
+    color: @color-core-dark-blue;
+}
+
+.a-input-field .form-group .matchemail{
+	font-family: @calibri-font-family, @base-font-family;
+    color: #e4002b;
+}
+
+.a-input-field .form-group .matchemail .abt-icon-exclamation{
+	font-size: @font-size-12;
+    padding-right: 0.5rem;
+    position: relative;
+    top: 1px;
+}
+
+//hide bullet from secure in sitemap
+.hidebullet::marker {
+    color: white;
+}
+/*login-err msg*/
+.columncontrol__column {
+	&:has(>.text #loginCustomErrMsg) {
+		display: none;
+	}	
+}
+#loginCustomErrMsg {
+	overflow-wrap: break-word;
+	@media @md-down {
+		position: relative;
+		bottom: 120px;
+	}
+	p {
+		a {
+			color: #009cde;
+            &.font-13-8 {
+				font-size: 13.8px;
+			}
+		}
+	}
+}
+.form-container .options .a-dropdown__field.active .dropdown-search-box,
+.form-container .options .a-dropdown__field.filter-active .dropdown-search-box,
+.form-container .options .a-dropdown__field.filter-active .a-dropdown__menu {
+    display: block;
+    pointer-events: auto;
+}
+
+.form-container .options .a-dropdown__field .dropdown-search-box {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    padding: .9375rem 1rem .8125rem;
+    height: 48px;
+    max-height: 48px;
+}
+
+.form-container .options .a-dropdown__field .dropdown-search-box ~ .a-dropdown__menu {
+    top: 92px;
+}
+
+.a-input-field .form-group .secondMatchemail{
+	font-family: @calibri-font-family, @base-font-family;
+    color: #e4002b;
+}
+
+.a-input-field .form-group .secondMatchemail .abt-icon-exclamation{
+	font-size: @font-size-12;
+    padding-right: 0.5rem;
+    position: relative;
+    top: 1px;
+}
+.registration-informative-badge {
+    .abt-icon:before {
+      display: block;
+      content: '';
+      position: relative;
+    }
+  
+    .abt-icon-profession:before {
+      background: url(/content/dam/an/hcpproconnect/uk/en/images/medical-app-smartphone-listen.png) no-repeat;
+      background-size: contain;
+      width: 35px;
+      height: 35px;
+    }
+  
+    .abt-icon-support-kit:before {
+      background: url(/content/dam/an/hcpproconnect/uk/en/images/folder.png) no-repeat;
+      background-size: contain;
+      width: 35px;
+      height: 35px;
+    }
+  
+    .abt-icon-productive-conversations:before {
+      background: url(/content/dam/an/hcpproconnect/uk/en/images/account_circle.png) no-repeat;
+      background-size: contain;
+      width: 35px;
+      height: 35px;
+    }
+  
+    .abt-icon-virtual-event:before {
+      background: url(/content/dam/an/hcpproconnect/uk/en/images/e-learning-book-laptop.png) no-repeat;
+      background-size: contain;
+      width: 35px;
+      height: 35px;
+      @media screen and (max-width:992px)
+      {
+        width: 35px;
+        height: 35px;
+      }
+    }
+  
+    .abt-icon-global-citizenship:before {
+      background: url(/content/dam/an/hcpproconnect/uk/en/images/grade.png) no-repeat;
+      background-size: contain;
+      width: 35px;
+      height: 35px;
+    }
+  
+    .abt-icon-neutron:before {
+      background: url(/content/dam/an/hcpproconnect/uk/en/images/medication.png) no-repeat;
+      background-size: contain;
+      width: 35px;
+      height: 35px;
+    }
+  }
+  

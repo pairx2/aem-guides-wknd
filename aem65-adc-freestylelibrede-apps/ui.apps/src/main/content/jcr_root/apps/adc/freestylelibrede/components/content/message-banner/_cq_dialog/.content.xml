@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Message Banner"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                maximized="{Boolean}true">
+                <items jcr:primaryType="nt:unstructured">
+                    <general
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="General"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <type
+                                granite:class="cq-dialog-dropdown-showhide"
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                fieldDescription="Set this to 'Default' if it is a standard message banner."
+                                fieldLabel="Message Banner type"
+                                name="./type">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <none
+                                        granite:hide="${cqDesign.disableChildren}"
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Default"
+                                        value="default"/>
+                                    <newsletter
+                                        granite:hide="${cqDesign.disableChildren}"
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Newsletter confirmation"
+                                        value="newsletter"/>
+                                    <rx_not_supported
+                                        granite:hide="${cqDesign.disableChildren}"
+                                        jcr:primaryType="nt:unstructured"
+                                        text="RX order not supported error"
+                                        value="rx_not_supported"/>
+                                    <prescription_reminder
+                                        granite:hide="${cqDesign.disableChildren}"
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Prescription Reminder"
+                                        value="prescription_reminder"/>
+                                    <invoice_status
+                                        granite:hide="${cqDesign.disableChildren}"
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Invoice Status"
+                                        value="invoice_status"/>
+                                    <ghost_order_status
+                                        granite:hide="${cqDesign.disableChildren}"
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Ghost Order Status"
+                                        value="ghost_order_status"/>
+                                    <real_order_status
+                                        granite:hide="${cqDesign.disableChildren}"
+                                        jcr:primaryType="nt:unstructured"
+                                        text="Real Order Status"
+                                        value="real_order_status"/>
+                                </items>
+                                <granite:data
+                                    jcr:primaryType="nt:unstructured"
+                                    cq-dialog-dropdown-showhide-target=".list-option-listfrom-showhide-target"/>
+                            </type>
+                            <invoiceStatus
+                                granite:class="hide list-option-listfrom-showhide-target foundation-layout-util-vmargin"
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                <granite:data
+                                    jcr:primaryType="nt:unstructured"
+                                    showhidetargetvalue="invoice_status"/>
+                                <items jcr:primaryType="nt:unstructured">
+                                    <heading
+                                        granite:class="coral-Heading coral-Heading--4"
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/heading"
+                                        level="{Long}4"
+                                        text="Invoice message banner config"/>
+                                    <well
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/well">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <invoiceMsgBnrDate
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="/libs/granite/ui/components/coral/foundation/form/datepicker"
+                                                fieldLabel="Date"
+                                                name="./invoiceMessageBannerDate"/>
+                                        </items>
+                                    </well>
+                                </items>
+                            </invoiceStatus>
+                        </items>
+                    </general>
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>

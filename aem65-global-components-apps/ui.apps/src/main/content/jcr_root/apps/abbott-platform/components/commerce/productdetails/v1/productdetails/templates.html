@@ -1,0 +1,184 @@
+<!-- General templates to centralize specific product attributes -->
+<template data-sly-template.productDetail="${@ model}">
+  <article class="product-detail">
+    <div class="container">
+      <aside class="product-detail__carousel">
+        <div
+          class="o-hero-carousel"
+          data-sly-resource="${'mediacarousel' @ resourceType=model.mediaCarouselProxyPath}"
+        ></div>
+      </aside>
+
+      <div class="product-detail__content">
+        <sly data-sly-call="${productName @model=model}" />
+        <sly data-sly-call="${productDescription @model=model}" />
+
+        <sly data-sly-test="${model.subscriptionOptions =='singlePurchase'}">
+          <div
+            class="js-product-price"
+            data-sku="${model.sku}"
+            data-price-to-show="${model.priceToShow}"
+            data-free-delivery="${model.showFreeDeliveryLabel}"
+            data-enable-loyalty-points="${model.enableLoyaltyPoints}"
+            data-aa-tracking-viewproduct="${model.viewProductAATracking}"
+            data-product-badge="${model.badge}"
+            data-subscription-options="${model.subscriptionOptions}"
+          ></div>
+      </sly>
+
+        <sly
+          data-sly-test="${model.subscriptionOptions =='subscriptionPurchase'}"></sly>
+        <sly
+          data-sly-test="${model.subscriptionOptions =='all'}"
+        >
+        <div class="product-detail__single-purchase">
+          <label for="single_purchase" class="radio-button">
+            <sly data-sly-use.i18nFetcher_one_time_purchase="${'com.abbott.aem.cloud.platform.core.models.I18nFetcher' @ key = 'one-time-purchase'}"/>
+            ${i18nFetcher_one_time_purchase.title}
+            <input
+              type="radio"
+              id="single-purchase"
+              name="single_purchase"
+              value="Single purchase"
+            />
+            <span class="radio-button__checkmark"></span>
+          </label>
+          <div
+            class="js-product-price"
+            data-sku="${model.sku}"
+            data-price-to-show="${model.priceToShow}"
+            data-free-delivery="${model.showFreeDeliveryLabel}"
+            data-enable-loyalty-points="${model.enableLoyaltyPoints}"
+            data-aa-tracking-viewproduct="${model.viewProductAATracking}"
+            data-product-badge="${model.badge}"
+            data-subscription-options="${model.subscriptionOptions}"
+          ></div>
+        </div>
+        <div id="stepper-place"></div>
+          <div class="product-detail__subscription-purchase">
+            <label for="subscription_purchase" class="radio-button">
+              <sly data-sly-use.i18nFetcher_subscription_advantage_package="${'com.abbott.aem.cloud.platform.core.models.I18nFetcher' @ key = 'subscription-advantage-package'}"/>
+              ${i18nFetcher_subscription_advantage_package.title}
+              <input
+                type="radio"
+                id="subscription-purchase"
+                name="subscription_purchase"
+                value="Subscription Purchase"
+              />
+              <span class="radio-button__checkmark"></span>
+            </label>
+          </div>
+        </sly>
+
+        <sly data-sly-call="${addtocart @model=model}" />
+        <sly data-sly-call="${disclaimer @model=model}" />
+        <sly data-sly-call="${maxQuanity @model=model}" />
+      </div>
+    </div>
+  </article>
+</template>
+
+<template data-sly-template.productName="${@ model}">
+  <div class="product-detail__name" data-sly-test.name="${model.name}">
+    <h3>${name @context='html'}</h3>
+  </div>
+</template>
+
+<template data-sly-template.productDescription="${@ model}">
+  <div
+    class="product-detail__description"
+    data-sly-test.description="${model.description}"
+  >
+    <sly
+      data-sly-use.i18nFetcher="${'com.abbott.aem.cloud.platform.core.models.I18nFetcher' @ key = 'product-label-short-description'}"
+    />
+    <div
+      class="product-description"
+      data-sly-test.description="${model.description}"
+    >
+      ${description @context='html'}
+    </div>
+  </div>
+</template>
+
+<template data-sly-template.disclaimer="${@ model}">
+  <div
+    class="product-detail__disclaimer"
+    data-sly-test.disclaimer="${model.disclaimer}"
+  >
+    ${disclaimer @ context='html'}
+  </div>
+</template>
+
+<template data-sly-template.maxQuanity="${@ model}">
+  <div
+    class="product-detail__max_quanity_info"
+    data-sly-test="${model.maxSaleQuantity}"
+  >
+    <sly
+      data-sly-use.i18nFetcher="${'com.abbott.aem.cloud.platform.core.models.I18nFetcher' @ key = 'product-label-max-quantity'}"
+    />
+    ${i18nFetcher.title} - ${model.maxSaleQuantity}
+  </div>
+</template>
+
+<template data-sly-template.addtocart="${@ model}">
+  <div
+    class="js-add-to-cart"
+    data-sku="${model.sku}"
+    data-product-badge="${model.badge}"
+    data-cta-override="${model.ctaOverride}"
+    data-pdp-url="${model.pdpLinkUrl @extension='html'}"
+    data-out-of-stock-title="${model.outOfStockTitle}"
+    data-out-of-stock-message="${model.outOfStockMessage}"
+    data-stock-alert-link-text="${model.stockAlertLinkText}"
+    data-stock-alert-static-text="${model.stockAlertStaticText}"
+    data-aa-tracking-addtocart="${model.addToCartAATracking}"
+    data-subscription-options="${model.subscriptionOptions}"
+    data-buy-now-button="${model.showBuyNowButton}"
+  ></div>
+</template>
+
+<template data-sly-template.carousal="${@ model}">
+  <div
+    class="o-hero-carousel o-hero-carousel--tall o-hero-carousel--light aem-GridColumn aem-GridColumn--default--12"
+  >
+    <div
+      data-js-component="${wcmmode.edit ? '' : 'carousel'}"
+      data-no-indicators="false"
+      data-left-icon="abt-icon abt-icon-left-arrow"
+      data-right-icon="abt-icon abt-icon-right-arrow"
+      data-cards-per-screen="1"
+      data-cards-per-scroll="1"
+      data-transition-autoplay="false"
+      data-transition-autopause-disable="false"
+      data-responsive="true"
+      data-tablet-cards-per-screen="2"
+      data-tablet-cards-per-scroll="1"
+      data-mobile-cards-per-screen="1"
+      data-mobile-cards-per-scroll="1"
+      data-transition-delay="5000"
+    >
+      <sly
+        class="cmp-carousel__content"
+        aria-atomic="false"
+        aria-live="off"
+        data-sly-test="${model.assets && model.assets.size > 0}"
+      >
+        <sly data-sly-repeat.item="${model.assets}">
+          <div class="image image--align-center">
+            <div>
+              <img
+                src="${item.path}"
+                class="cmp-image__image a-image__default"
+                itemprop="contentUrl"
+                data-cmp-hook-image="image"
+                alt="${item.altText}"
+              />
+            </div>
+          </div>
+        </sly>
+      </sly>
+    </div>
+  </div>
+</template>

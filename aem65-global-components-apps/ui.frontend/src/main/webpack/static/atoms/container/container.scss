@@ -1,0 +1,199 @@
+.a-container {
+    $self: &;
+
+    &.container {
+        padding-top: var(--container-padding-top);
+        padding-bottom: var(--container-padding-bottom);
+
+        @include media-breakpoint-down(sm) {
+            padding-top: var(--container-padding-top-mobile);
+            padding-bottom: var(--container-padding-bottom-mobile);
+        }
+    }
+
+    &__layout-section {
+        justify-content: center;
+    }
+
+    &__column {
+        @include rem(padding-top, var(--container-padding-top));
+        @include rem(padding-bottom, var(--container-padding-bottom));
+    }
+
+    /*-------------------------------------
+    Modifiers
+    /*-----------------------------------*/
+
+    //Corner Options
+
+    &--rounded-corners{
+        border-radius: var(--container-rounded-corners);
+    }
+
+    // Background Color Options
+    &--dark {
+        background-color: var(--container-dark-bg);
+        color: var(--container-dark-color);
+    }
+
+    &--light {
+        background-color: var(--container-light-bg);
+    }
+
+    &--secondary {
+        background-color: var(--container-secondary-bg);
+    }
+
+
+    // Container Full Width
+    &.container-full-width {
+        max-width: var(--container-max-width);
+        .cmp-container {
+            margin: 0 auto;
+            @include media-breakpoint-up(sm) {
+                max-width: var(--container-sm-width);
+                padding-left: var(--container-padding-left);
+                padding-right: var(--container-padding-right);
+            }
+            @include media-breakpoint-up(md) {
+                max-width: var(--container-md-width);
+            }
+            @include media-breakpoint-up(lg) {
+                max-width: var(--container-lg-width);
+            }
+            @include media-breakpoint-up(xl) {
+                max-width: var(--container-xl-width);
+            }
+        }
+    }
+
+    // Gradient and Background image
+    position: relative;
+    z-index: 0;
+
+    &__content {
+        order: 2;
+        position: relative;
+        .cmp-container {
+            background-size: 0 !important;
+        }
+    }
+
+    &__media {
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        position: absolute;
+        z-index: -1;
+        order: 1;
+
+        &:after {
+            z-index: 0;
+            content: "";
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        #{$self}__image, #{$self}__image img {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            object-fit: cover;
+            object-position: center center;
+        }
+    }
+    &__media__mobile {
+        @include media-breakpoint-up(lg) {
+            display: none;
+        }
+        @include media-breakpoint-only(md) {
+            display: none;
+        }
+    }
+
+    @include media-breakpoint-down(sm) {
+        &__media {
+            #{$self}__image {
+                display: none;
+            }
+
+            &:after {
+                background: linear-gradient(90deg, var(--container-start-color) var(--container-start-position), var(--container-end-color) var(--container-end-position));
+            }
+        }
+
+        &__row {
+            position: relative;
+            #{$self}__media__mobile {
+                img {
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    &--gradient-start {
+        #{$self}__media:after {
+            background: linear-gradient(90deg, var(--container-start-color) var(--container-start-position), var(--container-end-color) var(--container-end-position));
+        }
+    }
+    &--gradient-end {
+        #{$self}__media:after {
+            background: linear-gradient(-90deg, var(--container-start-color) var(--container-start-position), var(--container-end-color) var(--container-end-position));
+        }
+    }
+    &--gradient-center {
+        #{$self}__media:after {
+            background: radial-gradient(circle, var(--container-start-color) var(--container-start-position), var(--container-end-color) var(--container-end-position));
+        }
+    }
+
+    // Container Box Style
+    &--shadow-box {
+        border: 1px solid rgba($color-light-gray, 0.4);
+        border-radius: 5px;
+        box-shadow: 0 0 2px 0 $color-text-gray;
+    }
+
+    &--border-box {
+        border: 1px solid $color-text-gray;
+        border-radius: 4px;
+    }
+
+    .responsivegrid .aem-Grid & {
+        &#{$self}--shadow-box,
+        &#{$self}--border-box {
+            padding: $spacers-24 $spacers-03;
+            margin-top: $spacers-8!important;
+            margin-bottom: $spacers-8!important;
+
+            @include media-breakpoint-up(md) {
+                padding: $spacers-24;
+            }
+            @include media-breakpoint-up(lg) {
+                padding: $spacers-06 $spacers-8;
+            }
+
+            @include media-breakpoint-down(sm) {
+                width: calc(100% - 30px);
+            }
+        }
+    }
+
+    // when used inside column-control
+    .responsivegrid .aem-Grid .columncontrol__column & {
+        &#{$self}--shadow-box,
+        &#{$self}--border-box {
+
+            &:only-child {
+                margin-bottom: 0!important;
+            }
+        }
+    }
+}

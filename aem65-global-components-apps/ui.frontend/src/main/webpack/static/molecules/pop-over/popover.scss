@@ -1,0 +1,49 @@
+
+.m-popover {
+    display: inline-block;
+    max-width: var(--popover-edit-max-width);
+
+    .popover {
+        border-radius: var(--popover-border-radius);
+        box-shadow: var(--popover-box-shadow);
+        display: block!important;
+        border: none;
+    }
+
+
+    &__content {
+        display: none;
+    }
+
+    &__image {
+        &-img {
+            max-width: 100%;
+        }
+    }
+    &__heading , &__text , &__action {     
+        @include rem(padding, var(--popover-padding-x) var(--popover-padding-y) );
+    }
+
+    .popover-body {
+        border: none;
+        padding: 0;
+
+        .a-title {
+            display: flex;
+            flex-direction: column;
+        }
+
+        p {
+            @include copy(var(--popover-para-font-size), var(--popover-para-line-height), var(--popover-para-color));
+            @include rem(padding-top, var(--popover-padding-x));       
+        }
+
+    }
+
+    //Css for Authoring mode
+    &--edit {       
+        display: block;     
+        max-width: var(--popover-edit-max-width);
+        box-shadow: var(--popover-edit-box-shadow);  
+    }
+}

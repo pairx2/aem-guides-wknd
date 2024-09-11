@@ -1,0 +1,142 @@
+@import '../../atoms/indicator/indicator.scss';
+
+.o-cards-carousel {
+  height: auto;
+
+  .slick-slider  {
+    margin: 0 20px;
+    padding-bottom: 30px;
+  }
+
+  .slick-track{
+    display: flex;
+  }
+  .slick-slide > div {
+    height: 100%;
+  }
+
+  &[data-no-indicators="true"] {
+    padding-bottom: 0;
+  }
+
+  &--dots-start#{&} {
+    .slick-dots{
+      width: 50%;
+      left: 0;
+    }
+  }
+
+  &--dots-end#{&} {
+    .slick-dots{
+      width: 50%;
+      left: 50%;
+    }
+  }
+
+  &--arrows-start{
+    .slick-prev {
+      left: 10px;
+      bottom: -5px;
+      top: auto;
+      right: auto;
+    }
+
+    .slick-next {
+      left: 40px;
+      bottom: -5px;
+      top: auto;
+      right: auto;
+    }
+  }
+
+  &--arrows-end{
+    .slick-prev {
+      left: auto;
+      bottom: -5px;
+      top: auto;
+      right: 40px;
+    }
+
+    .slick-next {
+      left: auto;
+      bottom: -5px;
+      top: auto;
+      right: 10px;
+    }
+  }
+
+
+  &--dark {
+    .slick-dots {
+      button {
+        @extend .a-indicator__dot-light;
+      }
+      .slick-active {
+        button {
+          @extend .a-indicator__dot-light--active;
+        }
+      }
+    }
+
+    .slick-arrow:before {
+      color: $color-white;
+    }
+  }
+
+  .slick-arrow{
+    z-index: 98;
+  }
+
+
+  .m-card {
+    width: 100%!important;
+  }
+
+  @include media-breakpoint-down(md) {
+    .slick-arrow {
+      display: none!important;
+    }
+
+    .slick-slider{
+      margin: 0;
+    }
+  }
+
+
+  .slick-slide {
+    height: auto;
+    padding: 10px;
+  }
+
+  .slick-dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: auto;
+    bottom: 10px;
+    width: 100%;
+    left: 0;
+    padding: 0;
+
+    li {
+      list-style-type: none;
+      width: auto;
+      height: auto;
+      margin: 0;
+      padding: 0;
+      button {
+        @extend .a-indicator__dot;
+        padding: 0;
+        &:before {
+          content: none;
+        }
+      }
+      &.slick-active {
+        button {
+          @extend .a-indicator__dot--active;
+        }
+      }
+    }
+  }
+}

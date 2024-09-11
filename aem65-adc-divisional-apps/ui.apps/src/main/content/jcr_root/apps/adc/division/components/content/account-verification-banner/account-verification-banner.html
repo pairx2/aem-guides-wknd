@@ -1,0 +1,41 @@
+<sly data-sly-test="${wcmmode.edit}"> Edit Account Verification Banner Component here ...</sly>
+<sly data-sly-use.accountVerificationModel="com.abbott.aem.adc.division.models.AccountVerificationBannerModel"/>
+<div class="cmp-account-verification-banner">
+  <div className="container">
+    <div class="row justify-content-center">
+      <div class="col-xs-12 col-sm-12 col-md-8 mt-0">
+        <p class="adc-avm-heading d-flex justify-content-center mt-3"> ${accountVerificationModel.heading}
+
+        </p>
+        <p class="adc-banner-description mt-3"> ${accountVerificationModel.bannerDescription @context='html'}</p>
+    <hr class="mt-5 mb-5 hr-line hide-hr-for-private-customers"/>
+        <div class="opacity-section hide-techtrain-for-private-customers">
+    <div id="main-container" class="adc-tech-training-heading-b adc-avm-sub-heading">${accountVerificationModel.subHeading @context='html'}
+      <div class="adc-tooltipright adc-icon-for-info adc-icon--medium adc-icon--info-box align-middle icon-class ml-1">
+        <div class="adc-tooltipright__content jsclass text-left p-2 d-none ml-5 mt-3">
+          ${accountVerificationModel.bannerSubHeadingInfoText}</div>
+      </div>
+    </div>
+      <p class="adc-banner-description mt-3"> ${accountVerificationModel.subDescription @context='html'}</p>
+      <div class="container cmp-account-verification-container" data-hmmUrl = "${accountVerificationModel.hmmUrl}">
+        <div class="row a-container__layout-section mb-3" data-sly-list.itemList="${accountVerificationModel.bannerButtons}">
+          <div class="a-container__column col-12 col-sm-12 col-md-6 col-lg-5">
+            <div class="button link a-button a-button--width-100 a-button--${itemList.cta.type} a-button--md justify-content-center">
+              <a key=${itemList.index} onClick="handleLink()" data-id="${itemList.ctaTargetSectiontId}" class="btn ${itemList.ctaTargetSectiontId}" target="_self">
+                ${itemList.cta.text}
+              </a>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    <sly data-sly-list.itemList="${accountVerificationModel.bannerButtons}">
+    <div id="${itemList.ctaTargetSectiontId}" class="${itemList.ctaTargetSectiontId} verification-banner-text mt-5 verification-section-${itemList.cta.type == 'primary' ? 'show':'hide'}" >
+    ${itemList.ctaSection @context = 'html'}
+  </div>
+  </sly>
+    </div>
+  </div>
+  </div>
+</div>

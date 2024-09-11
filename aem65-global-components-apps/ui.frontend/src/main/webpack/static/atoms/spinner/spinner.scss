@@ -1,0 +1,27 @@
+.a-spinner {
+    @include flex(center, center);
+    position: absolute;
+    z-index: 999;
+    background-color: var(--spinner-bg);
+
+    .spinner-border {
+        @include rem(height, var(--spinner-width));
+        @include rem(width, var(--spinner-height));
+        color: var(--spinner-border-color);
+        position: absolute;
+    }
+
+    &--static {
+        position: static;
+
+        .spinner-border {
+            position: static;
+        }
+    }
+
+    &--white {
+        .spinner-border {
+            color: $white;
+        }
+    }
+}

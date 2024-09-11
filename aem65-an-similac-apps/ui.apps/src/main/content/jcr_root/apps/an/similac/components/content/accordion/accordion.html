@@ -1,0 +1,24 @@
+<div  class="cq-placeholder section" 
+	data-emptytext="Configure Accordion Component in EDIT Mode" 
+    data-sly-test.author="${!properties.question && (wcmmode.edit || wcmmode.design)}" >
+</div>
+<sly data-sly-use.analyticsConfig="${'com.abbott.aem.an.similac.core.models.AnalyticsConfigModel' @ sectionTitle =properties.question}" />
+<sly data-sly-test.eventCategory="${properties.eventCategory ? properties.eventCategory : 'faq'}"/>
+<sly data-sly-test.eventAction="${properties.eventAction ? properties.eventAction : 'click'}" />
+<sly data-sly-test.eventLabel="${properties.eventLabel ? properties.eventLabel : analyticsConfig.eventLabel}" />
+<sly data-sly-test.gtmValue="${'{0}{1}{2}{3}{4}{5}{6}' @ format=[eventCategory, '|',eventAction,'|',eventLabel,'_',properties.show? 'expand' : 'collapse']}" />
+
+<sly data-sly-test.relPath="${'{0}/{1}' @format=[currentNode.parent.name,currentNode.name]}" />
+<div class="accordion__header ${properties.show? '' : 'collapsed'}" data-toggle="collapse" data-gtm="${gtmValue @context='attribute'}" href="#${relPath}">
+	<a class="accordion__link">
+		${properties.question @ context='html'}
+	</a>
+	<div class="float-right">
+		<span class="sim-icons minus" data-icon="minus"></span>
+		<span class="sim-icons add" data-icon="add"></span>
+	</div>
+</div>
+<div id="${relPath}" class="accordion__body collapse ${properties.show? 'show' : ''}">
+	${properties.answer @ context='html'}
+	<sly data-sly-resource="${ 'content' @resourceType='wcm/foundation/components/parsys'}" ></sly>
+</div>

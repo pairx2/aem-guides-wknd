@@ -1,0 +1,48 @@
+<div
+	data-sly-use.button="com.abbott.aem.platform.common.components.models.FloatingActionButton">
+	<sly data-sly-test="${button.buttonType == 'clicktocall'}">
+
+		<div class="a-floatingactionbutton__floating-button ${button.hideOnDesktop ? 'fab-d-none' : ''}">
+			<div classs="floatingactionbutton__float-full-width">
+				<sly data-sly-test="${button.buttonStyle== 'btn-full-width'}">
+				<a class="cmp-button__link" href="tel:${button.phoneNumber}"
+					data-cmp-clickable="${button.data ? true : false}"
+					data-cmp-hook-button="link">
+
+					<button
+						class=" btn-full-width full-width-${button.buttonSize} floating-btn-text  ${button.buttonColor}">
+						<sly data-sly-test="${button.iconPosition == 'left'}"> 
+						<em	class="${button.buttonIcon @context='html'} icon-left"></em> </sly>
+						<sly data-sly-test="${!button.hideButtonText}">
+						${button.buttonText} </sly>
+
+						<sly data-sly-test="${button.iconPosition == 'center'}">
+						<em class="${button.buttonIcon @context='html'} icon-right"></em> </sly>
+					</button>
+				</a> </sly>
+			</div>
+		</div>
+
+	<div class="a-floatingactionbutton__floating-button ${button.hideOnDesktop ? 'fab-d-none' : ''}">
+		<div class="right-aligned">
+			<sly data-sly-test="${button.buttonStyle== 'right-aligned'}"> <a
+				class="cmp-button__link" href="tel:${button.phoneNumber}"
+				data-cmp-clickable="${button.data ? true : false}"
+				data-cmp-hook-button="link">
+				<button
+					class="text-${button.iconPosition} right-aligned-${button.buttonSize} floating-btn-text ${button.buttonColor}">
+                   <div class="button-alignment">
+					<sly data-sly-test="${button.iconPosition == 'left'}"> 
+					<em	class="${button.buttonIcon @context='html'} icon-left"></em> </sly>
+					<sly data-sly-test="${!button.hideButtonText}">
+					${button.buttonText} </sly>
+
+					<sly data-sly-test="${button.iconPosition == 'center'}"> 
+					<em	class="${button.buttonIcon @context='html'} icon-right"></em> </sly>
+				   </div>
+				</button>
+			</a> </sly>
+		</div>
+	</div>
+	</sly>
+</div>

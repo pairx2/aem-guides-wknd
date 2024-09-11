@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xmlns="http://maven.apache.org/POM/4.0.0"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<!-- ====================================================================== -->
+	<!-- P A R E N T P R O J E C T D E S C R I P T I O N -->
+	<!-- ====================================================================== -->
+	<parent>
+		<groupId>com.abbott.aem.platform.cloud</groupId>
+		<artifactId>aem-abbott-platform-cloud.parent</artifactId>
+		<version>RELEASE</version>
+	</parent>
+
+	<groupId>com.abbott.aem.adc.freestylelibrede</groupId>
+	<artifactId>aem-adc-freestylelibrede.reactor</artifactId>
+	<packaging>pom</packaging>
+	<version>1.0.0-SNAPSHOT</version>
+	<name>ADC : FreeStyle Libre DE</name>
+
+	<modules>
+		<module>core</module>
+		<!-- ADD THESE MODULES FROM MAVEN ARCHETYPES <module>it.tests</module> 
+			<module>it.launcher</module> -->
+		<module>react.app</module>
+		<module>ui.apps.structure</module>
+		<module>ui.apps</module>
+		<module>ui.content</module>
+		<module>ui.config</module>
+		<module>all</module>
+	</modules>
+	<properties>
+		<division>adc</division>
+		<site>freestylelibrede</site>
+		<abbott-platform.version>${project.version}</abbott-platform.version>
+		<package.group>${division}/${site}</package.group>
+		<componentGroupName>${division} ${site}</componentGroupName>
+		<validation.filter.roots>
+			/apps/${division}/${site},/conf/${division},/etc/packages/${division}/${site},/content/${division}/${site},/content/dam/${division},/content/experience-fragments/${division}/${site},/content,/content/dam,/content/experience-fragments,/conf
+		</validation.filter.roots>
+
+  <sonar.exclusions>tests/**,**/App.js, **/src/redux/*.js,**/src/__mocks__/*.js, **/content/jcr_root/**/*.js,**/src/test/**,**/tests/**,**/api/*.js,**/src/**/actions/*.js,**/src/**/reducers/*.js,**/src/**/schemas/*.js,**/src/**/index.js,**/src/**/serviceWorker.js,ui.apps/.../clientlibs/clientlib-react/css/main.css,ui.apps/.../clientlibs/clientlib-react/js/main.js,ui.apps/.../clientlibs/clientlib-react-vendor/js/runtime.js,ui.apps/.../clientlibs/clientlib-react-vendor/js/vendor.js   </sonar.exclusions>
+           
+		<sonar.projectKey>191_BTS_AEM_NextGen_Germany</sonar.projectKey>
+		<sonar.moduleKey>${project.artifactId}</sonar.moduleKey>
+		<sonar.projectName>191_BTS_AEM_NextGen_Germany</sonar.projectName>
+		<sonar.projectVersion>${project.version}</sonar.projectVersion>
+		<!--<aggregate.report.dir>tests/target/site/jacoco-aggregate/jacoco.xml</aggregate.report.dir>-->
+	</properties>
+	<profiles>
+		<profile>
+																																																																																							                              																																																																																				
+			<id>abbott</id>
+																																																																																							                              																																	          																																																				
+			<activation>
+																																																																																																																																																
+				<activeByDefault>true</activeByDefault>
+																																																																																																																														
+			</activation>
+																																																																																							                              																																																																																				
+			<repositories>
+																																																																																																																																																
+				<repository>
+																																																																																																																																																																																				
+					<id>artifactory</id>
+																																																																																																																																																																																				
+					<name>bts-aem-191-maven-virtual</name>
+																																																																																																																																																																																				
+					<url>https://artifactory-ent.devops.abbott/artifactory/bts-aem-191-maven-virtual</url>
+																																																																																																																																																																																				
+					<releases>
+																																																																																																																																																																																																																								
+						<enabled>true</enabled>
+																																																																																																																																																																																																																								
+						<updatePolicy>never</updatePolicy>
+																																																																																																																																																																																																						
+					</releases>
+																																																																																																																																																																																				
+					<snapshots>
+																																																																																																																																																																																																																								
+						<enabled>true</enabled>
+																																																																																																																																																																																																						
+					</snapshots>
+																																																																																																																																																																		
+				</repository>
+																																																																																																																																																
+				<repository>
+																																																																																																																																																																																				
+					<id>artifactory-adobe</id>
+																																																																																																																																																																																				
+					<name>adobe-aem-191-maven-remote</name>
+																																																																																																																																																																																				
+					<url>https://artifactory-ent.devops.abbott/artifactory-adobe/adobe-aem-191-maven-remote</url>
+																																																																																																																																																																																				
+					<releases>
+																																																																																																																																																																																																																								
+						<enabled>true</enabled>
+																																																																																																																																																																																																																								
+						<updatePolicy>never</updatePolicy>
+																																																																																																																																																																																																						
+					</releases>
+																																																																																																																																																																																				
+					<snapshots>
+																																																																																																																																																																																																																								
+						<enabled>false</enabled>
+																																																																																																																																																																																																						
+					</snapshots>
+																																																																																																																																																																		
+				</repository>
+																																																																																																																														
+			</repositories>
+																																																																																																												
+			<pluginRepositories>
+																																																																																																																																																
+				<pluginRepository>
+																																																																																																																																																																																				
+					<id>artifactory</id>
+																																																																																																																																																																																				
+					<name>bts-aem-191-maven-virtual</name>
+																																																																																																																																																																																				
+					<url>https://artifactory-ent.devops.abbott/artifactory/bts-aem-191-maven-virtual</url>
+																																																																																																																																																																																				
+					<releases>
+																																																																																																																																																																																																																								
+						<enabled>true</enabled>
+																																																																																																																																																																																																						
+					</releases>
+																																																																																																																																																																																				
+					<snapshots/>
+																																																																																																																																																																		
+				</pluginRepository>
+																																																																																																																														
+			</pluginRepositories>
+																																																																																							                       																																																								
+		</profile>	
+    </profiles>
+	<!-- ====================================================================== -->
+	<!-- D E P E N D E N C I E S -->
+	<!-- ====================================================================== -->
+	<dependencyManagement>
+		<dependencies>
+
+			<!-- dependency>
+				<groupId>com.adobe.acs</groupId>
+				<artifactId>acs-aem-commons-bundle</artifactId>
+				<version>4.3.0</version>
+				<scope>provided</scope>
+			</dependency -->
+			<!-- This will get hamcrest-core automatically -->
+			<dependency>
+				<groupId>org.hamcrest</groupId>
+				<artifactId>hamcrest-library</artifactId>
+				<version>1.3</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>biz.aQute.bnd</groupId>
+				<artifactId>bndlib</artifactId>
+				<version>2.4.0</version>
+				<scope>provided</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+</project>

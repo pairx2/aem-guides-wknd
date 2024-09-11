@@ -1,0 +1,15 @@
+<sly data-sly-use.videoModel = "com.abbott.aem.platform.common.components.models.VideoBanner"
+data-sly-use.page="com.abbott.aem.platform.common.components.models.PlatformPage"/>
+<video class="a-video__player-source a-video__dom-video" 
+       muted="true" 
+       data-sly-attribute.loop="${videoModel.playVideoInLoop}"
+       controls="false"
+       playsinline="true"
+       title="${videoModel.title}" 
+       poster="${videoModel.fileReference}"
+       role="presentation"
+       aria-hidden="true"
+       preload="none">
+       <source src="${videoModel.damVideo}" aria-hidden="true" type="${source.type}"/>
+	   <track label="${page.OgTitle}" kind="subtitles" srclang="${page.languageCode}" src="${source.src}"/>
+  </video>

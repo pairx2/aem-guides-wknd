@@ -1,0 +1,30 @@
+{{#> layout/base title="My Offers PWA" }}
+{{#*inline "content-block"}}
+{{> includes/bread-crumb }}
+
+<div class="container profile">
+    <div class="row">
+        <div class="col-12 col-md-4 col-lg-3">
+            {{> includes/side_nav}}
+            {{> includes/recent-order customClass="d-none d-md-block"}}
+        </div>
+        <div class="col-12 col-md-8 col-lg-9">
+            <div id="my_offers_pwa"></div>
+      
+        </div>
+        <div class="col-12 d-md-none">
+            {{> includes/recent-order customClass=""}}
+        </div>
+    </div>
+</div>
+
+
+{{/inline}}
+{{#*inline "scripts-block"}}
+<script>
+    var myOffers_label = Object.freeze(JSON.parse("{{{jsonFile 'myOffersV2.json'}}}"));
+    var jsonCompleteProfileData = Object.freeze(JSON.parse("{{{jsonFile 'completeProfile.json'}}}"));
+</script>
+
+{{/inline}}
+{{/layout/base}}

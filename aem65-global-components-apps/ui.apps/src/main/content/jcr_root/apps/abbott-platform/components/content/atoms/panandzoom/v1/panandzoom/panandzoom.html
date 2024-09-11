@@ -1,0 +1,71 @@
+<sly 
+     data-sly-use.panandzoom="com.abbott.aem.platform.common.components.models.PanAndZoom"
+
+
+data-sly-use.component="com.adobe.cq.wcm.core.components.models.Component"
+data-sly-use.customConfig="com.abbott.aem.platform.common.components.models.CustomConfig"
+     data-sly-use.templates="core/wcm/components/commons/v1/templates.html"
+	 data-sly-use.clientLib="core/wcm/components/commons/v1/templates/clientlib.html"/>
+
+<sly data-sly-call="${clientlib.all @ categories='abbott-platform.thirdpartylibs.dragscroll'}"/>
+<div id="${component.id}" class="container ${customConfig.className}">
+    <sly data-sly-test="${panandzoom.displayOriginalImage}">
+        <sly data-sly-set.displayoriginal="${panandzoom.displayOriginalImage}"></sly>
+    </sly>
+    
+    <div class="a-pan-zoom__pan-container ${displayoriginal} a-pan-zoom__pan-container--img-align-${panandzoom.imageAlignment} ${panandzoom.topMargin ? 'a-pan-zoom__pan-container--m-top' : ''} ${panandzoom.bottomMargin ? 'a-pan-zoom__pan-container--m-bottom' : ''}" data-toggle="modal" data-target="#${component.id}-myModal">
+        <sly data-sly-test="${panandzoom.captionPlacement == 'top'}">
+            <div class="a-pan-zoom__pan-container__content a-pan-zoom__pan-container__caption--align-${panandzoom.captionAlignment}">
+				<div class="caption-content">
+                    <p class="a-pan-zoom__pan-container__caption-title-top"> ${panandzoom.title} </p>
+				</div>
+                <div class="a-pan-zoom__icon a-pan-zoom__pan-container__caption-title-top">
+                    <i class="abt-icon abt-icon-zoom-in abt-zoom" aria-hidden="true"></i>
+                </div>
+            </div>
+        </sly>
+        <img class="a-pan-zoom__image" src="${panandzoom.src}"  alt="${panandzoom.alt}" title="${panandzoom.displayPopupTitle ? panandzoom.title : ''}" data-id="${component.id}-myModal"/>
+
+
+        <sly data-sly-test="${panandzoom.captionPlacement == 'bottom'}">
+            <div class="a-pan-zoom__pan-container__content a-pan-zoom__pan-container__caption--align-${panandzoom.captionAlignment}">
+        <sly data-sly-test="${!panandzoom.displayPopupTitle}"> 
+				<div class="caption-content">
+                    <p class="a-pan-zoom__pan-container__caption-title-bottom"> ${panandzoom.title} </p>
+				</div>
+      </sly>
+                <div class="a-pan-zoom__icon a-pan-zoom__pan-container__caption-title-bottom">
+                    <i class="abt-icon abt-icon-zoom-in abt-zoom" aria-hidden="true"></i>
+                </div>
+            </div>
+        </sly>
+    </div>
+</div>
+
+
+<!-- Trigger the modal with a button -->
+    <!-- Modal -->
+<div class="modal fade" id="${component.id}-myModal" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-heading">
+                    <p> ${panandzoom.title} </p>
+                </div>
+                <div class="model-controls">
+                    <i class="${!panandzoom.zoomIn ? 'abt-icon-zoom-in' : panandzoom.zoomIn} pan-zoom-in" aria-hidden="true"></i>
+                    <i class="${!panandzoom.zoomOut ? 'abt-icon-zoom-out' : panandzoom.zoomOut} pan-zoom-out" aria-hidden="true"></i>
+                    <i aria-hidden="true" class="abt-icon abt-icon-cancel" data-dismiss="modal"></i>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="main dragscroll">
+                    <img class="a-pan-zoom__image-popup" src="${panandzoom.src}" alt="${panandzoom.alt}">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<sly data-sly-call="${templates.placeholder @ isEmpty = !panandzoom.src, classAppend = 'cmp-image cq-dd-image'}"></sly>

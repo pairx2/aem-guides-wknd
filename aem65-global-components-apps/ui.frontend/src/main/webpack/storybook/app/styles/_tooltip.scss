@@ -1,0 +1,50 @@
+@keyframes tooltip-hover {
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+
+}
+
+
+[data-tooltip]:hover {
+    position: relative;
+
+    &:after{
+        background: #1A3F4E;
+        border-radius: 2px;
+        color: #fff;
+        content: attr(data-tooltip);
+        font-size: 14px;
+        padding: 12px 16px;
+        width: auto;
+        font-weight: 500;
+        position: absolute;
+        left: 0;
+        transform: translateX(-35%);
+        white-space: nowrap;
+        bottom: -220%;
+        z-index: 9999;
+        opacity: 0;
+        text-align: center;
+
+        animation: tooltip-hover 200ms 300ms ease-in-out forwards;
+    }
+
+    &:before{
+        border: solid;
+        border-color: #1A3F4E transparent;
+        border-width: 0 8px 10px 8px;
+        content: "";
+        left: 50%;
+        bottom: -35%;
+        position: absolute;
+        transform: translateX(-50%);
+        opacity: 0;
+        animation: tooltip-hover 200ms 300ms ease-in-out forwards;
+    }
+}

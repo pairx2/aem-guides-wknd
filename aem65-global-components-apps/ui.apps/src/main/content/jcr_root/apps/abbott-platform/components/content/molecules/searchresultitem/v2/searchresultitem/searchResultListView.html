@@ -1,0 +1,34 @@
+<template data-sly-template.listItem="${@ searchResultItem}">
+    <article class="a-list-result a-list-result__listview result-items">
+        <h3 class="a-list-result__title">
+            ${searchResultItem.titleText}
+        </h3>
+        <p class="a-list-result__description">${searchResultItem.descriptionText}</p>
+        <a data-href="${searchResultItem.searchButtonLink}" data-default-search-btn-link="${searchResultItem.defaultSearchButtonLink}" data-default-search-btn-label="${searchResultItem.defaultSearchButtonLabel}" aria-label="${searchResultItem.titleText}" role="link"
+           class="a-list-result__link a-result__link">${searchResultItem.searchButtonLabel}</a>
+
+        <div class="m-popup brightcove-video-link" data-toggle="modal" data-target="#videoModal">
+            <a class="brightcove-video-link__Popup" data-account="${searchResultItem.videoAccountId}" data-player="${searchResultItem.videoAppId}" data-video-id="${searchResultItem.videoId}" aria-label="${searchResultItem.titleText}">${searchResultItem.searchButtonLabel}</a>
+        </div>
+
+        <div class="a-link external-link">
+            <a class="a-link__text" role="link" aria-label="${searchResultItem.titleText}" data-redirect-confirm="true" data-redirect-url="${searchResultItem.searchButtonLink}" data-default-search-btn-link="${searchResultItem.defaultSearchButtonLink}" data-default-search-btn-label="${searchResultItem.defaultSearchButtonLabel}">
+                ${searchResultItem.searchButtonLabel}
+            </a>
+        </div>
+        <sly data-sly-list.searchResultMultiField="${searchResultItem.searchResultItemList}">
+            <sly data-sly-test.isUrl="${searchResultMultiField.selectType == 'url'}">
+                <div class="m-search-results__list-item-detail-url additional-fields">
+                    <a href="" target="_blank" role="link"><i class="" aria-hidden="true">
+                    </i><span>{${searchResultMultiField.resultKey}}</span></a>
+                </div>
+            </sly>
+            <sly data-sly-test="${!isUrl}">
+                <div class="m-search-results__list-item-detail-${searchResultMultiField.resultKey} additional-fields">
+                    <div class="m-search-results__list-item-detail__label d-inline-block mr-1">${searchResultMultiField.resultLabel}</div>
+                    <div class="m-search-results__list-item-detail__name ${searchResultMultiField.resultKey} d-inline-block">{${searchResultMultiField.resultKey}}</div>
+                </div>
+            </sly>
+        </sly>
+    </article>
+</template>

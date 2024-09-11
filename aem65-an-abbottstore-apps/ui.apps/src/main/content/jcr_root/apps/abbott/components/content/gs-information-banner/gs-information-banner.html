@@ -1,0 +1,19 @@
+<sly data-sly-use.templates="core/wcm/components/commons/v1/templates.html"/>
+<sly data-sly-use.details="com.abbott.aem.an.abbottstore.models.GsInformationBannerModel" />
+<sly data-sly-test.dataItems="${details.title || details.gsInfoItemsList}"/>
+<div class="glucerna-information-banner" style="background-color: ${details.bgColor @context='styleToken'}">
+    <div class="container mx-auto p-0">
+        <h2 class="glucerna-title" style="color: ${details.titleColor @context='styleToken'}">${details.title}</h2>
+        <div class="glucerna-information-wrapper"  data-sly-list.gsInfoItemsList ="${details.gsInfoItemsList}">
+            <div class="glucerna-information-cards">
+                <picture>
+                    <source media="(min-width: 992px)" srcset="${gsInfoItemsList.deskTopImage}">
+                    <source media="(max-width: 991px)" srcset="${gsInfoItemsList.mobileImage}">
+                    <img class="glucerna-information-image" src="${gsInfoItemsList.deskTopImage}" alt="${gsInfoItemsList.altText}">
+                </picture>
+                <div class="glucerna-subtitle">${gsInfoItemsList.text @context='html'}</div>
+            </div>
+        </div>
+    </div>
+</div>
+<sly data-sly-call="${templates.placeholder @ isEmpty = !dataItems}"></sly>

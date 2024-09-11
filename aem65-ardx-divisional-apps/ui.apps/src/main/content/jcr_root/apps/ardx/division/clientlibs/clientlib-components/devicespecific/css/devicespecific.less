@@ -1,0 +1,74 @@
+ @import "media-queries.less";
+
+    .devicespecific {
+        &.desktop-true
+        {
+            display: block;
+        }
+        &.desktop-false
+        {
+            display: none;
+        }
+        &.tablet-true
+        {
+            @media @lg-down
+            {
+                display: block;
+            }
+        }
+        &.tablet-false
+        {
+            @media @lg-down
+            {
+                display: none;
+            }
+        }
+        &.mobile-true
+        {
+            @media @sm-down
+            {
+                display: block;
+            }
+        }
+        &.mobile-false
+        {
+            @media @sm-down
+            {
+                display: none;
+            }
+        }
+    }
+
+
+
+    .cq-Editable-dom .devicespecific.desktop-true,.cq-Editable-dom .devicespecific.desktop-false,
+    .cq-Editable-dom .devicespecific.tablet-true,.cq-Editable-dom .devicespecific.tablet-false,
+    .cq-Editable-dom .devicespecific.mobile-true,.cq-Editable-dom .devicespecific.mobile-false{
+        display:block !important
+    }
+
+    @media @lg-down{
+        .cq-Editable-dom .devicespecific.desktop-false, .cq-Editable-dom .devicespecific.desktop-true,
+        .cq-Editable-dom .devicespecific.mobile-false, .cq-Editable-dom .devicespecific.mobile-true, 
+        .cq-Editable-dom .devicespecific.tablet-false{opacity:.5}
+        .cq-Editable-dom .devicespecific.tablet-true{opacity:1}
+        .cq-Editable-dom .devicespecific.mobile-false.desktop-false.tablet-false{opacity: .5}
+        .cq-Editable-dom .devicespecific.mobile-true.desktop-ture.tablet-false{opacity: .5}
+    }
+    @media @md-down{
+        .cq-Editable-dom .devicespecific.tablet-false, .cq-Editable-dom .devicespecific.tablet-true,
+        .cq-Editable-dom .devicespecific.desktop-false, .cq-Editable-dom .devicespecific.desktop-true, 
+        .cq-Editable-dom .devicespecific.mobile-false{opacity:.5}
+        .cq-Editable-dom .devicespecific.mobile-true{opacity:1}
+        .cq-Editable-dom .devicespecific.desktop-false.tablet-false.mobile-false{opacity: .5}
+        .cq-Editable-dom .devicespecific.desktop-true.tablet-ture.mobile-false{opacity: .5}
+    }
+    @media @lg-up{
+        .cq-Editable-dom .devicespecific.tablet-false, .cq-Editable-dom .devicespecific.tablet-true,
+        .cq-Editable-dom .devicespecific.mobile-false, .cq-Editable-dom .devicespecific.mobile-true, 
+        .cq-Editable-dom .devicespecific.desktop-false{opacity:.5}
+        .cq-Editable-dom .devicespecific.desktop-true{opacity:1}
+        .cq-Editable-dom .devicespecific.mobile-false.tablet-false.desktop-false{opacity: .5}
+        .cq-Editable-dom .devicespecific.mobile-true.tablet-ture.desktop-false{opacity: .5}
+    }
+        

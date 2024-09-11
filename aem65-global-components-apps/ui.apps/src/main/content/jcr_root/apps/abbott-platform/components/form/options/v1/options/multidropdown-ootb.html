@@ -1,0 +1,17 @@
+<sly data-sly-use.options="com.abbott.aem.platform.common.components.models.FormOptions">
+	<div data-sly-test="${options.type.value == 'multi-drop-down'}" class="multi-drop a-dropdown" data-required="${options.formOptionsIsRequired}" data-js-component="form-dropdown">
+		<div class="a-dropdown__container form-group">	
+			<div class="form-label__align" data-sly-unwrap="${!options.enableTooltip}">				  
+				<label class="a-dropdown__title form-label" for="${options.id}">
+					<span class="a-dropdown__title-text">${options.title}</span><span class="a-dropdown__title--required" data-sly-test="${options.formOptionsIsRequired}">*</span>
+				</label>   
+				<sly data-sly-test="${options.enableTooltip}" data-sly-resource="${'tooltip__inline' @ resourceType=options.tooltipsProxyPath,decoration=true}" />
+			</div>
+			<select class="cmp-form-options__field cmp-form-options__field--${options.type.value}" data-select="multi" name="${options.name}"
+						data-sly-list.optionItem="${options.items}"
+						data-sly-attribute.multiple="${options.type.value == 'multi-drop-down'}">
+			<option value="${optionItem.value}" class="cmp-form-multi-option ${optionItem.selected ? 'selected':''}" selected="${optionItem.selected}" disabled="${optionItem.disabled}">${optionItem.text @context='html'}</option>
+			</select>
+		</div>
+	</div>
+</sly>

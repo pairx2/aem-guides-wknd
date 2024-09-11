@@ -1,0 +1,24 @@
+<template data-sly-template.products="${@ productComparison}">
+    <sly data-sly-list.products="${productComparison.products}">
+    <th scope="col">
+        <div class="${products.badgePosition == 'top-left' ? 'productsCompare-badge-top-start' : 'productsCompare-badge-top-end'}">
+            <!--/* product badge start */-->
+            <div data-sly-test="${products.badgeChecked}" class="o-products-compare__badge">
+                <sly data-sly-test.col="${'{0}{1}' @ format=['product_badge_', productsList.index]}"/>
+                <sly data-sly-resource="${@ path=col , resourceType=productComparison.badgeProxyPath, decoration=true}" />
+            </div>
+            <!--/* product badge end */-->
+
+            <!--/* product image start */-->
+            <img data-sly-test="${products.productImage}" alt="${products.productAltText}" src="${products.productImage}" />
+            <!--/* product image end */-->
+
+            <!--/* product title start */-->
+            <div class="o-products-compare__title">
+                <span>${products.productTitle @context='html'}</span>
+            </div>
+            <!--/* product title end */-->
+        </div>
+    </th>
+    </sly>
+</template>

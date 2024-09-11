@@ -1,0 +1,271 @@
+<sly data-sly-test="${wcmmode.edit}">
+    <p data-emptytext="${component.title}" class="cq-placeholder"></p>
+</sly>
+<div data-sly-use.gatewayBanner="com.abbott.aem.cv.division.core.components.models.GatewayBanner"
+	data-sly-use.component="com.adobe.cq.wcm.core.components.models.Component" id="${component.id}"
+	class="cmp-gatewaybanner" data-js-component="gatewaybanner">
+	<div
+		class="gatewayBannerComp ${gatewayBanner.removeMarginTop || 'add'}-margin-top ${gatewayBanner.removeMarginBottom || 'add'}-margin-bottom section">
+		<script src="https://video.limelight.com/player/limelightjs-player.js?orgId=b0029788f6f3415db64a9cf5452f5200">
+		</script>
+		<sly data-sly-test="${gatewayBanner.bgType == 'image'}">
+			<div class="bg-type-image">
+				<input type="hidden" class="img-src" value="${gatewayBanner.bannerImagePath}" />
+				<input type="hidden" class="height-control" value="${gatewayBanner.heightControl}" />
+				<sly data-sly-test="${gatewayBanner.bannerImagePath && gatewayBanner.decorative}">
+					<img src="${gatewayBanner.bannerImagePath}" alt=" " class="bg-img hide-img-mobile" />
+				</sly>
+				<sly data-sly-test="${gatewayBanner.bannerImagePath && !gatewayBanner.decorative}">
+					<img src="${gatewayBanner.bannerImagePath}" alt="${gatewayBanner.bannerImageAlttext}" class="bg-img hide-img-mobile" />
+				</sly>
+				<div class="gatewayBnrsection-bg">
+					<input type="hidden" class="bgcolor-val" value="${gatewayBanner.bgColor}" />
+					<div class="container gateway-container">
+						<div class="gatewayBanner-panel">
+							<div class="gateway-section-text">
+								<div class="gateway-section-title-default ${gatewayBanner.titleColor}"
+									style="width:100%;">
+									<sly data-sly-test="${gatewayBanner.headingStyle != 'true'}">
+										<div data-sly-element="${gatewayBanner.headingTag}">${gatewayBanner.title
+											@context='html'}</div>
+									</sly>
+									<sly data-sly-test="${gatewayBanner.headingStyle == 'true'}">
+										<h2 class="h2-display">${gatewayBanner.title @context='html'}</h2>
+									</sly>
+								</div>
+								<div class="gateway-section-desc-default ${gatewayBanner.descriptionColors}"
+									style="width:100%;">
+									<sly data-sly-test="${gatewayBanner.subtitleHeadingStyle != 'true'}">
+										<div data-sly-element="${gatewayBanner.subTitleHeadingTags}">
+											${gatewayBanner.subTitle @context='html'}</div>
+									</sly>
+									<sly data-sly-test="${gatewayBanner.subtitleHeadingStyle == 'true'}">
+										<p class="body-small">${gatewayBanner.subTitle @context='html'}</p>
+									</sly>
+								</div>
+								<div class="gateway-section-cardspanel" style="width:100%;">
+									<ul class="cards ${gatewayBanner.layout}">
+										<sly data-sly-list.gmPanel="${gatewayBanner.gatewayBannerPanel}">
+											<li
+												class="bgColorforCard colr-default-${gatewayBanner.panelColor}">
+												<input type="hidden" class="display-desc-mobile"
+													value="${gmPanel.displayPanelDescriptionOnMobile}" />
+												<sly data-sly-test="${gmPanel.cta == 'url'}">
+													<a class="" href="${gmPanel.urlLink}"
+													   target="${gmPanel.targetNewWindow ? '_blank' : '_self'}">
+												</sly>
+												<sly data-sly-test="${gmPanel.cta == 'anchorLink'}">
+													<a class="" href="#${gmPanel.anchorID}">
+												</sly>
+												<sly data-sly-test="${gmPanel.cta == 'video'}">
+													<a class="limelight-video-modal" href="javascript:void(0)"
+														data-toggle="modal"
+														data-target="#gateway-Modal-${gmPanel.mediaId}"
+														role="dialog">
+														<input type="hidden" class="mediaId"
+															value="${gmPanel.mediaId}" />
+														<input type="hidden" class="playerId"
+															value="${gmPanel.playerId}" />
+												</sly>
+												<sly data-sly-test="${gmPanel.cta == 'ytvideo'}">
+													<a href="javascript:void(0)" data-toggle="modal"
+														data-target="#yt-modal-gatewaybanner-${gmPanel.videoId}"
+														role="dialog" class="yt-modal-open-gatewaybanner">
+														<input type="hidden" class="yt-id"
+															value="${gmPanel.videoId}" />
+												</sly>
+												<sly data-sly-test="${gmPanel.cta == 'downloadasset'}">
+													<a class="" href="${gmPanel.assetURL}" target="_blank" download>
+												</sly>
+												<sly data-sly-test="${gmPanel.cta == 'clicktocall'}">
+													<a class="" href="tel:${gmPanel.phoneNumber}">
+												</sly>
+												<sly data-sly-test.eyebrow="${gmPanel.panelEyeBrow}">
+													<p class="panel-eyebrow">${gmPanel.panelEyeBrow}</p>
+												</sly>
+												<sly data-sly-test.title="${gmPanel.panelTitle}">
+													<div data-sly-element="${gatewayBanner.panelTitleHeadingTag}"
+														class="panel-title">${gmPanel.panelTitle}</div>
+												</sly>
+												<sly data-sly-test.desc="${gmPanel.panelDescription}">
+													<p class="panel-desc">${gmPanel.panelDescription}</p>
+												</sly>
+												</a>
+											</li>
+
+											<!-- Modal -->
+											<div class="limelight-video-modal modal fade"
+												id="gateway-Modal-$gmPanel.mediaId}">
+												<div class="modal-dialog">
+													<!-- Modal content-->
+													<div class="modal-content">
+														<div class="modal-header">
+															<button type="button" class="close"
+																data-dismiss="modal">&times;</button>
+														</div>
+														<div id="limelight_player_${gmPanel.playerId}"
+															class="limelight_player_cont"></div>
+													</div>
+												</div>
+											</div>
+											<!-- End Modal -->
+
+											<div class="yt-video-modal modal fade"
+												id="yt-modal-gatewaybanner-${gmPanel.videoId}" role="dialog">
+												<div class="modal-dialog">
+													<div class="modal-content">
+														<div class="modal-header">
+															<button type="button" class="close"
+																data-dismiss="modal">&times;</button>
+														</div>
+														<div id="video-gatewaybanner" class="yt-video-player" yt-id="">
+														</div>
+													</div>
+												</div>
+											</div>
+										</sly>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</sly>
+		<sly data-sly-test="${gatewayBanner.bgType == 'backgroundColor'}">
+			<div class="bg-type-solidclr">
+				<input type="hidden" class="img-src" value="${gatewayBanner.bannerImagePath}" />
+				<sly data-sly-test="${gatewayBanner.bannerImagePath && gatewayBanner.decorative}">
+					<img src="${gatewayBanner.bannerImagePath}" alt="${gatewayBanner.bannerImageAlttext}" class="bg-img hide-img-mobile" />
+				</sly>
+				<sly data-sly-test="${gatewayBanner.bannerImagePath && !gatewayBanner.decorative}">
+					<img src="${gatewayBanner.bannerImagePath}" alt="${gatewayBanner.bannerImageAlttext}" class="bg-img hide-img-mobile" />
+				</sly>
+				<div class="gatewayBnrsection-bg ${gatewayBanner.bgColor}">
+
+					<input type="hidden" class="bgcolor-val" value="${gatewayBanner.bgColor}" />
+					<div class="container gateway-container">
+						<div class="gatewayBanner-panel">
+							<div class="gateway-section-text">
+								<div class="gateway-section-title-default ${gatewayBanner.titleColor}"
+									style="width:100%;">
+									<sly data-sly-test="${gatewayBanner.headingStyle != 'true'}">
+										<div data-sly-element="${gatewayBanner.headingTag}">${gatewayBanner.title
+											@context='html'}</div>
+									</sly>
+									<sly data-sly-test="${gatewayBanner.headingStyle == 'true'}">
+										<h2 class="h2-display">${gatewayBanner.title @context='html'}</h2>
+									</sly>
+								</div>
+								<div class="gateway-section-desc-default ${gatewayBanner.descriptionColors}"
+									style="width:100%;">
+									<sly data-sly-test="${gatewayBanner.subtitleHeadingStyle != 'true'}">
+										<div data-sly-element="${gatewayBanner.subTitleHeadingTags}">
+											${gatewayBanner.subTitle @context='html'}</div>
+									</sly>
+									<sly data-sly-test="${gatewayBanner.subtitleHeadingStyle == 'true'}">
+										<p class="body-small">${gatewayBanner.subTitle @context='html'}</p>
+									</sly>
+								</div>
+								<div class="gateway-section-cardspanel" style="width:100%;">
+
+									<ul class="cards ${gatewayBanner.layout}">
+										<sly data-sly-list.gmPanel="${gatewayBanner.gatewayBannerPanel}">
+											<li
+												class="bgColorforCard colr-default-${gatewayBanner.panelColor}">
+												<input type="hidden" class="display-desc-mobile"
+													value="${gmPanel.displayPanelDescriptionOnMobile}" />
+												<sly data-sly-test="${gmPanel.cta == 'url'}">
+													<a class="" href="${gmPanel.urlLink}"
+														target="${gmPanel.targetNewWindow ? '_blank' : '_self'}">
+												</sly>
+												<sly data-sly-test="${gmPanel.cta == 'anchorLink'}">
+													<a class="" href="#${gmPanel.anchorID}">
+												</sly>
+												<sly data-sly-test="${gmPanel.cta == 'video'}">
+													<a class="limelight-video-modal" href="javascript:void(0)"
+														data-toggle="modal"
+														data-target="#gateway-Modal-${gmPanel.mediaId}"
+														role="dialog">
+														<input type="hidden" class="mediaId"
+															value="${gmPanel.mediaId}" />
+														<input type="hidden" class="playerId"
+															value="${gmPanel.playerId}" />
+												</sly>
+												<sly data-sly-test="${gmPanel.cta == 'ytvideo'}">
+													<a href="javascript:void(0)" data-toggle="modal"
+														data-target="#yt-modal-gatewaybanner-${gmPanel.videoId}"
+														role="dialog" class="yt-modal-open-gatewaybanner">
+														<input type="hidden" class="yt-id"
+															value="${gmPanel.videoId}" />
+												</sly>
+												<sly data-sly-test="${gmPanel.cta == 'downloadasset'}">
+													<a class="" href="${gmPanel.assetURL}" target="_blank" download>
+												</sly>
+												<sly data-sly-test="${gmPanel.cta == 'clicktocall'}">
+													<a class="" href="tel:${gmPanel.phoneNumber}">
+												</sly>
+												<sly data-sly-test.eyebrow="${gmPanel.panelEyeBrow}">
+													<p class="panel-eyebrow">${gmPanel.panelEyeBrow}</p>
+												</sly>
+												<sly data-sly-test.title="${gmPanel.panelTitle}">
+													<div data-sly-element="${gatewayBanner.panelTitleHeadingTag}"
+														class="panel-title">${gmPanel.panelTitle}</div>
+												</sly>
+												<sly data-sly-test.desc="${gmPanel.panelDescription}">
+													<p class="panel-desc">${gmPanel.panelDescription}</p>
+												</sly>
+												</a>
+											</li>
+
+											<!-- Modal -->
+											<div class="limelight-video-modal modal fade"
+												id="gateway-Modal-${gmPanel.mediaId}">
+												<div class="modal-dialog">
+													<!-- Modal content-->
+													<div class="modal-content">
+														<div class="modal-header">
+															<button type="button" class="close"
+																data-dismiss="modal">&times;</button>
+														</div>
+														<div id="limelight_player_${gmPanel.playerId}"
+															class="limelight_player_cont"></div>
+													</div>
+												</div>
+											</div>
+											<!-- End Modal -->
+
+											<div class="yt-video-modal modal fade"
+												id="yt-modal-gatewaybanner-${gmPanel.videoId}" role="dialog">
+												<div class="modal-dialog">
+													<div class="modal-content">
+														<div class="modal-header">
+															<button type="button" class="close"
+																data-dismiss="modal">&times;</button>
+														</div>
+														<div id="video-gatewaybanner" class="yt-video-player" yt-id="">
+														</div>
+													</div>
+												</div>
+											</div>
+										</sly>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</sly>
+		<sly data-sly-test="${gatewayBanner.bannerImagePath && gatewayBanner.decorative}">
+			<img class="gatewayBnrsection-bg-img-mobile ${gatewayBanner.mobileImage}" alt=" "
+				src="${gatewayBanner.bannerImagePath}">
+			</img>
+		</sly>
+		<sly data-sly-test="${gatewayBanner.bannerImagePath && !gatewayBanner.decorative}">
+			<img class="gatewayBnrsection-bg-img-mobile ${gatewayBanner.mobileImage}" alt="${gatewayBanner.bannerImageAlttext}"
+				src="${gatewayBanner.bannerImagePath}">
+			</img>
+		</sly>
+	</div>
+</div>

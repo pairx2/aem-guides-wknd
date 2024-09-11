@@ -1,0 +1,11 @@
+<sly data-sly-use.templates="core/wcm/components/commons/v1/templates.html"/>
+<div class="abbott-brands-nav d-none d-md-flex flex-column">
+  <sly data-sly-use.navModel="com.abbott.aem.an.abbottstore.models.BrandNavigation" />
+  <sly data-sly-test.maxList="${navModel.maxItemsList}"/>
+  <sly data-sly-list="${navModel.maxItemsList}">
+    <div data-sly-test.resourcePath="${ '{0}{1}' @ format=['abbottList',itemList.count]}">
+      <sly data-sly-resource="${ resourcePath @ resourceType='abbott/components/content/list'}"></sly>
+    </div>
+  </sly>
+</div>
+<sly data-sly-call="${templates.placeholder @ isEmpty = !maxList}"></sly>

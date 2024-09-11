@@ -1,0 +1,358 @@
+{{#> layout/base title="Tummy Trouble" }}
+
+{{#*inline "content-block"}}
+<input type="hidden" id="tummyResultsUrl" value="/tummy-results.html">
+<input type="hidden" id="tummyResultsJSON" value="/content/dam/an/similac/us/tools/TummyJson.json">
+
+<div class="tummy-trouble container">
+	<section class="hero-section banner-img-right">
+		{{!-- banner-img-right for right --}}
+			{{> includes/hero-banner  banner_overline=tummy.banner.overline banner_header=tummy.banner.header  banner_desc=home.banner.description img_lazy_src=home.banner.imgLazySrc  img_src=home.banner.imgSrc img_md_src=home.banner.imgMdSrc img_sm_src=home.banner.imgSmSrc alt_text=home.banner.altText primary_button="true" btn_text=home.banner.btnText custom_class=home.banner.customClass custom_btn_class=tummy.banner.customBtnClass banner_url = tummy.banner.url}}
+	</section>
+	<div class="row justify-content-center">
+		<div class="col-lg-9 my-1_875">
+			<div class="row-container section">
+				<div class="para-content">
+					{{!-- <h2 class="diaper-decoder__title">Diaper Decoder</h2>
+					<p class="diaper-decoder__title1">If your baby seems fussy or sick, or if you simply aren’t sure if all is well,
+						check her diaper for clues about
+						what’s going on.</p>
+					<p class="diaper-decoder__title2">To begin, choose the stool below that looks most like your baby’s.</p>
+					<div class="diaper-tool-wrapper">
+					</div> --}}
+					<div class="tummy-tool-wrap">
+    <div class="tummy-tool-inner">
+            <h2>Tummy Trouble Tool</h2>
+                <ul class="tummy-tool-slider" style="width:100%">
+                        <li style="float: left; list-style: none; position: relative; width: 864px;">
+                            <div class="tummy-tool-ques radio-group-label">
+                                <span class="ques-label">Question 1:</span><span class="ques-text">How old is your baby?</span>
+                                <span class="ans-text radio-group-label">My baby is:</span>
+                            </div>
+                            <div class="row tummy-tool-select radio-button-set">
+                                    <div class="col-12 col-md-4">
+                                        <label class="tummy-radio radio-button-wrapper">
+                                            <input class="radio-input" type="radio" value="1_1" name="ques1">
+                                            <span class="radio-label">
+                                            0 to 2 weeks
+                                            </span>
+                                        </label>
+                                    </div> 
+                                    <div class="col-12 col-md-4">
+                                        <label class="tummy-radio radio-button-wrapper">
+                                            <input class="radio-input" type="radio" value="1_2" name="ques1">
+                                            <span class="radio-label">3 to 4 weeks</span>
+                                        </label>
+                                    </div> 
+                                    <div class="col-12 col-md-4">
+                                        <label class="tummy-radio radio-button-wrapper">
+                                            <input class="radio-input" type="radio" value="1_3" name="ques1">
+                                            <span class="radio-label">1 to 3 months</span>
+                                        </label>
+                                    </div> 
+                                    <div class="col-12 col-md-4">
+                                        <label class="tummy-radio radio-button-wrapper">
+                                            <input class="radio-input" type="radio" value="1_4" name="ques1">
+                                            <span class="radio-label">4 to 6 months</span>
+                                        </label>
+                                    </div> 
+                                    <div class="col-12 col-md-4">
+                                        <label class="tummy-radio radio-button-wrapper">
+                                            <input class="radio-input" type="radio" value="1_5" name="ques1"><span class="radio-label">7 to 12 months</span>
+                                        </label>
+                                    </div> 
+                                <div class="tummy-tool-detail-wrap col-12">
+                                </div>
+                            </div>
+                        </li>
+                        <li style="float: left; list-style: none; position: relative; width: 864px;">
+                            <div class="tummy-tool-ques">
+                                <span class="ques-label">Question 2:</span><span class="ques-text">What do you feed your baby?</span>
+                                <span class="ans-text radio-group-label">In addition to solids (if applicable), I feed my baby:</span>
+                            </div>
+                            <div class="row tummy-tool-select radio-button-set">
+                                    <div class="col-12 col-md-4">
+                                        <label class="tummy-radio radio-button-wrapper">
+                                            <input class="radio-input" type="radio" value="2_1" name="ques2"><span class="radio-label">Breast milk only</span>
+                                        </label>
+                                    </div> 
+                                    <div class="col-12 col-md-4">
+                                        <label class="tummy-radio radio-button-wrapper">
+                                            <input class="radio-input" type="radio" value="2_2" name="ques2"><span class="radio-label">Breast milk and formula</span>
+                                        </label>
+                                    </div> 
+                                    <div class="col-12 col-md-4">
+                                        <label class="tummy-radio radio-button-wrapper">
+                                            <input class="radio-input" type="radio" value="2_3" name="ques2"><span class="radio-label">Formula only</span>
+                                        </label>
+                                    </div> 
+                                <div class="tummy-tool-detail-wrap col-12">
+                                </div>
+                            </div>
+                        </li>
+                        <li style="float: left; list-style: none; position: relative; width: 864px;">
+                            <div class="tummy-tool-ques">
+                                <span class="ques-label">Question 3:</span><span class="ques-text">How often does your baby cry?</span>
+                                <span class="ans-text radio-group-label">My baby cries:</span>
+                            </div>
+                            <div class="row tummy-tool-select radio-button-set">
+                                    <div class="col-12 col-md-4">
+                                        <label class="tummy-radio radio-button-wrapper">
+                                            <input class="radio-input" type="radio" value="3_1" name="ques3"><span class="radio-label">Often, for no apparent reason</span>
+                                        </label>
+                                    </div> 
+                                    <div class="col-12 col-md-4">
+                                        <label class="tummy-radio radio-button-wrapper">
+                                            <input class="radio-input" type="radio" value="3_2" name="ques3"><span class="radio-label">Only when hungry, tired, or wet</span>
+                                        </label>
+                                    </div> 
+                                    <div class="col-12 col-md-4">
+                                        <label class="tummy-radio radio-button-wrapper">
+                                            <input class="radio-input" type="radio" value="3_3" name="ques3"><span class="radio-label">3+ hours at a time, many days</span>
+                                        </label>
+                                    </div> 
+                                <div class="tummy-tool-detail-wrap col-12">
+                                        <span class="detail-head">Why babies cry</span>                                    
+                                        <span class="detail-head">Check the basics</span>                                    
+                                </div>
+                            </div>
+                        </li>
+                        <li style="float: left; list-style: none; position: relative; width: 864px;">
+                            <div class="tummy-tool-ques">
+                                <span class="ques-label">Question 4:</span><span class="ques-text">Does your baby have difficulty releasing gas?</span>
+                                <span class="ans-text radio-group-label">My baby:</span>
+                            </div>
+                            <div class="row tummy-tool-select radio-button-set">
+                                    <div class="col-12 col-md-4">
+                                        <label class="tummy-radio radio-button-wrapper">
+                                            <input class="radio-input" type="radio" value="4_1" name="ques4"><span class="radio-label">Has painful gas</span>
+                                        </label>
+                                    </div> 
+                                    <div class="col-12 col-md-4">
+                                        <label class="tummy-radio radio-button-wrapper">
+                                            <input class="radio-input" type="radio" value="4_2" name="ques4"><span class="radio-label">Seems to have a lot of gas</span>
+                                        </label>
+                                    </div> 
+                                    <div class="col-12 col-md-4">
+                                        <label class="tummy-radio radio-button-wrapper">
+                                            <input class="radio-input" type="radio" value="4_3" name="ques4"><span class="radio-label">Has no problem with gas</span>
+                                        </label>
+                                    </div> 
+                                <div class="tummy-tool-detail-wrap col-12">
+                                        <span class="detail-head">What causes gas?</span>                                    
+                                        <span class="detail-head">Signs of gas</span>                                    
+                                </div>
+                            </div>
+                        </li>
+                        <li style="float: left; list-style: none; position: relative; width: 864px;">
+                            <div class="tummy-tool-ques">
+                                <span class="ques-label">Question 5:</span><span class="ques-text">What are your baby's stools like?</span>
+                                <span class="ans-text radio-group-label">My baby’s stools are:</span>
+                            </div>
+                            <div class="row tummy-tool-select radio-button-set">
+                                    <div class="col-12 col-md-4">
+                                        <label class="tummy-radio radio-button-wrapper">
+                                            <input class="radio-input" type="radio" value="5_1" name="ques5"><span class="radio-label">Hard and dry (like gravel)</span>
+                                        </label>
+                                    </div> 
+                                    <div class="col-12 col-md-4">
+                                        <label class="tummy-radio radio-button-wrapper">
+                                            <input class="radio-input" type="radio" value="5_2" name="ques5"><span class="radio-label">Watery and frequent</span>
+                                        </label>
+                                    </div> 
+                                    <div class="col-12 col-md-4">
+                                        <label class="tummy-radio radio-button-wrapper">
+                                            <input class="radio-input" type="radio" value="5_3" name="ques5"><span class="radio-label">Normal</span>
+                                        </label>
+                                    </div> 
+                                <div class="tummy-tool-detail-wrap col-12">
+                                        <span class="detail-head">What's normal?</span>                                    
+                                        <span class="detail-head">Signs/causes of constipation</span>                                    
+                                        <span class="detail-head">Signs/causes of diarrhea</span>                                    
+                                </div>
+                            </div>
+                        </li>
+                        <li style="float: left; list-style: none; position: relative; width: 864px;">
+                            <div class="tummy-tool-ques">
+                                <span class="ques-label">Question 6:</span><span class="ques-text">What color are your baby's stools?</span>
+                                <span class="ans-text radio-group-label">My baby's stools are:</span>
+                            </div>
+                            <div class="row tummy-tool-select radio-button-set">
+                                    <div class="col-12 col-md-4">
+                                        <label class="tummy-radio radio-button-wrapper">
+                                            <input class="radio-input" type="radio" value="6_1" name="ques6"><span class="radio-label">Bright red, black, or gray</span>
+                                        </label>
+                                    </div> 
+                                    <div class="col-12 col-md-4">
+                                        <label class="tummy-radio radio-button-wrapper">
+                                            <input class="radio-input" type="radio" value="6_2" name="ques6"><span class="radio-label">Yellow, green, or brown</span>
+                                        </label>
+                                    </div> 
+                                <div class="tummy-tool-detail-wrap col-12">
+                                        <span class="detail-head">What's normal?</span>                                    
+                                        <span class="detail-head">What if the color changes?</span>                                    
+                                </div>
+                            </div>
+                        </li>
+                        <li style="float: left; list-style: none; position: relative; width: 864px;">
+                            <div class="tummy-tool-ques">
+                                <span class="ques-label">Question 7:</span><span class="ques-text">How often does your baby spit up?</span>
+                                <span class="ans-text radio-group-label">My baby:</span>
+                            </div>
+                            <div class="row tummy-tool-select radio-button-set">
+                                    <div class="col-12 col-md-4">
+                                        <label class="tummy-radio radio-button-wrapper">
+                                            <input class="radio-input" type="radio" value="7_1" name="ques7"><span class="radio-label">Spits up frequently</span>
+                                        </label>
+                                    </div> 
+                                    <div class="col-12 col-md-4">
+                                        <label class="tummy-radio radio-button-wrapper">
+                                            <input class="radio-input" type="radio" value="7_2" name="ques7"><span class="radio-label">Seems to vomit more than spit up</span>
+                                        </label>
+                                    </div> 
+                                    <div class="col-12 col-md-4">
+                                        <label class="tummy-radio radio-button-wrapper">
+                                            <input class="radio-input" type="radio" value="7_3" name="ques7"><span class="radio-label">Rarely spits up</span>
+                                        </label>
+                                    </div> 
+                                <div class="tummy-tool-detail-wrap col-12">
+                                        <span class="detail-head">What's spit-up?</span>                                    
+                                        <span class="detail-head">What are reflux and GERD?</span>                                    
+                                        <span class="detail-head">What's vomit?</span>                                    
+                                </div>
+                            </div>
+                        </li>
+                        <li style="float: left; list-style: none; position: relative; width: 864px;">
+                            <div class="tummy-tool-ques">
+                                <span class="ques-label">Question 8:</span><span class="ques-text">Is there a family history of eczema, asthma, or any other allergy?</span>
+                                <span class="ans-text radio-group-label"></span>
+                            </div>
+                            <div class="row tummy-tool-select radio-button-set">
+                                    <div class="col-12 col-md-4">
+                                        <label class="tummy-radio radio-button-wrapper">
+                                            <input class="radio-input" type="radio" value="8_1" name="ques8"><span class="radio-label">Yes, there is a family history of allergies.</span>
+                                        </label>
+                                    </div> 
+                                    <div class="col-12 col-md-4">
+                                        <label class="tummy-radio radio-button-wrapper">
+                                            <input class="radio-input" type="radio" value="8_2" name="ques8"><span class="radio-label">There is no family history of allergies.</span>
+                                        </label>
+                                    </div> 
+                                <div class="tummy-tool-detail-wrap col-12">
+                                        <span class="detail-head">What are the signs of a food allergy?</span>                                    
+                                </div>
+                            </div>
+                        </li>
+                </ul>
+        <div class="tummy-tool-foot">
+			<div class="row">
+				<div class="tummy-tool-nav col order-md-2 text-center text-md-right">
+                <input class="btn btn-primary tummy-tool-prev disabled" value="Previous" type="button">
+                <input data-href="/baby-feeding/tummy-trouble-result" class="btn btn-primary tummy-tool-next" value="Next" type="button">
+            </div>
+			<ul class="tummy-tool-progress nav col order-md-1">
+            </ul>
+			</div>            
+            
+        </div>
+        <div class="tummy-tool-detail" style="display: none;">
+                            <div class="detail-note" id="tummy-note-3-1">
+                                <span class="detail-note-head">Why babies cry<span class="detail-note-close">Close</span></span>
+                                <p>Crying is your baby’s only way of telling you something’s bothering her. It might mean there’s an issue, but it could be her way of asking to be held.</p>
+                            </div>
+                            <div class="detail-note" id="tummy-note-3-2">
+                                <span class="detail-note-head">Check the basics<span class="detail-note-close">Close</span></span>
+                                <p>Your baby might cry to let you know she's hungry, has a wet diaper, or is hot or cold. Check to make sure all of her needs are taken care of, and make sure she's not wrapped or swaddled too tightly.</p>
+                            </div>
+                            <div class="detail-note" id="tummy-note-4-1">
+                                <span class="detail-note-head">What causes gas?<span class="detail-note-close">Close</span></span>
+                                <p>There are two likely causes of gas: 1) It's a natural part of digestion, occurring when food is broken down. 2) It occurs when your baby swallows air during feeding or crying. If this air isn't burped back up, it can get trapped in his digestive tract.</p>
+                            </div>
+                            <div class="detail-note" id="tummy-note-4-2">
+                                <span class="detail-note-head">Signs of gas<span class="detail-note-close">Close</span></span>
+                                <p>He might have gas if he:
+<br>
+Shows excessive fussiness during and after feedings
+<br>
+Pulls his legs toward his chest
+<br>
+Appears bloated</p>
+                            </div>
+                            <div class="detail-note" id="tummy-note-5-1">
+                                <span class="detail-note-head">What's normal?<span class="detail-note-close">Close</span></span>
+                                <p>Normal stool consistency ranges from runny applesauce to Play-Doh.
+<br><br>
+Grunting and straining during a bowel movement is normal. Changing the position of your baby during a bowel movement might help.
+<br><br>
+In some cases, holding her in a semireclining position might help. If she is lying flat, give her something to brace her feet against (your hands or a wall). Pushing against a surface might ease her efforts to have a bowel movement.
+<br><br>
+In breast-fed babies, the frequency of bowel movements can change dramatically over time. In the early weeks it is not unusual to see a bowel movement with every feeding. By about the sixth week, bowel movements just once or twice a week are considered normal, but most babies have stools every day.</p>
+                            </div>
+                            <div class="detail-note" id="tummy-note-5-2">
+                                <span class="detail-note-head">Signs/causes of constipation<span class="detail-note-close">Close</span></span>
+                                <p>If your baby is constipated, her stool will be hard and dry, and painful to pass. Grunting or straining doesn’t mean she’s constipated; she is simply learning to use her muscles correctly.
+<br><br>
+Hard stools occur when the colon absorbs most of the water in the stools.</p>
+                            </div>
+                            <div class="detail-note" id="tummy-note-5-3">
+                                <span class="detail-note-head">Signs/causes of diarrhea<span class="detail-note-close">Close</span></span>
+                                <p>When your baby's stool suddenly becomes more frequent and watery than what is normal for her, she might have diarrhea.
+<br><br>
+Diarrhea can signal an infection or your baby's inability to absorb nutrients in her food.</p>
+                            </div>
+                            <div class="detail-note" id="tummy-note-6-1">
+                                <span class="detail-note-head">What's normal?<span class="detail-note-close">Close</span></span>
+                                <p>Normal stools for babies are yellow, green, or brown.</p>
+                            </div>
+                            <div class="detail-note" id="tummy-note-6-2">
+                                <span class="detail-note-head">What if the color changes?<span class="detail-note-close">Close</span></span>
+                                <p>Changes in stool color are not necessarily a sign of problems. As long as the stool is yellow, green, or brown, it's normal.</p>
+                            </div>
+                            <div class="detail-note" id="tummy-note-7-1">
+                                <span class="detail-note-head">What's spit-up?<span class="detail-note-close">Close</span></span>
+                                <p>During or after every feeding, most babies spit up a small amount of food. It is caused by immature muscles in the digestive tract that allow small amounts of food to escape painlessly back out of the mouth. A single episode can look like a lot, even when it's a little. <a target="_blank" href="/baby-feeding/tolerance/spit-up-vomit">Learn more about spit-up here.</a></p>
+                            </div>
+                            <div class="detail-note" id="tummy-note-7-2">
+                                <span class="detail-note-head">What are reflux and GERD?<span class="detail-note-close">Close</span></span>
+                                <p>When stomach contents reflux (back up) into the esophagus and sometimes into the mouth, it is called "GE reflux" (gastroesophageal reflux). In most cases it goes away as the baby matures.
+<br><br>
+GERD (gastroesophageal reflux disease) occurs when the upper digestive system is irritated by stomach acid reflux and symptoms develop. These can include irritability, vomiting, poor weight gain, and respiratory problems.</p>
+                            </div>
+                            <div class="detail-note" id="tummy-note-7-3">
+                                <span class="detail-note-head">What's vomit?<span class="detail-note-close">Close</span></span>
+                                <p>If spit-up becomes more forceful, with more volume, it is considered vomiting. It usually causes babies some discomfort.</p>
+                            </div>
+                            <div class="detail-note" id="tummy-note-8-1">
+                                <span class="detail-note-head">What are the signs of a food allergy?<span class="detail-note-close">Close</span></span>
+                                <p>The typical signs of a true food allergy are:
+<br>
+•&nbsp;&nbsp;Fussiness
+<br>
+•&nbsp;&nbsp;Skin rash (eczema)
+<br>
+•&nbsp;&nbsp;Blood and/or mucus in the stool
+<br>
+•&nbsp;&nbsp;Diarrhea
+<br>
+•&nbsp;&nbsp;Excessive spit-up or vomiting
+<br>
+•&nbsp;&nbsp;Wheezing or runny nose</p>
+                            </div>
+        </div>
+    </div>
+</div>
+				</div>
+			</div>
+        </div>
+    </div>
+</div>
+
+{{/inline}}
+{{#*inline "scripts-block"}}
+
+<script type="text/javascript" src="similac-component/js/tummy-trouble/sweetalert.min.js" defer></script>
+<script type="text/javascript" src="similac-base/js/jquery.bxslider.js" defer></script>
+<script type="text/javascript" src="similac-component/js/tummy-trouble/tummy-trouble.js" defer> </script>
+{{/inline}}
+
+{{/layout/base}}

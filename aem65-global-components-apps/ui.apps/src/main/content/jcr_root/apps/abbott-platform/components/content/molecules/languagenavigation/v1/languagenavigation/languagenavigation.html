@@ -1,0 +1,12 @@
+<sly data-sly-use.languageNavigation="com.abbott.aem.platform.common.components.models.PlatformLanguageNavigation"
+     data-sly-use.commonsTemplates="core/wcm/components/commons/v1/templates.html"
+     data-sly-test.hasContent="${languageNavigation.items.size > 0}"/>
+<sly data-sly-call="${commonsTemplates.placeholder @ isEmpty = true, classAppend='cmp-languagenavigation'}" />
+	<sly data-sly-test="${languageNavigation.items}">
+		<sly data-sly-test="${languageNavigation.navigatorType == 'simple'}" data-sly-include="simple-languagenavigation.html"></sly>
+		<sly data-sly-test="${languageNavigation.navigatorType == 'tabular'}" data-sly-include="tabular-languagenavigation.html"></sly>
+		<sly data-sly-test="${languageNavigation.navigatorType == 'default'}" data-sly-include="default-languagenavigation.html"></sly>
+	</sly>
+<sly data-sly-test="${!languageNavigation.items && !wcmmode.disabled}">
+    <div>Language navigation has no languages to show. Please check configuration.</div>
+</sly>

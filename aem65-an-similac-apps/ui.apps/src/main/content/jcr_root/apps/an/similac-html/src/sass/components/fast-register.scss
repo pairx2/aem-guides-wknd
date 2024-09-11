@@ -1,0 +1,72 @@
+@import "../common-imports";
+
+.fast_register {
+    h1,
+    .membership-title {
+        color: $smalt;
+        margin: 1rem 0 1.5rem 0;
+        font-family: $font-brandon-text-bold;
+        font-weight: bold;
+        font-size: 2.5rem;
+    }
+    .image-block {
+        margin-bottom: 1.5rem;
+    }
+
+    ol {
+        list-style: none;
+        counter-reset: li;
+    }
+    li::before {
+        content: counter(li);
+        color: $white;
+        background: $pacific-blue;
+        display: inline-table;
+        border-radius: 0.75rem;
+        width: 1.5rem;
+        height: 1.5rem;
+        margin-left: -2em;
+        font-size: 1.123rem;
+        font-weight: normal;
+        text-align: center;
+
+        font-family: $font-roboto-reg;
+        margin-right: 1rem;
+    }
+    li {
+        counter-increment: li;
+        font-size: 1.125rem;
+        margin-bottom: 1rem;
+    }
+    h1{
+        margin-top: 0;
+    }
+    @media (max-width: 767px) {
+        .membership-title {
+            text-align: left;
+        }
+        h1 {
+            text-align: center;
+            font-size: 1.75rem;
+        }
+        ol li::before {
+            content: counter(li);
+        }
+        li {
+            font-size: 1rem;
+        }
+    }
+    @media (max-width: 768px) {
+        h1 {
+            text-align: center;
+            font-size: 1.75rem;
+        }
+    }
+    @media (min-width: 991px) {
+        .membership-info {
+            span {
+                font-size: 1rem;
+            }
+        }
+    }
+}

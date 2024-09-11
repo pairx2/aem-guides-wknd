@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html data-sly-use.pageApp="com.adobe.cq.wcm.core.components.models.Page"
+      lang="${pageApp.language}">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <sly data-sly-use.clientLib="/libs/granite/sightly/templates/clientlib.html"
+         data-sly-use.page="com.abbott.aem.platform.common.components.models.PlatformPage"
+         data-sly-set.siteClientlib="abbott.${page.clientlibsName}"
+         data-sly-set.preloadClientlib="abbott.${page.clientlibsName}-preload"/>
+    <sly data-sly-call="${clientlib.css @ categories='abbott.site'}"/>
+    <sly data-sly-call="${clientlib.css @ categories=page.theme}"/>
+    <sly data-sly-call="${clientlib.css @ categories=siteClientlib}"/>
+    <sly data-sly-call="${clientlib.js @ categories=preloadClientlib}"/>
+    <meta name="robots" content="noindex,nofollow">
+    <title>${pageApp.title}</title>
+</head>
+<body class="ab-mobile-app ${page.cssClassNames} ${!page.commerceEnabled ? 'commerce-disabled' : ''}"
+      id="${page.id}"
+      data-cmp-data-layer-enabled="${page.data ? true : false}"
+      data-esl-endpoint="${page.eslEndPointURL}"
+      data-captcha-script-src="${page.reCaptchaScriptsrc}"
+      data-site-key="${page.reCaptchaSiteKey}"
+      data-login-frag-path="${page.loginFormFragmentPath}"
+      data-login-page="${page.loginPage @extension='html'}"
+      data-logout-redirect-page="${page.logoutRedirectPage @extension='html'}"
+      data-checkout-page="${page.checkoutPagePath @extension='html'}"
+      data-content-category="${page.contentCategory}">
+<noscript data-sly-test.commerceEnabled="${page.commerceEnabled}"
+          data-sly-use.storeView="com.adobe.cq.commerce.core.components.models.storeconfigexporter.StoreConfigExporter"
+          id="commerce-config"
+          data-cmp-data-layer-enabled="${page.data ? true : false}"
+          data-store-view="${storeView.storeView}"
+          data-store-root-url="${storeView.storeRootUrl}"
+          data-graphql-endpoint="${storeView.graphqlEndpoint}"
+          data-graphql-method="${storeView.method}"
+          data-http-headers="${storeView.httpHeaders}"></noscript>
+<noscript
+        id="esl-config"
+        data-esl-endpoint="${page.eslEndPointURL}">
+</noscript>
+
+<input type="hidden" name="x-preferred-language" value="${page.languageCode}" data-header="true"/>
+<input type="hidden" name="x-country-code" value="${page.countryCode}" data-header="true"/>
+<input type="hidden" name="x-application-id" value="${page.sitename}" data-header="true"/>
+
+<sly data-sly-use.templatedContainer="com.day.cq.wcm.foundation.TemplatedContainer"
+     data-sly-repeat.child="${templatedContainer.structureResources}"
+     data-sly-resource="${child.path @ resourceType=child.resourceType, decorationTagName='div'}"></sly>
+
+<sly data-sly-include="customfooterlibs.html"></sly>
+</body>
+</html>

@@ -1,0 +1,77 @@
+@import "../common-imports";
+.radio-wrapper {
+  input.radio-input {
+    position: absolute;
+    opacity: 0;
+    & + .radio-inner {
+      height: 1.5rem;
+      width: 1.5rem;
+      display: inline-block;
+      cursor: pointer;
+      background-color: #ffffff;
+      border-radius: 50%;
+      border: solid 1px #474747;
+      position: relative;
+    }
+
+    &:checked {
+      // background-color: blue;
+      & + .radio-inner {
+        &::after {
+          content: "";
+          display: block;
+          width: 0.75rem;
+          height: 0.75rem;
+          background-color: #777777;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          border-radius: inherit;
+          transform: translate(-50%,-50%);
+        }
+      }
+    }
+  }
+
+  & + label {
+    margin-left: 0.625rem;
+    font-family: $font-roboto-reg;
+    font-size: 1.125rem;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.33;
+    letter-spacing: normal;
+    color: #002f87;
+    @media (max-width: 767px){
+      font-size: 1rem;
+      line-height:1.375rem
+    }
+  }
+}
+
+.radio-set{
+  min-width:15.938rem;
+  margin-right: 1.875rem;
+  &:last-child{
+    margin-right: 0;
+  }
+}
+
+.radio-group-label{
+  font-family: $font-roboto-reg;
+  font-size: 1rem;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.38;
+  letter-spacing: normal;
+  color: #002f87;
+  margin-bottom: 0.938rem;
+}
+
+.form-group.similac-form-group {
+  .invalid-feedback.similac-error-group {
+    display: block;
+  }
+}

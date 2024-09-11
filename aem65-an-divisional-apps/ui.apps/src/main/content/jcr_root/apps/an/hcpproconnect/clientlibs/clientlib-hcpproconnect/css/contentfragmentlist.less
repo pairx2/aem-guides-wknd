@@ -1,0 +1,765 @@
+@import "./global/mixins.less";
+@import './global/variables.less';
+
+
+/** CF-List Starts**/
+
+.a-contentfragmentlist--base dt.cmp-contentfragment__element-title,
+.a-contentfragmentlist--base .cmp-contentfragment__element.cmp-contentfragment__element--detaildescription p:nth-child(n+2),
+.a-contentfragmentlist--base .cmp-contentfragment__title,
+.a-contentfragmentlist--base .cmp-contentfragment__description,
+.a-contentfragmentlist--base .cmp-contentfragmentlist .article-anchor.d-none,
+.a-contentfragmentlist--base .cmp-contentfragment__element--contentdetailsreference,
+.a-contentfragmentlist--base .cmp-contentfragment__element--tagsType{
+    display: none;
+}
+
+
+// SB HCP changes
+.a-contentfragmentlist--base .cmp-contentfragment__element.cmp-contentfragment__element--heading {
+   /* padding: 0 30px 11px;*/
+    font-size: @font-size-18;
+    font-weight: 450;
+    /*padding-left: 15px;
+    padding-right: 15px;*/
+    padding-bottom: 5px;
+    padding-top: 5px;
+    line-height: 1.625rem;
+    font-family: @base-font-family-bold;
+    color: @color-core-dark-blue;
+    // SB HCP-769 limiting heading till 3 lines ending with dots
+    display: -webkit-box;	
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+.a-contentfragmentlist--base img {
+    width: 100%;
+    height: 100%;
+ }
+
+.a-contentfragmentlist--base .cmp-contentfragmentlist .article-anchor {
+    float: left;
+    width: 50%;
+    margin-bottom: 20px;
+    padding-right:0px;
+	text-decoration: none;
+}
+
+.a-contentfragmentlist--base .cmp-contentfragment__element.cmp-contentfragment__element--heading p,
+.a-contentfragmentlist--base .cmp-contentfragment__element.cmp-contentfragment__element--heading p a{
+    margin: 0 0px 10px;
+    font-family: @base-font-family-bold;
+    font-size: 20px;
+    //margin-top: 5px;
+    //font-style: normal;
+    //font-stretch: normal;
+    //line-height: 1.2;
+    //letter-spacing: normal;
+    //color: #002a3b;
+    //text-overflow: ellipsis;
+    //overflow: hidden;
+   	//height: 50px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+.a-contentfragmentlist--base .cmp-contentfragment__element--mainimage .cmp-contentfragment__element-value p{
+    margin-bottom: 0px;
+    height: 146px;
+}
+
+
+
+@media (max-width: 711px) {
+.a-contentfragmentlist--base .cmp-contentfragment__element.cmp-contentfragment__element--heading p {
+        margin: 0;
+}
+.a-contentfragmentlist--base .cmp-contentfragmentlist .article-anchor {
+        width: 100%;
+        margin-bottom: 30px;
+        padding:0px !important;
+}
+.a-contentfragmentlist--base{
+        min-width: 100vw;
+        margin-left: calc(-1 * (100vw - 100%) / 2) !important;
+}
+.a-contentfragmentlist--base .cmp-contentfragment__element--mainimage .cmp-contentfragment__element-value p{
+        height: 165px;
+}
+
+.a-contentfragmentlist--base article.cmp-contentfragment {
+       margin: 0 5px;
+}
+.a-contentfragment--base .cmp-contentfragment__element-value img {
+    width: 100%;
+    min-width: 100vw;
+    margin-left: calc(-1 * (100vw - 100%) / 2) !important;
+}
+}
+
+@media(min-width:713px){
+.a-contentfragmentlist--base .cmp-contentfragmentlist .article-anchor:nth-child(2n+1){
+   padding-left:0px;
+   // SB HCP-973 commenting this for right space fix padding-right:15px;                      
+ }
+.a-contentfragmentlist--base .cmp-contentfragmentlist .article-anchor:nth-child(2n){
+   padding-right:0px;
+   // SB HCP-973 commenting this for left space fix padding-left:15px;         
+ }
+}
+
+
+/* CF-LIST Spacing*/
+.a-contentfragmentlist--base.o-remove-top-space{
+    margin-top:0px !important;
+}           
+.a-contentfragmentlist--base.o-remove-bottom-space{
+    margin-bottom:0px !important;
+}
+
+@media(max-width:711px){
+.a-contentfragmentlist--base .cmp-contentfragmentlist .article-anchor {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+}
+/*Samsung tablet*/
+
+@media(min-width:700px) and (max-width:712px){        
+.a-contentfragmentlist--base .cmp-contentfragment__element--mainimage .cmp-contentfragment__element-value p {
+    margin-bottom: 0;
+    height: 230px;
+}
+.a-contentfragmentlist--base .cmp-contentfragmentlist .article-anchor {
+    width: 100%;
+    padding-right: 0px;         
+}                    
+} 
+
+
+/* FIREFOX browser*/
+@-moz-document url-prefix() {    
+.a-contentfragmentlist--base .cmp-contentfragment__element.cmp-contentfragment__element--heading {
+  font-weight: 400;
+}
+}                    
+/**CF-List Ends**/
+
+/** CF Starts**/
+
+.a-contentfragment--base .cmp-contentfragment__title,.a-contentfragment--base .cmp-contentfragment__element-title{
+    display:none;
+}            
+.a-contentfragment--base .article-anchor:hover{
+    text-decoration:none;
+}
+.a-contentfragment--base .cmp-contentfragment__element-value img{
+    width:100%;
+}
+.a-contentfragment--base .cmp-contentfragment__element--subheading p{
+    width: 100%;
+    font-family: @base-font-family-bold;
+    font-size: 24px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.17;
+    letter-spacing: normal;
+    color: #888b8d;
+    margin-bottom: 20px;
+    padding-top: 5px;
+}
+.columncontrol.column-align--center{
+   margin-top:0px !important;
+}
+           
+.a-contentfragment--base table tr{
+    font-family: @base-font-family-bold;
+    font-size: 14px;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #888b8d;
+    border: 1px solid #888b8d;            
+
+}
+.a-contentfragment--base table tr td{
+   padding:7px;
+   padding-left:17px; 
+}
+.a-contentfragment--base table tr td:first-child{
+   width:18%;
+   padding-right:15px;
+   padding-left:7px;
+
+}
+@media screen and (min-device-width: 740px) and (max-device-width: 750px) and (orientation: landscape) {
+.a-contentfragment--base table tr td:first-child{
+   width:25%;
+   padding-right:15px;
+   padding-left:7px;
+
+}
+}
+@media (max-width: 712px) {
+   .a-contentfragment--base .cmp-contentfragment__element--detaildescription p{
+     font-size: 16px;
+     font-family: @base-font-family-bold;
+     color: #212529;           
+}
+.a-contentfragment--base table,.a-contentfragment--base table tr{
+     border:none;
+}
+.a-contentfragment--base table tr td:first-child{
+    text-align: right;
+    border-right: 1px solid #888b8d;
+    border-left: none;
+    border-top: none;
+    border-bottom: none;
+    width:auto;                 
+}
+.a-contentfragment--base table tr td{
+   padding:7px 15px;
+   border:none;
+
+}                
+}
+@media (min-width: 768px) and (max-width:991px) {
+  .a-contentfragment--base table tr td:first-child{
+   width:28%;
+}
+}
+@media (min-width: 1024px) and (max-width:1200px) {
+  .a-contentfragment--base table tr td:first-child{
+   width:21%;
+}
+}
+/**CF Ends**/
+
+/** EXPERT DETAILS Starts**/
+.a-contentfragmentlist--base.a-contentfragment--expert dt.cmp-contentfragment__element-title,
+.a-contentfragmentlist--base.a-contentfragment--expert .cmp-contentfragment__element.cmp-contentfragment__element--detaildescription p:nth-child(n+2),
+.a-contentfragmentlist--base.a-contentfragment--expert .cmp-contentfragment__title,
+.a-contentfragmentlist--base.a-contentfragment--expert .cmp-contentfragmentlist .article-anchor.d-none,
+.a-contentfragmentlist--base.a-contentfragment--expert .cmp-contentfragment__element--contentdetailsreference,
+.a-contentfragmentlist--base.a-contentfragment--expert .cmp-contentfragment__element--tagsType{
+    cursor:text;                         
+}
+.a-contentfragment--base.a-contentfragment--expert .cmp-contentfragment__element--mainimage,
+.a-contentfragment--base.a-contentfragment--expert .cmp-contentfragment__element--subImage,
+.a-contentfragment--base.a-contentfragment--expert .cmp-contentfragment__element--subheading,
+.a-contentfragment--base.a-contentfragment--expert .cmp-contentfragment__element--description{
+    cursor:text;                         
+}
+.a-contentfragment--base.a-contentfragment--expert{
+    cursor:text;
+ }                
+
+@media(min-width:801px){
+.a-contentfragment--base.a-contentfragment--expert .cmp-contentfragment__element--mainimage{
+    padding: 5px;
+    width: 32.09%;
+    border: 1px solid #888b8d;
+    height: auto;
+    float: left;
+    margin-right: 22px;
+
+}
+.a-contentfragment--base.a-contentfragment--expert{            
+   margin-top: 49px !important;
+}
+.a-contentfragment--base.a-contentfragment--expert .cmp-contentfragment__element--mainimage .cmp-contentfragment__element-value,
+.a-contentfragment--base.a-contentfragment--expert .cmp-contentfragment__element--mainimage p{
+    margin-bottom:0px !important;
+} 
+.a-contentfragment--base.a-contentfragment--expert .cmp-contentfragment__element--subImage,
+.a-contentfragment--base.a-contentfragment--expert .cmp-contentfragment__element--description,
+.a-contentfragment--base.a-contentfragment--expert .cmp-contentfragment__element--subheading,
+.a-contentfragment--base.a-contentfragment--expert .cmp-contentfragment__element--detaildescription{     
+    margin-left: 32.09%;
+    padding-left: 22px;
+}
+
+.a-contentfragment--base.a-contentfragment--expert .cmp-contentfragment__element--subheading p{                                    
+    font-family: @base-font-family-bold;
+    font-size: 24px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-transform: uppercase;
+    color: #002a3b;
+    float:right;                                               
+}
+
+
+.a-contentfragment--base.a-contentfragment--expert .cmp-contentfragment__element--detaildescription td{
+    text-align:center;
+    padding:4.5px;
+}
+
+}
+
+.a-contentfragment--base.a-contentfragment--expert .cmp-contentfragment__element--description p{                                                            
+    color: #63666a;
+    font-family: @calibri-font-family, @base-font-family;
+    font-size: 18px;
+    font-weight: normal;
+    line-height: 1.48;
+
+}
+
+.a-contentfragment--base.a-contentfragment--expert .cmp-contentfragment__element--detaildescription td a{
+    font-weight: normal;
+    color: #888b8d;
+    font-family: @base-font-family-bold;
+    font-size: 18px;
+    margin: 4.2px 4.5px 4.5px;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+}
+.a-contentfragment--base.a-contentfragment--expert .cmp-contentfragment__element--detaildescription td a:hover{
+    text-decoration-color: #0056b3;
+}
+.a-contentfragment--base.a-contentfragment--expert .cmp-contentfragment__element--detaildescription td a:before{
+    content:url('/content/dam/an/newsroom/us/en/images/redesign/assets/icons/email.png');
+    vertical-align: middle;
+    padding-right: 10px;
+	font-size:3px;
+ }
+/*Mobile View**/
+@media(max-width:800px){
+.a-contentfragment--base.a-contentfragment--expert .cmp-contentfragment__element-value img {
+    width: 100%;
+    min-width: 100%;
+    margin-left: auto !important;
+
+}
+.a-contentfragment--base.a-contentfragment--expert .cmp-contentfragment__element--mainimage{
+    padding: 5px;
+    border: 1px solid #888b8d;
+	order:1;
+}
+.a-contentfragment--base.a-contentfragment--expert{
+   margin-top: 49px !important;
+}
+.a-contentfragment--base.a-contentfragment--expert .cmp-contentfragment__element--subheading p{  
+    font-family: @base-font-family-bold;
+    font-size: 24px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-transform: uppercase;
+    color: #002a3b;         
+}
+.a-contentfragment--base.a-contentfragment--expert .cmp-contentfragment__element--subImage p{    
+    font-size: 16px;
+}
+.a-contentfragment--base.a-contentfragment--expert .cmp-contentfragment__element--description p{                                                           
+    font-size: 16px;
+}
+.a-contentfragment--base.a-contentfragment--expert .cmp-contentfragment__element--detaildescription td{
+    text-align:center;
+    padding:8.5px;
+    border: 1px solid #888b8d;
+}
+.a-contentfragment--base.a-contentfragment--expert .cmp-contentfragment__elements{
+    display: flex;
+    flex-direction: column;
+}
+.a-contentfragment--base.a-contentfragment--expert .cmp-contentfragment__element--subImage{
+    order:3;
+}
+
+.a-contentfragment--base.a-contentfragment--expert .cmp-contentfragment__element--subheading{
+      order:2;
+}
+.a-contentfragment--base.a-contentfragment--expert .cmp-contentfragment__element--description{
+     order:4;
+}
+.a-contentfragment--base.a-contentfragment--expert .cmp-contentfragment__element--detaildescription{
+   order:5;
+}                                                    
+}
+/** CF List Other styles **/
+
+/* Content fragment extra small THREE column - STARTS HERE */
+
+.a-contentfragmentlist--base.a-contentfragmentlist--expert article.cmp-contentfragment {
+    background: none;
+    margin: 0 0px;
+	//margin-top: 20px;
+    //height:410px; //hcp proproconnect
+}
+
+// HCP Proconnect
+.a-contentfragmentlist--base.a-contentfragmentlist--expert .article-anchor{
+	width: 22%;
+	height: auto;
+    border-radius: 1.563rem;
+    border: 1px solid @color-dropdown-border;
+    @media @sm-up {								// SB HCP- bugfix 367 RLP tiles 
+        margin-left: @font-size-20;
+    }
+}
+
+// SB HCP change. commenting the code to remove extra padding
+/*.a-contentfragmentlist--base.a-contentfragmentlist--expert .cmp-contentfragment__element--heading{
+    padding-left:10px;
+    padding-right:10px;
+ }
+*/
+
+.a-contentfragmentlist--base.a-contentfragmentlist--expert .cmp-contentfragment__element.cmp-contentfragment__element--heading p,
+.a-contentfragmentlist--base.a-contentfragmentlist--expert .cmp-contentfragment__element.cmp-contentfragment__element--heading p a{
+    -webkit-line-clamp: unset;
+    -webkit-box-orient: unset;
+}
+
+// SB HCP - to remove margin bottom for p tag in card image
+.a-contentfragmentlist--base.a-contentfragmentlist--expert .cmp-contentfragment__element-value p{
+	    //height: auto;
+    	margin-bottom: 0;
+    	display: flex;
+}
+
+.a-contentfragmentlist--base.a-contentfragmentlist--expert img {
+        height: auto;
+        //border-radius: 25px; // HCP Proconnect
+        //border-top-right-radius: 25px;// HCP Proconnect
+        //border-top-left-radius: 25px; // HCP Proconnect
+}
+.a-contentfragmentlist--base.a-contentfragmentlist--expert .cmp-contentfragment__element--subheading{
+    padding-left:10px;
+    padding-right:10px;
+ }
+.a-contentfragmentlist--base.a-contentfragmentlist--expert .cmp-contentfragment__element--subheading p{
+    margin-bottom: 0;
+    font-family: @base-font-family-bold;
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.25;
+    letter-spacing: normal;
+    color: #63666a;
+}
+
+// START SB HCP change. commenting the code to remove extra padding and description changes
+/*.a-contentfragmentlist--base.a-contentfragmentlist--expert .cmp-contentfragment__element--description{
+    padding:4px 10px;
+}   */
+
+.a-contentfragmentlist--base.a-contentfragmentlist--expert .cmp-contentfragment__element--description p{
+    //margin-bottom: 26px;
+    font-family: @calibri-font-family, @base-font-family;
+    font-size: @font-size-14;
+    font-weight: normal;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: @font-size-20;
+    letter-spacing: normal;
+    color: @color-core-dark-blue;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    overflow: hidden;
+}
+// END
+
+/*.a-contentfragmentlist--base.a-contentfragmentlist--expert .pagination-holder{
+    display:none;
+} */
+@media (max-width: 767px){
+.a-contentfragmentlist--base.a-contentfragmentlist--expert .article-anchor{
+        width: 91%;
+}
+}
+@media (min-width: 768px) and (max-width: 991px){
+    .a-contentfragmentlist--base.a-contentfragmentlist--expert .article-anchor{
+        width: 40%;
+    }
+     .a-contentfragmentlist--base.a-contentfragmentlist--expert .article-anchor .cmp-contentfragment__element--mainimage p{
+       height:216px; 
+       border-bottom: 1px solid #D9D9D6; //HCPProconnect Chnage
+    }
+    .a-contentfragmentlist--base.a-contentfragmentlist--expert img {
+        height: 100%;
+    }                           
+}
+@media (min-width: 992px){
+    .a-contentfragmentlist--base.a-contentfragmentlist--expert .article-anchor{
+        width: 29%;																// SB HCP width for cards
+        //padding-right: 30px !important; 
+       padding-left: 0px !important;                          
+    }
+     .a-contentfragmentlist--base.a-contentfragmentlist--expert .article-anchor .cmp-contentfragment__element--mainimage p{
+       height:216px;
+       border-bottom: 1px solid #D9D9D6; //HCPProconnect Chnage
+    }
+    .a-contentfragmentlist--base.a-contentfragmentlist--expert img {
+        height: 100%;
+    }
+
+    //HCP Proconnect
+    .a-contentfragmentlist--base.a-contentfragmentlist--expert .cmp-contentfragment__element--sampleAvailable 
+    .cmp-contentfragment__element-title
+    {
+		display:block;
+        position: absolute;
+        font-family: @calibri-font-family, @base-font-family;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 20px;
+        align-items: center;
+        color: #63666A;
+        padding:0px 15px;
+
+    }
+}
+.a-contentfragmentlist--base .cmp-contentfragment__element.cmp-contentfragment__element--heading p{
+        height:auto;
+        font-family: @base-font-family-bold;
+
+    	color: #002A3A;
+    }
+
+
+.a-contentfragmentlist--base.a-contentfragmentlist--expert .cmp-contentfragment__element--mainImage
+{
+	border-bottom: 1px solid #D9D9D6;
+}
+
+.a-contentfragmentlist--base.a-contentfragmentlist--expert .cmp-contentfragment__element--description p:nth-of-type(1n+2)
+    {
+        display:none
+    }
+.a-contentfragmentlist--base.a-contentfragmentlist--expert .cmp-contentfragment__element--sampleAvailable 
+    .cmp-contentfragment__element-value
+    {
+		display:none;
+    }
+
+.a-contentfragmentlist--base.a-contentfragmentlist--expert .cmp-contentfragment__element--description,
+.a-contentfragmentlist--base.a-contentfragmentlist--expert .cmp-contentfragment__element--heading,
+.a-contentfragmentlist--base.a-contentfragmentlist--expert .cmp-contentfragment__element--sampleAvailable
+    {
+		margin-left:20px;
+    }
+
+.a-contentfragmentlist--base.a-contentfragmentlist--expert .cmp-contentfragment__element--sampleAvailable 
+    .cmp-contentfragment__element-title
+    {
+		display:block;
+        position: absolute;
+        font-family: @calibri-font-family, @base-font-family;
+        line-height: 20px;
+        align-items: center;
+        color: #63666A;
+        padding:0px 15px;
+
+    }
+
+// SB HCP changes 
+.a-contentfragmentlist--base.a-contentfragmentlist--expert  .cmp-contentfragment__element--tagname {
+    display: inline-block;
+    padding: 3px 20px;
+    //border-radius: 25px;
+    //background-color: #64ccc9;
+    //margin: 20px 20px 5px 20px;
+    //color: #fff;
+    text-transform: uppercase;
+    //font-family: @base-font-family-bold;
+    font-weight: 450;
+    //font-size: 12px;
+
+    //padding: 0.5rem 1.375rem;
+    justify-content : center;
+    font-size: @font-size-14;
+    border-radius: 1.563rem;
+    background-color: @color-hcp-mint;
+    margin: 0.938rem;
+    font-family: @base-font-family-bold;
+    color: @color-white;
+}
+
+/* START SB HCP changes commented as not required
+.a-contentfragmentlist--base.a-contentfragmentlist--expert .cmp-contentfragment__element--mainImage 
+.cmp-contentfragment__element-value p img
+{
+	height: 190px;
+    width: 186px;
+    left: 30px;
+    position: relative;
+}
+END */
+
+// HCP Proconnect chnages ends here--------
+
+
+//tag name
+.cmp-contentfragment__element--tagname {
+    display: inline-block;
+    padding: 0.5rem 1.375rem;
+    justify-content : center;
+    font-size: @font-size-14;
+    border-radius: 1.563rem;
+    background-color: @color-hcp-mint;
+    margin-left : 0.938rem;
+    font-family: @base-font-family-bold;
+    color: @color-white;
+}
+
+
+// To align logo on image [ resouce listing page]
+.cmp-contentfragment__elements {
+	position :relative;
+    .cmp-contentfragment__element--mainImage {
+		display: block;
+    }
+    .cmp-contentfragment__element--logo {
+
+        position: absolute; 
+        top: 0;
+        right: 0;
+        padding: 0.75rem;
+        border-top-left-radius: 25px;
+        border-top-right-radius: 25px;
+
+    }
+}
+
+// HCP video logo - alignment of video icon over image over various screen PLP & RLP
+.cmp-contentfragment__elements .cmp-contentfragment__element--logo .cmp-contentfragment__element-value h3 img {
+    /*position: absolute;
+    left: -90px;
+    top : 70px;*/
+    transform: translate(-120%, 80%);
+    @media @lg-only {
+		transform: translate(-90%, 60%);
+    }
+    @media @md-down {
+		transform: translate(-370%, 240%);
+    }
+    @media @sm-down {
+		transform: translate(-330%, 240%);
+    }
+    @media only screen and (max-width: 480px) {
+		transform: translate(-220%, 140%);
+    }
+}
+
+
+/*.cmp-contentfragment__element--mainImage {
+	//border-top-right-radius: 30px;// HCP Proconnect
+	//border-top-left-radius: 30px; // HCP Proconnect
+
+}*/
+.a-contentfragmentlist--base.a-contentfragmentlist--expert .cmp-contentfragment__element--description,
+.a-contentfragmentlist--base.a-contentfragmentlist--expert .cmp-contentfragment__element--heading
+
+{
+//margin-left:20px;
+    margin : 0.313rem 0.938rem 0.313rem 0.938rem;
+}
+
+// SB HCP to change left top bottom right spacing of date
+.a-contentfragmentlist--base.a-contentfragmentlist--expert .cmp-contentfragment__element--publishdate {
+ 	margin: 0.938rem 0.938rem 0.938rem 0.938rem;
+    .cmp-contentfragment__element-value {
+		color: @color-dark-grey;			// SB HCP-color for date in RLP
+    }
+}
+
+//Image main
+.cmp-contentfragment__elements .cmp-contentfragment__element--mainImage .cmp-contentfragment__element-value p img {
+//border-top-left-radius: 20px;
+//border-top-right-radius: 20px;
+    border-radius: 1.563rem 1.563rem 0 0;
+}
+
+
+// SB HCP changes for card height 
+.cmp-contentfragmentlist {
+    .article-anchor {
+        min-height: 32rem;          // SB HCP- 464 cards height equal
+        word-break: break-word;		// SB HCP-769 word overflow fix
+        article {														// START SB HCP Sample available alignment
+			min-height: inherit;
+            .cmp-contentfragment__elements {
+				min-height: inherit;
+                .cmp-contentfragment__element--sampleAvailableText {
+					position: absolute;
+                    bottom: 0;
+					margin: 0.938rem 0.938rem 0.938rem 0.938rem;
+                    .cmp-contentfragment__element-value {
+						color: @color-dark-grey;
+                    }
+                }
+                .cmp-contentfragment__element {
+                    .cmp-contentfragment__element-value {
+						margin-bottom: 0;					// SB HCP-476 centering of chip text
+                    }
+                }
+            }
+        }																// END
+		@media @md-down{
+			height: auto !important;
+    	}
+    }
+
+}
+
+.cmp-contentfragment__element--sampleavailabletext .cmp-contentfragment__element-value
+{
+	margin-top: 50px;
+    margin-bottom: 20px;
+    font-family: @calibri-font-family, @base-font-family;
+    margin-left: 0.938rem;
+    color: @color-dark-grey;
+    line-height: 20px;
+}
+
+#searchResultItems 
+{
+	margin-top:20px;
+}
+
+
+.lockedIconContentFrag
+{
+	background-color: @color-white;
+    border-radius: 50%;
+    margin-right: 15px;
+    margin-top: 10px;
+    padding: 5px;
+
+    .cmp-contentfragment__element-value
+    {
+        margin-bottom:2px;
+    }
+}
+
+
+#product-resource{
+    display:none;
+}
+
+.article-anchor .cmp-contentfragment__element-value sup {
+	top:0.5em;
+}
+
+.cmp-contentfragment__element.cmp-contentfragment__element--sampleavailabletext {
+    height: 20px;
+}

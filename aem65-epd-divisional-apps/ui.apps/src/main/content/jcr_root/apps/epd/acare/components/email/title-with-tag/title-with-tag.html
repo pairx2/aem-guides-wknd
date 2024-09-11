@@ -1,0 +1,64 @@
+<!--/*
+* Copyright (c)   Abbott Laboratories
+* Program Name :  title-w-tag.html
+* Application  :  EPD EMail Templates Design
+* Purpose      :  See description
+* Description  :  This is Email title and optional tag component which is used to display email title.
+* Modification History:
+* ---------------------
+*    Date                                Modified by                                       Modification Description
+*-----------                            ----------------                                    -------------------------
+*  31-Oct-2020                   Cognizant Technology solutions                                 Initial Creation
+*-----------                           ----------------                                      -------------------------
+*/-->
+
+<div data-sly-test="${wcmmode.edit || wcmmode.design}" class="cq-placeholder section" data-emptytext="Configure Title with optional tag Component in EDIT Mode"></div>
+<sly data-sly-use.titleWithTag="${'com.abbott.aem.epd.acare.core.models.components.TitleWithTag'}" />
+<!-- Hidden Email info fields - emailFrom and emailSubject -->
+	<input data-sly-test="${titleWithTag.emailInfo.emailTo}" type="hidden" id="emailTo" name="emailTo" value="${titleWithTag.emailInfo.emailTo}">
+	<input data-sly-test="${titleWithTag.emailInfo.emailFrom}" type="hidden" id="emailFrom" name="emailFrom" value="${titleWithTag.emailInfo.emailFrom}">
+	<input data-sly-test="${titleWithTag.emailInfo.emailSubject}" type="hidden" id="emailSubject" name="emailSubject" value="${titleWithTag.emailInfo.emailSubject}">
+	<input data-sly-test="${titleWithTag.emailInfo.emailCC}" type="hidden" id="emailCC" name="emailCC" value="${titleWithTag.emailInfo.emailCC}">
+	<input data-sly-test="${titleWithTag.emailInfo.emailBCC}" type="hidden" id="emailBCC" name="emailBCC" value="${titleWithTag.emailInfo.emailBCC}">
+<table width="600" cellspacing="0" cellpadding="0" border="0" style="background-color: #fff;" class="container" aria-describedby="table" aria-hidden="true">
+    <tr>
+        <td align="left" valign="top" style="padding: 55px 94px 0px 74px;" class="container option2-heading pad-lr-none">
+            <table cellspacing="0" cellpadding="0" border="0" class="inner-container" aria-describedby="table" aria-hidden="true">
+                <tr>
+                    <td align="left" valign="top" style="font-family: Georgia, Arial, sans-serif; font-size: 38px; line-height: 1.05; letter-spacing: 0.2px; text-align: left; color: #004f71; padding: 9px 65px 20px 0;" class="h1">
+                        ${titleWithTag.text @ context='html'}
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <sly data-sly-test="${titleWithTag.tag.tagLinkText}">
+        <tr>
+            <td align="left" class="btn-padding" valign="top">
+                <table cellspacing="0" cellpadding="0" border="0" aria-describedby="table" aria-hidden="true">
+                    <tr>
+                        <td align="left" valign="top" style="font-family: Georgia, Arial, sans-serif; font-size: 14px; font-weight: bold; letter-spacing: 0.5px; text-align: left; color: #202c30; border: solid 1px #d9e5ea; border-radius: 24px; padding: 7px 10px;">
+                            <table cellpadding="0" cellspacing="0" border="0" aria-describedby="table" aria-hidden="true">
+                                <tr>
+                                    <td bgcolor="${bannerWithText.tag.tagBGColor}" align="left" valign="top" style="width: 25px;">
+                                    <a data-sly-unwrap = "${!titleWithTag.tag.tagLink}" x-cq-linkchecker="skip" href="${titleWithTag.tag.tagLink @ context = 'unsafe'}" target="_blank" style="text-decoration: none; font-family: Georgia, Arial, sans-serif; font-size: 0; font-weight: bold; letter-spacing: 0.5px; text-align: left; color: ${(bannerWithText.tag.textColor || '##202c30') @ context = 'styleToken'};">
+                                     <img data-sly-test="${titleWithTag.tag.tagIcon}" src="${titleWithTag.tag.tagIcon @ context = 'unsafe'}" alt="${titleWithTag.tag.tagAltText || 'alt-text' }" style="border: none;" />
+                                    </a>
+                                    </td>
+                                    <td bgcolor="${bannerWithText.tag.tagBGColor}" align="left" valign="middle" style="padding-left: 5px;">								
+                                       <a data-sly-unwrap = "${!titleWithTag.tag.tagLink}" x-cq-linkchecker="skip" href="${titleWithTag.tag.tagLink @ context = 'unsafe'}" target="_blank"
+                                            style="text-decoration: none; font-family: Georgia, Arial, sans-serif; font-size: 0; font-weight: bold; letter-spacing: 0.5px; text-align: left; color: ${(bannerWithText.tag.textColor || '##202c30') @ context = 'styleToken'};">
+                                            <span style="text-decoration: none; font-family: Georgia, Arial, sans-serif; font-weight: bold; letter-spacing: 0.2px; text-align: left; color: ${(bannerWithText.tag.textColor || '##202c30') @ context = 'styleToken'}; font-size: 14px;">
+                                                ${titleWithTag.tag.tagLinkText}
+                                            </span>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </sly>
+</table>

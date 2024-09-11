@@ -1,0 +1,17 @@
+{{!-- custom_class="" img_src="" alt_text="" href="#" img_sm_src="" img_md_src="" img_lazy_src="" --}}
+{{!-- <CODE>
+		{{#each image}} 
+			{{@key}}={{this}} 
+		{{/each}}
+		</CODE> --}}
+{{#if this.image.src}}
+    <picture class="image-block {{custom_class}}" {{#if border_color}} style="color:{{border_color}};" {{/if}}>
+      {{#if this.image.smSrc}}
+      <source media="(max-width: 575.98px)" data-srcset="{{this.image.smSrc}}">
+      {{/if}}
+      {{#if this.image.mdSrc}}
+      <source media="(max-width: 991.98px)" data-srcset="{{this.image.mdSrc}}">
+      {{/if}}
+      <img class="card-img-top" src="{{this.image.lazySrc}}" data-src="{{this.image.src}}" alt="{{this.image.altText}}">
+    </picture>
+{{/if}}

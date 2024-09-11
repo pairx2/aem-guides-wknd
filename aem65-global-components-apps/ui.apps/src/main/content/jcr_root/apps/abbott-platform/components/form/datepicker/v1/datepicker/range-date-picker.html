@@ -1,0 +1,69 @@
+<sly data-sly-use.datePicker="${'com.abbott.aem.platform.common.components.models.DatePicker' }">
+<sly 
+data-sly-use.i18n_datepicker_fromDateLabel="${'com.abbott.aem.cloud.platform.core.models.I18nFetcher' @ key = 'datepicker-fromdatelabel'}"
+data-sly-use.i18n_datepicker_toDateLabel="${'com.abbott.aem.cloud.platform.core.models.I18nFetcher' @ key = 'datepicker-todatelabel'}"
+/>
+  <div class="a-date-picker__input-start">
+    <div class="a-input-field" data-required="${datePicker.required ? 'true': 'false'}">
+      <div class="form-group a-form-grp">
+        <label class="form-label a-input-label">${datePicker.labelFromDate}
+          <span class="a-input-field--required">*</span>
+        </label>
+        <div class="input-group a-input-grp right-icon">
+          <input class="form-control a-input-control a-date-picker__input-start" aria-label="${i18n_datepicker_fromDateLabel.title}" type="text" placeholder="${datePicker.placeholderFromDate ? datePicker.placeholderFromDate : datePicker.dateFormat}" name="${datePicker.nameFromDate ? datePicker.nameFromDate : 'fromDate'}" autocomplete="off" required="${datePicker.required}" maxlength="10" id="${datePicker.id}">
+          <span class="icon icon-right default-icon">
+            <em class="abt-icon-calendar" aria-hidden="true">
+            </em>
+          </span>
+          <span class="icon icon-right focused-icon">
+            <em class="abt-icon-calendar-focus" aria-hidden="true">
+            </em>
+          </span>
+        </div>
+        <div class="a-date-picker__input-hidden" aria-hidden="true">
+          <input type="text" class="hidden-start-date" autocomplete="off">
+        </div>
+
+        <span data-sly-test="${datePicker.required}" class="form-text a-input-field--text-require">${datePicker.requiredMessage}</span>
+      </div>
+    </div>
+  </div>
+  <!--/* to date */-->
+  <div class="a-date-picker__input-end">
+    <div class="a-input-field" data-required="${datePicker.required ? 'true': 'false'}">
+      <div class="form-group a-form-grp">
+        <label class="form-label a-input-label">${datePicker.labelToDate}
+          <span class="a-input-field--required">*</span>
+        </label>
+        <div class="input-group a-input-grp right-icon">
+          <input class="form-control a-input-control a-date-picker__input-end" aria-label="${i18n_datepicker_toDateLabel.title}" type="text" placeholder="${datePicker.placeholderToDate ? datePicker.placeholderToDate : datePicker.dateFormat}" name="${datePicker.nameToDate ? datePicker.nameToDate : 'toDate'}" autocomplete="off" required="${datePicker.required}" maxlength="10" id="${datePicker.id}">
+          <span class="icon icon-right default-icon">
+            <em class="abt-icon-calendar" aria-hidden="true">
+            </em>
+          </span>
+          <span class="icon icon-right focused-icon">
+            <em class="abt-icon-calendar-focus" aria-hidden="true">
+            </em>
+          </span>
+        </div>
+
+        <div class="a-date-picker__input-hidden" aria-hidden="true">
+          <input type="text" class="hidden-end-date" autocomplete="off">
+        </div>
+        
+        <span data-sly-test="${datePicker.required}" class="form-text a-input-field--text-require">${datePicker.requiredMessage}</span>
+      </div>
+    </div>
+  </div>
+  <div class="a-input-field a-input-field--help-msg">
+    <div class="form-group a-form-grp">
+      <span class="form-text a-input-field--text-help">${datePicker.helpMessage}</span>
+      <div class="a-date-picker--error">
+        <div class="a-date-picker--error-format">${datePicker.wrongFormatError}</div>
+        <div class="a-date-picker--error-date">${datePicker.invalidDateError}</div>
+        <div class="a-date-picker--error-range">${datePicker.invalidRangeError}</div>
+      </div>
+    </div>
+  </div>
+
+</sly>

@@ -1,0 +1,170 @@
+@import "../common-imports";
+.pdp-tabs {
+    font-family: $font-brandon-text-bold;
+    font-weight: bold;
+    .cmp-tabs {
+        &.pdp-tabs {
+            @media (min-width: 767px) and (max-width: 992px) {
+                margin-top: 2.9375rem!important;
+            }
+        }
+        &__tablist {
+            display: block;
+            padding: 0;
+            margin-bottom: 5px;
+            @media (min-width: 768px) {
+                display: flex !important;
+                justify-content: center;
+            }
+        }
+        &__tab {
+            border-bottom: 3px solid;
+            border-color: $seagull;
+            color: $smalt;
+            display: inline-block;
+            font-size: 1.3125rem;
+            margin: 0 13px;
+            padding: 0.5rem 1rem;
+            white-space: pre-line;
+            cursor: pointer;
+            width: 10.125rem;
+            @media (min-width: 768px) {
+                align-items: center;
+                font-weight: 500;
+                justify-content: center;
+                display: inline-flex;
+            }
+        }
+        &__tab--active {
+            border-color: $tangerine;
+            &:focus {
+                outline: none;
+            }
+        }
+        &__tab-content {
+            font-size: 1rem;
+            color: $smalt;
+            padding: 1rem 1rem 1.875rem 1rem;
+        }
+        &__tabpanel {
+            color: $black;
+            display: block;
+            a {
+                color: #fe9e1f;
+            }
+            .cmp-tabs__tab-content {
+                display: none;
+            }
+            &.cmp-tabs__tabpanel--active {
+                .cmp-tabs__tab-content {
+                    display: block;
+                }
+            }
+        }
+        @include media-breakpoint-only(md) {
+            &__tab {
+                font-size: 1rem;
+                margin: 0 1.25rem 0 0;
+                padding: .5rem;
+                width: 7.125rem;
+                line-height: 1.125rem;
+            }
+        }
+        @include media-breakpoint-only(xs) {
+            &__tab-mobile {
+                // padding: 10px;
+                position: relative;
+                background: $cerulean;
+                color: $white;
+                white-space: pre-line;
+                justify-content: center;
+                min-height: 4rem;
+                align-items: center;
+                &-title {
+                    width: 8rem;
+                }
+                .sim-icons {
+                    position: absolute;
+                    top: 27%;
+                    right: 1.25rem;
+                }
+                .plus-icon {
+                    display: block;
+                    top:30%;
+                }
+                .minus-icon {
+                    display: none;
+                }
+            }
+            &__tabpanel--active {
+                .plus-icon {
+                    display: none
+                }
+                .minus-icon {
+                    display: block;
+                }
+            }
+            &__tab-content {
+                border-bottom: 10px solid $cerulean;
+                background-color: $alice-blue;
+            }
+            &__tabpanel {
+                margin-bottom: 1.25rem;
+            }
+        }
+    }
+}
+
+.pdp-tab__product-desc-text {
+    p {
+        &:last-child {
+            margin-bottom: 0px;
+        }
+    }
+}
+
+@media (max-width:767px) and (min-width:712px) and (orientation:portrait) {
+    .pdp-tabs {
+        .cmp-tabs {
+            &__tab-mobile {
+                // padding: 10px;
+                position: relative;
+                background: $cerulean;
+                color: $white;
+                white-space: pre-line;
+                justify-content: center;
+                min-height: 4rem;
+                align-items: center;
+                &-title {
+                    width: 8rem;
+                }
+                .sim-icons {
+                    position: absolute;
+                    top: 27%;
+                    right: 1.25rem;
+                }
+                .plus-icon {
+                    display: block
+                }
+                .minus-icon {
+                    display: none;
+                }
+            }
+            &__tabpanel--active {
+                .plus-icon {
+                    display: none
+                }
+                .minus-icon {
+                    display: block;
+                }
+            }
+            &__tab-content {
+                border-bottom: 10px solid $cerulean;
+                background-color: $alice-blue;
+            }
+            &__tabpanel {
+                margin-bottom: 1.25rem;
+            }
+        }
+    }
+}

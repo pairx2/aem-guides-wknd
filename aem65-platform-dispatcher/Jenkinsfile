@@ -1,0 +1,97 @@
+def AGENT_LABEL = 'AEM65_DEV'
+def controlJobBaseName = 'BTS_191_AEM_65/AEM Cloud/aem65-platformcontrol-apps-trigger/'
+def controlJobName = controlJobBaseName + java.net.URLEncoder.encode(BRANCH_NAME, "UTF-8")
+def adobeGitUrl = 'https://$USERNAME:$PASSWORD@git.cloudmanager.adobe.com/abbottlaboratories/AbbottDTSDigitalandeCommerce-p33328-web-tier/'
+def adobeGitCredentialId = 'adobe_git'
+def mergeDir = 'target/merge'
+
+pipeline {
+  agent { label AGENT_LABEL }
+
+  options {
+    disableConcurrentBuilds()
+    buildDiscarder(logRotator(numToKeepStr: '30', daysToKeepStr: '60'))
+  }
+
+  stages {
+    stage('Build') {
+      steps {
+        withMaven() {
+          sh 'mvn clean package'
+        }
+      }
+    }
+
+    stage('Deploy Snapshot') {
+      when {
+        branch 'master'
+      }
+      steps {
+        rtMavenResolver (
+          id: 'mavenResolver',
+          serverId: 'Toolchain-Artifactory',
+          releaseRepo: 'bts-aem-191-virtual',
+          snapshotRepo: 'bts-aem-191-virtual'
+        )
+        rtMavenDeployer (
+          id: 'mavenDeployer',
+          serverId: 'Toolchain-Artifactory',
+          releaseRepo: 'bts-aem-191-releases-local',
+          snapshotRepo: 'bts-aem-191-snapshots-local',
+        )
+        rtMavenRun (
+          tool: 'Maven-3-5-3',
+          pom: 'pom.xml',
+          goals: 'clean install',
+          resolverId: 'mavenResolver',
+          deployerId: 'mavenDeployer'
+        )
+      }
+    }
+
+    stage('Merge and Push to Adobe') {
+      when {
+        branch 'release/*'
+      }
+      steps {
+        dir(mergeDir) {
+          sh "git config user.email 'SVC-DTS-AEMAACS-ADM@abbott.com'"
+          sh "git config user.name 'AEMasaCloudService Devops'"
+
+          withCredentials([usernamePassword(credentialsId: adobeGitCredentialId, usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+            sh 'git clone ' + adobeGitUrl + ' adobe-web-tier'
+            dir('adobe-web-tier') {
+              sh 'git checkout -B $BRANCH_NAME'
+            }
+            dir('tmp') {
+              sh 'echo "Created tmp"'
+            }
+          }
+        }
+        sh "git archive HEAD | tar -x -C $mergeDir/tmp"
+        sh "rsync -rl --delete --exclude=.gitmodules --exclude=.git $mergeDir/tmp/. $mergeDir/adobe-web-tier"
+        dir(mergeDir + '/adobe-web-tier') {
+          sh "git config user.email 'SVC-DTS-AEMAACS-ADM@abbott.com'"
+          sh "git config user.name 'AEMasaCloudService Devops'"
+          sh 'git add -A && git commit -m "Synced control repo $BRANCH_NAME" || echo "No changes to commit"'
+          sh 'git push -f origin $BRANCH_NAME'
+        }
+      }
+    }
+
+    stage('Trigger Control Build') {
+      when {
+        branch 'release/*'
+      }
+      steps {
+        build(job: controlJobName, propagate: false, wait: false)
+      }
+    }
+  }
+
+  post {
+    cleanup {
+      cleanWs() /* clean up our workspace */
+    }
+  }
+}

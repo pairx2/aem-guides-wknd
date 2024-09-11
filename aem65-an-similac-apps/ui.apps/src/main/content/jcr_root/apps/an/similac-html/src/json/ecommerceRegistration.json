@@ -1,0 +1,899 @@
+{
+  "formTitle": "Registraion Form ",
+  "formName": "registraionForm",
+  "eventCategory": "registration",
+  "eventType": "strongmom",
+  "actionPath": "https://dev.similac.com/api/public/registration/register-user",
+  "actionPathToUpdateProfile": "https://staging.similac.com/api/private/profile/update-profile-info",
+  "disclaimer": "Disclaimer",
+  "successMsgHeading": "Success Message Heading",
+  "successMsgText": "Success Message Text",
+  "redirectOnSuccessURL": "/strongmoms/core-welcome.html",
+  "redirectToPreviousPage": "false",
+  "enableRecaptcha":"true",
+  "socialRegisterMessage": "<p><strong>You are almost Done!</strong></p><p>Please verify your information below and fill out any remaining areas to complete your registration.</p>",
+  "fields": [
+    {
+      "categoryType": "others",
+      "label": "By joining our rewards program you can look forward to exclusive benefits like coupons.",
+      "name": "rewards_statement",
+      "type": "htmltag",
+      "btnClassName": "rewards_statement"
+    },
+    {
+      "categoryType": "ssm-opt-in",
+      "label": "Join Similac® StrongMoms® Rewards to save now",
+      "name": "ssm-opt-in",
+      "type": "checkbox",
+      "sourceValue": "false"
+    },
+    {
+      "categoryType": "others",
+      "name": "OR",
+      "type": "divider"
+    },
+    {
+      "label": "User Alert",
+      "name": "userAlert",
+      "type": "userAlert"
+    },
+    {
+      "categoryType": "others",
+      "label": "Fill out the required information (*) in the form below.",
+      "name": "REQUIRED_INFORMATION",
+      "type": "htmltag"
+    },
+    {
+      "categoryType": "others",
+      "label": "About You",
+      "name": "ABOUT_YOU",
+      "type": "htmltag",
+      "tagName": "h2",
+      "renderOn": {
+        "fieldName": "ssm-opt-in",
+        "value": "true"
+      },
+      "help": {
+        "icon": "info",
+        "content": "Similac<sup>®</sup> Strongmoms<sup>®</sup> will use this information to customize your support. Knowing your baby’s birthday will help us, since your baby’s needs change based on their age.",
+        "backgroundColor": "#7FDBFF",
+        "color": "#0074D9",
+        "renderOn": {
+          "magento": "false"
+        }
+      }
+    },
+    {
+      "type": "formError"
+    },
+    {
+      "categoryType": "userInfo",
+      "label": "Email Address*",
+      "name": "userName",
+      "type": "textbox",
+      "maxLength": "255",
+      "renderOn": {
+        "magento": "false"
+      },
+      "fieldLoader": true,
+      "validations": [
+        {
+          "errorType": "required",
+          "errorMessage": "Email Address is required."
+        },
+        {
+          "errorType": "email",
+          "errorMessage": "Email Address must contain a valid email address, e.g. 'name@server.com'."
+        },
+        {
+          "errorType": "emailAsync",
+          "errorMessage": "Email Address is already registered.",
+          "url": "https://qa.similac.com/api/public/registration/verify-email-exists"
+        }
+      ]
+    },
+    {
+      "categoryType": "userInfo",
+      "label": "First Name*",
+      "name": "firstName",
+      "type": "textbox",
+      "maxLength": "50",
+      "renderOn": {
+        "magento": "false"
+      },
+      "validations": [
+        {
+          "errorType": "required",
+          "errorMessage": "First Name is required."
+        },
+        {
+          "errorType": "stringPLASH",
+          "errorMessage": "First Name must contain only letters, spaces, apostrophes, hyphens, and periods."
+        }
+      ]
+    },
+    {
+      "categoryType": "userInfo",
+      "label": "Last Name*",
+      "name": "lastName",
+      "type": "textbox",
+      "maxLength": "50",
+      "renderOn": {
+        "magento": "false"
+      },
+      "validations": [
+        {
+          "errorType": "required",
+          "errorMessage": "Last Name is required."
+        },
+        {
+          "errorType": "stringPLASH",
+          "errorMessage": "Last Name must contain only letters, spaces, apostrophes, hyphens, and periods."
+        }
+      ]
+    },
+    {
+      "categoryType": "userInfo",
+      "label": "Password*",
+      "name": "password",
+      "type": "passwordstrength",
+      "renderOn": {
+        "magento": "false"
+      },
+      "passwordStrength": {
+        "label": "Password Strength:",
+        "rules": {
+          "veryStrong": {
+            "label": "Very Strong",
+            "value": "veryStrong"
+          },
+          "strong": {
+            "label": "Strong",
+            "value": "strong"
+          },
+          "medium": {
+            "label": "Medium",
+            "value": "medium"
+          },
+          "empty": {
+            "label": "No Password",
+            "value": "empty"
+          },
+          "weak": {
+            "label": "Weak",
+            "value": "weak"
+          }
+        }
+      },
+      "validations": [
+        {
+          "errorType": "required",
+          "errorMessage": "Password is required."
+        },
+        {
+          "errorType": "passWithMin8",
+          "errorMessage": "One upper case and one lower case letter, a number , a special character and minimum of 8 characters for a valid password combination"
+        }
+      ]
+    },
+    {
+      "label": "Please confirm new password*",
+
+      "name": "confirmpassword",
+
+      "type": "password",
+      "maxLength": 25,
+      "renderOn": {
+        "magento": "false",
+        "ecomOnly":"true",
+        "fieldName":"ssm-opt-in",
+        "value":"false"
+      },
+      "validations": [
+        {
+          "errorType": "required",
+          "errorMessage": "This is required field"
+        },
+        {
+          "errorType": "reconfirmPassword",
+          "errorMessage": "Password and Confirm Passsword fields should match"
+        }
+      ]
+    },
+    
+    {
+      "type":"captcha",
+      "name": "captchaValue",
+      "sitekey": "6LfaywscAAAAABcusqwkLo-CEpUJxv5axnuz26Vl",   
+      "size": "invisible" 
+      
+   },
+ 
+   {
+      "name": "captchaValue",
+      "type": "hidden"
+      
+   },
+    {
+      "label": "Address*",
+      "name": "address",
+      "type": "googleApi",
+      "maxLength": "255",
+      "renderOn": {
+        "fieldName": "ssm-opt-in",
+        "value": "true"
+      },
+      "validations": [
+        {
+          "errorType": "addressLineOne",
+          "errorMessage": "Please add street no, etc also"
+        },
+        {
+          "errorType": "addressCity",
+          "errorMessage": "please add city also"
+        },
+        {
+          "errorType": "addressState",
+          "errorMessage": "please add state also"
+        },
+        {
+          "errorType": "addressZipCode",
+          "errorMessage": "please add zip code also"
+        },
+        {
+          "errorType": "required",
+          "errorMessage": "Address is required"
+        }
+      ]
+    },
+    {
+      "label": "Add an apartment, unit, floor, etc.",
+      "name": "lineTwo",
+      "categoryType":"addresses[]",
+      "type": "textbox",
+      "renderOn": {
+        "fieldName": "ssm-opt-in",
+        "value": "true"
+      },
+      "maxLength": "255"
+    },
+    {
+      "categoryType": "addresses[]",
+      "label": "City",
+      "name": "city",
+      "type": "textbox",
+      "renderOn": {
+        "fieldName": "ssm-opt-in",
+        "value": "true"
+      },
+      "validations": [
+        {
+          "errorType": "required",
+          "errorMessage": "City is required."
+        },
+        {
+          "errorType": "cityValidation",
+          "errorMessage": "Street Address must contain only letters, numbers, spaces, comma, number signs, hyphens, and periods."
+        }
+      ]
+    },
+    {
+      "categoryType": "addresses[]",
+      "label": "State",
+      "name": "state",
+      "type": "dropdown",
+      "placeholder": "State",
+      "className": "customFormFields",
+      "renderOn": {
+        "fieldName": "ssm-opt-in",
+        "value": "true"
+      },
+      "validations": [
+        {
+          "errorType": "required",
+          "errorMessage": "Please select an item."
+        }
+      ],
+      "sourceValue": [
+        {
+          "label": "Alabama",
+          "value": "AL"
+        },
+        {
+          "label": "Alaska",
+          "value": "AK"
+        },
+        {
+          "label": "American Samoa",
+          "value": "AS"
+        },
+        {
+          "label": "Arizona",
+          "value": "AZ"
+        },
+        {
+          "label": "Arkansas",
+          "value": "AR"
+        },
+        {
+          "label": "California",
+          "value": "CA"
+        },
+        {
+          "label": "Colorado",
+          "value": "CO"
+        },
+        {
+          "label": "Connecticut",
+          "value": "CT"
+        },
+        {
+          "label": "Delaware",
+          "value": "DE"
+        },
+        {
+          "label": "District Of Columbia",
+          "value": "DC"
+        },
+        {
+          "label": "Federated States Of Micronesia",
+          "value": "FM"
+        },
+        {
+          "label": "Florida",
+          "value": "FL"
+        },
+        {
+          "label": "Georgia",
+          "value": "GA"
+        },
+        {
+          "label": "Guam",
+          "value": "GU"
+        },
+        {
+          "label": "Hawaii",
+          "value": "HI"
+        },
+        {
+          "label": "Idaho",
+          "value": "ID"
+        },
+        {
+          "label": "Illinois",
+          "value": "IL"
+        },
+        {
+          "label": "Indiana",
+          "value": "IN"
+        },
+        {
+          "label": "Iowa",
+          "value": "IA"
+        },
+        {
+          "label": "Kansas",
+          "value": "KS"
+        },
+        {
+          "label": "Kentucky",
+          "value": "KY"
+        },
+        {
+          "label": "Louisiana",
+          "value": "LA"
+        },
+        {
+          "label": "Maine",
+          "value": "ME"
+        },
+        {
+          "label": "Marshall Islands",
+          "value": "MH"
+        },
+        {
+          "label": "Maryland",
+          "value": "MD"
+        },
+        {
+          "label": "Massachusetts",
+          "value": "MA"
+        },
+        {
+          "label": "Michigan",
+          "value": "MI"
+        },
+        {
+          "label": "Minnesota",
+          "value": "MN"
+        },
+        {
+          "label": "Mississippi",
+          "value": "MS"
+        },
+        {
+          "label": "Missouri",
+          "value": "MO"
+        },
+        {
+          "label": "Montana",
+          "value": "MT"
+        },
+        {
+          "label": "Nebraska",
+          "value": "NE"
+        },
+        {
+          "label": "Nevada",
+          "value": "NV"
+        },
+        {
+          "label": "New Hampshire",
+          "value": "NH"
+        },
+        {
+          "label": "New Jersey",
+          "value": "NJ"
+        },
+        {
+          "label": "New Mexico",
+          "value": "NM"
+        },
+        {
+          "label": "New York",
+          "value": "NY"
+        },
+        {
+          "label": "North Carolina",
+          "value": "NC"
+        },
+        {
+          "label": "North Dakota",
+          "value": "ND"
+        },
+        {
+          "label": "Northern Mariana Islands",
+          "value": "MP"
+        },
+        {
+          "label": "Ohio",
+          "value": "OH"
+        },
+        {
+          "label": "Oklahoma",
+          "value": "OK"
+        },
+        {
+          "label": "Oregon",
+          "value": "OR"
+        },
+        {
+          "label": "Palau",
+          "value": "PW"
+        },
+        {
+          "label": "Pennsylvania",
+          "value": "PA"
+        },
+        {
+          "label": "Puerto Rico",
+          "value": "PR"
+        },
+        {
+          "label": "Rhode Island",
+          "value": "RI"
+        },
+        {
+          "label": "South Carolina",
+          "value": "SC"
+        },
+        {
+          "label": "South Dakota",
+          "value": "SD"
+        },
+        {
+          "label": "Tennessee",
+          "value": "TN"
+        },
+        {
+          "label": "Texas",
+          "value": "TX"
+        },
+        {
+          "label": "Utah",
+          "value": "UT"
+        },
+        {
+          "label": "Vermont",
+          "value": "VT"
+        },
+        {
+          "label": "Virgin Islands",
+          "value": "VI"
+        },
+        {
+          "label": "Virginia",
+          "value": "VA"
+        },
+        {
+          "label": "Washington",
+          "value": "WA"
+        },
+        {
+          "label": "West Virginia",
+          "value": "WV"
+        },
+        {
+          "label": "Wisconsin",
+          "value": "WI"
+        },
+        {
+          "label": "Wyoming",
+          "value": "WY"
+        }
+      ]
+    },
+    {
+      "categoryType": "addresses[]",
+      "label": "Zip Code*",
+      "name": "zipCode",
+      "maxLength": 5,
+      "type": "textbox",
+      "className": "customFormFields",
+      "renderOn": {
+        "fieldName": "ssm-opt-in",
+        "value": "true"
+      },
+      "validations": [
+        {
+          "errorType": "required",
+          "errorMessage": "This is required field"
+        },
+        {
+          "errorType": "lengthCheck",
+          "minAllowedLength": 5,
+          "maxAllowedLength": 5,
+          "errorMessage": "Minimum number of characters not met."
+        },
+        {
+          "errorType": "usZipCode",
+          "errorMessage": "Standard US Zip Code length - 5 digits\n or \n Standard 5 digits, a hyphen, and 4 digits format"
+        }
+      ]
+    },
+    {
+      "categoryType": "userInfo",
+      "label": "I am over 18 years old",
+      "name": "adult",
+      "type": "checkbox",
+      "displayLabelFormat": "hName - (hCity)",
+      "renderOn": {
+        "fieldName": "ssm-opt-in",
+        "value": "true"
+      },
+      "validations": [
+        {
+          "errorType": "required",
+          "errorMessage": "You must be 18 years or older to sign up."
+        }
+      ]
+    },
+    {
+      "categoryType": "children[]",
+      "label": "Baby's Birthday or Due Date*",
+      "name": "birthDate",
+      "type": "calender",
+      "renderOn": {
+        "fieldName": "ssm-opt-in",
+        "value": "true"
+      },
+      "validations": [
+        {
+          "errorType": "required",
+          "errorMessage": "Date is required"
+        },
+
+        {
+          "errorType": "checkDateFormatMMDDYYYY",
+          "errorMessage": "Date is required"
+        },
+        {
+          "errorType": "checkBabyBirthday",
+          "errorMessage": "Please check the year range allowed, max 5 years old baby"
+        }
+      ]
+    },
+    {
+      "categoryType": "children[]",
+      "label": "My baby was born:*",
+      "name": "premature",
+      "type": "radio",
+      "displayLabelFormat": "hName - (hCity)",
+      "fieldType": "boolean",
+      "renderOn": {
+        "fieldName": "ssm-opt-in",
+        "value": "true"
+      },
+      "validations": [
+        {
+          "errorType": "required",
+          "errorMessage": "Please make a selection."
+        }
+      ],
+      "sourceValue": [
+        {
+          "label": "Earlier than 37 weeks",
+          "value": "true"
+        },
+        {
+          "label": "37 weeks or later",
+          "value": "false"
+        }
+      ]
+    },
+    {
+      "categoryType": "children[]",
+      "label": "My baby was born prematurely at*",
+      "name": "weeksEarly",
+      "type": "dropdown",
+      "placeholder": "Select Weeks",
+      "displayLabelFormat": "hName - (hCity)",
+
+      "renderOn": {
+        "fieldName": "premature",
+        "value": "true"
+      },
+      "validations": [
+        {
+          "errorType": "required",
+          "errorMessage": "Please select an item."
+        }
+      ],
+      "sourceValue": [
+        {
+          "label": "36 weeks",
+          "value": "36"
+        },
+        {
+          "label": "35 weeks",
+          "value": "35"
+        },
+        {
+          "label": "34 weeks",
+          "value": "34"
+        },
+        {
+          "label": "33 weeks",
+          "value": "33"
+        },
+        {
+          "label": "32 weeks",
+          "value": "32"
+        },
+        {
+          "label": "31 weeks",
+          "value": "31"
+        },
+        {
+          "label": "30 weeks",
+          "value": "30"
+        },
+        {
+          "label": "29 weeks",
+          "value": "29"
+        },
+        {
+          "label": "28 weeks",
+          "value": "28"
+        }
+      ]
+    },
+    {
+      "categoryType": "others",
+      "label": "More About You",
+      "name": "More_About _You",
+      "type": "htmltag",
+      "tagName": "h2",
+      "renderOn": {
+        "fieldName": "ssm-opt-in",
+        "value": "true"
+      },
+      "help": {
+        "icon": "info",
+        "content": "The more we know, the easier it is to tailor support and savings specifically for you.",
+        "backgroundColor": "#0074D9",
+        "color": "#001F3F"
+      }
+    },
+    {
+      "categoryType": "children[]",
+      "label": "My child is adopted (optional)",
+      "name": "adopted",
+      "type": "radio-button",
+      "btnClassName": "col-md-6 col-lg-6 col-sm-12 mb-3 mb-md-0 mt-2 mt-md-0",
+      "displayLabelFormat": "hName - (hCity)",
+      "fieldType": "boolean",
+      "renderOn": {
+        "fieldName": "ssm-opt-in",
+        "value": "true"
+      },
+      "sourceValue": [
+        {
+          "label": "YES",
+          "value": "true"
+        },
+        {
+          "label": "NO",
+          "value": "false"
+        }
+      ]
+    },
+    {
+      "categoryType": "userInfo",
+      "label": "Unlock exclusive savings and offers!<br> By checking this box, I would like my information to be shared with Pampers, and I understand it will be used according to Pampers’ <a href=\"https://www.pg.com/privacy/english/privacy_statement.shtml\" target=\"_blank\">privacy policy</a>",
+      "name": "unlockPamersClub",
+      "type": "checkbox",
+      "imagePath": "/content/dam/an/similac/global/icons/pampers-club-logo.png",
+      "renderOn": {
+        "fieldName": "ssm-opt-in",
+        "value": "true",
+        "magento": "true"
+      },
+      "displayLabelFormat": "hName - (hCity)"
+    },
+    {
+      "categoryType": "userInfo",
+      "label": "<b>Remember Me</b>",
+      "name": "rememberMe",
+      "type": "checkbox",
+      "displayLabelFormat": "hName - (hCity)",
+      "passIn": "body"
+    },
+    {
+      "categoryType": "userInfo",
+      "label": "I understand and agree that the information I’ve provided will be used according to the terms of Abbott’s <a href=\"http://abbottnutrition.com/privacy-policy\" target=\"_blank\" id=\"regprivacyevt\">Privacy Policy</a>. Limit one enrollment per household. Offers and values may vary.  <a href=\"/content/an/similac/us/en/strongmoms/admin/terms-conditions.html\" target=\"_blank\">Terms and conditions</a> apply.",
+      "name": "message",
+      "type": "htmltag",
+      "tagName": "p"
+    },
+    {
+      "label": "Complete Sign Up",
+      "name": "submit",
+      "type": "submit",
+      "btnClassName": "btn btn-primary col-lg-7 mt-2 mb-4 col-md-5 col-sm-12"
+    },
+    {
+      "categoryType": "userInfo",
+      "label": "Providing your personal information through this form will be treated the same as if you provided a physical signature.",
+      "name": "PHYSICAL_SIGNATURE",
+      "type": "htmltag",
+      "btnClassName": "extra-info",
+      "tagName": "p"
+    },
+    {
+      "label": "Benefits (Mobile View)",
+      "name": "rteContent",
+      "type": "rte",
+      "btnClassName": "d-block d-md-none reversible-cart-block",
+      "renderOn": {
+        "fieldName": "ssm-opt-in",
+        "value": "true"
+      },
+      "html": "<h3>When you sign up, you’ll receive exclusive benefits like:</h3>\r\n<ol>\r\n<li>Free formula samples and coupons</li>\r\n<li>Free<sup>†</sup>&nbsp;Shutterfly photo book</li>\r\n<li>Ongoing tips and advice delivered right to your email</li>\r\n</ol>\r\n"
+    },
+    {
+      "label": "† Offers may vary.<br/>‡ Submit registration to read details.",
+      "renderOn": {
+        "fieldName": "ssm-opt-in",
+        "value": "true"
+      },
+      "name": "OFFERS",
+      "type": "htmltag",
+      "btnClassName": "extra-info",
+      "tagName": "p"
+    },
+    {
+      "label": "Auto Login",
+      "name": "autoLogin",
+      "type": "hidden",
+      "initValue": "true",
+      "fieldType": "boolean"
+    },
+    {
+      "categoryType": "userInfo",
+      "label": "User Type",
+      "name": "userType",
+      "type": "hidden",
+      "initValue": "similac-ssm",
+      "updateValue":"similac-ecom"
+    },
+    {
+      "categoryType": "offerPreferenceInfo",
+      "label": "Enable Digital Offer",
+      "name": "enableDigital",
+      "type": "hidden",
+      "initValue": "false",
+      "fieldType": "boolean"
+    },
+    {
+      "categoryType": "addresses[]",
+      "label": "Address Type",
+      "name": "type",
+      "type": "hidden",
+      "initValue": "PA"
+    },
+    {
+      "categoryType": "addresses[]",
+      "label": "Country",
+      "name": "country",
+      "type": "hidden",
+      "initValue": "US"
+    },
+    {
+      "categoryType": "addresses[]",
+      "label": "Line One",
+      "name": "lineOne",
+      "type": "hidden",
+      "initValue": "Unknown"
+    },
+    {
+      "categoryType": "consents[]",
+      "label": "Consents Type",
+      "name": "type",
+      "type": "hidden",
+      "initValue": "Unknown"
+    },
+    {
+      "categoryType": "consents[]",
+      "label": "Approved",
+      "name": "approved",
+      "type": "hidden",
+      "initValue": "true",
+      "fieldType": "boolean"
+    },
+    {
+      "categoryType": "consents[]",
+      "label": "Consents Date",
+      "name": "date",
+      "type": "hidden",
+      "initValue": "2020-12-12"
+    },
+    {
+      "categoryType": "children[]",
+      "label": "Gender",
+      "name": "gender",
+      "type": "hidden",
+      "initValue": "Unknown"
+    },
+    {
+      "categoryType": "children[]",
+      "label": "Name",
+      "name": "name",
+      "type": "hidden",
+      "initValue": "Unknown"
+    },
+    {
+      "categoryType": "userInfo",
+      "label": "Offer Notification",
+      "name": "offerNotification",
+      "type": "hidden",
+      "initValue": "false",
+      "fieldType": "boolean"
+    },
+    {
+      "categoryType": "offerPreferenceInfo",
+      "label": "Product",
+      "name": "product",
+      "type": "hidden",
+      "initValue": "STRONGMOMS"
+    },
+    {
+      "label": "Category",
+      "name": "category",
+      "type": "hidden",
+      "initValue": "upgradeProfile"
+    },
+  
+    {}
+  ]
+}

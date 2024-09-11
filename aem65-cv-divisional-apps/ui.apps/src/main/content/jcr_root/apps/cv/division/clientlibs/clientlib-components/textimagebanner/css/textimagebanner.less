@@ -1,0 +1,355 @@
+@import 'media-queries.less';
+@import 'variables.less';
+
+.o-textimagebanner-section {
+
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+
+  &__row {
+    position: relative;
+    display: flex;
+    flex-wrap: nowrap;
+
+    @media @lg-down {
+      flex-wrap: wrap;
+    }
+
+    @media only screen and (min-width: 768px) and (max-width: 1440px) {
+      width: 705px;
+      margin: 0 auto;
+    }
+
+
+    &.position-left {
+      flex-direction: row-reverse;
+      justify-content: left;
+
+      @media only screen and (max-width: 1440px) {
+        flex-direction: column-reverse;
+      }
+
+      &.m-std {
+        justify-content: center;
+      }
+    }
+
+    &.position-right {
+      overflow: hidden;
+      justify-content: right;
+
+
+      @media only screen and (max-width: 1440px) {
+        flex-direction: column-reverse;
+      }
+
+      &.m-std {
+        justify-content: center;
+      }
+    }
+
+    &.horizontal-rule-top {
+      padding-top: 48px;
+      border-top: 1px solid var(--textimage-border-color);
+    }
+
+    &.horizontal-rule-bottom {
+      padding-bottom: 48px;
+      border-bottom: 1px solid var(--textimage-border-color);
+    }
+
+
+  }
+
+  &__bg {
+    background-color: var(--textimagebanner-bg-color);
+  }
+
+  &__richtext {
+    color: #222731;
+    font-size: 18px;
+    line-height: 24px;
+    margin: 48px 0 24px 0;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      margin-bottom: 0;
+    }
+
+    p {
+      font-family: 'brandon_grotesqueregular', Arial, sans-serif;
+    }
+  }
+
+  &__image-wrapper {
+    margin-top: 0;
+    text-align: center;
+    width: 100%;
+
+    @media only screen and (min-width: 1440px) {
+      width: 705px;
+      align-self: center;
+    }
+
+    &.position-left {
+      @media only screen and (min-width: 1440px) {
+        margin-right: 30px;
+      }
+    }
+
+    &.position-right {
+      @media only screen and (min-width: 1440px) {
+        margin-left: 30px;
+      }
+    }
+
+    @media @sm-down {
+      margin-right: 0 !important;
+      margin-left: 0 !important;
+    }
+
+  }
+
+  &__image-column {
+
+    img {
+
+      &.bg-img {
+        &.center-crop {
+          object-position: center;
+          object-fit: none;
+        }
+      }
+
+      @media @md-down {
+        margin: 0;
+      }
+
+      @media @md-down {
+        width: 100%;
+      }
+    }
+  }
+
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 40px;
+
+    @media only screen and (min-width: 1440px) {
+      width: 705px;
+    }
+
+    @media @md-down {
+      padding: 0 15px;
+    }
+
+    &.position-left {
+      @media only screen and (min-width: 1440px) {
+        width: 450px;
+      }
+    }
+
+    &.position-right {
+      @media only screen and (min-width: 1440px) {
+        width: 450px;
+      }
+    }
+
+    &.align-vertical-center {
+      justify-content: center;
+    }
+
+    &.align-bottom {
+      justify-content: end;
+    }
+
+    &.position-above,
+    &.position-below {
+      max-width: 100%;
+    }
+  }
+
+  &__button-wrapper {
+    @media @md-up {
+      display: flex;
+      flex-wrap: wrap;
+    }
+    &.align-left {
+      text-align: left;
+    }
+
+    &.align-center {
+      text-align: center;
+    }
+
+    &.align-right {
+      text-align: right;
+    }
+
+    .a-button {
+      display: inline-flex;
+    }
+
+    .a-btn {
+      margin-right: 8px;
+      @media @md-down {
+        margin-right: 0;
+      }
+      a {
+        max-height: none !important;
+
+        &:hover {
+          text-decoration: none !important;
+        }
+
+        &:focus {
+          box-shadow: 0 0 4px 2px rgba(21,155,215,0.50) !important;
+        }
+      }
+    }
+  }
+
+  &.add-margin-top {
+    margin-top: 48px;
+  }
+
+  &.add-margin-bottom {
+    margin-bottom: 48px;
+  }
+
+}
+
+/* common code for youtube and limelight */
+.yt-video-modal-textimage,
+.limelight-imagetext-modal {
+  .modal-dialog {
+    width: 100%;
+    margin: 16px auto;
+    height: 543px;
+    max-width: 900px;
+
+    @media @lg-only {
+      max-width: 600px;
+    }
+
+    @media @md-down {
+      max-width: 92%;
+      height: auto;
+    }
+  }
+
+  .modal-header {
+    border-bottom: none;
+    padding: 5px 6px 10px;
+
+    .close {
+      -webkit-appearance: none;
+      padding: 0 5px;
+      cursor: pointer;
+      background: transparent;
+      border: 0;
+      margin: auto 0 auto auto;
+      float: right;
+      font-size: 21px;
+      font-weight: bold;
+      line-height: 1;
+      color: #000;
+      text-shadow: 0 1px 0 #fff;
+      filter: alpha(opacity=20);
+      opacity: 0.2;
+
+      &:hover,
+      &:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+        filter: alpha(opacity=50);
+        opacity: 0.5;
+      }
+    }
+  }
+}
+
+/* Youtube video less */
+
+.yt-video-modal-textimage {
+  .modal-dialog {
+    @media @md-down {
+      width: 100%;
+      max-width: 90%;
+    }
+  }
+
+  .modal-content {
+    height: 550px;
+
+    @media @md-down {
+      height: 370px;
+    }
+
+    @media (max-width: 767px) and (orientation: landscape) {
+      height: 340px;
+    }
+  }
+}
+
+iframe.yt-video-player-image {
+  width: 850px;
+  height: 490px;
+  margin: 0 25px;
+
+  @media @lg-only {
+    width: 550px;
+    height: 490px;
+  }
+
+  @media @md-down {
+    width: 90%;
+    height: 300px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 767px) and (orientation: landscape) {
+    height: 270px;
+  }
+}
+
+/* Lime Light video less */
+.limelight-imagetext-modal {
+  .modal-header {
+    padding: 5px 6px 30px;
+  }
+
+  .limelight-player {
+    .vjs-limelight-big-play {
+      font-size: 98px !important;
+    }
+  }
+}
+
+.limelight_player_cont {
+  width: 850px !important;
+  height: 490px !important;
+  margin: 0 auto;
+  position: relative;
+  top: -25px;
+
+  @media @lg-only {
+    width: 90% !important;
+    margin: 0 auto;
+  }
+
+  @media @md-down {
+    width: 93% !important;
+    height: 300px !important;
+    margin: 0 auto;
+  }
+}

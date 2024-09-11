@@ -1,0 +1,22 @@
+<div data-sly-test="${wcmmode.edit}" class="cq-placeholder" data-emptyText="Configure Newsroom Press Release Component">
+</div>
+<sly data-sly-use.pressreleases="com.abbott.aem.corp.division.core.components.models.PressReleaseModal">
+<div class="press-release-container">
+	<div class="press-release-heading">
+		<span>${pressreleases.articleTitle}</span>
+	</div>
+	<div class="press-release-body">
+			<sly data-sly-list.pressreleaseitems="${pressreleases.pressItems}">
+				<div class="press-release-content">
+					<div class="press-release-date">${pressReleaseItems.pressDate}</div>
+					<a target="${pressreleaseitems.openInNewTab}" href="${pressreleaseitems.pressReleaseLink}" class="press-release-desc">
+						<span>${pressreleaseitems.articleText @context='html'}</span>
+					</a>
+				</div>
+			</sly>
+		<div class="cta-button">
+			<a target="_self" href="${pressreleases.seeMoreLink @ extension='html'}">${pressreleases.seeMore}</a>
+		</div>
+	</div>
+</div>
+</sly>

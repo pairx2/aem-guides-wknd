@@ -1,0 +1,102 @@
+.a-pagination{
+  $self: &;
+
+
+  .u-ltr{
+    display: inline-block;
+  }
+  .u-rtl {
+    display: none;
+  }
+
+  &__pages{
+    margin: 0;
+    padding: 0;
+    border: var(--pagination-border);
+    border-radius: var(--pagination-border-radius);
+    display: inline-flex;
+    list-style: none;
+  }
+  &__link {
+    display: block;
+    color: var(--pagination-link-color);
+    text-decoration: var(--pagination-text-decoration);
+    font-size: var(--pagination-link-font-size);
+    line-height: var(--pagination-link-line-height);
+    padding: var(--pagination-link-padding);
+    border-left: var(--pagination-border-width) solid var(--pagination-border-color);
+    border-right: var(--pagination-border-width) solid var(--pagination-border-color);
+
+    &:hover {     
+      font-weight: bold;
+      text-decoration: var(--pagination-text-decoration);
+      color: var(--pagination-hover-link-color);
+	  background-color: var(--pagination-active-bg-color);
+    }
+
+    &:active, &:focus {
+      background-color: var(--pagination-active-bg-color);
+      border-color: var(--pagination-active-border-color);
+	  border-left: 1px solid #222731;
+	  border-right: 1px solid #222731;
+      font-weight: bold;
+    }
+  }
+
+  &--hide {
+    display: none;
+  }
+
+  &--previous, &--next {
+    display: flex;
+    align-items: stretch;
+
+    #{$self}__link {
+      display: flex;
+      align-items: center;
+    }
+
+    [class*=icon] {
+      height: var(--pagination-link-icon-size);
+      &:before {
+        width: var(--pagination-link-icon-size);
+        height: var(--pagination-link-icon-size);
+      }
+    }
+  }
+
+  &--previous{
+    #{$self}__link {
+      border-top-left-radius: #{--pagination-border-radius};
+      border-bottom-left-radius: #{--pagination-border-radius};
+      &:hover {
+        border-left-color: var(--pagination-border-color);
+		background-color: var(--pagination-active-bg-color);
+      }
+    }
+  }
+
+  &--next{
+    #{$self}__link {
+      border-top-right-radius: #{--pagination-border-radius};
+      border-bottom-right-radius: #{--pagination-border-radius};
+      &:hover {
+        border-right-color: var(--pagination-border-color);
+      	background-color: var(--pagination-active-bg-color);
+		}
+    }
+  }
+
+  &--active {
+    position: relative;	
+    &:after{
+      content: '';
+      position: absolute;
+      height: var(--pagination-active-link-width);
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: var(--pagination-link-color);
+    }
+  }
+}

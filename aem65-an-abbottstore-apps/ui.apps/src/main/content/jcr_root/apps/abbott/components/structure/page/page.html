@@ -1,0 +1,55 @@
+<!--/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  ~ Copyright 2016 Adobe Systems Incorporated
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/-->
+<!DOCTYPE HTML>
+<html data-sly-use.page="com.adobe.cq.wcm.core.components.models.Page" lang="${page.language}"
+      data-sly-use.head="head.html"
+      data-sly-use.footer="footer.html"
+      data-sly-use.redirect="redirect.html"
+      data-sly-use.headerModel="${'com.abbott.aem.an.abbottstore.models.HeaderModel' @ headerResourcePath=currentPage.path}">
+    <head data-sly-call="${head.head @ page = page}">
+        <sly data-sly-test.hasMetatitle="${currentPage.Properties.meta_title && currentPage.Properties.meta_title != 'null'}">
+            <title>${currentPage.Properties.meta_title}</title>
+        </sly>
+		<!--Google Site Verification-->
+		<meta name="google-site-verification" content="E-2dQsNq_NkoCI3OewIaWhDLeNFlz7k6UhpaGOUcGjE" />
+    </head>
+    <body class="${page.cssClassNames} ${headerModel.variationType} ${pageProperties.hideBackground ? 'hide-background' : ''}">
+    <input type="hidden" id="cmpidField" name="cmpid" value="${inheritedPageProperties.trustArcCmpId}">
+		<!-- GOOGLE TAG MANAGER -->
+        <noscript>
+            <iframe title="GTM" src="//www.googletagmanager.com/ns.html?id=${inheritedPageProperties.gtmId}" height="0" width="0"
+                    style="display:none;visibility:hidden"></iframe>
+        </noscript>
+        <!-- END GOOGLE TAG MANAGER -->
+        ${headerModel.getBodyScripts @ context="scriptComment"}
+        <sly data-sly-test.isRedirectPage="${page.redirectTarget && (wcmmode.edit || wcmmode.preview)}"
+             data-sly-call="${redirect.redirect @ redirectTarget = page.redirectTarget}"></sly>
+        <sly data-sly-test="${!isRedirectPage}">
+            <sly data-sly-include="body.socialmedia_begin.html"></sly>
+            <sly data-sly-include="body.html"></sly>
+            <sly data-sly-call="${footer.footer @ page = page}"></sly>
+            <sly data-sly-include="body.socialmedia_end.html"></sly>
+        </sly>
+        <!-- JAVASCRIPT DISABLED MESSAGE -->
+        <noscript>Your browser’s Javascript functionality is turned off.  Please enable Javascript for full functionality of this site.</noscript>
+        <!-- END JAVASCRIPT DISABLED MESSAGE -->
+
+        <!-- COOKIE DISABLED MESSAGE -->
+        <noscript id="cookie-disabled-message">Your browser’s Cookies are disabled.  Please enable Cookies for full functionality of this site.</noscript>
+        <!-- END COOKIE DISABLED MESSAGE -->
+
+    </body>
+</html>

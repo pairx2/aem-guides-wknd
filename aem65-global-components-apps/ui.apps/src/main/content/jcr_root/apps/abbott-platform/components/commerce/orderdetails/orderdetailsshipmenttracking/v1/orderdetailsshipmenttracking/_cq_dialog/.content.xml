@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Order Details - Shipment Tracking"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                maximized="{Boolean}true">
+                <items jcr:primaryType="nt:unstructured">
+                    <properties
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Properties"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <arrivalTextPrefix
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Arrival Text Prefix"
+                                                fieldDescription="The text that will be displayed before the arrival date."
+                                                name="./arrivalTextPrefix"/>
+                                            <trackingNumberTextPrefix
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Tracking Number Text Prefix"
+                                                fieldDescription="The text that will be displayed before the tracking number."
+                                                name="./trackingNumberTextPrefix"/>
+                                            <enableArvatoTrackingWidget 
+                                                granite:class="cq-dialog-checkbox-showhide" 
+                                                jcr:primaryType="nt:unstructured" 
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox" 
+                                                fieldDescription="If checked, tracking widget will be enabled" 
+                                                name="./enableArvatoTrackingWidget" 
+                                                text="Enable Arvato Tracking Widget" 
+                                                uncheckedValue="{Boolean}false" 
+                                                value="{Boolean}true">
+                                                <granite:data 
+                                                    jcr:primaryType="nt:unstructured" 
+                                                    cq-dialog-checkbox-showhide-target=".arvatoscripturl-enable-showhide-target"/>
+                                            </enableArvatoTrackingWidget>
+                                            <arvatoScriptURLContainer 
+                                                granite:class="hide arvatoscripturl-enable-showhide-target" 
+                                                jcr:primaryType="nt:unstructured" 
+                                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                <items 
+                                                    jcr:primaryType="nt:unstructured">
+                                                    <arvatoScriptTrackURL 
+                                                    granite:class="cq-dialog-checkbox-showhide" 
+                                                    jcr:primaryType="nt:unstructured" 
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    fieldDescription="If checked, Widget Tracking will be enabled." 
+                                                    fieldLabel="Arvato Track URL" 
+                                                    name="./arvatoScriptTrackURL" 
+                                                    uncheckedValue="{Boolean}false" 
+                                                    value="{Boolean}true"/>
+                                                </items>
+                                                <granite:data 
+                                                    jcr:primaryType="nt:unstructured" 
+                                                    showhidetargetvalue="true"/>
+                                            </arvatoScriptURLContainer>
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </properties>
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>

@@ -1,0 +1,100 @@
+.a-search {
+    $self: &;
+
+    padding: 2px 0 0;
+    position: relative;
+    @include prefix('transition', 'all .5s ease');
+    color: var(--search-input-color);
+
+    form {
+        margin-block-end: 0;
+    }
+
+    @include media-breakpoint-down(lg) {
+        left: 0 !important;
+    }
+
+    &__input {
+        background-color: transparent;
+        width: 125px;
+        -webkit-appearance: textfield;
+        @include prefix('box-sizing', 'border-box', moz webkit);
+        font-size: var(--search-input-font-size);
+        line-height: var(--search-input-line-height);
+        padding: var(--search-input-padding);
+        @include prefix('transition', 'all .5s ease');
+        border: 0;
+        border-radius: var(--search-input-border-radius);
+        outline: none;
+        cursor: pointer;
+
+        /* clears the 'X' from Chrome */
+        &::-webkit-search-decoration,
+        &::-webkit-search-cancel-button,
+        &::-webkit-search-results-button,
+        &::-webkit-search-results-decoration {
+            display: none;
+        }
+
+        /* clears the 'X' from Internet Explorer */
+        &::-ms-clear,
+        &::-ms-reveal {
+            display: none; width : 0; height: 0;
+        }
+
+        &::placeholder {
+            color: var(--search-input-color);
+            opacity: 1;
+        }
+
+        @include media-breakpoint-down(lg) {
+            width: 34px !important;
+        }
+
+    }
+
+    &--icon-left {
+        @include setPosition(absolute, top 12px left 12px);
+        .abt-icon {
+            font-size: var(--search-input-icon-font-size);
+        }
+    }
+
+    &--icon-right {
+        display: none;
+        @include setPosition(absolute, top 12px right 10px);
+        cursor: pointer;
+    }
+
+    &--expand {
+        display: block;
+        z-index: 999;
+        left: 0 !important;
+
+        #{ $self}__input {
+            background-color: var(--search-input-bg);
+            width: 100%;
+            cursor: text;
+
+            &::placeholder {
+                color: transparent;
+                opacity: 1;
+            }
+        }
+        #{ $self}--icon-left {
+            cursor: text;
+        }
+        #{ $self}--icon-right {
+            display: block;
+			top: 4px;
+			padding: 6px;
+			&:focus {
+				outline: 2px solid;
+			}
+			em {
+				vertical-align: middle;
+			}
+        }
+    }
+
+}

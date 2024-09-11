@@ -1,0 +1,2307 @@
+/**********************************
+Hero Banner Component
+**********************************/
+
+.m-hero {
+  &.m-hero-margin-left {
+    .container {
+      @media @lg-up {
+        max-width: 100%;
+        padding: 0 10% 0 12.5% !important;
+      }
+      .m-hero__content {
+        @media @lg-up {
+          margin-left: 0;
+        }
+        .m-hero__body {
+          .header-text {
+            @media @lg-up {
+              font-size: 32px !important;
+              line-height: 35.2px;
+              width: 90%;
+            }
+          }
+          .header-text-investor-resources {
+            @media @lg-up {
+              font-size: 45px !important;
+            }
+          }
+          .font-regular-40px {
+            font-family: @font-extazy-regular;
+            font-size: 40px !important;
+            line-height: 50px;
+            text-transform: none;
+          }
+          .width-80-percent {
+            @media @lg-up {
+              width: 80%;
+            }
+          }
+        }
+        .font-size-45px {
+          @media @lg-up {
+            font-size: 45px;
+          }
+        }
+        .font-size-30px {
+          @media @lg-up {
+            font-size: 30px !important;
+            line-height: 1.2;
+          }
+        }
+        .fontsize-26px {
+          @media @lg-up {
+            font-size: 26px !important;
+            line-height: 1.2;
+          }
+        }
+        .fontsize-24px {
+          @media @lg-up {
+            font-size: 24px !important;
+            line-height: 1.2;
+          }
+        }
+        .font-family-halvetica {
+          font-family: @font-helvetica-neue;
+          text-decoration: none;
+        }
+        .color-white {
+          @media @md-up {
+            color: @white;
+          }
+        }
+        .margin-top-100px {
+          @media @lg-up {
+            margin-top: 100px;
+          }
+        }
+        .hide-mobile {
+          @media @md-down {
+            display: none;
+          }
+        }
+        .hide-tab {
+          @media @lg-down {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+
+  &.m-csi-hero-banner-styles {
+    @media @lg-up {
+      .m-hero__content {
+        padding-top: 0 !important;
+        padding-bottom: 65px !important;
+      }
+    }
+
+    @media @lg-only {
+      .m-hero__content {
+        top: 26% !important;
+      }
+    }
+  }
+
+  &:not(.m-hero-column-banner) {
+    .row .m-hero__extras .button:not(:first-child) {
+      @media @md-up {
+        margin-left: 1.5rem;
+      }
+
+      @media @md-down {
+        margin-top: 0.75rem;
+      }
+    }
+  }
+
+  // Code to display hero banner content over the banner in tablet breakpoints
+  @media @lg-only {
+    height: auto;
+    padding-bottom: 0;
+
+    .row.no-gutters {
+      position: relative;
+
+      .m-hero__content {
+        top: 25%;
+        position: absolute;
+      }
+    }
+
+    &.m-hero--short .row.no-gutters .m-hero__content {
+      top: 10%;
+    }
+
+    &.m-hero--medium .row.no-gutters .m-hero__content {
+      top: 5%;
+    }
+  }
+
+  //style system for hero-content width
+  &.m-hero-content-full-width {
+    .m-hero__content {
+      --hero-content-default-width: 100%;
+      .hero__header {
+        &.h1-hero {
+          font-size: 60px;
+          line-height: 60px;
+        }
+      }
+    }
+  }
+
+  // Hero banner hover zoom effect
+
+  &.m-hero-banner-hover-zoom:hover {
+    .m-hero__media::after,
+    .cmp-image__image {
+      transform: scale(1.25);
+      transition: all 0.3s ease;
+    }
+  }
+
+  &.m-hero-banner-hover-zoom-small:hover {
+    .m-hero__media::after,
+    .cmp-image__image {
+      transform: scale(1.1);
+      transition: all 0.3s ease;
+    }
+  }
+
+  // Style system to align banner content w.r.t container
+
+  &.m-hero--content-margin-remove {
+    .m-hero__content {
+      --hero-content-default-space: 0;
+    }
+  }
+
+  // Style system class to remove padding bottom for the hero banner in mobile breakpoint
+  &.m-hero-mob-pb-0 {
+    @media @md-down {
+      --hero-padding-bottom: 0;
+    }
+  }
+
+  // Hero banner text color style system
+
+  /* Text color style system starts here */
+  &.m-hero-text-color--white .m-hero__content {
+    &,
+    & h1,
+    & h2,
+    & h3,
+    & h4,
+    & h5,
+    & h6,
+    & p {
+      --hero-banner-card-text-color: @white;
+
+      @media @lg-down {
+        --hero-banner-card-md-sm-text-color: @white;
+      }
+    }
+
+    .m-hero__extras .btn {
+      --hero-banner-card-button-bg-color: @black;
+    }
+  }
+
+  &.m-hero-text-color--yellow .m-hero__content {
+    &,
+    & h1,
+    & h2,
+    & h3,
+    & h4,
+    & h5,
+    & h6,
+    & p {
+      --hero-banner-card-text-color: @abbott-yellow;
+
+      @media @lg-down {
+        --hero-banner-card-md-sm-text-color: @abbott-yellow;
+      }
+    }
+
+    .m-hero__extras .btn {
+      --hero-banner-card-button-bg-color: @abbott-yellow;
+    }
+  }
+
+  &.m-hero-text-color--dark-yellow .m-hero__content {
+    &,
+    & h1,
+    & h2,
+    & h3,
+    & h4,
+    & h5,
+    & h6,
+    & p {
+      --hero-banner-card-text-color: @abbott-dark-yellow;
+
+      @media @lg-down {
+        --hero-banner-card-md-sm-text-color: @abbott-dark-yellow;
+      }
+    }
+
+    .m-hero__extras .btn {
+      --hero-banner-card-button-bg-color: @abbott-dark-yellow;
+    }
+  }
+
+  &.m-hero-text-color--green .m-hero__content {
+    &,
+    & h1,
+    & h2,
+    & h3,
+    & h4,
+    & h5,
+    & h6,
+    & p {
+      --hero-banner-card-text-color: @abbott-green;
+
+      @media @lg-down {
+        --hero-banner-card-md-sm-text-color: @abbott-green;
+      }
+    }
+
+    .m-hero__extras .btn {
+      --hero-banner-card-button-bg-color: @abbott-green;
+    }
+  }
+
+  &.m-hero-text-color--dark-green .m-hero__content {
+    &,
+    & h1,
+    & h2,
+    & h3,
+    & h4,
+    & h5,
+    & h6,
+    & p {
+      --hero-banner-card-text-color: @abbott-dark-green;
+
+      @media @lg-down {
+        --hero-banner-card-md-sm-text-color: @abbott-dark-green;
+      }
+    }
+
+    .m-hero__extras .btn {
+      --hero-banner-card-button-bg-color: @abbott-dark-green;
+    }
+  }
+
+  &.m-hero-text-color--fuscia .m-hero__content {
+    &,
+    & h1,
+    & h2,
+    & h3,
+    & h4,
+    & h5,
+    & h6,
+    & p {
+      --hero-banner-card-text-color: @abbott-fuscia;
+
+      @media @lg-down {
+        --hero-banner-card-md-sm-text-color: @abbott-fuscia;
+      }
+    }
+
+    .m-hero__extras .btn {
+      --hero-banner-card-button-bg-color: @abbott-fuscia;
+    }
+  }
+
+  &.m-hero-text-color--dark-fuscia .m-hero__content {
+    &,
+    & h1,
+    & h2,
+    & h3,
+    & h4,
+    & h5,
+    & h6,
+    & p {
+      --hero-banner-card-text-color: @abbott-dark-fuscia;
+
+      @media @lg-down {
+        --hero-banner-card-md-sm-text-color: @abbott-dark-fuscia;
+      }
+    }
+
+    .m-hero__extras .btn {
+      --hero-banner-card-button-bg-color: @abbott-dark-fuscia;
+    }
+  }
+
+  &.m-hero-text-color--orange .m-hero__content {
+    &,
+    & h1,
+    & h2,
+    & h3,
+    & h4,
+    & h5,
+    & h6,
+    & p {
+      --hero-banner-card-text-color: @abbott-orange;
+
+      @media @lg-down {
+        --hero-banner-card-md-sm-text-color: @abbott-orange;
+      }
+    }
+
+    .m-hero__extras .btn {
+      --hero-banner-card-button-bg-color: @abbott-orange;
+    }
+  }
+
+  &.m-hero-text-color--medium-orange .m-hero__content {
+    &,
+    & h1,
+    & h2,
+    & h3,
+    & h4,
+    & h5,
+    & h6,
+    & p {
+      --hero-banner-card-text-color: @abbott-medium-orange;
+
+      @media @lg-down {
+        --hero-banner-card-md-sm-text-color: @abbott-medium-orange;
+      }
+    }
+
+    .m-hero__extras .btn {
+      --hero-banner-card-button-bg-color: @abbott-medium-orange;
+    }
+  }
+
+  &.m-hero-text-color--dark-orange .m-hero__content {
+    &,
+    & h1,
+    & h2,
+    & h3,
+    & h4,
+    & h5,
+    & h6,
+    & p {
+      --hero-banner-card-text-color: @abbott-dark-orange;
+
+      @media @lg-down {
+        --hero-banner-card-md-sm-text-color: @abbott-dark-orange;
+      }
+    }
+
+    .m-hero__extras .btn {
+      --hero-banner-card-button-bg-color: @abbott-dark-orange;
+    }
+  }
+
+  &.m-hero-text-color--cyan .m-hero__content {
+    &,
+    & h1,
+    & h2,
+    & h3,
+    & h4,
+    & h5,
+    & h6,
+    & p {
+      --hero-banner-card-text-color: @abbott-cyan;
+
+      @media @lg-down {
+        --hero-banner-card-md-sm-text-color: @abbott-cyan;
+      }
+    }
+
+    .m-hero__extras .btn {
+      --hero-banner-card-button-bg-color: @abbott-cyan;
+    }
+  }
+
+  &.m-hero-text-color--blue .m-hero__content {
+    &,
+    & h1,
+    & h2,
+    & h3,
+    & h4,
+    & h5,
+    & h6,
+    & p {
+      --hero-banner-card-text-color: @abbott-blue;
+
+      @media @lg-down {
+        --hero-banner-card-md-sm-text-color: @abbott-blue;
+      }
+    }
+
+    .m-hero__extras .btn {
+      --hero-banner-card-button-bg-color: @abbott-blue;
+    }
+  }
+
+  &.m-hero-text-color--gray .m-hero__content {
+    &,
+    & h1,
+    & h2,
+    & h3,
+    & h4,
+    & h5,
+    & h6,
+    & p {
+      --hero-banner-card-text-color: @abbott-gray;
+
+      @media @lg-down {
+        --hero-banner-card-md-sm-text-color: @abbott-gray;
+      }
+    }
+
+    .m-hero__extras .btn {
+      --hero-banner-card-button-bg-color: @abbott-gray;
+    }
+  }
+
+  &.m-hero-text-color--dark-gray .m-hero__content {
+    &,
+    & h1,
+    & h2,
+    & h3,
+    & h4,
+    & h5,
+    & h6,
+    & p {
+      --hero-banner-card-text-color: @abbott-dark-gray;
+
+      @media @lg-down {
+        --hero-banner-card-md-sm-text-color: @abbott-dark-gray;
+      }
+    }
+
+    .m-hero__extras .btn {
+      --hero-banner-card-button-bg-color: @abbott-dark-gray;
+    }
+  }
+
+  &.m-hero-text-color--light-gray .m-hero__content {
+    &,
+    & h1,
+    & h2,
+    & h3,
+    & h4,
+    & h5,
+    & h6,
+    & p {
+      --hero-banner-card-text-color: @abbott-light-gray;
+
+      @media @lg-down {
+        --hero-banner-card-md-sm-text-color: @abbott-light-gray;
+      }
+    }
+
+    .m-hero__extras .btn {
+      --hero-banner-card-button-bg-color: @abbott-light-gray;
+    }
+  }
+
+  &.m-hero-text-color--medium-gray .m-hero__content {
+    &,
+    & h1,
+    & h2,
+    & h3,
+    & h4,
+    & h5,
+    & h6,
+    & p {
+      --hero-banner-card-text-color: @abbott-medium-gray;
+
+      @media @lg-down {
+        --hero-banner-card-md-sm-text-color: @abbott-medium-gray;
+      }
+    }
+
+    .m-hero__extras .btn {
+      --hero-banner-card-button-bg-color: @abbott-medium-gray;
+    }
+  }
+
+  &.m-hero-text-color--button-gray .m-hero__content {
+    &,
+    & h1,
+    & h2,
+    & h3,
+    & h4,
+    & h5,
+    & h6,
+    & p {
+      --hero-banner-card-text-color: @abbott-button-gray;
+
+      @media @lg-down {
+        --hero-banner-card-md-sm-text-color: @abbott-button-gray;
+      }
+    }
+
+    .m-hero__extras .btn {
+      --hero-banner-card-button-bg-color: @abbott-button-gray;
+    }
+  }
+
+  &.m-hero-text-color--dark-cyan .m-hero__content {
+    &,
+    & h1,
+    & h2,
+    & h3,
+    & h4,
+    & h5,
+    & h6,
+    & p {
+      --hero-banner-card-text-color: @abbott-dark-cyan;
+
+      @media @lg-down {
+        --hero-banner-card-md-sm-text-color: @abbott-dark-cyan;
+      }
+    }
+
+    .m-hero__extras .btn {
+      --hero-banner-card-button-bg-color: @abbott-dark-cyan;
+    }
+  }
+
+  &.m-hero-text-color--primary-blue .m-hero__content {
+    &,
+    & h1,
+    & h2,
+    & h3,
+    & h4,
+    & h5,
+    & h6,
+    & p {
+      --hero-banner-card-text-color: @abbott-primary-blue;
+
+      @media @lg-down {
+        --hero-banner-card-md-sm-text-color: @abbott-primary-blue;
+      }
+    }
+
+    .m-hero__extras .btn {
+      --hero-banner-card-button-bg-color: @abbott-primary-blue;
+    }
+  }
+
+  &.m-hero-text-color--dark-blue .m-hero__content {
+    &,
+    & h1,
+    & h2,
+    & h3,
+    & h4,
+    & h5,
+    & h6,
+    & p {
+      --hero-banner-card-text-color: @abbott-dark-blue;
+
+      @media @lg-down {
+        --hero-banner-card-md-sm-text-color: @abbott-dark-blue;
+      }
+    }
+
+    .m-hero__extras .btn {
+      --hero-banner-card-button-bg-color: @abbott-dark-blue;
+    }
+  }
+
+  &.m-hero-text-color--button-hover-blue .m-hero__content {
+    &,
+    & h1,
+    & h2,
+    & h3,
+    & h4,
+    & h5,
+    & h6,
+    & p {
+      --hero-banner-card-text-color: @abbott-button-hover-blue;
+
+      @media @lg-down {
+        --hero-banner-card-md-sm-text-color: @abbott-button-hover-blue;
+      }
+    }
+
+    .m-hero__extras .btn {
+      --hero-banner-card-button-bg-color: @abbott-button-hover-blue;
+    }
+  }
+
+  &.m-hero-text-color--mint .m-hero__content {
+    &,
+    & h1,
+    & h2,
+    & h3,
+    & h4,
+    & h5,
+    & h6,
+    & p {
+      --hero-banner-card-text-color: @abbott-mint;
+
+      @media @lg-down {
+        --hero-banner-card-md-sm-text-color: @abbott-mint;
+      }
+    }
+
+    .m-hero__extras .btn {
+      --hero-banner-card-button-bg-color: @abbott-mint;
+    }
+  }
+
+  &.m-hero-text-color--black .m-hero__content {
+    &,
+    & h1,
+    & h2,
+    & h3,
+    & h4,
+    & h5,
+    & h6,
+    & p {
+      --hero-banner-card-text-color: @black;
+
+      @media @lg-down {
+        --hero-banner-card-md-sm-text-color: @black;
+      }
+    }
+
+    .m-hero__extras .btn {
+      --hero-banner-card-button-bg-color: @black;
+    }
+  }
+
+  &.m-hero-text-color--gold .m-hero__content {
+    &,
+    & h1,
+    & h2,
+    & h3,
+    & h4,
+    & h5,
+    & h6,
+    & p {
+      --hero-banner-card-text-color: @abbott-gold;
+
+      @media @lg-down {
+        --hero-banner-card-md-sm-text-color: @abbott-gold;
+      }
+    }
+
+    .m-hero__extras .btn {
+      --hero-banner-card-button-bg-color: @abbott-gold;
+    }
+  }
+
+  &.m-hero-text-color--bastille .m-hero__content {
+    &,
+    & h1,
+    & h2,
+    & h3,
+    & h4,
+    & h5,
+    & h6,
+    & p {
+      --hero-banner-card-text-color: @abbott-bastille;
+
+      @media @lg-down {
+        --hero-banner-card-md-sm-text-color: @abbott-bastille;
+      }
+    }
+
+    .m-hero__extras .btn {
+      --hero-banner-card-button-bg-color: @abbott-bastille;
+    }
+  }
+
+  /* Text color style system ends here */
+
+  // Style system to have background colors for hero banner
+
+  /* Theme colors start here */
+  &.m-hero-bg-color--yellow {
+    --hero-banner-bg-color: @abbott-yellow;
+  }
+
+  &.m-hero-bg-color--dark-yellow {
+    --hero-banner-bg-color: @abbott-dark-yellow;
+  }
+
+  &.m-hero-bg-color--green {
+    --hero-banner-bg-color: @abbott-green;
+  }
+
+  &.m-hero-bg-color--dark-green {
+    --hero-banner-bg-color: @abbott-dark-green;
+  }
+
+  &.m-hero-bg-color--fuscia {
+    --hero-banner-bg-color: @abbott-fuscia;
+  }
+
+  &.m-hero-bg-color--dark-fuscia {
+    --hero-banner-bg-color: @abbott-dark-fuscia;
+  }
+
+  &.m-hero-bg-color--orange {
+    --hero-banner-bg-color: @abbott-orange;
+  }
+
+  &.m-hero-bg-color--dark-orange {
+    --hero-banner-bg-color: @abbott-dark-orange;
+  }
+
+  &.m-hero-bg-color--cyan {
+    --hero-banner-bg-color: @abbott-cyan;
+  }
+
+  &.m-hero-bg-color--blue {
+    --hero-banner-bg-color: @abbott-blue;
+  }
+
+  &.m-hero-bg-color--gray {
+    --hero-banner-bg-color: @abbott-gray;
+  }
+
+  &.m-hero-bg-color--dark-gray {
+    --hero-banner-bg-color: @abbott-dark-gray;
+  }
+
+  &.m-hero-bg-color--light-gray {
+    --hero-banner-bg-color: @abbott-light-gray;
+  }
+
+  &.m-hero-bg-color--medium-gray {
+    --hero-banner-bg-color: @abbott-medium-gray;
+  }
+
+  &.m-hero-bg-color--button-gray {
+    --hero-banner-bg-color: @abbott-button-gray;
+  }
+
+  &.m-hero-bg-color--dark-cyan {
+    --hero-banner-bg-color: @abbott-dark-cyan;
+  }
+
+  &.m-hero-bg-color--primary-blue {
+    --hero-banner-bg-color: @abbott-primary-blue;
+  }
+
+  &.m-hero-bg-color--dark-blue {
+    --hero-banner-bg-color: @abbott-dark-blue;
+  }
+
+  &.m-hero-bg-color--button-hover-blue {
+    --hero-banner-bg-color: @abbott-button-hover-blue;
+  }
+
+  &.m-hero-bg-color--mint {
+    --hero-banner-bg-color: @abbott-mint;
+  }
+
+  &.m-hero-bg-color--black {
+    --hero-banner-bg-color: @black;
+  }
+
+  /* Theme colors ends here */
+
+  // Style syatem to enable background color for mobile when image is shown in desktop/tablet
+  &.enable-mob-bg-color {
+    background-color: var(--hero-banner-bg-color);
+  }
+
+  // Style system to reduce the margin bottom to 7px
+  &.mb-7 {
+    margin-bottom: 7px !important;
+  }
+
+  // Style system to move the text position to bottom of the banner
+  &.m-hero--column-banner-content--bottom {
+    .m-hero__content {
+      @media @lg-up {
+        position: absolute;
+        bottom: 144px;
+      }
+    }
+  }
+
+  // Style system to place the banner body over image in mobile
+  &.m-hero-mob-content-abs {
+    @media @md-down {
+      height: 400px;
+
+      .row.no-gutters {
+        position: relative;
+
+        .m-hero__content {
+          bottom: 5%;
+          position: absolute;
+        }
+
+        .m-hero__media {
+          height: 400px;
+        }
+      }
+    }
+  }
+
+  // Style system for hero short panel 6.3 component
+  &.m-hero-style--hero-panel-short {
+    @media @lg-down {
+      height: auto;
+      padding-bottom: 0;
+      min-height: auto;
+
+      .row.no-gutters {
+        position: relative;
+
+        .m-hero__content {
+          position: absolute;
+        }
+      }
+    }
+
+    .row.no-gutters {
+      .m-hero__content {
+        @media @lg-up {
+          margin-left: 0;
+          padding-top: 85px;
+        }
+
+        @media @lg-only {
+          bottom: 30% !important;
+        }
+
+        @media @md-down {
+          bottom: 25% !important;
+        }
+      }
+
+      .m-hero__image .cmp-image__image {
+        @media @md-down {
+          object-fit: inherit;
+        }
+      }
+    }
+  }
+
+  //styles to make description font weight normal for mobile view
+  &.m-hero-body-font-weight-normal {
+    @media @md-down {
+      .m-hero__body * {
+        font-weight: normal;
+      }
+    }
+  }
+
+  // Style system for column control hero banners
+  &.m-hero-column-banner {
+    @media @lg-only {
+      --hero-padding-bottom: 0;
+      --hero-padding-top: 0;
+    }
+
+    @media @md-up {
+      position: relative;
+    }
+
+    --hero-desktop-short-height: 298px;
+    --hero-desktop-short-media-height: 298px;
+    --hero-desktop-tall-height: 603px;
+    --hero-desktop-tall-media-height: 603px;
+    --hero-tablet-short-height: 157px;
+    --hero-tablet-short-media-height: 157px;
+    --hero-tablet-tall-height: 321px;
+    --hero-tablet-tall-media-height: 321px;
+    --hero-mobile-short-height: 142px;
+    --hero-mobile-short-media-height: 142px;
+    --hero-mobile-tall-height: 142px;
+    --hero-mobile-tall-media-height: 142px;
+    padding-bottom: 0;
+
+    .container {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .m-hero__content {
+      word-break: break-word;
+      --hero-content-default-width: 90%;
+      --hero-mobile-short-content-top-space: 0;
+
+      @media @md-up {
+        --hero-content-default-space: 30px;
+        position: static;
+      }
+
+      @media @lg-only {
+        position: absolute;
+        padding-left: 10px;
+        width: 100%;
+        bottom: 0;
+      }
+
+      @media @md-down {
+        padding-left: 15px;
+        padding-right: 15px;
+      }
+
+      .m-hero__header.h1-hero {
+        font-family: @font-brandon-grotesque-black;
+        font-size: @font-size-34;
+        line-height: 40.8px;
+
+        html[lang*="cn"] &,
+        html[lang*="ja"] & {
+          font-family: @font-noto-sans-sc-regular;
+        }
+
+        html[lang*="vi"] & {
+          font-family: @font-noto-sans-vi-regular;
+        }
+
+        @media @lg-down {
+          font-size: 20px;
+          line-height: 25px;
+        }
+
+        @media @md-down {
+          font-size: 14px;
+          line-height: 1rem;
+        }
+      }
+
+      .m-hero__extras {
+        flex-wrap: wrap;
+
+        @media @md-up {
+          bottom: 5%;
+          position: absolute;
+        }
+
+        .button {
+          margin-bottom: @spacer-10;
+          margin-right: @spacer-10;
+          --hero-extras-between-spacing: 0;
+
+          @media @lg-only {
+            margin-bottom: 5px;
+          }
+
+          .btn {
+            --button-padding: 5px 10px;
+            --button-padding-md: 5px 10px;
+
+            @media @lg-only {
+              padding: 0 12px;
+            }
+
+            span {
+              font-family: @font-brandon-grotesque-bold;
+              font-size: @font-size-12;
+              font-weight: bold;
+              letter-spacing: @spacer-1;
+
+              html[lang*="cn"] &,
+              html[lang*="vi"] &,
+              html[lang*="ja"] & {
+                font-family: @font-brandon-bold;
+              }
+            }
+          }
+        }
+      }
+
+      .m-hero__media {
+        @media @lg-only {
+          margin-left: 0;
+          min-width: 100%;
+        }
+      }
+    }
+    &.m-hero--text-vertical-align-top {
+      .row .m-hero__content {
+        padding-top: 0;
+      }
+    }
+
+    &.m-hero--short {
+      margin-top: 0 !important;
+      margin-bottom: 0 !important;
+
+      &:first-child {
+        margin-bottom: 7px !important;
+      }
+
+      .m-hero__content {
+        @media @lg-only {
+          top: 0 !important;
+        }
+
+        @media @md-down {
+          background-color: @white;
+        }
+      }
+    }
+
+    &.m-hero--tall {
+      @media @lg-only {
+        height: var(--hero-tablet-tall-height);
+      }
+    }
+
+    // overlay effect - black background for text
+    &.m-hero--content-overlay {
+      .row {
+        @media @md-down {
+          position: relative;
+        }
+
+        &:before {
+          content: "";
+          position: absolute;
+          width: 100%;
+          bottom: 0;
+          height: 35%;
+          background-color: @black;
+          opacity: 0.4;
+        }
+
+        .m-hero__content {
+          position: absolute;
+          bottom: 17%;
+          padding: 20px 10px 30px 30px;
+          margin: 0;
+          top: 66%;
+          width: 100%;
+
+          @media @lg-only {
+            top: 60%;
+          }
+
+          @media @md-down {
+            top: unset;
+            bottom: 0;
+            padding: 0 15px;
+
+            * {
+              color: @white;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // Style system to hide the iamge as per need
+  &.hide-image {
+    .row.no-gutters .m-hero__media {
+      .d-lg-block,
+      .d-xl-block,
+      .d-sm-block,
+      .d-md-block {
+        display: none !important;
+      }
+    }
+  }
+
+  // Style system to get sub section panel look and feel
+  &.m-hero-style--sub-section-panel {
+    @media @md-down {
+      --hero-padding-bottom: 1rem;
+    }
+
+    height: 100%;
+
+    .row.no-gutters {
+      position: relative;
+
+      @media @lg-down {
+        padding-top: 50px;
+      }
+
+      .m-hero__content {
+        --hero-content-default-space: 0;
+
+        @media @lg-down {
+          padding-top: 0;
+        }
+
+        @media @lg-only {
+          position: relative;
+        }
+
+        @media @md-up {
+          word-wrap: break-word;
+        }
+
+        .m-hero__title {
+          color: @abbott-eerie-black;
+          padding-top: 15px;
+          text-transform: uppercase;
+
+          &::before {
+            content: "";
+            font-family: "Abbott-icon", serif !important;
+            font-size: 2.75rem;
+            font-weight: normal;
+            height: 48px;
+            position: absolute;
+            top: -48px;
+            width: 48px;
+          }
+        }
+
+        .m-hero__header {
+          font-family: @font-brandon-grotesque-bold;
+          font-weight: lighter;
+          line-height: 1.1;
+          margin-bottom: 0;
+          margin-top: 20px;
+          text-transform: uppercase;
+
+          html[lang*="cn"] &,
+          html[lang*="vi"] &,
+          html[lang*="ja"] & {
+            font-family: @font-brandon-bold;
+          }
+        }
+
+        .m-hero__body {
+          margin-top: 0;
+
+          &,
+          & * {
+            color: @abbott-eerie-black;
+            font-size: 1rem;
+            font-weight: normal;
+          }
+        }
+
+        .m-hero__extras {
+          margin-top: 10px;
+        }
+      }
+
+      .m-hero__media {
+        @media @lg-only {
+          --hero-tablet-medium-media-height: auto !important;
+          margin-left: 0;
+          min-width: auto;
+          position: static;
+        }
+
+        .cmp-image__image {
+          left: 65%;
+          max-width: 35%;
+          padding-bottom: 75px;
+          padding-top: 75px;
+          width: 100%;
+
+          @media @lg-up {
+            padding-bottom: 45px;
+            padding-top: 45px;
+          }
+
+          @media @md-down {
+            display: none;
+          }
+        }
+
+        @media @md-down {
+          display: none;
+        }
+      }
+    }
+
+    &.text--half-width {
+      .row.no-gutters .m-hero__content {
+        @media @md-up {
+          width: 60%;
+        }
+
+        .m-hero__title {
+          font-family: @font-brandon-grotesque-black;
+          font-weight: 500;
+        }
+
+        .m-hero__body {
+          * {
+            font-family: @font-georgia;
+          }
+        }
+
+        .m-hero__extras {
+          font-weight: normal;
+
+          .a-button-style--sub-section-panel .btn span {
+            font-family: @font-brandon-grotesque-black;
+          }
+        }
+      }
+    }
+
+    &.text--full-width {
+      .row.no-gutters .m-hero__content {
+        @media @md-up {
+          width: 100%;
+        }
+
+        .m-hero__title {
+          font-family: @font-calibri;
+          font-weight: bold;
+        }
+
+        .m-hero__body {
+          * {
+            font-family: @font-calibri;
+          }
+        }
+
+        .m-hero__extras {
+          font-weight: normal;
+
+          .a-button-style--sub-section-panel .btn span {
+            font-family: @font-calibri;
+          }
+        }
+      }
+    }
+
+    &.text-vertical-align--middle-tablet {
+      .row.no-gutters .m-hero__content {
+        @media @lg-only {
+          bottom: 25%;
+        }
+      }
+    }
+
+    /* Style system classes for Sub section panel icons -- starts here */
+    &.icon--upside-in-action {
+      .m-hero__content .m-hero__title::before {
+        content: "\e997" !important;
+      }
+    }
+
+    &.icon--heritage {
+      .m-hero__content .m-hero__title::before {
+        content: "\e98f" !important;
+      }
+    }
+
+    &.icon--citizenship-reporting {
+      .m-hero__content .m-hero__title::before {
+        content: "\e989" !important;
+      }
+    }
+
+    &.icon--finding-the-upside {
+      .m-hero__content .m-hero__title::before {
+        content: "\e991" !important;
+      }
+    }
+
+    &.icon--global-citizenship {
+      .m-hero__content .m-hero__title::before {
+        content: "\e98c" !important;
+      }
+    }
+
+    &.icon--our-promise {
+      .m-hero__content .m-hero__title::before {
+        content: "\e993" !important;
+      }
+    }
+
+    &.icon--our-own-words {
+      .m-hero__content .m-hero__title::before {
+        content: "\e990" !important;
+      }
+    }
+
+    &.icon--professionals {
+      .m-hero__content .m-hero__title::before {
+        content: "\e994" !important;
+      }
+    }
+
+    &.icon--abbott-way {
+      .m-hero__content .m-hero__title::before {
+        content: "\e99a" !important;
+      }
+    }
+
+    &.icon--handshake {
+      .m-hero__content .m-hero__title::before {
+        content: "\e98e" !important;
+      }
+    }
+
+    &.icon--who-we-are {
+      .m-hero__content .m-hero__title::before {
+        content: "\e998" !important;
+      }
+    }
+
+    &.icon--hands {
+      .m-hero__content .m-hero__title::before {
+        content: "\e98d" !important;
+      }
+    }
+
+    &.icon--neutron {
+      .m-hero__content .m-hero__title::before {
+        content: "\e992" !important;
+      }
+    }
+
+    &.icon--target {
+      .m-hero__content .m-hero__title::before {
+        content: "\e995" !important;
+      }
+    }
+
+    &.icon--local-contact {
+      .m-hero__content .m-hero__title::before {
+        content: "\e9c9" !important;
+      }
+    }
+
+    &.icon--supplier-relations {
+      .m-hero__content .m-hero__title::before {
+        background: url(/content/dam/corp/abbott/en-us/homepage/partners/suppliers/subsectionpanel/icon-supplier-relations.png)
+          no-repeat;
+      }
+    }
+
+    &.icon--licensing {
+      .m-hero__content .m-hero__title::before {
+        background: url(/content/dam/corp/abbott/en-us/homepage/partners/subsectionpanel/icon_licensing.png)
+          no-repeat;
+      }
+    }
+
+    &.icon--alliance-management {
+      .m-hero__content .m-hero__title::before {
+        background: url(/content/dam/corp/abbott/en-us/homepage/partners/subsectionpanel/icon-alliancemanagement.png)
+          no-repeat;
+      }
+    }
+
+    &.icon--supplier-relations-2 {
+      .m-hero__content .m-hero__title::before {
+        background: url(/content/dam/corp/abbott/en-us/homepage/partners/suppliers/subsectionpanel/icon-supplier-relations2.png)
+          no-repeat;
+      }
+    }
+
+    &.icon--vault-recognition {
+      .m-hero__content .m-hero__title::before {
+        background: url(/content/dam/corp/abbott/global/homepage/careers/subsectionpanel/Students.jpg)
+          no-repeat;
+      }
+    }
+
+    /* Style system classes for Sub section panel icons -- ends here */
+  }
+
+  // To remove the space below the carousel image in mobile view
+  // when image don't have any text/content associated with it.
+  &.m-hero--no-content {
+    @media @md-down {
+      .m-hero__content {
+        display: none;
+      }
+    }
+  }
+
+  // style system for hero banner curve
+  .hero-slider-curve.rounded-option {
+    position: absolute;
+    bottom: -2px;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+  }
+
+  .hero-slider-curve.notch-option {
+    position: absolute;
+    bottom: -5px;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+  }
+
+  &.m-hero--remove-mob-extra-top-space {
+    @media @md-down {
+      .m-hero__content {
+        padding-top: 0;
+      }
+    }
+  }
+
+  // Style system for redesign variation
+  &.m-hero--redesign {
+    .m-hero__content {
+      .m-hero__body {
+        &,
+        & * {
+          --hero-banner-card-text-color: @black;
+
+          @media @md-down {
+            --hero-banner-card-text-color: @abbott-gray;
+            --hero-banner-card-md-sm-text-color: @abbott-gray;
+          }
+        }
+      }
+
+      .m-hero__extras .btn {
+        @media @md-down {
+          --hero-banner-card-button-bg-color: @abbott-gray;
+        }
+      }
+    }
+  }
+
+  // Style system option to fill the banner area with image
+  &.m-hero--fill-image {
+    .m-hero__media img {
+      object-fit: fill;
+    }
+  }
+
+  &.m-hero--medium {
+    .m-hero__content {
+      .m-hero__extras {
+        .button-hero-banner--variation {
+          .btn {
+            @media @lg-up {
+              min-width: 370px;
+            }
+          }
+        }
+      }
+    }
+    .m-hero__media {
+      .m-hero__image {
+        .cmp-image__image {
+          @media @lg-up {
+            object-fit: cover;
+          }
+        }
+      }
+    }
+    &.m-csi-hero-banner-styles,
+    &.hero-variation {
+      .container {
+        @media @lg-up {
+          width: 75%;
+          padding: 0;
+        }
+        .m-hero__content {
+          @media @lg-up {
+            margin-left: 0;
+            max-width: 100%;
+          }
+          .m-hero__header {
+            &.h1-hero {
+              @media @xl-only {
+                font-size: 2rem;
+              }
+            }
+          }
+        }
+      }
+    }
+    &.hero-variation-536 {
+      @media @lg-up {
+        height: 536px;
+      }
+    }
+  }
+  &.m-hero--short {
+    .m-hero__content {
+      h1 {
+        @media @md-down {
+          font-size: 32px;
+        }
+        @media @md-up {
+          font-size: 36px;
+        }
+        @media @xl-up {
+          font-size: 60px;
+        }
+      }
+    }
+    &.hero-variation {
+      .container {
+        @media @lg-up {
+          width: 75%;
+          padding: 0;
+        }
+        .m-hero__content {
+          @media @lg-up {
+            max-width: 100%;
+          }
+          h1 {
+            @media @lg-up {
+              margin-left: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+  &.our-heritage {
+    .container {
+      .m-hero__content {
+        width: 80%;
+        .m-hero__header {
+          &.h1-hero {
+            @media @xl-up {
+              font-size: 90px;
+            }
+          }
+        }
+        h1 {
+          @media @xl-up {
+            margin-top: 120px;
+            font-size: 90px;
+          }
+        }
+      }
+    }
+  }
+  #section_internship-pogram {
+    .container {
+      .m-hero__media {
+        .m-hero__image {
+          .cmp-image__image {
+            @media @lg-up {
+              padding-bottom: 0 !important;
+              padding-top: 0 !important;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &.m-hero-font-aligment-banner {
+    .container {
+      @media @xl-up {
+        padding-left: 15px;
+      }
+      .m-hero__content {
+        .m-hero__header {
+          &.h1-hero {
+            font-size: 60px;
+            line-height: 1.1em;
+          }
+          h1 {
+            font-size: 60px;
+            line-height: 1.1em;
+          }
+        }
+      }
+    }
+  }
+
+  &.font-noto-sans-vi-regular {
+    .m-hero__content {
+      h1 {
+        line-height: 1.25;
+      }
+      .m-hero__body {
+        p,
+        h4 {
+          line-height: 1.25;
+        }
+      }
+    }
+  }
+
+  .column-variation--hero-banner-col {
+    .image {
+      .cmp-image {
+        .cmp-image__link {
+          img {
+            @media @md-down {
+              height: 142px;
+            }
+          }
+          .image-title {
+            width: 100%;
+            @media @lg-up {
+              width: 90%;
+            }
+            h2 {
+              @media @lg-down {
+                font-size: 14px;
+              }
+            }
+          }
+        }
+      }
+    }
+    .m-hero {
+      &.m-hero--short {
+        @media @lg-only {
+          min-height: auto;
+        }
+        .m-hero__media {
+          @media @lg-only {
+            min-height: 172px;
+          }
+        }
+      }
+    }
+  }
+
+  &.hero-variation-freedom2save {
+    .m-hero__content {
+      .m-hero__body {
+        p {
+          color: @abbott-primary-blue;
+          font-size: 27px !important;
+          &:first-child {
+            font-size: 27px !important;
+            width: 50%;
+            text-transform: none;
+            line-height: 35px;
+            font-family: @font-brandon-grotesque;
+            color: @white;
+            @media @md-down {
+              width: 100%;
+              line-height: 28px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.m-hero__video {
+  margin-left: 30px;
+  .video {
+    padding-top: 0 !important;
+    padding-bottom: 0% !important;
+    .m-video {
+      .a-video {
+        .a-video__player {
+          .play-icon {
+            img {
+              display: none;
+            }
+            .btn {
+              background-color: @abbott-dark-green;
+              position: absolute;
+              transition: all 0.3s ease;
+              z-index: 0;
+              margin: 0;
+              color: white;
+              height: 34px !important;
+              border-radius: 5px !important;
+              box-shadow: inset 0 0 0 @abbott-light-gray;
+              font-weight: bold;
+              padding: 0% !important;
+              text-align: center;
+              padding-top: 0 !important;
+              padding-bottom: 0% !important;
+              top: 18px !important;
+              background-image: url("/content/dam/corp/abbott/en-us/corpnewsroom/play-button-icon/play-btn.png") !important;
+              background-repeat: no-repeat;
+              background-size: 20px 20px;
+              background-position-x: 10px;
+              background-position-y: 7px;
+
+              &:hover {
+                background-color: @abbott-gray !important;
+              }
+
+              &::after {
+                background-color: @abbott-gray !important;
+              }
+            }
+          }
+        }
+      }
+    }
+    &.m-video-corp-vbg-color--dark-blue {
+      .m-video {
+        .a-video {
+          .a-video__player {
+            .play-icon {
+              .btn {
+                background-color: @abbott-dark-blue;
+              }
+            }
+          }
+        }
+      }
+    }
+    &.m-video-corp-vbg-color--black {
+      .m-video {
+        .a-video {
+          .a-video__player {
+            .play-icon {
+              .btn {
+                background-color: black;
+              }
+            }
+          }
+        }
+      }
+    }
+    &.m-video-corp-vbg-color--cyan {
+      .m-video {
+        .a-video {
+          .a-video__player {
+            .play-icon {
+              .btn {
+                background-color: cyan;
+              }
+            }
+          }
+        }
+      }
+    }
+    &.m-video-corp-vbg-color--yellow {
+      .m-video {
+        .a-video {
+          .a-video__player {
+            .play-icon {
+              .btn {
+                background-color: @abbott-yellow;
+              }
+            }
+          }
+        }
+      }
+    }
+    &.m-video-corp-vbg-color--mint {
+      .m-video {
+        .a-video {
+          .a-video__player {
+            .play-icon {
+              .btn {
+                background-color: @abbott-mint;
+              }
+            }
+          }
+        }
+      }
+    }
+    &.m-video-corp-vbg-color--white {
+      .m-video {
+        .a-video {
+          .a-video__player {
+            .play-icon {
+              .btn {
+                background-color: white;
+              }
+            }
+          }
+        }
+      }
+    }
+    &.m-video-corp-vbg-color--dark-yellow {
+      .m-video {
+        .a-video {
+          .a-video__player {
+            .play-icon {
+              .btn {
+                background-color: @abbott-dark-yellow;
+              }
+            }
+          }
+        }
+      }
+    }
+    &.m-video-corp-vbg-color--green {
+      .m-video {
+        .a-video {
+          .a-video__player {
+            .play-icon {
+              .btn {
+                background-color: @abbott-green;
+              }
+            }
+          }
+        }
+      }
+    }
+    &.m-video-corp-vbg-color--fuscia {
+      .m-video {
+        .a-video {
+          .a-video__player {
+            .play-icon {
+              .btn {
+                background-color: @abbott-fuscia;
+              }
+            }
+          }
+        }
+      }
+    }
+    &.m-video-corp-vbg-color--orange {
+      .m-video {
+        .a-video {
+          .a-video__player {
+            .play-icon {
+              .btn {
+                background-color: @abbott-orange;
+              }
+            }
+          }
+        }
+      }
+    }
+    &.m-video-corp-vbg-color--dark-orange {
+      .m-video {
+        .a-video {
+          .a-video__player {
+            .play-icon {
+              .btn {
+                background-color: @abbott-dark-orange;
+              }
+            }
+          }
+        }
+      }
+    }
+    &.m-video-corp-vbg-color--blue {
+      .m-video {
+        .a-video {
+          .a-video__player {
+            .play-icon {
+              .btn {
+                background-color: @abbott-blue;
+              }
+            }
+          }
+        }
+      }
+    }
+    &.m-video-corp-vbg-color--gray {
+      .m-video {
+        .a-video {
+          .a-video__player {
+            .play-icon {
+              .btn {
+                background-color: @abbott-gray;
+              }
+            }
+          }
+        }
+      }
+    }
+    &.m-video-corp-vbg-color--dark-gray {
+      .m-video {
+        .a-video {
+          .a-video__player {
+            .play-icon {
+              .btn {
+                background-color: @abbott-dark-gray;
+              }
+            }
+          }
+        }
+      }
+    }
+    &.m-video-corp-vbg-color--light-gray {
+      .m-video {
+        .a-video {
+          .a-video__player {
+            .play-icon {
+              .btn {
+                background-color: @abbott-light-gray;
+              }
+            }
+          }
+        }
+      }
+    }
+    &.m-video-corp-vbg-color--medium-gray {
+      .m-video {
+        .a-video {
+          .a-video__player {
+            .play-icon {
+              .btn {
+                background-color: @abbott-medium-gray;
+              }
+            }
+          }
+        }
+      }
+    }
+    &.m-video-corp-vbg-color--button-gray {
+      .m-video {
+        .a-video {
+          .a-video__player {
+            .play-icon {
+              .btn {
+                background-color: @abbott-button-gray;
+              }
+            }
+          }
+        }
+      }
+    }
+    &.m-video-corp-vbg-color--dark-cyan {
+      .m-video {
+        .a-video {
+          .a-video__player {
+            .play-icon {
+              .btn {
+                background-color: @abbott-dark-cyan;
+              }
+            }
+          }
+        }
+      }
+    }
+    &.m-video-corp-vbg-color--primary-blue {
+      .m-video {
+        .a-video {
+          .a-video__player {
+            .play-icon {
+              .btn {
+                background-color: @abbott-primary-blue;
+              }
+            }
+          }
+        }
+      }
+    }
+    .m-video-corp-vbg-color--bastille {
+      .m-video {
+        .a-video {
+          .a-video__player {
+            .play-icon {
+              .btn {
+                background-color: @abbott-bastille;
+              }
+            }
+          }
+        }
+      }
+    }
+    .m-video-corp-vbg-color--silver {
+      .m-video {
+        .a-video {
+          .a-video__player {
+            .play-icon {
+              .btn {
+                background-color: @abbott-silver;
+              }
+            }
+          }
+        }
+      }
+    }
+    /* Video Button text color list -- starts here  */
+    &.m-video-corp-text-color--black {
+      .m-video {
+        .a-video {
+          .a-video__player {
+            .play-icon {
+              .btn {
+                color: @black;
+              }
+            }
+          }
+        }
+      }
+    }
+    &.m-video-corp-text-color--dark-blue {
+      .m-video {
+        .a-video {
+          .a-video__player {
+            .play-icon {
+              .btn {
+                color: @abbott-dark-blue;
+              }
+            }
+          }
+        }
+      }
+    }
+    &.m-video-corp-text-color--yellow {
+      .m-video {
+        .a-video {
+          .a-video__player {
+            .play-icon {
+              .btn {
+                color: @abbott-yellow;
+              }
+            }
+          }
+        }
+      }
+    }
+    &.m-video-corp-text-color--dark-yellow {
+      .m-video {
+        .a-video {
+          .a-video__player {
+            .play-icon {
+              .btn {
+                color: @abbott-dark-yellow;
+              }
+            }
+          }
+        }
+      }
+    }
+    &.m-video-corp-text-color--green {
+      .m-video {
+        .a-video {
+          .a-video__player {
+            .play-icon {
+              .btn {
+                color: @abbott-green;
+              }
+            }
+          }
+        }
+      }
+    }
+    &.m-video-corp-text-color--dark-green {
+      .m-video {
+        .a-video {
+          .a-video__player {
+            .play-icon {
+              .btn {
+                color: @abbott-dark-green;
+              }
+            }
+          }
+        }
+      }
+    }
+    &.m-video-corp-text-color--fuscia {
+      .m-video {
+        .a-video {
+          .a-video__player {
+            .play-icon {
+              .btn {
+                color: @abbott-fuscia;
+              }
+            }
+          }
+        }
+      }
+    }
+    &.m-video-corp-text-color--dark-fuscia {
+      .m-video {
+        .a-video {
+          .a-video__player {
+            .play-icon {
+              .btn {
+                color: @abbott-dark-fuscia;
+              }
+            }
+          }
+        }
+      }
+    }
+    &.m-video-corp-text-color--orange {
+      .m-video {
+        .a-video {
+          .a-video__player {
+            .play-icon {
+              .btn {
+                color: @abbott-orange;
+              }
+            }
+          }
+        }
+      }
+    }
+    &.m-video-corp-text-color--dark-orange {
+      .m-video {
+        .a-video {
+          .a-video__player {
+            .play-icon {
+              .btn {
+                color: @abbott-dark-orange;
+              }
+            }
+          }
+        }
+      }
+    }
+    &.m-video-corp-text-color--cyan {
+      .m-video {
+        .a-video {
+          .a-video__player {
+            .play-icon {
+              .btn {
+                color: @abbott-cyan;
+              }
+            }
+          }
+        }
+      }
+    }
+    &.m-video-corp-text-color--blue {
+      .m-video {
+        .a-video {
+          .a-video__player {
+            .play-icon {
+              .btn {
+                color: @abbott-blue;
+              }
+            }
+          }
+        }
+      }
+    }
+    &.m-video-corp-text-color--gray {
+      .m-video {
+        .a-video {
+          .a-video__player {
+            .play-icon {
+              .btn {
+                color: @abbott-gray;
+              }
+            }
+          }
+        }
+      }
+    }
+    &.m-video-corp-text-color--dark-gary {
+      .m-video {
+        .a-video {
+          .a-video__player {
+            .play-icon {
+              .btn {
+                color: @abbott-dark-gray;
+              }
+            }
+          }
+        }
+      }
+    }
+    &.m-video-corp-text-color--light-gray {
+      .m-video {
+        .a-video {
+          .a-video__player {
+            .play-icon {
+              .btn {
+                color: @abbott-light-gray;
+              }
+            }
+          }
+        }
+      }
+    }
+    &.m-video-corp-text-color--medium-gray {
+      .m-video {
+        .a-video {
+          .a-video__player {
+            .play-icon {
+              .btn {
+                color: @abbott-medium-gray;
+              }
+            }
+          }
+        }
+      }
+    }
+    &.m-video-corp-text-color--button-gray {
+      .m-video {
+        .a-video {
+          .a-video__player {
+            .play-icon {
+              .btn {
+                color: @abbott-button-gray;
+              }
+            }
+          }
+        }
+      }
+    }
+    &.m-video-corp-text-color--dark-cyan {
+      .m-video {
+        .a-video {
+          .a-video__player {
+            .play-icon {
+              .btn {
+                color: @abbott-dark-cyan;
+              }
+            }
+          }
+        }
+      }
+    }
+    &.m-video-corp-text-color--primary-blue {
+      .m-video {
+        .a-video {
+          .a-video__player {
+            .play-icon {
+              .btn {
+                color: @abbott-primary-blue;
+              }
+            }
+          }
+        }
+      }
+    }
+    &.m-video-corp-text-color--mint {
+      .m-video {
+        .a-video {
+          .a-video__player {
+            .play-icon {
+              .btn {
+                color: @abbott-mint;
+              }
+            }
+          }
+        }
+      }
+    }
+    &.m-video-corp-text-color--bastille {
+      .m-video {
+        .a-video {
+          .a-video__player {
+            .play-icon {
+              .btn {
+                color: @abbott-bastille;
+              }
+            }
+          }
+        }
+      }
+    }
+    &.m-video-corp-text-color--silver {
+      .m-video {
+        .a-video {
+          .a-video__player {
+            .play-icon {
+              .btn {
+                color: @abbott-silver;
+              }
+            }
+          }
+        }
+      }
+    }
+    &.m-video-corp-text-color--white {
+      .m-video {
+        .a-video {
+          .a-video__player {
+            .play-icon {
+              .btn {
+                color: @white;
+              }
+            }
+          }
+        }
+      }
+    }
+    /* Button text color list -- Ends here  */
+  }
+}

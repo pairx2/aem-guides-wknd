@@ -1,0 +1,18 @@
+<div data-sly-use.text="com.adobe.cq.wcm.core.components.models.form.Text"
+   data-sly-use.template="an/similac/components/content/templates.html"
+   data-sly-test.isNotEmpty="${text.title}">
+   <sly data-sly-test="${properties.type == 'divider' || properties.type == 'htmltag' || properties.type == 'hidden' || properties.type == 'formError' || properties.type == 'userAlert'}">
+      <p class="${properties.btnClassName}"><span>${text.title}</span> </p>
+   </sly>
+   <sly data-sly-test="${properties.type == 'rte'}">
+      <p class=""><span>${text.title}</span> </p>
+   </sly>
+   <sly data-sly-test="${!(properties.type == 'divider' || properties.type == 'htmltag' || properties.type == 'hidden' || properties.type == 'formError' || properties.type == 'rte' || properties.type == 'userAlert')}">
+      <fieldset class="form-group similac-form-group">
+		 <legend></legend>
+         <label class="similac-label-floating">${text.title}</label>
+         <input type="text" class="form-control">
+      </fieldset>
+   </sly>
+</div>
+<sly data-sly-call="${template.placeholder @ isEmpty=!isNotEmpty, classAppend='cmp-form-text'}"></sly>

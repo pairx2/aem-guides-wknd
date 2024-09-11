@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Template"
+    allowedPaths="[/content/dam/epd(/.*)?]"
+    ranking="{Long}100">
+    <jcr:content
+        cq:scaffolding="/conf/test/settings/dam/cfm/models/medicine-product-data/jcr:content/model"
+        cq:templateType="/libs/settings/dam/cfm/model-types/fragment"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Medicine Product Data"
+        sling:resourceSuperType="dam/cfm/models/console/components/data/entity"
+        sling:resourceType="dam/cfm/models/console/components/data/entity/default"
+        status="enabled">
+        <metadata jcr:primaryType="nt:unstructured"/>
+        <model
+            cq:targetPath="/content/entities"
+            jcr:primaryType="cq:PageContent"
+            sling:resourceType="wcm/scaffolding/components/scaffolding"
+            dataTypesConfig="/mnt/overlay/settings/dam/cfm/models/formbuilderconfig/datatypes"
+            maxGeneratedOrder="20">
+            <cq:dialog
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="cq/gui/components/authoring/dialog">
+                <content
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+                    <items
+                        jcr:primaryType="nt:unstructured"
+                        maxGeneratedOrder="22">
+                        <_x0031_635862564559
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                            fieldLabel="Product Title"
+                            listOrder="1"
+                            maxlength="255"
+                            metaType="text-single"
+                            name="prodtitle"
+                            renderReadOnly="false"
+                            required="on"
+                            showEmptyInReadOnly="true"
+                            valueType="string">
+                            <granite:data jcr:primaryType="nt:unstructured"/>
+                        </_x0031_635862564559>
+                        <_x0031_635862610957
+                            cq:showOnCreate="true"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="cq/gui/components/coral/common/form/tagfield"
+                            autocreateTag="true"
+                            fieldLabel="Product Tag"
+                            forceSelection="false"
+                            listOrder="7"
+                            metaType="tags"
+                            multiple="true"
+                            name="tagvalue"
+                            renderReadOnly="false"
+                            rootPath="/content/cq:tags"
+                            showEmptyInReadOnly="true"
+                            valueType="string/tags[]"/>
+                        <_x0031_635862642232
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="dam/cfm/admin/components/authoring/contenteditor/multieditor"
+                            cfm-element="Product Description"
+                            checked="false"
+                            default-mime-type="text/html"
+                            fieldDescription="Max 50 characters."
+                            listOrder="2"
+                            metaType="text-multi"
+                            name="proddescription"
+                            renderReadOnly="false"
+                            showEmptyInReadOnly="true"
+                            valueType="string/multiline"/>
+                        <_x0031_635862705757
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="dam/cfm/models/editor/components/contentreference"
+                            fieldLabel="Product Page Path"
+                            filter="hierarchy"
+                            listOrder="8"
+                            metaType="reference"
+                            name="prodpath"
+                            nameSuffix="contentReference"
+                            renderReadOnly="false"
+                            rootPath="/content"
+                            showEmptyInReadOnly="true"
+                            showThumbnail="false"
+                            valueType="string/reference">
+                            <granite:data
+                                jcr:primaryType="nt:unstructured"
+                                thumbnail-validation="cfm.validation.thumbnail.show"/>
+                        </_x0031_635862705757>
+                        <_x0031_635862949885
+                            cq:showOnCreate="true"
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="cq/gui/components/coral/common/form/tagfield"
+                            autocreateTag="true"
+                            fieldLabel="Country Tag"
+                            forceSelection="false"
+                            listOrder="7"
+                            metaType="tags"
+                            multiple="true"
+                            name="countrytag"
+                            renderReadOnly="false"
+                            rootPath="/content/cq:tags"
+                            showEmptyInReadOnly="true"
+                            valueType="string/tags[]"/>
+                        <_x0031_635862975732
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                            listOrder="21"
+                            metaType="boolean"
+                            name="issecure"
+                            renderReadOnly="false"
+                            showEmptyInReadOnly="true"
+                            text="Is Secure"
+                            valueType="boolean">
+                            <granite:data jcr:primaryType="nt:unstructured"/>
+                        </_x0031_635862975732>
+                        <_x0031_635862995080
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="dam/cfm/models/editor/components/contentreference"
+                            fieldLabel="Product Image"
+                            filter="hierarchy"
+                            listOrder="22"
+                            metaType="reference"
+                            name="prodImageRef"
+                            nameSuffix="contentReference"
+                            renderReadOnly="false"
+                            rootPath="/content/dam"
+                            showEmptyInReadOnly="true"
+                            showThumbnail="false"
+                            validation="cfm.validation.contenttype.image"
+                            valueType="string/reference">
+                            <granite:data
+                                jcr:primaryType="nt:unstructured"
+                                thumbnail-validation="cfm.validation.thumbnail.show"/>
+                        </_x0031_635862995080>
+                    </items>
+                </content>
+            </cq:dialog>
+        </model>
+    </jcr:content>
+</jcr:root>

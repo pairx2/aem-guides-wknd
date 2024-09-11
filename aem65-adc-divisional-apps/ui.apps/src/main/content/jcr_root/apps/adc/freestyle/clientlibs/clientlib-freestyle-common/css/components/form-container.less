@@ -1,0 +1,154 @@
+@import "../mixin.less";
+@import "../media-queries.less";
+@import "../variables.less";
+/**
+ * FORM-CONTAINER - COMPONENT
+**/
+
+/*formcontainer*/
+.formcontainer {
+
+  /*formcontainer message*/
+  .o-form-container {
+    &__success-msg {
+      color: var(--form-container-default-fg-color);
+      text-transform: uppercase;
+      font-weight: bold;
+      text-align: center;
+      margin: @spacer 0;
+    }
+
+    &__error-msg {
+      text-align: center;
+      margin: @spacer 0;
+    }
+  }
+
+  &.formcontainer-halfwidth {
+    .o-form-container__element {
+      @media @lg-down {
+        flex: 0 0 100%;
+        max-width: 100%;
+      }
+    }
+  }
+
+  .form-container {
+    &>.experiencefragment {
+      .responsivegrid .aem-Grid>.aem-GridColumn {
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+/*wizard form buttons*/
+.o-wizard__container {
+  .o-wizard__content {
+    .o-form-container__buttons {
+
+      @media @sm-max {
+        .btn {
+          width: 100%;
+        }
+      }
+
+    }
+
+    .o-form-container__success-msg,
+    .o-form-container__error-msg {
+      display: none;
+    }
+  }
+
+  .o-wizard__btn {
+    flex-direction: column;
+
+    @media @sm-up {
+      flex-direction: row;
+    }
+
+    .button-div {
+      width: 100%;
+
+      &:only-child {
+        margin-right: 0;
+      }
+
+      @media @md-down {
+        margin-right: 0;
+      }
+
+      @media @sm-up {
+        width: 40%;
+      }
+
+      .btn {
+        width: 100%;
+        margin: @spacer-10 0;
+      }
+    }
+  }
+
+  .formcontainer-halfwidth {
+    &~.o-wizard__btn {
+      @media @lg-up {
+        flex: 0 0 50%;
+        max-width: 50%;
+        margin: 0 auto;
+      }
+    }
+  }
+}
+
+/*form options*/
+.options {
+  .a-checkbox {
+    &__input {
+      top: @spacer-2;
+      left: 0;
+      height: 1.25rem;
+      width: 1.25rem;
+    }
+
+    &__custom {
+      top: @spacer-2;
+    }
+
+    &-label {
+      margin-bottom: @spacer-4;
+    }
+
+    &__label {
+      margin-bottom: 0;
+    }
+  }
+
+  .checkbox,
+  .radio {
+    margin-bottom: @spacer-4;
+  }
+
+  .a-radio {
+    &-label {
+      margin-bottom: @spacer-4;
+    }
+
+    &__label {
+      margin-bottom: 0;
+    }
+
+    &__input {
+      top: @spacer-3;
+      left: @spacer-3;
+    }
+  }
+}
+
+/*date picker*/
+.a-date-picker {
+  .a-input-field {
+    margin-top: 0;
+  }
+}

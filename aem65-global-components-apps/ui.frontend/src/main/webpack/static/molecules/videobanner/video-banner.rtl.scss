@@ -1,0 +1,88 @@
+@import 'video-banner.scss';
+.m-video-banner {
+    $self: &;
+    text-align: right;
+
+    &--alignment {
+        &-right {
+            #{$self}__content {
+                * {
+                    text-align: left;
+                }
+            }
+            #{$self}__extras {
+                justify-content: var(--video-banner-flex-aline-end);
+            }
+        }
+        
+        &-center {
+            #{$self}__content {
+                * {
+                    text-align: center;
+                }
+            }
+            #{$self}__extras {
+                justify-content: center;
+            }
+        }
+        &-left {
+            #{$self}__content {
+                * {
+                    text-align: right;
+                }
+            }
+            #{$self}__extras {
+                justify-content: var(--video-banner-flex-aline-start);
+            }
+        }
+    }
+    &--gradient {
+        &-start {
+          #{$self}__media:after{
+            background: linear-gradient(-90deg, var(--video-banner-start-color) var(--video-banner-start-position), var(--video-banner-end-color) var(--video-banner-end-position));
+          }
+        }
+    
+        &-end {
+          #{$self}__media:after{
+            background: linear-gradient(90deg, var(--video-banner-start-color) var(--video-banner-start-position), var(--video-banner-end-color) var(--video-banner-end-position));
+          }
+        }
+    
+    }
+
+    &__icon-btn {
+        left: 0;
+    }
+    &-ply-lower {
+        &-left{
+            #{$self}__icon-btn {
+                left: auto;
+                right: 0;
+            }  
+        }
+        &-right{
+            #{$self}__icon-btn {
+                right: auto;
+                left: 0;
+            }
+        }
+        
+    }
+
+    &__extras{
+
+        @include media-breakpoint-down(xs) {
+          .a-button {
+            + .a-button{
+              margin-right: 0!important;
+            }
+          }
+        }
+    
+        .a-button + .a-button {
+          margin-right: var(--video-banner-extras-between-spacing);
+          margin-left: 0;
+        }
+      }
+}

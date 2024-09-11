@@ -1,0 +1,250 @@
+.header_lab-profile, .header_notifications{
+    display: flex;
+    justify-content:space-between;
+    h4{
+        color: var(--secondary-50-color);
+    }
+    a{
+        margin-left: 10px;
+        margin-top: 4px;
+        font-family: var(--heading-6-font-family);
+    }
+    @include media-breakpoint-down(sm) {
+        display: block;   
+    }
+    .intrusment-dashboard-title,
+    .notifications-dashboard-title{
+        display: flex;
+        @include media-breakpoint-down(md) {
+            display: block;   
+        }
+    }
+}
+#dropdown_labProfile-options {
+    padding: 16px 16px 0 16px;
+}
+#lab-profile-modal {
+    .generic-modal__content-body {
+        position: relative;
+    }
+
+    .lab-profile-modal__loading-mask {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: -30px;
+        right: 0;
+        background: rgba(0,0,0,0.25);
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+.labprofile-results-container, .team-list-results-container{
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    column-gap: 15px;
+    row-gap: 10px;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-content: flex-start;
+
+    .m-card{
+        display: flex;
+        width: 32%;
+        max-width: 100%;
+        font-family: #{$base-font-family};
+        text-align: center;
+        padding: 20px 15px 40px 10px;
+        margin: 0 0 0 0;
+        background-color: var(--gray-lightest-color);
+        padding-bottom:10px;
+        align-self: stretch;
+
+        &:before {
+            pointer-events: none;
+        }
+        
+        &.team-list{
+            flex: 1 0 21%;
+            background-color: var(--bs-gray-100);
+            .internal-card-links{
+                display: inherit;
+                display: flex;
+                justify-content: center;
+                margin-top: 15px;
+                margin-bottom: 15px;
+                .instrument-card-prodlink{
+                    font-family: Brandon Grotesque,Arial,sans-serif;
+                    font-size: var(--heading-5-font-size);
+                    margin-bottom: 15px;
+                    margin-top: 15px;
+                }
+                .instrument-card-serialnumber{
+                   text-decoration: underline;
+              }
+           }
+        }
+        &.instrument-dashboard{
+            flex-direction: row;
+            justify-content: space-between;
+            text-align: left;
+            .instrument-card-links{
+                margin-left: 20px;
+                margin-bottom: 20px;
+            }
+            .intrument-image-container{
+                margin-right: 20px;
+            }
+        }
+        .dot{
+            height: 8px;
+            width: 8px;
+            background-color: var(--warning-110-color);
+            border-radius: 50%;
+            display: inline-block;
+            margin-bottom: 5px;
+            margin-left: -2px;
+        }
+    @include media-breakpoint-down(md) {
+        padding: 20px 0px 10px 0px;
+        width: 92%;
+        margin-left: 3%;
+
+        &.team-list{
+            width: inherit;
+            flex: auto;
+        }
+
+        &.lab-profile-cards> *{
+            margin-right: 10px;
+            margin-left: 10px;
+        }
+    }
+        .profile-card-title{
+            display: flex;
+            font-family: var(--heading-6-font-family);
+        }
+        .location, .customerID{
+            display: flex;
+            font-family: #{$base-font-family};
+            font-size: var(--rte-font-14-size);
+            text-align: left;
+            p {
+                text-align: left;
+                font-family: var(--heading-6-font-family);
+                margin-bottom: 0px;
+            }
+        }
+
+        .bottom-links{
+            display: flex;
+            justify-content: space-between;
+            font-size: var(--rte-font-12-size);
+            color:var(--primary-color);
+            padding-top:20px;
+            a {
+                cursor: pointer;
+            }
+            .primary-lab{
+                margin-left:auto;
+                @include media-breakpoint-down(md){
+                    margin-left: 25%;
+                }
+            }
+            .remove {
+                margin-left: 2em;
+            }
+            &.primary-lab-selected{
+                .primary-lab{
+                    color: var(--card-pre-title-color);
+                    font-weight: 600;
+                    pointer-events: none;
+                    
+                    u{
+                        text-decoration: none;
+                    }
+                }
+                .remove {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+.primary-lab {
+    .icon-bookmark {
+        u {
+            background-repeat: no-repeat;
+            padding-left: 1.75em;
+            background-image: url("../resources/images/icon-bookmark.svg");
+        }
+    }
+    .icon-bookmark.primary {
+        u {
+            background-image: url("../resources/images/icon-bookmark-filled.svg");
+        }
+    }
+}
+
+.show-modal{
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(128,128,128,0.3);
+}
+
+.generic-modal__content{
+    opacity: 1;
+}
+.generic-modal__content-body{
+    h4{
+        color: var(--secondary-50-color);
+    }
+    p{
+        color: var(--black-color);
+    }
+    input::placeholder{
+        font-family: var(--label-font-family);
+    }
+    .btn{
+        width: 100%;
+        font-size: 14px;
+    
+    }
+    .a-button--secondary{
+        .btn{
+            border: 2px solid var(--secondary-75-color);
+            color: var(--secondary-75-color);
+            font-weight: var(--button-large-font-weight);
+            background-color: var(--button-secondary-bg);
+        }
+    }
+    .a-checkbox__text{
+        padding-left: 0px;
+    }
+    &.modal-body{
+        padding-top:1rem;
+        padding-bottom:0rem;
+    }
+    
+}
+.generic-modal__content-footer{
+    padding-bottom:0px;
+}
+
+.profile-button{
+    display: flex;
+    justify-content:flex-end;
+    margin-bottom: 15px;
+    
+    .btn{
+        font-weight: 500;
+        button{
+            background-color: var(--secondary-color);
+        }
+    }
+}

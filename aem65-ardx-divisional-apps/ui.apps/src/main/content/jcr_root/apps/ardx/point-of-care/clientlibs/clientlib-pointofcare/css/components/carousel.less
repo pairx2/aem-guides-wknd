@@ -1,0 +1,435 @@
+@import "../global/media-queries.less";
+@import "../global/variables.less";
+
+
+.o-hero-carousel {
+    --hero-carousel-arrow-width: auto;
+    --hero-carousel-arrow-height: auto;
+    --indicator-dot-active: @color-cerulean;
+    --indicator-dot-hover-color: @color-cerulean;
+    --indicator-dot: @color-white;
+    --indicator-border-color: #888b8d;
+    --indicator-width: 10px;
+    --indicator-height: 10px;
+    .slick-track
+    {
+        line-height: 0;
+    }
+    .slick-prev, .slick-next
+    {
+        font-size: 6rem;
+        color: @color-white;
+        text-shadow: 0 1px 2px #00000099;
+        opacity: 0.6;
+        z-index: 2;
+    
+        @media @sm-up {
+            font-size: 2.5rem;
+        }
+
+        @media @lg-up {
+            font-size: 5rem;
+        }
+        &:hover
+        {
+            opacity: 1;
+        }
+    }
+    .slick-arrow {
+        background-color: transparent !important;
+        width: 50px;
+        height: 80px;
+        @media @xl-down {
+            width: 28px;
+            height: 48px;
+        }
+        @media @lg-down {
+            top: 50% !important;
+        }
+        &:before {
+            content: "";
+            width: 50px;
+            height: 80px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            @media @xl-down {
+                width: 28px;
+                height: 48px;
+            }
+        }
+    }
+    .slick-arrow.slick-prev
+    {
+        @media @xl-up {
+            left: 15px;
+        }
+        @media (min-width: 1400px) {
+            left: 40px;
+        }        
+        @media @lg-down
+        {
+            left:0;
+         }
+         &:before {            
+            background-image: url('../../../../../division/clientlibs/clientlib-site/resources/images/angle-left.svg');
+         }
+         &:hover {
+            &:before {            
+                background-image: url('../../../../../division/clientlibs/clientlib-site/resources/images/angle-left-hover.svg');
+             }
+         }
+    }
+     .slick-arrow.slick-next
+    {     
+        @media @xl-up {
+            right: 15px;
+        }   
+        @media (min-width: 1400px) {
+            right: 40px;
+        }        
+        @media @lg-down
+        {
+            right:0;
+         }
+         &:before {            
+            background-image: url('../../../../../division/clientlibs/clientlib-site/resources/images/angle-right.svg');
+         }
+         &:hover {
+            &:before {            
+                background-image: url('../../../../../division/clientlibs/clientlib-site/resources/images/angle-right-hover.svg');
+             }
+         }
+    }
+    .slick-dots
+    {
+        li
+        {
+            padding: 3px;
+        }
+    }
+    .m-hero {
+        overflow: inherit !important;
+        &__content {
+            @media @md-up {
+                font-size: 1.5rem;
+                line-height: 30px;
+            }
+
+            @media @lg-up {
+                font-size: 2.25rem;
+                line-height: 24px;
+            }
+            h2{
+                p{
+                    margin-bottom: 0;
+                    @media @md-down{
+                        font-size: 24px !important;
+                        line-height: 30px !important;
+                        font-family: @brandon-bold;
+                    }
+                }
+            }
+            h4{
+                span{
+                    margin-bottom: 20px;
+                }
+            }
+        }
+        &__body{
+            .button{
+                margin-bottom: 20px;
+            }
+            p{
+                color: @color-charcoal;
+                @media @md-down{
+                    margin-bottom: 20px !important;
+                }
+            }
+        }
+        &--image-position
+        {
+            .container
+            {
+            .m-hero__content
+            {
+            h1
+            {
+                @media @md-down
+                {
+                    margin-top: 0;
+                    padding-bottom: 10px !important;
+                }
+            }
+            .m-hero__header
+            {
+                @media @md-down
+                {
+                    margin-top: 0;
+                    padding-bottom: 10px !important;
+                }
+            }
+             h4
+                {
+                    @media @md-down
+                    {
+                        padding-top: 9px;
+                        margin-bottom: 10px;
+                    }
+                }
+            }
+            }
+            .m-hero__media
+            {
+                 @media @md-down
+            {
+            min-height: unset !important;
+            }
+            .d-sm-block
+            {
+                @media @md-down
+                {
+                    position: relative;
+                }
+                .cmp-image__image
+                {
+                    @media @md-down
+                    {
+                    height: auto;
+                    position: relative; 
+                    }
+                    
+                }
+                
+            }
+            }
+        }
+    }
+    .m-hero--dark
+    {
+        h2
+        {
+        color: @color-charcoal;
+        }
+    }
+    .m-hero--light
+    {
+        h2
+        {
+        color: @color-white;
+        }
+    }
+    .m-hero--tall {
+        .m-hero__content{
+            padding-top: 15px !important;
+            padding-bottom: 0 !important;
+            @media @md-down{
+                padding-top: 30px !important;
+                padding-bottom: 30px !important;
+            }
+        }
+    }
+    .cmp-carousel {
+        visibility: hidden;
+        .btn{
+            &:hover{
+                box-shadow: none !important;
+            }
+        }
+        .slick-initialized {
+            visibility: visible;
+            opacity: 1;
+            .slick-slide{
+                display: block;
+                visibility: visible !important;
+            }
+        }
+        .slick-slide {
+            display: none;
+            &:first-child{
+                display: block; 
+                visibility: hidden;
+            }
+          }
+          
+    } 
+    
+}
+.cq-Editable-dom {
+    .o-hero-carousel{
+        .cmp-carousel{
+            visibility: visible;
+        }
+    }
+}
+
+#herocarousel_abbott--bggray, .o-hero-carousel.o-hero-carousel--arrow-small, #hero-carousel-arrow-small {
+    .slick-arrow {
+        background-color: transparent !important;
+        color: @color-deep-sea-blue;
+        width: auto;
+        height: auto;
+        &::before {
+            width: auto;
+            height: auto;
+        }
+    }
+    .slick-next, .slick-prev {
+        font-size: 48px;
+        line-height: 48px;
+    }
+    .abt-icon-right-arrow {
+        &::before{
+            left: auto;
+            background-image: none;
+            content: "\e913";
+        }
+        @media @xl-up {
+            right: 0;
+        }
+    }
+    .abt-icon-left-arrow {
+        &::before{
+            background-image: none;
+            content: "\e90f";
+        }
+        @media @xl-up {
+            left: 0;
+        }
+    }
+}
+
+.o-hero-carousel.o-hero-carousel--arrow-small {
+    background-color: @color-dark-gray;
+    @media @md-down{
+        padding-bottom: 20px;
+    }
+    .container{
+        padding-left: 30px;
+        padding-right: 30px;
+        @media @lg-down{
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+    }
+    .cmp-carousel{
+        .slick-arrow {
+            width: auto;
+            height: auto;
+            &::before {
+                width: auto;
+                height: auto;
+            }
+        }
+        .abt-icon-right-arrow{
+            &::before{
+                position: absolute;
+                right: -14px;
+                top: -24px;
+                left: auto;
+                background-image: none;
+                content: "\e913";
+            }
+            @media @xl-up {
+                right: 0;
+            }
+        }
+        .abt-icon-left-arrow{
+            &::before{
+                position: absolute;
+                left: -14px;
+                top: -24px;
+                background-image: none;
+                content: "\e90f";
+            }
+            @media @xl-up {
+                left: 0;
+            }
+        }
+        .slick-dots{
+            @media @lg-only{
+                bottom: 40px;
+            }
+            @media @md-down{
+                bottom: 0;
+            }
+
+            .slick-active{
+                button{
+                    background: @color-cerulean;
+                }
+            }
+        }  
+        .container{
+            .text{
+                p{
+                    a{
+                        &:hover{
+                            text-decoration: none;
+                        }
+                    }
+                }
+            }
+        }  
+    }
+}
+
+.o-hero-carousel-container{
+    @media @md-down{
+        padding: 0 !important;
+    }
+    .columncontrol.column-align--center{
+        @media @md-down{
+            padding-left: 10px !important;
+            padding-right: 10px !important;
+        }
+    }
+}
+.o-hero-carousel--tall.o-hero-carousel{
+    .slick-dots {
+        @media @lg-down{
+            top: auto !important;
+        }
+    } 
+}
+
+#hero-carousel-arrow-small{
+    @media @lg-down{
+       padding: 0 50px; 
+    }
+    @media @md-down{
+        padding-bottom: 50px;
+    }
+    .abt-icon-right-arrow{
+        &::before{
+            position: absolute;
+            right: -14px;
+            top: -24px;
+        }
+    }
+    .abt-icon-left-arrow{
+        &::before{
+            position: absolute;
+            left: -21px;
+            top: -24px;
+            @media @lg-down{
+                left: 0;
+            }
+        }
+    }
+    .slick-dots{
+        bottom: 0;
+        @media @md-down{
+            bottom: -28px;
+        }
+
+        .slick-active{
+            button{
+                background: @color-cerulean;
+            }
+        }
+    }   
+}

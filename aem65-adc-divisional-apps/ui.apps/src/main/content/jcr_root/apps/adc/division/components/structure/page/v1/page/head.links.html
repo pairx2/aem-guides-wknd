@@ -1,0 +1,33 @@
+<sly data-sly-use.clientLib="core/wcm/components/commons/v1/templates/clientlib.html"
+     data-sly-use.page="com.abbott.aem.platform.common.components.models.PlatformPage"/>
+<sly data-sly-use.faqitem="${'com.abbott.aem.adc.division.models.FaqResultItemQnA' @ faqPath=page.getFaqFolderPath}">
+  <sly data-sly-test.faqItemTitle="${faqitem.faqTitle}">
+    <meta data-sly-test.titleExists="${faqitem.faqTitle}" property="og:title" content="${faqitem.faqTitle}">
+    <meta data-sly-test.descriptionExists="${faqitem.faqDescription}" property="og:description"
+          content="${faqitem.faqDescription}">
+  </sly>
+  <sly data-sly-test="${!faqItemTitle}">
+    <meta data-sly-test.titleExists="${page.PageTitle}" property="og:title" content="${page.PageTitle}">
+    <meta data-sly-test.descriptionExists="${page.description}" property="og:description" content="${page.description}">
+  </sly>
+</sly>
+<meta data-sly-test.typeExists="${page.ogType}" property="og:type" content="${page.ogType}">
+<meta data-sly-test.imageExists="${page.ogImage}" property="og:image" content="${page.ogImage}">
+<meta data-sly-test.robotsExists="${page.robots}" name="robots" content="${page.robots}">
+<sly data-sly-test.queryParam="${request.requestParameterMap['q'][0].toString}">
+  <meta data-sly-test.urlExists="${page.ogUrl}" property="og:url"
+        content="${page.ogUrl}?q=${request.requestParameterMap['q'][0].toString}">
+  <link data-sly-test.canonicalExists="${page.canonicalUrl}" rel="canonical"
+        href="${page.canonicalUrl}?q=${request.requestParameterMap['q'][0].toString}"/>
+</sly>
+<sly data-sly-test="${!queryParam}">
+  <meta data-sly-test.urlExists="${page.ogUrl}" property="og:url" content="${page.ogUrl}">
+  <link data-sly-test.canonicalExists="${page.canonicalUrl}" rel="canonical" href="${page.canonicalUrl}"/>
+</sly>
+<sly data-sly-test="${page.hrefPageMetaData=='true'}">
+  <sly data-sly-list.child="${resource.listChildren}">
+    <sly data-sly-test="${child.name == 'hrefLangUrls' }" data-sly-list.gchild="${child.listChildren}">
+      <link rel="alternate" hreflang="${gchild.countryCode}" href="${gchild.sitemapHreflangUrl @context='html'}"/>
+    </sly>
+  </sly>
+</sly>

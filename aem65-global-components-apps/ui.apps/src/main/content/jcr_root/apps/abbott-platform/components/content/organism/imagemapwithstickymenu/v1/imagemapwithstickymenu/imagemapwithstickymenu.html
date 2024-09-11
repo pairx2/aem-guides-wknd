@@ -1,0 +1,67 @@
+<sly data-sly-use.imagemap="com.abbott.aem.platform.common.components.models.ImageMapWithStickyMenu"
+   data-sly-use.component="com.adobe.cq.wcm.core.components.models.Component"
+   data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
+   <sly data-sly-call="${templates.placeholder @ isEmpty=!hasContent}"></sly>
+   <div id="${component.id}" class="o-imagemap o-imagemap--${imagemap.variation}"
+      data-js-component="${imagemap.variation == 'compact' ? 'image-map-compact' : 'image-map-default'}">
+      <div class="o-imagemap-title">
+         <sly data-sly-resource="${'imagemaptitle' @resourceType=imagemap.titleProxyPath, decorationTagName='div'}">
+         </sly>
+      </div>
+      <div class="o-imagemap-image" data-map-icon-color="${imagemap.iconColor}">
+         <sly data-sly-include="image.html"></sly>
+      </div>
+      <div class="o-imagemap-text">
+         <sly data-sly-resource="${'imagemaptext' @resourceType=imagemap.textProxyPath,decorationTagName='div'}"></sly>
+      </div>
+      <!-- Teaser Content for default Variation -->
+      <div data-sly-test="${imagemap.variation == 'default'}" data-sly-repeat.teaser="${imagemap.contentConfig}"
+         class="o-imagemap-popup o-imagemap-popup--${imagemap.variation} o-imagemap-popup--${teaser.position} hide"
+         data-map-image="${teaser.storyId}" data-map-popup-position="${teaser.position}"
+         data-map-variation="${imagemap.variation == 'compact' ? 'o-imagemap-popup-compact' : ''}">
+         <div class="o-imagemap-popup--content"
+              data-map-popup-bgimage="${teaser.storyIcon}">
+            <h3 data-sly-test="${teaser.storyTitle}">${teaser.storyTitle}</h3>
+            <sly data-sly-test="${teaser.storyTagline}">${teaser.storyTagline @ context='html'}</sly>
+            <a data-sly-test="${imagemap.viewStoryText}" class="o-imagemap-popup--content__viewstory"
+               href="${teaser.storyId}">
+               ${imagemap.viewStoryText}
+            </a>
+            <button title="${'Close' @i18n}" class="o-imagemap-popup--content__button">
+             <i class="o-imagemap-popup--content__button--close" aria-hidden="true"></i>              
+            </button>
+         </div>
+      </div>
+      <!-- Teaser Content start for Compact -->
+      <div data-sly-test="${imagemap.variation == 'compact'}" data-sly-repeat.teaser="${imagemap.contentConfig}"
+         class="o-imagemap-popup o-imagemap-popup--${imagemap.variation} o-imagemap-popup--${teaser.position} hide"
+         data-map-image="${teaser.storyId}" data-map-popup-position="${teaser.position}"
+         data-map-variation="${imagemap.variation == 'compact' ? 'imagemap-popup-compact' : ''}">
+         <div class="o-imagemap-popup--content">
+            <sly data-sly-test="${teaser.storyTagline}">${teaser.storyTagline @context='html'}</sly>
+         </div>
+      </div>
+      <!-- sticky menu dropdown -->
+      <div
+         class="${imagemap.hideStickyMenu == 'true' ? 'hide' : 'o-imagemap-sticky-menu'} ${imagemap.variation == 'compact' ? 'hide' : ''}">
+         <div class="section-1 anchor-item">
+            <label for="mapDropdown"><h4>${imagemap.mapTitle}</h4></label>
+            <select id="mapDropdown" autocomplete="off">
+               <option selected value="" >${imagemap.select}</option>
+                <option data-sly-repeat.dropdown="${imagemap.contentConfig}" 
+                        value="${dropdown.storyId}">${dropdown.storyTitleDropdown}</option>
+               </select>
+            <a class="back-to-map anchor-link" href="#map-top">${imagemap.backToMap}</a>
+         </div>
+      </div>
+      <div class="sticky-menu-content ${imagemap.variation == 'compact' ? 'hide' : ''}">
+         <div data-sly-repeat.container="${imagemap.contentConfig}" data-map-image="${container.storyId}"
+            class="${container.storyTitle}-content sticky-menu-content-desc ${(wcmmode.preview || wcmmode.disabled) ? 'hide' : ''}">
+            <sly data-sly-test="${wcmmode.edit}">Content related to: ${container.storyTitle}</sly>
+            <sly
+               data-sly-resource="${'container' @ path=container.storyTitle, resourceType=imagemap.containerProxyPath}">
+            </sly>
+         </div>
+      </div>
+   </div>
+</sly>

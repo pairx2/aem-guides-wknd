@@ -1,0 +1,13 @@
+<sly data-sly-use.articleDetail="com.abbott.aem.ardx.division.core.components.models.ArticleTags"
+	 data-sly-use.template="core/wcm/components/commons/v1/templates.html"/>
+
+<sly data-sly-test="${articleDetail.tagsList}">
+<em class="${articleDetail.icon ? articleDetail.icon : 'abt-icon-default-tag'}" aria-label="${articleDetail.icon}" aria-hidden="true"></em>
+	<div class="article-tags" data-sly-list="${articleDetail.tagsList}">
+		<a class="article-tags__tag" data-tag-title="${item.title}" href="${item.path}">${item.title}${itemList.last ? '' : ','}</a>
+	</div>
+</sly>
+
+<sly data-sly-call="${template.placeholder @ isEmpty=!articleDetail.text}"></sly>
+
+

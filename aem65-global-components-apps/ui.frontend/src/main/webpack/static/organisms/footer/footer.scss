@@ -1,0 +1,167 @@
+.o-footer {
+    @include rem(padding, var(--footer-padding));
+    color: var(--footer-color);
+    background-color: var(--footer-bg-color);
+
+    &__top {
+        @include rem(padding-bottom, var(--footer-top-section-padding-bottom));
+        padding-right: 0;
+        padding-left: 0;
+
+        @include media-breakpoint-down(md) {
+            max-width: 100%;
+        }
+    }
+
+    &__bottom {
+        padding-right: 0;
+        padding-left: 0;
+        @include media-breakpoint-down(md) {
+            max-width: 100%;
+        }
+    }
+
+    &__link-wrapper {
+
+        flex-direction: column;
+
+        @include media-breakpoint-up(lg) {
+            @include flex(flex-start, flex-start, row);
+            flex-wrap: wrap;
+            margin-bottom: #{$spacers-06};
+        }
+
+        @include media-breakpoint-down(md) {
+            @include rem(padding-bottom, var(--footer-link-wrapper-padding-bottom));
+        }
+
+        .m-link-stack {
+            .a-link {
+                font-weight: normal;
+                @include rem(margin-bottom, var(--footer-link-wrapper-margin-bottom));
+            }
+            &--title {
+                margin-bottom: 0;
+            }
+            &--content {
+                @include media-breakpoint-down(md) {
+                    padding: 1rem 0 0 1.5rem;
+                }
+            }
+        }
+
+        .abt-icon-down-arrow {
+            color: var(--footer-icon-color);
+            display: none;
+            &:focus, &:active {
+                color: var(--footer-icon-color);
+            }
+            @include media-breakpoint-down(md) {
+                display: block;
+            }
+        }
+
+    }
+
+    &__bottom-section {
+        @include rem(padding, var(--footer-bootom-section-padding));
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+
+    &__social-media {
+
+        .container-fluid {
+            padding: 0;
+        }
+
+        .a-logo-comp {
+            padding: 0 var(--footer-spacing-xs);
+            display: inline-block;
+
+            &:last-child {
+                padding-right: 0;
+            }
+
+            &--link {
+                color: var(--footer-link-text-color);
+                text-decoration: none;
+            }
+        }
+    }
+
+    &__disclaimer-section {
+        @include rem(padding-top, var(--footer-spacing-xl));
+        @include media-breakpoint-down(sm) {
+            @include rem(padding-top, var(--footer-spacing-l));
+        }
+
+        color: var(--footer-link-text-color);
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 0;
+        padding-left: 0;
+
+        @include media-breakpoint-up(lg) {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        li {
+            .a-link {
+                margin-bottom: var(--footer-spacing-s);
+
+                &__text {
+                    @include copy(var(--footer-link-text-font-size), var(--footer-link-text-line-height), var(--footer-link-text-color), none, normal);
+                    font-family: var(--footer-link-text-font-family);
+                    
+                    padding: 0;
+                    
+                    @include rem(margin-right, var(--footer-spacing-xl));
+                    @include media-breakpoint-up(md){
+                        @include rem(margin-right, var(--footer-spacing-m));
+                    }
+                    @include media-breakpoint-up(lg) {
+                        margin-right: 0;
+                        @include rem(margin-left, var(--footer-spacing-xl));
+                    }
+
+                    &:focus {
+                        outline: 1px solid var(--footer-link-text-color);
+                    }
+                }
+
+            }
+
+            &:last-child {
+                .a-link {
+                    &__text {
+                        @include media-breakpoint-up(lg) {
+                            margin-right: 0;
+                        }
+                    }
+                }
+            }
+        }
+
+        .no-links & {
+            padding-top: 0;
+        }
+    }
+
+    &__copyright {
+        font-family: var(--footer-copyright-font-family);
+        @include copy(var(--footer-copyright-font-size), var(--footer-copyright-line-height), var(--footer-copyright-color));
+        @include rem(margin, var(--footer-spacing-xl) 0 0);
+
+        @include media-breakpoint-down(md) {
+            @include rem(margin, var(--footer-spacing-l) 0 0);
+        }
+
+    }
+
+    @include media-breakpoint-down(sm) {
+        @include rem(padding, var(--footer-spacing-xl) var(--footer-spacing-m1));
+    }
+}

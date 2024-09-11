@@ -1,0 +1,14 @@
+<sly data-sly-use.templates="abbott/components/content/templates.html"/>
+    <sly data-sly-use.social="${'com.abbott.aem.an.abbottstore.models.SocialShareModel'}">
+    	 <sly data-sly-test.socialList="${social.getLinkList}"/>
+        <div class="footer-content">
+            <div  data-sly-test.socialLinksTitle="${social.title}" class="footer__social-heading"><strong>${socialLinksTitle}</strong></div>
+            <div class="footer__social-links ml-md-4">
+                <!-- FOOTER SOCIAL-ICONS BEGIN -->
+                <sly data-sly-list.linkItem="${social.getLinkList}">
+                    <a class="footer__social-links--icon" target="${linkItem.getTargetMap['target']}" href="${linkItem.linkUrl}"> <img src="${linkItem.socialImageUrl}" alt="${linkItem.socialAltText}"> </a>
+                </sly>
+            </div>
+        </div>
+    </sly>
+<sly data-sly-call="${templates.placeholder @ isEmpty= !socialList}"></sly>

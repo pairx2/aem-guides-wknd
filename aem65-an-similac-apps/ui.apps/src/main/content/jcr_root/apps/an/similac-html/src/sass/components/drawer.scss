@@ -1,0 +1,76 @@
+@import "../common-imports";
+.drawer-wrapper {
+    .drawer-title-wrapper {
+        background: $pacific-blue;
+        color: $white;
+        font-family: $font-roboto-bold;
+        font-weight: 700;
+        line-height: 1.5rem;
+        font-size: 1.125rem;
+        display: inline-block;
+        width: 100%;
+        padding: 0.5rem 0;
+        position: relative;
+        &:hover {
+            color: $white;
+            text-decoration: none;
+        }
+        .drawer-title {
+            position: relative;
+        }
+        .sim-icons {
+            position: absolute;
+            right: 2.5%;
+        }
+        &.collapsed {
+            .plus-icon {
+                display: block;
+            }
+            .minus-icon {
+                display: none;
+            }
+        }
+        .plus-icon {
+            display: none;
+            top: 0px;
+        }
+        .minus-icon {
+            display: block;
+            top: -2px;
+        }
+    }
+    .drawer-content {
+        position: absolute;
+        z-index: 10;
+        width: 100%;
+    }
+    @include media-breakpoint-down(sm) {
+        .drawer-content {
+            background-color: rgba(255, 255, 255, 0.75);
+        }
+    }
+      @media (max-width: 390px){
+        .drawer-title-wrapper {
+            .sim-icons {
+                right: 0;
+                top: 20%;
+            }
+            .drawer-title {
+                width: 90%;
+                padding: 0 30px;
+            }
+        }
+    }
+    @media (min-width: 391px) and (max-width: 575.98px){
+        .drawer-title-wrapper {
+            .sim-icons {
+                right: 0;
+                top: 0%;
+            }
+            .drawer-title {
+                width: 90%;
+                padding: 0 30px;
+            }
+        }
+    }
+}

@@ -1,0 +1,35 @@
+<template data-sly-template.headerTop="${@ header}">
+  <div class="o-header__secondary-top-nav d-none d-lg-block">
+    <div class="container">
+      <div class="justify-content-end row">
+        <div class="o-header__user-activity">
+          <div class="o-header__utility-nav">
+            <div data-sly-unwrap="${!wcmmode.edit}">
+              <sly data-sly-resource="${'country-dropdown' @resourceType=header.linkstackProxyPath, selectors='linkstack-siteselect'}"></sly>
+            </div>
+            <div data-sly-unwrap="${!wcmmode.edit}">
+              <sly data-sly-resource="${'additional-links' @resourceType=header.linkstackProxyPath, selectors='linkstack-siteselect'}"></sly>
+            </div>
+            <div class="${wcmmode.edit ? 'edit-langnav':''}" data-sly-unwrap="${!wcmmode.edit}">
+              <sly data-sly-resource="${'language-navigation' @ resourceType=header.languageNavigationProxyPath}"></sly>
+            </div>
+            <!--/* Sign up */-->
+            <div data-sly-test="${!header.hideSignUpInNav}" class="a-link--icon-left">
+              <div class="m-signup" data-toggle="modal" data-target="#atom-modal-default">
+                <sly data-sly-resource="${'signup-link' @resourceType=header.linkProxyPath}"></sly>
+              </div>
+            </div>
+            <!--/* Sign up */-->
+          </div>
+        </div>
+        <!--/* Search */-->
+        <div data-sly-test="${!header.hideSearchInNav}" class="o-header__search" data-search-icon="search">
+          <div class="${wcmmode.edit ? 'edit-search':''}" data-sly-unwrap="${!wcmmode.edit}">
+            <sly data-sly-resource="${'header-search' @ resourceType=header.headersearchProxyPath}"></sly>
+          </div>
+        </div>
+        <!--/* Search */-->
+      </div>
+    </div>
+  </div>
+</template>

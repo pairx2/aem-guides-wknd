@@ -1,0 +1,98 @@
+.o-content-section {
+    $self: &;
+
+    &__container {
+        @include media-breakpoint-down(xs) {
+            margin: 0;
+        }
+
+    }
+
+    &__title {
+        padding: var(--content-spacing-xl) 0;
+        word-break: break-word;
+    }
+
+    &__tab-content {
+
+       p, ul, ol {
+           color: var(--content-para-color);
+           font-weight: normal;
+           margin-bottom: var(--content-spacing-xl);
+       }
+
+       img {
+           max-width: 100%;
+           margin-bottom: var(--content-spacing-xl);
+       }
+
+    }
+
+    &__tab-pane {
+        color: var(--content-para-color);
+        font-weight: normal;
+
+        &--edit {
+            border: 2px solid rgba(128, 128, 128, 0.5);
+            margin-bottom: var(--content-spacing-l);
+        }
+
+    }
+
+    &__heading {
+        margin-bottom: var(--content-spacing-xl);
+    }
+
+    &__list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        border: none;
+        display: block;
+
+        &-item {
+            font-size: var(--content-list-font-size);
+            line-height: var(--content-list-line-height);
+            padding: var(--content-spacing-m) 0;
+            margin: 0;
+
+            &-link {
+                color: var(--content-list-color);
+
+                &:hover {
+                    text-decoration: underline;
+                    font-weight: bold;
+                    color: var(--content-list-color-active);
+                }
+
+                &--active {
+                    font-weight: bold;
+                    color: var(--content-list-color-active);
+                }
+            }
+
+        }
+
+        .active {
+            font-weight: bold;
+            color: var(--content-list-color-active);
+        }
+    }
+
+    &__nav-mobile {
+        display: none;
+        margin-bottom: var(--content-spacing-xl);
+
+        #{$self}__list-item {
+            padding: 0;
+        }
+
+        #{$self}__list-item-link {
+            padding: 15px;
+            display: block;
+            &:hover {
+                text-decoration: none;
+            }
+        }
+    }
+}

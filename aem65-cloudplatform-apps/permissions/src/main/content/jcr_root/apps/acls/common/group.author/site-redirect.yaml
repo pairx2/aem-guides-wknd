@@ -1,0 +1,41 @@
+# Environment types in [DEV,QA,STG,PRD]
+- DEF environmentType=$[env:AB_ACL_ENVIRONMENT_TYPE;default=PRD]
+
+- DEF divisions=[adc,add,an,ardx,av,bts,corp,cv,epd,nm,vc]
+
+- DEF groupPrefix="APP-Adobe-AEM-DM-${environmentType}"
+
+- group_config:
+
+    - FOR division IN ${divisions}:
+
+
+       - ${groupPrefix}-${division}-content-redirect-implementer:
+          - name: ${upperCase(division)} Content Redirect Implementer
+            description: Division Content Editor group. Is environment specific.
+            isMemberOf: base-abbott,${environmentType}-${division}-content-redirect-implementer-base
+            externalId: "${groupPrefix}-${division}-content-redirect-implementer;ims"
+            
+       - ${environmentType}-${division}-content-redirect-implementer-base:
+          - name: ${upperCase(division)} Content Redirect Implementer Base
+            description: Division Content Redirect Base group. Is environment specific.
+            isMemberOf: base-abbott
+            
+
+
+
+       
+
+
+- ace_config:
+
+    - FOR division IN ${divisions}:
+
+
+       - ${environmentType}-${division}-content-redirect-implementer-base:
+
+          - path: /conf/${division}
+            permission: allow
+            actions: create,read,modify,delete,replicate
+            restrictions:
+              rep:glob: '*/redirect*'

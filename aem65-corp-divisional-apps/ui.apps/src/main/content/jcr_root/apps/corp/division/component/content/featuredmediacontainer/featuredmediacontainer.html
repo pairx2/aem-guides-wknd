@@ -1,0 +1,94 @@
+<sly data-sly-use.media="com.abbott.aem.corp.division.core.components.models.FeaturedMediaContainer">
+   <div data-sly-test="${!wcmmode.disabled && !media.eventDetails}">Featured Media Component</div>
+   <sly data-sly-test="${media.fileReference}">
+      <div class="container a-container-cmp--full-width investor-calendar-container">
+         <div class="investor-calendar-container__wrapper investor-calendar-variation--1">
+            <div class="investor-calendar-container__content">
+               <div data-sly-test="${media.titleRequired}" class="title">
+                  <sly
+                     data-sly-resource="${'sTitle' @resourceType='corp/globals/components/content/title',decorationTagName='div'}">
+                  </sly>
+               </div>
+               <div data-sly-list="${media.eventDetails}" class="investor-release--content-wrapper">
+                  <div class="investor-release--content-item ${(itemList.last == true && media.calendarbgcolor == 'true')  ? 'investor-release--content-item--bg-gray' : ''} ">
+                     <div class="investor-release--content-item__date">
+                        <div class="investor-release--content-item__complete-date">
+                           <p>${item.eventDate}</p>
+                        </div>
+                        <div class="investor-release--content-item__month">
+                           <p></p>
+                        </div>
+                        <div class="investor-release--content-item__year">
+                           <p></p>
+                        </div>
+                     </div>
+                     <div class="investor-release--content-item__info">
+                        <div class="investor-release--content-item__description">
+                           <p> ${item.title}</p>
+                        </div>
+                        <div data-sly-list.links="${item.links}"class="investor-release--content-item__btn-wrapper">
+                           <div class="investor-release--content-item__btn">
+                              <a href="${links.investorLink}" target="${links.newTab}">${links.investorLabel}</a>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="investor-calendar-container__media">
+               <div class="investor-calendar-container__image">
+                  <img src="${media.fileReference}"
+                     class="cmp-image" alt="${media.altText}">
+               </div>
+            </div>
+         </div>
+      </div>
+   </sly>
+   <sly data-sly-test="${!media.fileReference}">
+      <div class="container investor-calendar-container">
+         <div class="investor-calendar-container__wrapper investor-calendar-variation--2">
+            <div class="investor-calendar-container__content">
+               <div data-sly-test="${media.titleRequired}" class="investor-calendar--header">
+                  <sly
+                     data-sly-resource="${'sTitle' @resourceType='corp/globals/components/content/title',decorationTagName='div'}">
+                  </sly>
+               </div>
+               <sly data-sly-list.events="${media.eventDetails}" >
+                  <div data-sly-list.links="${events.links}" class="investor-release--content-wrapper">
+                     <div class="investor-release--content-item">
+                        <a href="${links.investorLink}"
+                           target="${links.newTab}" class="investor-release--content-item__link">
+                           <div class="investor-release--content-item__date">
+                              <div class="investor-release--content-item__complete-date">
+                                 <p>${events.eventDate}</p>
+                              </div>
+                              <div class="investor-release--content-item__month">
+                                 <p></p>
+                              </div>
+                              <div class="investor-release--content-item__year">
+                                 <p></p>
+                              </div>
+                           </div>
+                           <div class="investor-release--content-item__description">
+                              <p> ${events.title}</p>
+                              <span class="investor-release--content-item__icon">
+                              <em class="abt-icon abt-icon-right-arrow"> </em>
+                              </span>
+                           </div>
+                        </a>
+                     </div>
+                  </div>
+               </sly>
+               <div class="investor-release--content-item__btn-wrapper">
+                  <div
+                     class="button link a-button ${media.backgroundColor}">
+                     <a href="${media.ctaLink}"class="btn" target="${media.newTab}">
+                     <span>${media.ctaLabel}</span>
+                     </a>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </sly>
+</sly>

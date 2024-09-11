@@ -1,0 +1,20 @@
+<div data-sly-use.tabs="com.abbott.aem.platform.common.components.models.CustomTabs"
+	 data-sly-use.customConfig="com.abbott.aem.platform.common.components.models.CustomConfig"
+     data-sly-use.template="core/wcm/components/commons/v1/templates.html"
+     id="${tabs.id}"
+     class="cmp-tabs a-tabs ${customConfig.className}"
+     data-cmp-is="tabs"
+     data-cmp-data-layer="${tabs.data.json}" data-panelcontainer="${wcmmode.edit && 'tabs'}">
+
+<!--/* Horizontal Tabs */-->
+<sly data-sly-test = "${properties.tabView == 'horizontal'|| properties.tabView == null}">
+	<sly data-sly-include="horizontal_tabs.html"></sly>
+</sly>
+<!--/* Vertical Tabs */-->
+<sly data-sly-test = "${properties.tabView == 'vertical'}">
+	<sly data-sly-include="vertical_tabs.html"></sly>   
+</sly>
+   <sly data-sly-resource="${resource.path @ resourceType='wcm/foundation/components/parsys/newpar', appendPath='/*', decorationTagName='div', cssClassName='new section aem-Grid-newComponent'}"
+      data-sly-test="${(wcmmode.edit || wcmmode.preview) && tabs.items.size < 1}"></sly>
+</div>
+<sly data-sly-call="${template.placeholder @ isEmpty=!tabs.items}"></sly>

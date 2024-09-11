@@ -1,0 +1,60 @@
+<!--/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  ~ Copyright 2017 Adobe Systems Incorporated
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/-->
+<sly data-sly-test="${properties.navigationRoot}">  
+<ul data-sly-unwrap>
+<li class="nav-item dropdown d-none d-lg-block">
+<a class="dropdown-toggle" href="${currentPage.path}.html" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">		
+        <span>${properties.translationHeader? properties.translationHeader : 'Translate Page'}</span>
+	</a>
+	<ul class="cmp-languagenavigation__group sub-menu dropdown-menu" aria-labelledby="navbarDropdown">
+		<nav class="cmp-languagenavigation"
+		 aria-labelledby="navbarDropdown"
+		 data-sly-use.commonsTemplates="core/wcm/components/commons/v1/templates.html"
+		 data-sly-use.languageNavigation="com.abbott.aem.an.similac.core.models.LanguageNav"
+		 data-sly-test.hasContent="${languageNavigation.items.size > 0}"
+		 data-sly-use.groupTemplate="group.html"
+		 data-sly-call="${groupTemplate.group @ items=languageNavigation.items}"></nav>
+            <sly data-sly-test="${!hasContent}">
+                    <li>
+                        <a>${properties.noTranslationMessage? properties.noTranslationMessage : 'No Translations Available'}</a>
+                    </li>
+            </sly>
+	</ul>
+</li>
+</ul>
+</sly>
+
+<div class="sm-dropdown">
+	<nav class="cmp-languagenavigation"
+	 aria-labelledby="navbarDropdownMobile"
+     data-sly-use.commonsTemplates="core/wcm/components/commons/v1/templates.html"
+     data-sly-use.languageNavigation="com.abbott.aem.an.similac.core.models.LanguageNav"
+     data-sly-test.hasContent="${languageNavigation.items.size > 0}"
+     data-sly-use.groupTemplate="group_mobile.html"
+     data-sly-call="${groupTemplate.group @ items=languageNavigation.items}"></nav>
+
+     
+<sly data-sly-test="${!hasContent}">
+	<nav aria-labelledby="navbarDropdownMobile">
+		<ul class="noTrans">
+			<li class="nav-item">
+				<a>${properties.noTranslationMessage? properties.noTranslationMessage : 'No Translations Available'}</a>
+			</li>
+		</ul>
+	</nav>
+</sly>
+</div>
+<sly data-sly-call="${commonsTemplates.placeholder @ isEmpty = !hasContent, classAppend='cmp-languagenavigation'}"></sly>

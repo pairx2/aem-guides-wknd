@@ -1,0 +1,19 @@
+<sly data-sly-use.options="com.abbott.aem.platform.common.components.models.FormOptions">
+	<div class="a-dropdown a-input-field mt-0 a-dropdown__container form-group" data-required="${options.formOptionsIsRequired}" data-js-component="form-dropdown" data-sly-test="${options.type.value == 'drop-down'}">
+            <div class="form-label__align" data-sly-unwrap="${!options.enableTooltip}">
+                <label class="a-dropdown__title form-label a-input-label" id="field_label_${options.id}" for="${options.id}">
+                    <span class="a-dropdown__title-text">${options.title}</span><span class="a-dropdown__title--required" data-sly-test="${options.formOptionsIsRequired}">*</span>
+                </label>
+                <sly data-sly-test="${options.enableTooltip}" data-sly-resource="${'tooltip__inline' @ resourceType=options.tooltipsProxyPath,decoration=true}" /> 
+            </div>    
+            <div class="a-dropdown__field ${options.disableDropdown ? 'disabled' : ''}" tabindex="0">
+                <span class="a-dropdown__placeholder" role="button" aria-labelledby="field_label_${options.id} dropdown_label_${options.id}" id="dropdown_label_${options.id}" aria-haspopup="listbox">${options.dropdownPlaceholder}</span>
+				<ul class="a-dropdown__menu" data-sly-list.optionItem="${options.customItems}" name="${options.name}" aria-labelledby="field_label_${options.id}" aria-expanded="false">
+					<li data-optionvalue="${optionItem.value}" id="field_label_${options.id}_${optionItemList.count}" class= "${optionItem.disabled ? 'disabled' : ''} ${optionItem.selected ? 'selected' : ''}">
+                           <span data-sly-test="${options.dropdownStyle == 'with-icon' && optionItem.dropdownIcon}"><em class="a-dropdown__icon ${optionItem.dropdownIcon}"></em></span><span class="a-dropdown__option-text"> ${optionItem.text @context='html'}</span>
+                    </li>
+                </ul>
+            </div>
+        <span data-sly-test="${options.formOptionsIsRequired}" class="form-text a-input-field--text-require">${options.requiredMessage}</span>
+	</div>
+</sly>

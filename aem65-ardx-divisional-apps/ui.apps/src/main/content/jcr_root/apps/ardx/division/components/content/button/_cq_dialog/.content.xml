@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Button"
+    sling:resourceType="cq/gui/components/authoring/dialog"
+    extraClientlibs="[abbott-platform.button.clientlibs]">
+    <content
+        granite:class="cmp-button__editor"
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                maximized="{Boolean}true">
+                <items jcr:primaryType="nt:unstructured">
+                    <properties
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Properties"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:hideChildren="[iconpicker,action,urlContainer,modalContainer]">
+                                            <buttonType
+                                                granite:class="cq-dialog-dropdown-showhide"
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                fieldLabel="Button Type"
+                                                id="buttonType"
+                                                name="./buttonType">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <wistiaVideo
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="Wistia Video"
+                                                        value="wistiaVideo"/>
+                                                </items>
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    cq-dialog-dropdown-showhide-target=".type-showhide-target"/>
+                                            </buttonType>
+                                            <textContainer
+                                                granite:class="type-showhide-target hide"
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    showhidetargetvalue="withoutDestination,withDestination,continueButton,cancelButton,wistiaVideo"/>
+                                            </textContainer>
+                                            <wistiaVideoContainer
+                                                granite:class="type-showhide-target"
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:orderBefore="id"
+                                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <wistiaVideoId
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                        fieldDescription="Enter video id for the video to be played using YouTube"
+                                                        fieldLabel="Wistia Video ID"
+                                                        name="./wistiaVideoId"/>
+                                                    <videoDocumentNumber
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                        fieldDescription="Enter video document number for the video to be played using YouTube"
+                                                        fieldLabel="Video Document Number"
+                                                        name="./videoDocumentNumber"/>
+                                                </items>
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    showhidetargetvalue="wistiaVideo"/>
+                                            </wistiaVideoContainer>
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </properties>
+                    <buttostyles
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Button Styles"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <buttonColor
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                fieldLabel="Button Color Theme"
+												emptyText="Select"
+                                                name="./buttonColor"
+                                                value="btn-style-default">
+                                                <items
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceSuperType="ardx/division/components/color-options/items"/>
+                                            </buttonColor>
+                                            <buttonHoverColor
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                fieldLabel="Button Hover Color Theme"
+												emptyText="Select"
+                                                name="./buttonHoverColor"
+                                                value="btn-style-default">
+                                                <items
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceSuperType="ardx/division/components/color-options/items"/>
+                                            </buttonHoverColor>
+                                            <textColor
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                fieldLabel="Text Color Theme"
+												emptyText="Select"
+                                                name="./textColor"
+                                                value="btn-style-default">
+                                                <items
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceSuperType="ardx/division/components/color-options/items"/>
+                                            </textColor>
+                                            <textHoverColor
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                fieldLabel="Text Hover Color Theme"
+												emptyText="Select"
+                                                name="./textHoverColor"
+                                                value="btn-style-default">
+                                                <items
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceSuperType="ardx/division/components/color-options/items"/>
+                                            </textHoverColor>
+                                            <topmargin
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                                fieldDescription="Top margin of the button"
+                                                fieldLabel="Button Top Margin"
+                                                max="50"
+                                                min="0"
+                                                name="./topMargin"/>
+                                            <bottommargin
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                                fieldDescription="Bottom margin of the button"
+                                                fieldLabel="Button bottom Margin"
+                                                max="50"
+                                                min="0"
+                                                name="./bottomMargin"/>
+                                            <leftmargin
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                                fieldDescription="Left margin of the button"
+                                                fieldLabel="Button Left Margin"
+                                                max="50"
+                                                min="0"
+                                                name="./leftMargin"/>
+                                            <rightmargin
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                                fieldDescription="Right margin of the button"
+                                                fieldLabel="Button Right Margin"
+                                                max="150"
+                                                min="0"
+                                                name="./rightMargin"/>
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </buttostyles>
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>

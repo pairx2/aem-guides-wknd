@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Navigation Menu v2"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                maximized="{Boolean}true">
+                <items jcr:primaryType="nt:unstructured">
+                    <navigationMenu-v2
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Navigation Menu v2"
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+                            <closeIconText
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Close Icon Text  (Mobile view only)"
+                                required="{Boolean}true"
+                                name="./closeIconText"/>
+                            <homepagePath
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                fieldLabel="Homepage Path (Mobile view only)"
+                                required="{Boolean}true"
+                                name="./homepagePath"
+                                rootPath="/content/adc/freestylelibrede"/>
+                            <homepagePathLabel
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Homepage Path Label  (Mobile view only)"
+                                required="{Boolean}true"
+                                name="./homepagePathLabel"/>
+                            <menuItems
+                                cq:showOnCreate="{Boolean}true"
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                composite="{Boolean}true"
+                                fieldLabel="Menu Items">
+                                <field
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/container"
+                                    name="./menuItems">
+                                    <items
+                                        jcr:primaryType="nt:unstructured"
+                                        name="./items">
+                                        <title
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Title"
+                                            maxlength="{Long}40"
+                                            required="{Boolean}true"
+                                            name="./title"/>
+                                        <menuItemId
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Menu Item Id"
+                                            maxlength="{Long}40"
+                                            required="{Boolean}true"
+                                            name="./menuItemId"/>
+                                        <navItemLinkEvent
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="nav Item Link Event"
+                                            name="./navItemLinkEvent"/>
+                                        <subMenuItems
+                                            cq:showOnCreate="{Boolean}true"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                            composite="{Boolean}true"
+                                            fieldLabel="Sub-Menu Items">
+                                            <field
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/container"
+                                                name="./subMenuItems">
+                                                <items
+                                                    jcr:primaryType="nt:unstructured"
+                                                    name="./items">
+                                                    <title
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                        fieldLabel="Title"
+                                                        maxlength="{Long}40"
+                                                        required="{Boolean}true"
+                                                        name="./title"/>
+                                                    <description
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                        fieldLabel="Description"
+                                                        maxlength="{Long}100"
+                                                        name="./description"/>
+                                                    <ctaAction
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                        fieldDescription="Open Link in New Tab or Same Tab"
+                                                        fieldLabel="Link Action"
+                                                        name="./linkAction">
+                                                        <items jcr:primaryType="nt:unstructured">
+                                                            <new-tab
+                                                                jcr:primaryType="nt:unstructured"
+                                                                text="Open link in New Tab"
+                                                                value="_blank"/>
+                                                            <same-tab
+                                                                jcr:primaryType="nt:unstructured"
+                                                                text="Open link in Same Tab"
+                                                                value="_self"/>
+                                                        </items>
+                                                    </ctaAction>
+                                                    <link
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                        fieldLabel="Link"
+                                                        name="./link"
+                                                        required="{Boolean}true"
+                                                        rootPath="/content/adc/freestylelibrede"/>
+                                                    <iconPath
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                        fieldLabel="Icon Path"
+                                                        name="./iconPath"
+                                                        rootPath="/content/dam/adc/freestylelibrede"/>
+                                                    <subNavItemLinkEvent
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                        fieldLabel="Sub-nav Item Link Event"
+                                                        name="./subNavItemLinkEvent"/>
+                                                </items>
+                                            </field>
+                                        </subMenuItems>
+                                    </items>
+                                </field>
+                            </menuItems>
+                            <menuButtons
+                                cq:showOnCreate="{Boolean}true"
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                composite="{Boolean}true"
+                                fieldLabel="Menu Buttons">
+                                <field
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/container"
+                                    name="./menuButtons">
+                                    <items
+                                        jcr:primaryType="nt:unstructured"
+                                        name="./items">
+                                        <ctaText
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="CTA text "
+                                            maxlength="{Long}40"
+                                            name="./text"/>
+                                        <ctaType
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="/libs/granite/ui/components/coral/foundation/form/select"
+                                            fieldLabel="CTA Type"
+                                            name="./type">
+                                            <datasource
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="abbott-platform/datasource/generic-list"
+                                                path="/apps/adc/freestylelibrede/authoring/datasources/cta-types"/>
+                                        </ctaType>
+                                        <linkcontainer
+                                                    jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                                            <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                showhidetargetvalue="link"/>
+                                            <items jcr:primaryType="nt:unstructured">
+                                        <link
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                    fieldLabel="CTA Link"
+                                                    name="./link"
+                                            rootPath="/content/adc/freestylelibrede"/>
+                                            </items>
+                                        </linkcontainer>
+                                        <ctaAction
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                            fieldDescription="CTA Action New Tab or Same Tab"
+                                            fieldLabel="CTA Action"
+                                            name="./action">
+                                            <items jcr:primaryType="nt:unstructured">
+                                                <new-tab
+                                                    jcr:primaryType="nt:unstructured"
+                                                    text="Open link in New Tab"
+                                                    value="_blank"/>
+                                                <same-tab
+                                                    jcr:primaryType="nt:unstructured"
+                                                    text="Open link in Same Tab"
+                                                    value="_self"/>
+                                            </items>
+                                        </ctaAction>
+                                        <navBtnEvent
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Nav Button Event"
+                                            name="./navBtnEvent"/>
+                                    </items>
+                                </field>
+                            </menuButtons>
+                        </items>
+                    </navigationMenu-v2>
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>

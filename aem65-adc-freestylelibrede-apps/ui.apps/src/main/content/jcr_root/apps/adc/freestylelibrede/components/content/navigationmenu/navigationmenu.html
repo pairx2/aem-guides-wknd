@@ -1,0 +1,102 @@
+<sly data-sly-test="${wcmmode.edit}">
+    Edit Navigation Menu here...
+</sly>
+<div data-sly-test="${wcmmode.edit}" data-sly-use.tabs="com.adobe.cq.wcm.core.components.models.Tabs" class="cmp-tabs" data-cmp-is="tabs">
+    <ol data-sly-test="${tabs.items && tabs.items.size > 0}"
+        role="tablist"
+        class="cmp-tabs__tablist"
+        aria-multiselectable="false">
+        <li data-sly-repeat.item="${tabs.items}"
+            role="tab"
+            class="cmp-tabs__tab${item.name == tabs.activeItem ? ' cmp-tabs__tab--active' : ''}"
+            data-cmp-hook-tabs="tab">${item.title}
+            <sly data-sly-use.tabHelper="${'com.abbott.aem.adc.freestylelibrede.models.TabHelperModel' @ path=item.path}">
+                <em class="${tabHelper.iconClass}"></em>
+            </sly>
+        </li>
+    </ol>
+    <div data-sly-repeat.item="${tabs.items}"
+         data-sly-resource="${item.name @ decorationTagName='div'}"
+         role="tabpanel"
+         class="nav-dropdown-container${item.name == tabs.activeItem ? ' cmp-tabs__tabpanel--active' : ''}"
+         data-cmp-hook-tabs="tabpanel"></div>
+    <sly data-sly-resource="${resource.path @ resourceType='wcm/foundation/components/parsys/newpar', appendPath='/*', decorationTagName='div', cssClassName='new section aem-Grid-newComponent'}"
+         data-sly-test="${wcmmode.edit}"></sly>
+</div>
+
+<nav data-sly-test="${!wcmmode.edit}" class="navbar-expand-md nav-menu"
+     data-sly-use.icon="adc/freestylelibrede/components/content/templates/icon/icon.html"
+>
+    <div class="header-mobile-nav-icons">
+       <span class="header-mobile-nav-icons-left">
+       <img class="header-mobile-nav-icon-close" height="42" width="42" src="${properties.mobileNavCloseImage}" alt="Close Button" />
+       <img class="header-mobile-nav-icon-bar" height="30" width="30" src="${properties.mobileHeaderMenuBarImage}" alt="Menu" />
+       </span>
+    </div>
+
+    <div class="header-nav-mbl-icons">
+        <ul class="header-nav-mbl-icons-list">
+            <li class="header-nav-mbl-icons-list-item header-search-icon"><a class="header-nav-mbl-icons-list-item-link mbl-search-icon"><em class="adc-icon adc-icon--large adc-icon--search-blue"></em></a></li>
+            <li class="header-nav-mbl-icons-list-item header-nav-mbl-icons-list-item-cart">
+                <sly data-sly-resource="${'../minicartpopup' @ resourceType='adc/freestylelibrede/components/content/minicartpopup'}"></sly>                
+            </li>
+        </ul>
+    </div>
+
+    <div class="container header-nav-container d-lg-flex">
+        <div data-sly-use.tabs="com.adobe.cq.wcm.core.components.models.Tabs" class="cmp-tabs nav-inner-container" data-cmp-is="tabs">
+            <div class="mobile-nav-back-btn">
+                <a href="#" class="back-btn-link">
+                    <img src="${properties.backButtonImage}" alt="Back">
+                    <span>${properties.mobileMenuLabel}</span>
+                </a>
+            </div>
+            <ol data-sly-test="${tabs.items && tabs.items.size > 0}"
+                role="tablist"
+                class="cmp-tabs__tablist navbar-nav mr-auto"
+                aria-multiselectable="false"> 
+                <sly
+                data-sly-resource="${'../header-login' @ resourceType='adc/freestylelibrede/components/content/header-login',selectors='mobile'}">
+                </sly>
+                <li data-sly-repeat.item="${tabs.items}" data-tab="panel-${itemList.index}" data-cmp-hook-tabs="tab"
+                    class="nav-item cmp-tabs__tab">
+                    <sly data-sly-use.tabHelper="${'com.abbott.aem.adc.freestylelibrede.models.TabHelperModel' @ path=item.path}">
+                        <em class="${tabHelper.iconClass}"></em>
+                    </sly>
+                    ${item.title}
+                    <span class="nav-item-icon-up-blue">
+                        <sly data-sly-call="${icon.icon @ size='sm', name='arrowRightMobile'}"></sly>
+                    </span>
+                </li>
+            </ol>
+
+            <div data-sly-repeat.item="${tabs.items}"
+                data-sly-resource="${item.name @ decorationTagName='div' , cssClassName='nav-dropdown-inner'}"
+                id="panel-${itemList.index}" data-cmp-hook-tabs="tabpanel"
+                class="nav-dropdown-container"
+            ></div>
+            <div id="panel-10"
+                class="nav-dropdown-container"
+                data-sly-resource="${'../header-login' @ resourceType='adc/freestylelibrede/components/content/header-login',selectors='loginList'}">
+            </div>
+
+            <div class="sidenav-footer" data-sly-use.navigationMenuModel="com.abbott.aem.adc.freestylelibrede.models.NavigationMenuModel">
+                <div data-sly-list="${navigationMenuModel.mobileNavList}" class="sidenav-contact pd-l-5 d-md-none">
+                    <div data-sly-test="${item.sideNavIcon}" class="sidenav-contact-item">
+                       <p data-sly-test="${!item.countrySelectorXF}"  class="sidenav-contact-text"><a href="${item.sideNavLink}" target="${item.linkAction}"><img src="${item.sideNavIcon}" alt="${item.sideNavImageAlt}">${item.sideNavLabel}</a></p>
+                        <p data-sly-test="${item.countrySelectorXF}">
+                        <a href="#" data-toggle="modal" data-target="#exampleModal">
+                            <img src="${item.sideNavIcon}" alt="${item.sideNavImageAlt}">${item.sideNavLabel}</a>
+                        </p>
+                        <div data-sly-test="${item.sideNavButtonLabel}">
+                           <button class="adc-button adc-button-secondary small no-margin ${item.buttonType}"><a href="${item.buttonNavLink}" target="${item.buttonLinkAction}">
+                                ${item.sideNavButtonLabel}</a></button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <sly data-sly-resource="${'../search-bar' @ resourceType='adc/freestylelibrede/components/content/search-bar'}"></sly>
+    </div>
+</nav>

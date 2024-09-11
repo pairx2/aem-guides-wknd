@@ -1,0 +1,13 @@
+<sly data-sly-use.linkStack="com.abbott.aem.platform.common.components.models.LinkStack">
+	<div class="m-link-stack--header">
+		<sly data-sly-test.external="${linkStack.stackExternal && linkStack.redirectConfirm}"></sly>
+
+		<sly data-sly-test="${external}" data-sly-include="linkstack-header-external.html"></sly>
+
+		<sly data-sly-test="${!external}" data-sly-include="linkstack-header-link.html"></sly>
+
+		<sly data-sly-test="${linkStack.links}">
+			<a aria-label="${linkStack.stackTitle @context='html'}" role="link" href="javascript:void(0)" class="abt-icon-down-arrow js-collapse-icon"></a>
+		</sly>
+	</div>
+</sly>

@@ -1,0 +1,162 @@
+/* Form container styling */
+
+.formcontainer {
+
+    // add margin top to the success and error form messages when messages are present below the form buttons
+    .o-form-container__element {
+        .o-form-container__buttons {
+            &+.o-form-container__success-msg {
+                &:not(:empty) {
+                    margin-top: 1rem;
+                }
+
+                &+.o-form-container__error-msg {
+                    &:not(:empty) {
+                        margin-top: 1rem;
+                    }
+                }
+            }
+        }
+    }
+
+    // Vulnerabilities page pre filter - Others tab styling
+    #form-vsi-others {
+        .form-container {
+            .datepicker {
+                .a-date-picker {
+                    width: 50%;
+
+                    div.a-date-picker__input-start,
+                    div.a-date-picker__input-end {
+                        width: ~"calc(50% - 10px)";
+                    }
+
+                    div.a-date-picker__input-end {
+                        margin-left: var(--date-input-field-margin-r);
+                        margin-right: 0;
+
+                        .a-input-field {
+                            margin-right: 0;
+                        }
+                    }
+
+                    .a-input-field {
+                        max-width: 100%;
+                    }
+                }
+            }
+
+            .options {
+                .checkbox .a-checkbox {
+                    display: inline-block;
+                    width: 50%;
+                }
+
+                .drop-down {
+                    width: 50%;
+                }
+            }
+
+            .fields {
+                &:not(:has(input[name="productName"])) {
+                    width: 50%;
+                }
+            }
+        }
+    }
+
+    // Hide success and failure messages for pre filter form containers in Vulnerabilities page
+    .o-form-container__element input[name="updateRequest"][value="updateRequestVsiFilters"]+.o-form-container__main-form {
+
+        .o-form-container__success-msg,
+        .o-form-container__error-msg {
+            display: none;
+        }
+    }
+
+    // Product update page - Form product details search styling
+    #form-product-details-search {
+        .o-form-container__element {
+            align-items: end;
+            display: flex;
+            flex-wrap: wrap;
+
+            form {
+                width: 67%;
+
+                .form-container .fields.text:last-child {
+                    .a-input-field {
+                        margin-bottom: 0;
+
+                        .form-group {
+                            margin-bottom: 0;
+
+                            &:not([class*="validation-"]) {
+                                .input-group {
+                                    margin-bottom: 20px;
+                                }
+                            }
+
+                        }
+                    }
+                }
+            }
+
+            .o-form-container__buttons {
+                margin-bottom: 20px;
+                width: 33%;
+
+                .button.link {
+                    margin-right: 0;
+
+                    .btn {
+                        min-height: 48px;
+                    }
+                }
+            }
+
+            .o-form-container__success-msg:not(:empty),
+            .o-form-container__error-msg:not(:empty) {
+                margin-top: .5rem;
+            }
+        }
+    }
+
+    // Product update page and Product page creation - Form product details update styling
+    #form-product-details-update,
+    #form-product-create-page {
+        .o-form-container__element {
+            .o-form-container__buttons .button.link:last-child {
+                margin-right: 0;
+            }
+        }
+    }
+
+    // Whitepaper get document form
+    #form-whitepaper--fetch {
+        .o-form-container__element {
+            .o-form-container {
+                &__success-msg {
+                    display: none;
+                }
+
+                &__error-msg {
+                    text-align: center;
+                }
+            }
+        }
+    }
+
+    // Whitepaper upload document form
+    #form-whitepaper--upload {
+        .o-form-container {
+            &__element .form-container {
+                .m-file-uploader {
+                    &__filename {
+                        width: 90%;
+                    }
+                }
+            }
+        }
+    }
+}

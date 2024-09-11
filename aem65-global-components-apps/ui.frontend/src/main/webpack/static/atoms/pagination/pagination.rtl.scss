@@ -1,0 +1,31 @@
+@import 'pagination.scss';
+
+.a-pagination{
+  $self: &;
+  .u-ltr{
+    display: none;
+  }
+  .u-rtl {
+    display: inline-block;
+  }
+
+  html[dir="rtl"] &--next{
+    #{$self}__link:hover{
+      border-left-color: var(--pagination-border-color);
+      border-right-color: var(--pagination-hover-border-color);
+      border-radius: 0;
+      border-top-left-radius: var(--pagination-border-radius);
+      border-bottom-left-radius: var(--pagination-border-radius);
+    }
+  }
+  html[dir="rtl"] &--previous{
+    #{$self}__link:hover{
+      border-right-color: var(--pagination-border-color);
+      border-left-color: var(--pagination-hover-border-color);
+      border-radius: 0;
+      border-top-right-radius: var(--pagination-border-radius);
+      border-bottom-right-radius: var(--pagination-border-radius);
+    }
+  }
+}
+

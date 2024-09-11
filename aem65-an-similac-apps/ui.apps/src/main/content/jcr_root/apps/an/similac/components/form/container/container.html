@@ -1,0 +1,103 @@
+<sly data-sly-test="${wcmmode.edit}">
+   <form name="${container.name}"
+      enctype="${container.enctype}" class="similac-form"
+      data-sly-use.container="com.adobe.cq.wcm.core.components.models.form.Container"
+      data-sly-use.grid="com.day.cq.wcm.foundation.model.responsivegrid.ResponsiveGrid">
+      <sly data-sly-repeat.paragraph="${grid.paragraphs}"
+         data-sly-resource="${paragraph.path @ resourceType=paragraph.resourceType, decorationTagName='div'}" ></sly>
+      <sly data-sly-resource="${resource.path @ resourceType=container.resourceTypeForDropArea, appendPath='/*', decorationTagName='div'}" ></sly>
+   </form>
+</sly>
+
+<sly data-sly-test="${!wcmmode.edit}">
+   <sly data-sly-use.obj="${'com.abbott.aem.an.similac.core.models.FormContainerModel'}">
+      <sly data-sly-test ="${obj.formJson}">
+         <sly data-sly-test ="${properties.variation !=  'headerLogin' && properties.variation !=  'do-retailer-login' && properties.variation !=  'do-retailer-registration' && properties.variation !=  'completeProfile' && properties.variation !=  'mailingAddress'}">
+            <script>
+               function onloadCallback() { };
+               var jsonData = Object.freeze(JSON.parse("${obj.formJson @ context='scriptString'}"));                       
+            </script>
+         </sly>
+         <sly data-sly-test ="${properties.variation == 'headerLogin'}">
+            <script>
+               var jsonLoginMenuData = Object.freeze(JSON.parse("${obj.formJson @ context='scriptString'}"));
+            </script>
+         </sly>
+         <sly data-sly-test ="${properties.variation == 'do-retailer-login'}">
+            <script>
+               var dorLogin = Object.freeze(JSON.parse("${obj.formJson @ context='scriptString'}"));
+            </script>          
+         </sly>
+         <sly data-sly-test ="${properties.variation == 'do-retailer-registration'}">
+            <script>
+               var dorRegistration = Object.freeze(JSON.parse("${obj.formJson @ context='scriptString'}"));
+            </script>
+         </sly>
+         <sly data-sly-test ="${properties.variation == 'mailingAddress'}">
+            <script>
+               var jsonEditMailingAddress = Object.freeze(JSON.parse("${obj.formJson @ context='scriptString'}"));
+            </script>
+         </sly>
+         <sly data-sly-test ="${properties.variation == 'completeProfile'}">
+            <script>
+               var jsonCompleteProfileData = Object.freeze(JSON.parse("${obj.formJson @ context='scriptString'}"));
+            </script>
+         </sly>
+      </sly>
+      <sly data-sly-test ="${obj.socialLoginJson}">
+         <script>
+            var jsonSocialLoginData = Object.freeze(JSON.parse("${obj.socialLoginJson @ context='scriptString'}"));
+         </script>
+      </sly>
+   </sly>
+   <sly data-sly-test ="${properties.variation == 'registration'}">
+      <sly data-sly-include = "registration.html"/>
+   </sly>
+   <sly data-sly-test ="${properties.variation == 'login'}">
+      <sly data-sly-include = "login.html"/>
+   </sly>
+   <sly data-sly-test ="${properties.variation == 'pwalogin'}">
+      <sly data-sly-include = "pwalogin.html"/>
+   </sly>
+   <sly data-sly-test ="${properties.variation == 'headerLogin'}">
+      <sly data-sly-include = "headerlogin.html"/>
+   </sly>
+   <sly data-sly-test ="${properties.variation == 'fastRegistration'}">
+      <sly data-sly-include = "fastregistration.html"/>
+   </sly>
+   <sly data-sly-test ="${properties.variation == 'forgotPassword'}">
+      <sly data-sly-include = "forgotpassword.html"/>
+   </sly>
+   <sly data-sly-test ="${properties.variation == 'resetPassword'}">
+      <sly data-sly-include = "resetpassword.html"/>
+   </sly>
+   <sly data-sly-test ="${properties.variation == 'checkoutLogin'}">
+      <sly data-sly-include = "checkoutlogin.html"/>
+   </sly>
+   <sly data-sly-test ="${properties.variation == 'ecommerceRegistration'}">
+      <sly data-sly-include = "ecommerce-registration.html"/>
+   </sly>
+   <sly data-sly-test ="${properties.variation == 'contactUs'}">
+      <sly data-sly-include = "contact-us.html"/>
+   </sly>
+   <sly data-sly-test ="${properties.variation == 'accountLinking'}">
+      <sly data-sly-include = "accountlinking.html"/>
+   </sly>
+   <sly data-sly-test ="${properties.variation == 'do-retailer-registration'}">
+      <sly data-sly-include = "do-retailer-login.html"/>
+   </sly>
+   <sly data-sly-test ="${properties.variation == 'unsubscribe'}">
+      <sly data-sly-include = "unsubscribe.html"/>
+   </sly>
+   <sly data-sly-test ="${properties.variation == 'mailingAddress'}">
+      <sly data-sly-include = "mailing-address.html"/>
+   </sly>
+   <sly data-sly-test ="${properties.variation == 'smsNotification'}">
+      <sly data-sly-include = "smsnotification.html"/>
+   </sly>
+   <sly data-sly-test ="${properties.variation == 'accountSettings'}">
+      <sly data-sly-include = "accountsettings.html"/>
+   </sly>
+
+   
+</sly>

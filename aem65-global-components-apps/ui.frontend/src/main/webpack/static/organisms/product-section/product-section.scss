@@ -1,0 +1,399 @@
+.o-product-section {
+    $self: &;
+
+    &__container {
+        position: relative;
+
+        @include media-breakpoint-down(sm) {
+            max-width: 100%;
+        }
+    }
+
+    &__row {
+        position: relative;
+    }
+
+    &__title {
+        padding-bottom: var(--product-section-title-padding);
+    }
+
+    &__para {
+        color: var(--product-section-para-color);
+        font-size: var(--product-section-para-font-size);
+        line-height: var(--product-section-para-line-height);
+    }
+
+    &__image-wrapper {
+        margin-top: var(--product-section-image-margin-top);
+        text-align: center;
+
+        @include media-breakpoint-down(md) {
+            text-align: center;
+            padding: 0;
+            margin: 0;
+
+            img {
+                max-width: 100%;
+            }
+        }
+    }
+
+    &__image-caption,
+    .cmp-image__title {
+        padding-top: var(--product-section-padding);
+        color: var(--product-section-image-caption-color);
+        font-size: var(--product-section-image-caption-font-size);
+        line-height: var(--product-section-image-caption-line-height);
+        text-align: center;
+        display: block;
+    }
+
+    &__badge {
+        position: absolute;
+        z-index: 1;
+        left: 0;
+    }
+
+    &__content {
+        padding-left: var(--product-section-content-padding);
+        padding-right: var(--product-section-content-padding);
+
+        @include media-breakpoint-down(md) {
+            padding: var(--product-section-content-padding-top) var(--product-section-content-padding-mobile);
+            margin: 0;
+        }
+    }
+
+    &__button-wrapper {
+        padding-top: var(--product-section-btn-wrapper-padding);
+
+        .a-button {
+            display: inline-flex;
+
+            &:not(:only-child) {
+                margin-right: var(--product-section-btn-margin-right);
+                margin-bottom: var(--product-section-btn-margin-bottom);
+
+                @include media-breakpoint-down(sm) {
+                    margin-right: 0;
+                }
+            }
+        }
+
+        @include media-breakpoint-down(sm) {
+            padding-top: 0;
+
+            .a-button {
+                display: block;
+
+                .btn {
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    &__video-wrapper {
+        max-width: none;
+        position: relative;
+        margin-top: var(--product-section-image-margin-top);
+
+        @include media-breakpoint-down(md) {
+            padding: 0;
+            margin: 0;
+            width: var(--product-section-image-wrapper-width);
+        }
+
+        .product-section-video,
+        .video {
+            padding: 0 !important;
+        }
+
+        .a-video {
+            margin: 0 auto;
+
+            &__caption {
+                text-align: center;
+            }
+        }
+    }
+
+    // Text on right side :: Media(image/video) on left side
+    &--text-right {
+
+        #{$self}__content {
+            order: 1;
+
+            @include media-breakpoint-down(md) {
+                padding-bottom: 0;
+            }
+        }
+
+        #{$self}__image-wrapper {
+            padding-left: 0;
+        }
+    }
+
+    // Text on left side :: Media(image/video) on right side
+    &--text-left {
+
+        #{$self}__badge {
+            left: 0;
+        }
+
+        #{$self}__content {
+            order: 0;
+
+            @include media-breakpoint-down(md) {
+                padding-top: 0;
+            }
+        }
+
+        #{$self}__image-wrapper {
+            padding-right: 0;
+        }
+    }
+
+    // Badge position right
+    &--top-right {
+        #{$self}__badge {
+            right: 0;
+            left: inherit;
+
+            @include media-breakpoint-down(md) {
+                position: relative;
+                left: inherit;
+                right: inherit;
+                display: flex;
+                width: 100%;
+                align-items: flex-end;
+                justify-content: flex-end;
+            }
+        }
+    }
+
+    // Badge position left
+    &--top-left {
+        @include media-breakpoint-down(md) {
+            #{$self}__badge {
+                position: relative;
+                left: inherit;
+                right: inherit;
+                display: flex;
+                justify-content: start;
+                align-items: start;
+            }
+        }
+    }
+
+    // Large size image/Video
+    &--large {
+
+        .cmp-image__image,
+        img {
+            max-width: 100%;
+            max-height: var(--product-section-image-max-height);
+            width: auto;
+
+            @include media-breakpoint-up(lg) {
+                max-width: 100%;
+            }
+        }
+    }
+
+    // Small size image/video
+    &--small {
+
+        .cmp-image__image,
+        img {
+            max-width: var(--product-section-image-max-width);
+
+            @include media-breakpoint-down(md) {
+                max-width: 100%;
+            }
+        }
+    }
+
+    // Remove media top spacing
+    &--remove-imagespace {
+
+        #{$self}__image-wrapper,
+        #{$self}__video-wrapper {
+            margin-top: 0;
+        }
+    }
+
+    &--dark-bg {
+        background: var(--product-section-dark-bg);
+    }
+
+    &--rounded-corners {
+        border-radius: var(--product-section-rounded-corners);
+    }
+
+    /*title color paragraph style system*/
+    &--title-default {
+        #{$self}__title {
+            color: var(--product-section-title-color-default);
+
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6,
+            p {
+                color: var(--product-section-title-color-default);
+            }
+        }
+    }
+
+    &--title-reversed {
+        #{$self}__title {
+            color: var(--product-section-title-color-reversed);
+
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6,
+            p {
+                color: var(--product-section-title-color-reversed);
+            }
+        }
+    }
+
+    &--title-primary {
+        #{$self}__title {
+            color: var(--product-section-title-color-primary);
+
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6,
+            p {
+                color: var(--product-section-title-color-primary);
+            }
+        }
+    }
+
+    &--title-alternate {
+        #{$self}__title {
+            color: var(--product-section-title-color-alternate);
+
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6,
+            p {
+                color: var(--product-section-title-color-alternate);
+
+            }
+        }
+    }
+
+
+    /*Description text color paragraph style system*/
+    &--description-reversed {
+        #{$self}__para {
+
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6,
+            p {
+                color: var(--product-section-description-color-reversed);
+            }
+        }
+    }
+
+    &--description-default {
+        #{$self}__para {
+
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6,
+            p {
+                color: var(--product-section-description-color-default);
+            }
+        }
+
+    }
+
+    &--description-primary {
+        #{$self}__para {
+
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6,
+            p {
+                color: var(--product-section-description-color-primary);
+            }
+        }
+    }
+
+    &--description-alternate {
+        #{$self}__para {
+
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6,
+            p {
+                color: var(--product-section-description-color-alternate);
+            }
+        }
+    }
+
+    // If a parallax image layer is set
+    .parallax-wrapper {
+        z-index: 0;
+        /* appear beneath main image */
+
+        .cmp-image__image {
+            z-index: 1;
+            /* appear above parallax image */
+        }
+
+        &__parallax-image {
+            max-height: unset;
+        }
+    }
+
+    // Gradient Color Styles
+
+    &--gradient-start {
+        #{$self}__container {
+            background: linear-gradient(90deg, var(--productSection-start-color) var(--productSection-start-position), var(--productSection-end-color) var(--productSection-end-position));
+        }
+    }
+
+    &--gradient-end {
+        #{$self}__container {
+            background: linear-gradient(-90deg, var(--productSection-start-color) var(--productSection-start-position), var(--productSection-end-color) var(--productSection-end-position));
+        }
+    }
+
+    &--gradient-center {
+        #{$self}__container {
+            background: radial-gradient(circle, var(--productSection-start-color) var(--productSection-start-position), var(--productSection-end-color) var(--productSection-end-position));
+        }
+    }
+
+
+}

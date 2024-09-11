@@ -1,0 +1,49 @@
+<!--/*
+Overriding the body.html from page v2 of core.
+This is to add the header, footer, breadcrumb, etc for every page.
+*/-->
+<div class="abbott-wrapper" data-sly-use.page="com.abbott.aem.platform.common.components.models.PlatformPage">
+	<div class="m-alert--wrapper ${page.alertSticky ? 'm-alert--sticky' : ''}" data-sly-test="${page.alertFragmentPath && page.alertAboveHeader}"
+    	 data-sly-resource ="${@path=page.alertFragmentPath, selectors='content', wcmmode='disabled'}">
+    </div>
+
+	<sly data-sly-test="${page.headerFragmentPath}"
+    	 data-sly-resource ="${@path=page.headerFragmentPath, selectors='content', wcmmode='disabled'}">
+    </sly>
+
+    <div class="m-alert--wrapper" data-sly-test="${page.alertFragmentPath && !page.alertAboveHeader}"
+    	 data-sly-resource ="${@path=page.alertFragmentPath, selectors='content', wcmmode='disabled'}">
+    </div>
+</div>
+
+<input type="hidden" name="x-preferred-language" value="${page.languageCode}" data-header="true"/>
+<input type="hidden" name="x-country-code" value="${page.countryCode}" data-header="true"/>
+<input type="hidden" name="x-application-id" value="${page.sitename}" data-header="true"/>
+
+<sly data-sly-use.templatedContainer="com.day.cq.wcm.foundation.TemplatedContainer"
+     data-sly-repeat.child="${templatedContainer.structureResources}"
+     data-sly-resource="${child.path @ resourceType=child.resourceType, decorationTagName='div'}"></sly>
+
+<div class="abbott-wrapper">
+    <sly data-sly-test.authorMode="${wcmmode.edit}"></sly>
+    <div class="${authorMode?'cookie-bar-edit' :''}">
+		<sly data-sly-test="${page.cookieFragmentPath}" data-sly-resource ="${@path=page.cookieFragmentPath, selectors='content', wcmmode='disabled'}"></sly>
+	</div>
+    <sly data-sly-test="${page.footerFragmentPath}" data-sly-resource ="${@path=page.footerFragmentPath, selectors='content', wcmmode='disabled'}"></sly>
+</div>
+
+<div id="site-leaving-popup-content" class="${wcmmode.edit ? '' : 'modal'}">
+    <div class="m-popup-content">
+        <sly data-sly-test="${page.siteLeavingPopupFragmentPath}" data-sly-resource="${@path=page.siteLeavingPopupFragmentPath, selectors='content', wcmmode='disabled'}"></sly>
+    </div>
+</div>
+<!-- Block for site entering popup starts-->
+<div id="site-entering-popup-content" class="${wcmmode.edit ? '' : 'modal'}">
+	<div class="m-popup-content">
+        <sly data-sly-test="${page.siteEnteringPopupFragmentPath}" data-sly-resource="${@path=page.siteEnteringPopupFragmentPath, selectors='content', wcmmode='disabled'}"></sly>
+    </div>
+</div>
+<!-- Google Tag Manager (noscript) --> 
+<noscript data-sly-test.isGtmId="${page.gtmId && (!wcmmode.edit && !wcmmode.design)}"><iframe src="https://www.googletagmanager.com/ns.html?id=${page.gtmId @ context='text'}" height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<!-- Block for site entering popup starts-->

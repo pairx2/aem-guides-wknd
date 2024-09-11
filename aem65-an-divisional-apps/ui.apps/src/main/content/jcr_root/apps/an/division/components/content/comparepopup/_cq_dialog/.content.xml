@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Compare Popup"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                maximized="{Boolean}true">
+                <items jcr:primaryType="nt:unstructured">
+                    <main
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Main"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <comparelabel
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldDescription="Please enter the text to be displayed on the compare tray."
+                                fieldLabel="Compare Tray Label"
+                                name="./compareLabel"/>
+                            <mainbuttonlabel
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldDescription="Please enter the text to be displayed for the main button."
+                                fieldLabel="Main Button Label"
+                                name="./buttonLabel"
+                                required="{Boolean}true"/>
+                            <mainbuttonurl
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                fieldDescription="Please enter the URL for the main button."
+                                fieldLabel="Main Button URL Path"
+                                name="./buttonUrl"
+                                required="{Boolean}true"/>
+                            <enableremoveall
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                fieldDescription="Please select if you would like to enable Remove All feature."
+                                name="./removeAll"
+                                text="Enable Remove All"
+                                value="{Boolean}true"/>
+                            <removealllabel
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldDescription="Please enter the text to be displayed for Remove All link."
+                                fieldLabel="Remove All Label"
+                                name="./removeLabel"/>
+							<alertmessageexpfragment
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                emptyText="Add the path for alert message experience fragment"
+                                fieldDescription="Please provide the experience fragment path that contains the alert message."
+                                fieldLabel="Alert Message Experience Fragment"
+                                name="./alertMessage"
+                                rootPath="/content/experience-fragments"/>
+							<minamountofitemstocompare
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                fieldDescription="Please set the minimum compare options the user must select before user can click on submit button."
+                                fieldLabel="Min Amount of Items to Compare"
+                                max="4"
+                                min="2"
+                                name="./minItems"/>
+                            <maxamountofitemstocompare
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                fieldDescription="Please set the maximum compare options the user can set before no more are added."
+                                fieldLabel="Max Amount of Items to compare"
+                                max="4"
+                                min="2"
+                                name="./maxItems"/>
+                            <hidecomparewidgeticon
+                                granite:class="abbott-icon-picker"
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceSuperType="abbott-platform/components/core/iconpicker/v1/iconpicker/cq:dialog/content/items/icon"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldDescription="Please select image that should be used for hiding the compare widget"
+                                fieldLabel="Hide Compare Widget Icon"
+                                name="./compareWidgetIcon"/>
+                            <imageremoveicon
+                                granite:class="abbott-icon-picker"
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceSuperType="abbott-platform/components/core/iconpicker/v1/iconpicker/cq:dialog/content/items/icon"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldDescription="Please select image that should be used for removing the item and image selected"
+                                fieldLabel="Image Remove Icon"
+                                name="./imgRemoveIcon"/>
+                        </items>
+                    </main>
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>

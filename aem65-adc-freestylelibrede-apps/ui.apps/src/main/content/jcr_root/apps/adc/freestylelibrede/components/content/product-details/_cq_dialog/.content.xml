@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+	      xmlns:cq="http://www.day.com/jcr/cq/1.0"
+          xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+          jcr:primaryType="nt:unstructured"
+          jcr:title="Product Details"
+          sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                maximized="{Boolean}true">
+                <items jcr:primaryType="nt:unstructured">
+                    <properties
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Properties"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+							<shippingText
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Shipping Text Label"
+                                maxlength="{Long}30"
+                                name="./shippingText"/>
+							<quantityOrder
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Quantity per order descripton"
+                                maxlength="{Long}500"
+                                name="./quantityOrder"								/>
+							  <errorMessage
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Error Message"
+                                name="./errorMessage"/>
+                            <wizardSelectorUrl
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                    fieldLabel="Wizard Selector URL"
+                                    name="./wizardSelectorUrl"
+                                    rootPath="/content/adc"/>
+                            <loginPageUrl
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                    fieldLabel="Login Page URL"
+                                    name="./loginPageUrl"
+                                    rootPath="/content/adc"/>
+                        </items>
+                    </properties>
+                    <shipping-options
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Shipping Options"
+                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                            margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <shipping-list
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="/libs/granite/ui/components/coral/foundation/form/multifield"
+                                    composite="{Boolean}true"
+                                    fieldLabel="Shipping List">
+                                <field
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="/libs/granite/ui/components/coral/foundation/container"
+                                        name="./shippingList">
+                                    <items
+                                            jcr:primaryType="nt:unstructured"
+                                            name="./items">
+                                        <shipping-type
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Shipping Type"
+                                                name="./shippingType"/>
+                                        <shipping-icon
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                fieldLabel="Shipping Icon"
+                                                name="./shippingIcon">
+                                            <datasource
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="abbott-platform/datasource/generic-list"
+                                                    path="/apps/adc/freestylelibrede/authoring/datasources/abbott-icons"/>
+                                        </shipping-icon>
+                                        <shipping-code
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldLabel="Shipping Code"
+                                                name="./shippingCode"/>
+                                    </items>
+                                </field>
+                            </shipping-list>
+                        </items>
+                    </shipping-options>
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>

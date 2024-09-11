@@ -1,0 +1,36 @@
+@import '../mixin.less';
+@import '../media-queries.less';
+@import '../variables.less';
+
+/**
+ * HERO - COMPONENT
+**/
+.m-hero {
+
+  @self : m-hero;
+
+  //fix for image crop issue in mobile/tablet
+  &--half-width {
+    .@{self}__image, .cmp-image__image {
+      @media @lg-down {
+        position: relative;
+        display: flex;
+        align-items: center;
+    
+        .cmp-teaser__image {
+          flex: 1;
+        }
+      }
+    }
+
+    &.@{self}--tall, &.@{self}--medium, &.@{self}--short {
+      height: auto;
+      @media @lg-down {
+        .m-hero__media {
+          height: auto;
+        }
+      }
+    }
+  }
+
+}

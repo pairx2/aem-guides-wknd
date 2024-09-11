@@ -1,0 +1,123 @@
+@import '../media-queries.less';
+@import '../variables.less';
+
+.o-header-v2 {
+
+    &-global {
+
+        @self: o-header-v2-global;
+        @header-v2-utility-bottom-bg-sticky-mobile: @color-silver-gray;
+        @header-v2-main-padding-desktop-sticky: @spacer-2 0;
+        @header-v2-main-padding-mobile: 0.906rem 0;
+        @header-v2-main-padding-mobile-sticky: @spacer-4 0;
+        @header-v2-utility-top-height-sticky: 2.18rem;
+        @header-v2-search-form-horizontal-spacing-sticky: 0.25rem;
+
+        .@{self}__section--main {
+            .a-logo-comp {
+                --logo-max-height-des: 2.5rem;
+                --logo-max-height-tab: 2rem;
+                --logo-max-height-mob: 2.25rem;
+                --logo-max-height-mob-sticky: 1.5rem;
+
+                img {
+                    @media @lg-down {
+                        max-height: var(--logo-max-height-mob);
+                    }
+                }
+            }
+        }
+
+        .sticky .@{self}__section--utility-bottom {
+            @media @lg-down {
+                background-color: @header-v2-utility-bottom-bg-sticky-mobile;
+            }
+        }
+
+        .sticky .a-logo-comp img:last-child {
+            max-height: var(--logo-max-height-mob-sticky);
+        }
+
+        .sticky .o-header-v2-group .a-logo-comp img:last-child {
+            @media @lg-only {
+                max-height: var(--logo-max-height-mob-sticky);
+            }
+        }
+
+        &__section {
+
+            &.@{self}__section--main {
+
+                @media @lg-down {
+                    padding: @header-v2-main-padding-mobile;
+                }
+
+                .sticky & {
+                    padding: @header-v2-main-padding-desktop-sticky;
+
+                    @media @lg-down {
+                        padding: @header-v2-main-padding-mobile-sticky;
+                    }
+                }
+            }
+
+            &--utility-top {
+                .o-header-v2-group {
+                    .sticky & {
+                        min-height: @header-v2-utility-top-height-sticky;
+                    }
+                }
+            }
+
+            .o-header-v2-section {
+
+                #myAccountMobile,
+                #myAccountSticky,
+                #myAccountTop,
+                [class^="m-link-stack__my-account"] {
+                    .m-link-stack__link {
+                        .a-link__text {
+                            &.active {
+                                font-weight: bold;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .@{self}__section {
+            .m-link-stack__dropdown-wrapper {
+                top: 120%;
+            }
+        }
+
+        .sticky {
+            .@{self}__section {
+                .m-link-stack__dropdown-wrapper {
+                    @media @lg-up {
+                        top: 100%;
+                    }
+                }
+            }
+
+            .a-search {
+                &.open {
+                    form {
+                        @media @lg-up {
+                            padding: @header-v2-search-form-horizontal-spacing-sticky var(--header-v2-search-form-horizontal-spacing);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &-group {
+        .a-link {
+            .a-link__inner-text {
+                color: var(--gray-darkest-color);
+            }
+        }
+    }
+}

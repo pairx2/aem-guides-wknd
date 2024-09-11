@@ -1,0 +1,68 @@
+var AWS = require('aws-sdk');
+var axios = require("axios");
+
+var CISP = new AWS.CognitoIdentityServiceProvider({ region: 'eu-central-1' });
+
+var createParams = (event, newLoginAttemptCount) => ({
+	"ClientMetadata": {
+		"custom:LoginAttempt": newLoginAttemptCount.toString()
+	},
+	"UserAttributes": [
+		{
+			"Name": "custom:LoginAttempt",
+			"Value": newLoginAttemptCount.toString()
+		}
+	],
+	"Username": event.userName,
+	"UserPoolId": event.userPoolId
+});
+
+exports.handler = async (event, context, callback) => {
+	console.log('Pre Auth Verification');
+	console.log(event, 'event');
+	var inputLoginAttempCount = parseInt(event.request.userAttributes['custom:LoginAttempt'], 10);
+	var storedLoginAttemptCount = inputLoginAttempCount ? (inputLoginAttempCount + 1).toString() : '1';
+	var isCaptcha = false;
+
+	function MigratedUserError(message) {
+		this.name = "MigratedUserError";
+		this.message = message;
+	}
+
+	MigratedUserError.prototype = new Error();
+	if(event.request.userAttributes['cognito:user_status'] === 'RESET_REQUIRED') {
+		const error = new MigratedUserError("Lambda_ErrorCode_4001");
+		callback(error);
+	}
+
+	try {
+		if (event.request.validationData && event.request.validationData.captcha) {
+			isCaptcha = true;
+			const payload = {
+				secret: process.env.SECRET_KEY,
+				response: event.request.validationData.captcha,
+				remoteip: undefined,
+			};
+			const verifyResponse = await axios({
+				method: "post",
+				url: "https://www.google.com/recaptcha/api/siteverify",
+				params: payload,
+			});
+			if (verifyResponse.data.success) {
+				console.log('Recaptcha Verified Successfully');
+			}
+			else {
+				console.log('Recaptcha Verification Failed');
+			}
+		}
+		if (!isCaptcha && event.request.userNotFound === false) {
+			var updateParams = createParams(event, storedLoginAttemptCount);
+			var response = await CISP.adminUpdateUserAttributes(updateParams).promise();
+			console.log("Update Attribute Success:", response);
+		}
+		callback(null, event);
+	}
+	catch (error) {
+		throw error;
+	}
+};

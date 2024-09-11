@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+	jcr:primaryType="nt:unstructured"
+	jcr:title="Email Template"
+	extraClientlibs="[emailTemplateEvents]"
+	sling:resourceType="cq/gui/components/authoring/dialog">
+	<content
+		jcr:primaryType="nt:unstructured"
+		sling:resourceType="granite/ui/components/coral/foundation/container">
+		<items jcr:primaryType="nt:unstructured">
+			<tabs
+				jcr:primaryType="nt:unstructured"
+				sling:resourceType="granite/ui/components/coral/foundation/tabs"
+				maximized="{Boolean}true">
+				<items jcr:primaryType="nt:unstructured">
+					<header
+						jcr:primaryType="nt:unstructured"
+						jcr:title="Header"
+						sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+						<items jcr:primaryType="nt:unstructured">
+							<column
+								jcr:primaryType="nt:unstructured"
+								sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+								margin="{Boolean}true">
+								<items jcr:primaryType="nt:unstructured">
+									<column
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+											<variations
+												granite:class="email-template-variation-event"
+												jcr:primaryType="nt:unstructured"
+												sling:resourceType="granite/ui/components/coral/foundation/form/select"
+												fieldLabel="Variation"
+												name="./variation">
+												<granite:data
+													jcr:primaryType="nt:unstructured"
+													email-template-variation-event-target=".email-showhide-target"/>
+												<items jcr:primaryType="nt:unstructured">
+													<Amazon
+														jcr:primaryType="nt:unstructured"
+														text="Amazon"
+														value="amazon"/>
+													<Target
+														jcr:primaryType="nt:unstructured"
+														text="Target"
+														value="target"/>
+													<TPG
+														jcr:primaryType="nt:unstructured"
+														text="TPG"
+														value="tpg"/>
+												</items>
+											</variations>
+											<headline
+												jcr:primaryType="nt:unstructured"
+												sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
+												fieldLabel="Headline"
+												name="./headline"/>
+											<firstLogo
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="cq/gui/components/authoring/dialog/fileupload"
+                                                allowUpload="{Boolean}false"
+                                                autoStart="{Boolean}false"
+                                                class="cq-droptarget"
+                                                fieldDescription="Configure the First logo here"
+                                                fieldLabel="First Logo"
+                                                fileNameParameter="./logo1Name"
+                                                fileReferenceParameter="./logo1Src"
+                                                mimeTypes="[image/gif,image/jpeg,image/png,image/webp,image/tiff,image/svg]"
+                                                multiple="{Boolean}false"
+                                                name="./logo1File"
+                                                title="First Logo URL"
+                                                uploadUrl="${suffix.path}"
+                                                useHTML5="{Boolean}true"/>
+											<secondLogo
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="cq/gui/components/authoring/dialog/fileupload"
+                                                allowUpload="{Boolean}false"
+                                                autoStart="{Boolean}false"
+                                                class="cq-droptarget"
+                                                fieldDescription="Configure the Second logo here"
+                                                fieldLabel="Second Logo"
+                                                fileNameParameter="./logo2Name"
+                                                fileReferenceParameter="./logo2Src"
+                                                mimeTypes="[image/gif,image/jpeg,image/png,image/webp,image/tiff,image/svg]"
+                                                multiple="{Boolean}false"
+                                                name="./logo2File"
+                                                title="Second Logo URL"
+                                                uploadUrl="${suffix.path}"
+                                                useHTML5="{Boolean}true"/>
+											<thanks
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="cq/gui/components/authoring/dialog/fileupload"
+                                                allowUpload="{Boolean}false"
+                                                autoStart="{Boolean}false"
+                                                class="cq-droptarget"
+                                                fieldDescription="Configure the Full width logo here"
+                                                fieldLabel="Thank You Image"
+                                                fileNameParameter="./thanksImgName"
+                                                fileReferenceParameter="./thanksImgSrc"
+                                                mimeTypes="[image/gif,image/jpeg,image/png,image/webp,image/tiff,image/svg]"
+                                                multiple="{Boolean}false"
+                                                name="./thanksImgFile"
+                                                title="Thanks Image URL"
+                                                uploadUrl="${suffix.path}"
+                                                useHTML5="{Boolean}true"/>
+										</items>
+									</column>
+								</items>
+							</column>
+						</items>
+					</header>
+					<body
+						jcr:primaryType="nt:unstructured"
+						jcr:title="Body"
+						sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+						<items jcr:primaryType="nt:unstructured">
+							<column
+								jcr:primaryType="nt:unstructured"
+								sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+								margin="{Boolean}true">
+								<items jcr:primaryType="nt:unstructured">
+									<column
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+											<body
+												jcr:primaryType="nt:unstructured"
+												sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
+												fieldLabel="Main Body"
+												name="./body"/>
+											<logo
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="cq/gui/components/authoring/dialog/fileupload"
+                                                allowUpload="{Boolean}false"
+                                                autoStart="{Boolean}false"
+                                                class="cq-droptarget"
+                                                fieldDescription="Configure the Retailer Logo"
+												fieldLabel="Retailer Logo"
+                                                fileNameParameter="./retailerImgName"
+                                                fileReferenceParameter="./retailerImgSrc"
+                                                mimeTypes="[image/gif,image/jpeg,image/png,image/webp,image/tiff,image/svg]"
+                                                multiple="{Boolean}false"
+                                                name="./retailerImgFile"
+                                                title="Retailer Image URL"
+                                                uploadUrl="${suffix.path}"
+                                                useHTML5="{Boolean}true"/>
+											<retailerText
+												jcr:primaryType="nt:unstructured"
+												sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
+												fieldLabel="Retailer Text"
+												name="./retailerTxt"/>
+											<prodImg
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="cq/gui/components/authoring/dialog/fileupload"
+                                                allowUpload="{Boolean}false"
+                                                autoStart="{Boolean}false"
+                                                class="cq-droptarget"
+                                                fieldDescription="Configure the Product Image here"
+                                                fieldLabel="Product Image"
+                                                fileNameParameter="./prodImgName"
+                                                fileReferenceParameter="./prodImgSrc"
+                                                mimeTypes="[image/gif,image/jpeg,image/png,image/webp,image/tiff,image/svg]"
+                                                multiple="{Boolean}false"
+                                                name="./prodImgFile"
+                                                title="Product Image URL"
+                                                uploadUrl="${suffix.path}"
+                                                useHTML5="{Boolean}true"/>
+											<couponText
+												jcr:primaryType="nt:unstructured"
+												sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
+												fieldLabel="Coupon Text"
+												name="./couponTxt"/>
+											<redemptionText
+												jcr:primaryType="nt:unstructured"
+												sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
+												fieldLabel="Redemption Text"
+												name="./redemptionTxt"/>
+											<redeemImg
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="cq/gui/components/authoring/dialog/fileupload"
+                                                allowUpload="{Boolean}false"
+                                                autoStart="{Boolean}false"
+                                                class="cq-droptarget"
+                                                fieldDescription="Configure the Redeem Image here"
+                                                fieldLabel="Redeem Image"
+                                                fileNameParameter="./redeemImgName"
+                                                fileReferenceParameter="./redeemImgSrc"
+                                                mimeTypes="[image/gif,image/jpeg,image/png,image/webp,image/tiff,image/svg]"
+                                                multiple="{Boolean}false"
+                                                name="./redeemImgFile"
+                                                title="Redeem Image URL"
+                                                uploadUrl="${suffix.path}"
+                                                useHTML5="{Boolean}true"/>
+											<buttonText
+												jcr:primaryType="nt:unstructured"
+												sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+												fieldDescription="Enter the Redeem Button Text"
+												fieldLabel="Button Text"
+												name="./buttonTxt"/>
+											<buttonLinkPath
+												jcr:primaryType="nt:unstructured"
+												sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+												rootPath="/content/an/similac"
+												fieldDescription="Enter the Button Link Path"
+												fieldLabel="Button Link Path"
+												name="./buttonLinkPath"/>
+											<redemptionSubtext
+												jcr:primaryType="nt:unstructured"
+												sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
+												fieldDescription="Enter the text below the Redeem button"
+												fieldLabel="Redemption Subtext"
+												name="./redemptionSubtext"/>
+										</items>
+									</column>
+								</items>
+							</column>
+						</items>
+					</body>
+					<footer
+						jcr:primaryType="nt:unstructured"
+						jcr:title="Footer"
+						sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+						<items jcr:primaryType="nt:unstructured">
+							<column
+								jcr:primaryType="nt:unstructured"
+								sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+								margin="{Boolean}true">
+								<items jcr:primaryType="nt:unstructured">
+									<column
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+											<decorationImg
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="cq/gui/components/authoring/dialog/fileupload"
+                                                allowUpload="{Boolean}false"
+                                                autoStart="{Boolean}false"
+                                                class="cq-droptarget"
+                                                fieldDescription="Configure the Footer Decoration Image"
+												fieldLabel="Footer Decoration Image"
+                                                fileNameParameter="./decorationImgName"
+                                                fileReferenceParameter="./decorationImgSrc"
+                                                mimeTypes="[image/gif,image/jpeg,image/png,image/webp,image/tiff,image/svg]"
+                                                multiple="{Boolean}false"
+                                                name="./decorationImgFile"
+                                                title="Footer Decoration Image URL"
+                                                uploadUrl="${suffix.path}"
+                                                useHTML5="{Boolean}true"/>
+											<leftLogo
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="cq/gui/components/authoring/dialog/fileupload"
+                                                allowUpload="{Boolean}false"
+                                                autoStart="{Boolean}false"
+                                                class="cq-droptarget"
+                                                fieldDescription="Configure the Footer Left Logo here"
+                                                fieldLabel="Footer Left Logo"
+                                                fileNameParameter="./leftLogoName"
+                                                fileReferenceParameter="./leftLogoSrc"
+                                                mimeTypes="[image/gif,image/jpeg,image/png,image/webp,image/tiff,image/svg]"
+                                                multiple="{Boolean}false"
+                                                name="./leftLogoFile"
+                                                title="Footer Left Logo URL"
+                                                uploadUrl="${suffix.path}"
+                                                useHTML5="{Boolean}true"/>
+											<leftLogoLinkPath
+												jcr:primaryType="nt:unstructured"
+												sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+												rootPath="/content/an/similac"
+												fieldDescription="Enter the Footer Left Logo Link Path"
+												fieldLabel="Footer Left Logo Link Path"
+												name="./leftLogoLinkPath"/>
+											<footerProdImg
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="cq/gui/components/authoring/dialog/fileupload"
+                                                allowUpload="{Boolean}false"
+                                                autoStart="{Boolean}false"
+                                                class="cq-droptarget"
+                                                fieldDescription="Configure the Footer Product Image here"
+                                                fieldLabel="Footer Product Image"
+                                                fileNameParameter="./footerProdImgName"
+                                                fileReferenceParameter="./footerProdImgSrc"
+                                                mimeTypes="[image/gif,image/jpeg,image/png,image/webp,image/tiff,image/svg]"
+                                                multiple="{Boolean}false"
+                                                name="./footerProdImgFile"
+                                                title="Footer Product Image URL"
+                                                uploadUrl="${suffix.path}"
+                                                useHTML5="{Boolean}true"/>
+											<rightLogo
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="cq/gui/components/authoring/dialog/fileupload"
+                                                allowUpload="{Boolean}false"
+                                                autoStart="{Boolean}false"
+                                                class="cq-droptarget"
+                                                fieldDescription="Configure the Footer Right Logo here"
+                                                fieldLabel="Footer Right Logo"
+                                                fileNameParameter="./rightLogoName"
+                                                fileReferenceParameter="./rightLogoSrc"
+                                                mimeTypes="[image/gif,image/jpeg,image/png,image/webp,image/tiff,image/svg]"
+                                                multiple="{Boolean}false"
+                                                name="./rightLogoFile"
+                                                title="Footer Right Logo URL"
+                                                uploadUrl="${suffix.path}"
+                                                useHTML5="{Boolean}true"/>
+											<buyImg
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="cq/gui/components/authoring/dialog/fileupload"
+                                                allowUpload="{Boolean}false"
+                                                autoStart="{Boolean}false"
+                                                class="cq-droptarget"
+                                                fieldDescription="Configure the Buy Image here"
+                                                fieldLabel="Buy Image"
+                                                fileNameParameter="./buyImgName"
+                                                fileReferenceParameter="./buyImgSrc"
+                                                mimeTypes="[image/gif,image/jpeg,image/png,image/webp,image/tiff,image/svg]"
+                                                multiple="{Boolean}false"
+                                                name="./buyImgFile"
+                                                title="Buy Image URL"
+                                                uploadUrl="${suffix.path}"
+                                                useHTML5="{Boolean}true"/>
+											<buyLinkPath
+												jcr:primaryType="nt:unstructured"
+												sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+												rootPath="/content/an/similac"
+												fieldDescription="Enter the Buy Link Path"
+												fieldLabel="Buy Link Path"
+												name="./buyLinkPath"/>
+											<footerLogo
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="cq/gui/components/authoring/dialog/fileupload"
+                                                allowUpload="{Boolean}false"
+                                                autoStart="{Boolean}false"
+                                                class="cq-droptarget"
+                                                fieldDescription="Configure the Footer Logo here"
+                                                fieldLabel="Footer Logo"
+                                                fileNameParameter="./footerLogoName"
+                                                fileReferenceParameter="./footerLogoSrc"
+                                                mimeTypes="[image/gif,image/jpeg,image/png,image/webp,image/tiff,image/svg]"
+                                                multiple="{Boolean}false"
+                                                name="./footerLogoFile"
+                                                title="Footer Logo URL"
+                                                uploadUrl="${suffix.path}"
+                                                useHTML5="{Boolean}true"/>
+											<footerLogoLinkPath
+												jcr:primaryType="nt:unstructured"
+												sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+												rootPath="/content/an/similac"
+												fieldDescription="Enter the Footer Logo Link Path"
+												fieldLabel="Footer Logo Link Path"
+												name="./footerLogoLinkPath"/>
+											<footerBody
+												jcr:primaryType="nt:unstructured"
+												sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
+												fieldLabel="Footer Body"
+												name="./footerBody"/>
+											<unsubscribeLinkText
+												jcr:primaryType="nt:unstructured"
+												sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+												fieldDescription="Enter the Unsubscribe Link Text"
+												fieldLabel="Unsubscribe Link Text"
+												name="./unsubscribeLinkText"/>
+											<unsubscribeLinkPath
+												jcr:primaryType="nt:unstructured"
+												sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+												rootPath="/content/an/similac"
+												fieldDescription="Enter the Unsubscribe Link Path"
+												fieldLabel="Unsubscribe Link Path"
+												name="./unsubscribeLinkPath"/>
+											<contactUsText
+												jcr:primaryType="nt:unstructured"
+												sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+												fieldDescription="Enter the Contact Us Text"
+												fieldLabel="Contact Us Text"
+												name="./contactUsText"/>
+											<privacyLinkText
+												jcr:primaryType="nt:unstructured"
+												sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+												fieldDescription="Enter the Privacy Link Text"
+												fieldLabel="Privacy Link Text"
+												name="./privacyLinkText"/>
+											<privacyLinkPath
+												jcr:primaryType="nt:unstructured"
+												sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+												rootPath="/content/an/similac"
+												fieldDescription="Enter the Privacy Link Path"
+												fieldLabel="Privacy Link Path"
+												name="./privacyLinkPath"/>
+											<termsLinkText
+												jcr:primaryType="nt:unstructured"
+												sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+												fieldDescription="Enter the Terms Link Text"
+												fieldLabel="Terms Link Text"
+												name="./termsLinkText"/>
+											<termsLinkPath
+												jcr:primaryType="nt:unstructured"
+												sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+												rootPath="/content/an/similac"
+												fieldDescription="Enter the Terms Link Path"
+												fieldLabel="Terms Link Path"
+												name="./termsLinkPath"/>
+											<contactLinkText
+												jcr:primaryType="nt:unstructured"
+												sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+												fieldDescription="Enter the Contact Us Link Text"
+												fieldLabel="Contact Us Link Text"
+												name="./contactLinkText"/>
+											<contactLinkPath
+												jcr:primaryType="nt:unstructured"
+												sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+												rootPath="/content/an/similac"
+												fieldDescription="Enter the Contact Us Link Path"
+												fieldLabel="Contact Us Link Path"
+												name="./contactLinkPath"/>
+											<copyrightText
+												jcr:primaryType="nt:unstructured"
+												sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+												fieldDescription="Enter the Copyright Text"
+												fieldLabel="Copyright Text"
+												name="./copyrightText"/>
+										</items>
+									</column>
+								</items>
+							</column>
+						</items>
+					</footer>
+				</items>
+			</tabs>
+		</items>
+	</content>
+</jcr:root>

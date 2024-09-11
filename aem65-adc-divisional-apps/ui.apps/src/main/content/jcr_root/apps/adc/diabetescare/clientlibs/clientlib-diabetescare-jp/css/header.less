@@ -1,0 +1,252 @@
+@import "./global/media-queries.less";
+@import "./global/variables.less";
+
+.o-header {
+  .container {
+    max-width: @header-max-width;
+  }
+
+  /*Making primary logo align properly*/
+  &__logo-left img:last-child {
+    opacity: 1;
+    position: relative;
+  }
+
+  /*Styling of the mega menu*/
+  &__mega-menu {
+    background-color: @color-white;
+
+    .container .row {
+      margin: 0 @spacer-10;
+      position: relative;
+    }
+
+    /*Styling of side bar menu*/
+    @media @lg-down {
+      #navbarNavAltMarkup {
+        position: fixed;
+        right: 0;
+        left: auto;
+        width: @header-side-menu-width;
+        height: @full-width;
+        background-color: @color-charcoal;
+
+        #navbarCollapseWrapper {
+          padding-top: 64px;
+
+          /*Styles for link-stacks moved from footer*/
+          .navbar-nav {
+            margin-bottom: @spacer-20;
+          }
+          .m-link-stack {
+            padding: @spacer 0;
+
+            h6,
+            a {
+              color: @color-gray-light;
+              line-height: @spacer-15;
+              font-size: @spacer-14;
+              font-weight: normal;
+            }
+          }
+        }
+        .m-mega-menu__mobile-item-wrapper {
+          &::before {
+            content: none;
+          }
+
+          .a-link {
+            padding: 0;
+          }
+
+          .m-mega-menu__mobile-item .m-mega-menu__mobile-header,
+          .a-link__text .a-link__inner-text {
+            padding: 0;
+            color: @color-white;
+          }
+
+          .m-mega-menu__mobile-products {
+            .m-mega-menu__mobile-item {
+              &-link {
+                color: @color-dark-gray;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    @media @lg-up {
+      #navbarCollapseWrapper .o-footer__top {
+        display: none;
+      }
+    }
+
+    .navbar {
+      padding-right: 0;
+
+      .navbar-nav {
+        .m-mega-menu__mobile-item-wrapper {
+          margin: 0;
+          padding: @spacer-12 @spacer 0;
+
+          .link {
+            border: 0;
+          }
+
+          @media @lg-up {
+            &:hover {
+              background: @color-gray-light;
+
+              .a-link__text .a-link__inner-text,
+              .nav-link {
+                color: @color-blue;
+              }
+            }
+
+            /*Styling of the menu for the mini mega menu component*/
+            .m-mega-menu__nested-menu {
+              position: fixed;
+              top: auto;
+              left: 0;
+              width: @full-width;
+
+              &-wrapper {
+                display: block;
+
+                .m-link-stack--content {
+                  display: flex !important;
+                }
+
+                .m-mega-menu__side-nav {
+                  display: inherit !important;
+                  background-color: @color-gray-light;
+                  width: @full-width;
+
+                  .m-link-stack {
+                    padding: 0;
+                    box-shadow: none;
+                    background-color: transparent;
+                    max-width: @header-max-width;
+                    margin: auto;
+
+                    &--content {
+                      margin: 0 @spacer-20;
+
+                      .a-link {
+                        padding: @spacer-10 @spacer-20;
+                        &:hover {
+                          background-color: transparent;
+
+                          & .a-link__text {
+                            color: @color-blue;
+                          }
+                        }
+                        &__text {
+                          color: @color-gray;
+                          font-weight: normal;
+                          font-size: @spacer-14;
+                          line-height: @spacer-24;
+                          border: 0;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        .a-link__text .a-link__inner-text,
+        .nav-link {
+          color: @color-gray;
+          font-weight: normal;
+          font-size: @spacer-14;
+          line-height: @spacer-24;
+          border: 0;
+          padding-bottom: @spacer-8;
+        }
+      }
+    }
+  }
+
+  &__secondary-top-nav {
+    .container .row {
+      margin: 0 @spacer-10;
+    }
+  }
+
+  /*To make the link stack in top portion of the header horizontal*/
+  &__user-activity &__utility-nav {
+    .m-link-stack--header {
+      display: none;
+    }
+    .country-dropdown {
+      .m-link-stack {
+        padding: 0;
+      }
+      .m-link-stack--content {
+        display: flex !important;
+        padding: 0;
+
+        .a-link {
+          margin: 0;
+          color: @color-white;
+          text-decoration: none;
+          font-size: @spacer-12;
+          font-weight: normal;
+          line-height: @spacer-28;
+          padding-right: @spacer-30;
+        }
+      }
+    }
+    .a-link--icon-left {
+      display: none;
+    }
+  }
+  &__logo-section {
+    border-bottom: none !important;
+
+    .row {
+      margin: 0 @spacer-20;
+
+      .col-5 {
+        flex: 0 0 50%;
+        max-width: 50%;
+      }
+    }
+
+    /*Removing broken image icon and style the alt text*/
+    .o-header__logo-right .a-logo-comp {
+      overflow: hidden;
+      text-align: left;
+
+      &--image {
+        color: @color-white;
+        margin-left: -@spacer;
+        white-space: nowrap;
+        font-weight: bold;
+      }
+    }
+  }
+
+  & .sticky &__logo-right {
+    opacity: 1;
+    display: flex;
+  }
+
+  /*To make signup button visible for all screens*/
+  .m-signup .a-link {
+    &__text .abt-icon {
+      display: block;
+      position: relative;
+      font-size: @spacer-22;
+      top: @spacer-2;
+    }
+  }
+
+  &__mob-options {
+    display: block !important;
+    right: @spacer-32;
+  }
+}

@@ -1,0 +1,21 @@
+<sly data-sly-use.linkStack="com.abbott.aem.platform.common.components.models.LinkStack">
+    <sly data-sly-test.external="${linkStack.stackExternal && linkStack.redirectConfirm}"></sly>
+    <sly data-sly-test.link="${linkStack.stackLink != null}">
+        <sly data-sly-list.link="${linkStack.links}">
+            ${link.text @ context='html'}
+        </sly>
+        <a aria-label="${linkStack.stackTitle @context='html'}" role="link"
+        href="${external ? '#' : linkStack.stackLink @ extension='html'}" class="${external ? 'ext_link' : ''}"
+        target="${external ? '' : linkStack.action}" data-toggle="${external ? 'modal' : ''}"
+        rel="${linkStack.stackExternal && linkStack.action=='_blank' ? 'noopener':''}"
+        data-target="#${linkStack.id}-modal">
+        <sly data-sly-list="${linkStack.links}">
+                <span class="m-link-stack--title" data-sly-test="${itemList.first}" id="${linkStack.ariaDescribedBy}">${item.text}</span>
+            </sly>
+        </a>
+    </sly>
+
+    <sly data-sly-list="${linkStack.links}">
+        <span class="m-link-stack--title" data-sly-test="${itemList.first}" id="${linkStack.ariaDescribedBy}">${item.text}</span>
+    </sly>
+</sly>

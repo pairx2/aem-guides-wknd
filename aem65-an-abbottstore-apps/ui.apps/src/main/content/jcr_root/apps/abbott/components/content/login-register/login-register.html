@@ -1,0 +1,25 @@
+<sly data-sly-use.templates="core/wcm/components/commons/v1/templates.html"/>
+<sly data-sly-set.tabLabel=" ${properties.menuTabLabel || properties.accountTabLabel}"/>
+<sly data-sly-use.storeUrlModel="${'com.abbott.aem.an.abbottstore.models.UrlServiceModel' @ themeType=inheritedPageProperties.themeType}"/>
+
+<nav class="abbott-nav float-left abbott-mobile-menu-tab__content active">
+    <sly data-sly-resource="${'navLinksPar' @ resourceType='abbott/components/content/navigation-links', decorationTagName='div'}"></sly>
+</nav>
+<div class="user-account-mobile abbott-mobile-menu-tab__content d-md-none">
+    <ul class="user-account-mobile__list p-0">
+        <li class="user-account-mobile__list-item is-anonymous">
+        <a data-toggle="modal" data-target="#loginModal" href="${storeUrlModel.loginUrl}" class="user-account-mobile__list-item-link">${properties.loginLabel}</a>
+        </li>
+        <li class="user-account-mobile__list-item is-logged-in d-none">
+        <a href="${storeUrlModel.accountUrl}"
+            class="user-account-mobile__list-item-link account-link">${properties.accountLabel}</a>
+        </li>
+        <li class="user-account-mobile__list-item is-logged-in d-none">
+        <a href="${storeUrlModel.logoutUrl}" class="user-account-mobile__list-item-link"
+            id="mobile-logout-link">${properties.logoutLabel}</a>
+        </li>
+    </ul>
+</div>
+
+<sly data-sly-call="${templates.placeholder @ isEmpty = !tabLabel}"></sly>
+

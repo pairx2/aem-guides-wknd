@@ -1,0 +1,30 @@
+<template data-sly-template.tile="${@ tile}">
+<sly data-sly-use.customConfig="com.abbott.aem.platform.common.components.models.CustomConfig" />
+    <sly data-sly-use.tileNormal="tile_normal.html" />
+    <div class="m-popup {customConfig.className}" data-toggle="modal" data-target="#siteLeavingPopupFragmentPathModal"
+        data-js-component="external-link" data-external-link="${tile.link}" data-external-target="${tile.action}">
+        <div class="${wcmmode.edit ? 'p-4' : ''}">
+            <a id="${tile.id}" class="a-tile__link" role="link" target="${tile.action}"
+                data-cmp-clickable="${tile.data ? true : false}" data-cmp-data-layer="${tile.data.json}">
+                <span class="a-tile__icon"><em aria-hidden="true" class="abt-icon abt-icon-right-arrow"></em></span>
+                <sly data-sly-test="${tile.text}">
+                    <div class="a-tile__title">
+                        <span class="a-tile__title-text">${tile.text  @ context="html"}</span>
+                    </div>
+                </sly>
+                <sly data-sly-test="${tile.subtitle}">
+                    <div class="a-tile__para">
+                        <p>${tile.subtitle  @ context="html"}</p>
+                    </div>
+                </sly>
+                <sly data-sly-test="${tile.icon}">
+                    <div class="a-tile__tile-icon">
+                        <i aria-hidden="true" class="abt-icon ${tile.icon}"
+                            style="color:${tile.color @context ='styleToken'}">
+                        </i>
+                    </div>
+                </sly>
+            </a>
+        </div>
+    </div>
+</template>

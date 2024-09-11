@@ -1,0 +1,21 @@
+<sly data-sly-test="${wcmmode.edit}">
+    <p class="cq-placeholder" data-emptytext="Configure ${component.title}" data-sly-unwrap="${properties.title}"></p>
+</sly>
+
+<sly data-sly-use.stickyNoticeBannerModel="com.abbott.aem.adc.freestylelibrede.models.StickyNoticeBannerModel">
+    <section
+            class="sticky-notice-banner-content ${stickyNoticeBannerModel.showOnce ? 'show-once' : ''} ${wcmmode.disabled? 'sticky-notice-preview' : ''} sticky-banner-${stickyNoticeBannerModel.color} ${stickyNoticeBannerModel.showAfterLogin ? 'show-after-login' :''}"
+            data-identifier="${resource.path.hashCode}"
+            data-version="${stickyNoticeBannerModel.version}" style="display:none">
+        <div class="container sticky-notice-banner-container">
+            <h4 class="sticky-notice-banner-heading">${stickyNoticeBannerModel.title}</h4>
+            <div class="sticky-notice-banner-description"> ${stickyNoticeBannerModel.description @context='html'}</div>
+            <em aria-hidden aria-label="Dismiss alert"
+               class="sticky-notice-close-btn ${stickyNoticeBannerModel.color == 'yellow' ?'adc-icon--close-black' :'adc-icon--close-white'} close-button"
+               data-sly-test="${stickyNoticeBannerModel.showCloseBtn}"
+               id="close">
+            </em>
+        </div>
+    </section>
+</sly>
+

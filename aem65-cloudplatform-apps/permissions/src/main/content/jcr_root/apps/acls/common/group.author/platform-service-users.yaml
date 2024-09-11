@@ -1,0 +1,51 @@
+- user_config:
+
+    - campaign-remote-platform:
+
+       - name: "ACS Remote User"
+         isMemberOf: 
+         path: /home/users/platform
+         password: $[secret:ACS_REMOTE_USER_PASSWORD]
+           
+- ace_config:
+
+    - campaign-remote-platform:
+
+       - path: /etc/dam/dynamicmediaconfig
+         permission: allow
+         privileges: jcr:read
+
+
+       - path: /etc/cloudservices/scene7
+         permission: allow
+         privileges: jcr:read,crx:replicate
+
+
+       - path: /etc/cloudservices/campaign
+         permission: allow
+         privileges: jcr:read,crx:replicate
+
+
+       - path: /etc/segmentation
+         permission: allow
+         privileges: crx:replicate
+
+
+       - path: /etc/cloudservices/dmscene7
+         permission: allow
+         privileges: jcr:read,crx:replicate
+
+
+       - path: /content/campaigns
+         permission: allow
+         privileges: crx:replicate,rep:write,jcr:lockManagement
+
+
+       - path: /content/dam
+         permission: allow
+         privileges: crx:replicate
+
+
+       - path: /content
+         permission: allow
+         privileges: jcr:read

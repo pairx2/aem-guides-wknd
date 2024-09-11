@@ -1,0 +1,41 @@
+<div data-sly-test="${wcmmode.edit}" class="cq-placeholder" data-emptyText="Video With Thumbnail Component"></div>
+<sly data-sly-use.videoModel="com.abbott.aem.platform.common.components.models.Video"
+	 data-sly-use.component="com.adobe.cq.wcm.core.components.models.Component"
+     data-sly-use.template="core/wcm/components/commons/v1/templates.html"/>
+<div class="m-video ${videoModel.videoSize || 'm-video-small'} ${videoModel.videoAlignment || 'm-video--center'}" data-js-component="video">
+ <sly data-sly-use.video="com.abbott.aem.corp.division.core.components.models.CorpVideo">
+  <sly data-sly-test="${video.cerosNeeded != 'true'}">
+	<div id="${component.id}" class="a-video a-video--margin" data-mobile-autoplay="${videoModel.autoplayMobileView ? 'true' : 'false'}" data-controls="${videoModel.videoControlOn || 'false'}" data-muted="${videoModel.audioControlOn || 'false'}" data-loop="${videoModel.loopOn ? 'true' : 'false'}" data-autoplay="${videoModel.autoPlay && !wcmmode.edit ? 'true' : 'false'}" data-playertype="${videoModel.playerType}">
+     <sly data-sly-test.captionAlign="${videoModel.captionPlacement}"></sly>
+     <sly data-sly-test="${captionAlign == 'top'}">
+          <span data-sly-test="${videoModel.videoCaption}" class="a-video__caption mt-2 mb-2 ">${videoModel.videoCaption @context='html'}</span>
+     </sly>
+     <div class="a-video__player ${videoModel.videoType == 'brightCove' || videoModel.videoType == 'limeLight' ? 'global-video' : 'global-video-embedDam'}">
+        <sly data-sly-test="${videoModel.playerType == 'modal'}" data-sly-include="video_modal.html"/>
+         <sly data-sly-test.videoType="${videoModel.videoType}"></sly>
+         <!--/* BrightCove Video */-->
+         <sly data-sly-test="${videoType == 'brightCove' && videoModel.playerType != 'modal'}" data-sly-include="video_brightcove.html" />
+         <!--/* Limelight Video */-->
+         <sly data-sly-test="${videoType == 'limeLight' && videoModel.playerType != 'modal'}" data-sly-include="video_limelight.html" />
+         <!--/* Dam Video */-->
+         <sly data-sly-test="${videoType == 'dam' && videoModel.playerType != 'modal'}" data-sly-include="video_dam.html" />
+         <!--/* External Video */-->
+         <sly data-sly-test="${videoType == 'videoURL' && videoModel.playerType != 'modal'}" data-sly-include="video_external.html" />
+         <!--/* Wistia Video */-->
+         <sly data-sly-test="${videoType == 'wistia'}" data-sly-include="video_wistia.html" />
+      </div>
+
+    <sly data-sly-test="${captionAlign != 'top'}">
+      <span data-sly-test="${videoModel.videoCaption}" class="a-video__caption mt-2 mb-2 ">${videoModel.videoCaption @context='html'}</span>
+    </sly>
+   </div>
+     <sly data-sly-test="${videoModel.videoTranScriptText=='true'}"
+        data-sly-resource="${@path='transcript' ,resourceType=videoModel.downloadProxyPath, decorationTagName='div',cssClassName='video-transcript'}">
+      </sly>
+</sly>
+<sly data-sly-test="${video.cerosNeeded == 'true'}">
+	${video.cerosScript @context='unsafe'}
+</sly>
+</sly>
+</div>
+<sly data-sly-call="${template.placeholder @ isEmpty=!videoModel.videoType}"></sly>

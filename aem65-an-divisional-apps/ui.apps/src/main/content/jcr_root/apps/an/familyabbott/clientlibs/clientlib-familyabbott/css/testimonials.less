@@ -1,0 +1,114 @@
+@import "./global/mixins.less";
+@import "./global/variables.less";
+
+#ph-testimonials-cont,
+#ph-testimonials--full-text-cont {
+    .o-cards-carousel {
+        @media @sm-down {
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        margin: 0;
+        padding: 0;
+    }
+}
+
+#ph-testimonials,
+#ph-testimonials--full-text {
+    padding-bottom: 35px;
+    .container-size();
+    margin: auto;
+
+    .a-tile {
+        --tiles-border-top:@color-white;
+        --tiles-bg-color: @color-text-body;
+
+        padding: 8px 0;
+        margin: 0;
+		box-shadow: 0px 10px 25px rgba(0,0,0,0.1) !important;
+
+        &__link {
+            --tiles-bg-hover:none;
+            --tiles-border-top-hover:none;
+            --tiles-bg-hover-color:none;
+
+            padding: 30px 20px 28px;    
+            display: flex;
+   			flex-flow: column nowrap;
+            box-shadow: none;
+
+            @media @sm-up {
+                padding: 30px 20px 28px;
+            }
+        }
+
+        &__title {
+            margin-bottom: 20px;
+
+            &-text {
+                margin-bottom: 0px;
+                display: -webkit-box;
+                -webkit-line-clamp: 6;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+
+                p {
+                    margin-bottom:0px;
+                }
+
+                &:before {
+                    position: relative;
+                    content: "\e9ab";
+                    font-family: @icon-font-family !important;
+                    width: 40px;
+                    height: 25px;
+                    font-size: @font-size-40;
+                    display: block;
+                    margin-bottom: 20px;
+                    padding-left: 2px;
+                }
+            }
+        }
+
+        &__para {
+            margin-top: auto;
+
+            p {
+                margin-bottom: 0px;
+            }
+
+            span {
+                display:flex;
+                gap: 8px;
+                align-items: center;
+                margin: 0;
+            }
+
+            img {
+                border-radius: 50%;
+                border: 1px solid #6D6E85;
+                width: 50px;
+            }
+        }
+    }
+
+    .slick-slide {
+		padding-bottom: 38px;
+    }
+
+    .slick-slider,
+    .slick-track {
+        padding-bottom: 0;
+    }
+
+    .slick-dots {
+        bottom: -15px;
+    }
+}
+
+#ph-testimonials--full-text .a-tile {
+    &__title-text {
+     	-webkit-line-clamp: initial !important;
+    }
+}

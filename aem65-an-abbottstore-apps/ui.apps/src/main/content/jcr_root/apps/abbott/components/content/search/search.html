@@ -1,0 +1,17 @@
+<input
+  type="hidden"
+  id="search-page-aem-inputs"
+  data-query="${request.parameterMap.q}"
+  data-plp-name="${currentPage.title}"
+  data-category-id="${pageProperties.id}"
+  data-label-addtocart="${currentStyle.addToCartLabel}"
+  data-label-shoppingoptions="${currentStyle.shoppingOptionsLabel}"
+  data-label-relatedsearchterms="${currentStyle.relatedSearchTermsLabel}"
+  data-search-filter-mobile-icon="${currentStyle.searchFilterMobIcon}"
+/>
+
+<sly data-sly-use.templates="abbott/components/content/templates.html" /> 
+	<sly data-sly-test.isaddtocart="${currentStyle.addToCartLabel}"/>
+<sly data-sly-call="${templates.placeholder @ isEmpty= !isaddtocart}"></sly>
+<h1 class="d-none">${currentPage.title}</h1>
+<section class="search-page" id="search-page__comp"></section>

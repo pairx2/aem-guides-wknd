@@ -1,0 +1,15 @@
+<div class="adc-list col-lg py-0">
+    <div class="adc-list__content adc-link-list">
+        <div class="adc-link-list__title d-flex justify-content-between align-items-center ">
+            <span class="my-2">${properties.title}</span>
+            <em class="adc-link-list__icon mt-2 mr-1 d-block d-lg-none"></em>
+        </div>
+        <ul data-sly-use.list="com.adobe.cq.wcm.core.components.models.List" data-sly-list.item="${list.listItems}"
+            data-sly-use.template="core/wcm/components/commons/v1/templates.html" data-sly-use.itemTemplate="item.html"
+            data-sly-test.itemType="${properties.itemType ? properties.itemType : 'item'}" class="cmp-list adc-link-list__links list-inline mt-1">
+
+            <li class="cmp-list__item" data-sly-call="${itemTemplate[itemType] @ list = list, item = item}"></li>
+        </ul>
+        <sly data-sly-call="${template.placeholder @ isEmpty=list.listItems.size == 0, classAppend='cmp-list'}"></sly>
+    </div>
+</div>

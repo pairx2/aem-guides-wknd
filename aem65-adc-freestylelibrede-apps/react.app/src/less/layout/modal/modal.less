@@ -1,0 +1,74 @@
+
+
+.adc-modal {
+    z-index: 1010;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+	max-width: 950px;
+	max-height: calc(100% - 50px);
+    overflow: auto;
+    background-color: white;
+    padding: 25px 40px;
+    border-radius: 10px;
+    display: flex;
+	flex-direction: column;
+	letter-spacing: 1.5px;
+	font-weight: 600;
+	&--large{
+		max-width: 920px;
+		width: 70%;
+		@media @max-tab {
+			width: 80%;
+		}
+	}
+	&--medium{
+		width: 80%;
+	}
+	&--small{
+		width: 90%;
+	}
+	&__header {
+		border-bottom: 1px lightgrey solid;
+		padding-bottom: 1.5rem;
+		color: @color-fsl-blue;
+		font-weight: @weight-bold;
+		letter-spacing: 1.5px;
+		.font-size-rems(20);
+		line-height: 28px;
+	}
+	&__close-icon{
+		border: none;
+		display: inline-block;
+		padding: 8px 16px;
+		vertical-align: middle;
+		overflow: hidden;
+		text-decoration: none;
+		color: inherit;
+		background-color: inherit;
+		text-align: center;
+		cursor: pointer;
+		white-space: nowrap;
+		position:absolute;
+		top:22px;
+		right:22px;
+	}
+
+	&-overlay {
+		z-index: 1007;
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: black;
+		opacity: 0.6;
+	}
+}
+
+.has-overlay-popup {
+	.adc-modal, .adc-modal-overlay {
+		opacity: 0;
+	}
+}

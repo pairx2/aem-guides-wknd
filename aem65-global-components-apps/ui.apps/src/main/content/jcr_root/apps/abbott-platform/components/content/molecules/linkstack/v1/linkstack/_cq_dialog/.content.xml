@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Link Stack"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                maximized="{Boolean}true">
+                <items jcr:primaryType="nt:unstructured">
+                    <properties
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Properties"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <linkstacktype
+                                                granite:class="cq-dialog-dropdown-showhide"
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                fieldDescription="Please select&#xa;Link stack or&#xa;Site Select"
+                                                fieldLabel="Link Stack Type"
+                                                name="./linkStackType">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <option1
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="Simple Link Stack"
+                                                        value="linkstack"/>
+                                                    <option2
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="Site Select"
+                                                        value="siteselect"/>
+                                                </items>
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    cq-dialog-dropdown-showhide-target=".stacktype-showhide-target"/>
+                                            </linkstacktype>
+                                            <linkstack
+                                                granite:class="hide stacktype-showhide-target"
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:orderBefore="id"
+                                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <stack-title
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                        fieldDescription="Title"
+                                                        fieldLabel="Title"
+                                                        name="./stackTitle"/>
+                                                    <stack-link
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                        fieldDescription="Destination Link for Link Stack"
+                                                        fieldLabel="Destination Link"
+                                                        name="./stackLink"
+                                                        rootPath="/content"/>
+                                                    <action
+                                                        granite:class="cq-dialog-dropdown-showhide"
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:orderBefore="id"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                        fieldDescription="Please choose target type"
+                                                        fieldLabel="Action"
+                                                        id="action"
+                                                        name="./action"
+                                                        text="Action">
+                                                        <items jcr:primaryType="nt:unstructured">
+                                                            <self
+                                                                jcr:primaryType="nt:unstructured"
+                                                                text="Open link in same tab"
+                                                                value="_self"/>
+                                                            <blank
+                                                                jcr:primaryType="nt:unstructured"
+                                                                text="Open link in new tab"
+                                                                value="_blank"/>
+                                                        </items>
+                                                    </action>
+                                                    <external-link
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                        name="./stackExternal"
+                                                        text="Is this an External Link?"
+                                                        uncheckedValue="false"
+                                                        value="{Boolean}true"/>
+                                                    <external-link-popup
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                        checked="{Boolean}true"
+                                                        fieldDescription="Show redirect confirmation popup for External Link."
+                                                        name="./redirectConfirm"
+                                                        text="Confirm redirect popup"
+                                                        uncheckedValue="false"
+                                                        value="{Boolean}true"/>
+                                                    <links
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                                        composite="{Boolean}true"
+                                                        fieldDescription="Add the links to be listed in the stack"
+                                                        fieldLabel="Links">
+                                                        <field
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                                                            name="./links">
+                                                            <layout
+                                                                jcr:primaryType="nt:unstructured"
+                                                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                                                margin="{Boolean}false"/>
+                                                            <items jcr:primaryType="nt:unstructured">
+                                                                <link-text
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                    fieldDescription="Enter the text"
+                                                                    fieldLabel="Link Text"
+                                                                    name="./text"/>
+                                                                <destination-url
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                                    fieldDescription="Enter the destination URL of the link"
+                                                                    fieldLabel="Destination URL"
+                                                                    name="./link"
+                                                                    rootPath="/content"/>
+                                                                <action
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                                    fieldLabel="Action"
+                                                                    name="./action">
+                                                                    <items jcr:primaryType="nt:unstructured">
+                                                                        <option1
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            text="Open link in new tab"
+                                                                            value="_blank"/>
+                                                                        <option2
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            text="Open link in same tab"
+                                                                            value="_self"/>
+                                                                        <option3
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            text="Open link in Parent Frame"
+                                                                            value="_parent"/>
+                                                                        <option4
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            text="Open link in full window body"
+                                                                            value="_top"/>
+                                                                    </items>
+                                                                </action>
+                                                                <external-link
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                                    name="./external"
+                                                                    text="Is this an External Link?"
+                                                                    uncheckedValue="false"
+                                                                    value="{Boolean}true"/>
+                                                            </items>
+                                                        </field>
+                                                    </links>
+                                                </items>
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    showhidetargetvalue="linkstack"/>
+                                            </linkstack>
+                                            <siteselect
+                                                granite:class="hide stacktype-showhide-target"
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:orderBefore="id"
+                                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    showhidetargetvalue="siteselect"/>
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <site-list-default
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                        fieldDescription="Please enter&#xa;site list default&#xa;text&#xa;"
+                                                        fieldLabel="Site List Default"
+                                                        name="./siteListDefault"/>
+                                                    <site-list-title
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                        fieldDescription="Please enter&#xa;title text"
+                                                        fieldLabel="Site List Title"
+                                                        name="./siteListTitle"/>
+                                                    <sites
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                                        composite="{Boolean}true"
+                                                        fieldDescription="Add Site Links"
+                                                        fieldLabel="Sites">
+                                                        <field
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                                                            name="./sites">
+                                                            <layout
+                                                                jcr:primaryType="nt:unstructured"
+                                                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                                                margin="{Boolean}false"/>
+                                                            <items jcr:primaryType="nt:unstructured">
+                                                                <site-name
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                    fieldDescription="Enter the Site Name"
+                                                                    fieldLabel="Site Name"
+                                                                    name="./text"/>
+                                                                <site-url
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                                    fieldDescription="Enter the destination URL of the site name"
+                                                                    fieldLabel="Site URL"
+                                                                    name="./link"
+                                                                    rootPath="/content"/>
+                                                                <external-link
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                                    name="./external"
+                                                                    text="Is this an External Link?"
+                                                                    uncheckedValue="false"
+                                                                    value="{Boolean}true"/>
+                                                                <action
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                                        name="./action"
+                                                                        text="Open link in same tab"
+                                                                        uncheckedValue="false"
+                                                                        value="{Boolean}true"/>
+                                                                <action_x0040_TypeHint
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
+                                                                        name="./action@TypeHint"
+                                                                        value="Boolean"/>
+                                                            </items>
+                                                        </field>
+                                                    </sites>
+                                                </items>
+                                            </siteselect>
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </properties>
+                    <metadata
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Metadata"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <aria-describedby
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldDescription="ID for header and aria-describedby for links"
+                                                fieldLabel="Link aria-describedby"
+                                                name="./ariaDescribedBy"/>
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </metadata>
+                    <configItem
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="ID/Class Config"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <configTab
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="/libs/granite/ui/components/coral/foundation/include"
+                                                path="/apps/abbott-platform/components/core/customconfig/v1/customconfig/cq:dialog/content/items/tabs/items/configItem/items/columns/items/column"/>
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </configItem>
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>

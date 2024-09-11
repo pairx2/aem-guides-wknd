@@ -1,0 +1,46 @@
+<div class="cmp-rx-checkout-next-steps"
+	data-sly-use.template="core/wcm/components/commons/v1/templates.html"
+	data-sly-use.rxNextStepsModel="com.abbott.aem.adc.freestylelibrede.models.RxNextStepsModel"
+	data-sly-test="${wcmmode.edit}"
+	data-sly-unwrap="${rxNextStepsModel.importantHeading}"></div>
+<sly data-sly-call="${template.placeholder @ isEmpty=true}"></sly>
+<div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col-12 col-lg-9">
+                <div class="adc-rx-checkout-nextstep rounded">
+					 <div data-sly-test="${!rxNextStepsModel.enableAssistanceWizard}" class="adc-nextstep-manual pt-4">
+                        <h3 class="adc-title adc-title--white  text-center">${rxNextStepsModel.nextStepsHeading}</h3>
+                        <h6 class="adc-title adc-title--white text-center pb-2">${rxNextStepsModel.description}</h6>
+						<sly data-sly-list.item="${rxNextStepsModel.nextSteps}">
+                            <div class="adc-nextstep-manual__block d-flex align-items-center py-5">
+                                <div class="w-75 pr-3">
+                                    <h5 class="adc-title adc-title--white">${item.stepHeading}</h5>
+                                    <p class="pt-1 mb-0">
+                                        ${item.stepDescription}
+                                    </p>
+                                </div>
+                                <div class="ml-auto text-right">
+                                    <em class="adc-icon adc-icon--xxl adc-icon--${item.stepIcon}"></em>
+                                </div>
+                            </div>
+                        </sly>
+                    </div>
+					</sly>
+                    <div data-sly-test="${rxNextStepsModel.enableAssistanceWizard}"  class="adc-nextstep-assistant py-4">
+                        <h5 class="adc-title adc-title--white text-center text-md-left">${rxNextStepsModel.importantHeading}</h5>
+                        <div class="row">
+                            <div class="col-12 col-md-6 text-center text-md-left">
+                                <p>${rxNextStepsModel.message}
+                                </p>
+                            </div>
+                            <div class="col-12 col-md-6">
+								<div class="text-center"><em class="adc-icon adc-icon--xxl adc-icon--${rxNextStepsModel.icon} text"></em></div>
+							<a href="${rxNextStepsModel.downloadAssetPath}" class="adc-button-primary large white white--arrow-down-blue button-block text-center  px-0">${rxNextStepsModel.downloadCtaText}</a>
+                            </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>

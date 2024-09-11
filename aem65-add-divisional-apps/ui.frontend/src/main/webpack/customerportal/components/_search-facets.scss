@@ -1,0 +1,129 @@
+.custom-search {
+  .search-facets {
+
+    margin-right: 24px;
+    min-width: 250px;
+    flex: 1;
+
+    .hide-show {
+      display: block;
+    }
+
+    .accordion_button {
+      display: flex;
+      justify-content: space-between;
+      margin-right: 15px;
+      border-bottom: 1px solid var(--charcoal-25-color);
+      margin-bottom: 10px;
+
+      .heading {
+        color: var(--primary-110-color);
+        font-family: var(--heading-4-font-family);
+        font-weight: var(--heading-5-font-weight);
+        font-size: var(--heading-6-font-size);
+        letter-spacing: var(--heading-4-letter-spacing);
+        margin-bottom: 5px;
+      }
+
+      .control {
+        color: var(--primary-110-color);
+        font-size: 30px;
+      }
+    }
+
+    .items {
+      display: flex;
+      flex-direction: column;
+    }
+
+
+    @include media-breakpoint-up(md) {
+      .search-facets__accordion {
+        > .accordion_button {
+          display: none;
+        }
+
+        > .items_wrapper {
+          display: block !important;
+        }
+      }
+    }
+
+    @include media-breakpoint-down(md) {
+      margin-left: 0;
+      margin-right: 0;
+
+      .items_wrapper {
+        height: auto;
+        overflow: visible;
+      }
+
+      .search-facets__accordion {
+        .accordion_button {
+          border-bottom: none;
+          margin-right: 0;
+        }
+      }
+
+      .search-facet__accordion {
+
+        .heading {
+          font-size: var(--heading-6-font-size) !important;
+          color: var(--charcoal-75-color) !important;
+        }
+
+        .accordion_button {
+          border-bottom: none;
+          margin-right: 15px;
+        }
+
+        .a-checkbox {
+          background-color: var(--gray-lighter-color);
+          color: var(--gray-dark-color);
+          border-radius: 25px;
+          font-family: var(--heading-4-font-family);
+          padding: 5px 15px;
+          margin: 0 10px 10px 0;
+          display: inline-block;
+
+          label {
+            margin: 0;
+          }
+
+          &.checked {
+            background-color: var(--primary-25-color);
+
+            .a-checkbox__text {
+              color: var(--primary-color);
+            }
+
+          }
+
+          &__text {
+            padding-left: 0px;
+            color: var(--gray-darkest-color);
+          }
+
+          &__custom {
+            display: none;
+          }
+        }
+
+        .control {
+          display: none;
+        }
+
+        .items {
+          display: block;
+        }
+      }
+    }
+  }
+  .facets-top {
+    .search-facets {
+      .hide-show {
+        width: 100%;
+      }
+    }
+  }
+}

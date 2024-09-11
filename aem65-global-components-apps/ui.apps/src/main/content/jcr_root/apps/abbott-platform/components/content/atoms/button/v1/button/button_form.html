@@ -1,0 +1,11 @@
+<sly data-sly-use.button="com.abbott.aem.platform.common.components.models.Button" />
+<sly data-sly-use.customConfig="com.abbott.aem.platform.common.components.models.CustomConfig" />
+<button id="${button.id}" aria-label="${button.accessibilityLabel}" title="${button.accessibilityLabel}" data-cmp-clickable="${button.data ? true : false}" data-cmp-data-layer="${button.data.json}" type="${button.formButtonType}" name="${button.buttonName}" class="btn ${customConfig.className}" data-sly-attribute.disabled="${button.disabledButton}">
+	<sly data-sly-test="${button.hideButtonText}">
+	<em data-sly-test="${button.icon}" class="${button.icon} abt-icon-only" aria-hidden="true"></em>
+	</sly>
+	<sly data-sly-test="${!button.hideButtonText}">
+	<em data-sly-test="${button.icon}" class="${button.icon}" aria-hidden="true"></em>
+    <span>${button.text @context='html'}</span>
+	</sly>
+</button>

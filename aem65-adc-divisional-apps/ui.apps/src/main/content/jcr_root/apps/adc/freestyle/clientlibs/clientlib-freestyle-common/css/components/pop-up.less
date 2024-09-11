@@ -1,0 +1,53 @@
+@import '../mixin.less';
+@import '../media-queries.less';
+@import '../variables.less';
+
+/**
+ * POPUP
+**/
+.generic-modal {
+    @self: generic-modal;
+    &.@{self}--image {
+        .a-logo-comp.@{self}__image {
+            margin: 0;
+        }
+    }
+
+    .@{self}__content-footer.modal-footer {
+        @media @md-down {
+            flex-direction: column;
+
+            .a-button {
+                margin: 0 0 1.5rem 0;
+
+                &:only-child,
+                &:last-child {
+                    margin: 0;
+                }
+            }
+        }
+    }
+
+    .o-promo {
+        &__wrapper {
+            @media @lg-up {
+                display: flex;
+            }
+        }
+        &__btn {
+            @media @lg-up {
+                &:only-child {
+                    padding: 0 1rem;
+                }
+                &:first-child:not(:only-child) {
+                    padding-right: 1rem;
+                    padding-left: 0;
+                }
+                &:last-child:not(:only-child) {
+                    padding-right: 0;
+                    padding-left: 1rem;
+                }
+            }
+        }
+    }
+}

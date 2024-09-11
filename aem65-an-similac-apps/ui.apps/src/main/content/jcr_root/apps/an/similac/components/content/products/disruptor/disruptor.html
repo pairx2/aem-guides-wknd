@@ -1,0 +1,71 @@
+<sly data-sly-use.templates="an/similac/components/content/templates.html"/>
+
+<div  class="cq-placeholder section" data-emptytext="Configure Disruptor Component in EDIT Mode" data-sly-test.author="${(wcmmode.edit || wcmmode.design)}"></div>
+
+<div data-sly-use.listData="${'com.abbott.aem.an.similac.core.models.MultiFieldReaderModel'}">
+<sly data-sly-use.disruptor="${'com.abbott.aem.an.similac.core.models.DisruptorModel'}" />
+ <sly data-sly-use.analyticsConfig="${'com.abbott.aem.an.similac.core.models.AnalyticsConfigModel' @ pageName=currentPage.name, sectionTitle = 'sign up for similac strongmoms', linkName=disruptor.ctaLabel}" />
+<sly data-sly-test.eventCategory="${properties.eventCategory ? properties.eventCategory : 'sign-up'}"/>
+<sly data-sly-test.eventAction="${properties.eventAction ? properties.eventAction : 'click'}" />
+<sly data-sly-test.eventLabel="${properties.eventLabel ?  properties.eventLabel : analyticsConfig.eventLabel}" />
+<sly data-sly-test.gtmValue="${'{0}{1}{2}{3}{4}' @ format=[eventCategory, '|',eventAction,'|',eventLabel]}" />
+
+<div class="${properties.variation=='hcp-offer' ? 'hcp-drawer-wrapper':'drawer-wrapper'}" data-login='false'>
+<sly data-sly-use.analyticsConfig="${'com.abbott.aem.an.similac.core.models.AnalyticsConfigModel' @ pageName=currentPage.name, sectionTitle='join similac strongmoms', linkName='collapse'}" />
+   <a class="${properties.variation=='hcp-offer'? 'hcp-drawer-title-wrapper':'drawer-title-wrapper'} collapsed text-center" data-toggle="collapse" data-gtm="accordion|click|${analyticsConfig.eventLabel @context='attribute'}" href="#${properties.variation=='hcp-offer'?'hcpDistruptorContent':'distruptorContent'}" role="button" aria-expanded="false" aria-controls="${properties.variation=='hcp-offer'?'hcpDistruptorContent':'distruptorContent'}">
+      <div class="container ${properties.variation=='hcp-offer'?'hcp-drawer-title':'drawer-title'}">
+         ${disruptor.drawerText @ context='html'} <span class="sim-icons plus-icon" data-icon="add-white"></span><span class="sim-icons minus-icon" data-icon="minus-white"></span> 
+         </div>
+   </a>
+   <div class="collapse ${properties.variation=='hcp-offer'?'hcp-drawer-content':'drawer-content'}" id="${properties.variation=='hcp-offer'?'hcpDistruptorContent':'distruptorContent'}">
+       <div class="${properties.variation != 'offers' ? 'disruptor-wrapper' : 'disruptor-wrapper offer-wrapper'}">
+        <div class="container ${properties.className}"> 
+         <div class="row justify-content-center">
+            <div class="${properties.variation == 'offers' ? 'col-12 col-xl-8' : 'col-12'}">
+               <p class="${properties.variation != 'offers' ? 'disruptor-title text-center' : 'disruptor-title'}"> ${disruptor.disruptorTitle @ context='html'}</p>
+            </div>
+			<sly data-sly-test ="${properties.variation == 'product' || properties.variation == null}">
+			   <div class="col-12 col-md-6 col-xl-5 text-center disruptor-image">
+				  <picture>
+					 <source media="(max-width: 575.98px)" srcset="${disruptor.imagePathMob @ context='uri'}">
+					 <source media="(max-width: 991.98px)" srcset="${disruptor.imagePathTab @ context='uri'}">
+					 <img class="img-fluid" src="${disruptor.imagePath @ context='uri'}" alt="${disruptor.altText || pageProperties.jcr:title }" data-sly-test="${disruptor.imagePath @ context='uri'}">
+				  </picture>
+			   </div>
+			   <div class="col-12 col-md-6 col-xl-5 disruptor-content">
+				  <ul class="list-wrapper">
+					 <sly data-sly-repeat.list="${listData.links.listChildren}">
+						<li class="list-item">
+						   <span class="sim-icons" data-icon="check-circle-fill"></span>
+						   <span class="list-text"> ${list.listText @ context='html'}</span>
+						</li>
+					 </sly>
+				  </ul>
+				  <a href="${disruptor.ctaURL}"  data-gtm ="${gtmValue @context='attribute'}" class="btn btn-primary">${disruptor.ctaLabel}</a>
+				  <p class="note">${disruptor.termsText @ context='html'}</p>
+			   </div>
+			</sly>
+			<sly data-sly-test ="${properties.variation == 'offers'|| properties.variation == 'hcp-offer'}">
+			   <div class="col-12 ${properties.variation == 'offers' ? 'col-xl-3' : 'col-xl-5'} text-center disruptor-image">
+				  <picture>
+					 <source media="(max-width: 575.98px)" srcset="${disruptor.imagePathMob @ context='uri'}">
+					 <source media="(max-width: 991.98px)" srcset="${disruptor.imagePathTab @ context='uri'}">
+					 <img class="img-fluid" src="${disruptor.imagePath @ context='uri'}" alt="${disruptor.altText || pageProperties.jcr:title }" data-sly-test="${disruptor.imagePath @ context='uri'}">
+				  </picture>
+			   </div>
+			   <div class="col-12 ${properties.variation == 'offers' ? 'col-xl-8' : 'col-xl-5'} disruptor-content">
+				  <sly data-sly-repeat.list="${listData.links.listChildren}">
+					<p class="note"> ${list.listText @ context='html'}</p>
+				  </sly>
+				  <sly data-sly-test ="${disruptor.ctaLabel}">
+					 <a href="${disruptor.ctaURL}"  data-gtm ="${gtmValue @context='attribute'}" class="btn btn-primary">${disruptor.ctaLabel}</a>
+				  </sly>
+				  <p class="note" data-sly-test="${disruptor.termsText}">${disruptor.termsText @ context='html'}</p>
+			   </div>
+			</sly>
+         </div>
+         </div>
+		 </div>
+      </div>
+   </div>
+</div>

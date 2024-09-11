@@ -1,0 +1,105 @@
+.generic-modal {
+    $self:&;
+
+    border-radius: var(--modal-border-radius);
+    box-shadow: var(--modal-box-shadow);
+
+    &__header {
+        &,
+        &.modal-header {
+            padding: 0;
+            border: none;
+        }
+    }
+
+    &--close {
+        @include setPosition(absolute, top 16px right 16px);
+        color: var(--modal-close-icon-color);
+        z-index: 1;
+        cursor: pointer;
+    }
+
+    &__content {
+        box-shadow: var(--modal-box-shadow);
+
+        &-body {
+            &,
+            &.modal-body {
+                @include rem(padding, var(--modal-body-padding-y) var(--modal-body-padding-x) 0 var(--modal-body-padding-x));
+                border: none;
+            }
+
+            .abt-icon {
+                display: flex;
+                flex-direction: column;
+                float: left;
+                @include rem(margin-right, var(--modal-body-margin-x));
+            }
+
+            .a-title {
+                display: flex;
+                flex-direction: column;
+            }
+
+            p {
+                @include copy(var(--modal-para-font-size), var(--modal-para-line-height), var(--modal-para-color));
+                padding-top: 8px;
+            }
+
+            // to overwrite container classes changes inside modal body
+
+            .a-container , .container , .xf-content-height, .m-layout-container {
+                margin: 0;
+                padding: 0;
+            }
+
+             // TO handle section-info component in experience fragments
+
+            .section-info {
+                // @include rem(padding, var(--modal-body-padding-x) var(--modal-body-padding-x) var(--modal-body-padding-y)y var(--modal-body-padding-x));
+                padding: 0;
+            }
+        }
+
+        &-footer {
+            @include rem(padding, var(--modal-footer-padding-y) var(--modal-footer-padding-x));
+
+            &,
+            &.modal-footer {
+                border: none;
+            }
+
+            .a-btn--link,
+            .a-button {
+                @include rem(margin, 0 0 0 var(--modal-body-margin-xx));
+            }
+        }
+    }
+
+    &__text {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__image {
+        &-link {
+            width: 100%;
+            position: relative;
+            border-radius: var(--modal-border-radius) var(--modal-border-radius) 0 0;
+        }
+    }
+
+    &--image {
+
+        #{$self}__image {
+            position: relative;
+            margin: var(--modal-image-margin);
+        }
+
+    }
+
+}
+
+.modal-backdrop+.modal-backdrop {
+  opacity : 0;
+}

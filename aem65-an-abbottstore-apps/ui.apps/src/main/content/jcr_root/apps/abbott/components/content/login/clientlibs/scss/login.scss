@@ -1,0 +1,294 @@
+@import "../../../../../clientlibs/clientlib-base/scss/base/functions";
+@import "../../../../../clientlibs/clientlib-base/scss/base/variables";
+@import "../../../../../clientlibs/clientlib-base/scss/base/mixins";
+
+.login {
+    &__popup-trigger {
+        &.active em {
+            display: inline-block;
+            transform: rotateX(180deg);
+            transition: transform 0.3s ease;
+        }
+    }
+
+    &-modal {
+        background: $white;
+        border: 1px solid $whisper;
+        right: 0;
+        padding: 20px;
+        top: 30px;
+        width: 300px;
+
+        .form-control {
+            border: 1px solid $regal-blue;
+            border-radius: 0;
+
+            &::placeholder {
+                font-style: italic;
+                color: $silver-sand;
+            }
+
+            &.is-invalid {
+                border-color: $monza;
+                color: $monza;
+            }
+
+            &.is-valid,
+            &.is-invalid {
+                background-image: none;
+                padding-right: .75rem;
+            }
+        }
+
+        .form-text {
+            color: $monza !important;
+            text-align: left;
+            text-transform: initial;
+        }
+
+        &__btn {
+            background: $blue;
+            border: none;
+            color: $white;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 700;
+            font-family: $fonts-poppins;
+            margin: 0;
+            padding: 10px;
+            text-transform: uppercase;
+            transition: background-color 0.4s ease;
+
+            &:hover {
+                background: $regal-blue;
+            }
+
+            &:disabled {
+                opacity: 0.7;
+            }
+        }
+
+        &__link {
+            color: $blue;
+            font-size: 14px;
+            font-family: $font-brandon-text-bold;
+
+            &:hover {
+                color: $blue;
+                text-decoration: none;
+            }
+        }
+    }
+}
+
+.similac-header {
+    .login {
+        &__popup-trigger {
+            em {
+                margin-left: 3px;
+                position: relative;
+                top: 3px;
+            }
+        }
+
+        &-modal {
+            @media (max-width: 767px) {
+                left: 0;
+                top: 60px;
+            }
+
+            form {
+                background: $willow-brook;
+                padding: 1.25rem;
+            }
+
+            .form-control {
+                border-color: lighten($shuttle-gray, 20%);
+                color: $shuttle-gray;
+                font-size: 11px;
+
+                &:focus {
+                    box-shadow: 0 1px 3px $gainsboro;
+                }
+
+            }
+
+            .form-text {
+                font: .75rem $font-brandon-text-regular;
+            }
+
+            &__btn {
+                background: $sea-buckthorn;
+                border: 1px solid $sea-buckthorn;
+                border-radius: 3px;
+                font-size: 0.75rem;
+                font-weight: 500;
+
+                &:hover {
+                    background: $white;
+                    color: $sea-buckthorn;
+                }
+            }
+
+            &__link {
+                color: lighten($gray52, 5%);
+                font-family: $font-brandon-text-regular;
+                font-size: 12px;
+                text-transform: initial;
+                text-decoration: underline;
+
+                &:hover {
+                    color: $atlantis;
+                    text-decoration: underline;
+                }
+            }
+        }
+
+        .abbott-greet {
+            color: $dark-regal-blue;
+            cursor: pointer;
+            display: inline-block;
+            font-family: $font-brandon-text-bold;
+            font-size: 16px;
+            text-transform: uppercase;
+            white-space: nowrap;
+
+            &:after {
+                background: $dark-regal-blue;
+                content: '';
+                display: inline-block;
+                height: 24px;
+                margin: 0 28px;
+                vertical-align: middle;
+                width: 1px;
+
+                @include media-breakpoint-down(sm) {
+                    height: 0;
+                    margin: 0;
+                    width: 0;
+                }
+            }
+
+            @media (max-width: 767px) {
+                display: none;
+            }
+        }
+
+        @media (max-width: 767px) {
+
+            #account-link {
+                background: #fff;
+                border-radius: 50%;
+                float: right;
+                font-size: 0;
+                height: 48px;
+                width: 48px;
+
+                &:after {
+                    color: $bay-of-many;
+                    content: '\e902';
+                    font-family: 'ai' !important, 'Trebuchet MS', Arial, sans-serif;
+                    font-size: 29px;
+                    left: 10px;
+                    position: relative;
+                    top: 2px;
+                }
+            }
+        }
+    }
+}
+
+.glucerna-header {
+    .login {
+        &__popup-trigger {
+            em {
+                margin-left: 3px;
+                position: relative;
+                top: 2px;
+            }
+        }
+
+        &-modal {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 0 8px rgba($gray-700, 40%);
+            z-index: 1;
+
+            form {
+                padding-top: 1rem;
+
+                &:before {
+                    color: $blue;
+                    content: 'Member Login';
+                    display: block;
+                    font: 1.25rem $font-brandon-text-bold;
+                    position: relative;
+                    top: -1rem;
+                }
+            }
+
+            .form-control {
+                border: 3px solid $biscay;
+                border-radius: 10px;
+                color: $shuttle-gray;
+                font-size: 11px;
+                height: auto;
+                padding: 1rem;
+            }
+
+            .form-text {
+                font: .75rem $font-brandon-text-regular;
+            }
+
+            &__btn {
+                background: $dark-orange;
+                border-radius: 10px;
+                padding: 1rem;
+
+                &:hover {
+                    border: none;
+                    background-color: $deep-cerulean;
+                }
+            }
+
+            &__link {
+                color: $blue !important;
+                font-family: $font-brandon-text-regular;
+                font-size: 12px !important;
+                text-transform: initial;
+                text-decoration: underline;
+            }
+        }
+
+        .abbott-greet {
+            color: $biscay;
+            cursor: pointer;
+            font-family: $font-brandon-text-bold;
+            font-size: 17.5px;
+            white-space: nowrap;
+        }
+
+        @media (max-width: 767px) {
+
+            #account-link {
+                background: $pale-blue;
+                border-radius: 50%;
+                display: block;
+                height: 35px;
+                margin-left: 10px;
+                width: 35px;
+
+                &:after {
+                    color: $summer-sky;
+                    content: '\e901';
+                    font-family: 'ai' !important, 'Trebuchet MS', Arial, sans-serif;
+                    font-size: 27px;
+                    position: relative;
+                    top: 10px;
+                }
+
+            }
+
+        }
+    }
+}

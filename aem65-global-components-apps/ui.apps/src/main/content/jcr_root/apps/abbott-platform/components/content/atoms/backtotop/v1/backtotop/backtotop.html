@@ -1,0 +1,26 @@
+<sly data-sly-use.backToTop="com.abbott.aem.platform.common.components.models.BackToTop"
+     data-sly-use.customConfig="com.abbott.aem.platform.common.components.models.CustomConfig"
+     data-sly-use.component="com.adobe.cq.wcm.core.components.models.Component"/>
+<sly data-sly-test.buttonType="${backToTop.buttonType}"/>
+
+<div
+        id="${component.id}"
+        class="a-backtotop ${wcmmode.edit ? 'show': ''} ${customConfig.className}" 
+        data-page-longer-then="${backToTop.screenSize}" 
+        data-btn-position="${backToTop.position == 'inheritedTheme' ? 'Default' : backToTop.position }"
+        data-js-component="back-to-top"
+        data-btn-type="${backToTop.buttonType}"
+        data-only-icon-mobile="${backToTop.isIconOnly ? 'true' : 'false'}"
+>
+        <div class="a-backtotop-wrapper  a-button--sm a-button ${buttonType != 'textOnly' ? 'a-button--icon-left' : ''} ">
+                <button class="btn" type="button">
+                        <!--/* textOnly btn */-->
+                        <sly data-sly-test="${buttonType == 'textOnly'}" data-sly-include="textonly-backtotop.html" />
+                        <!--/* icon only btn */-->
+                        <sly data-sly-test="${buttonType == 'iconOnly'}" data-sly-include="icononly-backtotop.html" />
+                        <!--/* text with icon btn */-->
+                        <sly data-sly-test="${buttonType == 'textWithIcon'}" data-sly-include="textwithicon-backtotop.html" />
+                </button>
+
+        </div>
+ </div>

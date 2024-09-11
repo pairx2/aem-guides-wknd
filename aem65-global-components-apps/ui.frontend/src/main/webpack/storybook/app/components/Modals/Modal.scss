@@ -1,0 +1,173 @@
+@import '../../styles/variables';
+
+
+.modal-bg {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    z-index: 1050;
+    background-color: rgba(31, 32, 41, .75);
+    left: 0;
+    top: 0;
+    pointer-events: none;
+    opacity: 0;
+
+    &.visible {
+        pointer-events: auto;
+        animation: show-modal-bg 300ms ease-out forwards;
+    }
+}
+
+@keyframes show-modal-bg {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.visible .modal {
+    position: relative;
+    animation: show-modal 300ms 200ms ease forwards;
+}
+
+@keyframes show-modal {
+    from {
+        opacity: 0;
+        transform: scale(0);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.modal {
+    border-radius: 5px;
+    padding: 1.5rem;
+    max-height: 80rem;
+    height: auto;
+    display: block;
+    width: 30rem;
+    position: static;
+    background-color: #fff;
+    box-shadow: 0 12px 25px 0 rgba(199, 175, 189, .25);
+    opacity:0;
+    will-change: transform;
+
+    &.error {
+        border: 2px solid #f00;
+
+        .modal__heading {
+            color: #f00;
+        }
+    }
+
+    &__heading{
+        font-size: 1.5rem;
+        color: #222731;
+        font-weight: 700;
+        line-height: 1.08;
+        margin-bottom: 16px;
+    }
+    &__close-icon{
+        position: absolute;
+        right: 16px;
+        top: 16px;
+    }
+
+    &__body {
+        font-size: 14px;
+        line-height: 1.42;
+        color: #212121;
+        font-family: $helvetica;
+    }
+
+    &__footer {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 32px;
+
+        *:nth-child(2){
+            margin-left: 16px;
+        }
+    }
+
+    label {
+        font-family: $brandonGrotesque;
+        font-weight: 500;
+        margin: 0;
+        width: 100%;
+    }
+
+    ul {
+        padding-left: 1rem;
+    }
+
+    input {
+        width: 100%;
+        padding: 0 16px;
+        height: 48px;
+        border: 1px solid #7f7f7f;
+        border-radius: 6px;
+        font-family: $helvetica;
+    }
+
+    .help-text {
+        font-size: 12px;
+        line-height: 1.33;
+        margin-top: 4px;
+
+        &.error {
+            color: #f00;
+        }
+    }
+
+    .note {
+        position: relative;
+        padding: 0 40px 0 20px;
+        .mdi {
+            color: #f00;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+    }
+
+    .copied-text {
+        font-size: 12px;
+        font-family: $brandonGrotesque;
+        margin: 5px 0 0;
+        position: absolute;
+        color: #00a85f;
+        font-weight: 700;
+    }
+
+    .modal-sketch-picker {
+        width: 100%!important;
+        box-shadow: none!important;
+        padding:0!important;
+
+        input {
+            height: auto!important;
+            border-radius: 0;
+        }
+
+        > div:first-child{
+            padding-bottom: 45%!important;
+        }
+    }
+}
+
+
+
+
+
+

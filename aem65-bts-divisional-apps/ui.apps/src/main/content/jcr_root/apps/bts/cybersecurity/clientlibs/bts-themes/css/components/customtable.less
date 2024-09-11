@@ -1,0 +1,89 @@
+div.m-custom-table {
+
+    .m-custom-table__header .m-custom-table__additional_headers .m-custom-table_drop-down__filter .options {
+        .a-dropdown__container .a-dropdown__field .a-dropdown__menu li span {
+            word-break: break-word;
+        }
+    }
+
+    // Style option to style table data based on selected-row class for each tr
+    &.m-custom-table__selected-row {
+        .m-custom-table__selected-row--mixin();
+    }
+
+    // Style option to apply background gray color and appropriate paddings
+    &.m-custom-table__bg-color--gray {
+        --customtable-bg-color: @color-light-grey-300;
+        padding: 24px;
+
+        .m-custom-table__content {
+
+            .bottom {
+                --customtable-label-color: @color-grey;
+                background-color: @color-light-grey-300;
+
+                .dataTables_paginate {
+                    background-color: @color-white;
+                }
+            }
+        }
+    }
+
+    // Style option for VSI table
+    &.m-custom-table__vsi {
+        .m-custom-table__selected-row--mixin();
+        .m-custom-table__bg-color--gray();
+
+        .m-custom-table__content .m-custom-table__table {
+            min-width: 100%;
+
+            thead th {
+                min-width: 140px;
+            }
+
+            tbody tr {
+
+                &.latest-row {
+                    background-color: @color-dim-blue;
+                    font-weight: 700;
+                }
+
+                &:hover,
+                &:focus {
+                    background-color: @color-primary-10 !important;
+                    cursor: pointer;
+                    font-weight: 700;
+
+                    td {
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+    }
+
+    // Style option to hide horizontal scrollbar of the table
+    &.m-custom-table__hide-scrollbar {
+        .m-custom-table__content {
+            .screen-above(@screen-md, {
+                    overflow-x: hidden;
+                }
+
+            )
+        }
+    }
+
+    // Style ption to hide the row count dropdown of the table
+    &.m-custom-table__hide--row-count {
+        .m-custom-table__content .bottom .dataTables_length {
+            visibility: hidden;
+        }
+    }
+
+    // Style option to middle align code of each td item based on row height
+    &.m-custom-table__content-align--middle {
+        .m-custom-table__content .m-custom-table__table tbody td {
+            vertical-align: middle;
+        }
+    }
+}

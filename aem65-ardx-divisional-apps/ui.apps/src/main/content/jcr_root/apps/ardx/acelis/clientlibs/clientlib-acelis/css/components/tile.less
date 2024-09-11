@@ -1,0 +1,236 @@
+@import "../global/media-queries.less";
+@import "../global/variables.less";
+
+:root {
+    --tiles-border-radius: 0;
+    --tiles-bg: #009cde;
+    --tiles-box-shadow: none;
+    --tiles-bg-hover: #222731;
+    --tiles-bg-hover-color: #fff;
+    --tiles-bg-color: #fff;
+    --tiles-font-family: @georgias;
+    --tiles-icon-color: #888b8d;
+    --tiles-icon-color-hover: #fff;
+    --tiles-icon-size: 1.25rem;
+    --tiles-para-font-family: @georgias;
+    --tiles-padding: 9px 24px 20px;
+
+}
+
+.m-tile-list {
+    .a-tile {
+        margin: 5px 5px 5px 5px;
+        flex: 0 0 33.33%;
+        max-width: 32.4%;
+
+        @media @lg-down {
+            max-width: 32%;
+            flex: 0 0 32%;
+        }
+
+        @media @md-down {
+            flex: 0 0 100%;
+            max-width: 100%;
+            margin: 0;
+        }
+
+        &__title {
+            &-text {
+                p {
+                    font-size: 1.313rem;
+                    line-height: 27px;
+                    font-family: @brandon-bold;
+                    text-transform: uppercase;
+
+                    @media @md-down {
+                        font-size: 1.125rem;
+                        line-height: 24px;
+                    }
+                }
+            }
+        }
+
+        &__link {
+            display: block;
+
+            &::after {
+                border-top: 0 solid transparent;
+                border-radius: 0;
+            }
+
+            .a-tile__icon {
+                @media @md-down {
+                    position: absolute;
+                    top: 6px;
+                    display: block;
+                    right: 20px;
+                    color: @color-white;
+
+                }
+
+                .abt-icon-right-arrow:before {
+                    @media @md-down {
+                        font-weight: bold;
+                    }
+                }
+            }
+
+            @media @md-down {
+                padding-bottom: 10px;
+                display: block;
+                margin-bottom: 10px;
+            }
+        }
+
+        &__para {
+            color: @color-white;
+            font-size: 1rem;
+            line-height: 1.25em;
+
+            @media @md-down {
+                display: none;
+            }
+        }
+
+    }
+
+}
+
+/*Acelis - New INR Patients*/
+.container-full-width {
+    .a-container__content {
+        .cmp-container {
+            @media @md-down {
+                max-width: 100%;
+            }
+
+            .m-tile-list {
+                .a-tiles--light {
+                    max-width: 32%;
+
+                    @media @lg-down {
+                        max-width: 31%;
+                    }
+
+                    @media @md-down {
+                        max-width: 100%;
+                    }
+
+                    a {
+                        width: 345px;
+                        height: 141px !important;
+                        background-color: @color-crystal-blue;
+
+                        @media @lg-down {
+                            width: 217px;
+                            height: 186px !important;
+                        }
+
+                        @media @md-down {
+                            width: 100%;
+                            height: 100% !important;
+                            margin-bottom: 5%;
+                        }
+
+                        @media @sm-down {
+                            min-height: 70px;
+                        }
+
+                        .a-tile__title {
+                            .a-tile__title-text {
+                                h3 {
+                                    padding: unset;
+                                    font-size: 1.313rem !important;
+                                    line-height: 27px !important;
+                                    font-weight: 300;
+                                    font-family: @brandon-regular;
+
+                                    p:hover {
+                                        color: @color-crystal-blue;
+                                    }
+
+                                    @media @lg-down {
+                                        text-transform: uppercase;
+                                        line-height: 25px !important;
+                                    }
+
+                                    @media @sm-down {
+                                        font-size: 1.125rem !important;
+                                        line-height: 24px !important;
+                                    }
+                                }
+                            }
+                        }
+
+                        .a-tile__para {
+                            color: #222731;
+                            line-height: 1.375em;
+                            margin-bottom: 25px;
+                            word-break: initial;
+
+                            @media @lg-down {
+                                line-height: 1em;
+                            }
+
+                            @media @md-down {
+                                display: block;
+                                margin-bottom: -3%;
+                                margin-top: 0;
+                                padding-top: 15px;
+                            }
+
+                            @media @sm-down {
+                                display: none;
+                            }
+
+                            p:hover {
+                                color: @color-crystal-blue;
+                            }
+                        }
+
+                        &:hover {
+                            color: @color-dark-cerulean;
+                            background-color: @color-charcoal;
+                            transition: 0.5s;
+
+                            h3 {
+                                color: @color-crystal-blue;
+                            }
+
+                            .a-tile__para {
+                                color: @color-crystal-blue;
+
+                                p {
+                                    color: @color-crystal-blue;
+                                }
+                            }
+                        }
+
+                        &::after {
+                            height: 0;
+                            z-index: 0;
+                        }
+
+                        @media @md-down {
+                            .a-tile__icon {
+                                top: 1px;
+                            }
+
+                            .abt-icon {
+                                font-size: 0.8rem;
+                                color: @color-charcoal;
+                                font-weight: 900;
+                            }
+                        }
+
+                        @media @sm-down {
+                            .a-tile__icon {
+                                top: 27px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,105 @@
+.m-accordion {
+	$self: &;
+
+	width: 100%;
+	margin: var(--accordion-margin);
+	display: flex;
+	flex-direction: column;
+
+	@include media-breakpoint-up(lg) {
+		max-width: var(--accordion-lg-max-width);
+	}
+
+	&__options {
+		margin-bottom: var(--accordion-options-margin-bottom);
+		padding-right: var(--accordion-options-padding-right);
+		button,span {			
+			float: right;
+			cursor: pointer;
+			border: 0;
+			background: none;
+		}
+		#{ $self}__collapse-title {
+			display: none;
+
+			&.show {
+				display: block;
+			}
+		}
+		#{ $self}__expand-title {
+			display: none;
+
+			&.show {
+				display: block;
+			}
+		}
+	}
+
+	&__content {
+		&-items {
+			border-top: var(--accordion-content-border);
+			border-collapse: collapse;
+			&:nth-last-child(1) {
+				border-bottom: var(--accordion-content-border);
+			}
+			#{ $self}__header {
+				display: flex;
+				cursor: pointer;
+				#{ $self}__title-wrapper {
+					width: 90%;
+					padding: var(--accordion-title-padding-sm);
+					@include media-breakpoint-up(sm) {
+						padding: var(--accordion-title-padding-lg);
+					}
+					h1,
+					h2,
+					h3,
+					h4,
+					h5,
+					h6 {
+					  font-size: var(--accordion-title-font-size);
+            line-height: var(--accordion-title-line-height);
+            color: var(--accordion-title-color);
+            font-weight: normal;
+						margin-bottom: 0px;
+						@include media-breakpoint-up(sm) {
+              font-size: var(--accordion-title-font-size-sm);
+              line-height: var(--accordion-title-line-height-sm);
+              color: var(--accordion-title-color-sm);
+              font-weight: normal;
+						}
+					}
+				}
+
+				#{ $self}__icon-wrapper {
+					border: none;
+					background: transparent;
+					width: 10%;
+					display: flex;
+					justify-content: left;
+					align-items: center;
+					cursor: pointer;
+					@include media-breakpoint-up(sm) {
+						justify-content: center;
+					}
+
+					.m-accordion-icon {
+						display: none;
+						&.icon-visible {
+							display: inline-block;
+						}
+					}
+				}
+			}
+			#{ $self}__body {
+				padding: var(--accordion-body-padding-sm);
+				@include media-breakpoint-up(sm) {
+					padding: var(--accordion-body-padding-md);
+				}
+				@include media-breakpoint-up(lg) {
+					padding: var(--accordion-body-padding-lg);
+				}
+			}
+		}
+	}
+}

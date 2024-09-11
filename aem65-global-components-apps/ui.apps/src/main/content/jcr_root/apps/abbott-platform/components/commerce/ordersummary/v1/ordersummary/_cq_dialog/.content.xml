@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"  xmlns:granite="http://www.adobe.com/jcr/granite/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Order Summary"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                maximized="{Boolean}true">
+                <items jcr:primaryType="nt:unstructured">
+                    <properties
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Properties"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items 
+                                            jcr:primaryType="nt:unstructured" 
+                                            sling:hideChildren="[miniAddToCartAATracking,miniRemoveCartAATracking]">
+                                            <promoCodeEnabled
+                                                granite:class="cq-dialog-checkbox-showhide"
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                fieldDescription="If checked, promo code is enabled"
+                                                name="./promoCodeEnabled"
+                                                text="Promo Code Enabled"
+                                                uncheckedValue="{Boolean}false"
+                                                value="{Boolean}true">
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    cq-dialog-checkbox-showhide-target=".promocodetext-enable-showhide-target"/>
+                                            </promoCodeEnabled>
+                                            <promoCodeTextContainer
+                                                granite:class="hide promocodetext-enable-showhide-target"
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/container"
+                                                >
+                                             <items jcr:primaryType="nt:unstructured">
+                                            <promoCodeText
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldDescription="Text that displays next to the promo code"
+                                                fieldLabel="Promo Code Text"
+                                                name="./promoCodeText"/>
+                                            <promoCodeSuccessMsg
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:include="/apps/abbott-platform/components/core/text/v1/text"
+                                                sling:resourceType="cq/gui/components/authoring/dialog/richtext"
+                                                fieldDescription="Promo Code Success Message"
+                                                fieldLabel="Promo Code Success Message"
+                                                name="./promoCodeSuccessMsg"
+                                                useFixedInlineToolbar="{Boolean}true"/>
+                                            <promoCodeErrorMsg
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:include="/apps/abbott-platform/components/core/text/v1/text"
+                                                sling:resourceType="cq/gui/components/authoring/dialog/richtext"
+                                                fieldDescription="Promo Code Error Message"
+                                                fieldLabel="Promo Code Error Message"
+                                                name="./promoCodeErrorMsg"
+                                                useFixedInlineToolbar="{Boolean}true"/>
+                                            <promoCodeAATracking
+                                                granite:class="cq-dialog-checkbox-showhide"
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                fieldDescription="If checked, Adobe Analytics DataLayer Tracking will be enabled."
+                                                name="./promoCodeAATracking"
+                                                text="Enable Adobe Analytics Data Layer Tracking for Apply Promo Code"
+                                                uncheckedValue="{Boolean}false"
+                                                value="{Boolean}true"/>
+                                        </items>
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    showhidetargetvalue="true"/>
+                                                </promoCodeTextContainer>
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </properties>
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>

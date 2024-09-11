@@ -1,0 +1,67 @@
+<div class="cmp-cta" 
+	data-sly-use.template="core/wcm/components/commons/v1/templates.html"
+	data-sly-test="${properties.ctaText && properties.ctaURL}"
+    data-sly-unwrap="${wcmmode.edit || wcmmode.preview}">
+</div>
+<sly data-sly-call="${template.placeholder @ isEmpty=true}"></sly>
+<sly data-sly-use.cta="com.abbott.aem.adc.freestylelibrede.models.CTAModel"></sly>
+
+<sly data-sly-test="${cta.imageDownloadButton ==false}">
+	<sly data-sly-test="${cta.ctaModelWindow ==false}">
+	     <sly data-sly-test="${cta.ctaType =='primaryLarge'}">
+			<a href= "${cta.ctaURL @extension='html'}" target="${cta.ctaAction}" class="adc-button adc-button-primary uppercase block mb-2 no-margin button-bg-none full-width text-center  m-0 ${cta.ctaColorPrimaryLarge}">${cta.ctaText}</a>
+	     </sly>
+	     <sly data-sly-test="${cta.ctaType =='primarySmall'}">
+			<a href= "${cta.ctaURL @extension='html'}" target="${cta.ctaAction}" class="adc-button adc-button-primary uppercase block mb-2 no-margin button-bg-none text-center  m-0 small px-0 position-relative ${cta.ctaColorPrimarySmall}">${cta.ctaText}</a>
+		 </sly>
+	     <sly data-sly-test="${cta.ctaType =='secondaryLarge'}">
+			<a href= "${cta.ctaURL @extension='html'}" target="${cta.ctaAction}" class="adc-button adc-button-secondary uppercase block mb-2 no-margin button-bg-none full-width text-center  m-0 large ${cta.ctaColorSecondaryLarge}">${cta.ctaText}</a>
+		 </sly>
+	     <sly data-sly-test="${cta.ctaType =='secondarySmall'}">
+			<a href= "${cta.ctaURL @extension='html'}" target="${cta.ctaAction}" class="adc-button adc-button-secondary uppercase block mb-2 no-margin button-bg-none text-center  m-0 small px-0 position-relative ${cta.ctaColorSecondarySmall}">${cta.ctaText}</a>
+	     </sly>
+	     <sly data-sly-test="${cta.ctaType =='textlinks'}">
+			<a href= "${cta.ctaURL @extension='html'}" target="${cta.ctaAction}" class="w-100 no-margin adc-text-link ${cta.textType}">${cta.ctaText}</a>
+		 </sly>
+	</sly>	 
+	<sly data-sly-test="${cta.ctaModelWindow ==true}">
+	<div data-sly-use.idgenerator="idgenerator.js">
+	<sly data-sly-test="${cta.ctaType =='primaryLarge'}">
+			<a href= "#"  data-toggle="modal" data-target="#myModal-${idgenerator.id}" class="adc-button-model adc-button adc-button-primary uppercase block mb-2 no-margin button-bg-none full-width text-center  m-0 ${cta.ctaColorPrimaryLarge}">${cta.ctaText}</a>
+	     </sly>
+	     <sly data-sly-test="${cta.ctaType =='primarySmall'}">
+			<a href= "#"  data-toggle="modal" data-target="#myModal-${idgenerator.id}" class="adc-button-model adc-button adc-button-primary uppercase block mb-2 no-margin button-bg-none text-center  m-0 small px-0 position-relative ${cta.ctaColorPrimarySmall}">${cta.ctaText}</a>
+		 </sly>
+	     <sly data-sly-test="${cta.ctaType =='secondaryLarge'}">
+			<a href= "#" data-toggle="modal" data-target="#myModal-${idgenerator.id}" class="adc-button-model adc-button adc-button-secondary uppercase block mb-2 no-margin button-bg-none full-width text-center  m-0 large ${cta.ctaColorSecondaryLarge}">${cta.ctaText}</a>
+		 </sly>
+	     <sly data-sly-test="${cta.ctaType =='secondarySmall'}">
+			<a href= "#"  data-toggle="modal" data-target="#myModal-${idgenerator.id}" class="adc-button-model adc-button adc-button-secondary uppercase block mb-2 no-margin button-bg-none text-center  m-0 small px-0 position-relative ${cta.ctaColorSecondarySmall}">${cta.ctaText}</a>
+	     </sly>
+	     <sly data-sly-test="${cta.ctaType =='textlinks'}">
+			<a href="#" data-toggle="modal" data-target="#myModal-${idgenerator.id}" class="adc-button-model w-100 no-margin adc-text-link ${cta.textType}">${cta.ctaText}</a>
+		 </sly>
+		<div>
+		<div id="myModal-${idgenerator.id}" class="modal">
+			<div class="adc-modal adc-modal--large">${cta.ctaModelDescription @context='html'}</div>
+		</div>
+        </div>
+	</div>
+	</sly>	 
+</sly>
+
+<sly data-sly-test="${cta.imageDownloadButton ==true}">
+	<sly data-sly-test="${cta.ctaType =='primaryLarge'}">
+		<a href= "${cta.ctaURL @extension='html'}" target="${cta.ctaAction}" class="adc-button adc-button-primary uppercase block mb-2 no-margin button-bg-none full-width text-center  m-0 ${cta.ctaColorPrimaryLarge}"><em class="adc-icon adc-icon--medium adc-icon--download-white  false adc-icon--force-size adc-icon--absolute-left"></em>${cta.ctaText}</a>
+	</sly>
+	<sly data-sly-test="${cta.ctaType =='primarySmall'}">
+		<a href= "${cta.ctaURL @extension='html'}" target="${cta.ctaAction}" class="adc-button adc-button-primary uppercase block mb-2 no-margin button-bg-none text-center  m-0 small px-5 position-relative ${cta.ctaColorPrimarySmall}"><em class="adc-icon adc-icon--medium adc-icon--download-white  false adc-icon--force-size adc-icon__download-icon"></em>${cta.ctaText}</a>
+	</sly>
+	<sly data-sly-test="${cta.ctaType =='secondaryLarge'}">
+		<a href= "${cta.ctaURL @extension='html'}" target="${cta.ctaAction}" class="adc-button adc-button-secondary uppercase block mb-2 no-margin button-bg-none full-width text-center  m-0 large ${cta.ctaColorSecondaryLarge}"><em class="adc-icon adc-icon--medium adc-icon--arrow-blue-download  false adc-icon--force-size adc-icon--absolute-left"></em>${cta.ctaText}</a>
+	</sly>
+	<sly data-sly-test="${cta.ctaType =='secondarySmall'}">
+		<a href= "${cta.ctaURL @extension='html'}" target="${cta.ctaAction}" class="adc-button adc-button-secondary uppercase block mb-2 no-margin button-bg-none text-center  m-0 small px-5 position-relative ${cta.ctaColorSecondarySmall}"><em class="adc-icon adc-icon--medium adc-icon--arrow-blue-download  false adc-icon--force-size adc-icon__download-icon "></em>${cta.ctaText}</a>
+     </sly>
+</sly>
+

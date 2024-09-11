@@ -1,0 +1,35 @@
+<!-- Variation One Glucerna Store file-->
+<template data-sly-template.template="${@ relativeResourcePath}">
+<sly data-sly-use.templates="abbott/components/content/templates.html" />
+<sly data-sly-use.footerModel="com.abbott.aem.an.abbottstore.models.FooterModel" />
+<footer class="footer footer__section glucerna-footer">
+	<div class="copyright-text">
+		<sly
+			data-sly-call="${templates.includeResource @ relativeResourcePath=relativeResourcePath, nodeName='text', slingResourceType='abbott/components/content/text'}" />
+	</div>
+	<div class="container glucerna-footer__container">
+		<div class="${footerModel.variation} row">
+			<div class="col-md-4 mob-0-padding">
+				<sly
+					data-sly-call="${templates.includeResource @ relativeResourcePath=relativeResourcePath, nodeName='list1', slingResourceType='abbott/components/content/list'}" />
+			</div>
+			<div class="col-md-4 mob-0-padding">
+				<sly
+					data-sly-call="${templates.includeResource @ relativeResourcePath=relativeResourcePath, nodeName='list2', slingResourceType='abbott/components/content/list'}" />
+				<div>
+					<sly data-sly-call="${templates.includeResource @ relativeResourcePath=relativeResourcePath, nodeName='text2', slingResourceType='abbott/components/content/richtext'}" />
+				</div>
+			</div>
+			<div class="col-md-4 mob-0-padding">
+				<div class="glucerna-footer__logo">
+					<sly
+						data-sly-call="${templates.includeResource @ relativeResourcePath=relativeResourcePath, nodeName='logo', slingResourceType='abbott/components/content/logo'}" />
+				</div>
+			</div>
+		</div>
+		<sly data-sly-test="${inheritedPageProperties.isStickyBanner}">
+			<sly data-sly-call="${templates.includeResource @ relativeResourcePath=relativeResourcePath, nodeName='alertbanner', slingResourceType='abbott/components/content/alertbanner/v1/alertbanner'}" />
+		</sly>
+	</div>
+</footer>	
+</template>

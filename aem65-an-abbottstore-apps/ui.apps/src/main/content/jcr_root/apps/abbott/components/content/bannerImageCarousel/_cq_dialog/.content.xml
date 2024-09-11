@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Banner Image Carousel"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                maximized="{Boolean}true">
+                <items jcr:primaryType="nt:unstructured">
+                    <generalTab
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="General"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <imageRotate
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                fieldDescription="Select to Enable Image Rotate"
+                                                fieldLabel="Image Rotate"
+                                                name="./imageRotate">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <enable
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="Enable"
+                                                        value="enable"/>
+                                                    <disable
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="Disable"
+                                                        value="disable"/>
+                                                </items>
+                                            </imageRotate>
+                                            <rotateTimer
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                                fieldDescription="Enter Transition Time for image rotation"
+                                                fieldLabel="Transition Time"
+                                                name="./transitionTime"/>
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </generalTab>
+                    <carousel
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Banner Image Carousel"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <bannerImageList
+                                                granite:class="js-coral-Multifield-add"
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                                composite="{Boolean}true"
+                                                fieldDescription="Click Add to configure. Max 5 items can be configured."
+                                                fieldLabel="Configure Banner Image"
+                                                required="{Boolean}true">
+                                                <field
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/container"
+                                                    name="./bannerImageList">
+                                                    <items jcr:primaryType="nt:unstructured">
+                                                        <imagePath
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                            fieldDescription="Browse/enter Banner Image path"
+                                                            fieldLabel="Banner Image Path"
+                                                            name="./imagePath"
+                                                            rootPath="/content/dam"/>
+                                                        <imageAltText
+                                                                jcr:primaryType="nt:unstructured"
+                                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                fieldDescription="Enter the Image Alternate Text"
+                                                                fieldLabel="Image Alt Text"
+                                                                name="./imageAltText"/>
+                                                        <headlineText
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                            fieldDescription="Enter the Banner Image Headline Text"
+                                                            fieldLabel="Headline Text"
+                                                            name="./headlineText"/>
+                                                        <shortDescription
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
+                                                            fieldDescription="Enter the Short Description"
+                                                            fieldLabel="Short Description"
+                                                            name="./shortDescription"/>
+                                                        <ctalabel
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                            fieldDescription="Configure Cta label"
+                                                            fieldLabel="CTA Label"
+                                                            name="./ctaLabel"/>
+                                                        <ctalink
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                            fieldDescription="Configure link"
+                                                            fieldLabel="CTA Link"
+                                                            name="./ctaLink"
+                                                            rootPath="/content"/>
+                                                        <newWindow
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                            fieldDescription="Check to open the link in a new window"
+                                                            name="./newWindow"
+                                                            text="Open in new window"
+                                                            value="{Boolean}true"/>
+                                                    </items>
+                                                </field>
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    max-items="5"
+                                                    min-items="1"/>
+                                            </bannerImageList>
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </carousel>
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>

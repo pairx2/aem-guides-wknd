@@ -1,0 +1,33 @@
+{{#> layout/base title="User_login_dialog" }}
+
+{{#*inline "content-block"}}
+	<section class="hero-section banner-img-left">
+		{{!-- banner-img-right for right --}}
+			{{> includes/hero-banner  banner_overline=home.banner.overline banner_header=home.banner.header  banner_desc=home.banner.description img_lazy_src=home.banner.imgLazySrc  img_src=home.banner.imgSrc img_md_src=home.banner.imgMdSrc img_sm_src=home.banner.imgSmSrc alt_text=home.banner.altText primary_button="true" btn_text=home.banner.btnText custom_class=home.banner.customClass custom_btn_class=home.banner.customBtnClass banner_url = home.banner.url}}
+	</section>
+	<section class="card-section">
+		<div class="container">
+			<div class="row">
+				{{#each home.cards.data}}
+				<div class="{{@root.home.cards.customClass}}"> 
+					{{> includes/card title=this.title description=this.description btn_text=this.btnText img_lazy_src=this.imgLazySrc  img_src=this.imgSrc img_md_src=this.imgMdSrc img_sm_src=this.imgSmSrc alt_text=this.altText btn=this.buttons border_color=this.borderColor custom_class=this.customClass href=this.href}}
+				</div>
+				{{/each}}
+			</div>
+		</div>
+	</section>
+	
+{{/inline}}
+ {{#*inline "scripts-block"}}
+ <script>
+	var jsonSocialLoginData = Object.freeze(JSON.parse("{{{jsonFile 'socialLogin.json'}}}"));	
+	var jsonLoginMenuData = Object.freeze(JSON.parse("{{{jsonFile 'loginDialog.json'}}}"));	
+    var miniCart_label = Object.freeze(JSON.parse("{{{jsonFile 'miniCart.json'}}}"));
+	var jsonProfileNavData = Object.freeze(JSON.parse("{{{jsonFile 'leftNavigation.json'}}}"));
+	var jsonData = Object.freeze(JSON.parse("{{{jsonFile 'test.json'}}}"));	
+
+</script>
+
+ {{/inline}}
+
+{{/layout/base}}

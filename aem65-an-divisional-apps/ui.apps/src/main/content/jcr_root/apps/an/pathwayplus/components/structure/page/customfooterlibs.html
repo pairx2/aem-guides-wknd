@@ -1,0 +1,34 @@
+<!--/* 
+Each division/site should create the following clientlibs:
+---------------------------------------------------------------------------------------------
+FOLDER									|	CATEGORIES
+---------------------------------------------------------------------------------------------
+clientlibs-<clientlibsName> 			| abbott.<clientlibsName>
+---------------------------------------------------------------------------------------------
+**NOTE: If you want to further customize use <header|footer>libsextension.html
+*/-->
+<sly data-sly-use.clientLib="/libs/granite/sightly/templates/clientlib.html"
+	 data-sly-use.page="com.abbott.aem.platform.common.components.models.PlatformPage"
+	 data-sly-set.siteClientlib="abbott.${page.clientlibsName}" />
+<sly data-sly-test="${wcmmode.disabled}"
+	 data-sly-call="${clientlib.all @ categories='granite.utils.custom'}"/>
+<script>
+(function(document, $) {
+    "use strict";
+    let locale = document.querySelector('[name="x-preferred-language"]').value;
+    Granite.I18n.setLocale(locale.toLowerCase());
+})(document,Granite.$);
+</script>
+
+<sly data-sly-call="${clientlib.js @ categories=siteClientlib}"/>
+<sly data-sly-include="footerlibsextension.html"/>
+<sly data-sly-test="${page.trustArcCmpId}">
+<div id="consent-banner"></div>
+<div id="teconsent"></div>
+<script>
+document.body.addEventListener("click", function(event) {
+if(event && event.target && event.target.id === 'truste-consent-button') {
+setTimeout(() => { window.location.reload(); }, 1000);
+} });
+</script>
+</sly>

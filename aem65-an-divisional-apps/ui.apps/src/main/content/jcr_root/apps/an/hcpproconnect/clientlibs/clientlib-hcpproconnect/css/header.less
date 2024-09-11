@@ -1,0 +1,635 @@
+@import "./global/mixins.less";
+@import "./global/variables.less";
+.o-header {
+  --header-serch-overlay: none; // SB HCP- to remove gray overlay when serach bar opens
+  //US-5294 Design for Patient popup redirect update
+  .hcp-brand {
+    background: #004f71;
+    height: var(--header-top-bar-height);
+    line-height: var(--header-top-bar-height);
+    white-space: nowrap;
+    a {
+      color: #fff;
+      text-decoration: none;
+      @media screen and (max-width: 992px) {
+        padding:0 0 0 1rem;
+      }
+    }
+    @media screen and (max-width: 992px) {
+          background: transparent;
+          justify-content: center;
+          height: 100%;
+    }
+  }
+  .hcp-patient-wrapper {
+    margin: 0 4px 0 0;
+  }
+
+  .hcp-patient-dropdown-container {
+    display: none;
+  }
+
+  .hcp-patient-dropdown-container.show-patient-hcp-dropdown {
+    display: block;
+  }
+
+  span.hcp-patient-dropdown-arrow {
+    color: var(--header-link-stack-color);
+    -webkit-transition: all ease 0.5s;
+    transition: all ease 0.5s;
+    position: relative;
+    font-family: Abbott-icon, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    right: -5px;
+    cursor: pointer;
+    display: inline-block;
+    @media screen and (max-width:992px)
+    {
+        color: #002a3a;
+        font-weight: bold;
+        position: absolute;
+        right: -8px;
+    }
+  }
+
+  span.hcp-patient-dropdown-arrow.arrow-rotate {
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+  }
+
+  .hcp-text-arrow {
+    -webkit-transition: all ease 0.5s;
+    transition: all ease 0.5s;
+    @media screen and (max-width:992px)
+    {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        position: relative;
+    }
+  }
+
+  span.hcp-patient-dropdown-arrow:after {
+    content: "\e907";
+  }
+
+  .hcp-patient-dropdown-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 270px;
+    display: flex;
+    align-items: center;
+    padding: 1.25rem;
+    margin: 0 3px 0 0;
+    @media screen and (max-width: 992px) {
+        max-width: 100%;
+        display:block;        
+    }
+  }
+
+  button#hcp-patient-dropdown-button {
+    background: transparent;
+    border: 0;
+    color: var(--header-link-stack-color);
+    margin: 0;
+    -webkit-transition: all ease 0.5s;
+    transition: all ease 0.5s;
+    text-decoration: none;
+    font-weight: normal;
+    font-family: brandon_grotesquebold, sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    @media screen and (max-width: 992px) {
+          color: #002a3a;
+          font-weight: bold;
+          text-transform: none;
+          padding: 0;
+     }
+    }
+  div#hcp-patient-dropdown-content {
+    --link-stack-dropdown-desktop-top: 3.5rem;
+    --header-dropdown-link-color: #002a3a;
+    z-index: 99;
+    background: #fff;
+    max-width: 265px;
+    width: 100%;
+    left: 0;
+    -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.34);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.34);
+    border: 0;
+    border-radius: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    position: absolute;
+    top: var(--link-stack-dropdown-desktop-top);
+    @media screen and (max-width:992px) {
+        position: relative;
+        top: 10px;
+        box-shadow: none;        
+    }
+  }
+
+  div#hcp-patient-dropdown-content ul {
+    padding: 0;
+    list-style: none;
+    margin: 15px 0;
+    @media screen and (max-width:992px) {
+        margin:0;
+    }
+  }
+
+  div#hcp-patient-dropdown-content ul li {
+    padding: 10px 24px;
+    @media screen and (max-width:992px) {
+        padding: 0;
+    }
+  }
+
+  div#hcp-patient-dropdown-content ul li:hover {
+    background: #eee;
+    @media screen and (max-width:992px) {
+      background:transparent;
+    }
+  }
+
+  div#hcp-patient-dropdown-content ul li:hover a {
+    color: #009cde;
+    text-decoration: none;
+    @media screen and (max-width:992px) {
+      color: #002a3a;
+    }
+  }
+
+  .hcp-patient-dropdown-container:before {
+    content: "";
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: -0.2rem;
+    right: 13%;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transform-origin: "0 0";
+    transform-origin: "0 0";
+    -webkit-transform: rotate(135deg);
+    transform: rotate(135deg);
+    -webkit-box-shadow: -2px 2px 3px -2px rgba(0, 0, 0, 0.34);
+    box-shadow: -2px 2px 3px -2px rgba(0, 0, 0, 0.34);
+    border: 7px solid #fff;
+    border-image: none 100% 1 0 stretch;
+    @media screen and (max-width:992px) {
+        display: none;        
+    }
+  }
+
+  .patient-link-text {
+    --link-color: #33599f;
+    color: #002a3a;
+  }
+
+  a.patient-link {
+    font-family: brandon_grotesquebold, sans-serif;
+    color: var(--link-color);
+    letter-spacing: 0.4px;
+  }  
+
+  .a-dropdown {
+    display: inline-flex;
+    --dropdown-field-bg-color: @color-hcp-med-blue;
+    --dropdown-field-border: none;
+    --dropdown-field-border-radius: none;
+    --dropdown-field-font-size: @font-size-14;
+    --dropdown-field-height: var(--header-top-bar-height);
+    --dropdown-menu-list-border-bottom: none;
+    --dropdown-menu-option-padding: 0.9375rem 0.9375rem 0.8125rem 1rem;
+    --dropdown-menu-option-padding-rtl: 0.9375rem 0.9375rem 0.8125rem 0.9375rem;
+    --dropdown-menu-option-hover-bg-color: @color-hcp-grey2;
+    --dropdown-active-border-color: #001489;
+    --dropdown-placeholder-color: @color-white;
+    --dropdown-selected-color: @color-white;
+    --mega-menu-list-font-size: @color-core-dark-blue;
+    --mega-menu-list-line-height: 1.373rem;
+    .a-dropdown__field {
+      .a-dropdown__menu {
+        background: @color-white;
+        border: 1px solid #d6d6d9;
+        box-sizing: border-box;
+        border-radius: 3px;
+        width: 14.813rem;
+        li {
+          text-align: left;
+          span {
+            color: @color-core-dark-blue;
+          }
+        }
+        :hover {
+          span {
+            color: @color-hcp-blue;
+          }
+        }
+      }
+    }
+    ::after {
+      color: @color-white;
+      top: 55%;
+    }
+  }
+  .o-header__user-activity {
+    margin-left: unset !important; // START SB to align linkstack on left
+    left: 0 !important;
+    width: 90%;
+    .o-header__utility-nav {
+      width: 100%;
+      justify-content: space-between; // END
+
+      .country-dropdown.linkstack {
+        // All dropdown styling in top header in desktop
+        background: @color-hcp-med-blue;
+        height: var(--header-top-bar-height);
+        display: flex;
+
+        align-items: center;
+        .m-link-stack {
+          padding: @font-size-20;
+          .m-link-stack__dropdown-wrapper {
+            --link-stack-dropdown-desktop-top: 3.5rem; // SB HCP- to avoid dropdown overlapping
+            --header-dropdown-link-color: @color-core-dark-blue;
+            li:hover {
+              background: @color-hcp-grey2;
+              a {
+                color: @color-hcp-blue;
+              }
+            }
+          }
+        }
+      }
+
+      .profile-dropdown {
+        // Profile dropdown styling in header desktop
+        .m-link-stack {
+          .m-link-stack__link {
+            display: flex;
+            .a-link__text {
+              font-family: @base-font-family;
+            }
+          }
+          .abt-icon-user:before {
+            padding-right: 0.5rem;
+            color: @color-white;
+          }
+          .abt-icon-down-arrow {
+            font-size: @font-size-14;
+            padding: 0.1rem 0;
+          }
+
+          .m-link-stack__dropdown-wrapper {
+            --link-stack-dropdown-desktop-top: 2.2rem;
+            --header-dropdown-link-color: @color-core-dark-blue;
+            li:hover {
+              background: @color-hcp-grey2;
+              a {
+                color: @color-hcp-blue;
+              }
+            }
+          }
+        }
+      }
+      #register-login,
+      #contact-us {
+        // HCP-454 register/login and contact-us link on desktop
+        font-family: @base-font-family;
+        font-size: @font-size-14;
+        font-weight: 390;
+        text-decoration: none;
+        color: @color-white;
+      }
+      .link {
+        // HCP-362 contact us alignment in desktop header
+        margin-left: auto;
+        margin-right: 2rem;
+      }
+    }
+  }
+  .o-header__search {
+    .a-search {
+      left: 0 !important;
+      color: @color-white;
+      ::placeholder {
+        color: @color-white;
+      }
+    }
+    .a-search__input {
+      color: @color-core-dark-blue;
+      ::placeholder {
+        color: @color-core-dark-blue;
+      }
+    }
+    .a-search--expand {
+      color: @color-black;
+      .a-search--icon-left {
+        color: @color-black;
+      }
+    }
+    @media @lg-down {
+      .a-search--expand {
+        .abt-icon-search {
+          color: @color-black;
+        }
+      }
+    }
+  }
+
+  .navbar-nav {
+    .a-dropdown {
+      display: none;
+      .a-dropdown__container {
+        .a-dropdown__field {
+          height: var(--header-top-bar-height);
+        }
+      }
+      @media @lg-down {
+        .a-dropdown__field {
+          .a-dropdown__menu {
+            width: 100%;
+            li {
+              text-align: left;
+            }
+          }
+          .active {
+            border: none;
+          }
+        }
+        display: block;
+        border: none;
+        --dropdown-field-bg-color: @color-white;
+        --dropdown-selected-color: @color-core-dark-blue;
+        --dropdown-placeholder-color: @color-core-dark-blue;
+        --dropdown-field-font-size: @font-size-18;
+        --dropdown-field-border: none;
+        ::after {
+          color: @color-core-dark-blue;
+          top: 55%;
+        }
+      }
+      @media @lg-down {
+        border-bottom: 1px solid #d6d6d9;
+      }
+    }
+    .m-mega-menu__mobile-item-wrapper {
+      .linkstack {
+        // START SB HCP - content filter mobile styling
+        border: none;
+        .m-link-stack--title,
+        .abt-icon-down-arrow {
+          color: @color-core-dark-blue;
+          font-weight: bold;
+          text-transform: none;
+        }
+        .abt-icon-user:before {
+          padding-right: 0.5rem;
+        }
+        .m-link-stack__link {
+          // START HCP- Aligning down arrow at corner right and maintaining gap between name and arrow
+          display: flex;
+          .a-link {
+            width: 100%;
+            .a-link__text {
+              @media @lg-down {
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-box-pack: justify;
+                -ms-flex-pack: justify;
+                justify-content: space-between;
+                -webkit-box-align: center;
+                -ms-flex-align: center;
+                align-items: center;
+                color: @color-core-dark-blue;
+              }
+              .abt-icon-down-arrow {
+                font-size: unset;
+              }
+            }
+          }
+        } // END
+        .m-link-stack__container {
+          padding-top: 0;
+        }
+        @media @lg-down {
+          ul {
+            padding: 0;
+            li {
+              padding: 1rem;
+              a {
+                color: @color-core-dark-blue;
+                font-weight: normal;
+              }
+            }
+            li:hover {
+              background: @color-hcp-grey2;
+              a {
+                color: @color-hcp-blue;
+              }
+            }
+          }
+        }
+      } // END
+      @media @lg-up {
+        .m-link-stack::before {
+          // START SB HCP- To show triangle over dropdown menu
+          content: "";
+          border: 7px solid var(--link-stack-dropdown-bg-color);
+          border-color: transparent transparent
+            var(--link-stack-dropdown-bg-color)
+            var(--link-stack-dropdown-bg-color);
+          width: 0;
+          height: 0;
+          position: absolute;
+          top: -0.3125rem;
+          left: 13%;
+          -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+          -webkit-transform-origin: "0 0";
+          transform-origin: "0 0";
+          -webkit-transform: rotate(135deg);
+          transform: rotate(135deg);
+          -webkit-box-shadow: -2px 2px 3px -2px rgba(0, 0, 0, 0.34);
+          box-shadow: -2px 2px 3px -2px rgba(0, 0, 0, 0.34);
+        } // END
+        #contact-us {
+          display: none;
+        }
+      }
+    }
+    .m-mega-menu__mobile-item-wrapper:nth-child(2),
+    .m-mega-menu__mobile-item-wrapper:nth-last-child(2),
+    .m-mega-menu__mobile-item-wrapper:nth-last-child(3) {
+      @media @lg-down {
+        border-top: 1px solid #d6d6d9;
+      }
+    }
+  }
+  .m-mega-menu__mobile {
+    .link:hover {
+      .a-link__text {
+        color: @color-hcp-blue;
+      }
+    }
+    .megamenuversions {
+      font-family: @base-font-family;
+      //padding: 0.1rem;					// SB HCP-460 About us alignment fix in header
+      .m-mega-menu__item:hover {
+        @media @lg-up {
+          a {
+            color: @color-hcp-blue;
+          }
+        }
+      }
+      .a-link:hover {
+        background: @color-hcp-grey2;
+        a {
+          color: @color-hcp-blue;
+        }
+      }
+    }
+    .m-mega-menu__mobile-item-wrapper:first-child,
+    .m-mega-menu__mobile-item-wrapper:nth-last-child(2) {
+      display: none;
+    }
+    @media @lg-down {
+      .m-mega-menu__mobile-item-wrapper:first-child,
+      .m-mega-menu__mobile-item-wrapper:nth-last-child(2) {
+        display: block;
+      }
+      .m-mega-menu__mobile-header {
+        color: @color-core-dark-blue;
+        font-weight: bold;
+      }
+      .m-mega-menu__mobile-header::after {
+        width: unset;
+        font-size: unset;
+      }
+      .m-mega-menu__mobile-products {
+        // START SB HCP - change color bg over hover of About us
+        .m-mega-menu__mobile-item:hover {
+          background: @color-hcp-grey2;
+          a {
+            color: @color-hcp-blue;
+          }
+        }
+      } // END
+    }
+  }
+  @media @lg-down {
+    .o-header__mega-menu {
+      background: @color-hcp-blue;
+      .o-header__mob-options {
+        display: none !important;
+      }
+      .navbar {
+        background: @color-hcp-blue;
+        .abt-icon-cancel,
+        .abt-icon-hamburger {
+          color: @color-white;
+        }
+      }
+    }
+  }
+  // SB HCP-522 setting color for stikcy search icon
+  .o-header__sticky-search {
+    .a-search {
+      color: @color-hcp-blue;
+    }
+    .a-search--expand .abt-icon {
+      color: @color-core-dark-blue;
+    }
+  }
+}
+
+// SB HCP - to display black overlay on hamburger click
+@media @lg-down {
+  .blackOverlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: @color-black !important;
+  }
+}
+
+.m-mega-menu__nested-menu {
+  max-height: 310px;
+}
+
+//HCPPORTAL-1016 About us link alignment issue
+@media @xl-only {
+  .m-mega-menu__mobile-item-wrapper {
+    margin-right: 2em;
+  }
+}
+
+.navbar-collapse-wrapper {
+  @media @lg-up {
+    width: 100%;
+
+    .m-mega-menu__mobile-item-wrapper {
+      width: fit-content;
+      flex-grow: 1;
+    }
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .sticky-sidenav{
+      position: -webkit-sticky;
+      position: sticky;
+      top: 100px;
+      }}
+
+.hcp-patient-dropdown-arrow {
+    position: absolute !important;
+    top: 35%;
+    right: 7% !important;
+}
+
+.cart-btn-mob {
+    position: absolute;
+    top: 12px;
+    color: #FFFFFF;
+    font-size: 16px;
+    cursor: pointer;
+    right: 20px;
+
+    @media @md-up {
+        right: 40px;
+        top: 16px;
+    }
+}
+
+.o-header__search.o-header__mob-search {
+    right: 50px;
+
+    @media @md-up {
+        right: 70px;
+        top: 4px;
+    }
+}
+.o-header__search.o-header__mob-search.expand{
+    right: 0 !important;
+}
+.patient-header-search-icon {
+    right: 20px !important;
+
+    @media @md-up {
+        right: 40px !important;
+    }
+}

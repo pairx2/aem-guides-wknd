@@ -1,0 +1,248 @@
+.layoutcontainer {
+
+    // Style option to align layout container containers to the top
+    &.container__align-items--top {
+        &>.column-layout-container>.a-container>.container>.a-container__layout-section {
+            align-items: start;
+        }
+    }
+
+    &:has(#layout-data-product_details) {
+        .image .cmp-image__image {
+            max-height: 390px;
+        }
+    }
+
+    // Styling of product page tabs content (Documents/VSI)
+    &:has(#layout-data-product_table) {
+        padding-bottom: 0;
+        padding-top: 0;
+
+        .tabs {
+
+            .screen-above(@screen-lg, {
+                    .a-tabs__nav .a-tabs__nav-link {
+                        --tabs-nav-font-size: 1.125rem;
+                    }
+                }
+            );
+
+            .a-tabs__content .a-tabs__tab-pane {
+                &>.layoutcontainer {
+                    background-color: @color-light-grey-300;
+                    margin-top: 2.5rem !important;
+                    padding: 0 !important;
+
+                    &>.column-layout-container>.a-container>.container>.row>.a-container__column {
+                        padding-left: 0;
+                        padding-right: 0;
+
+                        div.m-custom-table {
+                            .m-custom-table__selected-row--mixin();
+
+                            .m-custom-table__table {
+                                width: 100% !important;
+                            }
+
+                            .m-custom-table__content {
+
+                                .bottom {
+                                    --customtable-label-color: @color-grey;
+                                    background-color: @color-light-grey-300;
+
+                                    .dataTables_paginate {
+                                        background-color: @color-white;
+                                    }
+                                }
+
+                                /* Restrict user from clicking on pagination links while donload of xml/pdf is in progress */
+                                &:has(.btn-spinner__custom) .dataTables_paginate ul.pagination {
+                                    pointer-events: none;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                // Styling for second, i.e., last tab (VSI)
+                &:last-child>.layoutcontainer {
+                    div.m-custom-table {
+                        .m-custom-table__content .m-custom-table__table {
+                            thead th {
+                                min-width: 140px;
+                            }
+
+                            tbody tr {
+
+                                &.latest-row {
+                                    background-color: @color-dim-blue;
+                                    font-weight: 700;
+                                }
+
+                                &:hover,
+                                &:focus {
+                                    background-color: @color-primary-10 !important;
+                                    cursor: pointer;
+                                    font-weight: 700;
+
+                                    td {
+                                        text-decoration: underline;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                // styling of vsi table to match with customtable component
+                .vsidatatable {
+                    #vsiFilters {
+                        .filter-title {
+                            display: none;
+                        }
+
+                        .select-risk-range,
+                        .select-date-range,
+                        #selectDropdown select {
+                            appearance: none;
+                            background-color: @color-white;
+                            border-radius: 6px;
+                            padding: 11.2px 7px;
+                            width: 180px;
+
+                            img {
+                                display: none;
+                            }
+                        }
+
+                        .select-risk-range,
+                        .select-date-range,
+                        #selectDropdown {
+                            margin-left: 0.5rem;
+                            margin-right: 1.5rem;
+
+                            &:after {
+                                content: "\e907";
+                                -webkit-transform: translateY(-50%);
+                                transform: translateY(-50%);
+                                position: absolute;
+                                top: 50%;
+                                right: 1rem;
+                                left: auto;
+                                font-family: @font-family-abt-icon;
+                            }
+                        }
+
+                        #selectDropdown select {
+                            margin-left: 0;
+                        }
+
+                        #vsiDataTable_filter {
+                            &::before {
+                                font-size: 18px;
+                                font-weight: 300;
+                                left: 17px;
+                                top: 15px;
+                            }
+
+                            input {
+                                box-shadow: 0 0 2px rgba(0, 0, 0, 0.4);
+                                height: 48px;
+                                margin-left: 0.5rem;
+                                margin-right: 1.25rem;
+                                padding-left: 40px;
+                                width: 330px;
+                            }
+                        }
+
+                        #selectRiskRange {
+                            left: 18px;
+                            top: 60px;
+                        }
+
+                        #selectDateRange {
+                            left: 235px;
+                            top: 60px;
+                        }
+                    }
+
+                    #vsiDataTable_wrapper {
+                        .vsi-table {
+                            .filter-head th {
+                                color: @color-black;
+
+                                &:nth-child(1) {
+                                    padding-left: 10px !important;
+                                    width: 17% !important;
+                                }
+
+                                &:nth-child(2),
+                                &:nth-child(4),
+                                &:nth-child(5) {
+                                    width: 17% !important;
+                                }
+
+                                &:nth-child(3) {
+                                    width: 32% !important;
+                                }
+                            }
+
+                            .filter-list {
+                                tr {
+                                    color: @color-black;
+                                    border-bottom: 0;
+
+                                    td:nth-child(1) {
+                                        padding-left: 10px !important;
+                                    }
+                                }
+                            }
+                        }
+
+                        .bottom {
+                            .dataTables_length label {
+                                color: @color-grey;
+
+                                select {
+                                    border: 1px solid @color-grey;
+                                    box-shadow: none;
+                                }
+                            }
+
+                            .dataTables_paginate {
+                                background-color: @color-white;
+                                border: 1px solid @color-grey;
+
+                                a {
+                                    color: @color-black;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // Styling for product create page - Product search form
+    &:has(#form-product-create-search) {
+        &>.column-layout-container>.a-container {
+            z-index: unset;
+
+            &>.container>.row>.a-container__column {
+                padding-bottom: 0;
+            }
+        }
+    }
+
+    // Styling for product create page - Product create form
+    &:has(#product-create-content) {
+        &>.column-layout-container>.a-container {
+            z-index: unset;
+
+            &>.container>.row>.a-container__column {
+                padding-top: 0;
+            }
+        }
+    }
+}

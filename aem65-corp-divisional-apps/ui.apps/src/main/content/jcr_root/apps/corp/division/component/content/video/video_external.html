@@ -1,0 +1,23 @@
+<sly data-sly-use.videoModel = "com.abbott.aem.platform.common.components.models.Video"
+data-sly-use.page="com.abbott.aem.platform.common.components.models.PlatformPage"/>
+
+<sly data-sly-test="${videoModel.playerType == 'modal'}">
+          <sly data-sly-set.url="${videoModel.videoURL}?${videoModel.autoPlay ? 'autoplay=1' : ''}${videoModel.audioControlOn ? '&mute=1' : ''}${videoModel.loopOn ? '&playlist=' : ''}${videoModel.loopOn ? videoModel.urlIndex : ''}${videoModel.loopOn ? '&loop=1' : ''}${videoModel.videoControlOn ? '&controls=0' : ''}"/>
+ </sly>
+<sly data-sly-test="${videoModel.playerType == 'embed'}">
+	<div data-sly-test="${videoModel.fileReference}" class="play-icon" id="video${resource.path.hashCode}">
+         <img src="${videoModel.fileReference}" alt="${videoModel.alt}" />
+         <button class="btn popup-button" id="play_button">►</button>
+   </div>
+</sly>
+
+   <iframe class="a-video__player-source a-video__embed-video ${videoModel.playerType == 'modal'? 'a-video__embed-popup' : ''}"
+		allow="autoplay; accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen;" 
+		src="${videoModel.videoURL}" 
+		title="${videoModel.videoIframeTitle}"
+		allowfullscreen="allowfullscreen"
+		aria-label="${videoModel.videoCaption}" 
+		lang="${videoModel.videoIframeLang ? videoModel.videoIframeLang : page.languageCode}" data-url=${url}>
+        ${videoModel.videoCaption}
+   </iframe>
+

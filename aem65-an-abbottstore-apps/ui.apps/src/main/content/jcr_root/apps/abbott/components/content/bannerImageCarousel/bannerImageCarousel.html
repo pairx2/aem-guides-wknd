@@ -1,0 +1,29 @@
+<sly data-sly-use.templates="abbott/components/content/templates.html"/>
+
+<div class="heroPanel-container ${wcmmode.edit ? 'hero-panel-edit-mode' : ''}">
+	<sly data-sly-use.bannerItems="com.abbott.aem.an.abbottstore.models.BannerImageCarouselModel" />
+	<div class="heroPanelSlider">
+		<sly data-sly-list.bannerItemsList="${bannerItems.getBannerImageList}">
+			<div class="heroPanelSlide">
+				<div class="heroPanelImage"> <img src="${bannerItemsList.imagePath}" alt="${bannerItemsList.imageAltText ? bannerItemsList.imageAltText : bannerItemsList.headlineText}" class="img-responsive"> </div>
+				<div class="heroPanelContent">
+					<sly data-sly-test="${bannerItemsList.headlineText}">
+						<div class="heroPanelTitle">
+							<h1>${bannerItemsList.headlineText @context="html"}</h1> </div>
+					</sly>
+					<sly data-sly-test="${bannerItemsList.shortDescription}">
+						<div class="heroPanelDesc">
+							<p>${bannerItemsList.shortDescription @context="html"}</p>
+						</div>
+					</sly>
+					<sly data-sly-test="${bannerItemsList.ctaLabel}">
+						<sly data-sly-test.linktarget="${bannerItemsList.newWindow ? '_blank' : '_self'}" />
+						<div class="heroPanelCTA"> <a class="ctaLink" href="${bannerItemsList.ctaLink}" target="${linktarget}">${bannerItemsList.ctaLabel}</a> </div>
+					</sly>
+				</div>
+			</div>
+		</sly>
+	</div>
+	<input id="imageRotate" type="hidden" value="${properties.imageRotate == 'enable' ? 'true' : 'false'}" />
+	<input id="transitionTime" type="hidden" value="${properties.transitionTime}" /> </div>
+<sly data-sly-call="${templates.placeholder @ isEmpty= !bannerItemsList}"></sly>

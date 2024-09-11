@@ -1,0 +1,32 @@
+<div data-sly-test="${wcmmode.edit}" class="cq-placeholder" data-emptyText="AN - Compare Popup">
+</div>
+<sly data-sly-use.comparePopup="com.abbott.aem.an.division.core.components.models.ComparePopup" data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
+    <div class="compare-tray d-none">
+        <input type="hidden" value="${comparePopup.imgRemoveIcon}" class="imgRemoveIcon">
+		<input type="hidden" value="${comparePopup.minItems}" class="minItems">
+		<input type="hidden" value="${comparePopup.maxItems}" class="maxItems">
+        <div class="customAccordionHeader">
+            <a class="title" type="button" data-toggle="collapse" data-target="#compareTryAccordion"
+                aria-expanded="true" aria-controls="compareTryAccordion">
+                <p class="titleP">${comparePopup.compareLabel}</p>
+                <p><em class="${comparePopup.compareWidgetIcon}"></em></p>
+            </a>
+        </div>
+        <div class="accordionBody d-none">
+            <div class="card-body">
+                <div class="product-wrapper"></div>
+                <div class="compareCTAWrapper">
+                    <button data-path="${comparePopup.buttonUrl}" id="internal-link_product-comparison_pop-up_compare" class="compareCTA" disabled>${comparePopup.buttonLabel}</button>
+                    <button data-sly-test="${comparePopup.removeAll}" id="internal-link_product-comparison_pop-up_remove-all" class="removeAll">${comparePopup.removeLabel}</button>                    
+                </div>
+            </div>
+        </div>
+    </div>
+	<div class="compare-popup-alert d-none">
+
+		<div class="popup-alert">
+		<em class="${comparePopup.imgRemoveIcon} removealert" ></em>
+         <sly data-sly-resource="${@path=comparePopup.alertMessage, selectors='content', wcmmode='disabled'}" />
+      </div>
+	</div>
+</sly>

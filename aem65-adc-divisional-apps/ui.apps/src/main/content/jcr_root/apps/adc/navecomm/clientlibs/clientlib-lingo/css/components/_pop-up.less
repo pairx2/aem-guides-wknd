@@ -1,0 +1,45 @@
+.generic-modal {
+  .o-form-container__parent {
+    margin: 0;
+  }
+}
+
+.modal-backdrop.show {
+  opacity: 0.1;
+}
+
+body.session-expired-modal {
+  .modal-backdrop {
+    display: none;
+  }
+
+  .generic-modal__content:after {
+    content: "";
+
+    width: 100vw;
+    height: 100vh;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    background-color: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+
+    z-index: -1;
+  }
+
+  .a-button {
+    &:not(.a-button--primary) .abt-icon {
+      border-color: var(--button-outline-border-color);
+    }
+
+    .a-button--spinner .abt-icon {
+      border-right-color: transparent;
+    }
+  }
+}
+
+#stale-session-modal h4 {
+  margin-bottom: 40px;
+}

@@ -1,0 +1,57 @@
+<sly
+  data-sly-use.templates="core/wcm/components/commons/v1/templates.html"
+  data-sly-use.accountNavModel="com.abbott.aem.platform.common.components.models.AccountNavigation"
+></sly>
+<div
+  class="m-account-navigation m-account-navigation__container js-account-navigation"
+>
+  <div class="m-account-navigation__accordion-toggle">
+    <div>
+      <span class="m-account-navigation__accordion-icon">
+        <em></em>
+      </span>
+      <span class="m-account-navigation__accordion-title"></span>
+    </div>
+    <span class="abt-icon abt-icon-down-arrow"></span>
+  </div>
+  <div class="m-account-navigation__accordion-content">
+    <p class="m-account-navigation__header d-none js-account-navigation-header">
+      ${accountNavModel.customerHeader}
+    </p>
+    <ul data-sly-list.link="${accountNavModel.linkMultifield}">
+      <li
+        data-sly-test.actionFunction="${link.actionFunction == null}"
+        data-customer-attribute="${link.customerAttr}"
+        class="${link.customerAttr && !wcmmode.edit ? 'js-account-navigation-item d-none' : ''} ${link.activeCss}"
+      >
+        <a
+          class="m-account-navigation__text"
+          href="${link.linkPath @extension = 'html'}"
+          target="_self"
+        >
+          <div class="m-account-navigation__icon">
+            <em aria-hidden="true" class="abt-icon ${link.icon}"></em>
+          </div>
+          <span>${link.linkText}</span>
+        </a>
+      </li>
+      <li
+        data-sly-test="${!actionFunction}"
+        data-customer-attribute="${link.customerAttr}"
+        class="${link.customerAttr && !wcmmode.edit ? 'js-account-navigation-item d-none' : ''} ${link.activeCss}"
+      >
+        <a
+          class="m-account-navigation__text"
+          href="javascript:${link.actionFunction}();"
+          target="_self"
+        >
+          <div class="m-account-navigation__icon">
+            <em aria-hidden="true" class="abt-icon ${link.icon}"></em>
+          </div>
+          ${link.linkText}
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+<sly data-sly-call="${templates.placeholder @ isEmpty = true}"></sly>

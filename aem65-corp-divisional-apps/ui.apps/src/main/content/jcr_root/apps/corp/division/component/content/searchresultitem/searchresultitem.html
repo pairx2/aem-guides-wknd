@@ -1,0 +1,26 @@
+<sly data-sly-use.searchResultItem="com.abbott.aem.corp.division.core.components.models.ArticleSearchResultItem"
+	data-sly-use.templates="core/wcm/components/commons/v1/templates.html"
+	data-sly-use.itemTemplate="item.html">
+
+	<sly data-sly-test="${!wcmmode.disabled}">
+		<sly data-sly-call="${itemTemplate.item @ searchResultItem = searchResultItem}"></sly>
+
+	</sly>
+
+	<sly data-sly-test="${wcmmode.disabled}">
+	<template id="result-temp">
+		<sly data-sly-call="${itemTemplate.item @ searchResultItem = searchResultItem}"></sly>
+	</template>
+
+
+	</sly>
+
+	<sly data-sly-test="${searchResultItem.isComparePopupEnable}" data-sly-use.comparePopupTemplate="comparePopup.html">
+		<sly data-sly-call="${comparePopupTemplate.comparePopup @ searchResultItem = searchResultItem}"></sly>
+	</sly>
+
+	<sly data-sly-test="${searchResultItem.isVideoPopupEnable}" data-sly-use.videoPopupTemplate="videoPopup.html">
+		<sly data-sly-call="${videoPopupTemplate.videoPopup @ searchResultItem = searchResultItem}"/>
+	</sly>
+</sly>
+<sly data-sly-call="${templates.placeholder @ isEmpty=searchResultItem.titleText}"></sly>

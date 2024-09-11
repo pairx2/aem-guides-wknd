@@ -1,0 +1,8 @@
+<sly data-sly-use.templates="abbott/components/content/templates.html"/>
+
+<sly data-sly-test.isNotificationMenu="${properties.notificationText}">
+<span class="notification-menu-text ${properties.isSticky == 'true' ? 'is-sticky': ''}" style="background-color: ${properties.bgColor @ context='styleString'};">
+        ${properties.notificationText  @context='html'}
+</span>
+</sly>
+<sly data-sly-call="${templates.placeholder @ isEmpty= !isNotificationMenu}"></sly>

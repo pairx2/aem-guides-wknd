@@ -1,0 +1,753 @@
+@import "../global/media-queries.less";
+@import "../global/variables.less";
+
+.header {
+    --header-v2-search-overlay-bg:#0000007a;
+    --header-v2-utility-top-bg-desktop: @color-cloudy-grey;
+    --header-v2-main-bg-desktop:  @color-charcoal;
+    --header-v2-utility-bottom-bg-desktop: @color-white;
+    --header-v2-utility-bottom-bg: @color-cloudy-grey;
+    --mega-menu-icon-color: @color-white;
+    --header-v2-icon-font-size: @spacer-13;
+    @media (min-width: 1457px) {
+        width: 100vw;
+        margin-left: ~'calc((100vw - 1457px) / -2)';
+    }
+  .o-header-v2-global {
+      z-index: 11199;
+      .o-header-v2-section.container{
+			@media @xl-up{
+                padding:0;                
+            }
+        }
+      .o-header-v2-global__section--utility-top{
+        @media @lg-up{
+           min-height: 28px;                
+        }
+        .o-header-v2-section--alignGroupsEnd{
+            padding: @spacer-5 0;
+            @media  @lg-down{
+                display: none;
+            }
+             .group {                 
+                .link {  
+                    padding: 0 @spacer-15;
+                    &:last-child{
+                        padding-right: 0; 
+                    }
+                    .a-link {
+                        a {
+                            span {
+                                color: @color-white;
+                                text-decoration: none;
+                                font-family: @brandon-regular;
+                                font-size: 0.8rem;
+                                line-height: 1.1375rem;
+                                font-weight: normal;
+                                text-transform: uppercase;
+                            }
+                            &:hover {
+                                    text-decoration: none;
+                                    span{
+                                        text-decoration: none;
+                                        color: @color-crystal-blue;
+                                    }
+                            }
+                        }
+                    }
+                }
+                .linkstack{
+                    padding: 0 @spacer-15;
+                    position: relative;
+                    .m-link-stack{
+                        .m-link-stack--header{
+                            .m-link-stack--title{
+                                color: @color-white;
+                                text-decoration: none;
+                                font-family: @brandon-regular;
+                                font-size: 0.8rem;
+                                line-height: 1.1375rem;
+                                font-weight: normal;
+                                text-transform: uppercase;
+                                margin-bottom: 0;
+                                padding-right: @spacer-5;
+                                cursor: pointer;
+                                &:hover{
+                                    text-decoration: none;
+                                    color: @color-crystal-blue;
+                                }                               
+                            }
+                            a{
+                                &::before{                                     
+                                    content: "";
+                                    width: 0; 
+                                    height: 0; 
+                                    border-left: @spacer-5 solid transparent;
+                                    border-right: @spacer-5 solid transparent;                                    
+                                    border-top: @spacer-5 solid @color-white;
+                                    position: absolute;
+                                    top: @spacer-6;
+                                    &:hover{
+                                        border-top: 5px solid @color-crystal-blue ;
+                                    }
+                                }
+                                &:hover {
+                                        color: @color-crystal-blue;
+                                    }
+                                &.active{
+                                    &::before{
+                                        display: none;
+                                    }
+                                    &::after{
+                                        content: "";
+                                        width: 0; 
+                                        height: 0; 
+                                        border-left: @spacer-5 solid transparent;
+                                        border-right: @spacer-5 solid transparent;                                    
+                                        border-bottom: @spacer-5 solid @color-crystal-blue;
+                                        position: absolute;
+                                        top: @spacer-6;
+                                    }
+                                }
+                            }                           
+                        }
+                    }
+                    .m-link-stack--content{
+                        padding: @spacer-15;
+                        position: absolute;
+                        z-index: 10;
+                        background: @color-cloudy-grey;
+                        right: 0;
+                        column-count: 2;
+                        gap: @spacer-50;
+                        width: 310px;
+                        .a-link{
+                            margin-bottom: @spacer-5;
+                            .a-link__text{
+                                color: @color-white;
+                                text-decoration: none;
+                                font-family: @brandon-regular;
+                                font-size: 0.8rem;
+                                line-height: 1.1375rem;
+                                font-weight: normal;
+                                text-transform: uppercase;
+                                &:hover {
+                                    text-decoration: none;
+                                    color: @color-crystal-blue;
+                                }
+                            }
+                        }
+                        &.d-none{
+                            display: none !important;
+                        }
+                    }
+                }
+                .not-link{
+                    .m-link-stack--header{
+                        .m-link-stack--title{
+                            cursor: auto !important;
+                            &:hover{
+                                color: @color-white !important;                                
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        &.sticky{
+            @media @lg-up {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 10;
+            }
+        }
+      }
+      .o-header-v2-global__sticky-section{
+           .o-header-v2-global__section--main{
+                .o-header-v2-section--alignGroupsBetween{
+                    @media @lg-up {
+                        padding:@spacer-16 0;
+                    }
+                    @media @lg-down {
+                        padding: @spacer-20 0;
+                        background-color: @color-charcoal !important;
+                    }
+                    .o-header-v2-section.container{
+                        .group:nth-child(2){
+                            .o-header-v2-group{   
+                                .text{
+                                    @media @lg-down{
+                                        margin-right: @spacer-10;
+                                    }
+                                    .cmp-text{
+                                        p{
+                                            font-size:	@spacer-16;
+                                            line-height: @spacer-24;
+                                            color: @color-white;
+                                            margin-bottom: 0;
+                                            font-family: @brandon-black;
+                                            font-weight: 700;
+                                            text-transform: uppercase;
+                                        }
+                                    }
+                                }
+                                .button{
+                                    @media @lg-up{
+                                        display: none;
+                                    }
+                                    @media @lg-down{
+                                        img{
+                                            width: @spacer-25;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .o-header-v2-global__section--utility-bottom{
+                background-color: @color-white;
+                @media @lg-down{
+                    background-color:  @color-cloudy-grey;
+                }
+                .o-header-v2-section{                   
+                    .group:nth-child(1){
+                        .o-header-v2-group{
+                            @media @lg-up{
+                                margin-left: calc(-1.2vw) !important;
+                            }
+                            @media (min-width: 1457px) and (max-width: 1920px){
+                                margin-left: calc(-0.7vw) !important;
+                            }
+                        }   
+                    }
+                    .group:nth-child(2){
+                        .headersearch{
+                            .a-search {
+                                border: 1px solid @color-dark-gray;
+                                padding: 2px 5px;
+                                border-top-left-radius: 3px;
+    							border-bottom-left-radius: 3px;
+                                @media @lg-down{
+                                    border: none;
+                                }
+                                @media @lg-up{
+                                    width: 210px;
+                                    height: @spacer-32;
+                                }
+                                &--icon-left{
+                                    @media @lg-down{
+                                        color: @color-white;
+                                        padding-top: 0;
+                                    }
+                                    @media @lg-up{
+                                        order: 2;
+                                    }
+                                    padding-top: @spacer-4;
+                                    .abt-icon-search{
+                                        @media @lg-up{
+                                            color: @color-cloudy-grey;
+                                        }
+                                    }
+                                }
+                                &__input{
+                                    &-placeholder{
+                                        color: @color-cloudy-grey;
+                                        font-size: @spacer-14;
+                                        @media @lg-down{
+                                            display: none;
+                                        }
+                                    }
+                                }
+                            }
+                            .a-search.open{
+                                @media @lg-up{
+                                    top: @spacer-10;
+                                    padding: 0;
+                                    width: 100%;
+                                }
+                                 @media @lg-down{
+                                    padding: 0 @spacer-15;
+                                    top: 3px;
+                                }
+                                form{
+                                    padding: @spacer-5 @spacer-10;
+                                    .a-search--icon-left{
+                                        @media @lg-down{
+                                            color: @color-black;  
+                                        }
+                                        @media @lg-up{
+                                            order: unset;
+                                            margin-right: 10px;
+                                        }
+                                    }
+                                    .a-search__input{
+                                        font-family: @brandon-regular;
+                                        @media @lg-down{
+                                            width: 90% !important;
+                                        }
+                                        @media @sm-down{
+                                            width: 80% !important;
+                                        }
+                                         &::placeholder{
+                                            color: @color-white;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        .button{
+                            border: 1px solid @color-dark-gray;
+                            padding: 3px @spacer-5 0px @spacer-5;
+                            border-top-right-radius: 3px;
+    						border-bottom-right-radius: 3px;
+                            height: @spacer-32;
+                            img{
+                                margin-top: -@spacer-6;
+                                width: 16px;
+                                @media @lg-down{
+                                    vertical-align: text-bottom;
+                                }
+                            }
+                            @media @lg-down{
+                                border: none;
+                            }
+                        }
+                    }
+                    .group{
+                        .o-header-v2-group{
+                            .megamenu {  
+                                .m-mega-menu__mobile{
+                                    box-shadow: none;
+                                    .navbar {
+                                        padding: 0;
+                                        @media @lg-down {
+                                            background-color: @color-cloudy-grey;
+                                            padding-left: 0;
+                                            padding-right: @spacer-30;
+                                        }
+                                        .navbar-toggler{
+                                            color:@color-white;
+                                            @media @lg-down {
+                                                display: flex;
+                                                align-items: center;
+                                                &::before{
+                                                    color: @color-white;
+                                                }
+                                                .abt-icon-hamburger{
+                                                    color: @color-white;
+                                                    font-size: @spacer-16;
+                                                }
+                                            }
+                                            @media @sm-down{
+                                                padding-left: 0;
+                                            }
+                                        }
+                                        @media @lg-down {
+                                            #navbarNavAltMarkup {
+                                                position: fixed;
+                                                right: 0;
+                                                top: @spacer-64;
+                                                left: auto;
+                                                width: 300px;
+                                                height: @full-width;
+                                                background-color: @color-charcoal;
+                                            }
+                                        }
+                                        .navbar-collapse {
+                                            @media @xl-down {
+                                                left: @spacer-50;
+                                                margin-left: 0;
+                                                overflow-y: auto;                                                
+                                            }
+                                            @media @lg-only{
+                                                width: 350px !important;
+                                            }
+                                            .navbar-collapse-wrapper {
+                                                @media @lg-down {
+                                                    padding-right: 0;
+                                                    overflow: hidden;
+                                                    }
+                                                .navbar-nav {
+                                                    padding-right: @spacer-11; 
+                                                    li {
+                                                            @media @lg-down{
+                                                                padding: 0 !important;
+                                                            }
+                                                            &:hover {
+                                                                    background-color: @color-dark-gray; 
+                                                                    @media @lg-up{
+                                                                        .nav-item{
+                                                                            color: @color-crystal-blue;
+                                                                        }
+                                                                    }                                                                    
+                                                                    @media @lg-down{
+                                                                        background: none;
+                                                                    }
+                                                            }
+                                                            &.active{
+                                                                color: @color-crystal-blue; 
+                                                            }
+                                                            &::before{
+                                                                @media @lg-down{
+                                                                    background: none;
+                                                                }
+                                                            }
+                                                            .m-mega-menu__list-var {
+                                                                box-shadow: none;
+                                                                position: fixed;
+                                                                width: 100%;
+                                                                top: auto;
+                                                                margin-top: @spacer-10;
+                                                                .m-mega-menu__list-var-wrapper{
+                                                                    height: auto;
+                                                                    background-color: @color-dark-gray;
+                                                                    width: auto;
+                                                                    margin: 0 auto;
+                                                                    padding: @spacer-11 @spacer-23 !important;
+                                                                    padding-bottom: 1px !important;
+                                                                    .m-mega-menu__content{                                                                       
+                                                                        margin: 0 auto;
+                                                                        width: 1140px;
+                                                                        display: inline-block !important;
+                                                                        background-color: @color-dark-gray;
+                                                                        z-index: 1;                                                                        
+                                                                        .m-mega-menu__sub-list{
+                                                                            min-height: auto;
+                                                                            max-width: fit-content;
+                                                                            min-width: fit-content;
+                                                                            margin-right: @spacer-30;
+                                                                            display: inline-block;
+                                                                            a{
+                                                                                padding-bottom: @spacer-10;
+                                                                                h6{
+                                                                                    color: @color-cloudy-grey;
+                                                                                    font-size: 0.91875rem;
+                                                                                    text-decoration: none;
+                                                                                    font-family: @brandon-regular;
+                                                                                    font-weight: normal;
+                                                                                    padding-left: 0;                                                                                   
+                                                                                } 
+                                                                                &:hover{
+                                                                                    color: @color-crystal-blue;
+                                                                                }
+                                                                            } 
+                                                                            .m-mega-menu__list-var-title{
+                                                                                padding-top: 0;
+                                                                                .a-link{
+                                                                                    background: none;
+                                                                                    padding-bottom: 0;
+                                                                                    a{
+                                                                                        &:hover{
+                                                                                            color: @color-crystal-blue;
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            }                             
+                                                                        }
+                                                                    }                        
+                                                                }
+                                                                @media @xl-only {
+                                                                    margin-left: calc(-0.1vw) !important;
+                                                                }
+                                                            }
+                                                            a {
+                                                                font-family: @brandon-regular;
+                                                                font-size: 0.91875rem;
+                                                                color: @color-cloudy-grey;
+                                                                font-weight: normal;
+                                                                padding: 0;
+                                                                text-transform: uppercase;
+                                                                @media @lg-down{
+                                                                    font-size: 0.8rem;
+                                                                    font-weight: normal;
+                                                                    line-height: @spacer-18;
+                                                                    color: @color-white;
+                                                                }
+                                                                @media @xl-down {
+                                                                    padding-left: 0;
+                                                                }
+                                                                .active{
+                                                                    @media @xl-down {
+                                                                        color: @color-crystal-blue;
+                                                                    }
+                                                                }
+                                                            }
+                                                    }
+                                                    .m-mega-menu__mobile-item-wrapper {
+                                                        padding: 0;
+                                                        border-bottom: 0;
+                                                        min-width: fit-content;
+                                                        margin-right: 0;
+                                                        @media @xl-up{
+                                                            display: flex;
+                                                            align-items: center;
+                                                            justify-content: center;
+                                                            height: 45px;
+                                                        }                                                        
+                                                        .show-version-2{ 
+                                                            width: fit-content;
+                                                            padding:@spacer-6 @spacer-17;
+                                                            @media @lg-down{
+                                                                width: 100%;
+                                                            }
+                                                        } 
+                                                        .m-mega-menu__mobile-header.active, .m-mega-menu__mobile-item-link.active{
+                                                            @media @lg-down{
+                                                                color: @color-crystal-blue !important;
+                                                                font-weight: bold;
+                                                            }
+                                                        }
+                                                        .m-mega-menu__mobile-header{
+                                                            &::after{
+                                                                content: "\e912";
+                                                                transform: none;
+                                                                font-size: @spacer-10;
+                                                            }
+                                                            &.arrowhide{
+                                                                &::after{
+                                                                    display: none;
+                                                                }
+                                                            }
+                                                        }
+                                                        .m-mega-menu__mobile-header.active{
+                                                            &::after{
+                                                                content: "\e911";
+                                                                transform: none;
+                                                                font-size: @spacer-10;
+                                                            }
+                                                        }
+                                                       
+                                                        .m-mega-menu__item{                                                           
+                                                            .m-mega-menu__mobile-products{
+                                                                .m-mega-menu__mobile-item{
+                                                                    a{
+                                                                        @media @lg-down{
+                                                                            padding: @spacer-5 0;
+                                                                            &:hover{
+                                                                                color: @color-crystal-blue !important;
+                                                                                font-weight: bold;
+                                                                            }
+                                                                        }
+
+                                                                    }
+                                                                    .m-mega-menu__mobile-sub-head{
+                                                                        &::after{
+                                                                            content: "\e912";
+                                                                            transform: none;
+                                                                            font-size: @spacer-10;
+                                                                        }
+                                                                    }
+                                                                    .m-mega-menu__mobile-sub-head.active{
+                                                                        &::after{
+                                                                            content: "\e911";
+                                                                            transform: none;
+                                                                            font-size: @spacer-10;
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                        .navigation{
+                                                            .show-version-3{
+                                                                padding:@spacer-6 @spacer-17;  
+                                                                .m-mega-menu__mobile-item{
+                                                                    a{
+                                                                        color: @color-Metallic-Silver;
+                                                                        &::after{
+                                                                            display: none;
+                                                                        }
+                                                                    }
+                                                                }                                                                                                                       
+                                                            }
+                                                            
+                                                        }  
+                                                        .devicespecific{
+                                                            .link{
+                                                                padding: @spacer-6 @spacer-16;
+                                                                .a-link{
+                                                                    .a-link__text{
+                                                                        color: @color-Metallic-Silver;
+                                                                        &:hover{
+                                                                            color: @color-crystal-blue;
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                            .socialmedia{
+                                                                .m-social-media--icons{
+                                                                    margin-left: @spacer-16;
+                                                                    margin-top: @spacer-20;
+                                                                    li{
+                                                                        margin-right: 3px;
+                                                                        .abt-icon{
+                                                                            color: @color-white;
+                                                                            font-size: @spacer-20;
+                                                                        }
+                                                                    }                                        
+                                                                }
+                                                            }
+                                                            &:first-child{
+                                                                margin-top: @spacer-30 !important;
+                                                            }
+                                                        }                                                      
+                                                    }
+                                                }
+
+                                            }
+                                        }
+                                    }
+                                 }
+                            }
+                            .devicespecific{
+                                .link{
+                                    .a-link{
+                                        .a-link__inner-text{
+                                            color: @color-white;
+                                        }
+                                    }
+                                }
+                                .socialmedia{
+                                    .m-social-media--icons{
+                                        li{
+                                            margin-right: 3px;
+                                            .abt-icon{
+                                                color: @color-white;
+                                                font-size: @spacer-20;
+                                            }
+                                        }                                        
+                                    }
+                                }
+                            }
+                            .languagenavigation {
+                                margin-left: @spacer-5;
+                                .m-link-stack {
+                                    .m-link-stack__link {
+                                        .a-link__text {
+                                            font-family: @brandon-regular;
+                                        }
+                                    }
+                                    .m-link-stack__dropdown-wrapper {
+                                        max-height: 337px;
+                                        border-radius: 0;
+                                        @media @lg-down{
+                                             max-height: unset;
+                                            width: 275px !important;
+                                            border-radius: 0px;
+                                            .m-link-stack__title {
+                                                display: none;
+                                            }
+                                        }
+                                        .m-link-stack__container {
+                                            margin: @spacer-10 0;
+                                            margin-right: 2px;
+                                            .m-link-stack__title {
+                                                padding: 0;
+                                            }
+                                            .m-link-stack__list {
+                                                margin-bottom: 0;
+                                            }
+                                        }
+                                        .m-link-stack__smart-search {
+                                            display: none;
+                                        }
+                                        .m-link-stack__list {
+                                            .m-link-stack__list-item {
+                                                .a-link__text {
+                                                    color: @color-charcoal;
+                                                    line-height: @spacer-18;
+                                                    font-family: @brandon-regular;   
+                                                    &:hover{
+                                                        .m-link-stack__country-lang, .m-link-stack__country-name{
+                                                            color: @color-curious-blue;
+                                                        }
+                                                    } 
+                                                    .m-link-stack__country-lang{
+                                                        color: @color-charcoal;
+                                                        @media @lg-down{
+                                                            font-size: @spacer-16;
+                                                        }
+                                                    }  
+                                                    .m-link-stack__country-name{
+                                                        font-size: @spacer-16;
+                                                        color: @color-charcoal;
+                                                    }                                                                                                                                             
+                                                }                                                
+                                            }
+                                        }
+                                        @media @lg-up {
+                                            right: -@spacer-30;
+                                            margin-top: @spacer-11;
+                                        }
+                                    }
+                                    .a-link__text {
+                                        color: @color-cloudy-grey;
+                                        .rotate-upside{
+                                            margin-left: @spacer-4;
+                                            @media @lg-down{
+                                                margin-left: 0;
+                                            }
+                                        }
+                                        em {                                            
+                                            &:before {
+                                                color: @color-cloudy-grey;
+                                                font-size: @spacer-14;
+                                                @media @lg-up{
+                                                    margin-left: @spacer-5;
+                                                }
+                                                @media @lg-down{
+                                                   display: none;
+                                                }
+                                            }                                            
+                                        }
+                                        @media @lg-down{                                               
+                                            .a-link__text--primary-country, .a-link__text--primary-lang{
+                                                display: none;
+                                            }                                              
+                                        } 
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            &.sticky{
+                @media @lg-up {
+                    top: 28px;
+                    z-index: 9;
+                }
+                @media @lg-down {
+                    top: 0 !important;
+                }
+            }
+        }
+    }
+}
+.title-active{
+    color: @color-crystal-blue !important;
+}
+
+.xf-content-height{
+    .root.responsivegrid{
+        background-color: #63666a;
+    }
+    .header-bg-fullwidth{
+        max-width: 100% !important;
+    }
+}
+
+[lang="cs"]{
+    .header, .header.loggedIn {
+        .o-header-v2-global__section--utility-top{
+            .group{
+                .link{
+                    padding: 0 9px !important;
+                }
+            }
+        }
+    }
+}

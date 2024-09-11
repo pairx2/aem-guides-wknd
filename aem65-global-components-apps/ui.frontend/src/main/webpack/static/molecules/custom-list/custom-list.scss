@@ -1,0 +1,438 @@
+.m-custom-list {
+    $self: &;
+
+    h1, h2, h3, h4, h5, h6 {
+        margin-bottom: var(--custom-list-heading-margin);
+    }
+
+    p:not(.h3):not(.h4):not(.m-custom-list__title) {
+        margin-bottom: var(--custom-list-para-margin);
+        font-size: var(--custom-list-para-font-size);
+        line-height: var(--custom-list-para-line-height);
+    }
+
+    &__wrapper {
+        counter-reset: my-list-counter;
+        padding-left: 0;
+    }
+
+    &__content {
+        position: relative;
+        list-style: none;        
+    }
+
+    &__heading {
+        &:before {
+            counter-increment: my-list-counter;
+            font-size: var(--custom-list-font-size)/var(--custom-list-line-height);
+        }
+
+        @include rem(padding, var(--custom-list-padding-y) 0 var(--custom-list-padding-y) var(--custom-list-padding-x));
+
+		h1, h2, h3, h4, h5, h6, .h3, .h4 {
+			margin-bottom: var(--custom-list-heading-bottom-margin);
+		}
+
+        a {
+            color: var(--custom-list-title-link);
+
+            &:hover {
+                text-decoration: underline;
+                color: var(--custom-list-title-link-hover);
+            }
+        }
+
+        #{ $self }__title {
+            font-size: var(--custom-list-title-font-size);
+            line-height: var(--custom-list-title-line-height);
+            margin-bottom: var(--custom-list-heading-margin);
+            font-weight: normal;
+        }
+
+        &--empty {
+            padding-bottom: 2px;
+        }
+    }
+
+    &__para {
+        @include rem(padding-left, var(--custom-list-padding-x));
+        @include rem(margin-bottom, var(--custom-list-para-margin));
+    }
+
+    #{ $self }__heading {
+      &::before {
+        position: absolute;
+        left: 0;
+      }
+    }
+
+    &--bullet {
+
+        #{ $self }__heading {
+            &::before {
+                content: counter(my-list-counter, disc);
+                width: 1rem;
+                height: 1rem;
+                background-color: var(--custom-list-dark);
+                font-size: 0;
+                border-radius: 50%;
+                top: var(--custom-list-bullet-position-top);
+            }
+        }
+
+    }
+
+    &--number,
+    &--icon {
+
+        #{ $self }__heading {
+            &::before {
+                content: counter(my-list-counter, decimal-leading-zero);
+            }
+        }
+
+        #{ $self }__heading, #{ $self }__para { 
+            padding-left: var(--custom-list-padding-xl);
+        }
+
+    }
+
+    &--number-without-zero {
+        #{ $self }--number {
+            #{ $self }__heading {
+                &::before {
+                    content: counter(my-list-counter, decimal);
+                }
+            }
+        }
+    }
+
+    &--alphabet {
+
+        #{ $self }__heading {
+            &::before {
+                content: counter(my-list-counter, upper-latin);
+            }
+        }
+
+    }
+
+    &--non-indented {
+
+        #{ $self }__heading, #{ $self }__para {
+            padding-left: 0;
+        }
+
+    }
+
+    &--bullet,
+    &--number,
+    &--number-without-zero,
+    &--alphabet,
+    &--non-indented {
+
+        #{ $self }__icon-wrapper {
+            display: none;
+        }
+
+    }
+
+    &__icon-wrapper {
+        @include setPosition(absolute, top 7px left 0);
+        display: block;
+    }
+
+    &--icon {
+        #{ $self }__heading { 
+            &::before {
+                content: " ";
+                color: var(--custom-list-light);
+            }
+        }
+    }
+
+    /*Custom List - Icon/Number Size*/
+    &__icon {
+
+        &--extrasmall {
+            #{ $self }__icon-wrapper {
+                .abt-icon {
+                    font-size: var(--custom-list-icon-font-size-xs);
+                }
+            }
+            #{ $self }__heading, #{ $self }__para { 
+                padding-left: var(--custom-list-icon-padding-left-xs);
+            }
+        }
+
+        &--small {
+            #{ $self }__icon-wrapper {
+                .abt-icon {
+                    font-size: var(--custom-list-icon-font-size-sm);
+                }
+            }
+            #{ $self }__heading, #{ $self }__para { 
+                padding-left: var(--custom-list-icon-padding-left-sm);
+            }
+        }
+
+        &--medium {
+            #{ $self }__icon-wrapper {
+                .abt-icon {
+                    font-size: var(--custom-list-icon-font-size-md);
+                }
+            }
+            #{ $self }__heading, #{ $self }__para { 
+                padding-left: var(--custom-list-icon-padding-left-md);
+            }
+        }
+
+        &--large {
+            #{ $self }__icon-wrapper {
+                .abt-icon {
+                    font-size: var(--custom-list-icon-font-size-lg);
+                }
+            }
+            #{ $self }__heading, #{ $self }__para { 
+                padding-left: var(--custom-list-icon-padding-left-lg);
+            }
+        }
+
+    }
+
+    /*-------------------------------------
+    Modifiers
+    /*-----------------------------------*/
+
+    /*Custom List - Icon/Number/Alphabet/Bullet Color - Start*/
+    &--dark, &__list-icon--default {
+
+        #{ $self }__heading { 
+            &::before { 
+                color: var(--custom-list-dark);
+                font-weight: bold;
+            }
+        }
+        #{ $self }__icon-wrapper {
+            color: var(--custom-list-dark);
+        }
+
+        #{ $self }--bullet {
+          #{ $self }__heading {
+            &::before {              
+              background-color: var(--custom-list-dark);
+            }
+          }
+        }
+    }
+
+    &--primary, &__list-icon--primary {
+
+        #{ $self }__heading { 
+            &::before { 
+                color: var(--custom-list-primary);
+                font-weight: bold;
+            }
+        }
+        #{ $self }__icon-wrapper {
+            color: var(--custom-list-primary);
+        }
+
+        #{ $self }--bullet {
+          #{ $self }__heading {
+            &::before {
+              background-color: var(--custom-list-primary);
+            }
+          }
+        }
+    }
+
+    &--secondary, &__list-icon--secondary {
+
+        #{ $self }__heading { 
+            &::before { 
+                color: var(--custom-list-secondary);
+                font-weight: bold;
+            }
+        }
+
+        #{ $self }__icon-wrapper {
+            color: var(--custom-list-secondary);
+        }
+
+        #{ $self }--bullet {
+          #{ $self }__heading {
+            &::before {
+              background-color: var(--custom-list-secondary);
+            }
+          }
+        }
+
+    }
+
+    &--light, &__list-icon--alternate {
+
+        #{ $self }__heading { 
+            &::before { 
+                color: var(--custom-list-light);
+                font-weight: bold;
+            }
+        }
+
+        #{ $self }__icon-wrapper {
+            color: var(--custom-list-light);
+        }
+
+        #{ $self }--bullet {
+          #{ $self }__heading {
+            &::before {
+              background-color: var(--custom-list-light);
+            }
+          }
+        }
+    }
+    /*Custom List - Icon/Number/Alphabet/Bullet Color - End*/
+
+
+    /*Custom List - List Heading Color - Start*/
+    &-title, &__title {
+
+        &--dark, &--default {
+
+            #{ $self }__heading {
+                h1, h2, h3, h4, h5, h6, .h3, .h4, .m-custom-list__title {
+                    color: var(--custom-list-title-dark);
+                }
+            }
+            
+        }
+
+        &--light, &--alternate {
+            #{ $self }__heading {
+                h1, h2, h3, h4, h5, h6, .h3, .h4, .m-custom-list__title {
+                    color: var(--custom-list-title-light);
+                }
+            }
+        }
+
+        &--primary {
+
+            #{ $self }__heading {
+                h1, h2, h3, h4, h5, h6, .h3, .h4, .m-custom-list__title {
+                    color: var(--custom-list-title-primary);
+                }
+            }
+        }
+
+        &--secondary {
+            #{ $self }__heading {
+                h1, h2, h3, h4, h5, h6, .h3, .h4, .m-custom-list__title {
+                    color: var(--custom-list-title-secondary);
+                }
+            }
+        }
+
+        &--dark, &--default,
+        &--light, &-alternate, 
+        &--primary, 
+        &--secondary {
+
+            #{ $self }__heading {
+                h1, h2, h3, h4, h5, h6, .h3, .h4, .m-custom-list__title {
+
+                    a {
+                        color: var(--custom-list-title-link);
+            
+                        &:hover {
+                            text-decoration: underline;
+                            color: var(--custom-list-title-link-hover);
+                        }
+                    }
+
+                }
+            }
+        } 
+    }
+    /*Custom List - List Heading Color - End*/
+
+    /*Custom List - Header Title Color - Start*/
+    &__header-title {
+
+        &--default {
+            #{ $self }__header-title > {
+                h1, h2, h3, h4, h5, h6, .h3, .h4 {
+                    color: var(--custom-list-header-title-default);
+                }
+            }
+            
+        }
+        &--reversed {
+            #{ $self }__header-title > {
+                h1, h2, h3, h4, h5, h6, .h3, .h4 {
+                    color: var(--custom-list-header-title-reversed);
+                }
+            }
+        }
+        &--primary {
+            #{ $self }__header-title > {
+                h1, h2, h3, h4, h5, h6, .h3, .h4 {
+                    color: var(--custom-list-header-title-primary);
+                }
+            }
+        }
+        &--alternate {
+            #{ $self }__header-title > {
+                h1, h2, h3, h4, h5, h6, .h3, .h4 {
+                    color: var(--custom-list-header-title-alternate);
+                }
+            }
+        }
+
+    }
+    /*Custom List - Header Title Color - End*/
+
+    /*Custom List - List Number/ALphabet Size - Start*/
+    &__list-size--default {
+        #{ $self }__heading {
+            &::before {
+                font-size: var(--custom-list-bullet-font-size-default);
+            }
+        }
+    }
+
+    &__list-size--large {
+        #{ $self }__heading {
+            &::before {
+                font-size: var(--custom-list-bullet-font-size-large);
+            }
+        }
+    }
+    /*Custom List - List Number/ALphabet Size - End*/
+
+    #{ $self }__header-title > {
+        h3:empty {
+            display: none;
+        }
+    }
+}
+
+.m-custom-list__list-size {
+
+    &--gradient-start {
+        .m-custom-list {
+            background: linear-gradient(90deg, var(--customList-start-color) var(--customList-start-position), var(--customList-end-color) var(--customList-end-position));
+        }
+    }
+
+    &--gradient-center {
+        .m-custom-list {
+            background: linear-gradient(-90deg, var(--customList-start-color) var(--customList-start-position), var(--customList-end-color) var(--customList-end-position));
+        }
+    }
+
+    &--gradient-end {
+        .m-custom-list {
+            background: radial-gradient(circle, var(--customList-start-color) var(--customList-start-position), var(--customList-end-color) var(--customList-end-position));
+        }
+    }
+}

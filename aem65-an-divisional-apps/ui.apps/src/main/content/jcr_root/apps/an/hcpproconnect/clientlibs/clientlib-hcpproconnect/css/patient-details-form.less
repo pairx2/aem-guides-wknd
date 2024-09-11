@@ -1,0 +1,138 @@
+@import "./global/mixins.less";
+@import './global/variables.less';
+
+#sampleProductForm .container {
+    padding: 0;
+
+    .a-checkbox__text {
+        font-family: @calibri-font-family, sans-serif;
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 22px;
+        letter-spacing: 0em;
+        text-align: left;
+    }
+}
+
+#formHeaderSubText p {
+    font-family: @calibri-font-family;
+    font-size: 18px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0em;
+    margin: 15px 0;
+    color: #002A3A;
+}
+
+.patient-two-fields-container .cmp-container{
+    display: grid;
+    grid-template-columns: 50% auto;
+    gap: 15px;
+
+    @media @md-down {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.container.responsivegrid.a-container:has(.patient-two-fields-container),
+.options:has(#orderConcent) {
+    padding: 0;
+}
+
+#patientDetail-concent-options {
+    margin-top: 20px;
+}
+
+#patientDetail-concent-options,
+#patientDetail-patientConcent-options{
+    display: inline;
+}
+
+.container.responsivegrid.a-container:has(#patientDetailsTwoFieldContainer) {
+    z-index : 10;
+}
+.options:has(#patientDetail-concent-options) {
+    z-index : 9;
+    position : relative;
+}
+
+#patientDetail-concent-options .a-checkbox.a-checkbox--horizontal.a-checkbox--default p {
+    margin: 0;
+}
+
+.patient-two-fields-container {
+    .form-group.a-form-grp,
+    .a-dropdown.a-input-field.mt-0.a-dropdown__container.form-group {
+        margin : 0;
+    }
+}
+
+.options:has(#patientDetail-methodContact-options) {
+    margin-top: 0;
+}
+
+#sampleProductForm #successErrorMessage {
+    display: flex;
+    gap: 20px;
+}
+
+#sampleProductForm .abt-icon-cancel:before {
+    content: "\e904";
+    color: #FFFFFF;
+    font-size: 12px !important;
+    align-self: center;
+}
+
+
+.autocomplete-items {
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  border-top: none;
+  z-index: 99;
+  /*position the autocomplete items to be the same width as the container:*/
+  top: 100%;
+  left: 0;
+  right: 0;
+  max-height: 223px;
+  overflow: auto;
+  font-family: @calibri-font-family, sans-serif;
+  font-size: 18px;
+}
+
+.autocomplete-items div {
+    padding: 10px;
+    cursor: pointer;
+    background-color: #fff;
+    border-bottom: 1px solid #d4d4d4;
+    display: flex;
+    align-items: center;
+    gap:10px;
+
+    p {
+        margin: 0;
+        width: 100%
+    }
+}
+
+/*when hovering an item:*/
+.autocomplete-items div:hover {
+  background-color: #e9e9e9;
+}
+
+/*when navigating through the items using the arrow keys:*/
+.autocomplete-active {
+  background-color: DodgerBlue !important;
+  color: #ffffff;
+}
+
+.see-more-address-arrow {
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+  color:#002a3a;
+}

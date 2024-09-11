@@ -1,0 +1,96 @@
+- DEF groupPrefix="APP-Adobe-AEM-DM-ALL"
+- DEF environmentType=$[env:AB_ACL_ENVIRONMENT_TYPE;default=PRD]
+- DEF lowerEnvList=:
+     - DEV
+     - QA
+- DEF higherEnvList=:
+     - PRD
+     - STG
+
+- group_config:
+     
+    - ${groupPrefix}-platform-developer:
+
+       - name: Platform Developer
+         isMemberOf: base-developer
+         externalId: "${groupPrefix}-platform-developer;ims"
+
+    - base-commerce-developer:
+
+       - name: Commerce Developer Base
+         isMemberOf: base-developer
+
+    - ${groupPrefix}-commerce-developer:
+
+       - name: Commerce Developer
+         isMemberOf: base-developer, base-commerce-developer
+         externalId: "${groupPrefix}-commerce-developer;ims"
+
+- ace_config:
+
+    - ${groupPrefix}-platform-developer:
+       - IF ${containsItem(lowerEnvList, environmentType)}:
+           - path: /
+             permission: allow
+             actions: acl_read
+           
+           - path: /apps
+             permission: allow
+             actions: modify,create,delete,replicate
+             
+           - path: /conf
+             permission: allow
+             actions: modify,create,delete,replicate,acl_read
+           
+           - path: /content
+             permission: allow
+             actions: modify,create,delete,replicate
+             
+           - path: /content/experience-fragments
+             permission: allow
+             actions: modify,create,delete,replicate
+             
+           - path: /etc
+             permission: allow
+             actions: modify,create,delete,replicate,acl_read
+             
+           - path: /home
+             permission: allow
+             actions: read,acl_read
+             
+           # so that platform developer can view the system user permissions
+           - path: /home/users/system
+             permission: allow
+             actions: read,acl_read
+             
+           - path: /oak:index
+             permission: allow
+             privileges: crx:replicate,jcr:lockManagement,jcr:readAccessControl,jcr:versionManagement,rep:indexDefinitionManagement,rep:write
+             
+           - path: /var
+             permission: allow
+             actions: modify,create,delete,acl_read
+             
+       - IF ${containsItem(higherEnvList, environmentType)}:
+              - path: /
+                permission: allow
+                actions: acl_read
+                 
+              - path: /etc/packages
+                permission: allow
+                actions: read
+               
+              - path: /home
+                permission: allow
+                actions: read,acl_read
+                 
+               # so that platform developer can view the system user permissions
+              - path: /home/users/system
+                permission: allow
+                actions: read,acl_read     
+         
+    - base-commerce-developer:
+       - IF ${containsItem(lowerEnvList, environmentType)}:
+           - path: /var/commerce/products
+             permission: allow
+             actions: modify,create,delete,replicate

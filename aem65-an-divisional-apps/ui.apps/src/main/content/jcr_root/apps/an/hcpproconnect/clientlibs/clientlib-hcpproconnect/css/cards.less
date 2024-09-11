@@ -1,0 +1,283 @@
+@import './global/variables.less';
+@import './global/mixins.less';
+
+	#contract-service-containercc {
+		.columncontrol {
+			&+.columncontrol {
+				padding-top: 2rem;
+			}
+			@media @md-down{
+				.columncontrol__column {
+					>article {
+						height: fit-content !important;
+					}
+					&+.columncontrol__column {
+						padding-top: 2rem;
+					}
+					>article.m-card--horizontal {
+						flex-direction: column;
+						.m-card__wrapper{
+							flex-direction: column;
+						}
+						.m-card__media {
+							margin: auto;
+							width: 100%;
+							height: var(--card-large-media-height-mobile);
+						}
+					}
+				}
+				>.container {
+					padding-left: 40px;
+					padding-right: 40px;
+				}
+			}
+		}
+	}
+
+@media @md-up {
+	#contract-service-containercc #nurse-advisor-cardcc {
+		article.m-card--horizontal {
+			height: fit-content !important;
+			&:only-child {
+				padding-bottom: 1.3rem;
+			}
+		}
+	}
+}
+
+//cards with icons:
+.m-card {
+	&:has(.border-gray) {
+		border-radius: 15px;
+		--card-border-radius: 15px;
+		--card-border: 1px solid #D9D9D6;
+	}
+	&:has(.noborder) {
+		--card-border: none;
+	}
+	&:has(.white-bg){
+		background: #FFF;
+	}
+	&:has(.button-card) {
+		border-radius: 25px;
+		--card-border-radius: 25px;
+	}
+	section.custom-card {
+		padding: 30px;
+		.m-card__media {
+			height: 40px;
+		}
+		.m-card__body {
+			padding:1rem 0 0;
+			p {
+				line-height: normal;
+				&:last-child {
+					margin-bottom: 0;
+				}
+			}
+			h2 {
+				font-family: @base-font-family-bold;
+				font-weight: 450;
+				line-height: 20px;
+				margin-bottom: 0;
+			}
+		}	
+	}
+	section.iconcards {
+		padding: 30px;
+		.m-card__media {
+			height: 70px;
+		}
+		.m-card__body {
+			padding:1rem 0 0;
+			p {
+				margin-bottom: 0;
+			}
+			h2 {
+				margin-bottom: 0;
+			}
+		}	
+	}
+	&:has(.card-img-vertical) {
+		border-radius: 4px;
+		--card-border-radius: 4px;
+		--card-border: 1px solid #d9d9d6;
+		border: 1px solid #D9D9D6;
+		box-shadow: 0px 2px 4px 0px #0000003D;
+		@media @sm-up{
+		width: 550px;
+		}
+	}
+	.card-img-vertical {
+		img.cmp-image__image {
+			border-radius: 4px 0 0 4px;
+		}
+		.m-card__media {
+			height: auto;
+			min-width: 140px;
+			@media @lg-only{
+				height: 309px;
+			}
+		}
+	}
+}
+@media @lg-down {
+	.columncontrol__column {
+		&:has(section.iconcards),&:has(section.custom-card) {
+			padding-bottom: 2rem;
+		}
+	}
+}
+
+/*product-cards:*/
+.product-cards {
+	.m-card__media {
+		margin: 30px 30px 0px 30px;
+	}
+	.m-card__body {
+		margin: 15px 30px 30px 30px;
+		padding: 0;
+		text-align: center;
+		h2 {
+			margin: 0px;
+		}
+		.button {
+			border-radius: 500px;
+			background: #009CDE;
+			padding: 15px 32px;
+			height: 48px;
+			.a-link__text {
+				color: #fff;
+				.a-link__inner-text { 
+					font-size: 20px;
+					letter-spacing: 1px;
+					line-height: 18px;
+				}
+			}
+		}
+	}
+}	
+.o-cards-carousel {
+	&:has(.product-cardcarousel) {
+		background: #F2F2F2;
+    	border-radius: 15px;
+		padding-top:30px;
+		.slick-arrow {
+			display: inline-block !important;
+		}
+		@media @lg-down{
+			padding: 30px 30px 0;
+		}
+	}
+	.m-card {
+		.product-cards.product-cardcarousel {
+			.m-card__body {
+				margin: 15px 18px 30px;
+				.button {
+					padding: 15px 20px;
+				}
+			}
+			.cmp-image__image {
+				margin: 0 auto;
+				position: static;
+				width: auto;
+				height: auto;
+				max-width: 100%;
+				max-height: var(--card-media-height-mobile);
+			}
+			.m-card__image {
+				position: static;
+			}
+		}
+	}
+}
+
+/*cards with button*/
+.button-card {
+	.m-card__media{
+		border-radius: 25px 25px 0 0;
+	}
+	.m-card__body {
+		padding: 30px;
+		p {
+			line-height: normal;
+		}
+		.title-sm {
+			line-height: 20px;
+		}
+		.m-card__title {
+			margin-bottom: 0;
+		}
+	}
+	.button {
+		min-width: 255px;
+		height: 48px;
+		border-radius: 500px;
+		background: #009CDE;
+		padding: 15px 32px;
+		text-align: center;
+		.a-link__inner-text {
+			font-size: 20px;
+			font-weight: 450;
+			letter-spacing: .75px;
+			line-height: 18px;
+			color: #fff;
+		}
+	}
+}
+	
+// card width halfwide the page
+.card_halfwide{
+    .a-container {
+        border: 1px solid #d9d9d9;
+        border-radius: 25px;
+        .image{
+            margin-bottom: 30px !important;
+			.cmp-image__image {
+				border-radius: 25px 25px 0 0;
+			}
+        }
+        .text{
+            padding-left: 32px;
+            padding-right: 28px;
+            .cmp-text{
+               .sub-heading{
+                    line-height: 20px;
+                    margin-bottom: 1rem;
+                }
+                img{
+                    width: 30px;
+                    height: 30px;
+                }
+            }
+        }
+        .button{
+            padding: 0 28px 30px 32px;
+            margin-top: 0 !important;
+            .btn{
+                display: flex;
+                min-width: 255px;
+                height: 48px;
+                padding: 15px 32px;
+                justify-content: center;
+                align-items: center;
+                font-family: @base-font-family-bold;
+                font-size: 20px;
+                font-weight: 450;
+                line-height: 18px;
+                letter-spacing: 0.75px;
+				text-align: center;
+            }
+        }
+    }
+}
+
+@media @md-down {
+	.colcontrol-mob-padding {
+		.columncontrol__column {
+			&+.columncontrol__column {
+				padding-top: 2rem;
+			}
+		}
+	}
+}

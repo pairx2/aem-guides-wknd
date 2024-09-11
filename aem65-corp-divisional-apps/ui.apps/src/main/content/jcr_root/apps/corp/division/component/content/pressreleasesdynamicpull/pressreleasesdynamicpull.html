@@ -1,0 +1,149 @@
+<div
+  data-sly-test="${wcmmode.edit}"
+  class="cq-placeholder"
+  data-emptyText="Configure Dynamic Pull Component"
+></div>
+<sly
+  data-sly-use.pressReleaseDynPull="com.abbott.aem.corp.division.core.components.models.PressReleaseDynamicPullModal"
+>
+  <div
+    data-sly-test="${wcmmode.edit &&  pressReleaseDynPull.pressPagesObj.size <= 0}"
+  >
+    ${pressReleaseDynPull.errorMsg}
+  </div>
+
+  <sly
+    data-sly-test="${pressReleaseDynPull.displayType == 'pressreleasedynamic'}"
+  >
+    <sly data-sly-list.child="${pressReleaseDynPull.pressPagesObj}">
+      <div class="item">
+        <a href="${child.pressPagePath @extension = 'html'}">
+          <div class="date">${child.pressDateFormat}</div>
+          <div class="title">${child.title}</div>
+          <div class="desc">${child.description}</div>
+        </a>
+      </div>
+    </sly>
+    <div
+      class="pagination-box"
+      data-sly-test="${pressReleaseDynPull.displayType != 'executiveteam'}"
+    >
+      <span class="pagination-text"
+        >${pressReleaseDynPull.paginationText} 1 -
+        <span class="initialCountDisplay"
+          >${pressReleaseDynPull.initialCount}</span
+        >
+        OF ${pressReleaseDynPull.pressPagesObj.size}</span
+      >
+      <a href="#" id="loadMore"
+        ><button>${pressReleaseDynPull.showMoreText}</button></a
+      >
+    </div>
+    <div class="hidden-feilds">
+      <div class="total-result">${pressReleaseDynPull.pressPagesObj.size}</div>
+      <div class="initialCount">${pressReleaseDynPull.initialCount}</div>
+    </div>
+  </sly>
+
+  <div
+    data-sly-test="${pressReleaseDynPull.displayType == 'executiveteam'}"
+    class="executiveteam"
+  >
+    <sly data-sly-list.child="${pressReleaseDynPull.pressPages}">
+      <div data-sly-test="${child.execImage}" class="executive-member">
+        <a href="${child.pressPagePath @extension = 'html'}">
+          <div data-sly-test="${child.execImage}" class="profile-image">
+            <img
+              src="${child.execImage}"
+              alt="${child.execTitle}"
+              width="335"
+            />
+          </div>
+          <div class="profile-details">
+            <div data-sly-test="${child.execTitle}" class="profile-title">
+              ${child.execTitle}
+            </div>
+            <div data-sly-test="${child.execDescription}" class="profile-desc">
+              ${child.execDescription}
+            </div>
+          </div>
+        </a>
+      </div>
+    </sly>
+  </div>
+  <div
+    data-sly-test="${pressReleaseDynPull.displayType == 'ourexperts'}"
+    class="expertteam"
+    id="paginated-list"
+  >
+    <sly data-sly-list.child="${pressReleaseDynPull.pressPages}">
+      <div data-sly-test="${child.execImage}" class="expert-member">
+        <a href="${child.pressPagePath @extension = 'html'}">
+          <div data-sly-test="${child.execImage}" class="profile-image">
+            <img src="${child.execImage}" alt="${child.execTitle}" width="35" />
+          </div>
+          <div class="profile-details">
+            <div data-sly-test="${child.execTitle}" class="profile-title">
+              ${child.execTitle}
+            </div>
+            <div data-sly-test="${child.execDescription}" class="profile-desc">
+              ${child.execDescription}
+            </div>
+          </div>
+        </a>
+      </div>
+    </sly>
+    <div data-sly-test="${pressReleaseDynPull.expertCount}" id="noofpeople">${pressReleaseDynPull.expertCount}></div>
+    <nav data-sly-test="${pressReleaseDynPull.expertCount}" class="pagination-container">
+      <button
+        class="pagination-button"
+        id="prev-button"
+        aria-label="Previous page"
+        title="Previous page"
+      >
+        &lt;
+      </button>
+
+      <div id="pagination-numbers"></div>
+
+      <button
+        class="pagination-button"
+        id="next-button"
+        aria-label="Next page"
+        title="Next page"
+      >
+        &gt;
+      </button>
+    </nav>
+  </div>
+  <div
+    data-sly-test="${pressReleaseDynPull.displayType == 'marathonpages'}"
+    class="marathon-pages"
+  >
+    <div class="marathon-card-container" data-sly-list.stories="${pressReleaseDynPull.articlePagesList}">
+      <div class="marathon-card">
+            <a href="${stories.pressPagePath @ extension='html'}" class="story-link" target="_self">
+              <div class="story-image">
+                <img src="${stories.articleImage}" alt="${stories.articleSubTitle}" width="350" height="157" />
+                <span class="read-more">${pressReleaseDynPull.readMore}</span>
+                <div class="story-overlay"></div>
+              </div>
+              <div class="story-details">
+                <div class="story-category ${stories.articleColor}">${stories.categoryTitle @context='html'}</div>
+                <div class="story-date">${stories.articleDate}</div>
+                <div class="story-title">${stories.articleSubTitle @context='html'}</div>
+                <div class="story-desc">${stories.articleDescription @context='html'}</div>
+              </div>
+            </a>
+      </div>
+      </div>      
+  
+  </div>
+  
+     <div data-sly-test="${pressReleaseDynPull.viewAllLink}" class="show-more-container">
+        <a href="${pressReleaseDynPull.viewAllLink @ extension='html'}" class="show-more-text">
+          <span>${pressReleaseDynPull.seeAllText}</span>
+          <em class="abt-icon abt-icon-play2"></em>
+        </a>
+      </div>
+</sly>

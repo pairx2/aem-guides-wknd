@@ -1,0 +1,29 @@
+<sly data-sly-use.promoSection="com.abbott.aem.platform.common.components.models.PromoSection"
+	data-sly-use.component="com.adobe.cq.wcm.core.components.models.Component"
+    data-sly-use.customConfig="com.abbott.aem.platform.common.components.models.CustomConfig"
+    data-sly-use.templates="core/wcm/components/commons/v1/templates.html" id="${component.id}"></sly>
+<!--/* Promo Section component html */-->
+
+<div id="${component.id}" class="o-promo container ${customConfig.className}">
+	<div class="o-promo__badge ${wcmmode.edit ? 'promo-btn-edit' : ''}" data-sly-test=${promoSection.badgeRequired}>
+        <sly data-sly-resource="${'promo-badge' @ resourceType=promoSection.badgeProxyPath,decoration=true}"></sly>
+	</div>
+    <div class="o-promo__logo">
+        <sly data-sly-resource="${'promo-logo' @ resourceType=promoSection.logoProxyPath,decoration=true}"></sly>
+    </div>
+	<div class="o-promo__title">
+    	<sly data-sly-resource="${'promo-title' @ resourceType=promoSection.titleProxyPath,decoration=true}"></sly>
+    </div>
+	<div class="o-promo__text">
+		<sly data-sly-resource="${'promo-text' @ resourceType=promoSection.textProxyPath,decoration=true}"></sly>
+    </div>
+	<div class="o-promo__wrapper" data-sly-test="${promoSection.buttonCount && promoSection.buttonCount != 0}" >
+		<sly data-sly-list.buttonLength="${promoSection.buttonLength}">
+        	<sly data-sly-test.col="${'promo-button{0}' @ format=[buttonLengthList.count]}"/>
+			<div class="o-promo__btn">
+				<sly data-sly-resource="${ col @ resourceType=promoSection.buttonProxyPath,decoration=true}"></sly>
+			</div>
+		</sly>
+	</div>
+</div>
+<sly data-sly-call="${templates.placeholder @ isEmpty = !promoSection.buttonCount}"></sly>

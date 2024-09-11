@@ -1,0 +1,90 @@
+@import '../variables.less';
+@import '../mixin.less';
+@import "../media-queries.less";
+
+.tabs {
+    @media @lg-up {
+        padding-right: 35px;
+    }
+    .a-tabs__nav {
+        padding-bottom: 2px;
+        border-bottom: 1px solid @color-black;
+        &-link {
+            color: @color-medium-blue; 
+            background-color: @color-light-blue;
+            margin: 2px 2px 1px 0;
+            .font-size(16px, 16px);
+            font-family: @brandonbold;
+            width: 155px;
+            padding: 4px 8px 0 8px;
+            height: 50px;
+            position: relative;
+            border-bottom: none;
+            letter-spacing: 0;
+            z-index: 1;
+            flex: none;
+            @media @lg-only {
+                .font-size(12px, 14px);
+            }
+            @media @lg-down {
+                width: 32%;
+                flex-basis: 32%;
+                max-width: 32.5%;
+            }
+            &:before {
+                .btn-overlay;
+                background-color: @color-medium-blue;
+            }
+            &:hover, &.active {
+                color: @color-light-blue;
+                border-bottom: none;
+                background-color: @color-light-blue;
+                &:before {
+                    -webkit-transform: scaleY(1);
+                    transform: scaleY(1);
+                }
+            }
+            &:focus {
+                text-decoration: none;
+            }
+            .a-tabs__nav-text {
+                align-items: center;
+                justify-content: center;
+                @media @md-down {
+                   display: flex;
+                   .font-size(14px, 16px);
+                }
+                @media @sm-down {
+                    .font-size(11px, 14px);
+                }
+            }
+        }        
+    }  
+    #tab-small-font {
+        .a-tabs__nav {
+            &-link {
+                .font-size(13px, 16px);
+            }
+        }
+    }
+    .tab-content {
+        .columncontrol > .container > .row {
+            @media @md-down {
+                > .col-md-3 {
+                    max-width: 25%;
+                    margin-bottom: 0;
+                }
+                > .col-md-9 {
+                    max-width: 75%;
+                }
+            }   
+            .cmp-text p:last-child {
+                margin-bottom: 0;
+            }         
+        }
+    }  
+}
+
+.columncontrol.column-align--center .row.a-tabs__nav {
+    justify-content: left;
+}

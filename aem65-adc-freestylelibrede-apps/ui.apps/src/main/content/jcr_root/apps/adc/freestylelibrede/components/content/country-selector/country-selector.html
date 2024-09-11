@@ -1,0 +1,51 @@
+<sly data-sly-test="${wcmmode.edit}">
+  <p data-emptytext="Configure ${component.title}" class="cq-placeholder"></p>
+</sly>
+
+<sly data-sly-use.countrySelectorModel="com.abbott.aem.adc.freestylelibrede.models.CountrySelectorModel"
+     data-sly-use.icon="adc/freestylelibrede/components/content/templates/icon/icon.html"
+>
+<!-- country selector -->
+         <div class>
+             <div class="d-flex align-items-center f-globe blue">
+               <span class="mr-1 globe-icon mt-2 ml-2">
+                 <sly data-sly-call="${icon.icon @ name='globe', size='md'}"></sly>
+               </span>
+               <a href="#" class="m-0 country-sel-txt" data-toggle="modal" data-target="#exampleModal">${countrySelectorModel.countrySelectorTitle}</a>
+             </div>
+         </div>
+<!-- /country selector -->
+<!-- country selector popup -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="country-selector-modal"> 
+          <button type="button" class="country-close-btn" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h3 class="title mt-2 px-5">${countrySelectorModel.countrySelectorLabel}</h3>
+          <div class="country-container">
+
+            <ul data-sly-list.country="${countrySelectorModel.countries.listChildren}">
+
+              <li>
+                <a href="${country.link}" class="country-item">
+                  <span class="m-0">${country.label}</span>
+                  <img src="${country.flag}" alt="${country.altText}">
+                </a>
+              </li>
+            </ul>
+       <span>
+             <a href="${countrySelectorModel.textlink}" class="text-underline">
+                  <span class="m-0">${countrySelectorModel.textlinklabel}</span>                     
+                </a>
+                </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /country selector popup -->
+</sly>

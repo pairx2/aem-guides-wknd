@@ -1,0 +1,410 @@
+  
+  .custom-search {
+    position: relative;
+
+    @include media-breakpoint-down(md) {
+    .xf-content-height{
+      table{
+        border: none;
+      }
+      table, thead, tbody, th, td, tr{
+        display: block;
+
+      }
+      .thead{
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+        border: none;
+      }
+      td{
+        border: none;
+        &::before{
+          display: flex;
+        }
+      }
+        td:nth-of-type(odd):before { 
+          content: "Name :";
+        font-weight: 600; 
+      }
+        td:nth-of-type(even):before { 
+          content: "File Download Location :";
+        font-weight:600;
+       }
+      
+    }
+  }
+    table {
+      width: 100%;
+      
+
+      thead {
+        th {
+          color: var(--primary-color);
+          font-size: 12px;
+        }
+      }
+    }
+
+
+    tr {
+      border-bottom: 0.5px solid var(--gray-lightest-color);
+    }
+
+    th {
+      padding: 18px 18px 6px 18px;
+
+      span.up {
+        margin-left: 4px;
+      }
+
+      &.sortable {
+        cursor: pointer;
+      }
+    }
+
+    td {
+      padding: 25px 18px 15px 18px;
+      vertical-align: top;
+    }
+
+    th,
+    td {
+      font-family: var(--label-font-family);
+      font-size: 14px;
+      font-weight: normal;
+
+      .a-chips {
+        margin-right: 10px;
+
+        a {
+          outline: auto;
+          background-color: var(--white-color);
+          pointer-events: none;
+
+
+          &.Y {
+            outline-color: var(--green-color);
+          }
+
+          &.N {
+            outline-color: var(--gray-darker-color);
+          }
+
+        }
+      }
+
+      .a-link__text {
+        text-decoration: underline;
+      }
+    }
+
+
+    .result-numbers {
+      font-weight: bolder;
+      font-size: 14px;
+      color: var(--secondary-75-color);
+    }
+
+    .download {
+      margin: 15px 0px 15px;
+
+      .btn {
+        line-height: 10px;
+        font-weight: 500;
+      }
+    }
+    // TODO: Break up into results-table component scss
+    table {
+      th {
+        font-family: var(--heading-2-font-family);
+        color: var(--primary-color);
+
+        span.up {
+          color: var(--primary-color);
+        }
+      }
+    }
+
+    @include media-breakpoint-down(md) {
+      thead {
+        display: none;
+      }
+
+      table tbody tr {
+        border: 2px solid var(--secondary-50-color);
+        display: block;
+        border-radius: 10px;
+        margin: 10px 0px 10px;
+
+        td {
+          display: flex;
+          border-bottom: unset;
+          padding: 5px;
+          margin-left: 45px;
+
+         &.title{
+          margin-left: 0px;
+          .a-checkbox.mobile{
+            margin-bottom:0px;
+            display: block;
+            span.a-checkbox__text{
+              display: block;
+            }
+            .a-checkbox__custom{
+              display: block;
+            }
+          }
+            span{
+              display: none;
+            }
+            
+          }
+
+          &.cpproductname{
+            margin-left: 0px;
+            display: none;;
+
+          }
+          .cpproductnametesting{
+            display: none ;
+          }
+
+          .sortable{
+            margin: 10px;
+          }
+          
+  
+
+          &.cpfilename{
+            margin-left: 40px;
+          }
+
+          &.checkbox {
+            justify-content: flex-start;
+
+          }
+
+          &:first-child {
+            border-radius: 10px 0 0 10px;
+          }
+
+          &:last-child {
+            border-radius: 0 10px 10px 0;
+          }
+
+          .product_Name {
+            display: none;
+          }
+
+          .title {
+            display: none;
+          }
+          .a-checkbox__text{
+            margin-left: 10px;
+            font-size: 16px;
+          }
+
+
+        }
+
+
+      }
+
+      table tbody td {
+        &[data-th]::before {
+          content: attr(data-th);
+          margin-right: 5px;
+        }
+
+        &.cplotnumber {
+          font-weight: 700;
+        }
+      }
+
+    }
+    .m-search-bar {
+      .a-input-field {
+        width: 100%;
+      }
+    }
+    .search-input-section {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      width: 100%;
+      column-gap: 10px;
+
+      & > .row {
+        @include media-breakpoint-up(md) {
+          flex-basis: 85%;
+        }
+        &.ous {
+          @include media-breakpoint-up(md) {
+            flex-basis: 100%;
+            margin-left: -35px;
+          }
+        }
+      }
+      .search-input-submit {
+        width: 15%;
+      }
+      .flex-2 {
+        flex: 2 !important;
+      }
+
+      @include media-breakpoint-down(md) {
+        display: block;
+
+      }
+
+      .a-dropdown, .a-input-field {
+        &.hidden {
+          display: none;
+        }
+      }
+      .a-button {
+        display: block !important;
+        align-self: flex-start;
+        padding-bottom: 32px;
+        @include media-breakpoint-up(md) {
+          flex-basis: 15%;
+          margin-top: 1.5em;
+        }
+
+        button {
+          padding-top: 15px;
+          padding-bottom: 15px;
+          width: 100%;
+        }
+      }
+      .col-1,.col-2,.col-3,.col-4,.col-5,.col-6,.col-7,.col-8,.col-9,.col-10,.col-11,.col-12,.col,.col-auto,.col-sm-1,.col-sm-2,.col-sm-3,.col-sm-4,.col-sm-5,.col-sm-6,.col-sm-7,.col-sm-8,.col-sm-9,.col-sm-10,.col-sm-11,.col-sm-12,.col-sm,.col-sm-auto,.col-md-1,.col-md-2,.col-md-3,.col-md-4,.col-md-5,.col-md-6,.col-md-7,.col-md-8,.col-md-9,.col-md-10,.col-md-11,.col-md-12,.col-md,.col-md-auto,.col-lg-1,.col-lg-2,.col-lg-3,.col-lg-4,.col-lg-5,.col-lg-6,.col-lg-7,.col-lg-8,.col-lg-9,.col-lg-10,.col-lg-11,.col-lg-12,.col-lg,.col-lg-auto,.col-xl-1,.col-xl-2,.col-xl-3,.col-xl-4,.col-xl-5,.col-xl-6,.col-xl-7,.col-xl-8,.col-xl-9,.col-xl-10,.col-xl-11,.col-xl-12,.col-xl,.col-xl-auto{
+        padding-left: 7px;
+        padding-right: 7px
+      }
+    }
+
+    .custom-search-results {
+      display: flex;
+      justify-content: flex-start;
+      &.facets {
+        .custom-search-results__results {
+          width: calc(100% - 250px);
+          @include media-breakpoint-down(md) {
+            width: 100%;
+          }
+        }
+      }
+      &.facets-top {
+        flex-wrap: wrap;
+        .search-facets {
+          min-width: 100%;
+          margin-right: 0;
+          .items {
+            flex-direction: row;
+            flex-wrap: wrap;
+            margin-bottom: 1em;
+            display: flex;
+            justify-content: start;
+          }
+          .a-checkbox {
+            display: block;
+            width: auto;
+            margin-right: 1em;
+          }
+        }
+      }
+      .mobile-title {
+        display: none;
+      }
+
+      .desktop-title{
+        display: block;
+      }
+
+      @include media-breakpoint-down(md) {
+        display: block;
+        justify-content: unset;
+        .mobile-title{
+          display: block;
+        }
+      }
+
+      .custom-search-results__results {
+        width: 100%;
+        .results-table {
+          width: 100%;
+          overflow-x: auto;
+        }
+
+        h3 {
+          font-size: 20px;
+          color: var(--secondary-color);
+        }
+        h4 {
+          color: var(--secondary-120-color);
+          font-size: 16px;
+        }
+        @include media-breakpoint-down(md) {
+          .results-table{
+            span.a-checkbox__text{
+              display: block;
+            }
+            .a-checkbox__custom{
+              display: block;
+            }
+            .cpproductnumber  span{
+              display: block;
+            }
+            .cpproduct{
+              span.a-checkbox__text,span.a-checkbox__custom{
+                display: block;
+              }
+              span{
+                display: none;
+              }
+            }
+          }
+        .desktop-title{
+          display: none;
+        }
+       tr .checkbox{
+            display: none;
+        }
+        .cpproductname{
+          display: block;
+          .a-checkbox.mobile{
+            margin-bottom:0px;
+            display: block;
+            span.a-checkbox__text{
+              display: block;
+            }
+            .a-checkbox__custom{
+              display: block;
+            }
+          }
+            span{
+              display: none;
+            }
+        }
+      }
+    }
+      &.loading {
+        filter: grayscale(1);
+        opacity: 0.5;
+        min-height: 300px;
+      }
+
+      &__loading-mask {
+        position: absolute;
+        width: 100%;
+        top: 100px;
+      }
+
+      .no-results {
+        justify-content: center;
+        width: 100%;
+        flex-direction: column;
+      }
+    }
+  }

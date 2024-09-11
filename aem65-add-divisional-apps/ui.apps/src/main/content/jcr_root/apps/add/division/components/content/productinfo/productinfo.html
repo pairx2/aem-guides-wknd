@@ -1,0 +1,33 @@
+<div data-sly-test="${!wcmmode.disabled}" class="cq-placeholder" data-emptytext="Click here to Edit Product Info Component "></div>
+
+
+<div data-sly-use.template="core/wcm/components/commons/v1/templates.html" 
+	data-sly-use.product="com.abbott.aem.add.division.core.components.models.ProductMarketing">
+
+<sly data-sly-test.category="${product.source}"></sly>
+
+<table class="condition-table" id="condition-table-1" data-sly-test="${category == 'condition'}" aria-describedby="product-info">
+	<tr>
+       <th id="table-header">${product.conditionsTableHeader}</th>
+    </tr>
+    <div data-sly-test="${category == 'condition'}" data-sly-list.conditionList="${product.conditionItems}">
+         <tr>
+            <td class="table-row">${conditionList}</td>
+          </tr>
+    </div>
+</table>
+
+
+<div class="product-view" data-sly-test="${category == 'product'}" data-sly-list.productList="${product.productLookupService}">
+	<input type="hidden" name="productList" value="${productList}" />
+	 <div id="product-table"></div>
+</div>
+	
+<div data-sly-test="${category == 'tabular'}" data-sly-list.tabularList="${product.tabularLookupService}">
+
+
+	</div>
+
+</div>
+<sly data-sly-use.clientlib="/libs/granite/sightly/templates/clientlib.html"
+    data-sly-call="${clientlib.all @ categories='abbott.productmarketinfo'}"/>

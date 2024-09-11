@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        jcr:primaryType="nt:unstructured"
+        jcr:title="Configure Rule"
+        sling:resourceType="granite/ui/components/coral/foundation/page">
+        <head jcr:primaryType="nt:unstructured">
+            <viewport
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/admin/page/viewport"/>
+            <meta
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/meta"
+                content="chrome=1"
+                name="X-UA-Compatible"/>
+            <favicon
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/page/favicon"/>
+            <clientlibs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/includeclientlibs"
+                categories="[granite.ui.coral.foundation.addon.coral2,cq.authoring.dialog,abbott-cloudplatform.urlredirect.rule.app]"/>
+        </head>
+        <body
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/coral/foundation/page/body">
+            <items jcr:primaryType="nt:unstructured">
+                <form
+                    granite:id="edit-rule-properties-form"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/form"
+                    action="${empty param.item ? granite:concat(granite:encodeURIPath(requestPathInfo.suffix), &quot;/jcr:content/mappings/&quot;) : param.item}"
+                    dataPath="${empty param.item ? granite:concat(granite:encodeURIPath(requestPathInfo.suffix), &quot;/jcr:content/mappings/&quot;) : param.item}"
+                    foundationForm="{Boolean}true"
+                    maximized="{Boolean}true"
+                    method="post"
+                    style="vertical">
+                    <granite:data
+                        jcr:primaryType="nt:unstructured"
+                        content-path="${empty header.Referer ? granite:concat('/apps/abbott-cloudplatform/content/urlredirects/rules.html', granite:encodeURIPath(requestPathInfo.suffix)) : header.Referer}"
+                        is-new="${empty param.item}"
+                        post-url-validate="/apps/abbott-cloudplatform/content/urlredirects/rules/_jcr_content.validaterule.json"/>
+                    <items jcr:primaryType="nt:unstructured">
+                        <wizard
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="${empty param.item ? &quot;Create Rule&quot; : &quot;Edit Rule&quot;}"
+                            sling:resourceType="granite/ui/components/coral/foundation/wizard"
+                            cancelHref="${empty header.Referer ? &quot;/urlredirects.html&quot; : header.Referer  }">
+                            <items jcr:primaryType="nt:unstructured">
+                                <editingStep
+                                    jcr:primaryType="nt:unstructured"
+                                    jcr:title="Edit"
+                                    sling:resourceType="granite/ui/components/coral/foundation/container">
+                                    <items jcr:primaryType="nt:unstructured">
+                                        <propertiesContainer
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+                                            <items jcr:primaryType="nt:unstructured">
+                                                <propColumn
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                    <items jcr:primaryType="nt:unstructured">
+                                                        <siteTitle
+                                                            granite:class="coral-Heading coral-Heading--3"
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                            <items jcr:primaryType="nt:unstructured">
+                                                                <title
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="cq/gui/components/siteadmin/admin/properties/title"
+                                                                    path="${requestPathInfo.suffix}/jcr:content"/>
+                                                            </items>
+                                                        </siteTitle>
+                                                        <hrspan
+                                                            granite:class="form-section-divider"
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/container"/>
+                                                        <delete
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/button"
+                                                            formId="delete-rule-properties-form"
+                                                            icon="delete"
+                                                            text="Delete"
+                                                            type="submit"
+                                                            variant="warning">
+                                                            <granite:rendercondition
+                                                                jcr:primaryType="nt:unstructured"
+                                                                sling:resourceType="granite/ui/components/coral/foundation/renderconditions/simple"
+                                                                expression="${not empty param.item}"/>
+                                                        </delete>
+                                                        <sourceUrl
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                            fieldDescription="Source URL"
+                                                            fieldLabel="Source URL"
+                                                            name="./sourceUrl"
+                                                            required="{Boolean}true"/>
+                                                        <queryParameters
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                                            composite="{Boolean}true"
+                                                            fieldLabel="Query Parameters">
+                                                            <field
+                                                                jcr:primaryType="nt:unstructured"
+                                                                sling:resourceType="granite/ui/components/coral/foundation/container"
+                                                                name="./queryParameters">
+                                                                <items jcr:primaryType="nt:unstructured">
+                                                                    <key
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                        fieldLabel="Key"
+                                                                        maxlength="{Long}70"
+                                                                        name="./key"/>
+                                                                    <value
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                        fieldLabel="Value"
+                                                                        maxlength="{Long}70"
+                                                                        name="./value"/>
+                                                                </items>
+                                                            </field>
+                                                        </queryParameters>
+                                                        <redirectionType
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                            fieldLabel="Redirection Type"
+                                                            name="./redirectionType">
+                                                            <items jcr:primaryType="nt:unstructured">
+                                                                <temporary
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    text="Temporary"
+                                                                    value="TEMPORARY"/>
+                                                                <permanent
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    text="Permanent"
+                                                                    value="PERMANENT"/>
+                                                            </items>
+                                                        </redirectionType>
+                                                        <forwardQueryString
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/switch"
+                                                            fieldLabel="Forward Query String"
+                                                            name="./forwardQueryString"
+                                                            uncheckedValue="false"
+                                                            value="true"/>
+                                                        <mappingType
+                                                            granite:class="cq-dialog-dropdown-showhide"
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                            fieldLabel="Mapping Type"
+                                                            name="./mappingType">
+                                                            <items jcr:primaryType="nt:unstructured">
+                                                                <direct
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    text="Direct"
+                                                                    value="DIRECT"/>
+                                                                <byHeader
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    text="By Header"
+                                                                    value="BYHEADER"/>
+                                                            </items>
+                                                            <granite:data
+                                                                jcr:primaryType="nt:unstructured"
+                                                                cq-dialog-dropdown-showhide-target=".showhidetargets"/>
+                                                        </mappingType>
+                                                        <direct
+                                                            granite:class="showhidetargets"
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                            <items jcr:primaryType="nt:unstructured">
+                                                                <well
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                                    <layout
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        sling:resourceType="granite/ui/components/coral/foundation/layouts/well"/>
+                                                                    <items jcr:primaryType="nt:unstructured">
+                                                                        <targetUrl
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                                            fieldDescription="Target URL"
+                                                                            fieldLabel="Target URL"
+                                                                            name="./targetUrl"
+                                                                            required="{Boolean}true"/>
+                                                                    </items>
+                                                                </well>
+                                                            </items>
+                                                            <granite:data
+                                                                jcr:primaryType="nt:unstructured"
+                                                                showhidetargetvalue="DIRECT"/>
+                                                        </direct>
+                                                        <byHeader
+                                                            granite:class="showhidetargets"
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                            <items jcr:primaryType="nt:unstructured">
+                                                                <well
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                                    <layout
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        sling:resourceType="granite/ui/components/coral/foundation/layouts/well"/>
+                                                                    <items jcr:primaryType="nt:unstructured">
+                                                                        <headerName
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                            fieldLabel="Header Name"
+                                                                            name="./headerName"
+                                                                            required="{Boolean}true"/>
+                                                                        <match
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                                                            composite="{Boolean}true"
+                                                                            fieldLabel="Header Matches"
+                                                                            required="{Boolean}true">
+                                                                            <field
+                                                                                jcr:primaryType="nt:unstructured"
+                                                                                sling:resourceType="granite/ui/components/coral/foundation/container"
+                                                                                name="./headerMatchers">
+                                                                                <items jcr:primaryType="nt:unstructured">
+                                                                                    <headerValue
+                                                                                        jcr:primaryType="nt:unstructured"
+                                                                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                                        fieldDescription="Header Value"
+                                                                                        fieldLabel="Header Value"
+                                                                                        name="./headerValue"/>
+                                                                                    <targetUrl
+                                                                                        jcr:primaryType="nt:unstructured"
+                                                                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                                        fieldDescription="Target URL"
+                                                                                        fieldLabel="Target URL"
+                                                                                        name="./targetUrl"
+                                                                                        required="{Boolean}true"/>
+                                                                                    <matchType
+                                                                                        jcr:primaryType="nt:unstructured"
+                                                                                        sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                                                        fieldDescription="Match Type"
+                                                                                        fieldLabel="Match Type"
+                                                                                        name="./matchType">
+                                                                                        <items jcr:primaryType="nt:unstructured">
+                                                                                            <equals
+                                                                                                jcr:primaryType="nt:unstructured"
+                                                                                                text="Equals"
+                                                                                                value="EQUALS"/>
+                                                                                            <contains
+                                                                                                jcr:primaryType="nt:unstructured"
+                                                                                                text="Contains"
+                                                                                                value="CONTAINS"/>
+                                                                                            <startswith
+                                                                                                jcr:primaryType="nt:unstructured"
+                                                                                                text="Starts With"
+                                                                                                value="STARTSWITH"/>
+                                                                                            <notequals
+                                                                                                jcr:primaryType="nt:unstructured"
+                                                                                                text="Not Equals"
+                                                                                                value="NOTEQUALS"/>
+                                                                                        </items>
+                                                                                    </matchType>
+                                                                                </items>
+                                                                            </field>
+                                                                        </match>
+                                                                    </items>
+                                                                </well>
+                                                            </items>
+                                                            <granite:data
+                                                                jcr:primaryType="nt:unstructured"
+                                                                showhidetargetvalue="BYHEADER"/>
+                                                        </byHeader>
+                                                        <forwardQueryStringTypeHint
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
+                                                            name="./forwardQueryString@TypeHint"
+                                                            value="Boolean"/>
+                                                        <resourceType
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
+                                                            name="./sling:resourceType"
+                                                            value="abbott-platform/urlredirect/mappings/rule"/>
+                                                        <state
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
+                                                            name="../../state"
+                                                            value="EDITED"/>
+                                                        <charset
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
+                                                            ignoreData="{Boolean}true"
+                                                            name="_charset_"
+                                                            value="utf-8"/>
+                                                        <nameHint
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
+                                                            name=":nameHint"
+                                                            value="rule"/>
+                                                        <path
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
+                                                            name="path"
+                                                            value="${param.item}"/>
+                                                        <parentPath
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
+                                                            name="parentPath"
+                                                            value="${requestPathInfo.suffix}"/>
+                                                    </items>
+                                                </propColumn>
+                                            </items>
+                                        </propertiesContainer>
+                                    </items>
+                                    <parentConfig
+                                        jcr:primaryType="nt:unstructured"
+                                        validation="{Boolean}false">
+                                        <next
+                                            granite:class="foundation-wizard-control dmconfig-submit-btn"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/button"
+                                            text="Save"
+                                            type="submit"
+                                            variant="primary">
+                                            <granite:data
+                                                jcr:primaryType="nt:unstructured"
+                                                foundation-wizard-control-action="next"/>
+                                        </next>
+                                    </parentConfig>
+                                </editingStep>
+                            </items>
+                        </wizard>
+                    </items>
+					<granite:rendercondition
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/renderconditions/feature"
+                        feature="manage-url-redirect"/>
+                </form>
+                <deleteform
+                    granite:id="delete-rule-properties-form"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/form"
+                    action="${param.item}"
+                    enctype="multipart/form-data"
+                    foundationForm="{Boolean}true"
+                    method="post"
+                    novalidate="{Boolean}true">
+                    <items jcr:primaryType="nt:unstructured">
+                        <nameHint
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
+                            name=":operation"
+                            value="delete"/>
+                        <charset
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
+                            ignoreData="{Boolean}true"
+                            name="_charset_"
+                            value="utf-8"/>
+                    </items>
+                    <granite:rendercondition
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/renderconditions/and">
+                        <condition1
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/renderconditions/feature"
+                            feature="manage-url-redirect"/>
+                        <condition2
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/renderconditions/simple"
+                            expression="${not empty param.item}"/>
+                    </granite:rendercondition>
+                    <successresponse
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Rule Deleted"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/responses/openprompt"
+                        open=""
+                        redirect="/apps/abbott-cloudplatform/content/urlredirects/rules.html${requestPathInfo.suffix}"
+                        text="Rule successfully deleted!"/>
+                </deleteform>
+				<statechangeform
+                    granite:id="state-change-rule-properties-form"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/form"
+                    action="${requestPathInfo.suffix}/jcr:content"
+                    enctype="multipart/form-data"
+                    foundationForm="{Boolean}true"
+                    method="post"
+                    novalidate="{Boolean}true">
+                    <items jcr:primaryType="nt:unstructured">
+                        <charset
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
+                            ignoreData="{Boolean}true"
+                            name="_charset_"
+                            value="utf-8"/>
+                        <state
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
+                            name="state"
+                            value="EDITED"/>
+                    </items>
+					<granite:rendercondition
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/renderconditions/feature"
+                        feature="manage-url-redirect"/>
+                </statechangeform>
+            </items>
+        </body>
+        <redirector
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/coral/foundation/admin/contentchecker"
+            allowed="[^(/conf/(.*)/URLRedirect|/conf/(.*)/URLRedirect/(.*))$]"
+            allowEmpty="{Boolean}false"
+            path="${empty param.item ? requestPathInfo.suffix : param.item}"
+            redirectWhenEmpty="/urlredirects.html"/>
+    </jcr:content>
+</jcr:root>

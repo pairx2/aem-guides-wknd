@@ -1,0 +1,125 @@
+@import 'media-queries.less';
+@import 'variables.less';
+
+.a-pagination {
+    display: inline-block;
+
+    .a-pagination__pages {
+        border: none;
+
+        .a-pagination__page {
+            .a-pagination__link {
+                color: @primary-color;
+                font-size: @font-size-22;
+                font-weight: 500;
+                padding: 10px;
+
+                &:hover,
+                &:active,
+                &:focus {
+                    color: @color-dark-gray;
+                    border: none;
+                    font-weight: 900;
+                    background: none;
+                }
+            }
+
+            &.a-pagination--active {
+                .a-pagination__link {
+                    color: @color-dark-gray;
+                    font-weight: 900;
+                }
+
+                &:after {
+                    display: none;
+                }
+            }
+
+            &.a-pagination--previous,
+            &.a-pagination--next {
+                align-items: flex-start;
+
+                .a-pagination__link {
+                    &.no-click {
+                        color: @color-dark-gray;
+                        cursor: default;
+
+                        &:hover {
+                            color: @color-light-gray;
+                        }
+                    }
+                }
+
+                [class*="icon"] {
+                    &:before {
+                        font-size: 25px;
+                        font-weight: bold;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.a-pagination-title {
+    color: @primary-color;
+    text-transform: uppercase;
+    font-weight: 500 !important;
+    margin-right: 12px;
+    vertical-align: middle;
+    font-size: @font-size-22;
+    padding-bottom: 16px;
+    line-height: 28px;
+    margin-bottom: 0;
+
+    @media @sm-down {
+        padding-bottom: 20px;
+    }
+}
+
+.a-pagination-right-section {
+    display: flex;
+
+    .a-pagination-right-section__iconbox {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-right: 16px;
+        cursor: pointer;
+        color: @primary-color;
+
+        &.print {
+            border-left: 1px solid @color-dark-gray;
+            padding-left: 16px;
+            padding-right: 0;
+            color: @primary-color;
+
+            span {
+                color: @primary-color;
+            }
+        }
+
+        &.active {
+            color: @color-dark-gray;
+            pointer-events: none;
+            cursor: default;
+
+            span {
+                color: @color-dark-gray;
+            }
+        }
+
+        span {
+            font-size: @font-size-12;
+            font-weight: bold;
+            line-height: 14px;
+            color: @primary-color;
+            text-transform: uppercase;
+            margin-top: 8px;
+        }
+    }
+
+    @media @sm-down {
+        margin-bottom: 28px;
+    }
+}

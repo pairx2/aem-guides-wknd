@@ -1,0 +1,19 @@
+
+<template data-sly-template.placeholder="${@ isEmpty, classAppend, emptyTextAppend}">
+    <div data-sly-test="${(wcmmode.edit || wcmmode.preview) && isEmpty}"
+         class="cq-placeholder ${classAppend}"
+         data-emptytext="${component.properties.jcr:title}${emptyTextAppend && ' - '}${emptyTextAppend}"></div>
+</template>
+
+
+<template data-sly-template.includeResource="${@ relativeResourcePath, nodeName, slingResourceType}">
+    <sly data-sly-test.isHomePage="${relativeResourcePath == './'}"/>
+    <sly data-sly-test.resourcePath="${'{0}{1}{2}' @ format=[relativeResourcePath, '/' ,nodeName]}"/>
+
+ 	<sly data-sly-test=${isHomePage}>
+        <sly data-sly-resource="${@path=resourcePath, resourceType=slingResourceType, decoration='true', selectors=resourceSelectors}"/>
+    </sly>
+    <sly data-sly-test=${!isHomePage}>
+        <sly data-sly-resource="${@path=resourcePath, resourceType=slingResourceType, decoration='true', wcmmode='disabled', selectors=resourceSelectors}"/>
+    </sly>
+</template>

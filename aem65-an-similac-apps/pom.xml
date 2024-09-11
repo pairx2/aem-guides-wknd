@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<!-- ====================================================================== -->
+	<!-- P A R E N T  P R O J E C T  D E S C R I P T I O N                      -->
+	<!-- ====================================================================== -->
+	<parent>
+		<groupId>com.abbott.aem.platform.cloud</groupId>
+		<artifactId>aem-abbott-platform-cloud.parent</artifactId>
+		<version>RELEASE</version>
+	</parent>
+
+	<groupId>com.abbott.aem.an.similac</groupId>
+	<artifactId>aem-an-similac.reactor</artifactId>
+	<packaging>pom</packaging>
+	<version>1.0.0-SNAPSHOT</version>
+	<name>Similac Redesign</name>
+
+	<modules>
+		<module>core</module>
+		<module>ui.apps.structure</module>
+		<module>ui.apps</module>
+		<module>ui.content</module>
+		<module>ui.config</module>
+		<module>all</module>
+		<module>ui.workflow.author</module>
+	</modules>
+	<properties>
+		<sonar.projectKey>similac-com-191-aem-dev</sonar.projectKey>
+		<sonar.projectName>similac-com-aem-dev</sonar.projectName>
+		<sonar.projectVersion>${project.version}</sonar.projectVersion>
+		<sonarRunner.aemVersion>6.5</sonarRunner.aemVersion>
+		<sonar.exclusions>ui.apps/src/main/content/jcr_root/apps/an/similac-html/** ,ui.apps/src/main/content/jcr_root/apps/an/similac/clientlibs/clientlib-similac-base/**,ui.apps/src/main/content/jcr_root/apps/an/similac/clientlibs/clientlib-similac-base-v2/**,ui.apps/src/main/content/jcr_root/apps/an/similac/clientlibs/clientlib-similac-magento-base/**,ui.apps/src/main/content/jcr_root/apps/an/similac/clientlibs/clientlib-similac-new-relic-non-prod/**,ui.apps/src/main/content/jcr_root/apps/an/similac/clientlibs/clientlib-similac-new-relic-prod/**,ui.apps/src/main/content/jcr_root/apps/an/similac/clientlibs/clientlib-components/tummy-tool/**,ui.apps/src/main/content/jcr_root/apps/an/similac/clientlibs/clientlib-components/tummy-results/**,ui.apps/src/main/content/jcr_root/apps/an/similac/clientlibs/clientlib-components/formula-finder/**,ui.apps/src/main/content/jcr_root/apps/an/similac/clientlibs/clientlib-components/formula-finder-results/**,ui.apps/src/main/content/jcr_root/apps/an/similac/clientlibs/clientlib-components/diaper-decoder/**,ui.apps/src/main/content/jcr_root/apps/an/similac/clientlibs/clientlib-components/tabs/**,ui.apps/src/main/content/jcr_root/apps/an/similac/clientlibs/clientlib-components/image-slider/js/jquery.ez-plus.js,ui.apps/src/main/content/jcr_root/apps/an/similac/clientlibs/clientlib-similac-base-for-abbott-globals/js/jquery.cookie.js,ui.apps/src/main/content/jcr_root/apps/an/similac/clientlibs/clientlib-similac-base-for-abbott-globals/js/equal-height.js</sonar.exclusions>
+		<sonar.java.binaries>./</sonar.java.binaries>
+		<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+		<sonar.jacoco.reportPaths>core/target/jacoco.exec</sonar.jacoco.reportPaths>
+		<sonar.coverage.jacoco.xmlReportPaths>core/target/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
+		<sonar.test.exclusions>ui.apps/src/main/content/jcr_root/apps/an/**,core/src/test/**,core/src/main/java/com/abbott/aem/an/similac/integration/nutrition/**,core/src/main/java/com/abbott/aem/an/similac/core/workflows/**,core/src/main/java/com/abbott/aem/an/similac/core/commons/**,core/src/main/java/com/abbott/aem/an/similac/core/beans/**</sonar.test.exclusions>
+		<sonar.coverage.exclusions>ui.apps/src/main/content/jcr_root/apps/an/**,core/src/test/**,core/src/main/java/com/abbott/aem/an/similac/integration/nutrition/**,core/src/main/java/com/abbott/aem/an/similac/core/workflows/**,core/src/main/java/com/abbott/aem/an/similac/core/commons/**,core/src/main/java/com/abbott/aem/an/similac/core/beans/**</sonar.coverage.exclusions>
+	</properties>
+
+	<profiles>
+		<profile>
+																																																																																							                              																																																																																				
+			<id>abbott</id>
+																																																																																							                              																																	          																																																				
+			<activation>
+																																																																																																																																																
+				<activeByDefault>true</activeByDefault>
+																																																																																																																														
+			</activation>
+																																																																																							                              																																																																																				
+			<repositories>
+																																																																																																																																																
+				<repository>
+																																																																																																																																																																																				
+					<id>artifactory</id>
+																																																																																																																																																																																				
+					<name>bts-aem-191-maven-virtual</name>
+																																																																																																																																																																																				
+					<url>https://artifactory-ent.devops.abbott/artifactory/bts-aem-191-maven-virtual</url>
+																																																																																																																																																																																				
+					<releases>
+																																																																																																																																																																																																																								
+						<enabled>true</enabled>
+																																																																																																																																																																																																																								
+						<updatePolicy>never</updatePolicy>
+																																																																																																																																																																																																						
+					</releases>
+																																																																																																																																																																																				
+					<snapshots>
+																																																																																																																																																																																																																								
+						<enabled>true</enabled>
+																																																																																																																																																																																																						
+					</snapshots>
+																																																																																																																																																																		
+				</repository>
+																																																																																																																																																
+				<repository>
+																																																																																																																																																																																				
+					<id>artifactory-adobe</id>
+																																																																																																																																																																																				
+					<name>adobe-aem-191-maven-remote</name>
+																																																																																																																																																																																				
+					<url>https://artifactory-ent.devops.abbott/artifactory-adobe/adobe-aem-191-maven-remote</url>
+																																																																																																																																																																																				
+					<releases>
+																																																																																																																																																																																																																								
+						<enabled>true</enabled>
+																																																																																																																																																																																																																								
+						<updatePolicy>never</updatePolicy>
+																																																																																																																																																																																																						
+					</releases>
+																																																																																																																																																																																				
+					<snapshots>
+																																																																																																																																																																																																																								
+						<enabled>false</enabled>
+																																																																																																																																																																																																						
+					</snapshots>
+																																																																																																																																																																		
+				</repository>
+																																																																																																																														
+			</repositories>
+																																																																																																												
+			<pluginRepositories>
+																																																																																																																																																
+				<pluginRepository>
+																																																																																																																																																																																				
+					<id>artifactory</id>
+																																																																																																																																																																																				
+					<name>bts-aem-191-maven-virtual</name>
+																																																																																																																																																																																				
+					<url>https://artifactory-ent.devops.abbott/artifactory/bts-aem-191-maven-virtual</url>
+																																																																																																																																																																																				
+					<releases>
+																																																																																																																																																																																																																								
+						<enabled>true</enabled>
+																																																																																																																																																																																																						
+					</releases>
+																																																																																																																																																																																				
+					<snapshots/>
+																																																																																																																																																																		
+				</pluginRepository>
+																																																																																																																														
+			</pluginRepositories>
+																																																																																							                       																																																								
+		</profile>	
+        
+    </profiles>
+</project>

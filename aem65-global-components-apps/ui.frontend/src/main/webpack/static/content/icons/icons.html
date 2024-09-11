@@ -1,0 +1,30 @@
+<main class="container-fluid">
+  <h3 class="display-lg font-weight-light mt-3">Icons</h3>
+  <div id="icons" class="d-flex flex-wrap" data-js-component="icons">
+    Loading...
+  </div>
+
+  <script type="text/javascript">
+    const iconsHTML = [];
+    fetch('../../../public/resources/icons/selection.json')
+      .then((response)=>{
+        if (response.ok) {
+          const iconsObj = response.json();
+
+          iconsObj.icons.map((icon)=>{
+            iconsHTML.push(`
+            <div class="display-icon-wrap">
+              <div class="display-icon-column">
+                <span class="abt-icon-${icon.properties.name}"></span>
+                <span class="mls">abt-icon-${icon.properties.name}</span>
+              </div>
+            </div>
+          `)
+          });
+          document.querySelector('#icons').innerHTML = iconsHTML.join('');
+        }
+
+      });
+  </script>
+
+</main>

@@ -1,0 +1,29 @@
+.a-logo-comp {
+  display: inline-block;
+
+  &--image {
+    @include rem(max-height, var(--logo-max-height-des)); //Desktop
+
+    @include media-breakpoint-up(md) {
+      @include rem(max-height, var(--logo-max-height-des));
+    }
+
+    @include media-breakpoint-down(md) { //Tablet
+      @include rem(max-height, var(--logo-max-height-tab));
+    }
+
+    @include media-breakpoint-down(sm) { // Mobile
+      @include rem(max-height, var(--logo-max-height-mob));
+    }
+
+  }
+
+  &--link {
+    cursor: pointer;
+    text-decoration: none;
+
+    &:focus {
+      outline: var(--logo-focus-outline);
+    }
+  }
+}

@@ -1,0 +1,131 @@
+def agentLabelPrefix = 'AEM65_'
+def controlJobBaseName = 'BTS_191_AEM_65/AEM Cloud/aem65-platformcontrol-apps-trigger/'
+def controlJobName = controlJobBaseName + java.net.URLEncoder.encode(BRANCH_NAME, "UTF-8")
+
+def agentLabel = agentLabelPrefix + getAgentSuffix(env.BRANCH_NAME)
+def controlEnvName =java.net.URLEncoder.encode(BRANCH_NAME.replaceAll('^release/', ''), 'UTF-8').toUpperCase()
+pipeline {
+  agent { label agentLabel }
+
+  options {
+    disableConcurrentBuilds()
+    buildDiscarder(logRotator(numToKeepStr: '30', daysToKeepStr: '60'))
+  }
+
+  stages {
+    stage('Build') {
+      steps {
+        withCredentials([usernamePassword(credentialsId: 'ARTIFACTORY7_CRED', passwordVariable: 'PASSWORD_VAR', usernameVariable: 'USERNAME_VAR')])
+        {
+        withMaven(maven: 'Maven-3-6',
+          mavenSettingsConfig: 'aem_local_settings',
+          mavenLocalRepo: "${env.WORKSPACE}/.m2") {
+          sh 'mvn -B -U clean package -Dserver.username=${USERNAME_VAR} -Dserver.password=${PASSWORD_VAR}'
+        }
+        }
+      }
+    }
+
+    stage('Deploy Snapshot') {
+      when {
+        branch 'release/dev'
+      }
+      steps {
+        rtMavenResolver (
+          id: 'mavenResolver',
+          serverId: 'Toolchain-Artifactory-7',
+          releaseRepo: 'bts-aem-191-maven-virtual',
+          snapshotRepo: 'bts-aem-191-maven-virtual'
+        )
+        rtMavenDeployer (
+          id: 'mavenDeployer',
+          serverId: 'Toolchain-Artifactory-7',
+          releaseRepo: 'bts-aem-191-releases-maven-local',
+          snapshotRepo: 'bts-aem-191-maven-snapshots-local',
+        )
+        rtMavenRun (
+          tool: 'Maven-3-5-3',
+          pom: 'pom.xml',
+          goals: 'clean install -B -U',
+          resolverId: 'mavenResolver',
+          deployerId: 'mavenDeployer'
+        )
+      }
+    }
+	
+    stage('Sonar Code Analysis') {
+      when {
+        branch 'release/*'
+      }
+      steps {
+        script {
+          if (controlEnvName == 'STABLE'){
+            echo "Settig sonarqube controlEnvName: STABLE --> STAGE "
+            controlEnvName = "STAGE"
+          } else {
+            echo "Settig sonarqube controlEnvName: ${controlEnvName} "
+          }
+          if (controlEnvName in ['STAGE','DEV', 'DEV2', 'QA', 'QA2']){
+            echo "Trigarring sonarqube for controlEnvName: ${controlEnvName} "
+            scannerHome = tool 'sonarscanner-prod'
+            withSonarQubeEnv(credentialsId: 'sonarqube-token', installationName:'SonarQube') {
+              sh "${scannerHome}/bin/sonar-scanner \
+              -Dsonar.projectKey=191_CLOUD_AEM65-ADC-DIVISIONAL-APPS_${controlEnvName} \
+              -Dsonar.projectName=191_CLOUD_AEM65-ADC-DIVISIONAL-APPS_${controlEnvName} \
+              -Dsonar.projectVersion='1.0' \
+              -DsonarRunner.aemVersion='6.6' \
+              -Dsonar.sources='./' \
+              -Dsonar.java.source='11' \
+              -Dsonar.java.binaries='./' \
+              -Dsonar.sourceEncoding='UTF-8'\
+              -Dsonar.java.libraries='**/target/classes/*'\
+              -Dsonar.sources='core/src/main/java, ui.apps/src/main/content/jcr_root' \
+              -Dsonar.coverage.jacoco.xmlReportPaths='core/target/site/jacoco/jacoco.xml'\
+              -Dsonar.test.exclusions='ui.apps/src/main/content/jcr_root/apps/**'\
+              -Dsonar.coverage.exclusions='ui.apps/src/main/content/jcr_root/apps/**'"
+            }
+          } 
+        }
+      }
+    }
+
+    stage('Trigger Control Build') {
+      when {
+        branch 'release/*'
+      }
+      steps {
+        build(job: controlJobName, propagate: false, wait: false)
+      }
+    }    
+  }
+
+  post {
+    cleanup {
+      cleanWs() /* clean up our workspace */
+    }
+  }  
+}
+
+String getAgentSuffix(branch) {
+  def branchParts = branch.split('/')
+
+  if (branchParts.length < 2) {
+    if (branchParts[0] == 'master') {
+      return 'PROD'
+    }
+    return 'DEV'
+  }
+
+  if (branchParts[branchParts.length - 2] == 'release') {
+    if (branchParts[branchParts.length - 1].startsWith('qa')) {
+      return 'QA'
+    } else if (branchParts[branchParts.length - 1].startsWith('stable')) {
+      return 'STAGE'
+    }
+  } else if (branchParts[branchParts.length - 2] == 'master' || branchParts[branchParts.length - 1] == 'master') {
+    return 'PROD'
+  }
+
+  return 'DEV'
+
+}

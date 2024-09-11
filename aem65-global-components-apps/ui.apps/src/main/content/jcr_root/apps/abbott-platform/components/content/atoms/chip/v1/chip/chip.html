@@ -1,0 +1,10 @@
+<sly data-sly-use.search="com.abbott.aem.platform.common.components.models.HeaderSearch"
+     data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
+<sly data-sly-use.chip="com.abbott.aem.platform.common.components.models.Chip"
+	data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
+<div class="a-chips" data-parent-filter="${wcmmode.edit ? '': chip.resolvedTagParentTitle}" data-field-name="${chip.fieldName}" data-child-filter="${chip.resolvedTagTitle}">
+    <a data-sly-test="${search.searchResultsPage != 'null.html'}" role="link" aria-label="${chip.tagTitle}" class="a-chips--link" href="${search.searchResultsPage}?q=${chip.fieldName}">${chip.tagTitle ? chip.tagTitle :chip.resolvedTagTitle}</a>
+    <a data-sly-test="${search.searchResultsPage == 'null.html'}" role="link" aria-label="${chip.tagTitle}" class="a-chips--link" href="#">${chip.tagTitle ? chip.tagTitle :chip.resolvedTagTitle}</a>
+</div>
+<sly data-sly-call="${templates.placeholder @ isEmpty=!chip.tagTitle}"></sly>
+</sly></sly>

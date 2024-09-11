@@ -1,0 +1,346 @@
+- DEF groupPrefix="APP-Adobe-AEM-DM-ALL"
+
+- group_config:
+
+    - ${groupPrefix}-an-abbottstore-content-editor:
+
+       - name: AN Abbottstore Content Editor
+         description: Common Group for all three site authors (abbottstore, glucernastore and similacstore) 
+         isMemberOf: an-abbottstore-glucerna-content-editor-base,an-abbottstore-nutrition-content-editor-base,an-abbottstore-similac-content-editor-base
+         externalId: "${groupPrefix}-an-abbottstore-content-editor;ims"
+
+    - an-abbottstore-glucerna-content-editor-base:
+
+       - name:
+         isMemberOf: base-abbott
+
+    - an-abbottstore-nutrition-content-editor-base:
+
+       - name: 
+         isMemberOf: base-abbott
+
+    - an-abbottstore-similac-content-editor-base:
+
+       - name: 
+         isMemberOf: base-abbott
+         
+    - ${groupPrefix}-an-abbottstore-glucerna-content-editor:
+
+       - name:
+         isMemberOf: base-abbott, an-abbottstore-glucerna-content-editor-base
+         externalId: "${groupPrefix}-an-abbottstore-glucerna-content-editor;ims"
+
+    - ${groupPrefix}-an-abbottstore-nutrition-content-editor:
+
+       - name: 
+         isMemberOf: base-abbott, an-abbottstore-nutrition-content-editor-base
+         externalId: "${groupPrefix}-an-abbottstore-nutrition-content-editor;ims"
+
+    - ${groupPrefix}-an-abbottstore-similac-content-editor:
+
+       - name: 
+         isMemberOf: base-abbott, an-abbottstore-similac-content-editor-base
+         externalId: "${groupPrefix}-an-abbottstore-similac-content-editor;ims"
+
+- ace_config:
+
+    - ${groupPrefix}-an-abbottstore-content-editor:
+
+       - path: /content/dam/abbott
+         permission: allow
+         privileges: jcr:versionManagement,crx:replicate,rep:write,jcr:lockManagement
+
+       - path: /content/sites
+         permission: allow
+         privileges: jcr:read,jcr:versionManagement,crx:replicate,rep:write,jcr:lockManagement
+         
+       - path: /var/commerce/products/abbott
+         permission: allow
+         actions: read,create,modify,delete,replicate       
+
+    - an-abbottstore-glucerna-content-editor-base:
+
+       - path: /apps/abbott
+         permission: allow
+         privileges: jcr:read
+
+
+       - path: /var/commerce
+         permission: allow
+         privileges: jcr:read
+         restrictions:
+           rep:glob: ''
+
+
+       - path: /content/documentation/abbott-documenation
+         permission: allow
+         privileges: jcr:versionManagement,jcr:read,crx:replicate,rep:write,jcr:lockManagement
+
+
+       - path: /etc/workflow
+         permission: allow
+         privileges: jcr:versionManagement,jcr:read,crx:replicate,rep:write,jcr:lockManagement
+
+
+       - path: /conf/abbott
+         permission: allow
+         privileges: jcr:versionManagement,jcr:read,crx:replicate,rep:write,jcr:lockManagement
+
+
+       - path: /content/cq:tags/abbott
+         permission: allow
+         privileges: jcr:versionManagement,jcr:read,crx:replicate,rep:write,jcr:lockManagement
+
+
+       - path: /content/experience-fragments/abbott
+         permission: allow
+         privileges: jcr:versionManagement,jcr:read,crx:replicate,rep:write,jcr:lockManagement
+
+
+       - path: /content/dam/abbott
+         permission: allow
+         privileges: jcr:read
+         restrictions:
+           rep:glob: ''
+
+
+       - path: /etc/dashboards
+         permission: allow
+         privileges: jcr:read
+
+
+       - path: /content/dam/abbott/images
+         permission: allow
+         privileges: jcr:read
+
+
+       - path: /content/glucerna/en
+         permission: allow
+         privileges: jcr:versionManagement,jcr:read,crx:replicate,rep:write,jcr:lockManagement
+
+
+       - path: /etc/designs
+         permission: allow
+         privileges: jcr:read
+
+
+       - path: /content/glucerna
+         permission: allow
+         privileges: jcr:read
+         restrictions:
+           rep:glob: ''
+
+
+       - path: /content/catalogs/abbott
+         permission: allow
+         privileges: jcr:versionManagement,jcr:read,crx:replicate,rep:write,jcr:lockManagement
+
+
+       - path: /etc/packages/an/glucerna
+         permission: allow
+         privileges: jcr:versionManagement,jcr:read,crx:replicate,rep:write,jcr:lockManagement
+
+
+       - path: /conf/global
+         permission: allow
+         privileges: jcr:versionManagement,jcr:read,crx:replicate,rep:write,jcr:lockManagement
+
+
+
+    - an-abbottstore-nutrition-content-editor-base:
+
+       - path: /apps/abbott
+         permission: allow
+         privileges: jcr:read
+
+
+       - path: /var/commerce
+         permission: allow
+         privileges: jcr:read
+         restrictions:
+           rep:glob: ''
+
+
+       - path: /content/documentation/abbott-documenation
+         permission: allow
+         privileges: jcr:versionManagement,jcr:read,crx:replicate,rep:write,jcr:lockManagement
+
+
+       - path: /etc/workflow
+         permission: allow
+         privileges: jcr:versionManagement,jcr:read,crx:replicate,rep:write,jcr:lockManagement
+
+
+       - path: /conf/abbott
+         permission: allow
+         privileges: jcr:versionManagement,jcr:read,crx:replicate,rep:write,jcr:lockManagement
+
+
+       - path: /content/cq:tags/abbott
+         permission: allow
+         privileges: jcr:versionManagement,jcr:read,crx:replicate,rep:write,jcr:lockManagement
+
+
+       - path: /content/experience-fragments/abbott
+         permission: allow
+         privileges: jcr:versionManagement,jcr:read,crx:replicate,rep:write,jcr:lockManagement
+
+
+       - path: /content/dam/abbott
+         permission: allow
+         privileges: jcr:read
+         restrictions:
+           rep:glob: ''
+
+
+       - path: /content/dam/abbott
+         permission: allow
+         privileges: jcr:read
+
+
+       - path: /etc/dashboards
+         permission: allow
+         privileges: jcr:read
+
+
+       - path: /content/dam/abbott/images
+         permission: allow
+         privileges: jcr:read
+
+
+       - path: /content/dam/abbott/abbott-store
+         permission: allow
+         privileges: jcr:versionManagement,jcr:read,crx:replicate,rep:write,jcr:lockManagement
+
+
+       - path: /etc/packages/an/abbottstore
+         permission: allow
+         privileges: jcr:versionManagement,jcr:read,crx:replicate,rep:write,jcr:lockManagement
+
+
+       - path: /etc/designs
+         permission: allow
+         privileges: jcr:read
+
+
+       - path: /content/abbott/en
+         permission: allow
+         privileges: jcr:versionManagement,jcr:read,crx:replicate,rep:write,jcr:lockManagement
+
+
+       - path: /content/catalogs/abbott
+         permission: allow
+         privileges: jcr:versionManagement,jcr:read,crx:replicate,rep:write,jcr:lockManagement
+
+
+       - path: /var/commerce/products
+         permission: allow
+         privileges: jcr:read
+         restrictions:
+           rep:glob: ''
+
+
+       - path: /content/abbott
+         permission: allow
+         privileges: jcr:read
+         restrictions:
+           rep:glob: ''
+
+
+       - path: /conf/global
+         permission: allow
+         privileges: jcr:versionManagement,jcr:read,crx:replicate,rep:write,jcr:lockManagement
+
+
+
+    - an-abbottstore-similac-content-editor-base:
+
+       - path: /apps/abbott
+         permission: allow
+         privileges: jcr:read
+
+
+       - path: /var/commerce
+         permission: allow
+         privileges: jcr:read
+         restrictions:
+           rep:glob: ''
+
+
+       - path: /content/documentation/abbott-documenation
+         permission: allow
+         privileges: jcr:versionManagement,jcr:read,crx:replicate,rep:write,jcr:lockManagement
+
+
+       - path: /etc/workflow
+         permission: allow
+         privileges: jcr:versionManagement,jcr:read,crx:replicate,rep:write,jcr:lockManagement
+
+
+       - path: /conf/abbott
+         permission: allow
+         privileges: jcr:versionManagement,jcr:read,crx:replicate,rep:write,jcr:lockManagement
+
+
+       - path: /content/cq:tags/abbott
+         permission: allow
+         privileges: jcr:versionManagement,jcr:read,crx:replicate,rep:write,jcr:lockManagement
+
+
+       - path: /content/similac/en
+         permission: allow
+         privileges: jcr:versionManagement,jcr:read,crx:replicate,rep:write,jcr:lockManagement
+
+
+       - path: /content/experience-fragments/abbott
+         permission: allow
+         privileges: jcr:versionManagement,jcr:read,crx:replicate,rep:write,jcr:lockManagement
+
+
+       - path: /content/dam/abbott/similac
+         permission: allow
+         privileges: jcr:versionManagement,jcr:read,crx:replicate,rep:write,jcr:lockManagement
+
+
+       - path: /content/dam/abbott
+         permission: allow
+         privileges: jcr:read
+         restrictions:
+           rep:glob: ''
+
+
+       - path: /etc/packages/an/similac
+         permission: allow
+         privileges: jcr:versionManagement,jcr:read,crx:replicate,rep:write,jcr:lockManagement
+
+
+       - path: /etc/dashboards
+         permission: allow
+         privileges: jcr:read
+
+
+       - path: /content/dam/abbott/images
+         permission: allow
+         privileges: jcr:read
+
+
+       - path: /etc/designs
+         permission: allow
+         privileges: jcr:read
+
+
+       - path: /content/similac
+         permission: allow
+         privileges: jcr:read
+         restrictions:
+           rep:glob: ''
+
+
+       - path: /content/catalogs/abbott
+         permission: allow
+         privileges: jcr:versionManagement,jcr:read,crx:replicate,rep:write,jcr:lockManagement
+
+
+       - path: /conf/global
+         permission: allow
+         privileges: jcr:versionManagement,jcr:read,crx:replicate,rep:write,jcr:lockManagement

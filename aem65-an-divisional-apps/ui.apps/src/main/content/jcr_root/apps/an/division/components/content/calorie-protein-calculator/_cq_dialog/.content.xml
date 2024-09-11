@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Calorie Calculator"
+    sling:resourceType="cq/gui/components/authoring/dialog"
+    extraClientlibs="collasible-multifield"
+    width="65rem">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                maximized="{Boolean}true">
+                <items jcr:primaryType="nt:unstructured">
+                    <common
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Common Dialog Fields"
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+                            <column
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <select
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                        fieldLabel="Please select for the type of calculator"
+                                        name="./calculatorTypeSelect">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <caloriecalculator
+                                                jcr:primaryType="nt:unstructured"
+                                                text="caloriecalculator"
+                                                value="caloriecalculator"/>
+                                            <proteincalculator
+                                                jcr:primaryType="nt:unstructured"
+                                                text="proteincalculator"
+                                                value="proteincalculator"/>
+                                        </items>
+                                    </select>
+                                </items>
+                            </column>
+                        </items>
+                    </common>
+                    <info
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Calorie Calculator Config"
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+                            <column
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <pal
+                                        granite:class="full-width"
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                        composite="{Boolean}true"
+                                        fieldDescription="Click 'Add field' to add pal products"
+                                        fieldLabel="Add Products based on PAL">
+                                        <field
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/fieldset"
+                                            name="./palProductSuggestion">
+                                            <items jcr:primaryType="nt:unstructured">
+                                                <column
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                    <items jcr:primaryType="nt:unstructured">
+                                                        <image
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                            fieldLabel="Configure Product Image"
+                                                            name="./image"
+                                                            rootPath="/content/dam"/>
+                                                        <title
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                            fieldLabel=" Product Heading"
+                                                            name="./title"/>
+                                                        <link
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                            fieldLabel="PDF Link"
+                                                            name="./link"/>
+                                                        <palLevel
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                            fieldLabel="PAL Level"
+                                                            name="./palLevel"/>
+                                                    </items>
+                                                </column>
+                                            </items>
+                                        </field>
+                                    </pal>
+                                    <rteDescription
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
+                                        fieldLabel="Description"
+                                        name="./rteDescription"/>
+                                    <rteTitle
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
+                                        fieldLabel="Title"
+                                        name="./rteTitle"/>
+                                    <rteNote
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
+                                        fieldLabel="Note"
+                                        name="./rteNote"/>
+                                    <calorieCalHeading
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Calorie Calculator Heading"
+                                        name="./calorieCalHeading"/>
+                                    <calorieCalGender
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Calorie Calculator Gender"
+                                        name="./calorieCalGender"/>
+                                    <calorieCalActivities
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Calorie Calculator Activities Heading"
+                                        name="./calorieCalActivities"/>
+                                    <calorieActivityVeryLight
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Calorie Activity Very Light Title"
+                                        name="./calorieActivityVeryLight"/>
+                                    <calorieActivityLight
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Calorie Activity Light Title"
+                                        name="./calorieActivityLight"/>
+                                    <calorieActivityModerate
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Calorie Activity Moderate Title"
+                                        name="./calorieActivityModerate"/>
+                                    <calorieActivityHigh
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Calorie Activity High Title"
+                                        name="./calorieActivityHigh"/>
+                                    <calorieActivityVeryHigh
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Calorie Activity Very High Title"
+                                        name="./calorieActivityVeryHigh"/>
+                                    <calorieFieldsRequired
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Calorie Fields Required Title"
+                                        name="./calorieFieldsRequired"/>
+                                    <calorieClearFields
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Calorie Clear Fields Title"
+                                        name="./calorieClearFields"/>
+                                    <calorieViewResult
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Calorie View Result Title"
+                                        name="./calorieViewResult"/>
+                                    <calorieResult
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Calorie Result Title"
+                                        name="./calorieResult"/>
+                                    <calorieStaticResult
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Calorie Static 1745 Title"
+                                        name="./calorieStaticResult"/>
+                                    <calorieKiloCalories
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Kilo Calories Title"
+                                        name="./calorieKiloCalories"/>
+                                    <calorieRecommendationHeading
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Calorie Recommendation Heading"
+                                        name="./calorieRecommendationHeading"/>
+                                    <calorieProductRecommendation
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Product Recommendation Heading"
+                                        name="./calorieProductRecommendation"/>
+                                    <caloriePDF
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Calorie PDF Heading"
+                                        name="./caloriePDF"/>
+                                </items>
+                            </column>
+                        </items>
+                    </info>
+                    <proteincalulator
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Protein Calculator Config"
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                        <items jcr:primaryType="nt:unstructured">
+                            <products
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                composite="{Boolean}true"
+                                fieldLabel="Products">
+                                <field
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/container"
+                                    name="./products">
+                                    <items jcr:primaryType="nt:unstructured">
+                                        <column
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                                            <items jcr:primaryType="nt:unstructured">
+                                                <product
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    fieldDescription="Name of Product"
+                                                    fieldLabel="Product Name"
+                                                    name="./product"/>
+                                                <tile
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                    fieldDescription="Tile Format"
+                                                    fieldLabel="Tile Format"
+                                                    name="./tile">
+                                                    <items jcr:primaryType="nt:unstructured">
+                                                        <threetile
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Three Tile Format"
+                                                            value="proteinThreeTile"/>
+                                                        <twotile
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Two Tile Format"
+                                                            value="proteinTwoTile"/>
+                                                    </items>
+                                                </tile>
+                                                <components
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                                    composite="{Boolean}true"
+                                                    fieldLabel="Components">
+                                                    <field
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                                                        name="./components">
+                                                        <items jcr:primaryType="nt:unstructured">
+                                                            <column
+                                                                jcr:primaryType="nt:unstructured"
+                                                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                                <items jcr:primaryType="nt:unstructured">
+                                                                    <component
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                        fieldDescription="Enter Name of Sub Product"
+                                                                        fieldLabel="Sub Product Name"
+                                                                        name="./component"/>
+                                                                    <protein
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                        fieldDescription="Enter Product Protein Value"
+                                                                        fieldLabel="Prodcut Protein value"
+                                                                        name="./protein"/>
+                                                                    <image
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                                        fieldDescription="Select Path"
+                                                                        fieldLabel="Product Image"
+                                                                        name="./image"
+                                                                        rootPath="/content/dam"/>
+                                                                    <imageOnSelect
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                                        fieldDescription="Select Path"
+                                                                        fieldLabel="Product Image on Select"
+                                                                        name="./imageOnSelect"
+                                                                        rootPath="/content/dam"/>
+                                                                </items>
+                                                            </column>
+                                                        </items>
+                                                    </field>
+                                                </components>
+                                            </items>
+                                        </column>
+                                    </items>
+                                </field>
+                            </products>
+                            <lessProteinDescription
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
+                                fieldLabel="Less Protein Description"
+                                name="./lessProteinDescription"/>
+                            <equalProteinDescription
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
+                                fieldLabel="Equal Protein Description"
+                                name="./equalProteinDescription"/>
+                            <moreProteinDescription
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
+                                fieldLabel="More Protein Description"
+                                name="./moreProteinDescription"/>
+                            <proteinCalHeading
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Protein Calculator Main Text"
+                                name="./proteinCalHeading"/>
+                            <proteinCalGender
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Gender Heading"
+                                name="./proteinCalGender"/>
+                            <proteinCalAge
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Age Heading"
+                                name="./proteinCalAge"/>
+                            <proteinCalHeight
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Height Heading"
+                                name="./proteinCalHeight"/>
+                            <proteinCalWeight
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Weight Heading"
+                                name="./proteinCalWeight"/>
+                            <proteinCalActivities
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Activities Heading"
+                                name="./proteinCalActivities"/>
+                            <proteinActivityVeryLight
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Activity Very Light Text"
+                                name="./proteinActivityVeryLight"/>
+                            <proteinActivityLight
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Activity Light Text"
+                                name="./proteinActivityLight"/>
+                            <proteinActivityModerate
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Activity Moderate Text"
+                                name="./proteinActivityModerate"/>
+                            <proteinActivityHigh
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Activity High Text"
+                                name="./proteinActivityHigh"/>
+                            <proteinActivityVeryHigh
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Activity Very High Text"
+                                name="./proteinActivityVeryHigh"/>
+                            <proteinFieldsRequired
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Fields Required Text"
+                                name="./proteinFieldsRequired"/>
+                            <proteinSubmitButton
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Submit Button Text"
+                                name="./proteinSubmitButton"/>
+                            <proteinSupply
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Protein Supply Text"
+                                name="./proteinSupply"/>
+                            <proteinResults
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Protein Results Text"
+                                name="./proteinResults"/>
+                            <proteinTotalRequirement
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Protein Total Requirement Text"
+                                name="./proteinTotalRequirement"/>
+                            <proteinTotalConsumption
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Protein Total Consumption Text"
+                                name="./proteinTotalConsumption"/>
+                            <proteinQuery
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Protein Query Text"
+                                name="./proteinQuery"/>
+                            <proteinTotal
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                fieldLabel="Protein Total Text"
+                                name="./proteinTotal"/>
+                        </items>
+                    </proteincalulator>
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>

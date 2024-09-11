@@ -1,0 +1,31 @@
+<sly data-sly-use.templates="abbott/components/content/templates.html"/>
+<input type="hidden" name="compTitle" value="${properties.selectedCompTitle}" />
+<sly data-sly-use.list="${'com.abbott.aem.an.abbottstore.models.FooterLinkListModel' @ variation=inheritedPageProperties.themeType}">
+  <sly data-sly-test.isNotEmptyList="${list.getItems}"/>
+  <div class="list-comp">
+    <sly data-sly-test="${properties.parentLabel}">
+      <p class="list-comp__title"><a href="${list.parentLink @ extension = 'html'}">${properties.parentLabel} </a><em class="ai-caret-down  d-block d-sm-inline-block d-md-none"></em></p>
+    </sly>
+	<ul class="list-comp__items" data-sly-test ="${list.getItems}">
+	  <sly data-sly-test="${list.getListFromValue == 'children'}">
+		  <sly data-sly-list.subList="${list.getItems}">
+			<li class="list-comp__item">
+			  <a class="list-comp__link" title="${subList.getTitle}" target="${subList.getTargetMap['target']}"
+				href="${subList.getPath @ extension = 'html'}">${subList.getTitle}
+			  </a>
+			</li>
+		  </sly>
+          </sly>
+		  <sly data-sly-test="${list.getListFromValue == 'static'}">
+			  <sly data-sly-list.subList="${list.getItems}">
+				<li class="list-comp__item">
+				  <a class="list-comp__link" title="${subList.getTitle}" target="${subList.getTargetMap['target']}"
+					href="${subList.getFullPath}">${subList.getTitle}
+				  </a>
+				</li>
+			  </sly>
+		 </sly>
+	</ul>
+  </div>
+</sly>
+<sly data-sly-call="${templates.placeholder @ isEmpty= !isNotEmptyList}"></sly>

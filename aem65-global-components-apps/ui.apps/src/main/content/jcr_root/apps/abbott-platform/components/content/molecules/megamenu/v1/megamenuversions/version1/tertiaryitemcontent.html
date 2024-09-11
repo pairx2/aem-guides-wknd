@@ -1,0 +1,20 @@
+<template data-sly-template.item="${@ item='The navigation item'}"
+		  data-sly-use.badgeTemplate="abbott-platform/components/content/atoms/badge/v1/badge/template.html">
+
+
+	<div class="m-mega-menu__default-badge m-mega-menu--${item.badgePosition}"
+		data-sly-test="${item.badgeText || item.badgePosition || item.badgeType}">
+		<sly data-sly-call="${badgeTemplate.badge @ badge = item}"></sly>
+	</div>
+	<div class="m-mega-menu__item-img" data-sly-test="${item.image}">
+		<picture>
+			<img src="${item.image}" alt="${item.imageAlt}" class="img-fluid">
+		</picture>
+	</div>
+	<sly data-sly-test.concatenated="${'{0} {1}' @ format=[item.title, item.subtitle]}"></sly>
+	<div class="m-mega-menu__item-info" itemprop="name" content="${concatenated}" data-sly-test="${item.title || item.subtitle}">
+		<span class="m-mega-menu__item-title">${item.title}</span>
+		<span class="m-mega-menu__subtitle">${item.subtitle}</span>
+	</div>
+
+</template>

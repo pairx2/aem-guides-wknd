@@ -1,0 +1,69 @@
+- user_config:
+
+  - an-system-user:
+  
+    - name: an-system-user
+      description: Used for AN division to perform CRUD operations
+      path: /home/users/system/an
+      isSystemUser: true
+      isMemberOf: an-base,workflow-users
+      
+- ace_config:
+
+  - an-system-user:
+  
+    - path: /apps/an
+      permission: allow
+      privileges: jcr:read
+      
+    - path: /conf/an
+      permission: allow
+      privileges: jcr:read
+
+    - path: /content/an/abbottnutrition
+      permission: allow
+      privileges: jcr:read
+      
+    - path: /content/an/abbottnutrition/us/en/products
+      permission: allow
+      actions: read,modify,create,delete,replicate
+      
+    - path: /content/an/abbottnutrition/us/en/our-products
+      permission: allow
+      actions: read,modify,create,delete,replicate
+      
+    - path: /content/dam/an/abbottnutrition/content-fragments/product-seo-metadata
+      permission: allow
+      actions: read,modify,create,delete,replicate
+
+    - path: /content/dam/an/abbottnutrition
+      permission: allow
+      actions: read,replicate
+      
+    - path: /home/users
+      permission: allow
+      privileges: jcr:read
+      
+    - path: /home/groups
+      permission: allow
+      privileges: jcr:read
+      
+    - path: /libs/workflow
+      permission: allow
+      privileges: jcr:read
+      
+    - path: /var/abbott-cloudplatform
+      permission: allow
+      privileges: jcr:read
+      
+    - path: /var/workflow/instances
+      permission: allow
+      privileges: jcr:all
+
+    # Added this rule to fix issue with accessing workflow
+    - path: /var/workflow/models
+      permission: allow
+      privileges: jcr:read
+      restrictions:         
+        rep:glob: /abbott-global-workflow*
+      

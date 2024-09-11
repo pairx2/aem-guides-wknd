@@ -1,0 +1,95 @@
+<sly data-sly-use.staticContent="com.abbott.aem.platform.common.components.models.StaticContent">
+  <sly data-sly-test="${staticContent.contentType == 'article'}">
+  <div class="search-filter-static-article">
+    <div data-sly-test= "${staticContent.tagName}" class="article-heading article-heading-bg-color-${staticContent.tagHeadingColor}">
+      <span>${staticContent.tagName}</span>
+    </div>
+    <sly data-sly-list="${staticContent.articleDetails}">
+      <a href="${item.URL}" class="article-link">
+        <div class="article-image">
+          <img src="${item.imageUrl}" alt="${item.altText}">
+          <sly data-sly-test="${itemList.first}">
+            <span class="read-more">read more</span>
+            <div class="story-overlay"></div>
+          </sly>
+        </div>
+        <div class="article-details">
+          <div class="article-date">${item.date}</div>
+          <div class="article-title">${item.title}</div>
+          <div class="article-desc">${item.description}</div>
+        </div>
+      </a>
+    </sly>
+    <div data-sly-test= "${staticContent.seeMoreLink}" class="button link a-button article-btn-color-${staticContent.tagHeadingColor}">
+      <a class="btn " href="${staticContent.seeMoreLink}" target="_self">
+        <em class="abt-icon abt-icon-right-arrow"></em>
+        <span>See More</span>
+      </a>
+    </div>
+  </div>
+  </sly>
+  <!--/* Content Type is Product. *-->
+  <sly data-sly-test="${staticContent.contentType == 'product'}">
+    <sly data-sly-test.isOneColumn="${staticContent.columnLayout == 1}"></sly>
+    <sly data-sly-test.isMultiColumn="${staticContent.columnLayout != 1}"></sly>
+    <sly data-sly-test="${isOneColumn}">
+      <sly
+        data-sly-use.i18n_findOutMoreText="${'com.abbott.aem.cloud.platform.core.models.I18nFetcher' @ key = 'find-out-more'}" />
+      <sly data-sly-test.findOutMoreText="${i18n_findOutMoreText.title}" />
+      <sly data-sly-test.textColumnSize="${staticContent.textColumnSize}" />
+      <sly data-sly-test.imageColumnSize="${staticContent.imageColumnSize}" />
+      <div class="o-featured-pages__item o-featured-pages__item-count--1 ">
+        <sly data-sly-list="${staticContent.productDetails}">
+          <div class="row">
+            <div class="col-12 col-sm-${imageColumnSize}">
+              <a href="${item.URL}">
+                <div class="o-featured-pages__card-img">
+                  <img
+                          class="img-responsive o-featured-pages__card-img-ele"
+                          src="${item.image}"
+                          alt="${item.alt}"
+                  />
+                </div>
+              </a>
+            </div>
+            <div class="o-featured-pages__card-body col-12 col-sm-${textColumnSize}">
+              <h5 class="o-featured-pages__heading">
+                <a href="${item.URL}">${item.title @ context='html'}</a>
+              </h5>
+              <p>
+                ${item.description @ context='html'}
+              </p>
+              <div class="new-btn-parent">
+                <a href="${item.URL}" class="new-btn find-out-more-button" target="_self">
+                  <span class="new-btn__text">${findOutMoreText}</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </sly>
+      </div>
+    </sly>
+    <sly data-sly-test="${isMultiColumn}">
+	<sly data-sly-test.colNum="${staticContent.columnLayout == 2 ? '6' : (staticContent.columnLayout == 3 ? '4' : '3')}"/>
+      <div class="o-featured-pages__item ${staticContent.columnLayout == 2 ? 'o-featured-pages__item-count--2' : (staticContent.columnLayout == 3 ? 'o-featured-pages__item-count--3' : 'o-featured-pages__item-count--4')} ${staticContent.cardBorderRequired ? 'o-featured-pages__border' : ''}">
+        <div class="row">
+          <sly data-sly-list="${staticContent.productDetails}">
+            <div class="o-featured-pages__wrapper col-12 col-md-${colNum} col-lg-${colNum}">
+              <div class="o-featured-pages__card">
+                <a href="${item.URL}" class="o-featured-pages__card-link">
+                  <div class="o-featured-pages__card-img " data-sly-test="${item.image}">
+                    <img class="img-responsive lazy loaded" src="${item.image}" alt="${item.alt}">
+                  </div>
+                  <div class="o-featured-pages__card-body">
+                    <p class="o-featured-pages__heading">${item.title @ context='html'}</p>
+                    <p class="o-featured-pages__description">${item.description @ context='html'}</p>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </sly>
+        </div>
+      </div>
+    </sly>
+  </sly>
+</sly>

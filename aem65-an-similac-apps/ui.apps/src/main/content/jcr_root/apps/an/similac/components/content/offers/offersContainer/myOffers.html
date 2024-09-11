@@ -1,0 +1,26 @@
+<sly data-sly-test="${wcmmode.edit}">
+    <sly data-sly-use.templates="an/similac/components/content/templates.html" />
+	<div id="my_offers">
+		<h1 class="profile__title">${properties.title}</h1>
+		<sly data-sly-call="${templates.includeResource @ relativeResourcePath=resource.path, nodeName='currentOffers', slingResourceType='/apps/an/similac/components/content/offers/currentOffers'}"></sly>
+		<sly data-sly-call="${templates.includeResource @ relativeResourcePath=resource.path, nodeName='retailer', slingResourceType='/apps/an/similac/components/content/offers/retailer'}"></sly>
+		<p class="footnote font-roboto-reg text-charcoal mt-3">${properties.noteLabel}</p>
+	</div>
+</sly>
+
+<sly data-sly-test="${!wcmmode.edit}">
+    <sly data-sly-use.obj="${'com.abbott.aem.an.similac.core.models.OffersContainerModel'}">
+        <sly data-sly-test="${obj.myOffersJson}">
+            <script>
+                function onloadCallback() {}
+                var myOffers_label = Object.freeze(JSON.parse("${obj.myOffersJson @ context='scriptString'}"));
+            </script>
+			<sly data-sly-test="${inheritedPageProperties.pwaEnabled}">
+				<div id="my_offers_pwa"></div>
+			</sly>
+			<sly data-sly-test="${!inheritedPageProperties.pwaEnabled}">
+				<div id="my_offers"></div>
+			</sly>
+        </sly>
+    </sly>
+</sly>

@@ -1,0 +1,41 @@
+<sly data-sly-use.cookiebar="com.abbott.aem.platform.common.components.models.CookieBar"
+     data-sly-use.component="com.adobe.cq.wcm.core.components.models.Component"
+     data-sly-use.customConfig="com.abbott.aem.platform.common.components.models.CustomConfig"
+	 data-sly-use.commonsTemplates="core/wcm/components/commons/v1/templates.html" />
+	 
+<sly 
+data-sly-use.i18n_cookiebar_ok="${'com.abbott.aem.cloud.platform.core.models.I18nFetcher' @ key = 'cookiebar-ok'}"
+/>
+
+<div id="${component.id}" class="m-cookiebar hide ${customConfig.className}" data-js-component="cookie-bar">
+	<div class = "container">
+		<input name="data-cookieExpirationTime" type="hidden" value="${cookiebar.cookieExpirationTime}" />
+		<div class="row">
+			<div class="col-8 col-sm-12 m-cookiebar__text ${cookiebar.disableLanguageNavigation ? 'col-md-10 col-lg-10' : 'col-md-7 col-lg-8'}">
+				<sly data-sly-resource="${'title' @ resourceType=cookiebar.titleProxyPath, decoration=wcmmode.edit}" />
+				<div class="d-lg-flex align-items-center pt-2">
+					<sly data-sly-resource="${'text' @ resourceType=cookiebar.textProxyPath}" />
+				</div>
+			</div>
+			<div class="col-4 col-sm-4 m-cookiebar__btn ${cookiebar.disableLanguageNavigation ? 'col-md-2 col-lg-2' : 'col-md-2 col-lg-1'}">
+				<div class="a-button a-button--lg a-button--primary-v2">
+					<button class="btn" type="button">
+						<em aria-hidden="true" class="abt-icon abt-icon-circle">&nbsp;</em>
+						<span>${i18n_cookiebar_ok.title}</span>
+					</button>
+				</div>
+			</div>
+			<sly data-sly-test="${!cookiebar.disableLanguageNavigation}">
+			<div class="col-md-1 col-sm-4 col-lg-1 d-none d-sm-block">
+				<div class="m-cookiebar__divider"></div>
+			</div>
+			<div class="col-12 col-md-2 col-sm-4 col-lg-2 m-cookiebar__country-select">
+				<span class="m-cookiebar__country-select-label">${cookiebar.countryLabel}</span>
+				<!--/* Placeholder for Country Navigation */-->
+				<sly data-sly-resource="${'language-navigation' @ resourceType=cookiebar.languageNavigationProxyPath}"/>
+			</div>
+			</sly>
+		</div>
+	</div>
+</div>
+<sly data-sly-call="${commonsTemplates.placeholder @ isEmpty = true}" />

@@ -1,0 +1,112 @@
+.m-account-navigation {
+    width: 160px;
+
+    &__accordion-toggle {
+        display: none;
+        padding: 15px 0;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    &__container {
+        list-style: none;
+        text-align: center;
+        background-color: var(--account-navigation-bg);
+        color: var(--account-navigation-content-color);
+        font-weight: bold;
+        max-width: 100%;
+        text-transform: uppercase;
+    }
+    &__header {
+        padding: var(--account-navigation-header-padding);
+        margin: 0;
+        border-bottom: var(--account-navigation-border-bottom);
+        color: var(--account-navigation-title-color);
+    }
+    &__text {
+        text-align: center;
+        text-decoration: none !important;
+    }
+    &__icon {
+        em {
+            font-size: 24px;
+            color: var(--account-navigation-content-color);
+        }
+    }
+
+    ul {
+        padding: 0;
+    }
+
+    li {
+        &:last-child {
+            border-bottom: none;
+        }
+        border-bottom: var(--account-navigation-border-bottom);
+        height: var(--account-navigation-option-height);
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    &__item {
+        &--active {
+            border-left: var(--account-navigation-border-left);
+        }
+    }
+
+    /* Mobile dropdown styling */
+    @include media-breakpoint-down(sm)  {
+        margin-bottom: 30px;
+        width: 100%;
+
+        &__header {
+            display: none;
+        }
+
+        &__accordion-icon {
+            margin-right: 10px;
+        }
+
+        &__accordion-toggle {
+            display: flex;
+
+            .abt-icon-down-arrow {
+                height: 16px;
+                width: 16px;
+                transition: 200ms;
+            }
+
+            &.open {
+                .abt-icon-down-arrow {
+                    transform: rotate(180deg);
+                }
+
+                + .m-account-navigation__accordion-content {
+                    display: block;
+                }
+            }
+        }
+
+        &__accordion-content {
+            display: none;
+
+            .m-account-navigation__text {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                height: 100%;
+            }
+
+            li {
+                padding: 0 10px;
+                height: var(--account-navigation-option-height--mobile);
+            }
+
+            .m-account-navigation__icon {
+                margin-right: 10px;
+            }
+        }
+    }
+}

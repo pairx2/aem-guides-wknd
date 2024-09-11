@@ -1,0 +1,16 @@
+<template data-sly-template.item="${@ item='The navigation item'}"
+		  data-sly-use.groupTemplate="abbott-platform/components/content/molecules/megamenu/v1/megamenuversions/version3/tertiarygroup.html"
+		  data-sly-use.itemContentTemplate="abbott-platform/components/content/molecules/megamenu/v1/megamenuversions/version3/secondaryitemcontent.html"
+		  data-sly-use.seeMoreLinkTemplate="abbott-platform/components/content/molecules/megamenu/v1/megamenuversions/seemorelink.html">
+		<div class="a-link" data-sly-test="${item.title && item.title != ''}">
+			<sly data-sly-call="${itemContentTemplate.itemContent @ item = item}"></sly>
+			<div data-sly-test="${item.children.size > 0}" class="m-mega-menu__side-nav-transparent">
+				<div class="m-mega-menu__nested-menu-img-list">
+					<sly data-sly-call="${groupTemplate.group @ items = item.children}"></sly>
+					<div class="m-mega-menu__show-more">
+						<sly data-sly-call="${seeMoreLinkTemplate.item @ item = item, iconClass='abt-icon abt-icon-down-arrow', linkClass='m-mega-menu__link'}"></sly>
+					</div>
+				</div>
+			</div>
+		</div>
+</template>

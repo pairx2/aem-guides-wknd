@@ -1,0 +1,211 @@
+<sly data-sly-use.clientLib="/libs/granite/sightly/templates/clientlib.html"
+	 data-sly-use.context="serverlibs/context.js"
+	 data-sly-use.pg="com.abbott.aem.cloud.platform.core.redirects.models.Rules"/>
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+	<title>Manage URL Redirects</title>
+	<link rel="shortcut icon" href="/libs/granite/core/content/login/favicon.ico">
+</head>
+<body data-sly-test.render="${pg.render}" class="coral--light foundation-layout-util-maximized-alt">
+	<sly data-sly-call="${clientLib.all @ categories=['coralui3','granite.ui.coral.foundation','granite.ui.shell','cq.authoring.dialog', 'abbott-cloudplatform.manage-redirects.app']}"/>
+	<input id="fetch-url" type="hidden" value="${resource.path}" data-path="${context.redirectResource.path}">
+	<coral-shell class="_coral-Shell">
+		<coral-shell-header aria-hidden="false" aria-label="Header Bar"
+                    class="coral--dark granite-shell-header coral3-Shell-header"
+                    role="region">
+    		<coral-shell-header-home aria-level="2" class="globalnav-toggle" data-globalnav-toggle-href="/mnt/overlay/granite/ui/content/shell/globalnav.html?consoleId=abbott-platform-urlredirects-rules-console" role="heading">
+        		<a class="coral3-Shell-homeAnchor home-anchor" href="#"
+           			icon="adobeExperienceManagerColor" is="coral-shell-homeanchor">
+            		<coral-icon aria-label="adobe experience manager color"
+                    	class="coral3-Icon coral3-Shell-homeAnchor-icon coral3-Icon--adobeExperienceManagerColor coral3-Icon--sizeM"
+                    	icon="adobeExperienceManagerColor" role="img" size="M"></coral-icon>
+            		<coral-shell-homeanchor-label>Adobe Experience Manager</coral-shell-homeanchor-label>
+        		</a>
+    		</coral-shell-header-home>
+		</coral-shell-header>
+		<coral-shell-content>
+		<div class="foundation-layout-panel">
+	    	<div class="foundation-layout-panel-header">
+	        	<betty-titlebar>
+	            	<betty-titlebar-title>
+	                	<betty-breadcrumbs  class="granite-collection-navigator" id="granite-collection-breadcrumbs-toggle" trackingfeature="aem:collectionpage" trackingelement="breadcrumbs" data-granite-collection-navigator-target=".granite-request-collection">
+	                    	<betty-breadcrumbs-item  data-granite-collection-navigator-href="#">Manage Redirects</betty-breadcrumbs-item>
+	                    	<betty-breadcrumbs-item  data-granite-collection-navigator-href="/urlredirects.html">Redirect Configurations</betty-breadcrumbs-item>
+	                	</betty-breadcrumbs> 
+	            	</betty-titlebar-title>
+	            	<betty-titlebar-primary></betty-titlebar-primary>
+	            	<betty-titlebar-secondary></betty-titlebar-secondary>
+	        	</betty-titlebar>
+	    	</div>
+    		<div class="content-container-inner content-container-inner-detail">
+			<input id="page-size" type="hidden" name="pagesize" value="${pg.pageSize ? pg.pageSize : 1000}" />
+				<input id="status-value" type="hidden" name="status" value="${pg.state ? pg.state : 'NEW'}" />
+				<div class="config-description-outer">
+					<div>
+						<span class="config-description">Title:</span>
+						<span>${pg.title ? pg.title : ''}</span>					
+		 			</div>
+		 			<div>
+						<span class="config-description">Last Modified:</span>
+						<span>${pg.user ? pg.user : ''}</span>					
+		 			</div>
+					<div>
+						<span class="config-description">State:</span>
+						<span class="rules-state-info">${pg.state ? pg.state : 'NEW'}</span>					
+		 			</div>
+					<div>
+		 				<span class="config-description">Version:</span>
+		 				<span class="wait-button" id="rule-version" data-version="${pg.version ? pg.version : ''}"></span>
+		 			</div>	
+				</div>
+	        	<coral-tabview>
+	            	<coral-tablist target="main-panel-1">
+	                	<coral-tab>Manage</coral-tab>
+	                	<coral-tab>Export</coral-tab>
+	                	<coral-tab>Import</coral-tab>
+	            	</coral-tablist>
+					<coral-panelstack id="main-panel-1">
+	                    <coral-panel class="coral-Well">
+	                        <div class="coral-Form-fieldwrapper">
+								<a class="granite-collection-create _coral-Button _coral-Button--cta" href="/apps/abbott-cloudplatform/content/urlredirects/rule.html${context.redirectResource.path}" is="coral-anchorbutton" variant="primary" size="L" role="button">
+									<coral-anchorbutton-label class="_coral-Button-label">Create Rule</coral-anchorbutton-label>
+								</a>
+								<form action="${resource.path}.selector.html" method="get" class="esl-form">
+						        <input id="resource-value" type="hidden" name="path" value="${context.redirectResource.path}" />
+	                            <button is="coral-button" disabled="${pg.disableSaveButton}" class="coral-Button--secondary redirect-rule-button" variant="secondary" data-path="save">
+	                            	Save
+	                            </button>
+	                            <button is="coral-button" disabled="${pg.disableApplyButton}" class="coral-Button--secondary redirect-rule-button" variant="secondary" data-path="apply">
+	                            	Apply
+	                            </button>
+	                            <button is="coral-button" disabled="${pg.disablePromoteButton}" class="coral-Button--secondary redirect-rule-button" variant="secondary" data-path="promote">
+	                            	Promote
+	                            </button>
+								</form>
+	                        </div>
+							
+							<form id="state-change-rule-properties-form" action="${context.redirectResource.path}/jcr:content" enctype="multipart/form-data" method="post" fieldtrackingidentifier="" novalidate="" class="foundation-form" data-foundation-form-ajax="true" data-foundation-form-loadingmask="true">
+								<input type="hidden" name="_charset_" value="utf-8">
+								<input type="hidden" name="state" value="EDITED">
+							</form>
+	                        <section class="coral-Form coral-Form--vertical">
+	                            <div clas="coral-Form-fieldset">
+	                                <br>
+	                                <div class="coral-Form-fieldwrapper form-fieldwrapper">
+	                                    <input is="coral-textfield" id="redirect-search-box" class="coral-Form-field search-input-block"
+	                                        placeholder="Search" name="name" labelledby="label-vertical-textfield-0">
+											<a id="search-url-redirect-rule" href="/apps/abbott-cloudplatform/content/urlredirects/rules.html${request.requestPathInfo.suffix}?"><button class="search-link" is="coral-button" variant="primary" icon="search" iconsize="S"></button></a>
+											<button class="search-close" is="coral-button" icon="close" iconsize="S"></button>
+	                                </div>
+	                            </div>
+							<form action="" method="post" class="coral-Form--aligned url-redirect-rule-form" id="save-url-redirects">
+	                            <table is="coral-table" class="url-redirect-table" id="edit-redirect-coral-table" orderable>
+	                            <caption></caption>
+	                                <colgroup>
+	                                    <col is="coral-table-column">
+	                                    <col is="coral-table-column">
+	                                    <col is="coral-table-column">
+	                                    <col is="coral-table-column">
+	                                    <col is="coral-table-column" fixedwidth>
+	                                    <col is="coral-table-column">
+	                                    <col is="coral-table-column">
+	                                </colgroup>
+	                                <thead is="coral-table-head" sticky>
+	                                    <tr is="coral-table-row">
+	                                        <th is="coral-table-headercell" id="sourceURL">Source URL</th>
+	                                        <th is="coral-table-headercell" id="redirectionType">Redirection Type</th>
+	                                        <th is="coral-table-headercell" id="forwardQueryString">Forward Query String</th>
+	                                        <th is="coral-table-headercell" id="mappingType">Mapping Type</th>
+	                                        <th is="coral-table-headercell" id="edit">Edit</th>
+	                                        <th is="coral-table-headercell" id="order">Order</th>
+	                                    </tr>
+	                                </thead>
+	                                <tbody is="coral-table-body" divider="cell">
+	                                    <sly data-sly-list.rule="${pg.items}">
+	                                        <tr is="coral-table-row" id="${rule.name}" data-path="${rule.path}">
+												<td is="coral-table-cell" data-value="${rule.sourceUrl}">
+													${rule.sourceUrl}</td>
+												<td is="coral-table-cell" data-value="${rule.redirectionType}">
+													${rule.redirectionType}</td>
+												<td is="coral-table-cell" data-value="${rule.forwardQueryString}">
+													${rule.forwardQueryString.toString.toUpperCase}</td>
+												<td is="coral-table-cell" data-value="${rule.mappingType}">
+													${rule.mappingType}</td>
+												<td is="coral-table-cell">
+													<a class="coral-Link edit-urlredirect-rule" href="/apps/abbott-cloudplatform/content/urlredirects/rule.html${context.redirectResource.path}?item=${rule.path}">
+														<coral-icon icon="edit" size="S" title="click to edit the rules"></coral-icon>
+													</a>
+												</td>
+												<td is="coral-table-cell">
+													<button is="coral-button" type="button" variant="minimal"
+														icon="dragHandle" coral-table-roworder title="drag to re-order the rules"></button>
+												</td>
+											</tr>
+	                                    </sly>
+	                                </tbody>
+	                            </table>
+							</form>
+	                            <div data-sly-test="${pg.paginated}" class= "pagination-block">
+									<a class="pagination-link" data-sly-test="${pg.hasPrevious}" href="/apps/abbott-cloudplatform/content/urlredirects/rules.html${request.requestPathInfo.suffix}?page=${pg.previousPage}${request.parameterMap.q  && '{0}{1}' @ format=['&q=',request.parameterMap.q]}">
+										<button class= "pagination-button"
+	                                        icon="arrowLeft" is="coral-button"  iconsize="S">Previous
+										</button>
+									</a>
+	                            	<span class= "page_number" data-pageNum=${pg.pageNumber}> Page ${pg.pageNumber} of ${pg.pages} </span>
+		                            <a class="pagination-link" data-sly-test="${pg.hasNext}"  href="/apps/abbott-cloudplatform/content/urlredirects/rules.html${request.requestPathInfo.suffix}?page=${pg.nextPage}${request.parameterMap.q  && '{0}{1}' @ format=['&q=',request.parameterMap.q]}">
+										<button class="pagination-button"
+	                                        is="coral-button" iconsize="S">Next
+											<coral-icon size="S" class="next-arrow _coral-Icon--sizeS _coral-Icon" role="img" icon="arrowRight" aria-hidden="true"/>
+										</button>
+									</a>
+	                        	</div>
+	                    	</section>
+	                	</coral-panel>
+	                	<coral-panel class="coral-Well">
+	                        <section>
+	                            <h2 class="coral-Heading coral-Heading--2">Export URL Redirects</h2>
+								<p>You can export all your created URL redirect rules into a csv file here.</p>
+	                            <form action="${resource.path}.export.html" method="get" class="coral-Form--aligned">
+	                                <input type="hidden" name="path" value="${context.redirectResource.path}" />
+	                                <div class="coral-Form-fieldwrapper">
+	                                    <button class="coral-Button coral-Button--primary  cq-dialog-download"
+	                                        icon="fileCSV" is="coral-button" variant="primary">Export URL Redirect
+										</button>
+	                                </div>
+	                            </form>
+	                        </section>
+	                    </coral-panel>
+	                    <coral-panel class="coral-Well">
+	                        <section>
+	                            <h2 class="coral-Heading coral-Heading--2">Import URL Redirects</h2>
+								<ul>
+	                            	<li>The file format should be csv.</li>
+									<li>If you do not have an import template, you can export it first and the empty CSV will become the import template.</li>
+								</ul>
+	                            <form action="${resource.path}.import.html" method="post" class="coral-Form--aligned"
+	                                enctype="multipart/form-data">
+	                                <input type="hidden" name="path" value="${context.redirectResource.path}" />
+	                                <div class="coral-Form-fieldwrapper">
+	                                    <label class="coral-Form-fieldlabel import-label" id="label-vertical-inputgroup-2">URL Redirects File</label>
+	                                    <div class="coral-InputGroup coral-Form-field choose-file-block">
+	                                        <input is="coral-Textfield" class="coral-InputGroup-input coral3-Textfield"
+	                                            id="redirect-import-ctrl" type="file"
+	                                            name="./redirects.redirectmap.csv" accept=".csv" />
+	                                    </div>
+	                                </div>
+	                                <div class="coral-Form-fieldwrapper">
+	                                    <button class="coral-Button coral-Button--primary  cq-dialog-upload"
+	                                        icon="fileCSV" is="coral-button" variant="primary">Import URL Redirects</button>
+	                                </div>
+	                            </form>
+	                        </section>
+	                    </coral-panel>
+	                </coral-panelstack>
+	            </coral-tabview>
+        	</div>
+    	</div>
+    	</coral-shell-content>
+    </coral-shell>
+</body>
+</html>

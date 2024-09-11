@@ -1,0 +1,46 @@
+@import 'search-bar.scss';
+html[dir="rtl"] .m-search-bar {
+
+  &__input {
+    margin-left: var(--searchbar-input-margin-right);
+    margin-right: 0;
+    &-field {
+      @include rem(padding, var(--searchbar-rtl-input-padding));
+    }
+  }
+
+  &__close {
+    @include setPosition(absolute, left 20px top 50% right auto, 3);
+  }
+
+  &__button {
+    &:not(:last-child) {
+      margin-left: 8px;
+      margin-right: 0;
+      @include media-breakpoint-up(md) {
+        margin-left: var(--searchbar-input-margin-right);
+      }
+    }
+  }
+
+  &__autocomplete-item {
+    text-align: right;
+  }
+}
+
+html[dir="rtl"] .m-search-bar__container-reset {
+  &__input {
+    width: var(--searchbar-input-with-resetbtn-width);
+    @include media-breakpoint-up(md) {
+      width: var(--searchbar-md-input-with-resetbtn-width);
+    }
+    @include media-breakpoint-up(lg) {
+      width: var(--searchbar-lg-input-with-resetbtn-width);
+    }
+    @include media-breakpoint-up(xl) {
+      width: var(--searchbar-lg-input-width);
+      margin-left: var(--searchbar-xl-input-margin-24);
+      margin-right: 0;
+    }
+  }
+}

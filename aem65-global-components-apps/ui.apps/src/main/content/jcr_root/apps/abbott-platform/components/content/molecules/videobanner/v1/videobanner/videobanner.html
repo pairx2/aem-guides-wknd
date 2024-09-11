@@ -1,0 +1,49 @@
+<sly data-sly-use.videoBanner="com.abbott.aem.platform.common.components.models.VideoBanner"
+  data-sly-use.component="com.adobe.cq.wcm.core.components.models.Component"
+   data-sly-use.customConfig="com.abbott.aem.platform.common.components.models.CustomConfig"
+   data-sly-use.template="core/wcm/components/commons/v1/templates.html" />
+<div id="div_${component.id}" class="${customConfig.className}">
+  <style data-sly-test="${videoBanner.startColor && videoBanner.endColor}">
+    #div_${component.id @context='styleToken'} {
+      --video-banner-start-color: ${videoBanner.startColor @context='styleToken'};
+      --video-banner-start-position: ${videoBanner.startColorPosition  @context='styleToken'}%;
+      --video-banner-end-color: ${videoBanner.endColor  @context='styleToken'};
+      --video-banner-end-position: ${videoBanner.endColorPosition  @context='styleToken'}%;
+    }
+  </style>
+  <div id="${component.id}" class="a-video a-video--margin" data-js-component="video-banner" data-controls="false"
+    data-playicon="${videoBanner.playIcon}" data-pauseIcon="${videoBanner.pauseIcon}"
+    data-fallbackimgsrc="${videoBanner.fileReference}" data-videtype="${videoBanner.videoType}"
+    data-playtext="${videoBanner.playIconLabel}" data-pausetext="${videoBanner.pauseIconLabel}"
+    data-mobileautoplay="false" data-autoplay="${videoBanner.autoPlay? 'true' : 'false'}" data-muted="true"
+    data-loop="${videoBanner.playVideoInLoop ? 'true' : 'false'}" data-playertype="embed">
+    <div class="m-video-banner__media">
+      <div
+        class="a-video__player ${videoBanner.videoType == 'brightCove' || videoBanner.videoType == 'limeLight' ? 'global-video' : 'global-video-embedDam'}">
+        <sly data-sly-test.videoType="${videoBanner.videoType}"></sly>
+        <!--/* BrightCove Video */-->
+        <sly data-sly-test="${videoType == 'brightCove'}" data-sly-include="videobanner_brightcove.html" />
+        <!--/* Limelight Video */-->
+        <sly data-sly-test="${videoType == 'limeLight'}" data-sly-include="videobanner_limelight.html" />
+        <!--/* Dam Video */-->
+        <sly data-sly-test="${videoType == 'dam'}" data-sly-include="videobanner_dam.html" />
+      </div>
+      <!--/* Play Buttons div */-->
+      <sly data-sly-include="videobanner_iconbtn.html"></sly>
+    </div>
+    <!--/* Content section */-->
+    <div class="m-video-banner__content">
+      <div class="m-video-banner__content__wraper">
+        <p class="m-video-banner__title h6">${videoBanner.pretitle @context='html'} </p>
+        <h1 class="m-video-banner__header h1-video-banner">${videoBanner.title @context='html'} </h1>
+        <div class="m-video-banner__body">${videoBanner.description @context='html'}</div>
+        <!--/* Buttons div */-->
+        <sly data-sly-include="videoBanner_buttons.html"></sly>
+      </div>
+    </div>
+  </div>
+  <sly data-sly-test="${videoBanner.videoTranScriptText=='true'}"
+    data-sly-resource="${@path='transcript',resourceType=videoBanner.downloadProxyPath, decorationTagName='div',cssClassName='video-transcript'}">
+  </sly>
+  <sly data-sly-call="${template.placeholder @ isEmpty=!videoBanner.videoType}"></sly>
+</div>

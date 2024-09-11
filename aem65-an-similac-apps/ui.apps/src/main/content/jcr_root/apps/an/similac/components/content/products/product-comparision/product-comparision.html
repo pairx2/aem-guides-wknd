@@ -1,0 +1,64 @@
+<sly data-sly-use.comparisionModel="com.abbott.aem.an.similac.core.models.ProductComparisionModel" data-sly-use.criteriaTemplate="criteria.html" ></sly>
+<div data-sly-resource="${'productTitle' @ resourceType='/apps/an/similac/components/content/title'}"></div>
+<div class="pdp-tab__product-comp overflow-auto" >
+   <div class="table pcTable text-center" aria-describedby="product-comparison">
+      <div class="d-flex">
+         <div class="pdp-tab__product-comp-tablecellTitle" scope="col"></div>
+         <sly data-sly-repeat.product=${comparisionModel.productCardList}>
+         <sly data-sly-use.linkHelper="${'com.abbott.aem.an.similac.core.models.LinkHelperModel' @ href=product.link}" />
+            <div class="pdp-tab__product-comp-tablecellTitle" scope="col">
+               <div class="pdp-tab__product-comp-displayInfo">
+                  <picture>
+                     <source media="(max-width: 575.98px)" data-srcset="${product.mobileImage @ context = 'uri'}">
+                     <source media="(max-width: 991.98px)" data-srcset="${product.tabletImage @ context = 'uri'}">
+                     <a class="prodcomp-img-link" href="${linkHelper.linkHref}"><img class="prodcomp-img-top lazy" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="${product.desktopImage @ context = 'uri'}" alt="${product.name}" data-sly-test="${product.image @ context = 'uri'}"/></a>
+                  </picture>
+                  <a class="prodcomp-title-link" href="${linkHelper.linkHref}"><p class="pdp-comparison__title">${product.name @ context='html'}</p></a>
+               </div>
+            </div>
+         </sly>
+      </div>
+      <div>
+         <div class="pdp-tab__product-comp-tablerow">
+            <div scope="col" class="pdp-tab__product-comp-tablecell pdp-tab__product-comp_table-shaded-grey">${'Description' @ i18n, context='html'}</div>
+            <div scope="col" data-sly-test="${properties.description1}" class="pdp-tab__product-comp-tablecell">${properties.description1 @context='html'}</div>
+            <div scope="col" data-sly-test="${properties.description2}"  class="pdp-tab__product-comp-tablecell">${properties.description2 @context='html'}</div>
+            <div scope="col" data-sly-test="${properties.description3}"  class="pdp-tab__product-comp-tablecell">${properties.description3 @context='html'}</div>
+            <div scope="col" data-sly-test="${properties.description4}"  class="pdp-tab__product-comp-tablecell">${properties.description4 @context='html'}</div>
+         </div>
+         <sly data-sly-use.clientLib="${'/libs/granite/sightly/templates/clientlib.html'}" />
+         <sly data-sly-use.itemCount="/apps/an/similac/components/content/products/product-comparision/clientlibs/productComparison.js"/>
+         <div data-sly-list.rowNumber="${itemCount.arrayCnt}" data-sly-test="${itemCount.arrayCnt}">
+            <sly data-sly-test.title = "${'title{0}{1}' @ format=['-',rowNumber]}" />
+            <sly data-sly-test.cellOne = "${'cell{0}{1}{2}' @ format=['-',rowNumber,'1']}" />
+            <sly data-sly-test.cellTwo = "${'cell{0}{1}{2}' @ format=['-',rowNumber,'2']}" />
+            <sly data-sly-test.cellThree = "${'cell{0}{1}{2}' @ format=['-',rowNumber,'3']}" />
+            <sly data-sly-test.cellFour = "${'cell{0}{1}{2}' @ format=['-',rowNumber,'4']}" />
+            <div class="pdp-tab__product-comp-tablerow">
+               <div class="pdp-tab__product-comp-tablecell${item} pdp-tab__product-comp_table-shaded-grey"  scope="row">
+                  <sly data-sly-resource="${title @ resourceType='/apps/an/similac/components/content/title'}" />
+               </div>
+
+               <sly data-sly-test="${properties.firstProductPath}">
+               <div class="pdp-tab__product-comp-tablecell">
+                  <sly data-sly-resource="${cellOne @ resourceType='/apps/an/similac/components/content/products/selection'}" />
+               </div></sly>
+               <sly data-sly-test="${properties.secondProductPath}">
+               <div class="pdp-tab__product-comp-tablecell">
+                  <sly data-sly-resource="${cellTwo @ resourceType='/apps/an/similac/components/content/products/selection'}" />
+               </div></sly>
+               <sly data-sly-test="${properties.thirdProductPath}">
+               <div class="pdp-tab__product-comp-tablecell">
+                  <sly data-sly-resource="${cellThree @ resourceType='/apps/an/similac/components/content/products/selection'}" />
+               </div></sly>
+               <sly data-sly-test="${properties.fourthProductPath}">
+               <div class="pdp-tab__product-comp-tablecell">
+                  <sly data-sly-resource="${cellFour @ resourceType='/apps/an/similac/components/content/products/selection'}" />
+               </div>
+               </sly>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<div class="extra-terms" data-sly-resource="${'productTerms' @ resourceType='/apps/an/similac/components/content/text'}"></div>

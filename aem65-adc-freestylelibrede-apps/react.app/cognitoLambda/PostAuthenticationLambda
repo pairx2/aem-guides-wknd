@@ -1,0 +1,27 @@
+var AWS = require('aws-sdk');
+var CISP = new AWS.CognitoIdentityServiceProvider({region: 'eu-central-1'});
+
+exports.handler = async (event, context, callback) => {
+	console.log('Post Auth Verification');
+	var updateParams = {
+		"ClientMetadata": {
+			"custom:LoginAttempt": '1'
+		},
+		"UserAttributes": [
+			{
+				"Name": "custom:LoginAttempt",
+				"Value": '0'
+			}
+		],
+		"Username": event.userName,
+		"UserPoolId": event.userPoolId
+	}
+	try {
+	    var response = await CISP.adminUpdateUserAttributes(updateParams).promise();
+	    console.log("Update Attribute Success:",response);
+	    callback(null, event);
+	} catch(e){
+	    console.log("Update Attribute Error:",e);
+	    callback(e, event);
+	}
+};

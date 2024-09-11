@@ -1,0 +1,65 @@
+# sites that magento write user needs to update in AEM
+- DEF sites=[abbott,glucerna,similac,an]
+
+- user_config:
+
+  - magento-webhook-user:
+  
+    - name: magento-webhook-user
+      path: /home/users/magento
+      password: $[secret:MAGENTO_USER_PASSWORD]
+  
+  # name of existing user in code hence not following naming convention
+  - magentoWriteUser:
+  
+    - name: magentoWriteUser
+      path: /home/users/system/magento
+      isSystemUser: true
+           
+- ace_config:
+
+  - magento-webhook-user:
+  
+    - path: /libs
+      permission: allow
+      privileges: jcr:read
+      
+    - path: /content
+      permission: allow
+      privileges: jcr:read
+ 
+    - path: /var/commerce
+      permission: allow
+      privileges: jcr:read
+
+  - magentoWriteUser:
+
+    - path: /conf
+      permission: allow
+      privileges: jcr:read
+      
+    - path: /libs
+      permission: allow
+      privileges: jcr:read
+
+    - path: /var/workflow
+      permission: allow
+      privileges: jcr:read
+
+    - path: /var/commerce/products
+      permission: allow
+      privileges: jcr:versionManagement,jcr:read,crx:replicate,rep:write,jcr:lockManagement
+ 
+    - path: /content/cq:tags
+      permission: allow
+      privileges: jcr:versionManagement,jcr:read,crx:replicate,rep:write,jcr:lockManagement
+
+    - path: /content/dam
+      permission: allow
+      actions: read,modify,create,delete,replicate
+      
+    - FOR site IN ${sites}:
+    
+      - path: /content/${site}
+        permission: allow
+        actions: read,modify,create,delete,replicate

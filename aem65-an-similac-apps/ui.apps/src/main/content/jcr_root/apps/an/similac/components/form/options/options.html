@@ -1,0 +1,48 @@
+<div data-sly-use.template="an/similac/components/content/templates.html"
+   data-sly-use.optionValues="${'com.abbott.aem.an.similac.core.models.ItemsMultiFieldReader'}"
+   data-sly-test.title="${properties.jcr:title}" >
+   <fieldset class="form-group similac-form-group">
+		<legend></legend>
+      <sly data-sly-test="${properties.type == 'checkbox'}">
+         <div class="form-check checkbox-container">
+            <span class="checkbox-wrapper"><label><input type="checkbox" class="form-check-input" value="true"><span class="checkbox-inner"></span></label></span>
+            <label class="form-check-label"><strong>${title}</strong></label>
+         </div>
+      </sly>
+      <sly data-sly-test="${properties.type == 'radio'}">
+         <div><label class="radio-group-label">${title}</label></div>
+         <sly data-sly-repeat.option="${optionValues.items.listChildren}">
+            <div class="form-check form-check-inline radio-set">
+               <span class="radio-wrapper">
+               <label><input class="radio-input" type="radio"><span class="radio-inner"></span>${option.text}</label>
+               </span>
+            </div>
+         </sly>
+      </sly>
+      <sly data-sly-test="${properties.type == 'radio-button'}">
+         <div><label class="radio-group-label">${title}</label></div>
+         <div class="row">
+            <sly data-sly-repeat.option="${optionValues.items.listChildren}">
+               <div class="col-6">
+                  <div class="form-check form-check-inline radio-button-set w-100">
+                     <label class="radio-button-wrapper"><input class="radio-input" type="radio"><span class="radio-label">${option.text}</span></label>
+                  </div>
+               </div>
+            </sly>
+         </div>
+      </sly>
+      <sly data-sly-test="${properties.type == 'dropdown'}">
+         <label class="similac-bold-label m-0">${title}</label>
+         <div class="select__control css-aqjn98-control">
+            <div class="select__indicators ">
+               <div class="select__indicator select__dropdown-indicator ">
+                  <svg viewBox="0 0 100 100" class="sim-icon">
+                     <use href="#icon-arrow-down-color"></use>
+                  </svg>
+               </div>
+            </div>
+         </div>
+      </sly>
+   </fieldset>
+</div>
+<sly data-sly-call="${template.placeholder @ isEmpty=!title, classAppend='cmp-form-options'}"></sly>

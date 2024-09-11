@@ -1,0 +1,40 @@
+<!--/* ATOM: BREADCRUMB STARTS */-->
+<div data-sly-use.breadcrumb="com.adobe.cq.wcm.core.components.models.Breadcrumb"
+	 data-sly-test="${!pageProperties.hideBreadcrumb && breadcrumb.items.size > 0}"
+	 data-sly-use.template="core/wcm/components/commons/v1/templates.html"
+	 class="container pt-4 pb-4">
+	 <sly  data-sly-use.i18n_breadcrumbTitle="${'com.abbott.aem.cloud.platform.core.models.I18nFetcher' @ key = 'breadcrumb-title'}"
+     />
+
+	<nav class="a-breadcrumb"
+	  data-sly-use.component="com.adobe.cq.wcm.core.components.models.Component"
+	  id="${component.id}"
+	  aria-label="${i18n_breadcrumbTitle.title}"
+	  data-cmp-data-layer="${breadcrumb.data.json}">
+	<ol 
+	  class="a-breadcrumb__list" 
+	  itemscope itemtype="http://schema.org/BreadcrumbList"
+	  data-sly-list.navItem="${breadcrumb.items}">
+		<li
+		  class="a-breadcrumb__item ${navItem.active ? 'a-breadcrumb--active' : ''}"
+		  data-cmp-data-layer="${navItem.data.json}"
+		  itemprop="itemListElement"
+		  itemscope itemtype="http://schema.org/ListItem">
+		    <a 
+			  class="a-breadcrumb--link"					  
+			  href="${navItem.URL}"
+			  itemprop="item"
+			  data-sly-unwrap="${navItem.active}"
+			  role="link"
+			  title="${navItem.title}"
+			  data-cmp-clickable="${breadcrumb.data ? true : false}"
+			  aria-label="${navItem.title}">
+			    <span itemprop="name">${navItem.title}</span>
+			</a>
+			<meta itemprop="position" content="${navItemList.count}" />
+		</li>
+	</ol>
+</nav>
+	<sly data-sly-call="${template.placeholder @ isEmpty=breadcrumb.items.size == 0, classAppend='a-breadcrumb'}"></sly>
+</div>
+<!--/* ATOM: BREADCRUMB ENDS */-->

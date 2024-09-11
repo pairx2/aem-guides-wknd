@@ -1,0 +1,84 @@
+<sly data-sly-use.heroBanner="com.abbott.aem.platform.common.components.models.HeroBanner"
+     data-sly-use.hero="com.abbott.aem.corp.division.core.components.models.HeroBanner"
+     data-sly-use.component="com.adobe.cq.wcm.core.components.models.Component"
+     data-sly-use.imageTemplate="core/wcm/components/teaser/v1/teaser/image.html"
+     data-sly-use.templates="core/wcm/components/commons/v1/templates.html"
+     id="${component.id}"
+     data-cmp-data-layer="${heroBanner.data.json}">
+   <div data-sly-test.id="${hero.svgId}" data-sly-unwrap></div>
+   <div data-sly-test.id2="${hero.svgId}" data-sly-unwrap></div>
+   <section id="section_${component.id}">
+      <div data-sly-test="${hero.extraCurveMobile=='yes'}" id="hero-banner-extra-curve" class="corp-d-lg-none corp-d-xl-none">
+         <div class="hero-slider-curve ${hero.extranotchType == 'rounded' ? 'rounded-option' : 'notch-option'}">
+            <svg width="100%" height="100%" viewBox="${hero.extranotchType == 'rounded' ? '0 0 1440 195' : '0 0 640 30'}" preserveAspectRatio="none" baseProfile="full"
+                 version="1.2">
+               <defs>
+                  <mask transform="scale(1)" maskContentUnits="userSpaceOnUse" maskUnits="userSpaceOnUse" id="${id2}">
+                     <sly data-sly-test="${hero.extranotchType == 'rounded'}">
+                        <image xlink:href="/content/dam/corp/abbott/global/notch/herobanner/xlink-deep-curve-c-h195.png" height="100%"
+                               width="100%"></image>
+                     </sly>
+                     <sly data-sly-test="${hero.extranotchType == 'right'}">
+                        <image xlink:href="/content/dam/corp/abbott/global/notch/herobanner/notch-right-c-h65.png" height="100%"
+                               width="100%"></image>
+                     </sly>
+                     <sly data-sly-test="${hero.extranotchType == 'left'}">
+                        <image xlink:href="/content/dam/corp/abbott/global/notch/herobanner/notch-left-c-h65.png" height="100%"
+                               width="100%"></image>
+                     </sly>
+                  </mask>
+               </defs>
+               <rect class="${hero.extraMobileNotchColor}" x="0" y="0" width="100%" height="100%" mask="url(#${id2})"></rect>
+            </svg>
+         </div>
+      </div>
+      <style>
+         #section_${component.id @context='styleToken'} {
+         --hero-start-color: ${heroBanner.startColor @context='styleToken'};
+         --hero-start-position: ${heroBanner.startColorPosition  @context='styleToken'}%;
+         --hero-end-color: ${heroBanner.endColor  @context='styleToken'};
+         --hero-end-position: ${heroBanner.endColorPosition  @context='styleToken'}%;
+         }
+      </style>
+      <div class="container">
+         <div class="row no-gutters">
+            <div class="m-hero__content">
+               <p class="m-hero__title h6">${heroBanner.pretitle @context='html'} </p>
+               <h1 class="m-hero__header h1-hero">${heroBanner.title @context='html'} </h1>
+               <h2 data-sly-test="${heroBanner.subtitle}" class="h2-hero">${heroBanner.subtitle @context='html'}</h2>
+               <div class="m-hero__body">${heroBanner.description @context='html'}</div>
+               <!--/* Buttons Section */-->
+               <sly data-sly-include="herobanner_buttons.html"></sly>
+            </div>
+            <div class="m-hero__media">
+               <div class='m-hero__image' data-sly-call="${imageTemplate.image @ teaser=heroBanner}"></div>
+               <div data-sly-test="${hero.notchType != 'none'}" id="hero-banner-curve" class ="${hero.hideCurveDesktop ? 'corp-d-xl-none' : ''} ${hero.hideCurveTab ? 'corp-d-lg-none' : ''} ${hero.hideCurveMobile ? 'corp-d-md-none' : ''}">
+                  <div class="hero-slider-curve ${hero.notchType == 'rounded' ? 'rounded-option' : 'notch-option'}">
+                     <svg width="100%" height="100%" viewBox="${hero.notchType == 'rounded' ? '0 0 1440 195' : '0 0 640 30'}" preserveAspectRatio="none" baseProfile="full"
+                          version="1.2">
+                        <defs>
+                           <mask transform="scale(1)" maskContentUnits="userSpaceOnUse" maskUnits="userSpaceOnUse" id="${id}">
+                              <sly data-sly-test="${hero.notchType == 'rounded'}">
+                                 <image xlink:href="/content/dam/corp/abbott/global/notch/herobanner/xlink-deep-curve-c-h195.png" height="100%"
+                                        width="100%"></image>
+                              </sly>
+                              <sly data-sly-test="${hero.notchType == 'right'}">
+                                 <image xlink:href="/content/dam/corp/abbott/global/notch/herobanner/notch-right-c-h65.png" height="100%"
+                                        width="100%"></image>
+                              </sly>
+                              <sly data-sly-test="${hero.notchType == 'left'}">
+                                 <image xlink:href="/content/dam/corp/abbott/global/notch/herobanner/notch-left-c-h65.png" height="100%"
+                                        width="100%"></image>
+                              </sly>
+                           </mask>
+                        </defs>
+                        <rect class="${hero.desktopNotchColor} ${hero.mobileNotchColor}" x="0" y="0" width="100%" height="100%" mask="url(#${id})"></rect>
+                     </svg>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+</sly>
+<sly data-sly-call="${templates.placeholder @ isEmpty=!heroBanner.title}"></sly>
+</section>

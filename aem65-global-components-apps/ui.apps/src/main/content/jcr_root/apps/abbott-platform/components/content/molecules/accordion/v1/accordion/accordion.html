@@ -1,0 +1,47 @@
+<div id="${accordion.id}" class="m-accordion cmp-accordion ${customConfig.className}"
+    data-sly-use.accordion="com.abbott.aem.platform.common.components.models.CustomAccordion"
+    data-sly-use.customConfig="com.abbott.aem.platform.common.components.models.CustomConfig"
+    data-sly-use.template="core/wcm/components/commons/v1/templates.html" data-cmp-is="accordion"
+    data-cmp-data-layer="${accordion.data.json}"
+    data-panelcontainer="${wcmmode.edit && 'accordion'}">    
+    <div class="m-accordion__options"> <button data-collapse-all="collapseAllText"
+            class="coll-exp-title m-accordion__collapse-title"><span data-collapse-all="collapseAllText"
+            class="coll-exp-title m-accordion__collapse-title show">${accordion.collapseTitle}</span></button> <button
+            data-expand-all="expandAllText"
+            class="coll-exp-title m-accordion__expand-title show"><span
+            data-expand-all="expandAllText"
+            class="coll-exp-title m-accordion__expand-title show">${accordion.expandTitle}</span></button> </div>
+    <div class="m-accordion__content" data-expansion="${accordion.singleExpansion ? 'single' : 'multi' }">
+        <div class="m-accordion__content-items" data-sly-test="${accordion.items.size > 0}"
+            data-sly-repeat.item="${accordion.items}" data-cmp-hook-accordion="item"
+            data-cmp-data-layer="${item.data.json}" id="${item.id}"
+            data-cmp-expanded="${item.name in accordion.expandedItems}" data-js-component="accordion">
+            <div class="m-accordion__header">
+                <div class="m-accordion__title-wrapper">
+                    <h3>${item.title @ context='html'}</h3>
+                </div>
+                <button class="m-accordion__icon-wrapper" aria-expanded="${item.name in accordion.expandedItems ? 'true' : 'false'}" aria-label="${item.title @ context='html'}"> <span class="m-accordion-toggle" 
+                    data-toggle="${item.name in accordion.expandedItems ? 'collapse' : 'expand'}" data-target="#panel1"
+                        aria-controls="${item.id}-panel"> <span
+                            class="m-accordion-icon ${item.name in accordion.expandedItems ? '' : 'icon-visible'}"
+                            data-icon="expand"> <em
+                                class="${accordion.iconExpand ? accordion.iconExpand : 'abt-icon abt-icon-plus'}"> </em>
+                        </span> <span
+                            class="m-accordion-icon ${item.name in accordion.expandedItems ? 'icon-visible' : ''}"
+                            data-icon="collapse"> <em
+                                class="${accordion.iconCollapse ? accordion.iconCollapse : 'abt-icon abt-icon-minus'}">
+                            </em> </span> </span> </button>
+            </div>
+            <div id="${item.id}-panel"
+                class="collapse ${wcmmode.edit? 'show' : ''} m-accordion__body ${item.name in accordion.expandedItems ? 'show' : ''}">
+                <div class="cmp-accordion__panel${item.name in accordion.expandedItems ? ' cmp-accordion__panel--expanded' : ' cmp-accordion__panel--hidden'}"
+                    role="region"
+                    data-sly-resource="${item.name @ decorationTagName='div'}" data-cmp-hook-accordion="panel"></div>
+            </div>
+
+        </div>
+    </div>
+    <sly data-sly-resource="${resource.path @ resourceType='wcm/foundation/components/parsys/newpar', appendPath='/*', decorationTagName='div', cssClassName='new section aem-Grid-newComponent'}"
+        data-sly-test="${(wcmmode.edit || wcmmode.preview) && accordion.items.size < 1}"></sly>
+</div>
+<sly data-sly-call="${template.placeholder @ isEmpty=!accordion.items}"></sly>

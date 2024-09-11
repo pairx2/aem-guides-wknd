@@ -1,0 +1,56 @@
+@import './global/media-queries.less';
+@import './global/variables.less';
+
+/* Footer - Footer for smartpack is created using Container component with "Secondary" style variant
+// placed within Experience Fragment. It is done like this, beacuse Footer Global Component has different
+// structure and it is not possible to achieve desired outcome for smartpack using that component */
+.root + .abbott-wrapper {
+  .xf-content-height {
+    .a-container--secondary {
+      padding: @spacer-50 @spacer-15 @spacer-80;
+      background-color: @secondary-color;
+
+      .cmp-container {
+        > div:not(.experiencefragment) {
+          &.text {
+            margin-top: 0;
+            margin-bottom: @spacer-16;
+          }
+        }
+      }
+
+      h1, h2, h3, h4, h5, h6, p, a, span {
+        color: @footer-text-color;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        font-size: 13px;
+      }
+
+      // Footer Logo
+      .image {
+        margin-bottom: @spacer-50;
+
+        .cmp-image__image.a-image__default {
+          width: 150px;
+          height: auto;
+          margin: 0;
+        }
+      }
+
+      .a-container__row {
+        > .a-container__content {
+          > .cmp-container {
+            padding: 0;
+
+            @media @sm-up {
+              padding: 0 @spacer-16;
+            }
+
+            @media @lg-up {
+              padding: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}

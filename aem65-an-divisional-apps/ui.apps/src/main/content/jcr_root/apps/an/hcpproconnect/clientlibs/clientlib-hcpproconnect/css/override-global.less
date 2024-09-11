@@ -1,0 +1,534 @@
+@import './global/variables.less';
+@import './global/mixins.less';
+
+
+/******** Images -
+ Corners ********/
+img, .cmp-image__image {
+    border-radius:4px;
+}
+
+
+/********* LINKS *********/
+a, .a-link > .a-link__text {
+    font-family: @base-font-family-bold;
+    color: var(--link-color);
+    letter-spacing:0.4px;
+}
+
+.cmp-text {
+    a {
+        font-family: @base-font-family;
+        color: @color-sim-blue;
+        letter-spacing:0.2px;
+        &:hover {
+            color: @color-sim-blue;
+        }
+    }
+}
+
+.cmp-title {
+    &__link {
+        font-family: @base-font-family-bold;
+        color: @color-sim-blue;
+        letter-spacing:0.4px;
+        &:hover {
+            color: @color-sim-blue;
+        }
+    }
+}
+
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
+    a {
+        font-family: @base-font-family-bold;
+        color: var(--custom-list-title-link);
+        letter-spacing:0.4px;
+        &:hover {
+            color: var(--custom-list-title-link-hover);
+        }
+    }
+}
+
+/******** BUTTONS **********/
+
+/* HCPPORTAL-203 Button styling like color font BG etc.*/
+.a-button {
+	--button-primary-bg: @color-light-blue2;
+    --button-primary-color: @color-white;
+    --button-primary-bg-hover: @color-dark-blue;
+    --button-secondary-bg: @color-white;
+    --button-secondary-bg-hover: @color-white;
+    --button-secondary-color: @color-sim-blue;
+    --button-secondary-border: @color-light-blue2;
+    --button-secondary-border-hover: @color-dark-blue;
+    --button-tertiary-bg: @color-green;
+    --button-tertiary-color: @color-white;
+    --button-tertiary-bg-hover: @color-dark-green;
+    --button-disabled-bg-color: @color-light-grey;
+    --button-disabled-color: @color-grey;
+    &--primary {
+        .btn {
+            font-size: 1rem;
+  			line-height: 0.65rem;
+  			padding: 20px 25px;
+  			border-radius: 100px;
+  			font-weight: 400;
+            background-color: @color-hcp-blue;
+            color: var(--button-primary-color);
+            &:hover {
+                background-color: var(--button-primary-bg-hover);
+                box-shadow:none;
+            }
+        }
+    }
+    &--secondary {
+        .btn {
+            background-color: var(--button-secondary-bg);
+            color: var(--button-secondary-color);
+            border:1.6px solid var(--button-secondary-border);
+            &:hover {
+                background-color: var(--button-secondary-bg-hover);
+                color: var(--button-secondary-color);
+                border:1.6px solid var(--button-secondary-border-hover);
+            }
+        }
+    }
+    &--tertiary {
+        .btn {
+            background-color: var(--button-tertiary-bg);
+            color: var(--button-tertiary-color);
+            &:hover {
+                background-color: var(--button-tertiary-bg-hover);
+                color: var(--button-tertiary-color);
+            }
+        }
+    }
+    .btn {
+        &.disabled, &:disabled {
+            background-color: var(--button-disabled-bg-color);
+            color: var(--button-disabled-color);
+        }
+    }
+	--button-primary-bg: @color-light-blue2;
+    --button-primary-color: @color-white;
+    --button-primary-bg-hover: @color-dark-blue;
+    --button-secondary-bg: @color-white;
+    --button-secondary-bg-hover: @color-white;
+    --button-secondary-color: @color-sim-blue;
+    --button-secondary-border: @color-light-blue2;
+    --button-secondary-border-hover: @color-dark-blue;
+    --button-tertiary-bg: @color-green;
+    --button-tertiary-color: @color-white;
+    --button-tertiary-bg-hover: @color-dark-green;
+    --button-disabled-bg-color: @color-light-grey;
+    --button-disabled-color: @color-grey;
+}
+
+// TABLES
+table {
+    border-style:solid;
+    border-color:@color-table-header-grey;
+    tr {
+        border:none;
+
+        td {
+            font-family: @base-font-family;
+            font-size: @font-size-16;
+            color:@color-dark-blue;
+            border-style:solid;
+            border-color:@color-table-header-grey;
+            &:first-child {
+                border-left-style:solid;
+                border-left-color: @color-transparent;
+            }
+
+            &:last-child {
+                border-right-style:solid;
+                border-right-color: @color-transparent;
+            }
+        }
+    }
+
+    th {
+        color:@color-dark-blue;
+        border-style:solid;
+        border-color:@color-table-header-grey;
+        &:first-child {
+            border-top-style:solid;
+            border-top-color: @color-transparent;
+            border-right-style:solid;
+            border-right-color: @color-transparent;
+            border-left-style:solid;
+            border-left-color: @color-transparent;
+        }
+
+        &:last-child {
+            border-top-style:solid;
+            border-top-color: @color-transparent;
+            border-right-style:solid;
+            border-right-color: @color-transparent;
+        }
+        &.th1 {
+            font-family: @base-font-family;
+            background-color: @color-table-header-dark-grey;
+            font-size: @font-size-20;
+            p {
+                font-family: @base-font-family;
+                font-size: @font-size-20 !important;
+                color:@color-dark-blue;
+                margin:0;
+            }
+        }
+        &.th2 {
+            font-family: @base-font-family-bold;
+            font-size: @font-size-16;
+            background-color: @color-table-header-grey;
+            p {
+                font-family: @base-font-family-bold;
+                font-size: @font-size-16 !important;
+                color:@color-dark-blue;
+                margin:0;
+            }
+        }
+        &.th3 {
+            font-family: @base-font-family-bold;
+            font-size: @font-size-16;
+            background-color: @color-table-header-light-grey;
+            p {
+                font-family: @base-font-family-bold;
+                font-size: @font-size-16 !important;
+                color:@color-dark-blue;
+                margin:0;
+            }
+        }
+    }
+}
+
+// FLEX CUSTOM ORDERING
+.order-md-down-1 {
+    @media @md-down {
+        -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+        order: 1;
+    }
+}
+
+.order-md-down-2 {
+    @media @md-down {
+        -webkit-box-ordinal-group: 3;
+        -ms-flex-order: 2;
+        order: 2;
+    }
+}
+
+.order-md-down-1, .order-md-down-2 {
+    > .container {
+        @media @md-down {
+            padding-top:0.5rem !important;
+            padding-bottom:0.5rem !important;
+        }
+    }
+}
+
+// Horizontal Rules - Color
+hr {
+    &.hr1 {
+        border-top-color: @color-darker-grey;
+    }
+    &.hr2 {
+        border-top-color: @color-dropdown-border;
+    }
+}
+
+// Form Options - Dropdown Styles
+/*.a-dropdown__container {
+    .a-dropdown__field {
+        padding: var(--dropdown-field-padding);
+        height:auto;
+        max-height:none;
+        .a-dropdown__menu {
+            li {
+                text-align: center;
+                color:@color-light-blue2;
+                .o-content-section__list-item-link {
+                    color:@color-light-blue2;
+                }
+                &:hover {
+                    color:@color-white;
+                    .o-content-section__list-item-link {
+                        color:@color-white;
+                        text-decoration: none;
+                    }
+                    span {
+                        color: @color-white;
+                    }
+                }
+                span {
+                    color:@color-light-blue2;
+                    font-family: @base-font-family-bold;
+                }
+            }
+        }
+    }
+}*/
+
+// Tabs
+.a-tabs__nav {
+    &-link {
+        color:var(--tabs-nav-link-color);
+        .tt-upper;
+        &.active {
+            color:var(--tabs-nav-link-border-bottom-color-active);
+        }
+        &:hover {
+            color:@color-white;
+			background-color: var(--tabs-nav-link-hover-bg);
+        }
+    }
+}
+
+// root override per component - mega menu
+:root {
+    --mega-menu-link-color: @color-dark-blue;
+    --mega-menu-link-hover-color: @color-sim-blue;
+    --mega-menu-color:@color-dark-blue;
+}
+
+// Header (h1-h6) color vars
+.a-title--fg {
+    --title-default-color: @color-dark-blue;
+    --title-light-color: @color-white;
+    --title-primary-color: @color-sim-blue;
+}
+
+// Header component
+.o-header {
+        --header-font-family: @base-font-family-bold;
+        --header-icon-font-family: @icon-font-family;
+        --header-link-stack-color:  @color-white;
+        --header-mobile-menu-link-color: @primary-color;
+        --header-mobile-search-input-border-color: @primary-color;
+        --header-util-nav-stack-color: @util-nav-link-color;
+        --header-logo-text-color: @logo-text-color;
+        --header-search-bg: @tertiary-color;
+        --header-search-input-placeholder-color: @search-input-placeholder-color;
+        --header-mobile-link-border: @tertiary-color;
+        --header-logo-border-color: @logo-border-color;
+        --header-mega-menu-border: @mega-menu-nav-dropdown-border-color;
+        --header-mega-menu-dropdown-triangle: @util-nav-link-color;
+        --header-search-field-bg: @search-input-bg-color;
+        --header-half-base-font-size: @font-size-8;
+        --header-font-size-12: @font-size-12;
+        --header-font-size-14: @font-size-14;
+        --header-font-size-16: @font-size-16;
+        --header-font-size-18: @font-size-18;
+        --mega-menu-mobile-link-stack-arrow: @primary-color;
+        /******** START HCPPORTAL-3 SB changes *******/
+    	--header-top-bar-bg: @color-hcp-blue;
+        --mega-menu-mobile-active-bg-color: @color-hcp-grey2;
+        --header-dropdown-link-color:@color-dark-blue;
+        --header-border-bottom: 1px solid #D6D6D6;
+        --mega-menu-link-color: @color-core-dark-blue;
+        --mega-menu-border-hover: 3px solid @color-hcp-blue;
+    	--mega-menu-color:  @color-core-dark-blue;
+    	--header-logo-padding: @font-size-24 0;
+        --header-logo-section-border-bottom: 1px solid @color-dropdown-border;  // SB Header border-bottom color on page scroll
+        /*** END ***/
+}
+
+// Form input fields
+.a-input-field {
+    --input-field-readonly-color: @color-lighter-grey;
+    --input-field-font-size: @font-size-16;
+    --input-field-label-font-size: @font-size-12;
+    --input-field-label-line-height: @font-size-18;
+    --input-field-label-color: @color-dark-blue;
+    --input-field-margin:1.5rem 0;
+    --input-field-password-tooltip-font-color: @color-light-blue2;
+    --input-field-password-indicator-margin-right: 0.75rem;
+    --input-field-help-text-margin-bottom: 1rem;
+    --input-field-placeholder-color:@color-dark-blue;
+}
+
+.disabled .a-button .btn {
+    background-color: var(--button-disabled-bg-color);
+    color: var(--button-disabled-color);
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    cursor: default;
+    pointer-events: none;
+}
+
+// Dropdown (form options)
+.a-dropdown {
+    --dropdown-unselected-color: @color-light-blue;
+    --dropdown-selected-color: @color-dark-blue;
+    --dropdown-field-font-size: @font-size-16;
+    --dropdown-background-color: @color-white;
+    --dropdown-field-line-height: @font-size-24;
+    --dropdown-placeholder-font-size: @font-size-14;
+    --dropdown-placeholder-color: @color-dark-blue;
+    --dropdown-placeholder-mobile-color: @color-black;
+    --dropdown-border-mobile-color: @color-light-blue2;
+    --dropdown-mobile-hover-bg-color: @color-light-blue2;
+    --dropdown-mobile-hover-text-color: @color-white;
+    --dropdown-field-padding: .7rem 3rem .7rem 1rem;
+    --dropdown-menu-option-hover-bg-color:@color-light-blue2;
+}
+
+// Radio
+.a-radio {
+    --radio-checked-bg: @color-light-blue2;
+}
+
+// Checkbox
+.a-checkbox {
+    --checkbox-checked-bg: @color-light-blue2;
+}
+
+// Links
+.a-link {
+    --link-color: @color-sim-blue;
+}
+
+// Custom List
+.m-custom-list {
+    --custom-list-title-link: @color-sim-blue;
+    --custom-list-title-link-hover: @color-sim-blue;
+    --custom-list-padding-xl: 3rem;
+}
+
+// Link Stack
+.m-link-stack {
+    --link-stack-dropdown-margin: 0.5rem 0 0 0;
+    --link-stack-link-color: @color-dark-blue;
+    --link-stack-list-focus-bg-color: @color-white;
+    --link-stack-list-active-bg-color: @color-white;
+}
+
+// Footer
+.o-footer {
+    --footer-copyright-color: @color-white;
+    --footer-copyright-font-size: @font-size-12;
+    --footer-copyright-line-height: @font-size-18;
+    --footer-link-text-color: @color-white;
+    --footer-icon-color: @color-white;
+}
+
+// Columns
+.columncontrol {
+    .container {
+        padding-left:0;
+        padding-right:0;
+    }
+}
+
+// Cards
+.m-card {
+    --card-border: 2.6px solid @color-lightest-blue;
+    --card-box-shadow: none;
+    --card-pre-title-desc-font-size: @font-size-12;
+    --card-description-color: @color-dark-blue;
+    --card-description-line-height: @font-size-18;
+}
+
+// Cards - Features Card
+.o-features-card {
+    --feature-card-image-max-height: 80px;
+    --feature-card-para-font-size: @font-size-14;
+    --feature-card-para-line-height: @font-size-18;
+}
+
+// Hero
+.m-hero {
+    --hero-content-default-space: 3.333%;
+    --hero-desktop-short-content-top-space: 80px;
+}
+
+// Container
+.a-container {
+    --conatiner-dark-bg: @color-lighter-blue;
+}
+
+// Carousel
+.o-hero-carousel {
+    --indicator-dot-active: @color-dark-blue;
+    --indicator-dot: @color-sim-light-blue;
+    --indicator-dot-hover-color:@color-dark-blue;
+    --indicator-width: 15px;
+    --indicator-height: 15px;
+    --indicator-border-radius: 4px;
+    --indicator-border-color: @color-white;
+    --indicator-border-width:1.6px;
+}
+/* Additions specific to HCP Proconnect*/
+// Tabs
+.a-tabs {
+    --tabs-nav-link-border-bottom-color-active: @color-dark-blue;
+    --tabs-nav-link-hover-bg: @color-transparent; //modified
+    --tabs-nav-link-color-active: @color-hcp-blue; //modified
+    --tabs-nav-link-color: @color-sim-blue;
+}
+
+.a-tabs__nav-text{
+    font-family: @base-font-family-bold;
+    font-size: @font-size-18;
+    font-weight: @font-weight-700;
+    color: @color-core-dark-blue;
+    line-height: 1.4375rem;
+    .tt-upper;
+}
+
+.a-tabs__nav .active {
+    .a-tabs__nav-text{
+         color: @color-hcp-blue;
+    }
+}
+
+//round badge button
+
+#rounded {
+  background-color: @color-energy-green;
+  color: @color-white;
+  border-radius: 50%!important;
+  cursor:default;
+  width:auto!important;
+  height: max-content;
+}
+#rounded:hover {
+  color: @color-transparent;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+#rounded:not(:disabled):not(.disabled) {
+    cursor: default;
+}
+
+#initialregsucess .button{
+	text-align: center;
+    margin-bottom: 0;
+}
+
+.abt-icon-tick{
+	color: @color-white;
+}
+
+
+
+#hcpname {
+    	overflow-x:auto;
+    	p {
+            font-family: @base-font-family-bold;
+            font-size: @font-size-24 !important;
+            color: @color-core-dark-blue;
+            line-height:@font-size-32;
+            letter-spacing:0.02em;
+            font-weight: @font-weight-700;
+            .tt-upper;
+   		 }
+    }
+
+#initialregsucess .cmp-text p{
+	font-size: @font-size-18 !important;
+}

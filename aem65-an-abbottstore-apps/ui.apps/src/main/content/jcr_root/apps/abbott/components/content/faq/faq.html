@@ -1,0 +1,27 @@
+<sly data-sly-use.templates="abbott/components/content/templates.html" /> 
+<sly data-sly-use.faqObj="com.abbott.aem.an.abbottstore.models.FaqModel"></sly>
+<sly data-sly-set.faqHeading=" ${properties.faqHeading}"/>
+<h1>${faqHeading || ''}</h1>
+
+<section class="faq__content mb-5">
+    <div class="faq__questions">
+        <sly data-sly-list.faqQuestions=${faqObj.faqItemsList}>
+            <sly data-sly-test="${faqQuestions}">
+                <p class="faq__question--link my-0"><a href="#q${faqQuestionsList.index}">${faqQuestions.question}</a></p>
+            </sly>
+        </sly>
+    </div>
+
+    <sly data-sly-list.faqItems=${faqObj.faqItemsList}>
+        <sly data-sly-test="${faqItems}">
+            <div id="q${faqItemsList.index}" class="faq__answer-box">
+                <p class="faq__question">${faqItems.question}</p>
+                <div class="faq__answer">${faqItems.answer @context='html'}</div>
+                <p class="faq__back-to-top" data-sly-test="${inheritedPageProperties.themeType == 'abbott.abbottstore'}">
+                    <a href="#top">Back to top</a>
+                </p>
+            </div>
+        </sly>
+    </sly>
+</section>
+<sly data-sly-call="${templates.placeholder @ isEmpty= !faqHeading}"></sly>

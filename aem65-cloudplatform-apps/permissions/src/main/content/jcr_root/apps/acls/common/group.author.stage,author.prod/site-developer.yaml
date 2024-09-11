@@ -1,0 +1,44 @@
+- DEF divisions=[adc,add,an,ardx,av,bts,corp,cv,epd,nm,vc]
+
+- DEF groupPrefix="APP-Adobe-AEM-DM-ALL"
+
+- group_config:
+
+    - FOR division IN ${divisions}:
+
+       - ${groupPrefix}-${division}-developer:
+          - name: ${upperCase(division)} Developer
+            isMemberOf: base-developer
+            externalId: "${groupPrefix}-${division}-developer;ims"
+
+       - FOR site IN CHILDREN OF /content/${division}:
+
+          - ${groupPrefix}-${division}-${site.name}-developer:
+             - name: ${upperCase(division)} ${site.title} Developer
+               isMemberOf: base-developer
+               externalId: "${groupPrefix}-${division}-${site.name}-developer;ims"
+
+# Groups get read access from base developer group. Additional permissions needed can be added as per use case.
+- ace_config:
+
+    - FOR division IN ${divisions}:
+
+       - ${groupPrefix}-${division}-developer:
+
+          - path: /etc/packages/${division}
+            permission: allow
+            actions: read
+            initialContent: |
+                              <jcr:root jcr:primaryType="sling:Folder">
+                              </jcr:root>
+
+       - FOR site IN CHILDREN OF /content/${division}:
+
+          - ${groupPrefix}-${division}-${site.name}-developer:
+
+             - path: /etc/packages/${division}/${site.name}
+               permission: allow
+               actions: read
+               initialContent: |
+                              <jcr:root jcr:primaryType="sling:Folder">
+                              </jcr:root>

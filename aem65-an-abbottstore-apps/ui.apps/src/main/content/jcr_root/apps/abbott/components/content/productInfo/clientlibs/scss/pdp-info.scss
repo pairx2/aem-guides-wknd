@@ -1,0 +1,401 @@
+@import "../../../../../clientlibs/clientlib-base/scss/base/functions";
+@import "../../../../../clientlibs/clientlib-base/scss/base/variables";
+@import "../../../../../clientlibs/clientlib-base/scss/base/mixins";
+
+.pdp-info {
+  font: 16px normal $fonts-poppins;
+
+  &__title {
+    color: $daintree;
+    font-family: $font-brandon-text-bold;
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: 0;
+    text-transform: uppercase;
+
+    @include media-breakpoint-down(sm) {
+      font-size: 20px;
+    }
+  }
+
+  &__price {
+    border-bottom: 1px solid $silver;
+    color: $scorpion;
+    font: 16px 400 $fonts-poppins;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    line-height: 1.1;
+
+    &-text {
+      color: $black;
+      font-size: 36px;
+      font-weight: 500;
+      line-height: 1;
+
+      &--scheduled {
+        display: none;
+        color: $black;
+        font-size: 36px;
+        font-weight: 600;
+        line-height: 1;
+
+        @include media-breakpoint-down(md) {
+          font-size: 22px;
+        }
+      }
+
+      @include media-breakpoint-down(md) {
+        font-size: 22px;
+      }
+    }
+  }
+
+  // &__list-price {
+  //   display: none;
+  // }
+
+  &.active {
+    .pdp-info {
+      &__price-text {
+        display: none;
+
+        &--scheduled {
+          display: block;
+        }
+      }
+
+      &__list-price {
+        display: block !important;
+      }
+    }
+  }
+
+  &__in-stock {
+    font-weight: 600;
+
+    &.danger {
+      color: $monza;
+    }
+  }
+
+  &__sku {
+    white-space: nowrap;
+  }
+
+  &__dd {
+    margin: 10px 0;
+
+    &-select {
+      background: $white;
+      position: relative;
+
+      &:after {
+        color: $gray-600;
+        content: "\f107";
+        display: block;
+        font-family: "ai", 'Trebuchet MS', Arial, sans-serif;
+        font-size: 22px;
+        line-height: initial;
+        pointer-events: none;
+        position: absolute;
+        right: 10px;
+        top: 8px;
+        z-index: 0;
+      }
+
+      &-control {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: textfield;
+        color: $daintree;
+        background: transparent;
+        border: 1px solid $regal-blue;
+        border-radius: 0;
+        font-size: 13px;
+        font-weight: 600;
+        height: 38px;
+        line-height: 1.1;
+        padding: 4px 15px;
+        width: 100%;
+      }
+    }
+  }
+
+  .pdp-info__dd-title {
+    color: $daintree;
+    font-family: $font-brandon-text-bold;
+  }
+
+  &__buy-type {
+    color: $daintree;
+    line-height: 1.4;
+    margin: 3px 0;
+
+    label {
+      margin: 0;
+    }
+
+    .pdp-info__dd-title {
+      font-family: $fonts-poppins;
+    }
+  }
+
+  &-medic {
+    color: $shuttle-gray;
+    display: block;
+    font: 700 16px/1.4 $font-brandon-text-bold;
+    padding-right: 15px;
+
+    .medic-confirmation {
+      &-label {
+        color: $daintree;
+        display: block;
+        font: 400 16px/1.2 $font-brandon-text-bold;
+        letter-spacing: 0.4px;
+        margin-top: 8px;
+      }
+
+      &-input {
+          appearance: none;
+          border: 0;
+          margin-right: 30px;
+          position: relative;
+          top: 2px;
+
+          &:after {
+            border: 1px solid $black;
+            content: '';
+            color: $blue;
+            display: block;
+            font-size: 15px;
+            font-weight: 900;
+            height: 20px;
+            padding: 1px 0 0 3px;
+            position: absolute;
+            top: -1.1rem;
+            width: 20px;
+          }
+
+          @media only screen and (max-device-width : 1024px) and (-webkit-min-device-pixel-ratio: 2) {
+            margin-right: 20px;
+            top: 0;
+
+            &:after {
+              top: 0;
+            }
+          }
+
+          &:focus {
+            outline: none;
+
+            &:after {
+              outline: 2px solid rgba($blue, 0.5);
+            }
+          }
+
+          &:checked:after {
+            content: "\2713";
+          }
+      }
+
+      .error {
+        font: 0.875rem $font-brandon-text-regular;
+      }
+    }
+
+    @include media-breakpoint-down(sm) {
+      padding-right: 0;
+    }
+  }
+}
+
+.abbott-btn--primary {
+  button {
+    background: $blue;
+    border-radius: 0;
+    color: $white;
+    cursor: pointer;
+    font-family: $font-brandon-text-bold;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 11px 5px;
+
+    &:hover, &:disabled {
+      background: $regal-blue;
+      color: $white;
+    }
+  }
+}
+
+input.abbott-radio__input {
+  appearance: none;
+  position: relative;
+  top: 3px;
+  margin-right: 5px;
+  border: 1px solid $black;
+  border-radius: 50%;
+  height: 25px;
+  width: 25px;
+
+  &:checked {
+    background-color: $white;
+    &:after {
+      content: "";
+      position: absolute;
+      top: 27%;
+      left: 26%;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: $blue;
+    }
+  }
+}
+
+.abbott-radio__label {
+  color: $daintree;
+  font-size: 20px;
+  line-height: 1.1;
+}
+
+.quanity-update-control {
+  button {
+    border-radius: 0 !important;
+    color: $blue;
+    border-color: $regal-blue;
+    font-family: $fonts-poppins;
+
+    &:hover {
+      background-color: $blue !important;
+      box-shadow: none;
+      color: $white;
+    }
+  }
+  input {
+    border-color: $regal-blue;
+    color: $daintree;
+    font-family: $fonts-poppins;
+    padding-left: 0;
+    padding-right: 0;
+
+    &::-webkit-inner-spin-button {
+      appearance: none;
+      margin: 0;
+    }
+
+    &:focus,
+    &:active {
+      outline: none;
+      box-shadow: none;
+      border-color: $regal-blue;
+    }
+  }
+}
+
+.meta-blue-text {
+  color: $blue;
+  line-height: 1.05;
+  padding: 20px 0 10px;
+
+  &.call-to-order{
+    background: lighten($black, 91%);
+    padding: 20px 15px 5px;
+  }
+
+  b {
+    font-weight: 500;
+  }
+
+  h1, h2, h3 {
+    color: $royal-heath;
+    font: 1rem/1.3 $font-brandon-text-black;
+    letter-spacing: .4px;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    font-size: 1.875rem;
+    margin-bottom: 0;
+  }
+
+  h2 {
+    font-size: 1.125rem;
+    line-height: 1.2;
+    letter-spacing: .5px;
+    margin: 1.25rem 0 1rem;
+  }
+}
+
+.gs-pdp {
+
+  .product-info-container {
+    background: $wild-sand;
+  }
+
+  .abbott-slider {
+    @media (max-width: 767px) {
+      padding-top: 20px;
+    }
+  }
+
+  .pdp-info {
+    &__head {
+      background: $light-blue;
+      color: $white;
+      font-size: 2em;
+      font-weight: 600;
+      margin-bottom: 2rem;
+      padding: 35px 0;
+      position: relative;
+      text-align: center;
+
+      &:after {
+        border-bottom: 20px solid $white;
+        border-left: 20px solid transparent;
+        border-right: 20px solid transparent;
+        bottom: 0;
+        content: '';
+        display: block;
+        left: 50%;
+        margin-left: -10px;
+        position: absolute;
+      }
+    }
+
+    &__title {
+      border-bottom: 1px solid $silver;
+      color: $light-blue;
+      margin-bottom: 2rem;
+      padding-bottom: 10px;
+    }
+
+    &__dd-select-control {
+      border-color: $light-blue;
+    }
+
+    &__dd-title {
+      font-size: 1.5rem;
+    }
+  }
+
+  .abbott-btn--primary .action__trail-subscribe {
+    background: $dark-orange;
+    border-radius: 10px;
+    color: $white;
+    cursor: pointer;
+    display: block;
+    font-family: $font-brandon-text-bold;
+    font-weight: bold;
+    margin: 3rem 0;
+    padding: 11px 5px;
+    text-align: center;
+    text-transform: uppercase;
+
+    &:hover {
+      background-color: $deep-cerulean;
+      color: $white;
+      text-decoration: none;
+    }
+  }
+}

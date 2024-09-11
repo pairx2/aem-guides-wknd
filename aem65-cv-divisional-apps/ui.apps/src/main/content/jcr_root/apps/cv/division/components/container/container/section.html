@@ -1,0 +1,53 @@
+<sly data-sly-use.container="com.abbott.aem.cv.division.core.components.models.ContainerEnhance"
+   data-sly-use.component="com.adobe.cq.wcm.core.components.models.Component" id="${component.id}">
+   <style>
+      #section-${component.id @context='styleToken'} {
+      --container-start-color: ${container.startColor @context='styleToken'};
+      --container-start-position: ${container.startColorPosition  @context='styleToken'}%;
+      --container-end-color: ${container.endColor  @context='styleToken'};
+      --container-end-position: ${container.endColorPosition  @context='styleToken'}%;
+      }
+   </style>
+    <div class="a-container__row ${container.imageDisplayOptions == 'showAsBackground' && container.backgroundMobileImageReference ? 'a-container__mobile_background_image' : ''}">
+      <div class="a-container__content">
+         <sly data-sly-test.responsive="${container.layout == 'RESPONSIVE_GRID'}"
+            data-sly-use.responsiveGridTemplate="responsiveGrid.html"
+            data-sly-call="${responsiveGridTemplate.responsiveGrid @ container=container}"></sly>
+         <sly data-sly-test.simple="${!responsive}"
+            data-sly-use.simpleTemplate="simple.html"
+            data-sly-call="${simpleTemplate.simple @ container=container}"></sly>
+      </div>
+      <div class="a-container__media">
+         <div class='a-container__image'>
+            <sly data-sly-test="${container.backgroundImageReference && container.decorative}">
+               <img src="${container.backgroundImageReference}" alt="" class="cmp-image"/>
+            </sly>
+            <sly data-sly-test="${container.backgroundImageReference && !container.decorative}">
+               <img src="${container.backgroundImageReference}" alt="${container.alt || true}" class="cmp-image"/>
+            </sly>
+         </div>
+      </div>
+      <sly data-sly-test="${!properties.hideImgOnMobile}">
+         <div class="a-container__media__mobile">
+ 			<sly data-sly-test="${container.backgroundMobileImageReference}">
+        		<div class="a-container__mobile_media">
+         			<div class='a-container__mobile_image'>
+						<sly data-sly-test="${container.backgroundMobileImageReference && container.decorative}">
+               				<img src="${container.backgroundMobileImageReference}" alt="" class="cmp-mobile-image"/>
+                        </sly>
+                        <sly data-sly-test="${container.backgroundMobileImageReference && !container.decorative}">
+                           <img src="${container.backgroundMobileImageReference}" alt="${container.alt || true}" class="mobile-image"/>
+                        </sly>		
+            		<div>
+            	</div>
+			</sly>
+            <sly data-sly-test="${!container.backgroundMobileImageReference && container.backgroundImageReference && container.decorative}">
+               <img src="${container.backgroundImageReference}" alt="" class="cmp-image"/>
+            </sly>
+            <sly data-sly-test="${!container.backgroundMobileImageReference && container.backgroundImageReference && !container.decorative}">
+               <img src="${container.backgroundImageReference}" alt="${container.alt || true}" class="cmp-image"/>
+            </sly>
+		</div>
+      </sly>
+   </div>
+</sly>

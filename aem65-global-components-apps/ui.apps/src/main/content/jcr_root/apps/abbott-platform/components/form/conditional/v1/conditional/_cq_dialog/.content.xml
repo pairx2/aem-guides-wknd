@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+          xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0"
+          xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+          jcr:primaryType="nt:unstructured"
+          jcr:title="Form Options Field"
+          sling:resourceType="cq/gui/components/authoring/dialog"
+          extraClientlibs="abbott-platform.form.options">
+    <content
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                    maximized="{Boolean}true">
+                <items jcr:primaryType="nt:unstructured">
+                    <properties
+                            granite:class="formoptions-container"
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Properties"
+                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                            margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                    margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <mainHeading
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/heading"
+                                                    level="{Long}3"
+                                                    text="Main"/>
+                                            <type
+                                                    granite:class="cmp-form-options-source cq-dialog-dropdown-showhide"
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                    fieldDescription="Set the type of data to rely on."
+                                                    fieldLabel="Data Type"
+                                                    name="./type">
+                                                <granite:data
+                                                        jcr:primaryType="nt:unstructured"
+                                                        cq-dialog-dropdown-showhide-target=".list-option-listfrom-showhide-target"/>
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <checkbox
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Checkboxes"
+                                                            value="checkbox"/>
+                                                    <variable
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Dynamic Variable"
+                                                            value="variable"/>
+                                                </items>
+                                            </type>
+                                            <fromVariable
+                                                    granite:class="list-option-listfrom-showhide-target foundation-layout-util-vmargin"
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                <granite:data
+                                                        jcr:primaryType="nt:unstructured"
+                                                        showhidetargetvalue="variable"/>
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <variableName
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                            fieldDescription="The variable name to use as the data source."
+                                                            fieldLabel="Variable Name"
+                                                            name="./variableName"/>
+                                                    <variableValues
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                                            composite="{Boolean}true"
+                                                            fieldLabel="Field Mapping"
+                                                            fieldDescription="Define the field mapping from the previous form data to the fields within the expanded section."
+                                                            renderReadOnly="{Boolean}true">
+                                                        <field
+                                                                granite:class="cmp-form-options__editor-item-multifield-composite-item coral-Well"
+                                                                jcr:primaryType="nt:unstructured"
+                                                                sling:resourceType="granite/ui/components/coral/foundation/container"
+                                                                name="./items">
+                                                            <items jcr:primaryType="nt:unstructured">
+                                                                <variableValue
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                        fieldDescription="The value of the variable to display this container."
+                                                                        fieldLabel="Variable Value"
+                                                                        name="./variableValue"/>
+                                                            </items>
+                                                        </field>
+                                                    </variableValues>
+                                                </items>
+                                            </fromVariable>
+                                            <fromCheckbox
+                                                    granite:class="list-option-listfrom-showhide-target foundation-layout-util-vmargin"
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                <granite:data
+                                                        jcr:primaryType="nt:unstructured"
+                                                        showhidetargetvalue="checkbox"/>
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <label
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                            fieldDescription="Checkbox label to be displayed with the checkbox."
+                                                            fieldLabel="Label"
+                                                            name="./label"/>
+                                                    <name
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                            fieldDescription="The name of the field, which is submitted with the form data."
+                                                            fieldLabel="Name"
+                                                            name="./name"/>
+                                                    <value
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                            fieldDescription="Backend Variable (Value)"
+                                                            fieldLabel="Value"
+                                                            name="./value"/>
+                                                    <description
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                            fieldDescription="A hint for the user of what can be entered in the field."
+                                                            fieldLabel="Help Message"
+                                                            name="./helpMessage"/>
+                                                    <fieldMapping
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                                            composite="{Boolean}true"
+                                                            fieldLabel="Field Mapping"
+                                                            fieldDescription="Define the field mapping from the previous form data to the fields within the expanded section."
+                                                            renderReadOnly="{Boolean}true">
+                                                        <field
+                                                                granite:class="cmp-form-options__editor-item-multifield-composite-item coral-Well"
+                                                                jcr:primaryType="nt:unstructured"
+                                                                sling:resourceType="granite/ui/components/coral/foundation/container"
+                                                                name="./items">
+                                                            <items jcr:primaryType="nt:unstructured">
+                                                                <previousField
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                        fieldDescription="The name of the field from previous in the form."
+                                                                        fieldLabel="Previous Field"
+                                                                        name="./previousField"/>
+                                                                <expandField
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                        fieldDescription="The name of the field within the expanded section."
+                                                                        fieldLabel="Expand Field"
+                                                                        name="./expandField"/>
+                                                            </items>
+                                                        </field>
+                                                    </fieldMapping>
+                                                </items>
+                                            </fromCheckbox>
+                                            <id
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    fieldDescription="HTML ID attribute to apply to the component."
+                                                    fieldLabel="ID"
+                                                    name="./id"/>
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </properties>
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>

@@ -1,0 +1,115 @@
+@import "./global/mixins.less";
+@import './global/variables.less';
+
+
+.abbott-wrapper {
+	position: relative;
+}
+
+.abbott-breadcrumb {
+    margin-bottom: 0 !important;
+
+    @media @lg-down {
+        margin-top: 0 !important;
+    }
+
+    // Hide breadcrumb in page content
+    #pageContent & {
+		display: none;
+    }
+
+    & + .footer,
+    & + .link + .footer,
+    & + .link + .experiencefragment + .footer,
+    & + .link + .experiencefragment + .experiencefragment + .footer {
+		margin-top: 0 !important;
+    }
+
+    .container {
+		padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+
+    .a-breadcrumb {
+        --breadcrumb-font-size: @font-size-12;
+   		--breadcrumb-line-height: 1.5;
+
+        border-bottom: 1px solid @color-white;
+		margin-left: initial !important;
+        padding-top: 10px;
+        padding-bottom: 10px;
+
+       	@media @lg-down {
+   			padding-top: 20px;
+            padding-bottom: 20px;
+            padding-right: 55px;
+        }
+
+        &__list {
+			font-weight: normal;
+        }
+
+        &--link {
+            &, &:hover {
+                text-decoration: none;
+            }
+        }
+    }
+
+    // Back to top
+    & + .link {
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+
+    	text-align: right;
+    	position: absolute;
+    	width: 100%;
+        left: 50%;
+        top: 0;
+    	transform: translate(-50%, 0px);
+    	pointer-events: none;
+
+        @media @sm-up {
+          	max-width: 510px;
+        }
+        
+        @media @md-up {
+    		max-width: 690px;
+        }
+        
+        @media @lg-up {
+    		max-width: 930px;
+        }
+        
+        @media @xl-up {
+       		max-width: 1110px;
+       	}
+
+        #ph-back-to-top {
+			width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            color: @color-white;
+            position: absolute;
+            right: 0;
+			top: -22.5px;
+           	display: flex;
+            justify-content: center;
+            align-items: center;
+           	box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+            background-color: #0C0D34;
+            text-decoration: none;
+            pointer-events: all;
+
+            @media @sm-down {
+                right: 15px;
+        	}
+
+            .abt-icon {
+				font-size: @font-size-10;
+    			color: @color-white;
+    			top: 0;
+            }
+        }
+    }
+}

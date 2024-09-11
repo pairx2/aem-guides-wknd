@@ -1,0 +1,31 @@
+<sly data-sly-use.img="com.abbott.aem.cv.division.core.components.models.ImageDivisional">
+  <div class="m-popup m-image-popup d-inline-block" data-toggle="modal"
+    data-target="#video${resource.path.hashCode}-modal">
+    <sly data-sly-test="${img.fileReference && img.isDecorative}">
+      <img src="${img.fileReference}"
+        style="width:${img.imageWidth @ context='styleString'}px; height:${img.imageHeight @ context='styleString'}px;"
+        class="${img.displayOriginalImage ? 'a-image__original' : ''}" itemprop="contentUrl" data-cmp-hook-image="image"
+        data-sly-attribute.usemap="${img.areas ? usemap : ''}" alt="" title="${img.displayPopupTitle && img.title}" />
+    </sly>
+    <sly data-sly-test="${img.fileReference && !img.isDecorative}">
+      <img src="${img.fileReference}"
+        style="width:${img.imageWidth @ context='styleString'}px; height:${img.imageHeight @ context='styleString'}px;"
+        class="${img.displayOriginalImage ? 'a-image__original' : ''}" itemprop="contentUrl" data-cmp-hook-image="image"
+        data-sly-attribute.usemap="${img.areas ? usemap : ''}" alt="${img.alt}"
+        title="${img.displayPopupTitle && img.title}" />
+    </sly>
+    <div class="m-popup-content" id="videoModal">
+      <div class="m-video" data-js-component="video">
+        <div id="${component.id}" class="a-video">
+          <div class="a-video__player global-video">
+            <div class="limeLight-video-wrapper limeLight-video video-js a-video__player-source limelight-player"
+              data-player-ID="${img.limelightPlayerId}" data-media-ID="${img.limelightMediaId}">
+              <div id="limelight_player_${img.limelightPlayerId}"></div>
+              <script src="https://video.limelight.com/player/limelightjs-player.js?orgId=${img.orgId} async"></script>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</sly>

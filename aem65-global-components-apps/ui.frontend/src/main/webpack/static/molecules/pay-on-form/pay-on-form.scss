@@ -1,0 +1,273 @@
+.m-payon-form {
+    font-family: var(--payon-group-font-family);
+
+    &__container {
+        display: flex;
+        flex-direction: column;
+
+        > .a-button {
+            order: 1;
+
+            margin-top: var(--payon-group-pay-btn-margin-top);
+        }
+    }
+
+    .wpwl-form {
+        display: flex;
+        flex-wrap: wrap;
+
+        max-width: none;
+
+        margin: 0;
+
+        .wpwl-group {
+            margin-bottom: 0;
+
+            &:not(.wpwl-group-brand):not(.wpwl-group-submit) {
+                min-height: var(--payon-group-group-min-height);
+            }
+        }
+
+        .wpwl-label {
+            color: var(--payon-group-label-color);
+            font-size: var(--payon-group-label-font-size);
+            line-height: var(--payon-group-label-line-heigh);
+
+            width: 100%;
+        }
+
+        .wpwl-control {
+            color: var(--payon-group-input-color);
+            font-size: var(--payon-group-input-font-size);
+            line-height: var(--payon-group-input-line-height);
+
+            border: var(--payon-group-input-border);
+            border-radius: var(--payon-group-input-radius);
+
+            padding: var(--payon-group-input-padding);
+
+            height: var(--payon-group-input-height);
+
+            &::placeholder {
+                color: var(--payon-group-input-placeholder-color);
+            }
+
+            &.wpwl-has-error + .wpwl-hint {
+                color: var(--payon-group-input-error-color);
+            }
+        }
+
+        .wpwl-hint {
+            font-size: var(--payon-group-hint-font-size);
+            line-height: var(--payon-group-hint-line-height);
+        }
+
+        .wpwl-group-cardNumber,
+        .wpwl-group-cardHolder {
+            width: var(--payon-group-input-larger-width);
+
+            @include media-breakpoint-up(md) {
+                width: var(--payon-group-input-larger-width-lg);
+            }
+        }
+
+        .wpwl-group-expiry,
+        .wpwl-group-cvv {
+            margin-left: auto;
+
+            width: var(--payon-group-input-shorter-width);
+
+            @include media-breakpoint-up(md) {
+                width: var(--payon-group-input-shorter-width-lg);
+            }
+        }
+
+        .wpwl-group-brand {
+            display: flex;
+            margin-bottom: var(--payon-group-group-brand-margin-bottom);
+
+            .wpwl-title {
+                @include media-breakpoint-up(md) {
+                    display: inline-block;
+
+                    margin-right: var(--payon-group-title-margin-right);
+                    margin-bottom: 0;
+                }
+            }
+
+            .wpwl-brand-custom {
+                display: inline-block;
+
+                float: none;
+            }
+        }
+
+        .wpwl-group-cardHolder {
+            @include media-breakpoint-down(md) {
+                width: 100%;
+            }
+        }
+
+        .wpwl-wrapper-cvv {
+            min-height: var(--payon-group-ccv-min-height);
+
+            .wpwl-popover {
+                display: block;
+
+                font-size: var(--payon-group-ccv-popover-font-size);
+                line-height: var(--payon-group-ccv-popover-line-height);
+
+                background: transparent;
+
+                position: static;
+
+                border: 0;
+                box-shadow: none;
+
+                padding: 0;
+
+                .wpwl-img,
+                .wpwl-arrow {
+                    display: none;
+                }
+            }
+
+            // TODO: Add icon once we are able to export it from design
+            .wpwl-icon {
+                display: none;
+            }
+        }
+
+        .wpwl-group-cvv {
+            @include media-breakpoint-down(md) {
+                margin-left: 0;
+            }
+        }
+
+        // TODO: Add icon once we are able to export it from design
+        .wpwl-button-pay {
+            font-size: var(--payon-group-button-font-size);
+            font-weight: bold;
+            line-height: var(--payon-group-button-line-height);
+            text-transform: uppercase;
+
+            background-color: var(--payon-group-button-bg);
+
+            padding: var(--payon-group-button-padding);
+
+            border: 0;
+            border-radius: 999px;
+
+            float: none;
+        }
+    }
+
+    .wpwl-brand-card {
+        width: var(--payon-group-group-brand-width);
+    }
+    .wpwl-brand-custom {
+        margin: var(--payon-group-custom-brand-margin);
+        background-image: url('https://oppwa.com/v1/paymentWidgets/img/brand.png');
+    }
+
+    &--my-cards {
+        .wpwl-group-brand,
+        .wpwl-wrapper-submit {
+            display: none;
+        }
+    }
+
+    .wpwl-wrapper {
+        width: 100%;
+    }
+
+    &__cvv-icon {
+        position: absolute;
+        top: var(--payon-group-ccv-icon-top);
+        right: var(--payon-group-ccv-icon-right);
+
+        .abt-icon {
+            color: var(--payon-group-ccv-icon-color);
+            margin: 0;
+        }
+    }
+
+    .wpwl-container-card--with-radio {
+        border: var(--payon-group-border);
+        border-radius: var(--payon-group-border-radius);
+
+        padding: var(--payon-group-form-padding);
+
+        cursor: pointer;
+
+        .wpwl-title {
+            margin-left: var(--payon-group-title-margin-left);
+        }
+    }
+
+    .wpwl-group.wpwl-group-registration {
+        border: var(--payon-group-border);
+        border-radius: var(--payon-group-border-radius);
+
+        margin-bottom: var(--payon-group-cc-list-margin-bottom);
+
+        min-height: auto !important;
+        padding-left: var(--payon-group-cc-list-padding-left);
+    }
+
+    .wpwl-registration {
+        display: flex;
+        align-items: center;
+
+        width: 100%;
+
+        margin-bottom: 0;
+
+        > div {
+            width: auto;
+        }
+    }
+
+    .a-radio {
+        padding: var(--payon-group-radio-padding);
+    }
+
+    .wpwl-form-card {
+        .a-radio {
+            margin-top: var(--payon-group-form-radio-margin-top);
+        }
+    }
+
+    .wpwl-wrapper-registration.a-radio {
+        margin-top: var(--payon-group-cc-list-radio-margin-top);
+    }
+
+    .wpwl-group-saveCard {
+        min-height: 0 !important;
+    }
+
+    .wpwl-form.wpwl-form-registrations {
+        margin: 0;
+    }
+
+    &.with-error {
+        .wpwl-group-submit,
+        .wpwl-container-card {
+            display: block !important;
+        }
+    }
+
+    &__form-radio {
+        position: absolute;
+        top: var(--payon-group-custom-radio-form-top);
+
+        z-index: -1;
+    }
+
+    .a-spinner {
+        display: block !important;
+
+        position: relative !important;
+        transform: none !important;
+    }
+}

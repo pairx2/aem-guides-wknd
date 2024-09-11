@@ -1,0 +1,116 @@
+@import "../variables.less";
+@import "../mixin.less";
+@import "../media-queries.less";
+
+article.m-card {
+    margin: 0;
+    width: 100%;
+    .nonClickableLink p {
+        margin-bottom: 0;
+    }
+
+    .m-card__body {
+        padding-top: 10px;
+        padding-bottom: 15px;
+
+        h2,
+        .m-card__title {
+            .font-style(420);
+
+            @media @lg-down {
+                .font-size(20px, 30px);
+            }
+
+            @media @xxl-only {
+                .font-size(20px, 30px);
+            }
+            .font-size(28px, 36px);
+            margin-top: 0;
+            color: @color-purple;
+        }
+        h5 {
+            &,
+            a,
+            .m-card-link {
+                color: @color-medium-blue; 
+            }
+        }
+        h3 {
+            margin-bottom: 10px;
+            &,
+            a,
+            .m-card-link {
+                .font-style(420);
+                color: @color-purple;
+                .font-size(28px, 36px);
+                @media @lg-down {
+                    .font-size(20px, 30px);  
+                }
+                @media @xxl-only {
+                    .font-size(22px, 30px);
+                }
+                &:hover {
+                    color: @color-purple;
+                }
+            }
+        }
+
+        .m-card__description {
+            .font-style(390);
+            .font-size(24px, 34px);
+            @media @lg-down {
+                .font-size(20px, 24px);
+            }
+
+            @media @xxl-only {
+                .font-size(20px, 24px);
+            }
+
+            color: @color-medium-blue;
+
+            p {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    &.m-card__title-dark {
+        h2,
+        h3,
+        .m-card-link,
+        h3 a,
+        .m-card__title {
+            color: @color-megenta;
+            &:hover {
+                color: @color-megenta;
+            }
+        }
+    }
+    &.m-card--media-end {
+        &:before {
+            box-shadow: none;
+        }
+    }
+    &.m-card__title-light {
+        
+        h2 {
+            padding-top: 10px;
+        }
+        h2,
+        .m-card__description,
+        h3,
+        h3 a,
+        .m-card-link,
+        .m-card__title {
+            color: @color-white;
+        }
+    }
+    &.m-card__description-light {
+        p {
+            color: @color-white; 
+        }
+    }
+}
+.responsivegrid .aem-Grid .columncontrol .row>[class*="col-"]>article:only-child {
+    height: 100% !important;
+}

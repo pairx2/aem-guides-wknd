@@ -1,0 +1,89 @@
+.stb-icon-button {
+    border: 0;
+    background: transparent;
+    padding: 0;
+    margin-right: 16px;
+    width: 18px;
+
+    svg {
+        width: 18px;
+        height: 18px;
+        transition: transform 200ms ease-in;
+        pointer-events: none;
+    }
+
+    &--small {
+        width: 12px;
+        svg {
+            width: 12px;
+            height: 12px;
+        }
+    }
+
+    &--medium {
+        width: 16px;
+        svg {
+            width: 16px;
+            height: 16px;
+        }
+    }
+
+    &--large {
+        width: 24px;
+        svg {
+            width: 24px;
+            height: 24px;
+        }
+    }
+
+    &--disabled {
+        pointer-events: none;
+        opacity: 0.4;
+        cursor: default;
+
+    }
+
+    &--no-margin {
+        margin: 0;
+    }
+
+    &.landscape svg {
+        transform: rotate(-90deg);
+    }
+
+    &.active:not(.toggle) svg path#Icon-Color,
+    &.active:not(.toggle) svg path#RTL {
+        fill:#159bd7;
+    }
+
+    &.toggle {
+        .icon-active {
+            display: none;
+        }
+        .icon-normal {
+            display: inline;
+        }
+
+        &.active{
+            .icon-active {
+                display: inline;
+            }
+            .icon-normal {
+                display: none;
+            }
+        }
+    }
+
+    &--small {
+        &[data-tooltip]:hover:after{
+            bottom: -192%
+        }
+    }
+
+    &--large {
+        &[data-tooltip]:hover:after{
+            bottom: -209%
+        }
+    }
+
+}

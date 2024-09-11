@@ -1,0 +1,469 @@
+/**********************************
+Card Component
+**********************************/
+.m-card {
+
+    // style system for juven article card 
+    &.m-card--feature-article {
+        &::before {
+            display: none;
+        }
+
+        width: 100%;
+        height: auto !important;
+
+        &:hover {
+            .m-card__body {
+                background-color: @abbott-light-palatinate-purple;
+            }
+        }
+
+        .m-card__media {
+            border-radius: 0;
+        }
+
+        img {
+            object-fit: unset;
+        }
+
+        .m-card__body {
+            background-color: @abbott-sapphire;
+            padding: 10px 60px 0 0;
+            height: 50px;
+
+            .m-card__title,
+            .m-card__title+h1,
+            .m-card__title+h2,
+            .m-card__title+h3,
+            .m-card__title+h4,
+            .m-card__title+h5,
+            .m-card__title+h6,
+            .m-card__title * {
+                text-align: left;
+                padding: 0 0 0 1rem;
+                text-decoration: none;
+                margin: 0;
+                font-size: @font-size-22;
+                line-height: 37px;
+                letter-spacing: -1.2px;
+                text-transform: uppercase;
+
+                @media @lg-only {
+                    font-size: 13px !important;
+                    letter-spacing: -0.8px !important;
+                    line-height: 34px !important;
+                }
+            }
+
+            .m-card__title::after {
+                content: '';
+                font-size: @font-size-24;
+                position: absolute;
+                background-image: url('/content/dam/an/nepro/icons/icon-arrow-nepro.png');
+                padding: 15px;
+                background-repeat: no-repeat;
+                top: 1rem;
+                right: 1rem;
+
+                @media @lg-only {
+                    top: unset;
+                }
+            }
+
+            .m-card__description {
+                display: none;
+            }
+        }
+
+        //Card height tall variation
+        &.m-card--tall {
+
+            @media @lg-only {
+
+                .m-card__body {
+                    height: 35px !important;
+                    padding: 2px 50px 0 0 !important;
+
+                    .m-card__title::after {
+                        padding: 15px;
+                        background-size: auto;
+                        background-position: center;
+                        margin-left: 8px;
+                    }
+                }
+            }
+
+            .m-card__media {
+                height: auto;
+
+                .m-card__image,
+                .cmp-image__image {
+                    position: relative;
+
+                    @media @lg-only {
+                        height: 178px;
+                    }
+
+                    @media @xl-only {
+                        height: 240px;
+                    }
+
+                    @media @xl-up {
+                        height: 287px;
+                    }
+                }
+            }
+        }
+
+        //Card height short variation
+        &.m-card--short {
+
+            height: auto !important;
+
+            .m-card__media {
+                height: auto;
+
+                .m-card__image,
+                .cmp-image__image {
+                    position: relative;
+
+                    @media @xl-up {
+                        height: 236px;
+                    }
+
+                    @media @xl-only {
+                        height: 200px;
+                    }
+
+                    @media @lg-only {
+                        height: 150px;
+                    }
+                }
+            }
+
+            @media @lg-only {
+
+                .m-card__body {
+                    height: 35px !important;
+                    padding: 2px 50px 0 0 !important;
+
+                    .m-card__title::after {
+                        padding: 15px;
+                        background-size: auto;
+                        background-position: center;
+                        margin-left: 8px;
+                    }
+                }
+            }
+        }
+    }
+
+    // style system to fit image in tab view
+    &.m-card--img-object-contain--tablet {
+        @media @lg-only {
+            img {
+                object-fit: contain !important;
+                object-position: bottom !important;
+            }
+        }
+    }
+
+    //style system for horizontal card variation 2
+    &.m-card--horizonatal-v-2 {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        height: auto !important;
+
+        &::before {
+            display: none;
+        }
+
+        .m-card__media {
+            width: 100%;
+            text-align: center;
+
+            .m-card__image {
+                position: unset;
+
+                img {
+                    height: auto;
+                    width: 100%;
+                    position: unset;
+                }
+            }
+        }
+
+        .m-card__body {
+            padding: 0 0 0 8px;
+
+            .m-card__title {
+                margin-bottom: 0;
+            }
+
+            .m-card__title,
+            .m-card__title * {
+                font-size: 32px;
+                font-weight: bold;
+                line-height: 1;
+            }
+
+            .m-card__description {
+                display: none;
+            }
+        }
+
+        @media @lg-up {
+            .m-card__media {
+                flex: 0 0 22%;
+
+                .m-card__image img {
+                    width: 100%;
+                }
+            }
+
+            .m-card__body .m-card__title {
+                padding-left: 10px;
+                width: 75%;
+            }
+        }
+
+        @media @lg-only {
+            .m-card__media {
+                flex: 0 0 30%;
+            }
+
+            .m-card__title,
+            .m-card__title * {
+                font-size: 21px !important;
+                padding-left: 10px;
+                width: 75%;
+            }
+        }
+
+        @media @md-down {
+            flex-direction: column-reverse !important;
+
+            .m-card__media {
+                .m-card__image {
+                    img {
+                        width: 153px;
+                    }
+                }
+            }
+
+            .m-card__body {
+                padding: 0;
+                text-align: center;
+
+                .m-card__title,
+                .m-card__title * {
+                    font-size: 16px;
+                    padding-bottom: 10px;
+                }
+            }
+
+        }
+    }
+
+    // style system for horizonal card
+    &.m-card--horizonatal-variation {
+        &::before {
+            display: none;
+        }
+
+        display: flex;
+        flex-direction: row;
+        height: auto !important;
+        width: 100%;
+
+        .m-card__media {
+            width: 100%;
+            flex: 0 0 30%;
+            --card-media-border-radius: 0;
+
+            .m-card__image {
+                img {
+                    height: auto;
+                    width: 100%;
+                }
+            }
+        }
+
+        .m-card__body {
+            padding: 0 0 0 12px;
+
+            @media @md-down {
+                padding-right: 20px;
+            }
+
+            .m-card__title {
+                margin-bottom: 0;
+            }
+
+            .m-card__title,
+            .m-card__title * {
+                font-size: 16px;
+                font-family: @font-avenir-next-rounded-bold  !important;
+            }
+
+            .m-card__description {
+                font-size: 14px;
+                font-family: @font-avenir-next-rounded-regular  !important;
+
+                sup {
+                    top: unset;
+                }
+            }
+
+        }
+    }
+
+    // Font size 16px - tablet view only
+    &.font-size-16px-tablet {
+        @media @lg-only {
+
+            .m-card__body .m-card__title,
+            .m-card__body .m-card__title *,
+            .m-card__description,
+            .m-card__description * {
+                font-size: @font-size-h4;
+            }
+        }
+    }
+
+    //Style system for card - image with text variation
+    &.m-card-image-with-text-variation {
+        width: 100%;
+
+        &::before {
+            display: none;
+        }
+
+        .m-card__body {
+            text-align: center;
+            padding-top: 5px;
+
+            .m-card__description {
+                font-size: 15px !important;
+                font-weight: bold;
+                line-height: 1.13;
+            }
+        }
+
+        .m-card__media,
+        .m-card__image {
+            width: 100%;
+            height: 103px;
+
+            img {
+                object-fit: contain;
+            }
+        }
+    }
+
+    //Style system for flavour cards variation
+    &.m-card-flavours-variation {
+        height: unset !important;
+        min-width: 96px;
+
+        @media @md-down {
+            width: 110px;
+        }
+
+        &::before {
+            display: none;
+        }
+
+        .m-card__media {
+            height: 105px;
+
+            .m-card__image img {
+                object-fit: contain;
+            }
+        }
+
+        .m-card__body {
+            padding-top: 5px;
+            height: 13px;
+
+            .m-card__title {
+                margin-bottom: 0;
+            }
+
+            .m-card__description * {
+                text-align: center;
+                font-size: .875em;
+                line-height: 13px;
+
+                @media @lg-up {
+                    font-size: 14px !important;
+                }
+            }
+        }
+
+        // To highlight the active card
+        &.active {
+            border: 3px solid @abbott-primary-blue;
+            background-color: rgba(255, 255, 255, 0.5);
+
+            .m-card-link {
+                pointer-events: none;
+            }
+
+            .m-card__body {
+                --card-body-padding: 5px 15px 24px 15px;
+
+                .m-card__description {
+                    margin-top: -3px;
+                }
+            }
+        }
+    }
+
+    //Color theme for card title - starts here
+    &.m-card__title-white {
+        --card-title-color: @white;
+    }
+
+    &.m-card__title-black {
+        --card-title-color: @black;
+    }
+
+    &.m-card__title-abbott-primary-blue {
+        --card-title-color: @abbott-primary-blue;
+    }
+
+    &.m-card__title-abbott-abbott-midnight-blue {
+        --card-title-color: @abbott-midnight-blue;
+    }
+
+    &.m-card__title-abbott-gray {
+        --card-title-color: @abbott-gray;
+    }
+
+    //Color theme for card title - ends here
+
+    //Color theme for card description - starts here
+    &.m-card__description-white {
+        --card-description-color: @white;
+    }
+
+    &.m-card__description-black {
+        --card-description-color: @black;
+    }
+
+    &.m-card__description-abbott-primary-blue {
+        --card-description-color: @abbott-primary-blue;
+    }
+
+    &.m-card__description-abbott-abbott-midnight-blue {
+        --card-description-color: @abbott-midnight-blue;
+    }
+
+    &.m-card__description-abbott-gray {
+        --card-description-color: @abbott-gray;
+    }
+
+    //Color theme for card description - ends here
+}

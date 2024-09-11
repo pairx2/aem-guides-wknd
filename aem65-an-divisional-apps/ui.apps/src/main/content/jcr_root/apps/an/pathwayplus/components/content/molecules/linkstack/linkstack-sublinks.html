@@ -1,0 +1,16 @@
+<sly data-sly-use.linkStack="com.abbott.aem.platform.common.components.models.LinkStack"
+	data-sly-use.externalTemplate="/apps/abbott-platform/components/content/atoms/link/v1/link/linkexternaltemplate.html">
+	<div class="js-collapsable-links m-link-stack--content d-none d-lg-block d-xl-block">
+		<sly data-sly-list.link="${linkStack.links}">
+			<sly data-sly-test.external="${link.external}">
+				<div class="a-link">
+					<sly data-sly-call="${externalTemplate.item @ id=link.id, url=link.link, action=link.action, text=link.text, data=link.data}"></sly>
+				</div>				
+			</sly>
+			<div data-sly-test="${!external}" class="a-link">
+				<a class="a-link__text ${link.isExternal == true ? 'ext_link' : ''}" href="${link.link}" target="${!link.action ? '_blank': link.action}">${link.text
+						@context='html'}</a>
+			</div>
+		</sly>
+	</div>
+</sly>

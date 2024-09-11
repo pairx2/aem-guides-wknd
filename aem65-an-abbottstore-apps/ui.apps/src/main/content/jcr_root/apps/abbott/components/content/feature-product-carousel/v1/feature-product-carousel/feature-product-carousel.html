@@ -1,0 +1,36 @@
+
+<sly data-sly-use.templates="abbott/components/content/templates.html"/>
+    <sly data-sly-use.featureProductModel="com.abbott.aem.an.abbottstore.models.FeatureProductsCarouselModel">
+    	<sly data-sly-test.titleName = "${featureProductModel.title}" />
+        <section class="featured-products">
+            <h2 class="featured-products__title">
+					${featureProductModel.title}
+            </h2>
+                <div class="featured-products__carousel owl-carousel" id="featured-prod" data-interval="${featureProductModel.scheduleTime}">
+                     <sly data-sly-list.product= ${featureProductModel.productDetails}>
+                    <div class="item">
+                            <figure class="featured-products__figure">  
+								<a href="${product.pagePath @ extension = 'html'}" class="featured-products__figure-link" tabindex="0">
+                                    <img class="featured-products__image" src="${product.imagePath}" alt="${product.flavourName}" title="${product.flavourName}"  />
+                                    <figcaption class="featured-products__name">${product.title}</figcaption>
+								 </a>
+                                    <sly data-sly-test.flavour="${product.flavourName && product.flavourName !='null'}">
+                                        <span class="featured-products__flavor">${product.flavourName}</span>
+                                    </sly>                            
+                            </figure>
+                        <div class="featured-products__info">
+                         	<sly data-sly-test.productCount=${product.productCount}>
+									<p class="featured-products__case">${product.productCount}</p>
+                            </sly>
+							<p class="featured-products__list-price"></p>
+                            <sly data-sly-test=${!regularPrice}>
+								<p class="featured-products__regular-price">&nbsp;</p>
+                            </sly>
+                            <input hidden class="featured-product-sku d-none" value="${product.sku}" />
+                            <button class="featured-products__btn-cart" tabindex="0"></button>
+                        </div>
+                    </div>                                                                                                                                  
+                </div> 
+        </section>
+    </sly>
+<sly data-sly-call="${templates.placeholder @ isEmpty= !titleName}"></sly>

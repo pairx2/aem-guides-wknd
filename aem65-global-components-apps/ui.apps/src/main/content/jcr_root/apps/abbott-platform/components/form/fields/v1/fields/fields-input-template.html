@@ -1,0 +1,9 @@
+<sly data-sly-use.fields="com.abbott.aem.platform.common.components.models.Fields">
+    <sly data-sly-test.regex="${fields.regexRequired}"></sly>
+    <sly data-sly-test.isRegexRequired="${regex && fields.regexPattern}">
+        <input class="form-control a-input-control" autocomplete="off" aria-label="${fields.title}" type="${fields.type}" id="${fields.id}" value="${fields.value}" placeholder="${fields.placeholder}" name="${fields.name}" required="${fields.required}" readonly="${fields.readOnly}" data-regex="${fields.regexPattern}">
+    </sly>
+    <sly data-sly-test="${!regex}">
+        <input class="form-control a-input-control" autocomplete="off" aria-label="${fields.title}" type="${fields.type}" id="${fields.id}" value="${fields.value}" placeholder="${fields.placeholder}" name="${fields.name}" required="${fields.required}" readonly="${fields.readOnly}">
+    </sly>
+</sly>

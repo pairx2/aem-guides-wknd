@@ -1,0 +1,55 @@
+@import "../../clientlib-base/scss/base/functions";
+@import "../../clientlib-base/scss/base/mixins";
+@import "../../clientlib-base/scss/base/variables";
+
+@keyframes placeHolderShimmer{
+    0%{
+        background-position: -468px 0
+    }
+    100%{
+        background-position: 468px 0
+    }
+}
+
+.animated-background {
+    animation-duration: 1.25s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-name: placeHolderShimmer;
+    animation-timing-function: linear;
+    background: darken($gray-100, 3%);
+    background: linear-gradient(to right, darken($gray-100, 1%) 8%, darken($gray-100, 3%) 18%, darken($gray-100, 1%) 33%);
+    background-size: 800px 104px;
+    height: 96px;
+    position: relative;
+}
+
+.placeholder {
+
+    &__pdp {
+
+        &-title {
+            height: 26px;
+            margin-bottom: 15px;
+            @extend .animated-background;
+        }
+
+        &-text {
+            height: 16px;
+            margin-bottom: 4px;
+            @extend .animated-background;
+        }
+
+        &-dropdown {
+            height: 36px;
+            margin-bottom: 15px;
+            @extend .animated-background;
+        }
+
+        &-qty {
+            height: 50px;
+            margin-bottom: 15px;
+            @extend .animated-background;
+        }
+    }
+}

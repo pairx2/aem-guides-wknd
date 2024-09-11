@@ -1,0 +1,10 @@
+<sly data-sly-use.container="com.abbott.aem.cv.division.core.components.models.AnimationContainer">
+    <div data-aos-container data-aos="${container.direction}" data-aos-easing="${container.speed}" data-aos-duration="${container.duration}" data-aos-delay="${container.delay}">
+        <sly data-sly-test.responsive="${container.layout == 'RESPONSIVE_GRID'}"
+             data-sly-use.responsiveGridTemplate="responsiveGrid.html"
+             data-sly-call="${responsiveGridTemplate.responsiveGrid @ container=container}"></sly>
+        <sly data-sly-test.simple="${!responsive}"
+             data-sly-use.simpleTemplate="simple.html"
+             data-sly-call="${simpleTemplate.simple @ container=container}"></sly>
+    </div>
+</sly>

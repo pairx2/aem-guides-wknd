@@ -1,0 +1,278 @@
+@import "../global/mixins.less";
+@import '../global/variables.less';
+
+@color-primary-pediasure: #004F71;
+@color-range-line: #BFBFBF;
+@color-range-dot: #0475A5;
+
+#ph-calorie-tool {
+    width: 100%;
+    max-width: 736px;
+    margin: auto;
+    padding: 40px 30px;
+    box-shadow: 0px 10px 25px rgba(0,0,0,0.1);
+    border-radius: 5px;
+                    @media @md-down {
+                        padding: 28px 15px;
+
+                    }
+    .formcontainer {
+        margin-bottom: 0;
+
+        & + .container {
+        			padding: 0;
+                }
+    }
+    .columncontrol {
+        &__column {
+            padding: 0;
+            margin-bottom: 0;
+
+            &:last-child {
+                padding-left: 10px;
+
+                @media @md-down {
+                    padding: 28px 15px;
+
+                }
+            }
+
+            .image {
+                margin: 0;
+                display: none;
+
+                &.active {
+					display: block;
+                }
+            }
+        }
+    }
+
+    .o-form-container {
+        &__outer {
+			max-width: 100%;
+            box-shadow: none;
+            margin: 0;
+            border-radius: 0;
+            padding: 0;
+        }
+
+        &__wrapper {
+			padding: 0;
+        }
+
+        &__outer > .container {
+            padding: 0;
+        }
+
+        .title {
+            margin: 0;
+
+            .cmp-title__text {
+                margin-bottom: 15px;
+            }
+
+            h3.cmp-title__text {
+                margin-bottom: 20px;
+            }
+        }
+
+        .options {
+      		margin: 0 0 10px;
+            width: 100%;
+
+            .a-dropdown {
+				margin-bottom: 18px;
+                
+				&-selected,
+                &__menu li span {
+                    word-break: break-word;
+                }
+            }
+        }
+
+        .embed {
+            margin: 0 0 28px;
+        }
+
+        &__buttons {
+			justify-content: center !important;
+    		padding-top: 10px;
+
+            .button {
+				margin: 0;
+            }
+        }
+    }
+
+    .a-radio {
+        padding-right: 0px;
+        padding-left: 25px;
+        --radio-checked-bg: @color-primary-pediasure;
+        --radio-custom-border: 1px solid @color-range-line;
+        min-width: 95px;
+        margin-right: 6px;
+
+        &-label {
+            font-size: @font-size-18;
+            color: @color-primary-pediasure;
+            line-height: 24px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        &__text {
+            font-size: @font-size-14;
+            line-height: 20px;
+            color: @color-icon-grey;
+        }
+    }
+
+    .ph-range-input-container {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    .ph-output-container {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+
+        output {
+            margin-left: 8px;
+            border: 1px solid @color-rule;
+            width: 48px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            font-size: @font-size-14;
+        }
+
+        .label {
+			font-size: @font-size-12;
+            color: @color-text-body;
+            margin-left: 8px;
+        }
+    }
+
+    input[type='range'] {
+        box-sizing: border-box;
+        border: 0px solid transparent;
+        padding: 0px;
+        margin: 0px;
+        width: 100%;
+        height: 9px;
+        cursor: pointer;
+        background: -webkit-repeating-linear-gradient(90deg, @color-range-line, @color-range-line 1px, transparent 1px, transparent 46px) repeat 50% 50%;
+        background: -moz-repeating-linear-gradient(90deg, @color-range-line, @color-range-line 1px, transparent 1px, transparent 46px) repeat 50% 50%;
+        background: repeating-linear-gradient(90deg, @color-range-line, @color-range-line 1px, transparent 1px, transparent 46px) repeat 50% 50%;
+        background-size: 11.5%;
+        font-size: @font-size-16;
+        border-left: 1px solid @color-range-line;
+        border-right: 1px solid @color-range-line;
+
+        @media @md-up {
+              max-width: 585px;
+              background: -webkit-repeating-linear-gradient(90deg, @color-range-line, @color-range-line 1px, transparent 1px, transparent 65px) repeat 50% 50%;
+              background: -moz-repeating-linear-gradient(90deg, @color-range-line, @color-range-line 1px, transparent 1px, transparent 65px) repeat 50% 50%;
+              background: repeating-linear-gradient(90deg, @color-range-line, @color-range-line 1px, transparent 1px, transparent 65px) repeat 50% 50%;
+              background-size: 100%;
+        }
+    }
+
+    input[type='range'],
+        input[type='range']::-webkit-slider-runnable-track,
+        input[type='range']::-webkit-slider-thumb {
+        -webkit-appearance: none;
+    }
+
+    input[type='range']::-webkit-slider-runnable-track {
+        box-sizing: border-box;
+        width: 210px;
+        height: 1px;
+        border-radius: 2px;
+        background: @color-range-line;
+    }
+
+    input[type='range']::-moz-range-thumb,
+    input[type='range']::-ms-thumb {
+        box-sizing: border-box;
+        padding: 0px;
+        height: 12px;
+        width: 12px;
+        border-radius: 50%;
+        background: @color-range-dot;
+    }
+
+    input[type='range']::-ms-track,
+    input[type='range']::-moz-range-track {
+        box-sizing: border-box;
+        width: 210px;
+        height: 1px;
+        border-radius: 2px;
+        padding: 0px;
+        background: @color-range-line;
+        color: @color-range-line;
+    }
+
+    input[type='range']::-webkit-slider-thumb {
+        box-sizing: border-box;
+        padding: 0px;
+        height: 12px;
+        width: 12px;
+        border-radius: 50%;
+        margin-top: -6px;
+        background: @color-range-dot;
+    }
+
+    input[type="range"]::-ms-fill-lower {
+        background: transparent;
+    }
+
+    input[type='range']:focus {
+        outline: none;
+    }
+
+    #ph-calorie-tool--result {
+        width: 100%;
+		text-align: center;
+        border: 3px solid @color-primary-pediasure;
+        border-radius: 10px;
+        padding: 18px;
+        margin-top: 2.5rem;
+        display: none;
+
+            .title{
+                margin-bottom: 0;
+                margin-top: 0;
+            	display: inline-block;
+
+                .cmp-title__text {
+                	width: 100%;
+                }
+            }
+
+            .text{
+                margin-top: 0;
+                font-size: @font-size-16;
+                margin-bottom: 0;
+            }
+
+        #ph-calorie-result {
+            margin-right: 5px;
+        }
+
+        #ph-calorie-result-paragraph {
+            display: inline-block;
+            width: 100%;
+
+            p:last-child {
+				margin-bottom: 0;
+            }
+        }
+    }
+}
+

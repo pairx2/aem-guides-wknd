@@ -1,0 +1,25 @@
+# Environment types in [DEV,QA,STG,PRD]
+- DEF environmentType=$[env:AB_ACL_ENVIRONMENT_TYPE;default=PRD]
+- DEF groupPrefix="APP-AEM-DM-${environmentType}"
+- DEF groupPrefixAll="APP-AEM-DM-ALL"
+# Authoring groups for Brightcove DAM assets
+-  group_config:
+   -  FOR mapping IN CHILDREN OF /content/bts/brightcove/mappings:
+      -  ${groupPrefixAll}-brightcove-${lowerCase(mapping.title)}-authors:
+         -  name: Brightcove ${upperCase(mapping.title)}
+            description: Authoring group for Brightcove ${upperCase(mapping.title)}
+            isMemberOf: base-abbott
+   -  ${groupPrefixAll}-brightcove-administrators:
+      -  name: Brightcove ${upperCase(mapping.title)}
+         description: Authoring group for Brightcove ${upperCase(mapping.title)}
+         isMemberOf: base-abbott
+-  ace_config:           
+   -  FOR mapping IN CHILDREN OF /content/bts/brightcove/mappings:
+      -  ${groupPrefixAll}-brightcove-${lowerCase(mapping.title)}-authors:
+         -  path: /content/dam/brightcove_assets
+            permission: allow
+            actions: read
+   -  ${groupPrefixAll}-brightcove-administrators:
+      -  path: /content/dam/brightcove_assets
+         permission: allow
+         actions: read,modify,create,delete,replicate

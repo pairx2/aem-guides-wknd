@@ -1,0 +1,95 @@
+@import '../media-queries.less';
+@import '../variables.less';
+@import '../mixin.less';
+
+body {
+    .m-pagination-static__links {
+        .paginationjs-pages {
+            ul {
+                border: 1px solid @color-purple;
+                li {
+                    a {
+                        color: @color-purple;
+                        &:hover {
+                            font-family: @brandonbold;
+                            background-color: @color-light-purple;
+                        }                        
+                    }
+                    &.active {
+                        position: relative;
+                        &:after {
+                            background-color: @color-purple;
+                        }
+                    }
+                }
+            }
+        }
+    }  
+    .a-pagination {
+        ul {
+            border: 1px solid @color-purple;
+            li {
+                a {
+                    color: @color-purple;                    
+                    &:hover,&:active,&:focus {
+                        font-family: @brandonbold;
+                        background-color: @color-light-purple;
+                        color: @color-purple;
+                        border: 1px solid transparent;
+                    }
+                    &.no-click {
+                        color: @border-light-gray;
+                        cursor: auto;
+                        &:hover {
+                            color: @border-light-gray;
+                            background-color: transparent;
+                        }
+                    }
+                    @media @md-down {
+                        padding: 10px;
+                    }
+                }
+                &.a-pagination--active {
+                    position: relative;
+                    &::after {
+                        background-color: @color-purple;
+                    }
+                }
+            }
+            .a-pagination--next,.a-pagination--previous{
+                a:hover,a:active,a:focus {
+                    font-family: @brandonbold;
+                    background-color: @color-light-purple; 
+                    color: @color-purple;
+                    border: 1px solid transparent;
+                }
+            }
+        }
+    }
+    .a-switcher {
+        .custom-switch {
+            .custom-control-label {
+                color: @color-medium-blue;
+                &:before {
+                    background-color: @color-medium-blue;
+                }
+            }
+            .custom-control-input:checked ~ .custom-control-label {
+                &:before {
+                    background-color: @color-medium-blue;
+                }
+            }
+        }  
+    }    
+    .a-stepper__input-wrapper {
+        border: 1px solid @color-purple;
+        .a-stepper--btn, .a-stepper__number {
+            color: @color-purple;
+        }
+        .a-stepper__input-grp-btn {
+            &:focus, &:active {
+                background-color: @color-light-purple;
+            }
+        }
+    }
+}

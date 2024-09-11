@@ -1,0 +1,38 @@
+# Country specific authoring groups
+-  DEF countrySites=:
+      cv:
+      - Cardiovascular
+      - Afanswers
+- DEF groupPrefixAll="APP-Adobe-AEM-DM-ALL"
+-  group_config:
+   -  FOR division IN ${keys(countrySites)}:
+      -  FOR site IN ${countrySites[division]}:
+         -  FOR country IN CHILDREN OF /content/${division}/${lowerCase(site)}:
+            -  ${groupPrefixAll}-${division}-${lowerCase(site)}-${country.name}-content-editor:
+               -  name: ${upperCase(division)} ${site} ${upperCase(country.name)} Content Editor
+                  description: Country Specific Content Editor
+                  isMemberOf: ${division}-${lowerCase(site)}-base
+                  externalId: ${groupPrefixAll}-${division}-${lowerCase(site)}-${country.name}-content-editor;ims
+-  ace_config:
+   -  FOR division IN ${keys(countrySites)}:
+      -  FOR site IN ${countrySites[division]}:
+         -  FOR country IN CHILDREN OF /content/${division}/${lowerCase(site)}:
+            -  ${groupPrefixAll}-${division}-${lowerCase(site)}-${country.name}-content-editor:
+               -  path: /content/${division}/${lowerCase(site)}/${country.name}
+                  permission: allow
+                  actions: create,modify,delete,replicate
+               -  path: /content/campaigns/${division}/${lowerCase(site)}/${country.name}
+                  permission: allow
+                  actions: create,modify,delete,replicate
+               -  path: /content/cq:tags/${division}/${lowerCase(site)}/${country.name}
+                  permission: allow
+                  actions: create,modify,delete,replicate
+               -  path: /content/dam/${division}
+                  permission: allow
+                  actions: create,modify,delete,replicate
+               -  path: /content/email-templates/${division}/${lowerCase(site)}/${country.name}
+                  permission: allow
+                  actions: create,modify,delete,replicate
+               -  path: /content/experience-fragments/${division}/${lowerCase(site)}/${country.name}
+                  permission: allow
+                  actions: create,modify,delete,replicate

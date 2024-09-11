@@ -1,0 +1,28 @@
+<template data-sly-template.headerTop="${@ header}">
+	<div class="o-header__secondary-top-nav d-none d-lg-block">
+		<div class="container full-width">
+			<div class="justify-content-end row">
+				<div class="o-header__user-activity">
+					<div class="o-header__utility-nav">
+						<div data-sly-unwrap="${!wcmmode.edit}">
+							<sly data-sly-use.linkstack="com.abbott.aem.corp.division.core.components.models.Header">
+								<sly data-sly-list.linkstackitem="${linkstack.listOfLinkStack}">
+									<sly data-sly-test.parName="${linkstackitem}" />
+									<sly data-sly-resource="${@path= linkstackitem, resourceType=header.linkstackProxyPath, decoration=true}"> </sly>
+								</sly>
+							</sly>
+						</div>
+						<div class="${wcmmode.edit ? 'edit-langnav':''}" data-sly-unwrap="${!wcmmode.edit}">
+							<sly data-sly-resource="${'language-navigation' @ resourceType=header.languageNavigationProxyPath, decoration=true}" /> </div>
+					</div>
+				</div>
+				<!--/* Search */-->
+				<div data-sly-test="${!header.hideSearchInNav}" class="o-header__search" data-search-icon="search">
+					<div class="${wcmmode.edit ? 'edit-search':''}" data-sly-unwrap="${!wcmmode.edit}">
+						<sly data-sly-resource="${'header-search' @ resourceType=header.headersearchProxyPath,decoration=true}" /> </div>
+				</div>
+				<!--/* Search */-->
+			</div>
+		</div>
+	</div>
+</template>

@@ -1,0 +1,147 @@
+<sly data-sly-use.product="com.abbott.aem.platform.common.components.models.IconCta"
+   data-sly-use.component="com.adobe.cq.wcm.core.components.models.Component"
+   data-sly-use.customConfig="com.abbott.aem.platform.common.components.models.CustomConfig"
+   data-sly-use.template="core/wcm/components/commons/v1/templates.html"/>
+<div class="container ${customConfig.className}" id="${product.id}">
+
+
+   <sly data-sly-test="${!product.cardAlignment}">
+      <sly data-sly-include="iconcta_horizontal.html" />
+   </sly>
+   <sly data-sly-test="${product.cardAlignment}">
+
+      <div class="${product.topMargin ? 'm-iconcta--m-top' : ''} ${product.bottomMargin ? 'm-iconcta--m-bottom' : ''}">
+
+<sly data-sly-test="${product.title}">
+         <div class="m-iconcta-title">
+            ${product.title @context='html'}
+         </div>
+      </sly>
+         <div class="row">
+            <div class="row custom-card vertical-card">
+               <sly data-sly-list.item="${product.multifield}">
+                  <div class="vertical-ruler vertical-ruler--${product.ruleColor}">
+                     <sly data-sly-test="${item.urlImage}">
+                        <img class="${item.isActive ? 'default-ratio' : '' }" src="${item.urlImage}" alt="${item.isDecorative ? ' '  : item.altText}" />
+                     </sly>
+                     ${item.cardTitle @context='html'}
+                     <sly data-sly-test="${item.buttonType == 'url'}">
+                        <a href="${item.url}" target="${item.targetnewWindow ? '_blank' : '_self'}" >
+                        <button type="button" class="m-iconcta--button ${item.buttoncolorTheme}">${item.buttonText}</button>
+                        </a> 
+                     </sly>
+                     <sly data-sly-test="${item.buttonType == 'videoURL'}">
+                        <div class="m-popup m-iconcta-popup ${item.buttonType}" data-toggle="modal" data-target="#video${itemList.index}${resource.path.hashCode}-modal">
+                           <div class="play-icon" id="video${itemList.index}${resource.path.hashCode}">
+                              <button type="button" class="m-iconcta--button ${item.buttoncolorTheme}" >${item.buttonText}</button>
+                           </div>
+                           <div class="m-popup-content" id="videoModalMain" style="display: none;">
+                              <div class="m-video" data-js-component="iconcta">
+                                 <div id="${component.id}" class="a-video">
+                                    <div class="a-video__player global-video">
+                                       <iframe class="a-video__player-source embed-video embed-popup" title="${item.cardTitle}"
+                                          allow="autoplay; accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen;"
+                                          src="${item.videoURL}"
+                                          allowfullscreen="allowfullscreen" data-url="${item.videoURL}">
+                                       </iframe>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </sly>
+                     <sly data-sly-test="${item.buttonType == 'asset'}"> 
+                        <a class="cmp-button__link" href="${item.downloadAsset}"
+                           data-cmp-clickable="${button.data ? true : false}"
+                           data-cmp-hook-button="link"
+                           target="${properties.external ? '_blank' : ''}">
+                        <button type="button" class="m-iconcta--button ${item.buttoncolorTheme}">${item.buttonText}</button>
+                        </a> 
+                     </sly>
+                     <sly data-sly-test="${item.buttonType == 'clicktocall'}"> 
+                        <a class="cmp-button__link" href="tel:${item.phoneNumber}"
+                           data-cmp-clickable="${button.data ? true : false}"
+                           data-cmp-hook-button="link">
+                        <button type="button" class="m-iconcta--button ${item.buttoncolorTheme}">${item.buttonText}</button>
+                        </a> 
+                     </sly>
+                     <sly data-sly-test="${item.buttonType == 'saveResults'}"> 
+                        <a class="cmp-button__link download-results" href="javascript:void(0)"
+                           data-cmp-clickable="${button.data ? true : false}"
+                           data-cmp-hook-button="link">
+                           <button type="button" class="m-iconcta--button ${item.buttoncolorTheme}">${item.buttonText}</button>
+                        </a> 
+                     </sly>
+                     
+                     <sly data-sly-test="${item.buttonType == 'email'}"> 
+                        <a class="cmp-button__link email-results" href="javascript:void(0)"
+                           data-cmp-clickable="${button.data ? true : false}"
+                           data-cmp-hook-button="link"  mailSubject="${item.emailSubject}" mailBody="${item.emailTemplatePath}" from="Abbott">
+                           <button type="button" class="m-iconcta--button ${item.buttoncolorTheme}">${item.buttonText}</button>
+                        </a>
+
+                        <sly data-sly-test="${item.emailTemplatePath ? 'true':'false'}">
+										<sly data-sly-resource="${item.emailTemplatePath}"></sly> 
+								</sly>
+                         
+                     </sly>
+                     <sly data-sly-test="${item.buttonType == 'anchor'}"> 
+                        <a class="cmp-button__link cta-anchor-name"
+                           href="#${item.anchorName}"
+                           data-cmp-clickable="${button.data ? true : false}"
+                           data-cmp-hook-button="link">
+                        <button type="button" class="m-iconcta--button ${item.buttoncolorTheme}">${item.buttonText}</button>
+                        </a> 
+                     </sly>
+                     <sly data-sly-test="${item.buttonType == 'limeLight'}">
+                        <div class="m-popup m-iconcta-popup ${item.buttonType}" data-toggle="modal" data-target="#video${itemList.index}${resource.path.hashCode}-modal">
+                           <div class="play-icon" id="video${itemList.index}${resource.path.hashCode}">
+                              <button type="button" class="m-iconcta--button ${item.buttoncolorTheme}">${item.buttonText}</button>
+                           </div>
+                           <div class="m-popup-content" id="videoModalMain" style="display: none;">
+                              <div class="m-video" data-js-component="iconcta">
+                                 <div id="${component.id}" class="a-video">
+                                    <div class="a-video__player global-video">
+                                       <div class="limeLight-video-wrapper limeLight-video video-js a-video__player-source limelight-player"
+                                          data-player-ID="${item.vidID}"
+                                          data-media-ID="${item.medID}">
+                                          <div id="limelight_player_${item.vidID}"></div>
+                                          <script src="https://video.limelight.com/player/limelightjs-player.js?orgId=${item.orID}"></script>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </sly>
+                     <sly data-sly-test="${item.buttonType == 'brightCove'}">
+                        <div class="m-popup m-iconcta-popup ${item.buttonType}" data-toggle="modal" data-target="#video${itemList.index}${resource.path.hashCode}-modal">
+                           <div class="play-icon" id="video${itemList.index}${resource.path.hashCode}">
+                              <button type="button" class="m-iconcta--button ${item.buttoncolorTheme}">${item.buttonText}</button>
+                           </div>
+                           <div class="m-popup-content" id="videoModalMain" style="display: none;">
+                              <div class="m-video" data-js-component="iconcta">
+                                 <div id="${component.id}" class="a-video">
+                                    <div class="a-video__player global-video">
+                                       <div class="brightcove-video" data-account="${item.accountID}"
+                                          data-player="${item.playerID}"
+                                          data-embed="default"  
+                                          data-video-id="${item.videoID}"
+                                          data-playlist-id=""
+                                          data-application-id="">
+                                          <div class="placeHolder"></div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </sly>
+                  </div>
+               </sly>
+            </div>
+         </div>
+      </div>
+   </sly>
+</div>
+<sly data-sly-call="${template.placeholder @ isEmpty=!product.buttonType}"></sly>

@@ -1,0 +1,22 @@
+<div class="card card-new h-100">
+	{{#if img_src}}
+  <a href="{{href}}">
+    <picture>
+      <source media="(max-width: 575.98px)" data-srcset="{{img_sm_src}}">
+      <source media="(max-width: 991.98px)" data-srcset="{{img_md_src}}">
+      <img class="card-img-top" src="{{img_lazy_src}}" data-src="{{img_src}}" alt="{{alt_text}}">
+    </picture>
+  </a>
+  {{/if}}
+    <div class="card-body {{custom_class}}"  style="border-color: {{border_color}}">
+       <h2><a href="{{href}}" class="card-title">{{title}}</a></h2>
+       <div class="card-text"><p >{{description}}</p></div>
+       <div class="card-buttons text-right">
+       {{#each btn}}
+     
+       {{> includes/button custom_btn_class="float-right" btn_image=this.image btn_href=this.href icon_only="true"}}
+    
+       {{/each}}
+       </div>
+     </div>
+</div>

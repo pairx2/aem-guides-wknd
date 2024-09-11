@@ -1,0 +1,50 @@
+<div data-sly-test="${wcmmode.edit}" class="cq-placeholder" data-emptyText="Configure Newsroom Banner Component"></div>
+<div class="banner-container">
+  <sly data-sly-use.banner="com.abbott.aem.corp.division.core.components.models.BannerModal">
+    <sly data-sly-list.banneritems="${banner.bannerDetails}">
+      <sly data-sly-test="${banneritemsList.count == 1}">
+        <div class="left-banner">
+          <sly data-sly-test="${banneritems.bannerType == 'imageStory'}">
+            <a href="${banneritems.link @extension = 'html'}" target="${banneritems.newTab}" class="banner-link">
+              <div class="banner-details">
+                <img src="${banneritems.imagePath}" alt="${banneritems.altText}" class="img-fluid" />
+                <span class="banner-title ${banneritems.colorType} ${banneritems.textPosition}">${banneritems.text @context='html'}</span>
+                <div data-sly-test="${banneritems.text}" class="banner-overlay ${banneritems.textPosition}"></div>
+              </div>
+            </a>
+          </sly>
+          <sly data-sly-test="${banneritems.bannerType == 'videoStory'}">
+            <sly data-sly-test="${banneritems.cerosNeeded}"> ${banneritems.cerosScript @context='unsafe'} </sly>
+            <sly data-sly-test="${!banneritems.cerosNeeded}" data-sly-use.bannertemplate="banner-videos.html">
+					<sly data-sly-call="${bannertemplate.banneritems @ banneritems = banneritems}"></sly>
+            </sly>
+          </sly>
+        </div>
+      </sly>
+    </sly>
+    <div class="right-banner">
+      <sly data-sly-list.banneritems="${banner.bannerDetails}">
+        <sly data-sly-test.image="${banneritems.imagePath}">
+         <sly data-sly-test="${banneritemsList.count == 2 || banneritemsList.count == 3}">
+            <sly data-sly-test="${banneritems.bannerType == 'imageStory'}">
+              <div class="${banneritemsList.count == 2 ? 'image-top' : ''} ${banneritemsList.count == 3 ? 'image-bottom' : ''}">
+                <a href="${banneritems.link @extension = 'html'}" target="${banneritems.newTab}" class="banner-link">
+                  <div class="banner-details">
+                    <img src="${banneritems.imagePath}" alt="${banneritems.altText}" class="img-fluid" />
+                    <span class="banner-title ${banneritems.colorType} ${banneritems.textPosition}">${banneritems.text @context='html'}</span>
+                    <div data-sly-test="${banneritems.text}" class="banner-overlay ${banneritems.textPosition}"></div>
+                  </div>
+                </a>
+              </div>
+            </sly>
+            <sly data-sly-test="${banneritems.bannerType == 'videoStory'}">
+              <sly data-sly-test="${banneritems.cerosNeeded}"> ${banneritems.cerosScript @context='unsafe'} </sly>
+				<sly data-sly-test="${!banneritems.cerosNeeded}" data-sly-use.bannertemplate="banner-videos.html">
+					<sly data-sly-call="${bannertemplate.banneritems @ banneritems = banneritems}"></sly>
+            	</sly>
+			</sly>
+		</sly>
+		</sly>
+		</sly>
+	</div>
+</div>

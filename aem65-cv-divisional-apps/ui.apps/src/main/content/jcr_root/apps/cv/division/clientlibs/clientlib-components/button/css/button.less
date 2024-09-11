@@ -1,0 +1,541 @@
+/* Button variables */
+
+@btn-font-family: brandon_grotesquebold;
+@btn-font-size: 1rem;
+@btn-line-height: 1.25rem;
+@btn-text-transform: uppercase;
+@btn-vertical-align: center;
+@btn-letter-spacing: 0.8px;
+@btn-text-align: center;
+
+@btn-width: auto;
+@btn-min-height: 35px;
+@btn-max-height: 58px;
+@btn-max-width: 300px;
+@btn-mobile-min-width: 100%;
+@btn-mobile-min-height: 50px;
+@btn-mobile-max-width: 340px;
+
+@btn-padding-left: 28px;
+@btn-padding-right: 28px;
+
+@btn-padding-top: 11px;
+@btn-padding-bottom: 9px;
+
+@btn-spacing-right: 16px;
+@btn-spacing-bottom: 8px;
+
+@btn-border: 0;
+@btn-border-radius: 0;
+
+@btn-clr--default: #007db1;
+@btn-clr--bg-disable: #d9d9d9;
+@btn-clr--campaign: #64ccc9;
+@btn-clr--charcoal: #222731;
+@btn-clr--cv-floating: #007db1;
+@btn-clr--dark-blue: #002a3a;
+@btn-clr--gold: #eeb33b;
+@btn-clr--light-blue: #5bc2e7;
+@btn-clr--light-green: #7ccc6c;
+@btn-clr--magenta: #aa0061;
+@btn-clr--medium-blue: #004f71;
+@btn-clr--orange: #ff6900;
+@btn-clr--primary: #007db1;
+@btn-clr--primary-blue: #009cde;
+@btn-clr--purple: #470a68;
+@btn-clr--red: #e4002b;
+@btn-clr--yellow: #ffd100;
+@btn-clr--white: #ffffff;
+@btn-box-shadow: 0 0 4px 2px rgba(21, 155, 215, 0.5);
+/* common function */
+
+.display-flex() {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.btn-transition(@property,@time) {
+  transition: @property @time;
+  -moz-transition: @property @time;
+  -o-transition: @property @time;
+  -webkit-transition: @property @time;
+}
+.btn-transition-timing(@duration,@timing) {
+  transition: @duration @timing;
+  -moz-transition: @duration @timing;
+  -o-transition: @duration @timing;
+  -webkit-transition: @duration @timing;
+}
+.border-radius(@radius) {
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+  border-radius: @radius;
+}
+
+.flex-wrap(@value) {
+  -ms-flex-wrap: @value;
+  flex-wrap: @value;
+}
+
+.btn-transform(@value) {
+  -webkit-transform: @value;
+  transform: @value;
+}
+.a-btn {
+  position: relative;
+  display: inline-block;
+  margin-right: @btn-spacing-right;
+
+  @media (max-width: 767px) {
+    display: block;
+    margin-right: 0;
+  }
+  &.a-btn--spacing-bottom {
+    margin-bottom: @btn-spacing-bottom;
+  }
+}
+
+.a-btn-button {
+  border: @btn-border;
+  .border-radius(@btn-border-radius);
+  cursor: pointer;
+  display: inline-block;
+  width: @btn-width;
+  min-height: @btn-min-height;
+  max-height: @btn-max-height;
+  max-width: @btn-max-width;
+  padding-top: @btn-padding-top;
+  padding-right: @btn-padding-right;
+  padding-bottom: @btn-padding-bottom;
+  padding-left: @btn-padding-left;
+  position: relative;
+  font-family: @btn-font-family;
+  font-size: @btn-font-size;
+  font-weight: bold;
+  line-height: @btn-line-height;
+  letter-spacing: @btn-letter-spacing;
+  text-align: @btn-text-align;
+  text-transform: @btn-text-transform;
+  vertical-align: @btn-vertical-align;
+  text-decoration: none;
+
+  .display-flex();
+  .flex-wrap(wrap);
+
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  align-items: center;
+
+  &::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: @btn-clr--white;
+
+    .btn-transform(scaleY(0));
+    -webkit-transform-origin: 50% 0%;
+    transform-origin: 50% 0%;
+    -webkit-transition-property: transform;
+    transition-property: transform;
+    .btn-transition-timing(300ms, ease-out);
+  }
+
+  &:hover{
+    text-decoration: none !important;
+    background: @btn-clr--white !important;
+  }
+
+  &:hover::before {
+    .btn-transform(scaleY(1));
+  }
+
+  &.disabled,
+  &:disabled {
+    background: @btn-clr--bg-disable;
+    color: @btn-clr--charcoal;
+
+    &:hover {
+      color: @btn-clr--default;
+    }
+    &:focus {
+      color: @btn-clr--charcoal;
+    }
+  }
+
+  &:focus,
+  &.focus {
+    outline: 0;
+    -webkit-box-shadow: @btn-box-shadow;
+    box-shadow: @btn-box-shadow;
+  }
+  @media (max-width: 767px) {
+    min-height: @btn-mobile-min-height;
+    max-width: @btn-mobile-max-width;
+    width: @btn-mobile-min-width;
+  }
+  @media (max-width: 767px) and (orientation: portrait) {
+    max-width: 100%;
+  }
+
+  &__theme--default,
+  &__theme--default:active,
+  &__theme--default:visited {
+    background: @btn-clr--default;
+    color: @btn-clr--white;
+    &:hover {
+      color: @btn-clr--default;
+    }
+    &:focus {
+      color: @btn-clr--white;
+      background: @btn-clr--default;
+      &:hover {
+        color: @btn-clr--default;
+      }
+    }
+  }
+
+  &__theme {
+    &--dark-blue,
+    &--dark-blue:active,
+    &--dark-blue:visited {
+      background-color: @btn-clr--dark-blue;
+      color: @btn-clr--white;
+      &:hover {
+        color: @btn-clr--dark-blue;
+      }
+      &:focus {
+        color: @btn-clr--white;
+        background-color: @btn-clr--dark-blue;
+        &:hover {
+          color: @btn-clr--dark-blue;
+        }
+      }
+    }
+    &--campaign,
+    &--campaign:active,
+    &--campaign:visited {
+      background-color: @btn-clr--campaign;
+      color: @btn-clr--dark-blue;
+      &:hover {
+        color: @btn-clr--dark-blue;
+      }
+      &:focus {
+        color: @btn-clr--dark-blue;
+        background-color: @btn-clr--campaign;
+        &:hover {
+          color: @btn-clr--dark-blue;
+        }
+      }
+    }
+    &--magenta,
+    &--magenta:active,
+    &--magenta:visited {
+      background-color: @btn-clr--magenta;
+      color: @btn-clr--white;
+      &:hover {
+        color: @btn-clr--magenta;
+      }
+      &:focus {
+        color: @btn-clr--white;
+        background-color: @btn-clr--magenta;
+        &:hover {
+          color: @btn-clr--magenta;
+        }
+      }
+    }
+    &--purple,
+    &--purple:active,
+    &--purple:visited {
+      background-color: @btn-clr--purple;
+      color: @btn-clr--white;
+      &:hover {
+        color: @btn-clr--purple;
+      }
+      &:focus {
+        color: @btn-clr--white;
+        background-color: @btn-clr--purple;
+        &:hover {
+          color: @btn-clr--purple;
+        }
+      }
+    }
+    &--orange,
+    &--orange:active,
+    &--orange:visited {
+      background-color: @btn-clr--orange;
+      color: @btn-clr--charcoal;
+      &:hover {
+        color: @btn-clr--charcoal;
+      }
+      &:focus {
+        color: @btn-clr--charcoal;
+        background-color: @btn-clr--orange;
+        &:hover {
+          color: @btn-clr--charcoal;
+        }
+      }
+    }
+    &--primary,
+    &--primary:active,
+    &--primary:visited {
+      background-color: @btn-clr--primary;
+      color: @btn-clr--white;
+      &:hover {
+        color: @btn-clr--primary;
+      }
+      &:focus {
+        color: @btn-clr--white;
+        background-color: @btn-clr--primary;
+        &:hover {
+          color: @btn-clr--primary;
+        }
+      }
+    }
+    &--cv-floating,
+    &--cv-floating:active,
+    &--cv-floating:visited {
+      background-color: @btn-clr--cv-floating;
+      color: @btn-clr--white;
+      &:hover {
+        color: @btn-clr--cv-floating;
+      }
+      &:focus {
+        color: @btn-clr--white;
+        &:hover {
+          color: @btn-clr--cv-floating;
+        }
+      }
+    }
+    &--light-green,
+    &--light-green:active,
+    &--light-green:visited {
+      background-color: @btn-clr--light-green;
+      color: @btn-clr--charcoal;
+      &:hover {
+        color: @btn-clr--charcoal;
+      }
+      &:focus {
+        color: @btn-clr--charcoal;
+        background-color: @btn-clr--light-green;
+        &:hover {
+          color: @btn-clr--charcoal;
+        }
+      }
+    }
+    &--light-blue,
+    &--light-blue:active,
+    &--light-blue:visited {
+      background-color: @btn-clr--light-blue;
+      color: @btn-clr--charcoal;
+      &:hover {
+        color: @btn-clr--charcoal;
+      }
+      &:focus {
+        color: @btn-clr--charcoal;
+        background-color: @btn-clr--light-blue;
+        &:hover {
+          color: @btn-clr--charcoal;
+        }
+      }
+    }
+    &--red,
+    &--red:active,
+    &--red:visited {
+      background-color: @btn-clr--red;
+      color: @btn-clr--white;
+      &:hover {
+        color: @btn-clr--red;
+      }
+      &:focus {
+        color: @btn-clr--white;
+        background-color: @btn-clr--red;
+        &:hover {
+          color: @btn-clr--red;
+        }
+      }
+    }
+    &--gold,
+    &--gold:active,
+    &--gold:visited {
+      background-color: @btn-clr--gold;
+      color: @btn-clr--charcoal;
+      &:hover {
+        color: @btn-clr--charcoal;
+      }
+      &:focus {
+        color: @btn-clr--charcoal;
+        background-color: @btn-clr--gold;
+        &:hover {
+          color: @btn-clr--charcoal;
+        }
+      }
+    }
+
+    &--yellow,
+    &--yellow:active,
+    &--yellow:visited {
+      background-color: @btn-clr--yellow;
+      color: @btn-clr--charcoal;
+      &:hover {
+        color: @btn-clr--charcoal;
+      }
+      &:focus {
+        color: @btn-clr--charcoal;
+        background-color: @btn-clr--yellow;
+        &:hover {
+          color: @btn-clr--charcoal;
+        }
+      }
+    }
+    &--primary-blue,
+    &--primary-blue:active,
+    &--primary-blue:visited {
+      background-color: @btn-clr--primary-blue;
+      color: @btn-clr--white;
+      &:hover {
+        color: @btn-clr--primary-blue;
+      }
+      &:focus {
+        color: @btn-clr--white;
+        background-color: @btn-clr--primary-blue;
+        &:hover {
+          color: @btn-clr--primary-blue;
+        }
+      }
+    }
+    &--medium-blue,
+    &--medium-blue:active,
+    &--medium-blue:visited {
+      background-color: @btn-clr--medium-blue;
+      color: @btn-clr--white;
+      &:hover {
+        color: @btn-clr--medium-blue;
+      }
+      &:focus {
+        color: @btn-clr--white;
+        background-color: @btn-clr--medium-blue;
+        &:hover {
+          color: @btn-clr--medium-blue;
+        }
+      }
+    }
+  }
+}
+
+/* common code for youtube and limelight */
+.yt-video-modal,
+.limelight-video-modal {
+  .modal-dialog {
+    width: 100%;
+    margin: 16px auto;
+    height: 543px;
+    max-width: 900px;
+    @media only screen and (min-width: 768px) and (max-width: 992px) {
+      max-width: 600px;
+    }
+    @media only screen and (max-width: 767px) {
+      max-width: 92%;
+      height: auto;
+    }
+  }
+  .modal-header {
+    border-bottom: none;
+    padding: 5px 6px 10px;
+
+    .close {
+      -webkit-appearance: none;
+      padding: 0 5px;
+      cursor: pointer;
+      background: transparent;
+      border: 0;
+      margin: auto 0 auto auto;
+      float: right;
+      font-size: 21px;
+      font-weight: bold;
+      line-height: 1;
+      color: #000;
+      text-shadow: 0 1px 0 @btn-clr--white;
+      filter: alpha(opacity=20);
+      opacity: 0.2;
+      &:hover,
+      &:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+        filter: alpha(opacity=50);
+        opacity: 0.5;
+      }
+    }
+  }
+}
+
+/* Youtube video less */
+
+.yt-video-modal {
+  .modal-dialog {
+    @media (max-width: 767px) {
+      width: 100%;
+      max-width: 90%;
+    }
+  }
+  .modal-content {
+    height: 550px;
+    @media (max-width: 767px) {
+      height: 370px;
+    }
+    @media (max-width: 767px) and (orientation: landscape) {
+      height: 340px;
+    }
+  }
+}
+
+iframe.yt-video-player {
+  width: 850px;
+  height: 490px;
+  margin: 0 25px;
+  @media only screen and (min-width: 768px) and (max-width: 992px) {
+    width: 550px;
+    height: 490px;
+  }
+  @media (max-width: 767px) {
+    width: 90%;
+    height: 300px;
+    margin: 0 auto;
+  }
+  @media (max-width: 767px) and (orientation: landscape) {
+    height: 270px;
+  }
+}
+/* Lime Light video less */
+.limelight-video-modal {
+  .modal-header {
+    padding: 5px 6px 30px;
+  }
+  .limelight-player {
+    .vjs-limelight-big-play {
+      font-size: 98px !important;
+    }
+  }
+}
+
+.limelight-player {
+  width: 850px !important;
+  height: 490px !important;
+  margin: 0 auto;
+  position: relative;
+  top: -25px;
+  @media only screen and (min-width: 768px) and (max-width: 992px) {
+    width: 90% !important;
+    margin: 0 auto;
+  }
+  @media (max-width: 767px) {
+    width: 93% !important;
+    height: 300px !important;
+    margin: 0 auto;
+  }
+}

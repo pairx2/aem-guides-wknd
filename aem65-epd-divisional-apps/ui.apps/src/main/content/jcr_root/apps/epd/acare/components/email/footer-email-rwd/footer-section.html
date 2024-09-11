@@ -1,0 +1,92 @@
+<sly data-sly-use.footerModel="com.abbott.aem.epd.acare.core.models.components.FooterEmail" />
+<tr>
+    <td align="left" valign="top" class="container">
+        <table width="600" cellspacing="0" cellpadding="0" border="0" class="inner-container" aria-describedby="table" aria-hidden="true">
+            <tr>
+                <td align="left" valign="top" style="padding-top: 0px;" class="container">
+                    <table cellspacing="0" cellpadding="0" border="0" class="container" aria-describedby="table" aria-hidden="true">
+                      <!-- language selection -->
+                          <sly data-sly-test="${footerModel.linkItem.size}">
+                                    <tr>
+                                        <td align="center" valign="top" class="container">
+                                            <table cellspacing="0" cellpadding="0" border="0" class="container" aria-describedby="table" aria-hidden="true">
+                                                <tr>
+                                                    <td align="center" valign="top" class="container">
+                                                        <table cellspacing="0" cellpadding="0" border="0" class="container" aria-describedby="table" aria-hidden="true">
+                                                            <tr>
+                                                                <td align="center" valign="top" class="container">
+																	 <sly data-sly-repeat.langObj="${footerModel.linkItem}">
+                                                                    		<span style="padding: 0 7px;font-family: Georgia, Arial, sans-serif; font-size: 13px; line-height: 1.31; letter-spacing: normal;  color: ${footerModel.textColor @ context = 'styleToken'}; text-decoration: none;display: inline-block;">                                                                                 
+                                                                             	<a data-sly-unwrap="${!langObj.link}" x-cq-linkchecker="skip" href="${langObj.link @ context = 'unsafe'}" target="_blank" style="font-family: Georgia, Arial, sans-serif; font-size: 13px; line-height: 1.31; letter-spacing: normal;  color: ${footerModel.textColor @ context = 'styleToken'}; text-decoration: none;display: inline-block;">
+																					${langObj.text @ context = 'html'}
+																				</a>
+                                                                    		</span>
+                                                                     </sly>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+						      </sly>  
+                      <!-- subscription -->
+                        <tr data-sly-test="${footerModel.subscriptionText || footerModel.linkText}">
+                          <td align="center" valign="top" style="font-family: Georgia, Arial, sans-serif; font-size: 13px;  line-height: 1.38; letter-spacing: 0.5px; color: ${footerModel.textColor @ context = 'styleToken'};padding-top: 20px;text-align: center;width: 100%;">
+                              ${footerModel.subscriptionText @ context = 'html'}
+								<a data-sly-unwrap="${!footerModel.subscriptionLink}" x-cq-linkchecker="skip" href="${footerModel.subscriptionLink @ context='unsafe'}"
+                                        target="_blank" style="font-family: Georgia, Arial, sans-serif; font-size: 13px; font-weight: bold; line-height: 1.38; letter-spacing: 0.5px; color: ${footerModel.textColor @ context = 'styleToken'}; text-decoration: none !important;" >
+                                    ${footerModel.linkText @ context = 'html'}
+                                </a>
+                          </td>
+                        </tr>
+                        <!-- social icons -->
+                        <sly data-sly-set.icons="${footerModel.socialImage}" data-sly-test="${icons.size}">
+                            <tr bgcolor="${footerModel.socialTileColor}">
+                                <td align="center" valign="top" style="padding-top: 20px;">
+                                    <table cellspacing="0" cellpadding="0" border="0" aria-describedby="table" aria-hidden="true">
+                                        <tr>
+                                        	<span data-sly-test="${footerModel.shortTitle}" style="padding: 0 7px;font-family: Georgia, Arial, sans-serif; font-size: 13px; line-height: 1.31; letter-spacing: normal;  color: ${properties.shortTitleColor @ context = 'styleToken'}; text-decoration: none;display: inline-block;">
+                                            	${footerModel.shortTitle}
+                                            </span>
+											<sly data-sly-repeat.iconList="${icons}">
+												<td align="left" valign="top" style="padding: 0 20px;">
+                                                    <a data-sly-unwrap="${!iconList.link}" x-cq-linkchecker="skip" href="${iconList.link @ context='unsafe'}" target="_blank">
+														<img src="${iconList.socialIcon @ context = 'unsafe'}" alt="${iconList.socialAltText || 'social-icon-alt' }" style="border:none;" >
+                                                    </a>
+                                                </td>
+                                            </sly>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </sly>
+                        <!-- footer row image -->
+                         <tr data-sly-test="${footerModel.imageTile}" bgcolor="${footerModel.imageTileColor}">
+                           <td class="container left-align">                                       
+							<img src="${footerModel.imageTile @ context = 'unsafe'}" alt="${footerModel.imageTileAltText}" class="container nutrition-image" style="border: none;width:100%;" />
+                           </td>
+                         </tr>
+                        <!-- disclaimer -->
+                        <tr data-sly-test="${footerModel.disclaimerText}">
+                            <td align="center" valign="top" style="font-family: Georgia, Arial, sans-serif; font-size: 13px;  line-height: 1.31; letter-spacing: normal;  color: ${footerModel.textColor @ context = 'styleToken'};padding-top: 20px;">
+                                ${footerModel.disclaimerText @ context = 'html'}
+                            </td>
+                        </tr>
+                        <tr data-sly-test="${footerModel.leftLogo || footerModel.rightLogo}" style="background-color: ${footerModel.logoTileColor @ context='styleToken'};">
+							<td style="padding: 10px;">
+                              <a data-sly-unwrap="${!footerModel.leftLogoLink}" x-cq-linkchecker="skip" href="${footerModel.leftLogoLink @ context='unsafe'}" target="_blank">
+                                <img data-sly-test="${footerModel.leftLogo}" align="left" src="${footerModel.leftLogo @ context = 'unsafe'}" alt="${footerModel.leftLogoAltText}" style="display:block; border:none;">
+							  </a>
+                              <a data-sly-unwrap="${!footerModel.rightLogoLink}" x-cq-linkchecker="skip" href="${footerModel.rightLogoLink @ context='unsafe'}" target="_blank">
+                              	<img data-sly-test="${footerModel.rightLogo}"  align="right" src="${footerModel.rightLogo @ context = 'unsafe'}" alt="${footerModel.rightLogoAltText}" style="display:block; border:none;">
+							  </a>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </td>
+</tr>

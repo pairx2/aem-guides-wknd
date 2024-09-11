@@ -1,0 +1,59 @@
+<template data-sly-template.item="${@pinIconPopUp='POI Locator Result item'}">
+    <div class="a-pin-icon-popup">
+
+        <div class="a-pin-icon-popup__item-box">
+            <p class="a-pin-icon-popup__name store-name">{name}</p>
+            <sly data-sly-test="${pinIconPopUp.pinPopupDistanceLabelText}">
+               <p class="a-pin-icon-popup__name miles">{distance} ${pinIconPopUp.pinPopupDistanceLabelText}</p>
+            </sly>
+        </div>      
+            <div class="a-pin-icon-popup__item-box">
+		    <sly data-sly-test="${pinIconPopUp.pinPopupAddressLabelText}"> 
+                <p class="a-pin-icon-popup__label">${pinIconPopUp.pinPopupAddressLabelText}</p>
+		    </sly>
+                <p class="a-pin-icon-popup__name">{addressOne} {addressTwo}</p>
+            </div>
+      
+            <div class="a-pin-icon-popup__item-box">
+			<sly data-sly-test="${pinIconPopUp.pinPopupPhoneLabelText}"> 
+                <p class="a-pin-icon-popup__label">${pinIconPopUp.pinPopupPhoneLabelText}</p>
+		    </sly>
+                <p class="a-pin-icon-popup__name"><a href="tel:{phone}" role="link">{phone}</a></p>
+            </div>
+
+        <div class="a-pin-icon-popup__item-box">
+            <p class="a-pin-icon-popup__name"><a href="https://www.google.com/maps/dir/?api=1&origin={Origlatitude},{Origlongitude}&destination={latitude},{longitude}" target="_blank">${pinIconPopUp.pinPopupGetDirectionsLinkText}</a></p>
+        </div>
+        
+		<sly data-sly-test="${pinIconPopUp.pinPopupDescriptionLabelText}"> 
+            <div class="a-pin-icon-popup__item-box">
+                <p class="a-pin-icon-popup__label">${pinIconPopUp.pinPopupDescriptionLabelText}</p>
+                <p class="a-pin-icon-popup__name">{Description}</p>
+            </div>
+        </sly>
+		
+        <sly data-sly-test="${pinIconPopUp.pinPopupOperatingHoursLabelText}"> 
+            <div class="a-pin-icon-popup__item-box">
+                <p class="a-pin-icon-popup__label">${pinIconPopUp.pinPopupOperatingHoursLabelText}</p>
+                <p class="a-pin-icon-popup__name">{workingHours}</p>
+            </div>
+        </sly>
+
+        <sly data-sly-test="${pinIconPopUp.pinPopupEmailLabelText}"> 
+            <div class="a-pin-icon-popup__item-box">
+                <p class="a-pin-icon-popup__label">${pinIconPopUp.pinPopupEmailLabelText}</p>
+                <p class="a-pin-icon-popup__name"><a href="mailto:{email}" role="link">{email}</a></p>
+            </div>
+        </sly>
+
+        <sly data-sly-test="${pinIconPopUp.overridePinIconPopItem == 'true'}">
+            <sly data-sly-list.pinIconAddProp="${pinIconPopUp.overridePinIconPopUpList}">
+                <div class="a-pin-icon-popup__item-box ${pinIconAddProp.pinIconPopUpKey}">
+                    <p class="a-pin-icon-popup__label">${pinIconAddProp.pinIconPopUpLabel}</p>
+                    <p class="a-pin-icon-popup__name">{${pinIconAddProp.pinIconPopUpKey}}</p>
+                </div>
+            </sly>
+        </sly>
+
+    </div>
+</template>

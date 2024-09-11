@@ -1,0 +1,26 @@
+<div data-sly-test="${!wcmmode.disabled}" class="cq-placeholder" data-emptytext="Click here to Edit Product Gallery Component "></div>
+
+<sly data-sly-use.images="com.abbott.aem.add.division.core.components.models.ProductGallery"
+	data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
+
+<div id ="${images.id}">
+<div class="slider slider-for">
+<sly data-sly-list.imageslist="${images.imageLists}">
+    <div>
+	   <a href="${imageslist.fileReference}" class="carousel-link">
+       <img src="${imageslist.fileReference}" alt="${imageslist.alt}" class="carousel-image">
+     </a>
+    </div>
+</sly>
+</div>
+<sly data-sly-test = "${images.imageLists.size > 1}">
+<!--Thumbnail-->
+    <div class="slider slider-nav">
+        <sly data-sly-list.imageslist="${images.imageLists}"> 
+            <div>
+              <img src="${imageslist.fileReference}" alt="${imageslist.alt}">
+            </div>
+        </sly>
+    </div>
+</sly>
+</div>

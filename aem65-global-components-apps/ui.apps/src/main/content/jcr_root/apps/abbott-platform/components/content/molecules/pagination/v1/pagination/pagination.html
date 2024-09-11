@@ -1,0 +1,13 @@
+<sly data-sly-use.container="com.adobe.cq.wcm.core.components.models.LayoutContainer"
+     data-sly-use.pagination="com.abbott.aem.platform.common.components.models.Pagination"
+     data-sly-use.component="com.adobe.cq.wcm.core.components.models.Component"
+     data-sly-use.customConfig="com.abbott.aem.platform.common.components.models.CustomConfig"
+     data-sly-use.templates="core/wcm/components/commons/v1/templates.html"
+     data-sly-use.staticCompTemplate="staticComp.html">
+   <sly data-sly-test="${pagination.paginationType == 'staticComp'}">
+      <sly data-sly-call="${staticCompTemplate.staticComp @ container=container}"></sly>
+   </sly>
+   <sly data-sly-test="${pagination.paginationType == 'cflist'}" data-sly-include="cflist.html"></sly>
+</sly>
+<sly data-sly-resource="${resource.path @ resourceType='wcm/foundation/components/parsys/newpar', appendPath='/*', decorationTagName='div', cssClassName='new section aem-Grid-newComponent'}"
+     data-sly-test="${(wcmmode.edit || wcmmode.preview)}"></sly>

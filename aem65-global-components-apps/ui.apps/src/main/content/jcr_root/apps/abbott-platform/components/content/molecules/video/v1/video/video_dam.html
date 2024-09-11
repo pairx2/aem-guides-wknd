@@ -1,0 +1,16 @@
+<sly data-sly-use.videoModel = "com.abbott.aem.platform.common.components.models.Video"
+data-sly-use.page="com.abbott.aem.platform.common.components.models.PlatformPage"/>
+  <video class="a-video__player-source a-video__dom-video" 
+       muted="${videoModel.audioControlOn ? 'false' : '' @context = 'text'}" 
+       loop="${videoModel.loopOn}"
+       controls="${videoModel.videoControlOn ? 'false' : '' @context = 'text'}"
+	  playsinline="true"
+	  title="${videoModel.videoCaption}" 
+	  allowfullscreen="allowfullscreen" 
+	  aria-label="${videoModel.videoCaption}" 
+	  data-sly-list.source="${videoModel.sources}"
+       data-sly-attribute.poster="${videoModel.fallBackImage ? videoModel.fallBackImage : ''}">
+       <source src="${source.src}" aria-hidden="true" type="${source.type}"/>
+	   <track label="${page.OgTitle}" kind="subtitles" srclang="${page.languageCode}" src="${source.src}"/>
+       ${videoModel.videoCaption}
+  </video>

@@ -1,0 +1,32 @@
+<template
+    data-sly-template.head="${ @ page }"
+    data-sly-use.headlibRenderer="headlibs.html"
+    data-sly-use.headResources="head.resources.html"
+    data-sly-use.metadata="com.abbott.aem.platform.common.components.models.commerce.ProductDetail"
+>
+    <meta charset="UTF-8" />
+    <title>${metadata.metaTitle}</title>
+    <meta data-sly-test.keywords="${metadata.metaKeywords}" name="keywords" content="${keywords}" />
+    <meta data-sly-test.description="${metadata.metaDescription}" name="description" content="${description}" />
+    <meta data-sly-test.templateName="${page.templateName}" name="template" content="${templateName}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link data-sly-test.canonical="${metadata.canonicalUrl}" rel="canonical" href="${canonical}" />
+
+    <sly data-sly-include="customheaderlibs.html"></sly>
+    <sly
+        data-sly-call="${headlibRenderer.headlibs @
+                                designPath                = page.designPath,
+                                staticDesignPath          = page.staticDesignPath,
+                                clientLibCategories       = page.clientLibCategories,
+                                clientLibCategoriesJsHead = page.clientLibCategoriesJsHead,
+                                hasCloudconfigSupport     = page.hasCloudconfigSupport}"
+    ></sly>
+    <sly
+        data-sly-test.appResourcesPath="${page.appResourcesPath}"
+        data-sly-call="${headResources.favicons @ path = appResourcesPath}"
+    ></sly>
+    <sly data-sly-list="${page.htmlPageItems}"><script 
+            data-sly-test="${item.location.name == 'header'}"
+            data-sly-element="${item.element.name @ context='unsafe'}"
+            data-sly-attribute="${item.attributes}"></script></sly>
+</template>

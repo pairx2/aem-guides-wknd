@@ -1,0 +1,50 @@
+.a-switcher {
+    .custom-switch {
+        .custom-control-input {
+			&:checked ~ .custom-control-label::before {
+				border: none;
+				background-color: var(--switcher-on-bg-color);
+			}
+
+			&:not(:disabled):active ~ .custom-control-label::before {
+				background-color: var(--switcher-off-bg-color);
+			}
+
+			&:checked ~ .custom-control-label::after {
+				background-color: var(--switcher-button-bg-color);
+				-webkit-transform: translateX(18px);
+				-ms-transform: translateX(18px);
+				transform: translateX(18px);
+			}
+
+			&:not(:disabled):active ~ .custom-control-label::before, &:focus:not(:checked) ~ .custom-control-label::before,
+			&:focus ~ .custom-control-label::before
+			{
+				border: none;
+				box-shadow: none;
+			}
+		}
+		.custom-control-label {
+      @include copy(var(--switcher-font-size), var(--switcher-line-height), var(--switcher-color), none, normal, normal);
+			text-indent: 12px;
+
+			&::before{
+				border: none;
+				background-color: var(--switcher-off-bg-color);
+				top: 0rem;
+				@include rem(height, 20px);
+				@include rem(width, 36px);
+				border-radius: 12px;
+			}
+
+			&::after{
+				background-color: var(--switcher-button-bg-color);
+				left: calc(-2.25rem + 3px);
+				top: calc(.12rem + 2px);
+				@include rem(height, 12px);
+				@include rem(width, 12px);
+				border-radius: 12px;
+			}
+		}
+    }
+}

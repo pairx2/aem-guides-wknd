@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    jcr:primaryType="sling:Mapping"
+    sling:internalRedirect="[{{contentRoot}},/content,]">
+    <clientlibs
+        jcr:primaryType="sling:Mapping"
+        sling:match="etc.clientlibs/(.+)"
+        sling:internalRedirect="[/etc.clientlibs/$1]" />
+    <bin
+        jcr:primaryType="sling:Mapping"
+        sling:match="bin/(.+)"
+        sling:internalRedirect="[/bin/$1]" />
+    <content_reverse
+        jcr:primaryType="sling:Mapping"
+        sling:match="$1"
+        sling:internalRedirect="[{{contentRoot}}/(.*).html]" />
+    <abbottswjs
+        jcr:primaryType="sling:Mapping"
+        sling:match=".*(abbott.sw)[.]js$"
+        sling:internalRedirect="[/content/abbott-platform/scripts/pwa/abbott.sw.js]" />
+    <workboxjs
+        jcr:primaryType="sling:Mapping"
+        sling:match=".*(workbox-sw)[.]js$"
+        sling:internalRedirect="[/content/abbott-platform/scripts/pwa/workbox-6-5-1/workbox-sw.js]" />
+    <workboxlibs
+        jcr:primaryType="sling:Mapping"
+        sling:match="workbox-6-5-1/(.*)$"
+        sling:internalRedirect="[/content/abbott-platform/scripts/pwa/workbox-6-5-1$1]" />    
+</jcr:root>

@@ -1,0 +1,147 @@
+<sly data-sly-use.template="core/wcm/components/commons/v1/templates.html" />
+<sly data-sly-use.heartFailureQuiz="com.abbott.aem.cv.division.core.components.models.HeartFailureQuiz">
+    <div class="HF-QuizComp ${heartFailureQuiz.topmargin} ${heartFailureQuiz.bottommargin}">
+        <div class="container">
+            <sly data-sly-test="${heartFailureQuiz.typeOfPage == 'question'}">
+                <div class="main-container question-page">
+                    <!-- question page reder if == question page selected starts -->
+                    <div class="left-container">
+                        <div class="question-container no display-none">
+                            <sly data-sly-list.question1="${heartFailureQuiz.noQuestionsQuizPanel}">
+                                <div class="que">
+                                    <p>${question1.questionText @ context='html'}</p>
+                                    <img src="${question1.questionImagePath}" alt="${question1.imageAltText}"
+                                        class="que-img" />
+                                </div>
+                            </sly>
+                        </div>
+                        <div class="question-container yes">
+                            <sly data-sly-list.question2="${heartFailureQuiz.yesQuestionsQuizPanel}">
+                                <div class="que">
+                                    <p>${question2.questionText @ context='html'}</p>
+                                    <img src="${question2.questionImagePath}" alt="${question2.imageAltText}"
+                                        class="que-img" />
+                                </div>
+                            </sly>
+                        </div>
+                        <div class="button-container">
+                            <div class="a-radio">
+                                <label class="a-radio__label" for="yes">
+                                    <span class="a-radio__text">${heartFailureQuiz.button1Label || 'Yes'}</span>
+                                    <input type="radio" class="a-radio__input" name="hfq"
+                                        value="${heartFailureQuiz.button1Label}" id="yes">
+                                    <span class="a-radio__custom"></span>
+                                </label>
+                            </div>
+                            <div class="a-radio">
+                                <label class="a-radio__label" for="no">
+                                    <span class="a-radio__text">${heartFailureQuiz.button2Label || 'No'}</span>
+                                    <input type="radio" class="a-radio__input" name="hfq"
+                                        value="${heartFailureQuiz.button2Label}" id="no">
+                                    <span class="a-radio__custom"></span>
+                                </label>
+                            </div>
+                            <div class="a-radio">
+                                <label class="a-radio__label" for="idk">
+                                    <span class="a-radio__text">${heartFailureQuiz.button3Label || 'I dont know'}</span>
+                                    <input type="radio" class="a-radio__input" name="hfq"
+                                        value="${heartFailureQuiz.button3Label}" id="idk">
+                                    <span class="a-radio__custom"></span>
+                                </label>
+                            </div>
+                            <div class="prev-next-btn d-flex">
+                                <a href="javascript:void(0)"
+                                    class="a-btn-button a-btn-button__theme--primary quiz-cta-prev quiz-cta"
+                                    style="display: none">
+                                    <em aria-hidden="true" class="abt-icon abt-icon-left-arrow">&nbsp;</em>
+                                    ${heartFailureQuiz.previousLabel || 'PREVIOUS'} </a>
+                                <a href="javascript:void(0)"
+                                    class="a-btn-button a-btn-button__theme--primary quiz-cta-next quiz-cta"
+                                    style="display: none">${heartFailureQuiz.nextLabel || 'NEXT'} <em aria-hidden="true"
+                                        class="abt-icon abt-icon-right-arrow">&nbsp;</em>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="progress-container">
+                            <div class="a-progressbar progress">
+                                <div class="a-progressbar__status progress-bar" aria-label="progress bar"
+                                    role="progressbar" aria-steps="10" aria-valuenow="10" aria-valuemin="0"
+                                    aria-valuemax="100" max="100" min="0" style="width: 0%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" class="resultqualifyurl"
+                        value="${heartFailureQuiz.results1 @context='html'}" />
+                    <input type="hidden" class="resultnotqualifyurl"
+                        value="${heartFailureQuiz.results2 @context='html'}" />
+                    <div class="queContEle-yes"></div>
+                    <div class="queContEle-no"></div>
+                </div>
+            </sly>
+            <!-- question page reder if == question page selected starts -->
+            <sly data-sly-test="${heartFailureQuiz.typeOfPage == 'results'}">
+                <!-- result page reder if == result page selected starts -->
+                <div class="main-container results">
+                    <div class="HF-QuizComp-Resultpage">
+                        <table aria-describedby="HFQuiz">
+                            <thead>
+                                <tr>
+                                    <th scope="col" style="text-align: left;" class="results" colspan="2">Your Results</th>
+                                    <th scope="col" style="text-align: center;" class="no">Results</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="text-align: right;">1.</td>
+                                    <td style="text-align: left;" class="q-1"></td>
+                                    <td style="text-align: center;" class="ans-col-1"></td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: right;">2.</td>
+                                    <td style="text-align: left;" class="q-2"></td>
+                                    <td style="text-align: center;" class="ans-col-2"></td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: right;">3.</td>
+                                    <td style="text-align: left;" class="q-3"></td>
+                                    <td style="text-align: center;" class="ans-col-3"></td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: right;">4.</td>
+                                    <td style="text-align: left;" class="q-4"></td>
+                                    <td style="text-align: center;" class="ans-col-4"></td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: right;">5.</td>
+                                    <td style="text-align: left;" class="q-5"></td>
+                                    <td style="text-align: center;" class="ans-col-5"></td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: right;">6.</td>
+                                    <td style="text-align: left;" class="q-6"></td>
+                                    <td style="text-align: center;" class="ans-col-6"></td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: right;">7.</td>
+                                    <td style="text-align: left;" class="q-7"></td>
+                                    <td style="text-align: center;" class="ans-col-7"></td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: right;">8.</td>
+                                    <td style="text-align: left;" class="q-8"></td>
+                                    <td style="text-align: center;" class="ans-col-8"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- /*  Icon CTA */-->
+                <div class="m-iconcta">
+                    <sly data-sly-resource="${'iconcta' @resourceType=heartFailureQuiz.iconCtaProxyPath}"></sly>
+                </div>
+            </sly>
+            <!-- result page reder if == result page selected ends -->
+        </div>
+    </div>
+</sly>
+<sly data-sly-call="${template.placeholder @ isEmpty=!text}" />

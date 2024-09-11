@@ -1,0 +1,214 @@
+.a-checkbox {
+	$self:&;
+
+	&-label {
+		display: block;
+		color: $color-dark-gray;
+	}
+	&--vertical {
+		display: block;
+	}
+	&--horizontal {
+		display: inline-block;
+	}	
+	&__text {
+		cursor: pointer;
+		font-size: var(--checkbox-font-size);
+		line-height: var(--checkbox-line-height);
+		color: var(--checkbox-color);
+	}
+	&__title-text {
+		&:empty {
+			&, & + .a-dropdown__title--required {
+				display: none;
+			}
+		}
+	}
+	&--label-none {
+    	margin-bottom: var(--checkbox-label-none-margin-bottom);
+		.a-checkbox__text {
+			display: none;
+		}
+	}
+	display: block;
+	position: relative;
+	padding-left: var(--checkbox-padding-left);
+	padding-right: var(--checkbox-padding-right);
+	margin-bottom: var(--checkbox-margin-bottom);
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	/* Hide the browser's default checkbox */
+	input {
+		position: absolute;
+		opacity: 0;
+		cursor: pointer;
+		height: 0;
+		width: 0;
+	}
+	/* Create a custom checkbox */
+	&__custom {
+		position: absolute;
+		top: 0;
+		left: 0;
+		@include rem( height, 20px);
+		@include rem(width, 20px);
+		@include rem(border-radius, 4px);
+		box-sizing: border-box;
+		border: var(--checkbox-custom-border);
+		background-color: var(--checkbox-custom-bg);
+	}
+	/* When the checkbox is checked, add a blue background */
+	input:checked~&__custom {
+		background-color: var(--checkbox-checked-bg);
+		box-shadow: var(--checkbox-field-box-shadow-focus);
+	}
+	/* Show the indicator when checked */
+	input:checked~&__custom:after {
+		display: block;
+	}
+	/* Create the indicator (hidden when not checked) */
+	&__custom:after {
+		content: "";
+		position: absolute;
+		display: none;
+		@include rem(left, 6px);
+		@include rem(top, 2px);
+		@include rem(width, 6px);
+		@include rem(height, 10px);
+		border: solid var(--checkbox-tick-color);
+		@include rem( border-width, 0 2px 2px 0);
+		@include prefix(transform, 'rotate(45deg)', webkit ms);
+	}
+	&--error {
+		label.a-checkbox__label {
+			.a-checkbox__text {
+				color: var(--checkbox-error-color);
+			}
+			.a-checkbox__custom {
+				border: 1px solid var(--checkbox-error-color);
+			}
+			input:checked~.a-checkbox__custom {
+				background-color: var(--checkbox-custom-bg);
+			}
+		}
+	}
+	&--checked-disabled {
+		label.a-checkbox__label {
+			.a-checkbox__text {
+				color: var(--checkbox-disabled-color);
+			}
+			.a-checkbox__custom {
+				border: 1px solid var(--checkbox-disabled-color);
+				background-color: var(--checkbox-disabled-color);
+				&:after {
+					display: block;
+				}
+			}
+		}
+	}
+	&--disabled {
+		label.a-checkbox__label {
+			.a-checkbox__text {
+				color: var(--checkbox-disabled-color);
+			}
+			.a-checkbox__custom {
+				border: 1px solid var(--checkbox-disabled-color);
+				background-color: var(--checkbox-disabled-bg-color);
+			}
+		}
+	}
+	&--indeterminate {
+		.a-checkbox__custom:after {
+			content: '\2212';
+			@include rem( left, 5px);
+			@include rem(top, 0);
+			color: var(--checkbox-indeterminate-tick-color);
+			background-color: var(--checkbox-indeterminate-checked-bg);
+			text-align: center;
+			height: 0;
+			width: 0;
+			border: 0;
+			border-width: 0;
+			-webkit-transform: rotate(0);
+			-ms-transform: rotate(0);
+			transform: rotate(0);
+		}
+		.a-checkbox__custom {
+			border: 1px solid var(--checkbox-indeterminate-tick-color);
+			background-color: var(--checkbox-indeterminate-checked-bg);
+		}
+		.a-checkbox__custom::after {
+			display: block;
+		}
+
+
+		input:checked~#{$self}__custom:after {
+			content: ' ';
+			background-color: transparent;
+			@include rem(left, 6px);
+			@include rem(top, 2px);
+			@include rem(width, 6px);
+			@include rem(height, 10px);
+			border: solid var(--checkbox-tick-color);
+			@include rem( border-width, 0 2px 2px 0);
+			@include prefix(transform, 'rotate(45deg)', webkit ms);
+			color: var(--checkbox-tick-color);
+		}
+
+	}
+}
+.checkbox {
+       &--text-require {
+	         display: none;
+			  font-size: var(--checkbox-form-text-font-size);
+			  line-height: var(--checkbox-form-text-line-height);
+			  color: var(--checkbox-form-text-color);
+			  text-transform: none;
+			  font-weight: normal;
+			  margin-bottom: var(--checkbox-help-text-margin-bottom);
+			  margin-top: var(--checkbox-help-text-margin-top);
+        }
+		&.validation-require{
+		     .checkbox--text-require{			 
+					display: block;
+					font-size: var(--checkbox-form-text-font-size);
+					color: var(--checkbox-error-color);
+				.abt-icon {
+						font-size: var(--checkbox-message-icon);
+						padding-right: var(--checkbox-icon-padding-right);
+						position: relative;
+						top: 1px;
+						}
+			 }
+			 .a-checkbox-label {
+				color: var(--checkbox-error-color);
+				}
+
+			.a-checkbox__custom {
+    			outline: 1px solid var(--checkbox-error-color);
+			}
+		
+		}
+}
+
+.options__asterik-pos--start {
+	.a-checkbox {
+		&-label {
+			display: flex;
+		}
+
+		&__title-text {
+			order: 2;
+		}
+	}
+}
+.a-options-label--color-alternate{
+    .a-checkbox{
+        &-label{
+            color: var(--checkbox-label-color);
+        }
+    }
+}

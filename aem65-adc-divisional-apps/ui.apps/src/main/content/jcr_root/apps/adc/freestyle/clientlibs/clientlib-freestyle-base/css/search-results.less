@@ -1,0 +1,129 @@
+@import './global/media-queries.less';
+@import './global/variables.less';
+
+.searchresults {
+  .container.o-search-res {
+    padding-left: 0;
+    padding-right: 0;
+
+    .chipsList.chipslist {
+      @media @lg-up {
+        min-width: 240px;
+      }
+
+      .m-chips-list {
+        @media @md-down {
+          display: none;
+        }
+
+        h4.chips-title {
+          font-size: @spacer-12;
+          letter-spacing: 0.5px;
+          margin: @spacer-24 @spacer-8;
+        }
+
+        .a-chips--link.active,
+        .a-chips--link:focus {
+          background: @color-tang-yellow;
+          color: @color-black;
+          font-weight: bold;
+        }
+
+        .a-chips {
+          white-space: nowrap;
+        }
+      }
+
+      h6.cmp-title__text {
+        text-transform: none;
+      }
+    }
+
+    &[data-search-type="faqsearch"]{
+      .o-search-res__no-results {
+        font-size: @spacer;
+        font-weight: normal;
+      }
+    }
+  }
+
+  [data-search-type="sitesearch"] {
+    h3.a-result__title {
+      @media @md-down {
+        font-weight: normal;
+      }
+    }
+  }
+  
+  .searchfacet {
+    @media @md-down {
+      .m-link-stack--content.d-sm-block.d-none {
+        display: none !important;
+      }
+      
+      .m-link-stack--dropdown::after {
+        font-family: @abbott-icon;
+        content: "\e907";
+      }
+      .m-link-stack--dropdown-open::after {
+        content: "\e917";
+      }
+      .m-link-stack--dropdown-value {
+        color: @color-black-lighter;
+      }
+    }
+  }
+
+  [data-search-type="faqsearch"] {
+    .o-search-res__container {
+      .col-md-8 {
+        @media @md-up {
+          flex: 0 0 75%;
+          max-width: 75%;
+          padding-left: 0;
+          padding-right: 0;
+        }
+      }
+
+      .m-card {
+        .cmp-image {
+          height: 82px;
+          margin: 0 auto @spacer;
+        }
+
+        h4 {
+          height: auto;
+          font-size: @spacer-24;
+          line-height: @spacer-32;
+          padding-top: @spacer;
+        }
+
+        .o-features-card {
+          padding: @spacer;
+        }
+      }
+    }
+
+    .tabsearch{
+      &.a-tabs--two-in-row {
+        .a-tabs__nav-link {
+          @media @lg-up {
+            flex: 1 1 auto;
+          }
+        }
+      }
+  
+      &.a-tabs--equal-width {
+        .a-tabs__nav-link {
+          @media @lg-up {
+            flex: 1;
+          }
+        }
+      }
+    }
+  }
+
+  .m-search-bar__autocomplete {
+    display: none !important;
+  }
+}

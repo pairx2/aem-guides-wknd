@@ -1,0 +1,52 @@
+<sly data-sly-use.table="com.abbott.aem.platform.common.components.models.Table"
+   data-sly-use.component="com.adobe.cq.wcm.core.components.models.Component"
+   data-sly-use.template="core/wcm/components/commons/v1/templates.html" id="${component.id}"></sly>
+<sly data-sly-use.buttonTemplate="/apps/abbott-platform/components/content/molecules/table/v1/table/tableButton.html">
+<sly data-sly-use.tableCellProperty="com.abbott.aem.platform.common.components.models.TableCell"/>
+<sly data-sly-use.template="core/wcm/components/commons/v1/templates.html" data-cmp-is="table"/>
+<sly data-sly-test.editMode="${(wcmmode.edit || wcmmode.design)}"/>
+<section id="section_${component.id}">
+   <style data-sly-test="${table.startColor && table.endColor}">
+      #section_${component.id @context='styleToken'} {
+      --table-start-color: ${table.startColor @context='styleToken'};
+      --table-start-position: ${table.startColorPosition  @context='styleToken'}%;
+      --table-end-color: ${table.endColor  @context='styleToken'};
+      --table-end-position: ${table.endColorPosition  @context='styleToken'}%;
+      }
+   </style>
+<div id="${component.id}" class="table-responsive" data-js-component="m-table-component" 
+   style="width: ${table.tableWidth @ context='styleToken'}px;" data-sly-test="${table.tableMap}">
+   <div class="table-legends" data-sly-test="${table.tableLegends}"
+      data-sly-list.legends="${table.tableLegends}">
+      <div class="table-legend-wrapper">
+         <div class="color-box dt-text-bg-${legends.legendColor}"></div>
+         <span>${legends.legendText}</span>
+      </div>
+   </div>
+   <table class="m-table-component__table ${table.cssClass} dt-text-bordercolor-${table.borderTheme}">
+      <caption data-sly-test="${table.tableCaption}">${table.tableCaption}</caption>  
+      <colgroup data-sly-test="${table.columnWidthList}">
+         <sly data-sly-repeat.colList="${table.columnNumbers}">
+            <col class="column-${colList}" style="width: ${table.columnWidthList[colList] @ context='styleToken'};">
+            </col>
+         </sly>
+      </colgroup>
+      <tbody data-sly-unwrap="${!editMode}">
+         <tr data-sly-repeat.rows="${table.tableMap.keySet}">
+            <div style="width: ${table.colWidth @ context='styleToken'}%;"
+               data-sly-unwrap="${!editMode}"
+               data-sly-repeat.column="${table.tableMap[rows]}"
+               >
+               <span class="${wcmmode.edit ? '' : 'editmode'}" data-sly-element="${wcmmode.edit ? 'td' : ''}" >
+                  <sly data-sly-resource="${ @path=column, resourceType=table.tableCellProxyPath}">
+                  </sly>
+               </span>
+            </div>
+         </tr>
+      </tbody>
+   </table>
+   <sly data-sly-test="${table.addCopyHtmlButton && wcmmode.edit}" data-sly-call="${buttonTemplate.buttonComp @ button=table.copyHtmlButton, anchorCss='js-copy-table-html' }">
+   </sly>
+</div>
+</section>
+<sly data-sly-call="${template.placeholder @ isEmpty=!table.tableMap}"></sly>

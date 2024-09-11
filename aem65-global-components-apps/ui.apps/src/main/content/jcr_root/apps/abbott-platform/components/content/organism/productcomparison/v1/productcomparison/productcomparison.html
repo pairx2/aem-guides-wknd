@@ -1,0 +1,59 @@
+<sly data-sly-use.productComparison="com.abbott.aem.platform.common.components.models.ProductComparison"
+     data-sly-use.component="com.adobe.cq.wcm.core.components.models.Component"
+     data-sly-use.customConfig="com.abbott.aem.platform.common.components.models.CustomConfig"
+     data-sly-use.template="core/wcm/components/commons/v1/templates.html"
+     data-sly-use.products="productcomparison_products.html"
+     data-sly-use.features="productcomparison_features.html"  id="${component.id}"/>
+<section id="section_${component.id}" class="${customConfig.className} ">
+
+    <style data-sly-test="${productComparison.borderStyle == 'solid' && productComparison.borderColor || productComparison.borderWidth}">
+     #section_${component.id @context='styleToken'} {
+        --product-border-color: ${productComparison.borderColor @context='styleToken'};
+        --product-border-width: ${productComparison.borderWidth  @context='styleToken'}px;
+        }
+     </style>
+
+    <style data-sly-test="${productComparison.startColor && productComparison.endColor}">
+        #section_${component.id @context='styleToken'} {
+        --product-start-color: ${productComparison.startColor @context='styleToken'};
+        --product-start-position: ${productComparison.startColorPosition  @context='styleToken'}%;
+        --product-end-color: ${productComparison.endColor  @context='styleToken'};
+        --product-end-position: ${productComparison.endColorPosition  @context='styleToken'}%;
+        }
+     </style>
+    <div id="${component.id}" class="o-products-compare spacing-py ${properties.borderStyle == 'solid'? 'o-product-comparison--border-solid':'o-product-comparison--border-none'}" data-js-component="products-compare">
+        <div class="o-products-compare__container container">
+            <div class="o-products-compare__wrapper">
+                <table class="o-products-compare__table" aria-describedby="${productComparison.ariaDescription}">
+                    <thead data-sly-test="${productComparison.tableHeadingRequired}">
+                    <tr>
+                        <th class="o-products-compare__fixed-side o-products-compare__blank-col" scope="col">&nbsp;</th>
+                        <sly data-sly-call="${products.products @ productComparison = productComparison}" />
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <sly data-sly-call="${features.features @ productComparison = productComparison}" />
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <th class="o-products-compare__fixed-side o-products-compare__blank-col" scope="row">&nbsp;</th>
+                        <sly data-sly-list.products="${productComparison.products}">
+                            <td>
+                                <sly data-sly-test.col="${'{0}{1}' @ format=['product_feature_link_', productsList.index]}" />
+                                <sly data-sly-resource="${@ path=col, resourceType=productComparison.linkProxyPath, decoration=true}" />
+                            </td>
+                        </sly>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+            <!--/* table link start */-->
+            <div class="o-products-compare__table-link" data-sly-test="${productComparison.tableLinkRequired}">
+                <sly data-sly-resource="${'link-text' @resourceType=productComparison.linkProxyPath, decoration=true}" />
+            </div>
+            <!--/* table link end */-->
+        </div>
+    </div>
+</section>
+<sly data-sly-test="${wcmmode.edit}" data-sly-call="${template.placeholder @ isEmpty = !productComparison.features || productComparison.features.size == 0}" />

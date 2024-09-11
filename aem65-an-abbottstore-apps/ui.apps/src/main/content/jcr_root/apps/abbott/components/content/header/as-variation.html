@@ -1,0 +1,84 @@
+<template data-sly-template.template="${@ relativeResourcePath}">
+   <sly data-sly-use.templates="abbott/components/content/templates.html" />
+   <section class="header${wcmmode.edit ? ' edit-mode' : ''} header__section">
+      <sly
+         data-sly-call="${templates.includeResource @ relativeResourcePath=relativeResourcePath, nodeName='notification', slingResourceType='abbott/components/content/notification-menu'}" />
+      <sly
+         data-sly-call="${templates.includeResource @ relativeResourcePath=relativeResourcePath, nodeName='shippingbanner', slingResourceType='abbott/components/content/notification-menu'}" />
+      <header class="abbott-header" id="top">
+         <!--/* AbbottStore: TOP BAR */-->
+         <!-- Mobile Menu -->
+         <section class="container abbott-header__navbar">
+            <div class="row align-items-center position-relative">
+               <div class="col-8 clearfix position-static">
+                  <div class="row">
+                     <div class="col-3 col-md-4 col-lg-3 abbott-logo">
+                        <sly
+                           data-sly-call="${templates.includeResource @ relativeResourcePath=relativeResourcePath, nodeName='logo', slingResourceType='abbott/components/content/logo'}" />
+                     </div>
+                  </div>
+               </div>
+               <div class="col-4 text-right">
+                  <span class="abbott-header__life-text">
+                     <sly
+                        data-sly-call="${templates.includeResource @ relativeResourcePath=relativeResourcePath, nodeName='image1', slingResourceType='abbott/components/content/image'}" />
+                  </span>
+
+               </div>
+            </div>
+         </section>
+         <section class="abbott-topbar">
+            <div class="container">
+               <ul class="abbott-topbar__links">
+                  <div class="d-md-inline-block">
+
+                     <a href="#" class="hamburger" id="abbott-hamburger">
+                        <em class="ai-hamburger"></em> <span>MENU</span>
+                     </a>
+                     <li class="abbott-header__search abbott-topbar__item d-md-inline-block">
+                        <div class="abbott-main-nav-active-overlay" id="abbott-main-nav-active-overlay">
+
+
+                           <section class="abbott-main-nav" id="abbott-main-nav">
+                              <em id="close-icon" class="ai-close close-icon d-md-none d-sm-block"></em>
+
+                              <sly
+                                 data-sly-call="${templates.includeResource @ relativeResourcePath=relativeResourcePath, nodeName='login-register', slingResourceType='abbott/components/content/login-register'}" />
+                           </section>
+                        </div>
+                     </li>
+                  </div>
+                  <div class="d-md-inline-block float-md-right mob-right-icons">
+                     <li class="abbott-header__search abbott-topbar__item d-block d-sm-block d-md-inline-block">
+                        <sly
+                           data-sly-call="${templates.includeResource @ relativeResourcePath=relativeResourcePath, nodeName='search', slingResourceType='abbott/components/content/product-search'}" />
+                     </li>
+                     <li
+                        class="abbott-topbar__item abbott-topbar__item--login position-relative d-none d-md-inline-block">
+                        <sly
+                           data-sly-call="${templates.includeResource @ relativeResourcePath=relativeResourcePath, nodeName='login', slingResourceType='abbott/components/content/login'}" />
+                     </li>
+                     <li class="abbott-topbar__item abbott-topbar__item--cart">
+                        <sly
+                           data-sly-call="${templates.includeResource @ relativeResourcePath=relativeResourcePath, nodeName='cart', slingResourceType='abbott/components/content/cart'}" />
+                     </li>
+                  </div>
+               </ul>
+            </div>
+         </section>
+      </header>
+      <div class="container">
+         <div id="app-message" class="app-message"></div>
+      </div>
+   </section>
+   <div id="abbott-cart-action" class="d-none"></div>
+   <!--/* AbbottStore: MINI CART */-->
+   <div id="mini-cart__comp" class="abbott-minicart"></div>
+   </sly>
+
+
+   <!-- Modal -->
+    <sly
+      data-sly-call="${templates.includeResource @ relativeResourcePath=relativeResourcePath, nodeName='loginpopup', slingResourceType='abbott/components/content/loginpopup'}"
+    />
+</template>

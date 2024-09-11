@@ -1,0 +1,185 @@
+.a-radio {
+	$self: &;
+
+	&-label {
+		display: block;
+		color: $color-dark-gray;
+	}
+	&--vertical {
+		display: block;
+	}
+
+	&--horizontal {
+		display: inline-block;
+	}
+
+	&__text {
+		cursor: pointer;
+		font-size: var(--radio-text-font-size);
+		line-height: var(--radio-text-line-height);
+		color: var(--radio-text-color);
+	}
+	&__title-text {
+		&:empty {
+			&, & + .a-dropdown__title--required {
+				display: none;
+			}
+		}
+	}
+	&--label-none {
+		margin-bottom: var(--radio-label-margin-bottom);
+		#{ $self }__text {
+			display: none;
+		}
+	}
+
+	display: block;
+	position: relative;
+	padding-left: var(--radio-padding-left);
+	padding-right: var(--radio-padding-right);
+	margin-bottom: var(--radio-margin-bottom);
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+
+	/* Hide the browser's default radio button */
+	input {
+		position: absolute;
+		opacity: 0;
+		cursor: pointer;
+	}
+
+	&__custom {
+		position: absolute;
+		top: 0;
+		left: 0;
+		@include rem(height, 20px);
+		@include rem(width, 20px);
+		border: var(--radio-custom-border);
+		background-color: var(--radio-custom-bg);
+		border-radius: 50%;
+		cursor: pointer;
+	}
+
+	/* When the radio button is checked, add a blue background */
+	input:checked ~ &__custom {
+		background-color: var(--radio-checked-bg);
+		box-shadow: var(--radio-field-box-shadow-focus);
+	}
+
+	/* Create the indicator (the dot/circle - hidden when not checked) */
+	&__custom:after {
+		content: "";
+		position: absolute;
+		display: none;
+		@include rem(top, 6px);
+		@include rem(left, 6px);
+		@include rem(width, 6px);
+		@include rem(height, 6px);
+		border-radius: 50%;
+		background: var(--radio-dot-color);
+	}
+
+	/* Show the indicator (dot/circle) when checked */
+	input:checked ~ &__custom:after {
+		display: block;
+	}
+
+	&--error {
+		#{ $self }__label {
+			#{ $self }__text {
+				color: var(--radio-error-color);
+			}
+
+			#{ $self }__custom {
+				border: 1px solid var(--radio-error-color);
+			}
+
+			input:checked ~ #{ $self }__custom {
+				background-color: var(--radio-custom-bg);
+			}
+		}
+	}
+
+	&--checked-disabled {
+		#{ $self }__label {
+			#{ $self }__text {
+				color: var(--radio-disabled-color);
+			}
+
+			#{ $self }__custom {
+				border: 1px solid var(--radio-disabled-color);
+				background-color: var(--radio-disabled-color);
+				pointer-events: none;
+				&:after {
+					display: block;
+				}
+			}
+		}
+	}
+
+	&--disabled {
+		#{ $self }__label {
+			#{ $self }__text {
+				color: var(--radio-disabled-color);
+			}
+
+			#{ $self }__custom {
+				border: 1px solid var(--radio-disabled-color);
+				background-color: var(--radio-disabled-bg-color);
+				pointer-events: none;
+			}
+		}
+	}
+}
+.radio {
+       &--text-require {
+	          display : none;
+			  font-size: var(--radio-form-text-font-size);
+			  line-height: var(--radio-form-text-line-height);
+			  color: var(--radio-form-text-color);
+			  text-transform: none;
+			  font-weight: normal;
+			  margin-bottom: var(--radio-help-text-margin-bottom);
+			  margin-top: var(--radio-help-text-margin-top);
+			}
+		&.validation-require{
+		     .radio--text-require{			 
+					display: block;
+					font-size: var(--radio-form-text-font-size);
+					color: var(--radio-error-color);
+				.abt-icon {
+						font-size: var(--radio-message-icon);
+						padding-right: var(--radio-icon-padding-right);
+						position: relative;
+						top: 1px;
+						}
+			 }
+			 .a-radio-label {
+				color: var(--radio-error-color);
+				}
+			.a-radio__custom {
+    			outline: 1px solid var(--radio-error-color);
+				}
+		}
+}
+
+.options__asterik-pos--start {
+	.a-radio {
+		&-label {
+			display: flex;
+		}
+
+		&__title-text {
+			order: 2;
+		}
+	}
+}
+.a-options-label--color-alternate{
+    .a-radio {
+        &-label{
+        color:var(--radio-label-color);
+        }
+    }
+}

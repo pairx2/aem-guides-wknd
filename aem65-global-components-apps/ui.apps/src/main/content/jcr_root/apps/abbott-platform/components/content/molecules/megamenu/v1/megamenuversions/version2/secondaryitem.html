@@ -1,0 +1,8 @@
+<template data-sly-template.item="${@ item='The navigation item'}"
+		  data-sly-use.groupTemplate="abbott-platform/components/content/molecules/megamenu/v1/megamenuversions/version2/tertiarygroup.html"
+		  data-sly-use.itemContentTemplate="abbott-platform/components/content/molecules/megamenu/v1/megamenuversions/version2/secondaryitemcontent.html">
+	<div class="m-mega-menu__sub-list" data-sly-test="${item.title && item.title!=''}">
+		<sly data-sly-call="${itemContentTemplate.itemContent @ item = item}"></sly>
+		<sly data-sly-test="${item.children.size > 0}" data-sly-call="${groupTemplate.group @ items = item.children}"></sly>
+	</div>
+</template>

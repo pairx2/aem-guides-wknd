@@ -1,0 +1,20 @@
+<sly data-sly-use.clientlib="/libs/granite/sightly/templates/clientlib.html">
+<sly data-sly-call="${clientlib.css @ categories=inheritedPageProperties.themeType}"/>
+<sly data-sly-call="${clientlib.css @ categories=inheritedPageProperties.clientlibs}"/>
+</sly>
+
+
+<!--/* Google Font inclusion */-->
+<link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap" rel="stylesheet">
+
+<sly data-sly-test="${inheritedPageProperties.trustArcCmpId}">
+    <sly data-sly-test.trustArcCoreLibraryUrl="${inheritedPageProperties.trustArcCoreLibraryUrl}">
+        <script src="${inheritedPageProperties.trustArcCoreLibraryUrl}${inheritedPageProperties.trustArcCmpId}"></script>
+    </sly>
+    <sly data-sly-test.trustArcBlockListUrl="${inheritedPageProperties.trustArcBlockListUrl}">
+        <script src="${inheritedPageProperties.trustArcBlockListUrl}${inheritedPageProperties.trustArcCmpId}"></script>
+    </sly>
+    <sly data-sly-test.trustArcScriptUrl="${inheritedPageProperties.trustArcScriptUrl}">
+        <script type="text/javascript" async src="${inheritedPageProperties.trustArcScriptUrl}${inheritedPageProperties.trustArcCmpId}?pcookie"></script>
+    </sly>
+</sly>

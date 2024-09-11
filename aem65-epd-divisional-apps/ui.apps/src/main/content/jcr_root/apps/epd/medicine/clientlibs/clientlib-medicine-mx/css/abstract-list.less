@@ -1,0 +1,198 @@
+@import "./global/variables.less";
+@import "./global/media-queries.less";
+
+.abstractlist {
+  @media @md-down {
+    margin-bottom: 0;
+  }
+
+  &-container,
+  > .container {
+    @media @lg-only {
+      padding-right: 0 !important;
+    }
+  }
+
+  &-title-wrapper,
+  &-item-link {
+    font-family: @brandon-bold;
+    text-transform: uppercase;
+    font-size: @spacer-16;
+  }
+
+  &-title-wrapper::before {
+    background: url("/content/dam/epd/medicine/mx/download.png") no-repeat;
+    display: inline-block;
+    content: "";
+    width: @spacer-15;
+    height: @spacer-14;
+  }
+
+  &-item-list {
+    .abstractlist-vertical & {
+      background-color: @color-dark-gray;
+      padding: @spacer-10 @spacer-20;
+      .abstractlist-item {
+        padding: 10px 0;
+        .abstractlist-item-link {
+          font-family: @brandon-medium;
+          font-size: @spacer-16;
+          line-height: @spacer-16;
+        }
+      }
+    }
+  }
+
+  &-item {
+    .abstractlist-horizontal & {
+      background-color: @color-shuttle-gray;
+      display: flex;
+      text-align: center;
+      padding: 0;
+      max-width: 157px;
+      position: relative;
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: @color-charcoal;
+        -webkit-transform: scaleY(0);
+        -moz-transform: scaleY(0);
+        transform: scaleY(0);
+        -webkit-transform-origin: 50% 0;
+        -moz-transform-origin: 50% 0;
+        transform-origin: 50% 0;
+        -webkit-transition-property: transform;
+        -moz-transition-property: transform;
+        transition-property: transform;
+        -webkit-transition-duration: 0.3s;
+        -moz-transition-duration: 0.3s;
+        transition-duration: 0.3s;
+      }
+      &:hover::before {
+        -webkit-transform: scaleY(1);
+        transform: scaleY(1);
+        color: @color-shuttle-gray;
+      }
+      .abstractlist-item-link {
+        padding: 4px 20px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &:active {
+          color: @color-charcoal !important;
+          z-index: 4;
+        }
+      }
+    }
+  }
+
+  &-item-link {
+    &:hover {
+      text-decoration: none;
+    }
+
+    .abstractlist-horizontal & {
+      flex: 1;
+      max-width: 100%;
+      align-self: center;
+      color: @color-charcoal;
+      &:hover,
+      &:focus,
+      &:active {
+        color: @color-shuttle-gray;
+        z-index: 1;
+      }
+    }
+
+    .abstractlist-vertical & {
+      &:hover,
+      &:focus,
+      &:active {
+        color: @color-black-light;
+      }
+    }
+  }
+
+  .product-category-wrapper & {
+    &.abstractlist-horizontal {
+      margin-bottom: 0 !important;
+
+      > .container {
+        max-width: none;
+      }
+
+      .abstractlist-container {
+        padding-left: 0;
+        @media @md-down {
+          padding: 0;
+        }
+      }
+
+      .abstractlist-item-list {
+        gap: 4px;
+      }
+    }
+    
+    &.abstractlist-vertical {
+      > .container,
+      .abstractlist-container {
+        @media @md-down {
+          padding-left: 0;
+          padding-right: 0;
+        }
+      }
+    }
+  }
+}
+#pageContent {
+  .abstractlist {
+    &.abstractlist-vertical,
+    &.abstractlist-horizontal {
+      .container {
+        padding-left: 0;
+      }
+    }
+  }
+}
+
+.productlist-container {
+  .productlist-no-products {
+    font-family: @brandon-medium;
+    font-size: @spacer-16;
+    line-height: @spacer-22;
+    letter-spacing: 0;
+    font-weight: normal;
+  }
+}
+.abstractlist-horizontal {
+  margin-bottom: 0px;
+  .abstractlist-container {
+    padding: 0px;
+    >div {
+      display: none;
+    }
+    .abstractlist-item-list {
+      .abstractlist-item {
+        padding: 0px !important;
+        .abstractlist-item-link {
+          background-color: @color-charcoal;
+          color: @color-gray-medium;
+        }
+      }
+    }
+  }
+}
+
+@media @md-down {
+  .abstractlist-vertical .abstractlist-container{
+    padding:0 0 20px;
+  }
+  .column-align--space-between.columncontrol .col-12.columncontrol__column:nth-of-type(1) {
+    order: 1 !important;
+  }
+}

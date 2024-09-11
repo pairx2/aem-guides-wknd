@@ -1,0 +1,66 @@
+<sly data-sly-test="${wcmmode.edit}">
+   <p data-sly-unwrap="${properties.title}" data-emptytext="Configure ${component.title}" class="cq-placeholder"></p>
+</sly>
+<sly data-sly-use.banner="com.abbott.aem.adc.freestylelibrede.models.BannerAccordionModel">
+   <div class="${banner.bgColor}">
+      <div class="container ">
+         <div
+            class="adc-banner-accordion justify-content-center  ${(banner.imageAlignment == 'right') ? 'adc-banner-accordion__flip' : ''}">
+            <div class="adc-banner-accordion__image mt-5 text-center col-centered">
+               <div class="text-center align-self-center mb-4">
+                  <p><img data-src="${banner.image}" class="img-fluid lazyload" alt="${banner.heading}"></p>
+               </div>
+               <div class="col-12 col-md-6 col-lg-12  col-xl-10 mx-auto mb-xl-3">
+                  <a href="${banner.ctaLink}" target="${banner.ctaAction}"
+                     class="adc-button full-width adc-button-${banner.ctaType}">
+                     ${banner.ctaText}
+                  </a>
+               </div>
+            </div>
+            <div class="adc-banner-accordion__content align-items-center">
+               <h2 class="adc-title--blue my-4 "><span
+                     class="p-3 position-absolute text-center">${banner.numberIcon}</span>${banner.heading}</h2>
+               <div data-sly-use.idgenerator="idgenerator.js">
+                  <div class="adc-banner-accordion__content--description accordion md-accordion" id="accordion_${idgenerator.id}"
+                     data-sly-list="${banner.bannerList}">
+                     <div class="adc-banner-accordion__content--description-items">
+
+                        <div id="heading_${idgenerator.id}_${itemList.index}">
+                           <h4 class="mb-0 ">
+                              <a data-sly-test="${itemList.index == 0}" href="#collapse_${idgenerator.id}_${itemList.index}" class="btn btn-link collpased"
+                                 data-parent="#accordion_${idgenerator.id}"
+                                 data-toggle="collapse" data-target="#collapse_${idgenerator.id}_${itemList.index}"
+                                 aria-expanded="true" aria-controls="collapse_${idgenerator.id}_${itemList.index}">
+                                 ${item.heading}
+                              </a>
+                              <a data-sly-test="${itemList.index != 0}" href="#collapse_${idgenerator.id}_${itemList.index}" class="btn btn-link collpased"
+                                 data-parent="#accordion_${idgenerator.id}"
+                                 data-toggle="collapse" data-target="#collapse_${idgenerator.id}_${itemList.index}"
+                                 aria-expanded="false" aria-controls="collapse_${idgenerator.id}_${itemList.index}">
+                                 ${item.heading}
+                              </a>
+                           </h4>
+                        </div>
+                        <div data-sly-test="${itemList.index == 0}" id="collapse_${idgenerator.id}_${itemList.index}"
+                           class="collapse show" aria-labelledby="heading_${idgenerator.id}_${itemList.index}"
+                           data-parent="#accordion_${idgenerator.id}">
+                           <div class="container-wrapper-text col-10 pl-0 pb-2">
+                              ${item.description @ context="html"}
+                           </div>
+                        </div>
+                        <div data-sly-test="${itemList.index != 0}" id="collapse_${idgenerator.id}_${itemList.index}"
+                           class="collapse" aria-labelledby="heading_${idgenerator.id}_${itemList.index}"
+                           data-parent="#accordion_${idgenerator.id}">
+                           <div class="container-wrapper-text col-10 pl-0 pb-2">
+                              ${item.description @ context="html"}
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</sly>
+</sly>

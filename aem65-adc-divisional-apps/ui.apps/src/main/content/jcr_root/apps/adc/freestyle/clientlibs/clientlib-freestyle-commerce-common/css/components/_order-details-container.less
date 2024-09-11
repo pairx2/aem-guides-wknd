@@ -1,0 +1,104 @@
+.m-orderdetailscontainer {
+  padding: @spacer-24;
+  border: 0.0625rem solid @gray-lighter-color;
+  border-radius: 0.25rem;
+  background-color: @white-color;
+  margin-bottom: @spacer-40;
+  @media @lg-up {
+    padding: @spacer-32 @spacer-40;
+  }
+  &__header {
+    flex-direction: column;
+    margin: 0 0 @spacer 0;
+    padding: 0 0 @spacer 0;
+    @media @xl-up {
+      flex-direction: row;
+      padding-bottom: @spacer-24;
+      margin-bottom: @spacer-24;
+    }
+    > div:nth-child(2) {
+      display: flex;
+      flex-direction: column-reverse;
+      @media @md-up {
+        flex-direction: row;
+        justify-content: flex-end;
+      }
+    }
+  }
+  &__title {
+    margin-bottom: @spacer;
+    @media @sm-down {
+      font-size: @spacer-24;
+      line-height: @spacer-32;
+    }
+    @media @lg-up {
+      margin: 0;
+    }
+    &:after {
+      content: attr(data-status);
+      display: block;
+      font-size: @spacer-14;
+      font-weight: normal;
+      line-height: @spacer-20;
+    }
+  }
+  &__button {
+    &--credit-memo.a-button,
+    &--invoice.a-button {
+      margin: 0.5rem 0;
+      @media @md-up {
+        margin: 0.5rem;
+      }
+      &[style*='visibility: hidden;'] {
+        display: none;
+      }
+      &:last-child {
+        margin-right: 0;
+      }
+      .btn {
+        display: flex;
+        align-items: center;
+        width: auto;
+        border: solid @primary-color 0.0625rem;
+        letter-spacing: 0.0625rem;
+        padding: 0.625rem 1.5rem;
+        @media @md-up {
+          padding: 0.5rem 1.5rem;
+          > span {
+            font-size: 0.8125rem;
+            line-height: @spacer;
+          }
+        }
+      }
+      .abt-icon-print {
+        font-size: @spacer;
+      }
+    }
+    &--credit-memo {
+      .btn {
+        background-color: transparent;
+        color: @primary-color;
+        &:hover {
+          color: @primary-color;
+        }
+      }
+    }
+  }
+  .columncontrol__column {
+    margin: 0;
+    > div {
+      @media @md-down {
+        margin-bottom: @spacer-24 !important;
+        padding-bottom: @spacer-24 !important;
+        border-bottom: 0.0625rem solid @gray-lighter-color;
+        &.orderdetailsitemlist {
+          border: none;
+        }
+      }
+      &.orderdetailsitemlist {
+        margin: 0;
+        padding: 0;
+      }
+    }
+  }
+}

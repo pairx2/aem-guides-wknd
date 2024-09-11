@@ -1,0 +1,40 @@
+<div  class="cq-placeholder section"  data-emptytext="Configure Banner Component in EDIT Mode" data-sly-test.author="${(wcmmode.edit || wcmmode.design)}" ></div>
+<sly data-sly-use.linkHelper="${'com.abbott.aem.an.similac.core.models.LinkHelperModel' @ href=properties.ctaLink}" />
+<sly data-sly-use.analyticsConfig="${'com.abbott.aem.an.similac.core.models.AnalyticsConfigModel' @ pageName=currentPage.name, sectionTitle =properties.heading , linkName=properties.ctaLabel}" />
+<sly data-sly-test.eventCategory="${properties.eventCategory ? properties.eventCategory : 'banner'}"/>
+<sly data-sly-test.eventAction="${properties.eventAction ? properties.eventAction : 'click'}" />
+<sly data-sly-test.eventLabel="${properties.eventLabel ? properties.eventLabel : analyticsConfig.eventLabel}" />
+<sly data-sly-test.gtmValue="${'{0}{1}{2}{3}{4}' @ format=[eventCategory, '|',eventAction,'|',eventLabel]}" />
+
+<sly data-sly-use.analyticsConfig="${'com.abbott.aem.an.similac.core.models.AnalyticsConfigModel' @ pageName=currentPage.name, sectionTitle = properties.heading }" />
+<sly data-sly-test.eventLabel="${properties.eventLabel ? properties.eventLabel : analyticsConfig.eventLabel}" />
+<sly data-sly-test.gtmValueTitle="${'{0}{1}{2}{3}{4}{5}{6}' @ format=[eventCategory, '|',eventAction,'|',eventLabel,'_','link']}" />
+<sly data-sly-test.gtmValueImage="${'{0}{1}{2}{3}{4}{5}{6}' @ format=[eventCategory, '|',eventAction,'|',eventLabel,'_','image']}" />
+
+
+
+<section class="hero-section">
+	<div class="hero-wrapper">
+		<div class="hero-image">
+			<sly data-sly-include="image-v2.html"></sly>
+		</div>
+		<sly data-sly-test="${properties.ctaTarget && linkHelper.getLinkHrefDomain}">
+			<div class="hero-content-wrapper" data-gtm="${gtmValueImage @context='attribute'}" onclick="window.open('${linkHelper.getLinkHrefDomain @context='uri'}');">
+			</sly>
+			<sly data-sly-test ="${!(properties.ctaTarget) && linkHelper.getLinkHrefDomain }">
+				<div class="hero-content-wrapper" data-gtm="${gtmValueImage @context='attribute'}" onclick="window.location='${linkHelper.getLinkHrefDomain @context='uri'}';">
+				</sly>
+				<sly data-sly-test ="${!linkHelper.getLinkHrefDomain}">
+				    <div class="hero-content-wrapper" data-gtm="${gtmValueImage @context='attribute'}">
+                 </sly>
+				<div class="container">
+					<div class="hero-content ${properties.textVariation}">
+						<p class="overline">${properties.overLine @context='html'}</p>
+						<a href="${linkHelper.linkHref}" target="${properties.ctaTarget ? '_blank' : '_self'}" data-gtm="${gtmValueTitle @context='attribute'}" class="header">${properties.heading @context='html'}</a>
+						<div class="description">${properties.description @context='html'}  </div>
+						<a href="${linkHelper.linkHref}" target="${properties.ctaTarget ? '_blank' : '_self'}" data-gtm="${gtmValue @context='attribute'}" class="btn btn-primary btn-primary-md" data-sly-test="${properties.ctaLabel}">${properties.ctaLabel}</a>
+					</div>
+				</div>
+			</div>
+		 </div>
+	</section> 

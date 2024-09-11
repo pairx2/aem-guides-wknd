@@ -1,0 +1,29 @@
+<div class="card hr-card shadow-sm top-border pic-btm-border show-top-border-sm cmp-teaser${!wcmmode.disabled && teaser.imageResource ? ' cq-dd-image' : ''}"
+   data-sly-use.teaser="com.adobe.cq.wcm.core.components.models.Teaser"
+   data-sly-use.templates="/apps/an/similac/components/content/templates.html"
+   data-sly-use.imageTemplate="image.html"
+   data-sly-use.titleTemplate="title.html"
+   data-sly-use.descriptionTemplate="description.html"
+   data-sly-use.actionsTemplate="actions.html"
+   data-sly-test.hasContent="${teaser.imageResource || teaser.title || teaser.description || teaser.actions.size > 0}">
+
+<div class="d-flex">
+<div class="auto-shrink d-none d-md-flex hr-card-image-wrap">
+	<div class="image-block hr-card-image">
+  	 <sly data-sly-call="${imageTemplate.image @ teaser=teaser}"></sly>
+   </div>
+</div>
+<div class="auto-expand px-md-0_938 hr-card-content">
+   <sly data-sly-call="${titleTemplate.title @ teaser=teaser}"></sly>
+   <div class="d-md-flex hr-card-content-sub">
+      <div class="auto-expand">
+         <sly data-sly-call="${descriptionTemplate.description @ teaser=teaser}"></sly>
+      </div>
+      <div class="auto-shrink pt-md-1 hr-card-buttons ">
+      <sly data-sly-call="${actionsTemplate.actions @ teaser=teaser}"></sly>
+      </div>
+   </div>
+</div>
+</div>
+</div>  
+<sly data-sly-call="${templates.placeholder @ isEmpty=!hasContent, classAppend='cmp-teaser'}"></sly>

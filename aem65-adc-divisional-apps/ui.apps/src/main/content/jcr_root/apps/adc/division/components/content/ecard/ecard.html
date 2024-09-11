@@ -1,0 +1,62 @@
+<!--/* 
+* Copyright (c)  Abbott Laboratories
+* Program Name :  evoucher.html
+* Application  :  Abbott.ADC.FreeStyleLibre US
+* Purpose      :  See description
+* Description  :  This is eCard component which will display voucher details.
+* Modification History:
+* ---------------------
+*    Date                                Modified by                                       Modification Description
+*-----------                            ----------------                                    -------------------------
+*  19-November-2021                			Abbott Labs                                  Initial Creation
+*-----------                           ----------------                                      -------------------------
+
+*/-->
+
+<sly data-sly-test="${WCMMode.edit}"> Edit the eCard Component </sly>
+
+<sly  data-sly-use.ecard="com.abbott.aem.adc.division.models.ECard">
+<input id="eFROVoucher" type="hidden"  value="${ecard.pageTypeName}">
+<section>
+    <div class="container form-status-msg">
+        <div class="row">            
+            <div class="col-12">
+                <h3 class="font28 fontBlue fontMedium  mb-3 mt-3 mt-md-0">${ecard.rightheading @context='html'}</h3>
+                <p class="mb-3">${ecard.rightSubSection @context='html'}
+                </p>
+                <div class="sensor-voucher mt-3">
+                    <div class="voucher-card mx-auto ml-md-0">
+                        <div class="row">
+                            <div class="col-12">
+                                <p class="c_title">${ecard.cardheading  @context='html'}</p>
+                            </div>
+                            <div class="col-6">
+                                <div class="c_logo text-center">
+                                    <img src="${ecard.logoImage}" alt="${ecard.logoImgAltText}"
+                                        class="download-icon">
+                                </div>
+                                <div class="card-details">
+                                    <p class="c_bin"><span class="fontBlue">${ecard.binLabel  @context='html'} </span> <span
+                                            id="binNumber"></span></p>
+                                    <p class="c_group"><span class="fontBlue">${ecard.groupLabel  @context='html'} </span> <span
+                                            id="groupId"></span></p>
+                                    <p class="c_member"><span class="fontBlue">${ecard.memberidLabel  @context='html'} </span> <span
+                                            id="memberId"></span></p>
+                                    <p class="c_expiration"><span class="fontBlue">${ecard.explabel  @context='html'} </span> <span
+                                            id="expirationDate"></span></p>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                ${ecard.cardSectionText @context='html'}
+                            </div>
+                            <p class="card-num">${ecard.cardNumber @context='html'}</p>
+                        </div>
+                    </div>
+                </div>
+                ${ecard.footnotes @context='unsafe'}
+            </div>
+        </div>
+</section>
+<div class="page-break"></div>
+
+</sly>

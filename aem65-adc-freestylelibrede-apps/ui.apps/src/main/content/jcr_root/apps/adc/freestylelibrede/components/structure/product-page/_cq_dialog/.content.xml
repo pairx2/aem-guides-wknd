@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0"
+          xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+          jcr:primaryType="nt:unstructured"
+          sling:resourceType="cq/gui/components/authoring/dialog">
+    <content jcr:primaryType="nt:unstructured">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs jcr:primaryType="nt:unstructured">
+                <items jcr:primaryType="nt:unstructured">
+                    <product
+                            cq:showOnCreate="{Boolean}true"
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Product"
+                            sling:orderBefore="basic"
+                            sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+                        <items jcr:primaryType="nt:unstructured">
+                            <column
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/container">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <productDescription
+                                        cq:showOnCreate="{Boolean}true"
+                                        granite:class="template-type-showhide-target"
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Product description"
+                                        name="./productDescription"
+                                        required="{Boolean}true"
+                                        showhidetargetvalue="multiproductv1">
+                                        <granite:data
+                                            jcr:primaryType="nt:unstructured"
+                                            showhidetargetvalue="multiproductv1"/>
+                                    </productDescription>
+                                    <productList
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                        cq:showOnCreate="{Boolean}true"
+                                            composite="{Boolean}true"
+                                            fieldLabel="Product List">
+                                        <field
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                                                name="./productList">
+                                            <items jcr:primaryType="nt:unstructured">
+                                                <sku
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                        fieldLabel="SKU ID"
+                                                        name="./sku"
+                                                    validation="cq-dialog-link-validation"
+													required="{Boolean}true"/>
+                                                <label
+                                            jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                        fieldLabel="Label"
+                                                        name="./label"
+                                                        validation="cq-dialog-link-validation"
+                                                        required="{Boolean}true"/>
+                                    <productImage
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                        cq:showOnCreate="{Boolean}true"
+                                        fieldLabel="Product Images">
+                                        <field
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                                            name="./productImage">
+                                            <items jcr:primaryType="nt:unstructured"
+                                                   name="./items">
+                                                <productImage
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                    fieldLabel="Product Image"
+                                                    name="./productImage"
+                                                    rootPath="/content/dam/adc"
+                                                    validation="cq-dialog-link-validation"
+													required="{Boolean}true"/>
+                                            </items>
+                                        </field>
+                                    </productImage>
+									<productvideo
+                                        cq:showOnCreate="{Boolean}true"
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                        composite="{Boolean}true"
+                                        fieldLabel="Product Video">
+                                        <field
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                                            name="./videoList">
+                                            <items
+                                                jcr:primaryType="nt:unstructured"
+                                                name="./items">
+                                                <videoid
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    fieldLabel="Video Id"
+                                                    required="{Boolean}true"
+                                                    name="./videoId"/>
+                                                <thumbnail
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                    fieldLabel="Thumbnail Image"
+                                                    name="./thumbnailImage"
+                                                    rootPath="/content/dam/adc"
+                                                    required="{Boolean}true"
+                                                    validation="cq-dialog-link-validation"/>
+                                            </items>
+                                        </field>
+                                    </productvideo>
+                                            </items>
+                                        </field>
+                                    </productList>
+                                    <productSku-typehint
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
+                                            cq:showOnCreate="{Boolean}true"
+                                            name="./productSku@TypeHint"
+                                            value="String[]"/>
+                                    <productImage-typehint
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/hidden"
+                                            cq:showOnCreate="{Boolean}true"
+                                            name="./product@TypeHint"
+                                            value="String[]"/>
+                                    <quantityOrder
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                            fieldLabel="Quantity per order descripton"
+                                            maxlength="{Long}500"
+                                            name="./quantityOrder"/>
+                                    <common-image
+                                            cq:showOnCreate="{Boolean}true"
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                            fieldLabel="Order image"
+                                            name="./commonImage"
+                                            rootPath="/content/dam/adc"/>
+                                </items>
+                            </column>
+                        </items>
+                    </product>
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>

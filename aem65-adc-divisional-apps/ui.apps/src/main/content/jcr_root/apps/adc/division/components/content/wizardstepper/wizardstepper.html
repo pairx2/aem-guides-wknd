@@ -1,0 +1,21 @@
+<sly data-sly-use.wizard="com.abbott.aem.adc.division.models.WizardStepper"
+  data-sly-use.component="com.adobe.cq.wcm.core.components.models.Component"
+  data-sly-use.templates="core/wcm/components/commons/v1/templates.html"
+  data-sly-use.customConfig="com.abbott.aem.platform.common.components.models.CustomConfig">
+  <div id="${component.id}" class="a-wizard a-wizard-stepper ${customConfig.className}">
+    <ul class="a-wizard__steps" data-sly-list.wizardSteps="${wizard.steps}">
+      <li
+        class="wizard-step a-wizard__step--incomplete ${wizardStepsList.first ? 'a-wizard-step--active':''}"
+        data-wizard="${wizardStepsList.index}" data-wizardId="${wizardSteps.stepId}">
+        <span class="a-wizard__steps--icon ${wizardSteps.icon ? 'default-fallback-icon' : ''}">
+          <em class="a-wizard__icon ${wizardSteps.icon} ${wizardSteps.icon ? 'd-block' : 'd-none'}" aria-hidden="true"></em>
+        </span>
+        <span class="a-wizard__label">${wizardSteps.stepLabel @ i18n}</span>
+        <sly data-sly-test="${wizardSteps.stepPoints}">
+          <br>
+          <span class="a-wizard__points">${wizardSteps.stepPoints}</span>
+        </sly>
+      </li>
+    </ul>
+  </div>
+</sly>

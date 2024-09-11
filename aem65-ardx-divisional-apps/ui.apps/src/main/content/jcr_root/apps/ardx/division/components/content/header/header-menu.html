@@ -1,0 +1,62 @@
+
+<template data-sly-template.headerMenu="${@ header}">
+    <div data-sly-use.search="com.abbott.aem.platform.common.components.models.HeaderSearch">
+	<div class="o-header__mega-menu">
+        <div class="container">
+            <!--/* Molecule menu for the mobile */-->
+            <div class="${wcmmode.edit ? '' : 'header__mob-options d-block d-lg-none'}">
+                <div class="menu-icons d-none">
+                    <span class="abt-icon abt-icon-hambuerger-menu"></span>
+                    <span class="abt-icon abt-icon-cross d-none"></span> 
+                </div>
+                <div class="${wcmmode.edit ? 'right-option-edit' : 'mobile-menu-overlay d-none'}">
+                    <div class="mob_menu_sublinks"></div>
+                    <div class="seperator"></div>
+                    <div class="lang-search d-none">
+                        <span class="lang-selected"></span>
+                        <span class="abt-icon abt-icon-right-arrow" aria-hidden="true"></span>
+                    </div>
+                    <div class="${wcmmode.edit ? 'mobile-switch-container-edit' : 'switch-container mobile-switch-container'}">
+                        <div data-sly-test="${wcmmode.edit}">Switch View Mobile</div>
+                        <sly data-sly-resource="${'mobile-switch' @ resourceType=header.linkProxyPath, decoration=true}" />
+                    </div> 
+                    <div class="mob_lang_right_menu"></div>
+                </div>
+            </div>
+            <div class="menu-header-right">
+                <ul  class="${wcmmode.edit ? 'menu-option-right menu-option-right-edit':'menu-option-right'}">
+                    <li class="menu-right-option">
+                        <a class="lang-search d-none d-small-none" href="javascript:;">
+                            <span class="lang-selected"></span>
+                            <span class="abt-icon abt-icon-down-arrow" aria-hidden="true"></span>
+                        </a>
+                    </li>
+                    <li class="menu-right-option">
+                        <!--/* Switch */-->
+                        <div class="${wcmmode.edit ? 'switch-container-edit' : 'switch-container switch-icon d-small-none'}">
+                            <div data-sly-test="${wcmmode.edit}">Switch View</div>
+                            <sly data-sly-resource="${'switch' @ resourceType=header.linkProxyPath, decoration=true}" /> 
+                        </div>
+                        <div class="switch-overlay d-none"></div>              
+                        <!--/* Switch */-->
+                    </li>
+                    <li class="menu-right-option language-switcher">
+                        <div class="${wcmmode.edit ? 'edit-langnav':''}" data-sly-unwrap="${!wcmmode.edit}">
+                            <div class="${wcmmode.edit ? 'lang-dropdown-edit':'lang-dropdown d-none'}">
+                                <span class="abt-icon abt-icon-cross close-mob-dropdown d-none"></span>
+                                <sly data-sly-resource="${'language-navigation' @ resourceType=header.languageNavigationProxyPath}"/>
+                            </div>
+                        </div>
+                        <div class="${wcmmode.edit ? 'edit-langicon':'lang-selector-icon'}">
+                            <div data-sly-test="${wcmmode.edit}">Language Icon</div>
+                            <sly data-sly-resource="${'icon-lang' @ resourceType=header.linkProxyPath, decoration=true}" />
+                        </div>
+                    </li>				
+                </ul>
+            </div>					    
+        </div>
+        <div class="d-none" id="searchRedirectionUrl" data-redirect-url="${search.searchResultsPage @ context='html'}"></div>
+    </div> 
+
+</div>
+</template>

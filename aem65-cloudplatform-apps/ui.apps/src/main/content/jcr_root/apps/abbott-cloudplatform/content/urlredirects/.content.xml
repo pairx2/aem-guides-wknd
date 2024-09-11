@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="cq:Page">
+    <jcr:content
+        jcr:primaryType="cq:PageContent"
+        jcr:title="Manage URL Redirects"
+        sling:resourceType="granite/ui/components/shell/collectionpage"
+        sling:vanityPath="/urlredirects"
+        consoleId="abbott-platform-urlredirects-console"
+        contentPath="/conf"
+        currentView="${state[&quot;urlredirects.shell.collectionpage.layoutId&quot;].string}"
+        modeGroup="abbott-platform-urlredirects-sites"
+        pageURITemplate="/apps/abbott-cloudplatform/content/urlredirects.html{+id}"
+        targetCollection=".abbott-platform-urlredirects-sites">
+        <head jcr:primaryType="nt:unstructured">
+            <clientlibs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/includeclientlibs"
+                categories="[granite.ui.coral.foundation,abbott-cloudplatform.urlredirect.card.app]"/>
+        </head>
+        <actions jcr:primaryType="nt:unstructured">
+            <primary jcr:primaryType="nt:unstructured"/>
+            <secondary jcr:primaryType="nt:unstructured">
+                <create
+                    granite:rel="urlredirect-sites"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/anchorbutton"
+                    action="foundation.link"
+                    href="/apps/abbott-cloudplatform/content/cloudservice/create.html/apps/abbott-cloudplatform/templates/utilities/urlredirectconfig?name=URLRedirect"
+                    id="create-site-link"
+                    rel="urlredirect-sites"
+                    target=".urlredirect-sites"
+                    text="Create"
+                    variant="primary">
+                    <granite:rendercondition
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/renderconditions/and">
+                        <condition1
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/renderconditions/feature"
+                            feature="manage-url-redirect"/>
+                        <condition2
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/renderconditions/privilege"
+                            path="/conf"
+                            privileges="jcr:addChildNodes"/>
+                    </granite:rendercondition>
+                </create>
+            </secondary>
+            <selection jcr:primaryType="nt:unstructured">
+                <viewproperties
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/collection/action"
+                    action="foundation.link"
+                    actionConfigName="granite/ui/shell/actions/properties"
+                    activeSelectionCount="single"
+                    target=".abbott-platform-urlredirects-sites"
+                    variant="actionBar">
+                    <data
+                        jcr:primaryType="nt:unstructured"
+                        href.uritemplate="/mnt/overlay/wcm/core/content/sites/properties.html{?item*}"/>
+                    <granite:rendercondition
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/renderconditions/and">
+                        <condition1
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/renderconditions/feature"
+                            feature="manage-url-redirect"/>
+                        <condition2
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/renderconditions/privilege"
+                            path="/conf"
+                            privileges="jcr:addChildNodes"/>
+                    </granite:rendercondition>
+                </viewproperties>
+                <delete
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/collection/action"
+                    action="abbott-platform.cloudconfig.delete"
+                    actionConfigName="granite/ui/shell/actions/delete"
+                    activeSelectionCount="multiple"
+                    variant="actionBar">
+                    <granite:rendercondition
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/renderconditions/and">
+                        <condition1
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/renderconditions/feature"
+                            feature="manage-url-redirect"/>
+                        <condition2
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/renderconditions/privilege"
+                            path="/conf"
+                            privileges="jcr:removeChildNodes"/>
+                    </granite:rendercondition>
+                </delete>
+            </selection>
+        </actions>
+        <views jcr:primaryType="nt:unstructured">
+            <card
+                granite:rel="abbott-platform-urlredirects-sites"
+                jcr:primaryType="nt:unstructured"
+                jcr:title="Card View"
+                sling:resourceType="granite/ui/components/coral/foundation/masonry"
+                icon="viewCard"
+                itemResourceType="abbott-cloudplatform/components/utilities/urlredirects/card"
+                layoutId="card"
+                limit="{Long}10"
+                metaResourceType="cq/gui/components/coral/admin/page/meta"
+                modeGroup="abbott-platform-urlredirects-sites"
+                selectionMode="$(state[&quot;urlredirects.shell.collectionpage.selectionMode&quot;].boolean}"
+                selector="card"
+                size="${empty requestPathInfo.selectors[2] ? 10 : requestPathInfo.selectors[2]}"
+                src="/apps/abbott-cloudplatform/content/urlredirects/jcr:content/views/card.card{.offset,limit}.html{+id}${not empty param.active ? granite:concat(&quot;?active=&quot;, param.active) : &quot;&quot;}"
+                stateId="urlredirects.shell.collectionpage">
+                <datasource
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="abbott-platform/urlredirect/datasources/urlredirects"
+                    limit="${empty requestPathInfo.selectors[2] ? 10 : requestPathInfo.selectors[2]}"
+                    offset="${requestPathInfo.selectors[1]}"/>
+				<granite:rendercondition
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/renderconditions/feature"
+                    feature="manage-url-redirect"/>
+            </card>
+        </views>
+    </jcr:content>
+    <rules/>
+    <rule/>
+</jcr:root>

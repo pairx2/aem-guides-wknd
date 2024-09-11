@@ -1,0 +1,9 @@
+<template data-sly-template.noItemContent="${@ item='The navigation item', index}">
+<sly data-sly-use.linkHelper="${'com.abbott.aem.an.similac.core.models.LinkHelperModel' @ href=item.path}" />
+<sly data-sly-use.analyticsConfig="${'com.abbott.aem.an.similac.core.models.AnalyticsConfigModel' @ sectionTitle =item.title}" />
+<sly data-sly-test.eventCategory="${properties.eventCategory ? properties.eventCategory : 'navigation'}"/>
+<sly data-sly-test.eventAction="${properties.eventAction ? properties.eventAction : 'select'}" />
+<sly data-sly-test.eventLabel="${properties.eventLabel ?  properties.eventLabel : analyticsConfig.eventLabel}" />
+<sly data-sly-test.gtmValue="${'{0}{1}{2}{3}{4}' @ format=[eventCategory, '|',eventAction,'|',eventLabel]}" />
+   	 	<a href="${linkHelper.linkHrefDomain}" data-gtm="navigation|select|${analyticsConfig.eventLabel @context='attribute'}"  data-gtm="${gtmValue @context='attribute'}" data-sly-test="${item.level == 0}">${item.page.pageTitle || item.title}</a>
+</template>

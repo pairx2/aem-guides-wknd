@@ -1,0 +1,64 @@
+<!--/* 
+Each division/site should create the following clientlibs:
+---------------------------------------------------------------------------------------------
+FOLDER									|	CATEGORIES
+---------------------------------------------------------------------------------------------
+clientlibs-<clientlibsName> 			| abbott.<clientlibsName>
+clientlibs-<clientlibsName>-preload		| abbott.<clientlibsName>-preload (load only the JS)
+---------------------------------------------------------------------------------------------
+**NOTE: If you want to further customize use <header|footer>libsextension.html
+*/-->
+<sly data-sly-use.clientLib="/libs/granite/sightly/templates/clientlib.html"
+	 data-sly-use.page="com.abbott.aem.platform.common.components.models.PlatformPage"
+	 data-sly-set.siteClientlib="abbott.${page.clientlibsName}"
+	 data-sly-set.preloadClientlib="abbott.${page.clientlibsName}-preload"/>
+<sly data-sly-call="${clientlib.css @ categories=page.theme}"/>
+<sly data-sly-call="${clientlib.css @ categories=siteClientlib}"/>
+<sly data-sly-call="${clientlib.js @ categories=preloadClientlib}"/>
+<sly data-sly-test="${page.trustArcCmpId}">
+    <sly data-sly-test.trustArcCoreLibraryUrl="${page.trustArcCoreLibraryUrl && (!(wcmmode.edit || wcmmode.design))}">
+        <script src="${page.trustArcCoreLibraryUrl}${page.trustArcCmpId}"></script> 
+    </sly>
+    <sly data-sly-test.trustArcBlockListUrl="${page.trustArcBlockListUrl && (!(wcmmode.edit || wcmmode.design))}">
+        <script src="${page.trustArcBlockListUrl}${page.trustArcCmpId}"></script> 
+    </sly>
+    <sly data-sly-test.trustArcScriptUrl="${page.trustArcScriptUrl && (!(wcmmode.edit || wcmmode.design))}">
+        <script type="text/javascript" async="async" src="${page.trustArcScriptUrl}${page.trustArcCmpId}"></script>
+    </sly>
+     <script>
+        let _STATE = {};
+        function runOnce() {
+        if (!_STATE.hasRunOnce && window.truste && truste.eu && truste.eu.prefclose) {
+        console.log("doing run once");
+        _STATE.oldValue = truste.eu.bindMap.prefCookie &&
+        truste.eu.bindMap.prefCookie.split(':')[0].replace(/[^\d.]/g, '-');
+        _STATE.oldMethod = truste.eu.prefclose;
+        truste.eu.prefclose = function () {
+        _STATE.oldMethod();
+        if (truste.eu.bindMap.prefCookie &&
+        truste.eu.bindMap.prefCookie.split(':')[0].replace(/[^\d.]/g, '-') !==
+        _STATE.oldValue)
+        setTimeout(function () {
+        window.location.reload();
+        }, 20);
+        }
+        _STATE.hasRunOnce = true;
+        _STATE.i && clearInterval(_STATE.i);
+        }
+        };
+        _STATE.i = setInterval(runOnce, 10);
+      </script>
+</sly>
+<sly data-sly-include="headerlibsextension.html"/>
+<script data-sly-test.isGtmId="${page.gtmId && (!wcmmode.edit && !wcmmode.design)}">
+/* Google Tag Manager  */
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});let f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','${page.gtmId @ context="text"}');
+/* Google Tag Manager End */
+</script>
+<sly data-sly-test="${page.trustArcCmpId}">
+<input type="hidden" id="cmpidField" name="cmpid" value="${page.trustArcCmpId}"/>
+</sly>

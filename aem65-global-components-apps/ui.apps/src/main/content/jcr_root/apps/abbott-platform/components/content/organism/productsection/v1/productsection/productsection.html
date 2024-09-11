@@ -1,0 +1,57 @@
+<sly data-sly-use.productSection="com.abbott.aem.platform.common.components.models.ProductSection"
+	 data-sly-use.component="com.adobe.cq.wcm.core.components.models.Component"
+     data-sly-use.customConfig="com.abbott.aem.platform.common.components.models.CustomConfig"
+	 data-sly-use.template="core/wcm/components/commons/v1/templates.html" />
+	 <section id="section_${component.id}" class="${customConfig.className}">
+		<style data-sly-test="${productSection.startColor && productSection.endColor}">
+		 #section_${component.id @context='styleToken'} {
+		   --productSection-start-color: ${productSection.startColor @context='styleToken'};
+		   --productSection-start-position: ${productSection.startColorPosition  @context='styleToken'}%;
+		   --productSection-end-color: ${productSection.endColor  @context='styleToken'};
+		   --productSection-end-position: ${productSection.endColorPosition  @context='styleToken'}%;
+		   }
+		</style>
+		<!--/* Product Section */-->
+<div id="${component.id}">
+	<div class="o-product-section__container container">
+            <div class="o-product-section__row row">
+			<div class="o-product-section__badge">
+				<sly data-sly-test="${productSection.badgeChecked}"
+					data-sly-resource="${'product-section-badge' @ resourceType=productSection.badgeProxyPath,decoration=true}" />
+			</div>
+			<div class="col-lg-6 col-sm-12 align-self-center o-product-section__content">
+				<div class="o-product-section__title" data-sly-test="${productSection.title}">
+					<div class="h2">${productSection.title @ context="html"}</div>
+				</div>
+				<div class="o-product-section__para" data-sly-test="${productSection.description}">
+					${productSection.description @ context="html"}
+				</div>
+			
+				<div class="o-product-section__custom-list">
+					<sly data-sly-resource="${'product-section-text-list' @resourceType=productSection.customtextlistProxyPath, decoration=true}" />
+				</div>
+			
+				<div class="o-product-section__button-wrapper" data-sly-test="${productSection.buttonCount > 0}">
+					<sly data-sly-list.buttonList="${productSection.buttonList}">
+                    	<sly data-sly-test.col="${'{0}{1}' @format=['product-section-button', buttonList]}" />
+						<sly data-sly-resource="${@ path=col, resourceType=productSection.buttonProxyPath, decoration=true}" />
+					</sly>
+				</div>
+			</div>
+			
+			<div class="col-lg-6 col-sm-12 o-product-section__image-wrapper" data-sly-test="${productSection.productSectionType == 'image'}">
+				<div class="o-product-section__image-column">
+					<sly data-sly-test.imageSize="${productSection.imageSize == 'small' ? 'o-product-section__image o-product-section--small' : 'o-product-section__image o-product-section--large'}" />
+					<sly data-sly-resource="${'product-section-image' @resourceType=productSection.imageProxyPath, decoration=true, cssClassName=imageSize}" />
+				</div>
+			</div>
+
+			<div class="col-lg-6 col-sm-12 o-product-section__video-wrapper" data-sly-test="${productSection.productSectionType == 'video'}">
+				<sly data-sly-resource="${'product-section-video' @ resourceType=productSection.videoProxyPath, decoration=true}" />
+			</div>
+		</div>
+	</div>
+</div>
+</section>
+
+<sly data-sly-call="${template.placeholder @ isEmpty= !productSection.title, classAppend='cmp-product-section'}" />

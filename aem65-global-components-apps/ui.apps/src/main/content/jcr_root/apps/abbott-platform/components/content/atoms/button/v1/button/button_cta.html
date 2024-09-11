@@ -1,0 +1,11 @@
+<sly data-sly-use.button="com.abbott.aem.platform.common.components.models.Button" />
+<sly data-sly-use.customConfig="com.abbott.aem.platform.common.components.models.CustomConfig" />
+<sly data-sly-test.continueButton="${button.buttonType == 'continueButton'}"><div data-btn-type="continue"></sly>
+
+<sly data-sly-test="${button.action == 'modal'}" data-sly-include="link_modal.html" />
+
+<sly data-sly-test="${button.action != 'modal' && button.external && button.redirectConfirm}" data-sly-include="link_external.html" />
+
+<sly data-sly-test="${button.action != 'modal' && (!button.external || !button.redirectConfirm)}" data-sly-include="link_normal.html" />
+
+<sly data-sly-test="${continueButton}"></div></sly>

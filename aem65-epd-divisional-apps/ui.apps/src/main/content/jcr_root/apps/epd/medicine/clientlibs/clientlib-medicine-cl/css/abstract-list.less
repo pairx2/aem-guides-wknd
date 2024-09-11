@@ -1,0 +1,97 @@
+@import './global/variables.less';
+@import './global/media-queries.less';
+
+.abstractlist {
+  @media @md-down {
+    margin-bottom: 0;
+  }
+
+  &-container,
+  > .container {
+    @media @lg-only {
+      padding-right: 0 !important;
+    }
+  }
+
+  &-title-wrapper,
+  &-item-link {
+    font-family: @brandon-bold;
+    text-transform: uppercase;
+  }
+
+  &-title-wrapper::before {
+    background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAQAAAC1+jfqAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQfiDAEUCjlU0fFjAAAAf0lEQVQoz62OTQ6CQAxGH5K4IAFOQmbhteBabGbNDTQeQFxgvIeaSSgLY9L5Y+Xrqu1LvxYc6chzAxiRTNmvVbMk10/a3yHDK1q/OemsIRL68J0xla7Rn6h0jcEhCM5P11wQhLMeHTxhBuCeFxL8W3iwhkLpdVcsDR+m/auVbjabgEjp4yZmaAAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAxOC0xMi0wMVQyMDoxMDo1NyswMDowMNEm/m4AAAAldEVYdGRhdGU6bW9kaWZ5ADIwMTgtMTItMDFUMjA6MTA6NTcrMDA6MDCge0bSAAAAAElFTkSuQmCC") no-repeat;
+    display: inline-block;
+    content: "";
+    width: @spacer-15;
+    height: @spacer-14;
+  }
+
+  &-item-list {
+    .abstractlist-vertical & {
+      background-color: #d9d9d6;
+      padding: 0 @spacer-20 @spacer-12 @spacer-20;
+    }
+  }
+
+  &-item {
+    .abstractlist-horizontal & {
+      background-color: #222731;
+      display: flex;
+      text-align: center;
+    }
+  }
+
+  &-item-link {
+    &:hover {
+      text-decoration: none;
+    }
+
+    .abstractlist-horizontal & {
+      flex: 1;
+      max-width: 100%;
+      align-self: center;
+      
+      &:hover,
+      &:focus,
+      &:active {
+        color: var(--abstractlist-color);
+      }
+    }
+
+    .abstractlist-vertical & {
+      &:hover,
+      &:focus,
+      &:active{
+        color: @color-black-light;
+      }
+    }
+  }
+
+  /* abstract list - product category page */
+  .product-category-wrapper  & {
+    &.abstractlist-horizontal {
+      margin-bottom: 0 !important;
+  
+      > .container {
+        max-width: none;
+      }
+
+      .abstractlist-container {
+        @media @md-down {
+          padding: 0;
+        }
+      }
+    }
+
+    &.abstractlist-vertical {
+      > .container,
+      .abstractlist-container {
+        @media @md-down {
+          padding-left: 0;
+          padding-right: 0;
+        }
+      }
+    }
+  }
+}

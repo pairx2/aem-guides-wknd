@@ -1,0 +1,244 @@
+@import '../media-queries.less';
+@import '../variables.less';
+@import '../mixin.less';
+
+body {
+    .a-button {
+        .btn {
+            .font-size(16px, 22px);
+            font-family: @brandonblack;
+            font-weight: normal;
+            padding: 7px 20px;
+            border: none;
+            border-radius: 0;  
+            z-index: 1;   
+            &:hover, &:focus {
+                box-shadow: none;  
+                text-decoration: none;                             
+            }
+            &:hover{
+                &:before {
+                    -webkit-transform: scaleY(1);
+                    transform: scaleY(1);
+                }              
+            }
+            &:active {
+                background-color: @color-white;
+            }
+            &:before {
+                .btn-overlay;
+            }  
+            @media @md-down {
+                width: auto;
+            }     
+        }
+        
+        &:disabled, &.disabled {
+            background-color: @border-light-gray;
+            color: @color-black;
+            border: none;
+        }         
+        &--sm {
+            .btn {
+                font-size: @font-size-14;
+            }
+        }
+        &--md {
+            .btn {
+                font-size: @font-size-16;
+            }
+        }
+        &--lg {
+            .btn {
+                font-size: 18px;
+            }
+        }
+        &--primary {
+            .btn {     
+                background-color: @color-medium-blue;
+                color: @color-white;       
+                &:visited {
+                    box-shadow: none;
+                }                
+                &:focus {
+                    border: none;
+                    box-shadow: none;
+                }                
+                &:hover,
+                &:active {
+                    border: none;
+                    color: @color-medium-blue;
+                    box-shadow: none;
+                }
+                &:active {
+                    border: none;
+                    background-color: @color-white;
+                }
+                &:hover{                    
+                    .abt-icon{
+                        &::before{
+                            color: var(--primary-color) !important;
+                        }
+                    }
+                }
+            }
+            &-v1 {
+                .btn {
+                    border: none;
+                    color: @color-medium-blue;
+                    background-color: @color-white;
+                    &:visited, &:focus {
+                        border: none;
+                    }
+                    &:hover,
+                    &:active {
+                        color: @color-white;
+                        box-shadow: none;
+                    }
+                    &:active {
+                        border: none;
+                        background-color: @color-medium-blue;
+                    }
+                    &:before {
+                        background-color: @color-medium-blue;
+                    }
+                    &:hover{
+                        .abt-icon{
+                            &::before{
+                                color: @color-white !important;
+                            }
+                        }
+                    }
+                }
+            }
+            &-v2 {
+                .btn {
+                    background-color: @info-blue;
+                    color: @color-white;
+                    border: none;                                    
+                    &:focus, &:visited {
+                        border: none;
+                    }    
+                    &:hover,
+                    &:active {
+                        color: @info-blue;
+                        border: none;
+                        box-shadow: none;
+                    }    
+                    &:hover{
+                        .abt-icon{
+                            &::before{
+                                color: var(--tertiary-color) !important;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        &--secondary {
+            .btn {
+                background-color: @color-navy-blue;
+                color: @color-white;
+                border: none;
+                &:focus, &:visited {
+                    box-shadow: none;
+                    border: none;                    
+                }
+                &:hover,
+                &:active {
+                    color: @color-navy-blue;
+                    border: none;
+                    box-shadow: none;
+                    background-color: @color-navy-blue;
+                }
+            }
+        }
+        &--secondary-v1 {
+            .btn {
+                background-color: @color-thin-blue;
+                color: @color-white;
+                border: none;
+                &:focus, &:visited {
+                    box-shadow: none;
+                    border: none;                    
+                }
+                &:hover,
+                &:active {
+                    color: @color-thin-blue;
+                    border: none;
+                    box-shadow: none;
+                    background-color: @color-thin-blue;
+                }
+                &:hover{
+                    .abt-icon{
+                        &::before{
+                            color: var(--tertiary-color) !important;
+                        }
+                    }
+                }
+            }
+        }
+        &--tertiary {
+            .btn {
+                background-color: @color-megenta;
+                color: @color-white;
+                border: none;                                
+                &:focus, &:visited {
+                    border: none;
+                }
+                &:hover,
+                &:active {
+                    color: @color-megenta;
+                    border: none;
+                    box-shadow: none;
+                }
+                &:hover{
+                    .abt-icon{
+                        &::before{
+                            color: var(--tertiary-color) !important;
+                        }
+                    }
+                }
+            }
+        }
+        &--danger {
+            .btn {
+                background-color: @color-danger;
+                color: @color-white;
+                border: none;
+                &:focus, &:visited {
+                    box-shadow: none;
+                }
+                &:hover,
+                &:active {
+                    color: @color-danger;
+                    border: none;
+                    box-shadow: none;
+                }
+                &:hover{
+                    .abt-icon{
+                        &::before{
+                            color: var(--danger-color) !important;
+                        }
+                    }
+                }
+            }
+        }
+        &--primary, &--primary-v1, &--primary-v2, &--danger, &--tertiary, 
+        &--secondary, &--secondary-v1 {
+            .btn {
+                &:disabled, &.disabled {
+                    background-color: @border-light-gray;
+                    color: @color-black;
+                    border: none;
+                }            
+            }
+        }
+        .m-popup {
+            a img {
+                max-width: 100%;
+                cursor: pointer;
+            }
+        }
+    }    
+}

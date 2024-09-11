@@ -1,0 +1,50 @@
+<!-- Google Tag Manager (noscript) --> 
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W5SZB5M"
+height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<sly class="abbott-wrapper" data-sly-use.page="com.abbott.aem.platform.common.components.models.PlatformPage"></sly>
+<sly  data-sly-use.object="com.abbott.aem.bts.cybersecurity.components.model.CybersecurityPage"></sly>
+<sly data-sly-test="${page.headerFragmentPath}" data-sly-resource ="${@path=page.headerFragmentPath, selectors='content', wcmmode='disabled'}">
+</sly>
+<div class="runmode d-none" data-runmode="${(wcmmode.edit || wcmmode.preview) ? 'false' : 'true'}"></div>
+<input type="hidden" name="x-preferred-language" value="${page.languageCode}" data-header="true"/>
+<input type="hidden" name="x-country-code" value="${page.countryCode}" data-header="true"/>
+<input type="hidden" name="x-application-id" value="${page.sitename}" data-header="true"/>
+<input type="hidden" name="SIGNIN_PAGE_URL" value="${object.signInPage}" data-config="true" />
+<input type="hidden" name="HOME_PAGE_URL" value="${object.homePage}" data-config="true" />
+<input type="hidden" name="INFO_PAGE_URL" value="${object.infoPage}" data-config="true" />
+<input type="hidden" name="VSI_PAGE_URL" value="${object.vsiPage}" data-config="true" />
+<input type="hidden" name="API_BASE" value="${object.apiEndPoint}" data-config="true" />
+<input type="hidden" name="ACTION" value="${object.tableBodyParams}" data-config="true" />
+<sly data-sly-test="${object.productPage}">
+<input type="hidden" name="PRODUCT_PAGE_URL" value="${object.productPage}" data-config="true" />
+</sly>
+<sly data-sly-test="${object.productId}">
+<input type="hidden" name="PRODUCT-ID" value="${object.productId}" data-config="true"/>
+</sly>
+<sly data-sly-use.templatedContainer="com.day.cq.wcm.foundation.TemplatedContainer"
+     data-sly-repeat.child="${templatedContainer.structureResources}"
+     data-sly-resource="${child.path @ resourceType=child.resourceType, decorationTagName='div'}"></sly>
+	 
+<div class="abbott-wrapper">
+    <sly data-sly-test.authorMode="${wcmmode.edit}"></sly>
+    <div class="${authorMode?'cookie-bar-edit' :''}">
+		<sly data-sly-test="${page.cookieFragmentPath}" data-sly-resource ="${@path=page.cookieFragmentPath, selectors='content', wcmmode='disabled'}"></sly>
+	</div>
+    <sly data-sly-test="${page.footerFragmentPath}" data-sly-resource ="${@path=page.footerFragmentPath, selectors='content', wcmmode='disabled'}"></sly>
+</div>
+
+<div id="site-leaving-popup-content" class="${wcmmode.edit ? '' : 'modal'}">
+    <div class="m-popup-content">
+        <sly data-sly-test="${page.siteLeavingPopupFragmentPath}" data-sly-resource="${@path=page.siteLeavingPopupFragmentPath, selectors='content', wcmmode='disabled'}"></sly>
+    </div>
+</div>
+<!-- Block for site entering popup starts-->
+<div id="site-entering-popup-content" class="${wcmmode.edit ? '' : 'modal'}" data-api-url="${page.geolocationEndPointURL}" 
+	data-wcm-edit-mode = "${wcmmode.edit ? 'true' : 'false'}"
+	data-site-entering-popup-required = "${page.siteEnteringPopupFragmentPath ? 'true' : 'false'}">
+	<div class="m-popup-content">
+        <sly data-sly-test="${page.siteEnteringPopupFragmentPath}" data-sly-resource="${@path=page.siteEnteringPopupFragmentPath, selectors='content', wcmmode='disabled'}"></sly>
+    </div>
+</div>
+<!-- Block for site entering popup ends-->

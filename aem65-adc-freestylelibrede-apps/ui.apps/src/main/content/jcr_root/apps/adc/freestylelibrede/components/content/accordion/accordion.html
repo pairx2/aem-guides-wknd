@@ -1,0 +1,28 @@
+
+<div class="cmp-accordion" 
+	data-sly-use.template="core/wcm/components/commons/v1/templates.html"
+    data-cmp-is="accordion"
+    data-sly-use.accordion="com.abbott.aem.adc.freestylelibrede.models.AccordionModel"
+    data-sly-use.icon="adc/freestylelibrede/components/content/templates/icon/icon.html"
+	data-sly-test="${wcmmode.edit}"
+    data-sly-unwrap="${accordion.title}">
+</div>
+<sly data-sly-call="${template.placeholder @ isEmpty=true}"></sly>
+<sly data-sly-test.expanded="${wcmmode.edit || accordion.collapsed=='no'}">
+<div class="level-0-accordion active">
+    <h5>${accordion.title}
+		<sly data-sly-call="${icon.icon @ size='md', name='arrow-down-blue', cssClass='rotate-180'}"></sly>
+    </h5>
+</div>
+</sly>
+<sly data-sly-test="${!expanded}">
+<div class="level-0-accordion">
+    <h5>${accordion.title}
+		<sly data-sly-call="${icon.icon @ size='md', name='arrow-down-blue'}"></sly>
+    </h5>
+</div>
+</sly>
+
+<div class="level-0-content">
+	<div data-sly-resource="${'accordion' @ resourceType='wcm/foundation/components/responsivegrid'}"></div>
+</div>

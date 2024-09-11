@@ -1,0 +1,132 @@
+@import "../../../../../clientlibs/clientlib-base/scss/base/functions";
+@import "../../../../../clientlibs/clientlib-base/scss/base/mixins";
+@import "../../../../../clientlibs/clientlib-base/scss/base/variables";
+
+.abbott {
+  &-brands {
+    .abbott-nav {
+      &__list {
+        background-color: $white;
+        display: flex;
+        flex: 1 1 285px;
+        flex-direction: column;
+        list-style-type: none;
+        margin-bottom: 0;
+        max-width: 285px;
+        padding: 0;
+      }
+
+      &__text {
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+        color: $blue;
+        display: flex;
+        font-size: 16px;
+        font-family: $font-brandon-text-black;
+        font-weight: 900;
+        padding: 15px 0 12px 20px;
+        position: relative;
+        text-transform: uppercase;
+        z-index: 1;
+
+        em {
+          display: none;
+        }
+      }
+    }
+
+    .xf-content-height {
+      margin: 0;
+    }
+
+    &-nav {
+      background-color: $wild-sand;
+      min-height: 363px;
+
+      .list-comp {
+        cursor: pointer;
+        background-color: $wild-sand;
+        position: relative;
+
+        &__title {
+          display: block;
+          margin: 0;
+
+          a {
+            color: $black;
+            display: block;
+            font-family: $font-brandon-text-black;
+            font-weight: 900;
+            font-size: 14px;
+            line-height: 24px;
+            padding: 8px 10px 8px 20px;
+            text-transform: uppercase;
+
+            &:hover {
+                color: $blue;
+                text-decoration: none;
+              }
+          }
+
+          &:hover {
+            color: $blue;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+            position: relative;
+            text-decoration: none;
+            z-index: 9;
+          }
+        }
+
+        &__items {
+          background: $white;
+          border: 1px solid $dark-silver;
+          box-shadow: 0 5px 5px rgba(0, 0, 0, 0.19);
+          color: $black;
+          display: none;
+          list-style-type: none;
+          margin: 0;
+          padding: 6px 20px 6px 5px;
+          position: absolute;
+          right: 0;
+          top: 0;
+          transform: translateX(100%);
+          z-index: 99;
+
+          &:hover {
+            display: block;
+          }
+        }
+
+        &__item {
+          padding: 6px 0 6px 6px;
+          font-family: $font-brandon-text-black;
+          font-weight: 900;
+          min-width: 280px;
+          text-transform: capitalize;
+        }
+
+        &:hover {
+          .list-comp {
+            &__items {
+              @include media-breakpoint-up(xl) {
+                display: block;
+              }
+            }
+
+            &__link {
+              color: $black;
+
+              &:hover {
+                color: $blue;
+                text-decoration: none;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    @include media-breakpoint-down(sm) {
+      display: none;
+    }
+  }
+}

@@ -1,0 +1,61 @@
+<template data-sly-template.products="${@ dynamicProductCompare, multiproduct}">
+	<sly data-sly-list.productItem="${multiproduct}">
+
+
+		<div class="col-3 ">
+			<a class="removeProduct" href="javascript:void(0)"><em class="removeicon ${dynamicProductCompare.imgRemoveIcon}"></em></a>
+			<div class="product" data-top="product_${productItem.id}">
+
+			<div class="productImg">
+				<sly data-sly-list.imageList="${productItem.images}"> 
+					<img class="img-fluid d-none" src="${imageList.filename @ context='html'}" alt="img"> 
+				</sly>
+
+			</div>
+				<p class="productName">${productItem.productName @ context='html'}</p>
+				<input class="defaultselect" type="hidden" dataSelect="${productItem.defaultFormulationCode}">
+				<p class="description">${productItem.description @ context='html'}</p>
+
+
+
+
+				<div class="cmp-product-detail__formulation-dropdowns dropDownCommon">
+					<div class="cmp-product-detail__serving-dropdown cmp-product-detail__formulation-filter">
+						<div class="a-dropdown cmp-product-detail__formulation-filter--item" data-required="true" data-js-component="form-dropdown">
+							<div class="a-dropdown__container form-group">
+								<span class="dropDownLabel">Flavor/Form</span>
+								<div class="a-dropdown__field" id="filters_product-comparison_flavor-form"> <span class="a-dropdown__placeholder">(Flavor/Form)</span>
+									<ul class="a-dropdown__menu nav nav-tabs o-content-section__list">
+										<sly data-sly-list.ingredientsList="${productItem.ingredients}">
+											<li role="presentation" class="o-content-section__list-item" id="${ingredientsList.aCode}"> <a id="product-comparison_flavor-form_${productItem.productName @ context='html'}_Flavor/Form" href="#" class="o-content-section__list-item-link">
+                                                    ${ingredientsList.FlavorName @ context='html'} ${ingredientsList.formulationType @ context='html'}
+                                                </a> </li>
+										</sly>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="cmp-product-detail__formulation-dropdown dropDownCommon">
+					<div class="cmp-product-detail__servingSize-dropdown">
+						<div class="a-dropdown" data-required="true" data-js-component="form-dropdown">
+							<div class="a-dropdown__container form-group">
+								<span class="dropDownLabel">Serving Size</span>
+								<div class="a-dropdown__field" id="filters_product-comparison_serving-size"> <span class="a-dropdown__placeholder">(Size)</span>
+									<ul class="a-dropdown__menu nav nav-tabs o-content-section__list">
+										<sly data-sly-list.servingSizeList="${productItem.servingSize}">
+											<li role="presentation" class="o-content-section__list-item" data-id="${servingSizeList.id}"> <a href="#" id="product-comparison_serving-size_${productItem.productName @ context='html'}_Size" class="o-content-section__list-item-link ${flavorList.count==1 ? 'selected' : ''}">
+														${servingSizeList.servingSizeName @ context='html'}
+													</a> </li>
+										</sly>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</sly>
+</template>

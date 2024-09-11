@@ -1,0 +1,270 @@
+
+
+.adc-passwordfinder {
+	&__title {
+		.font-size-rems(36);
+		font-weight: @weight-bold;
+		color: @color-fsl-blue;
+	}
+	&__subtitle {
+		font-weight: @weight-medium-bold;
+		color: @color-fsl-blue;
+		@media @mobile-break {
+			.font-size-rems(15);
+		}
+	}
+	&__blocktext-initial {
+		.font-size-rems(13);
+		color: @color-fsl-blue;
+		@media @mobile-break {
+			margin-top: 0 !important;
+		}
+	}
+	&__link-text {
+		.font-size-rems(13);
+		color: @color-fsl-blue;
+	}
+	&__strength-text{
+		right: -5%;
+		@media @desktop-break-portrait{
+			right: -7%;
+		}
+	}
+	&__strength-title {
+		.font-size-rems(12);
+		color: @color-fsl-blue;
+	}
+	&__input {
+		position: relative;
+		width: 100%;
+		.form-control {
+			height: 45px;
+			&:focus {
+				border: 1px solid @color-fsl-black;
+				box-shadow: none;
+			}
+		}
+	}
+	&__input-viewicon {
+		.adc-icon{
+			position: absolute;
+			top: 9px;
+			display: inline-block;
+			height: 25px;
+			width: 25px;
+			vertical-align: middle;
+			right: 7px;
+		}
+	}
+	.adc-progressbar {
+		height: 4px;
+		overflow: hidden;
+		background-color:@color-fsl-grey-3;
+		border-radius: 2px;
+		box-shadow: inset 0 1px 2px rgba(0, 0, 0, .1);
+		&--red {
+			background-color:@color-fsl-red;
+		}
+		&--green {
+			background-color:@color-fsl-green;
+		}
+		&--yellow {
+			background-color: @color-fsl-yellow;
+		}
+		&--orange {
+			background-color: @color-fsl-orange-2;
+		}
+	}
+	.adc-bullet {
+		height: 9.33px;
+		width: 8.82px;
+		border-radius: 50%;
+		box-sizing: border-box;
+		border: 0.5px solid @color-fsl-white;
+		&--red {
+			background-color: @color-fsl-red;
+			box-shadow: 0 0 4px 0 @color-fsl-red;
+		}
+		&--green {
+			background-color: @color-fsl-green !important;
+			box-shadow: 0 0 4px 0 @color-fsl-green !important;
+		}
+	}
+	&__tootltip{
+		width: 8%;
+	}
+	&__password-meter-text{
+		width: 92%;
+	}
+    &__eye-position{
+	position:absolute !important;
+		top: 8px;
+		right: 5%;
+	}
+	&__error {
+        color: @color-fsl-orange;
+        font-size: 0.75rem;
+        margin-left: 25px;
+	}
+}
+
+.adc-tooltipleft {
+	position: relative;
+	display: inline-block;
+	&__content {
+		visibility: hidden;
+		width: 170px;
+		background-color: @color-fsl-white;
+		color: @color-fsl-black;
+		text-align: center;
+		border-radius: 6px;
+		padding: 5px 0;
+		position: absolute;
+		top: 5px;
+		right: 105%;
+		box-shadow: 0 3px 9px 0 rgba(0, 0, 0, 0.35);
+		@media @mobile-break {
+			top: 150%;
+			left: 18%;
+			margin-left: -18%;
+		}
+		@media @desktop-break {
+			width: 140px;
+			top: 0;
+		}
+	}
+	&__content::after {
+		content: "";
+		position: absolute;
+		top: 50%;
+		left: 100%;
+		margin-top: -5px;
+		border-width: 5px;
+		border-style: solid;
+		border-color: transparent transparent transparent @color-fsl-white;
+		@media @mobile-break {
+			top: auto;
+			bottom: 100%;
+			left: 50%;
+			margin-left: -5px;
+			border-color: transparent transparent @color-fsl-white transparent;
+		}
+	}
+	&__icon {
+		background: url("@{icon-path}/CapsLock.svg") no-repeat;
+		height: 24px;
+		width: 24px;
+		position: absolute;
+		top: 10%;
+		margin-left: 2%;
+		@media @desktop-break {
+			top: 18%;
+		}
+	}
+	&__text {
+		.font-size-rems(12);
+		@media @desktop-break {
+			width: 50%;
+			display: inline-block;
+		}
+	}
+}
+
+.adc-tooltipright {
+	position: relative;
+	display: inline-block;
+	&__content {
+		visibility: hidden;
+		width: 255px;
+		background-color: @color-fsl-white;
+		color: @color-fsl-black;
+		.font-size-rems(12);
+		text-align: center;
+		border-radius: 6px;
+		padding: 5px 0;
+		position: absolute;
+		z-index: 1;
+		top: -145px;
+		left: 150%;
+		box-shadow: 0 3px 9px 0 rgba(0, 0, 0, 0.35);
+		@media @desktop-break {
+			top: 185%;
+			margin-left: -90px;
+		}
+		@media @mobile-break {
+			top: 185%;
+			margin-left: -266px;
+		}
+	}
+	&__content::after {
+		content: "";
+		position: absolute;
+		top: 90%;
+		right: 100%;
+		margin-top: -5px;
+		border-width: 7px;
+		border-style: solid;
+		border-color: transparent @color-fsl-white transparent transparent;
+		@media @desktop-break {
+			top: -5%;
+			left: 23%;
+			border-color: transparent transparent @color-fsl-white transparent;
+		}
+		@media @mobile-break {
+			top: -5%;
+			left: 92%;
+			border-color: transparent transparent @color-fsl-white transparent;
+		}
+	}
+	&:hover &__content {
+		visibility: visible;
+	}
+}
+.Password-info-block {
+	.adc-tooltipbottom{		
+	position: relative;
+	display: inline-block;
+	&__content {
+		width: 317px;
+		background-color: #ffffff;
+		color: #000000;
+		text-align: center;
+		border-radius: 6px;
+		padding: 5px 0;
+		position: absolute;
+		top: 31px;
+		right: -100%;
+		box-shadow: 0 3px 9px 0 rgba(0, 0, 0, 0.35);
+		z-index: 99;
+		bottom: auto;
+    	left: auto;
+		@media @mobile-break {
+			top: 125%;
+			left: 0;
+			margin-left: -287px;
+			right: 0;
+		}
+		@media @desktop-break {
+			width: 317px;
+			top: 30px;
+		}
+	}
+	&__content::after {
+		content: "";
+		position: absolute;
+		top: 0%;
+		left: 87%;
+		margin-top: -10px;
+		border-width: 5px;
+		border-style: solid;		
+		border-color: transparent transparent @color-fsl-white;
+		@media @mobile-break {
+			top: auto;
+			bottom: 100%;
+			left: 93%;
+			margin-left: -5px;
+			border-color: transparent transparent #ffffff;
+		}
+	}	
+}        
+}

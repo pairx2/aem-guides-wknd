@@ -1,0 +1,15 @@
+<sly data-sly-use.templates="abbott/components/content/templates.html"/>
+<sly data-sly-use.imageSliderModel="com.abbott.aem.an.abbottstore.models.ImageSliderModel" />
+ <sly data-sly-test.imagesList="${imageSliderModel.imgSliderJson}">
+   <script>
+      var productImagesJSON = Object.freeze(JSON.parse("${imagesList @ context='scriptString'}"));
+   </script>
+  </sly>
+<section class="abbott-slider" id ="abbott-slider">
+   <div id="page-slider" class="fotorama" data-ratio="5/4" data-loop="true" data-nav="thumbs" data-thumbwidth="80" data-thumbHeight="80" data-allowfullscreen="true">
+      <sly data-sly-test.checkImageExists="${!imageSliderModel.imgSliderJson}">
+         <a href="${imageSliderModel.getDefaultImage}" data-thumb="${imageSliderModel.getDefaultImage}"></a>
+      </sly>
+   </div>
+</section>
+<sly data-sly-call="${templates.placeholder @ isEmpty= !(checkImageExists || imagesList)}"></sly>

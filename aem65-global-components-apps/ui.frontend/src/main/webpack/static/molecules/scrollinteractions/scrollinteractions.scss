@@ -1,0 +1,184 @@
+.scrollinteractionscontainer {
+    width: 100%;
+    max-width: none;
+    position: relative;
+    padding: 0;
+    overflow: hidden;
+
+    &.cq-Editable-dom {
+        background: var(--scroll-interactions-author-color);
+    }
+
+    &__background {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+    }
+
+    &__wrapper {
+        position: relative;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    &__title {
+        width: 100%;
+        text-align: center;
+        margin: 0;
+        padding: var(--scroll-interactions-margin-lg) 0;
+        position: relative;
+        z-index: 10;
+
+        @include media-breakpoint-down(md) {
+            padding: var(--scroll-interactions-margin-sm) 0;
+        }
+
+        h3 {
+            color: var(--scroll-interactions-text-color);
+            font-size: var(--scroll-interactions-title-size);
+            line-height: var(--scroll-interactions-title-size);
+            margin: 0;
+        }
+    }
+
+    &__media {
+        position: absolute;
+        width: 100%;
+        max-width: 1200px;
+        top: 0;
+        left: 0;
+
+        .media {
+            &__wrapper {
+                position: relative;
+                max-width: 60%;
+
+                @include media-breakpoint-down(md) {
+                    margin: 32vh auto 0;
+                    max-width: 80%;
+                }
+            }
+
+            &__layer {
+                position: absolute;
+                top: 0;
+                left: 0;
+
+                img {
+                    width: 100%;
+                    height: auto;
+                }
+
+                &--layer-data-point {
+                    z-index: 10;
+
+                    @include media-breakpoint-down(md) {
+                        display: none;
+                    }
+                }
+
+                &--layer-zoom {
+                    z-index: 8;
+                }
+
+                &--layer-parallax {
+                    z-index: 5;
+
+                    @include media-breakpoint-up(lg) {
+                        img {
+                            position: relative;
+                            width: auto;
+                            left: -33%;
+                        }
+                    }
+                }
+
+                &--layer-fade {
+                    z-index: 1;
+                }
+
+                &--data-right {
+                    top: 20%;
+                    left: 500px;
+                    opacity: 0;
+
+                    img {
+                        width: 140px;
+                        height: auto;
+                    }
+                }
+
+                &--data-bottom {
+                    top: 55%;
+                    left: 100px;
+                    opacity: 0;
+
+                    img {
+                        width: 380px;
+                        height: auto;
+                    }
+                }
+            }
+        }
+    }
+
+    .m-scroll-interactions {
+        width: 100%;
+        color: var(--scroll-interactions-text-color);
+        position: relative;
+        z-index: 20;
+
+        /* For authoring side only */
+        &.cq-Editable-dom {
+            height: 600px;
+        }
+
+        .container {
+            height: 100%;
+        }
+
+        &__row {
+            align-items: center;
+            height: 100%;
+
+            @include media-breakpoint-down(md) {
+                flex-direction: column;
+                flex-wrap: nowrap;
+            }
+        }
+
+        &__media {
+            .media__target {
+                opacity: 0;
+                transition: all 0.5s ease-in-out;
+
+                &.visible {
+                    opacity: 1;
+                }
+            }
+        }
+
+        &__text {
+            @include media-breakpoint-down(md) {
+                padding-top: 18vh;
+            }
+
+            * {
+                color: var(--scroll-interactions-text-color);
+            }
+
+            img {
+                max-width: 100%;
+            }
+
+            .columncontrol__column {
+                padding-left: 0;
+                padding-right: 0;
+            }
+
+            .button {
+                margin-bottom: var(--scroll-interactions-margin-sm);
+            }
+        }
+    }
+}

@@ -1,0 +1,867 @@
+/**********************************
+accordion Component
+**********************************/
+.accordion {
+  //Style system to show accordion as Button with expanded view
+  &.accordion__expanded-button-view {
+    .m-accordion {
+      .m-accordion__content-items {
+        border: none;
+
+        .m-accordion__header {
+          background-color: @abbott-gray;
+          height: 1.75rem;
+          justify-content: center;
+
+          .m-accordion-toggle {
+            .m-accordion-icon:last-child {
+              .abt-icon:before {
+                display: inline-block;
+                transform: rotate(90deg);
+              }
+            }
+          }
+
+          @media @md-down {
+            align-items: center;
+            height: auto;
+          }
+
+          .m-accordion__title-wrapper {
+            padding: 0;
+            width: auto;
+          }
+
+          .m-accordion__icon-wrapper {
+            padding-top: 0.5rem;
+          }
+
+          * {
+            color: @white;
+            font-family: @font-brandon-grotesque-bold;
+            font-size: 1rem;
+            text-transform: uppercase;
+          }
+        }
+
+        .m-accordion__body {
+          background-color: @white;
+          padding: 10px;
+          transition: all 0.3s ease;
+
+          @media @lg-only {
+            padding: 5px;
+          }
+        }
+      }
+    }
+  }
+
+  // Style system to achieve the accordion functionality.
+  &.accordion__expand-collapse-group {
+    .m-accordion__content-items {
+      border-top: 1px solid @abbott-light-gray;
+      border-bottom: 1px solid @abbott-light-gray;
+
+      &.m-accordion__expanded {
+        background: @abbott-light-silver;
+        border-bottom: none;
+
+        &:hover {
+          .m-accordion__header {
+            * {
+              color: @abbott-blue !important;
+            }
+          }
+        }
+      }
+
+      .m-accordion__header {
+        * {
+          color: @abbott-blue !important;
+          font-weight: 500 !important;
+        }
+
+        .m-accordion__icon-wrapper {
+          padding-left: 0;
+        }
+      }
+
+      .m-accordion__body {
+        padding-left: 1.75rem !important;
+        transition: 0.2s all ease;
+      }
+
+      &:hover {
+        background: @abbott-light-silver;
+
+        .m-accordion__header {
+          * {
+            color: @black !important;
+          }
+        }
+      }
+    }
+
+    #accordion-top .m-accordion__content-items:first-child {
+      border: 1px solid @abbott-light-gray;
+
+      .m-accordion__header {
+        background: @white;
+      }
+    }
+
+    @media @lg-down {
+      .m-accordion__content-items:first-child.m-accordion__expanded
+        .m-accordion__header {
+        background-color: @abbott-light-silver !important;
+      }
+    }
+  }
+
+  &.m-accordion-look-lg-hide {
+    @media @md-down {
+      .m-accordion__content .m-accordion__content-items {
+        --accordion-content-border: 1px solid
+          @abbott-accordion-border-light-gray;
+      }
+    }
+
+    @media @md-up {
+      .m-accordion__content .m-accordion__content-items {
+        border: none;
+
+        .m-accordion__body {
+          display: block !important;
+        }
+
+        .m-accordion__header {
+          pointer-events: none;
+
+          .m-accordion__title-wrapper {
+            padding-left: 36px;
+          }
+        }
+
+        .m-accordion__icon-wrapper {
+          display: none;
+        }
+
+        .columncontrol .container {
+          padding: 0;
+
+          .columncontrol__column {
+            flex: 0 0 16.66667%;
+            max-width: 16.66667%;
+            padding: 5px;
+          }
+        }
+      }
+    }
+  }
+
+  //Style system for media library variation -2 component
+
+  &.m-accordion--medialibrary-variation-2 {
+    padding-top: 0 !important;
+
+    .m-accordion__options {
+      margin-bottom: 0 !important;
+    }
+
+    .m-accordion__content-items {
+      border: none;
+      margin-bottom: -20px;
+
+      .m-accordion__header {
+        .m-accordion__title-wrapper {
+          padding-left: 0;
+        }
+
+        .m-accordion__title-wrapper * {
+          color: @abbott-bastille;
+          padding-left: 10px;
+
+          &:hover {
+            color: @white;
+            background-color: @abbott-primary-blue;
+          }
+        }
+
+        .m-accordion__icon-wrapper {
+          display: none;
+        }
+      }
+
+      .m-accordion__body {
+        padding-left: 15px;
+
+        .button {
+          margin-top: 0 !important;
+          margin-bottom: 5px !important;
+
+          .btn {
+            padding: 0;
+            color: @abbott-gray;
+            font-weight: bold;
+          }
+
+          &.tag-list-button-active {
+            .btn {
+              color: @abbott-primary-blue !important;
+            }
+          }
+
+          &.tag-list-button-not-active {
+            .btn {
+              color: @abbott-gray !important;
+            }
+          }
+        }
+      }
+
+      &.tag-list-article-active {
+        .m-accordion__title-wrapper * {
+          background-color: @abbott-primary-blue;
+          color: @white;
+        }
+
+        .m-accordion__body .button:first-child {
+          .btn {
+            color: @abbott-primary-blue;
+          }
+        }
+      }
+    }
+  }
+
+  // Style system for deluxe filter accordion look and feel
+  &.m-accordion-variation--deluxe-filter {
+    @media @lg-up {
+      width: 85%;
+    }
+
+    @media @lg-only {
+      width: 90%;
+    }
+
+    padding-bottom: 0 !important;
+    padding-top: 0 !important;
+
+    .m-accordion__options {
+      display: none;
+    }
+
+    .m-accordion__content {
+      .m-accordion__content-items {
+        border-top: 0;
+        border-bottom: 1px solid @abbott-light-gray;
+
+        &.m-accordion__expanded {
+          background-color: @abbott-hover-white;
+          border-bottom: none;
+
+          &:hover .m-accordion__header * {
+            color: @abbott-card-carousel-hover-color;
+          }
+        }
+
+        .m-accordion__header {
+          position: relative;
+
+          * {
+            color: @abbott-card-carousel-hover-color;
+            font-size: @font-size-18;
+          }
+
+          .m-accordion__title-wrapper {
+            --accordion-title-padding-sm: 20px 0 20px 22px;
+          }
+
+          .m-accordion__icon-wrapper {
+            padding-left: 0;
+            width: 20px;
+            position: absolute;
+            right: 20px;
+            top: 20px;
+
+            .abt-icon {
+              font-weight: bold;
+            }
+          }
+        }
+
+        .m-accordion__body {
+          padding-left: 1.75rem;
+          transition: 0.2s all ease;
+        }
+
+        &:hover {
+          background: @abbott-hover-white;
+
+          .m-accordion__header * {
+            color: @black;
+          }
+        }
+      }
+    }
+  }
+
+  //style system of accordion header for bold text
+  &.m-accordion-header-bold {
+    .m-accordion__content-items .m-accordion__header {
+      * {
+        font-weight: bold !important;
+      }
+    }
+  }
+
+  //style system of accordion header for thin text
+  // &.m-accordion-header-font-thin {
+  //     .m-accordion__content-items .m-accordion__header {
+  //         * {
+  //             font-weight: 300;
+  //         }
+  //     }
+  // }
+
+  // Style system for Accordion to have 100% container width
+  &.m-accordion--full-width {
+    .m-accordion.cmp-accordion {
+      --accordion-lg-max-width: 100%;
+    }
+  }
+
+  // style systems for accordion header font -- starts here
+  &.m-accordion-header-font-bold {
+    .m-accordion__content-items .m-accordion__header {
+      * {
+        .font--bold();
+      }
+    }
+  }
+
+  &.m-accordion-header-font-thin {
+    .m-accordion__content-items .m-accordion__header {
+      * {
+        .font--thin();
+        font-weight: 300;
+      }
+    }
+  }
+
+  &.m-accordion-header-font-medium {
+    .m-accordion__content-items .m-accordion__header {
+      * {
+        .font--medium();
+      }
+    }
+  }
+
+  &.m-accordion-header-font-italic {
+    .m-accordion__content-items .m-accordion__header {
+      * {
+        .font--italic();
+      }
+    }
+  }
+
+  &.m-accordion-header-font-black {
+    .m-accordion__content-items .m-accordion__header {
+      * {
+        .font--black();
+      }
+    }
+  }
+
+  &.m-accordion-header-font-regular {
+    .m-accordion__content-items .m-accordion__header {
+      * {
+        .font--regular();
+      }
+    }
+  }
+
+  &.m-accordion-header-font-arial {
+    .m-accordion__content-items .m-accordion__header {
+      * {
+        font-family: @font-arial;
+      }
+    }
+  }
+
+  &.m-accordion-header-font-brandon-grotesque-medium {
+    .m-accordion__content-items .m-accordion__header {
+      * {
+        font-family: @font-brandon-grotesque-medium;
+      }
+    }
+  }
+
+  &.m-accordion-header-font-brandon-grotesque-black {
+    .m-accordion__content-items .m-accordion__header {
+      * {
+        font-family: @font-brandon-grotesque-black;
+      }
+    }
+  }
+
+  &.m-accordion-header-font-brandon-grotesque-regular {
+    .m-accordion__content-items .m-accordion__header {
+      * {
+        font-family: @font-brandon-grotesque-regular;
+      }
+    }
+  }
+
+  &.m-accordion-header-font-brandon-grotesque-bold {
+    .m-accordion__content-items .m-accordion__header {
+      * {
+        font-family: @font-brandon-grotesque-bold;
+      }
+    }
+  }
+
+  &.m-accordion-header-font-georgia {
+    .m-accordion__content-items .m-accordion__header {
+      * {
+        font-family: @font-georgia;
+      }
+    }
+  }
+
+  &.m-accordion-header-font-meiryo {
+    .m-accordion__content-items .m-accordion__header {
+      * {
+        font-family: @font-meiryo;
+      }
+    }
+  }
+
+  &.m-accordion-header-font-segoe-ui {
+    .m-accordion__content-items .m-accordion__header {
+      * {
+        font-family: @font-segoe-ui;
+      }
+    }
+  }
+
+  &.m-accordion-header-font-times-new-roman {
+    .m-accordion__content-items .m-accordion__header {
+      * {
+        font-family: @font-times-new-roman;
+      }
+    }
+  }
+
+  &.m-accordion-header-font-extazy-black {
+    .m-accordion__content-items .m-accordion__header {
+      * {
+        font-family: @font-extazy-black;
+      }
+    }
+  }
+
+  &.m-accordion-header-font-extazy-bold {
+    .m-accordion__content-items .m-accordion__header {
+      * {
+        font-family: @font-extazy-bold;
+      }
+    }
+  }
+
+  &.m-accordion-header-font-extazy-light {
+    .m-accordion__content-items .m-accordion__header {
+      * {
+        font-family: @font-extazy-light;
+      }
+    }
+  }
+
+  &.m-accordion-header-font-extazy-regular {
+    .m-accordion__content-items .m-accordion__header {
+      * {
+        font-family: @font-extazy-regular;
+      }
+    }
+  }
+
+  &.m-accordion-header-font-noto-sans-thin {
+    .m-accordion__content-items .m-accordion__header {
+      * {
+        font-family: @font-noto-sans-thin;
+      }
+    }
+  }
+
+  &.m-accordion-header-font-noto-sans-regular {
+    .m-accordion__content-items .m-accordion__header {
+      * {
+        font-family: @font-noto-sans-regular;
+      }
+    }
+  }
+
+  &.m-accordion-header-font-noto-sans-bold {
+    .m-accordion__content-items .m-accordion__header {
+      * {
+        font-family: @font-noto-sans-bold;
+      }
+    }
+  }
+
+  &.m-accordion-header-font-noto-sans-black {
+    .m-accordion__content-items .m-accordion__header {
+      * {
+        font-family: @font-noto-sans-black;
+      }
+    }
+  }
+
+  &.m-accordion-header-font-microsoft-ya-hei {
+    .m-accordion__content-items .m-accordion__header {
+      * {
+        font-family: @font-microsoft-ya-hei;
+      }
+    }
+  }
+
+  &.m-accordion-header-font-calibri {
+    .m-accordion__content-items .m-accordion__header {
+      * {
+        font-family: @font-calibri;
+      }
+    }
+  }
+
+  &.m-accordion-header-font-helvetica-neue {
+    .m-accordion__content-items .m-accordion__header {
+      * {
+        font-family: @font-helvetica-neue;
+      }
+    }
+  }
+
+  &.m-accordion-header-font-sans-serif
+    .m-accordion__content-items
+    .m-accordion__header
+    * {
+    font-family: @font-sans-serif;
+  }
+
+  &.m-accordion-header-font-noto-sans-kr
+    .m-accordion__content-items
+    .m-accordion__header
+    * {
+    font-family: @font-noto-sans-kr;
+  }
+
+  &.m-accordion-header-font-mercury-text-g1-roman
+    .m-accordion__content-items
+    .m-accordion__header
+    * {
+    font-family: @font-mercury-text-g1-roman;
+  }
+
+  &.m-accordion-header-font-Helvetica-neue
+    .m-accordion__content-items
+    .m-accordion__header
+    * {
+    font-family: @font-helvetica-neue;
+  }
+
+  &.m-accordion-header-font-hiragino-mincho-pron
+    .m-accordion__content-items
+    .m-accordion__header
+    * {
+    font-family: @font-hiragino-mincho-pron;
+  }
+
+  &.m-accordion-header-font-malgun-gothic-w35-regular
+    .m-accordion__content-items
+    .m-accordion__header
+    * {
+    font-family: @font-malgun-gothic-w35-regular;
+  }
+
+  &.m-accordion-header-font-noto-sans-sc-regular
+    .m-accordion__content-items
+    .m-accordion__header
+    * {
+    font-family: @font-noto-sans-sc-regular;
+  }
+
+  &.m-accordion-header-font-noto-sans-vi-regular
+    .m-accordion__content-items
+    .m-accordion__header
+    * {
+    font-family: @font-noto-sans-vi-regular;
+  }
+
+  &.m-accordion-header-font-noto-serif-vi-regular
+    .m-accordion__content-items
+    .m-accordion__header
+    * {
+    font-family: @font-noto-serif-vi-regular;
+  }
+
+  &.m-accordion-header-font-brandon-medium
+    .m-accordion__content-items
+    .m-accordion__header
+    * {
+    font-family: @font-brandon-medium;
+  }
+
+  &.m-accordion-header-font-brandon-bold
+    .m-accordion__content-items
+    .m-accordion__header
+    * {
+    font-family: @font-brandon-bold;
+  }
+
+  &.m-accordion-header-font-brandon-regular
+    .m-accordion__content-items
+    .m-accordion__header
+    * {
+    font-family: @font-brandon-regular;
+  }
+
+  // style systems for accordion header font -- ends here
+
+  //style system for accordion header color -- starts here
+  &.m-accordion-header-white
+    .m-accordion__content-items
+    .m-accordion__header
+    * {
+    color: @white !important;
+  }
+
+  &.m-accordion-header-black
+    .m-accordion__content-items
+    .m-accordion__header
+    * {
+    color: @black !important;
+  }
+
+  &.m-accordion-header-abbott-dark-blue
+    .m-accordion__content-items
+    .m-accordion__header
+    * {
+    color: @abbott-dark-blue !important;
+  }
+
+  &.m-accordion-header-abbott-light-blue
+    .m-accordion__content-items
+    .m-accordion__header
+    * {
+    color: @abbott-light-blue !important;
+  }
+
+  &.m-accordion-header-abbott-medium-blue
+    .m-accordion__content-items
+    .m-accordion__header
+    * {
+    color: @abbott-medium-blue !important;
+  }
+
+  &.m-accordion-header-abbott-yellow
+    .m-accordion__content-items
+    .m-accordion__header
+    * {
+    color: @abbott-yellow !important;
+  }
+
+  &.m-accordion-header-abbott-dark-yellow
+    .m-accordion__content-items
+    .m-accordion__header
+    * {
+    color: @abbott-dark-yellow !important;
+  }
+
+  &.m-accordion-header-abbott-green
+    .m-accordion__content-items
+    .m-accordion__header
+    * {
+    color: @abbott-green !important;
+  }
+
+  &.m-accordion-header-abbott-fuscia
+    .m-accordion__content-items
+    .m-accordion__header
+    * {
+    color: @abbott-fuscia !important;
+  }
+
+  &.m-accordion-header-abbott-orange
+    .m-accordion__content-items
+    .m-accordion__header
+    * {
+    color: @abbott-orange !important;
+  }
+
+  &.m-accordion-header-abbott-cyan
+    .m-accordion__content-items
+    .m-accordion__header
+    * {
+    color: @abbott-cyan !important;
+  }
+
+  &.m-accordion-header-abbott-blue
+    .m-accordion__content-items
+    .m-accordion__header
+    * {
+    color: @abbott-blue !important;
+  }
+
+  &.m-accordion-header-abbott-dark-gray
+    .m-accordion__content-items
+    .m-accordion__header
+    * {
+    color: @abbott-dark-gray !important;
+  }
+
+  &.m-accordion-header-abbott-primary-blue
+    .m-accordion__content-items
+    .m-accordion__header
+    * {
+    color: @abbott-primary-blue !important;
+  }
+
+  &.m-accordion-header-abbott-charcoal
+    .m-accordion__content-items
+    .m-accordion__header
+    * {
+    color: @abbott-charcoal !important;
+  }
+
+  &.m-accordion-header-abbott-purple
+    .m-accordion__content-items
+    .m-accordion__header
+    * {
+    color: @abbott-purple !important;
+  }
+
+  &.m-accordion-header-abbott-red
+    .m-accordion__content-items
+    .m-accordion__header
+    * {
+    color: @abbott-red !important;
+  }
+
+  #diversity-and-inclusion-accordion {
+    @media @lg-up {
+      max-width: 100%;
+    }
+  }
+
+  #accordion-about-product {
+    .m-accordion__content {
+      .m-accordion__content-items {
+        .m-accordion__header {
+          .m-accordion__title-wrapper {
+            h3 {
+              width: 90%;
+              @media @lg-up {
+                font-size: 20px;
+                line-height: 28px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  #accordion-about-abbott,
+  #shareholder-faq {
+    .m-accordion__content {
+      .m-accordion__content-items {
+        .m-accordion__header {
+          .m-accordion__title-wrapper {
+            h3 {
+              width: 90%;
+              @media @lg-up {
+                font-size: 20px;
+                line-height: 28px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  #global-locations-contacts {
+    .m-accordion__content {
+      .m-accordion__content-items {
+        .m-accordion__header {
+          .m-accordion__title-wrapper {
+            padding-left: 0;
+            h3 {
+              @media @lg-up {
+                font-size: 20px;
+                line-height: 28px;
+              }
+            }
+          }
+        }
+        .m-accordion__body {
+          padding-left: 11px;
+          .text {
+            p {
+              a {
+                font-size: 0.8rem;
+                line-height: 1rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  #accordion-product-list {
+    @media @lg-up {
+      max-width: 75%;
+    }
+    .m-accordion__content {
+      .m-accordion__content-items {
+        .m-accordion__header {
+          .m-accordion__title-wrapper {
+            h3 {
+              width: 90%;
+              @media @lg-up {
+                font-size: 30px;
+                line-height: 36px;
+              }
+            }
+          }
+          .m-accordion__icon-wrapper {
+            .m-accordion-icon {
+              .abt-icon {
+                @media @lg-up {
+                  font-size: 30px;
+                  font-weight: bold !important;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  &.accordion-font-20 {
+    .m-accordion__content {
+      .m-accordion__content-items {
+        .m-accordion__header {
+          .m-accordion__title-wrapper {
+            h3 {
+              width: 90%;
+              @media @lg-up {
+                font-size: 20px;
+                line-height: 28px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

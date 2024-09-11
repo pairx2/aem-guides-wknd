@@ -1,0 +1,27 @@
+<sly data-sly-test="${wcmmode.edit}">
+	<p data-sly-unwrap="${properties.title}" data-emptytext="Configure ${properties.title}" class="cq-placeholder"></p>
+ </sly>
+ <div data-sly-use.imageBanner="com.abbott.aem.adc.freestylelibrede.models.ImageBannerModel">
+ <sly data-sly-test="${imageBanner.textAlignmentImageBanner == 'left'}">
+	 <div class="adc-image-banner"  style="background-image: url(${imageBanner.bgImage @ context='uri'})">
+  </sly>
+  <sly data-sly-test="${imageBanner.textAlignmentImageBanner == 'right'}">
+	 <div class="adc-image-banner  adc-image-banner--right-align"  style="background-image:url(${imageBanner.bgImage @ context='uri'})">
+  </sly>
+ <div class="container">
+	 <div class="row">
+		  <div class="col-12 col-lg-4 col-md-4 adc-image-banner__image d-flex justify-content-center align-items-center">
+			 <img class="img-fluid w-100" alt="" src="${imageBanner.image}"/>
+		  </div>
+		  <div class="col-12 col-lg-8 col-md-8 adc-image-banner__content">
+			  <div class="adc-title adc-image-banner__content--title">${imageBanner.heading @ context="html"}</div>
+			  <div class="adc-image-banner__content--desc">${imageBanner.description @ context="html"}</div>
+			  <div class="adc-image-banner__content--logo" data-sly-list="${imageBanner.imageIcons}">
+				  <a href="#" target="_blank"><img alt="" src="${item.imageIcon}"/></a>				 
+			  </div>			
+		  </div>
+	 </div>
+ </div>
+ </div>
+ </div>
+ 

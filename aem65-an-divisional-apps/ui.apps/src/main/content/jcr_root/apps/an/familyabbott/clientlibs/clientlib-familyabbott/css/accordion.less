@@ -1,0 +1,75 @@
+@import "./global/mixins.less";
+@import './global/variables.less';
+
+.accordion.panelcontainer {
+	padding: 0 !important; 
+}
+
+.m-accordion {
+    &#ph-nutritional-info {
+        --accordion-content-border: none;
+    	--accordion-title-padding-lg: 20px 25px 8px;
+        --accordion-title-padding-sm: 20px 25px 8px;
+        --accordion-body-padding-sm: 0 0 15px;
+    	--accordion-body-padding-md: 0 0 25px;
+    	--accordion-body-padding-lg: 0 0 25px;
+    	--accordion-lg-max-width: 100%;
+
+        border-radius: 5px;
+        background-color: @color-white; 
+        max-width: 920px;
+
+        @media @xl-down {
+			max-width: 720px;
+        }
+
+        @media @lg-down {
+			max-width: 100%;
+        }
+
+        .m-accordion__header {
+			flex-direction: column;
+        }
+
+        .m-accordion__options {
+            margin: 0;
+    		text-align: center;
+            display: flex; 
+            justify-content: center; 
+            padding: 20px 25px 0px;
+
+            span {
+   				font-size: @font-size-14; 
+            	line-height: 20px;
+            	font-weight: @font-weight-700;
+            }
+
+            &.custom-layout {
+				order: 2;
+        		padding: 0px 25px 35px;
+            }
+
+        }
+
+        .m-accordion__title-wrapper {
+           	display: none;
+        }
+
+        .m-accordion__icon-wrapper {
+			width: 100%;
+            padding-bottom: 10px;
+            justify-content: center; 
+        }
+
+        .m-accordion__content-items {
+            &.custom-layout {
+				display: flex;
+                flex-direction: column-reverse;
+
+                .m-accordion__icon-wrapper {
+					padding-bottom: 0;
+                }
+            }
+        }
+    }
+}

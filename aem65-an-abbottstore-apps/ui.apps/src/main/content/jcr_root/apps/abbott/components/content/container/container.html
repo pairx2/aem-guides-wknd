@@ -1,0 +1,9 @@
+<sly data-sly-test.spacing="${properties.spacingTop || properties.spacingBottom}" />
+<sly data-sly-test="${(wcmmode.edit || wcmmode.design) && !spacing}">
+  <p style="text-align:center;color:#D3D3D3">Container</p>
+</sly>
+<sly data-sly-use.containerObj="com.abbott.aem.an.abbottstore.models.ContainerModel" />
+
+<section class="${properties.spacingTop} ${properties.spacingBottom}" id="${containerObj.id}" style="background-color: ${containerObj.bgColor @context='styleString'};">
+	<div data-sly-resource="${'par' @ resourceType='wcm/foundation/components/parsys'}"></div>
+</section>

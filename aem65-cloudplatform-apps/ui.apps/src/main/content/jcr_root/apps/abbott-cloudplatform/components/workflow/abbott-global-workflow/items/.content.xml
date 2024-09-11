@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured">
+    <initialdialog jcr:primaryType="nt:unstructured">
+        <cq:dialog
+            jcr:primaryType="nt:unstructured"
+            jcr:title="Approver Dialog"
+            sling:resourceType="cq/gui/components/authoring/dialog"
+            helpPath="https://www.adobe.com/go/aem6_5_docs_component_en#Text">
+            <content
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/container">
+                <items jcr:primaryType="nt:unstructured">
+                    <initial
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Initial"
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                        <layout
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/layouts/fixedcolumns"
+                            margin="{Boolean}false"/>
+                        <items jcr:primaryType="nt:unstructured">
+                            <column
+                                granite:class="cq-RichText-FixedColumn-column"
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <firstassignment
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="/libs/granite/ui/components/coral/foundation/authorizable/autocomplete"
+                                        emptyText="Begin to enter user name."
+                                        fieldLabel="Select First Assignment Personnel"
+                                        multiple="{Boolean}false"
+                                        name="./jcr:content/firstassignment"
+                                        required="{Boolean}true"/>
+                                    <secondassignment
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="/libs/granite/ui/components/coral/foundation/authorizable/autocomplete"
+                                        emptyText="Begin to enter user name."
+                                        fieldLabel="Select Second Assignment Personnel"
+                                        multiple="{Boolean}false"
+                                        name="./jcr:content/secondassignment"
+                                        required="{Boolean}false"/>
+                                    <activateDate
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/datepicker"
+                                        fieldDescription="Select the activation/deactivation date and time for the workflow."
+                                        fieldLabel="Activation/Deactivation Date &amp; Time"
+                                        minDate="today"
+                                        name="./jcr:content/absoluteTime"
+                                        type="datetime"
+                                        valueFormat="YYYY-MM-DD[T]HH:mm:ss.SSSZ"/>
+                                    <selectworkflowtype
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                        emptyText="Select Workflow Type"
+                                        fieldLabel="Select Workflow Type"
+                                        name="./jcr:content/workflowtype"
+                                        required="{Boolean}true">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <activation
+                                                jcr:primaryType="nt:unstructured"
+                                                text="Activation"
+                                                value="activation"/>
+                                            <deactivation
+                                                jcr:primaryType="nt:unstructured"
+                                                text="Deactivation"
+                                                value="deactivation"/>
+                                        </items>
+                                    </selectworkflowtype>
+                                </items>
+                            </column>
+                        </items>
+                    </initial>
+                </items>
+            </content>
+        </cq:dialog>
+    </initialdialog>
+    <approvaldialog jcr:primaryType="nt:unstructured">
+        <cq:dialog
+            jcr:primaryType="nt:unstructured"
+            jcr:title="Approver Dialog"
+            sling:resourceType="cq/gui/components/authoring/dialog"
+            helpPath="https://www.adobe.com/go/aem6_5_docs_component_en#Text">
+            <content
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/container">
+                <items jcr:primaryType="nt:unstructured">
+                    <approver
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Approver"
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                        <layout
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/layouts/fixedcolumns"
+                            margin="{Boolean}false"/>
+                        <items jcr:primaryType="nt:unstructured">
+                            <column
+                                granite:class="cq-RichText-FixedColumn-column"
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <currentstep
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        disabled="{Boolean}true"
+                                        fieldDescription="The current step in the workflow process."
+                                        fieldLabel="Current Step"
+                                        name="currentstep"
+                                        readOnly="{Boolean}true"
+                                        selector="currentstep"/>
+                                    <nextstep
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        disabled="{Boolean}true"
+                                        fieldDescription="Next Step in Workflow Process"
+                                        fieldLabel="Next Step"
+                                        name="nextstep"
+                                        readOnly="{Boolean}true"/>
+                                    <workflowprocess
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        disabled="{Boolean}true"
+                                        fieldDescription="Event to take when workflow approved."
+                                        fieldLabel="Workflow Success Event"
+                                        name="successevent"
+                                        readOnly="{Boolean}true"/>
+                                </items>
+                            </column>
+                        </items>
+                    </approver>
+                </items>
+            </content>
+        </cq:dialog>
+    </approvaldialog>
+    <secondapprovaldialog jcr:primaryType="nt:unstructured">
+        <cq:dialog
+            jcr:primaryType="nt:unstructured"
+            jcr:title="Approver Dialog"
+            sling:resourceType="cq/gui/components/authoring/dialog"
+            helpPath="https://www.adobe.com/go/aem6_5_docs_component_en#Text">
+            <content
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/container">
+                <items jcr:primaryType="nt:unstructured">
+                    <approver
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Approver"
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                        <layout
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/layouts/fixedcolumns"
+                            margin="{Boolean}false"/>
+                        <items jcr:primaryType="nt:unstructured">
+                            <column
+                                granite:class="cq-RichText-FixedColumn-column"
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <currentstep
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        disabled="true"
+                                        fieldDescription="The current step in the workflow process."
+                                        fieldLabel="Current Step"
+                                        name="currentstep"/>
+                                    <nextstep
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        disabled="true"
+                                        fieldDescription="Next Step in Workflow Process"
+                                        fieldLabel="Next Step"
+                                        name="nextstep"/>
+                                    <workflowprocess
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        disabled="true"
+                                        fieldDescription="Event to take when workflow approved."
+                                        fieldLabel="Workflow Success Event"
+                                        name="successevent"/>
+                                </items>
+                            </column>
+                        </items>
+                    </approver>
+                </items>
+            </content>
+        </cq:dialog>
+    </secondapprovaldialog>
+    <finalapprovaldialog jcr:primaryType="nt:unstructured">
+        <cq:dialog
+            jcr:primaryType="nt:unstructured"
+            jcr:title="Approver Dialog"
+            sling:resourceType="cq/gui/components/authoring/dialog"
+            helpPath="https://www.adobe.com/go/aem6_5_docs_component_en#Text">
+            <content
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/container">
+                <items jcr:primaryType="nt:unstructured">
+                    <approver
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Approver"
+                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                        <layout
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/layouts/fixedcolumns"
+                            margin="{Boolean}false"/>
+                        <items jcr:primaryType="nt:unstructured">
+                            <column
+                                granite:class="cq-RichText-FixedColumn-column"
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <currentstep
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        disabled="true"
+                                        fieldDescription="The current step in the workflow process."
+                                        fieldLabel="Current Step"
+                                        name="currentstep"/>
+                                    <workflowprocess
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        disabled="true"
+                                        fieldDescription="Event to take when workflow approved."
+                                        fieldLabel="Workflow Success Event"
+                                        name="successevent"/>
+                                    <activateDate
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/datepicker"
+                                        disabled="true"
+                                        fieldDescription="Select the activation/deactivation date and time for the workflow."
+                                        fieldLabel="Activation/Deactivation Date &amp; Time"
+                                        minDate="today"
+                                        name="absoluteTime"
+                                        type="datetime"
+                                        valueFormat="YYYY-MM-DD[T]HH:mm:ss.SSSZ"/>
+                                </items>
+                            </column>
+                        </items>
+                    </approver>
+                </items>
+            </content>
+        </cq:dialog>
+    </finalapprovaldialog>
+</jcr:root>

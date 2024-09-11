@@ -1,0 +1,67 @@
+<!--/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  Handled page title and desc changes on this head at line number 9 to 15
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/-->
+<template data-sly-template.head="${ @ page, pwa }"
+          data-sly-use.headlibRenderer="headlibs.html"
+          data-sly-use.headResources="head.resources.html"
+          data-sly-use.platformPage="com.abbott.aem.platform.common.components.models.PlatformPage">
+  <meta charset="UTF-8">
+  <sly
+    data-sly-use.faqitem="${'com.abbott.aem.adc.division.models.FaqResultItemQnA' @ faqPath=platformPage.getFaqFolderPath}">
+    <sly data-sly-test.faqItemTitle="${faqitem.faqTitle}">
+      <title>${faqitem.faqTitle}</title>
+      <meta name="title" content="${faqitem.faqTitle}"/>
+      <meta data-sly-test.description="${faqitem.faqDescription || properties['jcr:description']}" name="description"
+            content="${description}"/>
+    </sly>
+    <sly data-sly-test="${!faqItemTitle}">
+      <title>${platformPage.PageTitle}${page.brandSlug ? ' | ' : ''}${page.brandSlug}</title>
+      <meta name="title" content="${platformPage.PageTitle}"/>
+      <meta data-sly-test.description="${page.description  || properties['jcr:description']}" name="description"
+            content="${description}"/>
+    </sly>
+  </sly>
+  <meta data-sly-test.keywords="${page.keywords}" name="keywords" content="${keywords}"/>
+  <meta data-sly-test.templateName="${page.templateName}" name="template" content="${templateName}"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta data-sly-test="${page.robotsTags}" name="robots" content="${page.robotsTags @ join=', '}">
+  <sly data-sly-list.childnode="${resource.listChildren}">
+    <sly data-sly-test="${childnode.name == 'metaProperties' }"
+         data-sly-list.metadataValues="${childnode.listChildren}">
+      <meta data-sly-test="${metadataValues.attributeType == 'name'}" name="${metadataValues.nameValue}"
+            content="${metadataValues.contentValue}"/>
+      <meta data-sly-test="${metadataValues.attributeType == 'property'}" property="${metadataValues.nameValue}"
+            content="${metadataValues.contentValue}"/>
+    </sly>
+  </sly>
+  <sly data-sly-test="${platformPage.metaKeywords}">
+    <meta name="keywords" content="${platformPage.metaKeywords}"/>
+  </sly>
+  <meta data-sly-test="${platformPage.addPageUUIDAsAemExternalIdInPageMetaProperties}" name="aemExternalId"
+        content="${properties['jcr:uuid']}"/>
+  <sly data-sly-include="head.links.html"></sly>
+  <sly data-sly-include="customhreflanglinks.html"></sly>
+  <sly data-sly-include="head.socialmedia.html"></sly>
+  <sly data-sly-include="customheaderlibs.html"></sly>
+  <sly data-sly-call="${headlibRenderer.headlibs @
+                                designPath                = page.designPath,
+                                staticDesignPath          = page.staticDesignPath,
+                                clientLibCategories       = page.clientLibCategories,
+                                clientLibCategoriesJsHead = page.clientLibCategoriesJsHead,
+                                hasCloudconfigSupport     = page.hasCloudconfigSupport}"></sly>
+  <sly data-sly-test.appResourcesPath=${page.appResourcesPath}
+       data-sly-call="${headResources.favicons @ path = appResourcesPath}"></sly>
+  <sly data-sly-list="${page.htmlPageItems}">
+    <script data-sly-test="${item.location.name == 'header'}"
+            data-sly-element="${item.element.name @ context='unsafe'}" data-sly-attribute="${item.attributes}"></script>
+  </sly>
+  <sly data-sly-test="${pwa.enabled}">
+    <link rel="manifest" href="${currentPage.parent.path}/home.manifest.webmanifest" crossorigin="use-credentials"/>
+    <meta name="theme-color" content="${pwa.themeColor}"/>
+    <link rel="apple-touch-icon" href="${pwa.iconPath}"/>
+    <sly data-sly-use.clientlib="core/wcm/components/commons/v1/templates/clientlib.html"
+         data-sly-call="${clientlib.css @ categories='page.v1.pwa'}"></sly>
+    <meta name="cq:sw_path" content="/abbott.sw.js?q=4"/>
+    <input type="hidden" name="pwaStartURL" value="${properties.pwaStartURL}"/>
+  </sly>
+</template>

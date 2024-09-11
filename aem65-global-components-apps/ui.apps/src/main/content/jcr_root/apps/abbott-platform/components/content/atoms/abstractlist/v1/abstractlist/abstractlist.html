@@ -1,0 +1,18 @@
+<sly data-sly-use.model="com.abbott.aem.platform.common.components.models.AbstractList" data-sly-use.customConfig="com.abbott.aem.platform.common.components.models.CustomConfig">
+    <div data-js-component="abstract-list"
+        data-manual-data="${model.manualData}"
+        id="${model.id}"
+        class="container ${customConfig.className}">
+        <div class="abstractlist-container">
+            <input data-sly-test.functionToCall=${model.functionToCall} type="hidden" name="functionToCall" value="${functionToCall}">
+            <div data-sly-test="${!wcmmode.disabled && !model.headingTitle && !model.noneLabel}">Abstract List Component</div>
+
+            <div class="abstractlist-title-wrapper" data-sly-test="${model.headingTitle || model.noneLabel}">
+                <span class="abstractlist-title" data-sly-test="${model.headingTitle}">${model.headingTitle}</span>
+                <span class="abstractlist-activeItem" data-none-active-label="${model.noneLabel}">${model.noneLabel}</span>
+            </div>
+
+            <ul class="abstractlist-item-list"><!-- Attach list items here via JS--></ul>
+        </div>
+    </div>
+</sly>

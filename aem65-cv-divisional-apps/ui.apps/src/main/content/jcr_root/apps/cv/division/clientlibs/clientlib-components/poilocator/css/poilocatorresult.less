@@ -1,0 +1,677 @@
+@import 'media-queries.less';
+@import 'variables.less';
+
+/* Varibale */
+
+@poi-list-count-bg-clr: #e4002b;
+@poi-list-count-text-clr: #ffffff;
+@poi-store-name-font-size: 29px;
+@poi-store-name-doctor-clr: #222731;
+@poi-border-clr: #d9d9d9;
+@poi-font-family: "brandon_grotesqueregular";
+@poi-font-size: 18px;
+@poi-map-height-desktop: 433px;
+@poi-map-height-mobile: 320px;
+
+/* Common Function */
+.display-flex() {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.flex-wrap(@value) {
+  -ms-flex-wrap: @value;
+  flex-wrap: @value;
+}
+
+.m-poi-locator-results {
+  .row-result-map.row-result-map--vertical {
+    // border-bottom: 1px solid @poi-border-clr;
+    padding-bottom: 48px;
+
+    @media (min-width: 992px) {
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: reverse;
+      -ms-flex-direction: column-reverse;
+      flex-direction: column-reverse;
+    }
+  }
+
+  #map {
+    .gm-style {
+      .gm-style-iw-t {
+        .gm-style-iw-c {
+          padding: 8px !important;
+
+          .gm-style-iw-d {
+            overflow: auto !important;
+          }
+        }
+      }
+    }
+  }
+
+}
+
+.row-result-map {
+  &--vertical {
+    .m-poi-locator-results {
+      &__list {
+        height: auto;
+        overflow: visible;
+      }
+
+      &__list-item {
+        padding-left: 0;
+        margin-right: 0;
+        font-family: @poi-font-family;
+
+        &::before {
+          content: none;
+        }
+
+        &-number {
+          position: absolute;
+          left: 16px;
+          top: 0.16rem;
+          background: @poi-list-count-bg-clr;
+          width: 28px;
+          height: 28px;
+          text-align: center;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          line-height: 20px;
+          border-radius: 50%;
+          border: 1px solid #ffffff;
+          color: @poi-list-count-text-clr;
+          font-size: 16px;
+          font-weight: 500;
+
+          &.list-item-number {
+            &--left {
+              display: none;
+            }
+
+            &--clinic {
+              left: 0;
+            }
+          }
+        }
+
+        &-detail {
+          &--store-doctor-name-details {
+            h3 {
+              display: inline-block;
+              font-size: @poi-store-name-font-size;
+              color: @poi-store-name-doctor-clr;
+              font-family: @poi-font-family;
+              line-height: 34px;
+              padding-bottom: 16px;
+            }
+          }
+
+          &--store-name {
+            font-size: @poi-store-name-font-size;
+            line-height: 34px;
+            font-family: @poi-font-family;
+            padding-bottom: 20px;
+
+            &.additional-fields {
+              div {
+                font-size: @poi-store-name-font-size;
+                color: @poi-store-name-doctor-clr  !important;
+                font-family: @poi-font-family;
+                line-height: 32px;
+                cursor: default;
+                margin: 0;
+              }
+            }
+            &.doctor {
+              div{
+                &:nth-child(1) {
+                  &:empty {
+                    display: none !important;
+                  }
+                }
+              }
+            }
+          }
+
+          &__name,
+          &__label {
+            font-size: @poi-font-size;
+            font-weight: normal;
+            margin-bottom: 8px;
+          }
+
+          .additional-fields {
+            line-height: 24px;
+          }
+
+          &--store-contact-details {
+            line-height: 24px;
+
+            div {
+              display: inline-block;
+              font-size: @poi-font-size;
+              margin-bottom: 8px;
+
+              a {
+                font-family: @poi-font-family;
+              }
+            }
+
+            &--clinic {
+              margin-bottom: 20px;
+              font-size: @poi-font-size;
+              line-height: 24px;
+
+              @media (min-width: 992px) {
+                margin-bottom: 16px;
+              }
+            }
+          }
+
+          &--store-contact-label {
+            a {
+              margin-right: 0.25rem;
+
+              &:empty {
+                display: none;
+              }
+            }
+          }
+
+          &--store-address-details {
+            font-size: @poi-font-size;
+            line-height: 24px;
+            margin-bottom: 8px;
+          }
+
+          &--store-miles {
+            font-family: @poi-font-family;
+            font-size: 18px;
+            font-weight: normal;
+            line-height: 24px;
+            margin-bottom: 8px;
+          }
+
+          &--visit-website {
+            display: block;
+            margin-bottom: 8px;
+          }
+
+          &--store-address,
+          &--visit-website,
+          &--get-direction {
+            font-size: @poi-font-size;
+            line-height: 24px;
+
+            a {
+              font-family: @poi-font-family;
+              font-weight: normal;
+            }
+
+            .abt-icon {
+              color: inherit;
+            }
+          }
+
+          &.list-item-detail {
+            &--clinic {
+              margin-left: 32px;
+            }
+          }
+
+          &--store-name-details {
+            &--clinic {
+              div {
+                color: @poi-store-name-doctor-clr  !important;
+                cursor: default;
+              }
+            }
+          }
+        }
+      }
+
+      &__left-block {
+        @media (max-width: 767px) {
+          padding-left: 3rem;
+        }
+      }
+
+      &__right-block {
+        padding-left: 3rem;
+      }
+
+      &__map {
+        border-bottom: 1px solid @poi-border-clr;
+        border-top: 1px solid @poi-border-clr;
+        padding: 3rem 0 !important;
+        margin: 3rem 0 !important;
+
+        #map {
+          height: @poi-map-height-desktop;
+
+          @media (max-width: 767px) {
+            height: @poi-map-height-mobile;
+          }
+        }
+      }
+    }
+
+    .m-poi-locator-results__view-grid {
+      .display-flex();
+      .flex-wrap(wrap);
+      margin-right: -15px;
+      margin-left: -15px;
+
+      .m-poi-locator-results {
+        &__list-item {
+          border-bottom: none;
+          padding-bottom: 0;
+          margin-bottom: 1.75rem;
+          padding-left: 15px;
+
+          &-number {
+            width: 24px;
+            height: 24px;
+            font-size: 14px;
+            line-height: 23px;
+
+            &.list-item-number {
+              &--left {
+                display: block;
+              }
+
+              &--right {
+                display: none;
+              }
+
+              &--clinic {
+                left: 32px;
+                top: 1.16rem;
+              }
+            }
+          }
+
+          &-detail {
+            margin-left: 0;
+            margin-right: 0;
+            border: 1px solid @poi-border-clr;
+            padding: 1rem 0;
+            min-height: 100%;
+
+            &--store-name {
+              display: none;
+
+              &.store-name {
+                &--clinic {
+                  display: block;
+                  font-size: 22px;
+                  font-weight: 500 !important;
+                  line-height: 28px;
+                }
+              }
+
+              &.doctor {
+                display: block;
+
+                div {
+                  font-size: 22px;
+                  font-weight: 500 !important;
+                  line-height: 28px;
+                  &:nth-child(1) {
+                    &:empty{
+                      display: none !important;
+                    }
+                  }
+                }
+              }
+            }
+
+            &--store-name.d-none {
+              display: block !important;
+              font-size: 22px;
+              font-weight: 500 !important;
+              line-height: 28px;
+            }
+
+            &.list-item-detail {
+              &--clinic {
+                padding-left: 3rem;
+                padding-right: 1rem;
+              }
+            }
+
+            &--store-address-details {
+              margin-bottom: 16px;
+            }
+          }
+
+          &:not(.col-lg-4):not(.col-md-6):not(.col-sm-12) {
+            -webkit-box-flex: 0;
+            -ms-flex: 0 0 100%;
+            flex: 0 0 100%;
+            max-width: 100%;
+            position: relative;
+            width: 100%;
+            padding-right: 15px;
+            padding-left: 15px;
+
+            @media @md-up {
+              -ms-flex: 0 0 50%;
+              flex: 0 0 50%;
+              max-width: 50%;
+            }
+
+            @media @lg-up {
+              -ms-flex: 0 0 33.33333%;
+              flex: 0 0 33.33333%;
+              max-width: 33.33333%;
+            }
+          }
+        }
+
+        &__left-block {
+          padding-left: 3rem;
+          margin-bottom: 1rem;
+        }
+
+        &__left-block,
+        &__right-block {
+          -webkit-box-flex: 0;
+          -ms-flex: 0 0 100%;
+          flex: 0 0 100%;
+          max-width: 100%;
+        }
+      }
+    }
+  }
+
+  &--horizontal {
+    border-top: 1px solid @poi-border-clr;
+    border-bottom: 1px solid @poi-border-clr;
+    padding: 3rem 0 !important;
+    margin: 3rem 0 !important;
+
+    .m-poi-locator-results {
+      &__list-item {
+        &-detail {
+          &--store-name {
+            line-height: 34px;
+          }
+        }
+      }
+    }
+  }
+
+  .a-pin-icon-popup {
+    &__item-box {
+
+      p {
+        font-family: @poi-font-family;
+      }
+
+      &.name,
+      &.hospital,
+      &.getdirection {
+        font-size: 16px;
+        line-height: 20px;
+        color: @primary-color;
+      }
+
+      &.hospital {
+        a {
+          font-family: @poi-font-family  !important;
+          cursor: pointer !important;
+
+          &:hover,
+          &:focus {
+            font-family: @poi-font-family  !important;
+          }
+        }
+      }
+
+      &.getdirection {
+        margin-top: 16px;
+
+        a {
+          font-family: @poi-font-family;
+          color: @primary-color;
+
+          &:hover,
+          &:focus {
+            font-family: @poi-font-family;
+            color: @primary-color;
+          }
+        }
+
+        p {
+          margin-bottom: 8px !important;
+        }
+      }
+
+      &.addressOne,
+      &.addressTwo,
+      &.city,
+      &.zone,
+      &.zipCode {
+        display: inline-block;
+
+        p {
+          margin: 0;
+        }
+      }
+
+      &.country {
+        p {
+          margin: 0;
+        }
+      }
+    }
+
+    &__name {
+      font-size: 16px;
+      line-height: 20px;
+
+      &:last-child {
+        margin-bottom: 16px;
+      }
+    }
+  }
+}
+
+/* Custom POI locator search bar*/
+
+.m-poi-locator-search-bar__wrap {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+  border: none !important;
+
+  .row {
+    .col-12 {
+      max-width: 100%;
+      flex: 0 0 100%;
+
+      .col-9 {
+        @media @md-down {
+          max-width: 100%;
+          flex: 0 0 100%;
+        }
+      }
+
+      .col-3 {
+        align-self: center;
+
+        @media @md-down {
+          max-width: 100%;
+          flex: 0 0 100%;
+          padding-left: 15px !important;
+        }
+
+        .a-button {
+          span {
+            @media @lg-down {
+              display: block;
+            }
+          }
+
+          .btn {
+            margin-top: 0 !important;
+            margin-bottom: 0 !important;
+          }
+        }
+      }
+    }
+  }
+
+  .m-poi-locator-search-bar__input {
+    .a-input-field {
+      margin-bottom: 16px !important;
+
+      .form-group {
+        .form-label {
+          float: left;
+          margin-right: 16px;
+          margin-top: 13px;
+          font-weight: 500 !important;
+          font-size: 1.125rem !important;
+          line-height: 1.25rem !important;
+          margin-bottom: 13px !important;
+          color: @poi-store-name-doctor-clr;
+
+        }
+
+        .input-group {
+          width: auto;
+
+          @media @sm-down {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  .m-poi-locator-search-bar__button {
+    margin-top: 0px !important;
+
+    .search-button {
+      margin-bottom: 0px !important;
+    }
+  }
+
+  .m-poi-locator-search-bar__use-location {
+    margin-top: 8px !important;
+    margin-bottom: 0 !important;
+
+    .or-text {
+      font-weight: 500 !important;
+      font-size: 1.125rem !important;
+      line-height: 1.25rem !important;
+      color: @poi-store-name-doctor-clr;
+      margin-right: 16px !important;
+    }
+
+    .use-my-location-button {
+      margin-bottom: 0 !important;
+
+      .btn {
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+      }
+    }
+  }
+}
+
+// CV POI Locator button alignment
+
+#poi-locator-cv {
+  .m-poi-locator-search-bar__wrap {
+    border-bottom: 0;
+  }
+
+  .m-poi-locator-search-bar__button {
+    margin-top: 0;
+
+    .btn {
+      max-width: 100px;
+      text-align: center;
+      padding: 11px 15px !important;
+
+      @media @sm-down {
+        max-width: 100%;
+        margin-bottom: 10px !important;
+      }
+    }
+  }
+}
+
+#deviceType-options {
+  .a-dropdown {
+    @media @sm-up {
+      display: flex;
+      align-items: center;
+    }
+
+
+    .form-label {
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 24px;
+      color: @poi-store-name-doctor-clr;
+
+      @media @sm-up {
+        width: 160px;
+        padding-right: 16px;
+      }
+    }
+
+    .a-dropdown__field {
+      @media @md-up {
+        width: 380px;
+      }
+
+      border-radius: 4px;
+
+      ul {
+        &.a-dropdown__menu {
+          li {
+            font-family: @poi-font-family;
+            font-size: 18px;
+            line-height: 24px;
+          }
+        }
+      }
+    }
+  }
+}
+
+#aveirsearchbar {
+  .button {
+    &.a-button {
+      .btn {
+        @media @sm-down {
+          width: 100% !important;
+        }
+      }
+    }
+  }
+  .m-poi-locator-search-bar__use-location{
+    @media @sm-up {
+      display: flex;
+      align-items: center;
+    }
+    .or-text{
+      font-family: "brandon_grotesquemedium", Arial, sans-serif;
+
+      @media @sm-up {
+        width: 150px;
+        margin: 0;
+      }
+    }
+  }
+}

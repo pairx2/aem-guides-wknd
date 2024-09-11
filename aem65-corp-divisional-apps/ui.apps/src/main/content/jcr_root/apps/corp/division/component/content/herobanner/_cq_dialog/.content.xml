@@ -1,0 +1,558 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+          jcr:primaryType="nt:unstructured"
+          jcr:title="Hero Banner"
+          sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                    maximized="{Boolean}true">
+                <items jcr:primaryType="nt:unstructured">
+                    <image
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Image"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <file
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="cq/gui/components/authoring/dialog/fileupload"
+                                                allowUpload="{Boolean}false"
+                                                autoStart="{Boolean}false"
+                                                class="cq-droptarget"
+                                                fieldDescription="Upload an image based on the size guidelines"
+                                                fieldLabel="Desktop Image"
+                                                fileNameParameter="./fileName"
+                                                fileReferenceParameter="./fileReference"
+                                                mimeTypes="[image/gif,image/jpeg,image/png,image/tiff,image/svg+xml]"
+                                                multiple="{Boolean}false"
+                                                name="./desktopImage"
+                                                title="Upload Image Asset"
+                                                uploadUrl="${suffix.path}"
+                                                useHTML5="{Boolean}true"/>
+                                            <tabletimage
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="cq/gui/components/authoring/dialog/fileupload"
+                                                allowUpload="{Boolean}false"
+                                                autoStart="{Boolean}false"
+                                                class="cq-droptarget"
+                                                fieldDescription="Leave empty to automatically resize desktop image for tablet"
+                                                fieldLabel="Tablet Image"
+                                                fileNameParameter="./fileName2"
+                                                fileReferenceParameter="./tabletImage"
+                                                mimeTypes="[image/gif,image/jpeg,image/png,image/tiff,image/svg+xml]"
+                                                multiple="{Boolean}false"
+                                                name="./file2"
+                                                title="Upload Image Asset"
+                                                uploadUrl="${suffix.path}"
+                                                useHTML5="{Boolean}true"/>
+                                            <mobileimage
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="cq/gui/components/authoring/dialog/fileupload"
+                                                allowUpload="{Boolean}false"
+                                                autoStart="{Boolean}false"
+                                                class="cq-droptarget"
+                                                fieldDescription="Leave empty to automatically resize desktop image for mobile"
+                                                fieldLabel="Mobile Image"
+                                                fileNameParameter="./fileName3"
+                                                fileReferenceParameter="./mobileImage"
+                                                mimeTypes="[image/gif,image/jpeg,image/png,image/tiff,image/svg+xml]"
+                                                multiple="{Boolean}false"
+                                                name="./file3"
+                                                title="Upload Image Asset"
+                                                uploadUrl="${suffix.path}"
+                                                useHTML5="{Boolean}true"/>
+                                            <parallaxImage
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="cq/gui/components/authoring/dialog/fileupload"
+                                                allowUpload="{Boolean}false"
+                                                autoStart="{Boolean}false"
+                                                class="cq-droptarget"
+                                                fieldDescription="This image appears behind the image selected and has parallax effect on scroll"
+                                                fieldLabel="Parallax background image"
+                                                fileNameParameter="./fileName4"
+                                                fileReferenceParameter="./parallaxImage"
+                                                mimeTypes="[image/gif,image/jpeg,image/png,image/tiff,image/svg+xml]"
+                                                multiple="{Boolean}false"
+                                                name="./file4"
+                                                title="Upload Image Asset"
+                                                uploadUrl="${suffix.path}"
+                                                useHTML5="{Boolean}true"/>
+                                            <alt
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:orderBefore="formFragmentPath"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldDescription="Add alt text to informative images (images that convey meaning and are not just decorative)"
+                                                fieldLabel="Alt Text"
+                                                name="./alt"/>
+                                            <imageAboveContent
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="cq/gui/components/authoring/dialog/fileupload"
+                                                allowUpload="{Boolean}false"
+                                                autoStart="{Boolean}false"
+                                                class="cq-droptarget"
+                                                fieldDescription="Select image to be displayed above the title"
+                                                fieldLabel="Image above content"
+                                                fileNameParameter="./fileName5"
+                                                fileReferenceParameter="./imageAboveContent"
+                                                mimeTypes="[image/gif,image/jpeg,image/png,image/tiff,image/svg+xml]"
+                                                multiple="{Boolean}false"
+                                                name="./file5"
+                                                title="Upload Image Asset"
+                                                uploadUrl="${suffix.path}"
+                                                useHTML5="{Boolean}true"/>
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </image>
+					<action
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Action"
+                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                            margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                    margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <buttons
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                                    fieldLabel="Number on Buttons"
+                                                    max="{Long}4"
+                                                    min="{Long}0"
+                                                    name="./numberOfButtons"/>
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </action>
+                    <notch
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Notch"
+                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                            margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                    margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <notchType
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:orderBefore="id"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                    fieldDescription="Select Notch Options"
+                                                    fieldLabel="Select Notch Options"
+                                                    id="notchType"
+                                                    name="./notchType">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <none
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="None"
+                                                            value="none"/>
+                                                    <rounded
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Rounder Corners"
+                                                            value="rounded"/>
+                                                    <rightNotch
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Right Notch"
+                                                            value="right"/>
+                                                    <leftNotch
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Left Notch"
+                                                            value="left"/>
+                                                </items>
+                                            </notchType>
+                                            <desktopNotchColor
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                    fieldDescription="Select Background Color Theme"
+                                                    fieldLabel="Background Color Theme"
+                                                    name="./desktopNotchColor">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <black
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Abbott Black"
+                                                            value="colorPalette_Black"/>
+                                                    <primaryblue
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Abbott Primary Blue"
+                                                            value="colorPalette_Abbott-Primary-Blue"/>
+                                                    <mint
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Abbott Mint"
+                                                            value="colorPalette_Abbott-Mint"/>
+                                                    <yellow
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Abbott Yellow"
+                                                            value="colorPalette_Yellow"/>
+                                                    <darkyellow
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Abbott Dark Yellow"
+                                                            value="colorPalette_DarkYellow"/>
+                                                    <lightgreen
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Abbott Light Green"
+                                                            value="colorPalette_Light-Green"/>
+                                                    <mediumgreen
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Abbott Medium Green"
+                                                            value="colorPalette_Medium-Green"/>
+                                                    <orange
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Abbott Orange"
+                                                            value="colorPalette_Abbott-Orange"/>
+                                                    <lightgray
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Abbott Light Gray"
+                                                            value="colorPalette_LightGray"/>
+                                                    <white
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Abbott White"
+                                                            value="colorPalette_White"/>
+                                                    <mediumgray
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Abbott Medium Gray"
+                                                            value="colorPalette_Medium-gray"/>
+                                                    <magenta
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Abbott Magenta"
+                                                            value="colorPalette_Abbott-Magenta"/>
+                                                    <purple
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Abbott Purple"
+                                                            value="colorPalette_Abbott-purple"/>
+                                                    <red
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Abbott Red"
+                                                            value="colorPalette_Abbott-red"/>
+                                                    <gold
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Abbott Gold"
+                                                            value="colorPalette_Abbott-gold"/>
+                                                    <lightblue
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Abbott Light Blue"
+                                                            value="colorPalette_Abbott-light-blue"/>
+                                                    <mediumblue
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Abbott Medium Blue"
+                                                            value="colorPalette_Medium-blue"/>
+                                                    <darkblue
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Abbott Dark Blue"
+                                                            value="colorPalette_Abbott-Dark-Blue"/>
+                                                    <darkgray
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Abbott Dark Gray"
+                                                            value="colorPalette_DarkGray"/>
+                                                    <charcoal
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Abbott Charcoal"
+                                                            value="colorPalette_Abbott-charcole"/>
+                                                </items>
+                                            </desktopNotchColor>
+                                            <mobileNotchColor
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                    fieldDescription="Select Notch Color For Mobile"
+                                                    fieldLabel="Notch Color For Mobile"
+                                                    name="./mobileNotchColor">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <black
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Abbott Black"
+                                                            value="mob_colorPalette_Black"/>
+                                                    <primaryblue
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Abbott Primary Blue"
+                                                            value="mob_colorPalette_Abbott-Primary-Blue"/>
+                                                    <mint
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Abbott Mint"
+                                                            value="mob_colorPalette_Abbott-Mint"/>
+                                                    <yellow
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Abbott Yellow"
+                                                            value="mob_colorPalette_Yellow"/>
+                                                    <darkyellow
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Abbott Dark Yellow"
+                                                            value="mob_colorPalette_DarkYellow"/>
+                                                    <lightgreen
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Abbott Light Green"
+                                                            value="mob_colorPalette_Light-Green"/>
+                                                    <mediumgreen
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Abbott Medium Green"
+                                                            value="mob_colorPalette_Medium-Green"/>
+                                                    <orange
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Abbott Orange"
+                                                            value="mob_colorPalette_Abbott-Orange"/>
+                                                    <lightgray
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Abbott Light Gray"
+                                                            value="mob_colorPalette_LightGray"/>
+                                                    <white
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Abbott White"
+                                                            value="mob_colorPalette_White"/>
+                                                    <mediumgray
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Abbott Medium Gray"
+                                                            value="mob_colorPalette_Medium-gray"/>
+                                                    <magenta
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Abbott Magenta"
+                                                            value="mob_colorPalette_Abbott-Magenta"/>
+                                                    <purple
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Abbott Purple"
+                                                            value="mob_colorPalette_Abbott-purple"/>
+                                                    <red
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Abbott Red"
+                                                            value="mob_colorPalette_Abbott-red"/>
+                                                    <gold
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Abbott Gold"
+                                                            value="mob_colorPalette_Abbott-gold"/>
+                                                    <lightblue
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Abbott Light Blue"
+                                                            value="mob_colorPalette_Abbott-light-blue"/>
+                                                    <mediumblue
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Abbott Medium Blue"
+                                                            value="mob_colorPalette_Medium-blue"/>
+                                                    <darkblue
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Abbott Dark Blue"
+                                                            value="mob_colorPalette_Abbott-Dark-Blue"/>
+                                                    <darkgray
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Abbott Dark Gray"
+                                                            value="mob_colorPalette_DarkGray"/>
+                                                    <charcoal
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Abbott Charcoal"
+                                                            value="mob_colorPalette_Abbott-charcole"/>
+                                                </items>
+                                            </mobileNotchColor>
+                                            <hideCurveDesktop
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                    fieldDescription="Checkbox to hide the notch in Desktop"
+                                                    fieldLabel="Checkbox to hide the notch in Desktop"
+                                                    name="./hideCurveDesktop"
+                                                    text="Hide Notch in Desktop and Tab"
+                                                    uncheckedValue="false"
+                                                    value="true"/>
+                                            <hideCurveTab
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                    fieldDescription="Checkbox to hide the notch in Tab"
+                                                    fieldLabel="Checkbox to hide the notch in Tab"
+                                                    name="./hideCurveTab"
+                                                    text="Hide Notch in Tab"
+                                                    uncheckedValue="false"
+                                                    value="true"/>
+                                            <hideCurveMobile
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                    fieldDescription="Checkbox to hide notch in Mobile"
+                                                    fieldLabel="Checkbox to hide notch in Mobile"
+                                                    name="./hideCurveMobile"
+                                                    text="Hide Notch In Mobile"
+                                                    uncheckedValue="false"
+                                                    value="true"/>
+                                            <extraCurveMobile
+                                                    granite:class="cq-dialog-dropdown-showhide"
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                    fieldDescription="Is Extra Curve Required in Mobile View?"
+                                                    fieldLabel="Is Extra Curve Required in Mobile View?"
+                                                    name="./extraCurveMobile"
+                                                    text="Extra Notch In Mobile"
+                                                    uncheckedValue="false"
+                                                    value="true">
+                                                <granite:data
+                                                        jcr:primaryType="nt:unstructured"
+                                                        cq-dialog-dropdown-showhide-target=".type-showhide-target"/>
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <no
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="No"
+                                                            value="no"/>
+                                                    <yes
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Yes"
+                                                            value="yes"/>
+                                                </items>
+                                            </extraCurveMobile>
+                                            <extraMobileNotchContainer
+                                                    granite:class="hide type-showhide-target"
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:orderBefore="id"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                <granite:data
+                                                        jcr:primaryType="nt:unstructured"
+                                                        showhidetargetvalue="yes"/>
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <extranotchType
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:orderBefore="id"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                            fieldDescription="Select Extra Notch Variations In Mobile"
+                                                            fieldLabel="Select Extra Notch Options In Mobile"
+                                                            id="notchType"
+                                                            name="./extranotchType"
+                                                            toggle-checkbox_slave="">
+                                                        <items jcr:primaryType="nt:unstructured">
+                                                            <rounded
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    text="Rounder Corners"
+                                                                    value="rounded"/>
+                                                            <rightNotch
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    text="Right Notch"
+                                                                    value="right"/>
+                                                            <leftNotch
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    text="Left Notch"
+                                                                    value="left"/>
+                                                        </items>
+                                                    </extranotchType>
+                                                    <extramobileNotchColor
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                            fieldDescription="Select Extra Notch Color For Mobile"
+                                                            fieldLabel=" Extra Notch Color For Mobile"
+                                                            name="./extraMobileNotchColor">
+                                                        <items jcr:primaryType="nt:unstructured">
+                                                            <black
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    text="Abbott Black"
+                                                                    value="colorPalette_Black"/>
+                                                            <primaryblue
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    text="Abbott Primary Blue"
+                                                                    value="colorPalette_Abbott-Primary-Blue"/>
+                                                            <mint
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    text="Abbott Mint"
+                                                                    value="colorPalette_Abbott-Mint"/>
+                                                            <yellow
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    text="Abbott Yellow"
+                                                                    value="colorPalette_Yellow"/>
+                                                            <darkyellow
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    text="Abbott Dark Yellow"
+                                                                    value="colorPalette_DarkYellow"/>
+                                                            <lightgreen
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    text="Abbott Light Green"
+                                                                    value="colorPalette_Light-Green"/>
+                                                            <mediumgreen
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    text="Abbott Medium Green"
+                                                                    value="colorPalette_Medium-Green"/>
+                                                            <orange
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    text="Abbott Orange"
+                                                                    value="colorPalette_Abbott-Orange"/>
+                                                            <lightgray
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    text="Abbott Light Gray"
+                                                                    value="colorPalette_LightGray"/>
+                                                            <white
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    text="Abbott White"
+                                                                    value="colorPalette_White"/>
+                                                            <mediumgray
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    text="Abbott Medium Gray"
+                                                                    value="colorPalette_Medium-gray"/>
+                                                            <magenta
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    text="Abbott Magenta"
+                                                                    value="colorPalette_Abbott-Magenta"/>
+                                                            <purple
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    text="Abbott Purple"
+                                                                    value="colorPalette_Abbott-purple"/>
+                                                            <red
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    text="Abbott Red"
+                                                                    value="colorPalette_Abbott-red"/>
+                                                            <gold
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    text="Abbott Gold"
+                                                                    value="colorPalette_Abbott-gold"/>
+                                                            <lightblue
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    text="Abbott light Blue"
+                                                                    value="colorPalette_Abbott-light-blue"/>
+                                                            <mediumblue
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    text="Abbott Medium Blue"
+                                                                    value="colorPalette_Medium-blue"/>
+                                                            <darkblue
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    text="Abbott Dark Blue"
+                                                                    value="colorPalette_Abbott-Dark-Blue"/>
+                                                            <darkgray
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    text="Abbott Dark Gray"
+                                                                    value="colorPalette_DarkGray"/>
+                                                            <charcoal
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    text="Abbott Charcoal"
+                                                                    value="colorPalette_Abbott-charcole"/>
+                                                        </items>
+                                                    </extramobileNotchColor>
+                                                </items>
+                                            </extraMobileNotchContainer>
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </notch>
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>
+
+

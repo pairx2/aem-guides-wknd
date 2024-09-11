@@ -1,0 +1,14 @@
+<sly data-sly-use.templates="abbott/components/content/templates.html"/>
+<!-- /* STICKY MENU */ -->
+<!-- /* ${properties.bgColor} */ -->
+<sly data-sly-test.isStickyMenu="${properties.loggedinText || properties.loggedOutText}"/>
+<span class="glucerna-header__marketing-banner-loggedin d-none"  style="background-color: ${properties.bgColor @ context='styleString'};">
+        ${properties.loggedinText  @context='html'}
+</span>
+<span class="glucerna-header__marketing-banner-loggedout d-none"  style="background-color: ${properties.bgColor @ context='styleString'};">
+        ${properties.loggedOutText  @context='html'}
+</span>
+<span class="placeholder__glucerna-header__marketing-banner"  style="background-color: ${properties.bgColor @ context='styleString'};">
+        <div class="loader"></div>
+</span>
+<sly data-sly-call="${templates.placeholder @ isEmpty= !isStickyMenu}"></sly>

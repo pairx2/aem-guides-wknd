@@ -1,0 +1,49 @@
+<template   data-sly-template.headerLogo="${@ header}">
+    <div class="o-header__logo-section">
+        <div class="container">
+            <div class="row align-items-center justify-content-between">
+                <div class="col-5 col-sm-3 col-lg-3">
+                    <div class="o-header__logo-left">
+                        <div data-sly-unwrap="${!wcmmode.edit}" class="${wcmmode.edit ? 'logo-comp-edit' : ''}">
+                            <sly data-sly-resource="${'hdr-logo-left-1' @resourceType=header.logoProxyPath}"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="o-header__icons-left col-5 col-sm-3 col-lg-3">
+                    <div class="o-header__mini-cart">
+                        <div class="header__cartTrigger"></div>
+                        
+                    </div>
+                    <div class="o-header__logo-right ${wcmmode.edit ? 'logo-comp-edit' : ''}">
+                        <sly data-sly-resource="${'hdr-logo-right' @resourceType=header.logoProxyPath}" />
+                    </div>
+                    <!--/* Molecule sign  up for the mobile */-->
+                    <div class="${wcmmode.edit ? '' : 'o-header__mob-options d-flex d-lg-none'}">
+                        <!--/* My Account */-->
+                        <div data-sly-test.notEditMode="${!wcmmode.edit}" class="m-signup m-myaccount js-myaccount" data-toggle="modal" data-target="#atom-modal-default">
+                            <div data-sly-test="${!header.hideSignUpInNav}" class="a-link a-link--icon-left">
+                                <sly data-sly-resource="${'my-account-link' @resourceType=header.linkProxyPath}" />
+                            </div>
+                        </div>
+						<!--/* My Account */-->
+
+                        <!--/* Sign up */-->
+                        <div data-sly-test.notEditMode="${!wcmmode.edit}" class="m-signup" data-toggle="modal" data-target="#atom-modal-default">
+                            <div data-sly-test="${!header.hideSignUpInNav}" class="a-link a-link--icon-left">
+                                <sly data-sly-resource="${'signup-link' @resourceType=header.linkProxyPath}" />
+                            </div>
+                        </div>
+                        <!--/* Sign up */-->
+                    </div>
+                    <!--/* Search */-->
+                    <div data-sly-test="${!header.hideSearchInNav}" class="${wcmmode.edit ? '' : 'o-header__sticky-search text-right'}" data-search-icon="sticky">          
+                        <div data-sly-unwrap="${!wcmmode.edit}">
+                            <sly data-sly-test="${!wcmmode.edit}" data-sly-resource="${'header-search' @ resourceType=header.headersearchProxyPath}"/>
+                        </div>
+                    </div>
+                <!--/* Search */-->
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

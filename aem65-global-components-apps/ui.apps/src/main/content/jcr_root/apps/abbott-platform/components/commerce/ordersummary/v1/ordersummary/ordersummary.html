@@ -1,0 +1,30 @@
+<!--/* Order Summary Component Start */-->
+<sly data-sly-use.ordersummaryModel="com.abbott.aem.platform.common.components.models.commerce.OrderSummary"
+  data-sly-use.commonTemplates="core/wcm/components/commons/v1/templates.html"></sly>
+
+<div class="${wcmmode.edit ? 'm-ordersummary__on-edit-mode' :'m-ordersummary m-minicart m-ordersummary__container'} js-ordersummary">
+  <div class="m-ordersummary__main">
+    <div class="m-ordersummary__content">
+      <div id="ordersummary" data-icon="${ordersummaryModel.icon}" data-header="${ordersummaryModel.header}"
+        data-read-allowed="${ordersummaryModel.readAllowed}" data-cart-header="${ordersummaryModel.cartHeader}"
+        data-price-to-show="${ordersummaryModel.priceToShow}"
+        data-promo-code-enabled="${ordersummaryModel.promoCodeEnabled ? 'true': ''}"
+        data-promo-code-text="${ordersummaryModel.promoCodeText}" data-order-summary="true" data-enable-tax="${ordersummaryModel.enableTax}" data-promo-code-success-message= "${ordersummaryModel.promoCodeSuccessMsg}" data-promo-code-error-message= "${ordersummaryModel.promoCodeErrorMsg}"
+        data-promo-code-aa-tracking="${ordersummaryModel.promoCodeAATracking ? 'true': ''}"
+        data-show-spaceinprice="${ordersummaryModel.showSpaceInPrice}" data-subtotal-withouttax="${ordersummaryModel.subtotalWithoutTax}"></div>
+      <div id="below-cart-msg" class="m-minicart__bottom m-ordersummary__content-above ${!wcmmode.edit ? 'd-none' :''}" 
+        data-sly-resource="${'container' @ resourceType='wcm/foundation/components/parsys'}">
+      </div>
+      <div id="empty-cart-msg" class="m-minicart__bottom m-ordersummary__content-above ${!wcmmode.edit? 'd-none' :''}">
+        ${ordersummaryModel.emptyCartMessage @ context = "html"}
+        <div class="m-minicart__button-list" data-sly-test.btnList="${ordersummaryModel.listOfButtons}"
+          data-sly-list.btnItem="${btnList}">
+          <sly data-sly-test.parName="${btnItem}" />
+          <sly data-sly-resource="${@path= btnItem, resourceType=ordersummaryModel.buttonProxyPath,decoration=true}" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<sly data-sly-call="${commonTemplates.placeholder @ isEmpty=!ordersummaryModel.icon}"></sly>

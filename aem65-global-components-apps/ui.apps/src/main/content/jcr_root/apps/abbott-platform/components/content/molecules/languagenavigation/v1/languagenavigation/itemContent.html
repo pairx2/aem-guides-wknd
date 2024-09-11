@@ -1,0 +1,18 @@
+<template data-sly-template.itemContent="${@ item='The language navigation item', languageNavigation='The language navigation'}">
+      <div class="a-link" lang="${item.language}">
+        <a data-sly-test="${!hasChildren}" class="a-link__text"
+              data-cmp-clickable="${item.data ? true : false}" aria-label="${item.locale.displayLanguage}" role="link" href="${item.URL}"
+              data-id="menu-2" hreflang="${item.language}" lang="${item.language}">
+              <span class="m-link-stack__name">${item.title}</span>
+              <span class="m-link-stack__lang">
+                <sly data-sly-test.default="${languageNavigation.navigatorType == 'default'}"></sly>
+                <sly data-sly-test="${languageNavigation.showParenthesis && !default}">(</sly><sly data-sly-test="${default}"> - </sly><sly
+                  data-sly-test="${!languageNavigation.hideLanguage}">${item.locale.language}</sly><sly
+                  data-sly-test="${languageNavigation.showHyphen && item.locale.country && !default}">-</sly><sly
+                  data-sly-test="${!languageNavigation.hideCountry && !default}">${item.locale.country}</sly><sly
+                  data-sly-test="${languageNavigation.showParenthesis && !default}">)</sly>
+              </span>
+        </a>
+      </div>
+
+</template>

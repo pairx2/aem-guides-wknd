@@ -1,0 +1,124 @@
+@import "./global/variables.less";
+@import "./global/media-queries.less";
+
+.tabs {
+  .a-tabs__nav {
+    padding-bottom: 1px;
+    border-bottom: 1px solid @color-charcoal;
+  }
+  .a-tabs__nav-link {
+    padding: 8px;
+    margin-right: 1px;
+    min-width: 157px;
+    flex: 0;
+    border: 0;
+    position: relative;
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: -1;
+      background: @color-charcoal;
+      -webkit-transform: scaleY(0);
+      -moz-transform: scaleY(0);
+      transform: scaleY(0);
+      -webkit-transform-origin: 50% 0;
+      -moz-transform-origin: 50% 0;
+      transform-origin: 50% 0;
+      -webkit-transition-property: transform;
+      -moz-transition-property: transform;
+      transition-property: transform;
+      -webkit-transition-duration: 0.3s;
+      -moz-transition-duration: 0.3s;
+      transition-duration: 0.3s;
+    }
+    &:hover {
+      background-color: inherit;
+      &::before {
+        -webkit-transform: scaleY(1);
+        -moz-transform: scaleY(1);
+        transform: scaleY(1);
+      }
+    }
+    &.active {
+      background: @color-charcoal;
+      cursor: default;
+    }
+    .a-tabs__nav-text {
+      font-family: @brandon-bold;
+      font-size: @spacer-16;
+      line-height: @spacer-16;
+    }
+  }
+}
+.a-tabs {  
+  &__nav {
+    &-link {
+      background-color: @color-light-gray;
+    }
+  }
+
+  &#color-red {
+    .a-tabs__nav-link {
+      background: @color-red;
+      &.active {
+        background: @color-charcoal;
+        color: @color-red;
+        &:hover {
+          background: @color-charcoal;
+        }
+      }
+      &::before {
+        background: @color-charcoal;
+        z-index: -1;
+      }
+      &:hover {
+        color: @color-red;
+        z-index: 1;
+      }
+    }
+  }
+  &#color-primary-blue {
+    .a-tabs__nav-link {
+      background: @color-primary-blue;
+      &.active {
+        background: @color-charcoal;
+        color: @color-primary-blue;
+        &:hover {
+          background: @color-charcoal;
+        }
+      }
+      &::before {
+        background: @color-charcoal;
+        z-index: -1;
+      }
+      &:hover {
+        color: @color-primary-blue;
+        z-index: 1;
+      }
+    }
+  }
+  &#color-yellow {
+    .a-tabs__nav-link {
+      background: @color-yellow;
+      &.active {
+        background: @color-charcoal;
+        color: @color-yellow;
+        &:hover {
+          background: @color-charcoal;
+        }
+      }
+      &::before {
+        background: @color-charcoal;
+        z-index: -1;
+      }
+      &:hover {
+        color: @color-yellow;
+        z-index: 1;
+      }
+    }
+  }
+}

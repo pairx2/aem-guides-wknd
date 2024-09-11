@@ -1,0 +1,166 @@
+<section class="search-results-container">
+    <div class="container">
+        <header class="search-results-header">
+            <div class="search-results__count"></div>
+            <div class="search-results__buttons">
+                <button type="button" class="search-results-btn__list">
+                    <em class="abt-icon abt-icon-hambuerger-menu"></em>
+                </button>
+                <button type="button" class="search-results-btn__grid active">
+                    <em class="abt-icon abt-icon-squares"></em>
+                </button>
+            </div>
+        </header>
+        <div class="search-results-wrapper row product-card">
+
+        </div>
+        <div class="loading-screen screen-loader search-results-loader">
+			<img src="${properties.loadingImage}" alt="${properties.altTextLoadingImage}"/>
+            <span>${'search.loadingResultText'@i18n}</span>
+        </div>
+        <div class="no-result-screen screen-loader d-none search-results-loader">
+			<img src="${properties.noResultsImage}" alt="${properties.altTextNoResultsImage}"/>
+            <span>${'search.noResultText'@i18n}</span>
+        </div>
+    </div>    
+</section>
+
+<div class="modal generic-modal download-modal product-card-download-modal" tabindex="-1" role="dialog" id="product-card-download-modal" aria-modal="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content generic-modal__content">
+            <div class="modal-header generic-modal__header">
+                <h2 class="m-card__title h4">
+                    <!-- product title will come here -->
+                </h2>
+            </div>
+            <div class="modal-body generic-modal__content-body">
+                <div class="contentsection">
+                    <div class="o-content-section">
+                        <div class="o-content-section__container container">
+                            <div class="o-content-section__row row">
+                                <div class="col-3 o-content-section__heading-group">
+                                    <ul class="nav nav-tabs o-content-section__list d-sm-block"
+                                        role="tablist">
+                                        <li class="o-content-section__list-item tab-external-link">
+                                            <a href="#" title="${'modal.info.title'@i18n}" class="o-content-section__list-item-link info-link">${'modal.info'@i18n}</a>
+                                        </li>
+                                        <li role="presentation" class="o-content-section__list-item">
+                                            <a href="#mds2-tab" title="${'modal.mds2.title'@i18n}"
+                                                class="o-content-section__list-item-link"
+                                                aria-controls="tab1" role="tab" data-toggle="tab"
+                                                aria-selected="false">${'modal.mds2'@i18n}</a>
+                                        </li>
+                                        <li role="presentation"
+                                            class="o-content-section__list-item selected">
+                                            <a href="#sbom-tab" title="${'modal.sbom.title'@i18n}"
+                                                class="o-content-section__list-item-link active"
+                                                aria-controls="tab2" role="tab" data-toggle="tab"
+                                                aria-selected="true">${'modal.sbom'@i18n}</a>
+                                        </li>
+                                        <li class="o-content-section__list-item tab-external-link">
+                                            <a href="#" title="${'modal.vsi.title'@i18n}" class="o-content-section__list-item-link vsi-link" >${'modal.vsi'@i18n}</a>
+                                        </li>
+										<li class="o-content-section__list-item tab-external-link">
+                                            <a href="#" title="${'modal.others.title'@i18n}" class="o-content-section__list-item-link others-link" >${'modal.others'@i18n}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div
+                                    class="col-9 dowload-tab-wrapper">
+                                    <div class="o-content-section__tab-content tab-content">
+                                        <div role="tabpanel" class="o-content-section__tab-pane tab-pane"
+                                            id="mds2-tab">
+                                            <div class="o-content-section__heading">
+                                                <h4 class="cmp-title__text">${'modal.avlVersionMds2'@i18n}</h4>
+                                                <div class="version-wrapper">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div role="tabpanel" class="o-content-section__tab-pane tab-pane active"
+                                            id="sbom-tab">
+                                            <div class="o-content-section__heading ">
+                                                <h4 class="cmp-title__text">${'modal.avlVersionSbom'@i18n}</h4>
+                                                <div class="version-wrapper">
+                                                
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer generic-modal__content-footer">
+                <div class="download-modal__btn-done">
+                    <button type="button" target="_self" data-dismiss="modal">
+                        ${'button.done'@i18n}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<template id="product-card-template">
+    <div class="product-card__grid-view col-md-4 col-lg-3">
+        <div class="m-card__body">
+            <h2 class="m-card__title h4">{{TITLE}}</h2>
+            <div class="m-card__meta-data">
+                <p class="m-card__product-type">{{TYPE}}</p>
+            </div>
+            <div class="m-card-button-wrapper">
+                <div class="m-card__btn--download">
+                    <button type="button" data-toggle="modal"
+                        data-target="#product-card-download-modal" data-id="{{TITLE}}">
+                        ${'button.moreDetails'@i18n}
+                    </button>
+                </div>
+                <div class="m-card__btn--favourite">
+                    <button type="button" data-id="{{PRODUCT_ID}}">
+                        <em class="abt-icon {{HEART_ICON}}"></em>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<template id="product-version-template">
+    <div class="row a-container__layout-section">
+        <div
+            class="a-container__column col-6">
+            <h3 class="cmp-title__text">{{TITLE}}</h3>
+        </div>
+        <div
+            class="a-container__column col-6">
+            <div class="container-fluid column-layout-container download-link-wrapper">
+                <section class="a-container">
+                    <div class="container">
+                        <div class="row a-container__layout-section">
+                            <div
+                                class="a-container__column col-12 col-sm-12">
+                                <div class="a-button a-button--secondary  a-button--icon-left {{XMLVISIBILITY}}">
+                                    <button class="btn"
+                                        type="button" data-url="{{XMLPATH}}" data-type="xml" data-gtm-eventLabel="{{TAB}}|XML|{{TITLE}}" data-gtm-eventAction="{{PRODUCTNAME}}">
+                                        <em class="abt-icon abt-icon-pdf"></em>
+                                        <span>${'button.xml'@i18n}</span>
+                                    </button>
+                                </div>
+                                <div class="a-button a-button--secondary  a-button--icon-left {{PDFVISIBILITY}}">
+                                    <button class="btn"
+                                        type="button" data-url="{{PDFPATH}}" data-type="pdf" data-gtm-eventLabel="{{TAB}}|PDF|{{TITLE}}" data-gtm-eventAction="{{PRODUCTNAME}}">
+                                        <em class="abt-icon abt-icon-pdf"></em>
+                                        <span>${'button.pdf'@i18n}</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</template>

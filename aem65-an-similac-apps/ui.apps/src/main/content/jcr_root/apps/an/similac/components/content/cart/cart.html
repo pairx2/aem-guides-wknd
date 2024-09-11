@@ -1,0 +1,11 @@
+<sly data-sly-use.templates="an/similac/components/content/templates.html"/>
+<sly data-sly-test.cartTitle="${properties.cartTitle}"/>
+<span class="sim-icons" data-icon="cart-color"></span>
+<div class="d-none d-lg-block">${properties.cartTitle}</div>
+<sly data-sly-call="${templates.placeholder @ isEmpty= !cartTitle}"></sly>
+
+<sly data-sly-use.obj="${'com.abbott.aem.an.similac.core.models.CartComponentModel'}">
+ <script>
+    var miniCart_label = Object.freeze(JSON.parse("${obj.cartJson @ context='scriptString'}"));
+ </script>
+ </sly>

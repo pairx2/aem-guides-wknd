@@ -1,0 +1,10 @@
+<sly data-sly-use.templates="abbott/components/content/templates.html" />
+<sly data-sly-use.details="${'com.abbott.aem.an.abbottstore.models.CtaButtonModel' @ variation=inheritedPageProperties.themeType}">
+	<sly data-sly-test.isCtaLabel="${details.ctaLabel || details.loggedOutText}"/>
+    <a class="action__trail-subscribe subscribe-loggedin d-none" href="${details.ctaLink}">
+        ${details.ctaLabel}
+    </a>
+    <a class="action__trail-subscribe subscribe-loggedout d-none" href="${details.ctaLink}">
+      ${details.loggedOutText}
+    </a>
+ <sly data-sly-call="${templates.placeholder @ isEmpty= !isCtaLabel}"></sly>

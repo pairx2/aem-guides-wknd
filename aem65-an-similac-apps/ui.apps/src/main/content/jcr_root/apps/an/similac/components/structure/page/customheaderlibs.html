@@ -1,0 +1,19 @@
+<sly data-sly-use.clientlib="/libs/granite/sightly/templates/clientlib.html" 
+data-sly-call="${clientlib.css @ categories=inheritedPageProperties.vendorclientlibs}"/>
+<sly data-sly-use.clientlib="/libs/granite/sightly/templates/clientlib.html" 
+data-sly-call="${clientlib.css @ categories=inheritedPageProperties.projectclientlibs}"/>
+<sly data-sly-use.clientlib="/libs/granite/sightly/templates/clientlib.html" 
+data-sly-call="${clientlib.css @ categories=inheritedPageProperties.componentclientlibs}"/>
+<sly data-sly-test="${inheritedPageProperties.trustArcCmpId}">
+<sly data-sly-test.trustArcCoreLibraryUrl="${inheritedPageProperties.trustArcCoreLibraryUrl && (!(wcmmode.edit || wcmmode.design))}">
+<script src="${inheritedPageProperties.trustArcCoreLibraryUrl}${inheritedPageProperties.trustArcCmpId}"></script> 
+</sly>
+<sly data-sly-test.trustArcBlockListUrl="${inheritedPageProperties.trustArcBlockListUrl && (!(wcmmode.edit || wcmmode.design))}">
+<script src="${inheritedPageProperties.trustArcBlockListUrl}${inheritedPageProperties.trustArcCmpId}"></script> 
+</sly>
+<sly data-sly-test.trustArcScriptUrl="${inheritedPageProperties.trustArcScriptUrl && (!(wcmmode.edit || wcmmode.design))}">
+<script type="text/javascript" async="async" src="${inheritedPageProperties.trustArcScriptUrl}"></script>
+</sly>
+<sly data-sly-test="${inheritedPageProperties.captchaScript}">${inheritedPageProperties.captchaScript @ context='scriptComment'}</sly>
+<input type="hidden" id="cmpidField" name="cmpid" value="${inheritedPageProperties.trustArcCmpId}"/>
+</sly>

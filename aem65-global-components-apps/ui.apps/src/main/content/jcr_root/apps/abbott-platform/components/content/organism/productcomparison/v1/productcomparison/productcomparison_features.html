@@ -1,0 +1,18 @@
+<template data-sly-template.features="${@ productComparison}">
+    <sly data-sly-list.feature="${productComparison.features}">
+        <tr class="o-products-compare-data-col">
+          <!--/* feature name */-->
+          <th class="o-products-compare__fixed-side" scope="row">
+              <span>${feature.featureName @context='html'}</span>
+          </th>
+
+          <!--/* product feature text */-->
+          <sly data-sly-list.products="${productComparison.products}">
+          <td>
+              <sly data-sly-test.col="${'{0}{1}_{2}' @ format=['product_feature_text_', productsList.index, featureList.index]}"/>
+              <sly data-sly-resource="${@ path=col, resourceType=productComparison.textProxyPath, decoration=true}" />
+          </td>
+          </sly>
+        </tr>
+    </sly>
+</template>

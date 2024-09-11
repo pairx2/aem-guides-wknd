@@ -1,0 +1,41 @@
+<sly 
+data-sly-use.i18n_formcontainer_stepLabel="${'com.abbott.aem.cloud.platform.core.models.I18nFetcher' @ key = 'formcontainer-steplabel'}"
+/>
+<sly data-sly-use.formcontainer="com.abbott.aem.platform.common.components.models.FormContainer">
+       <div class="o-wizard__container" data-action="${formcontainer.domainName}${formcontainer.formType}" data-ajax-method="${formcontainer.methodAction}">
+			<div class="a-wizard">
+                <ul class="a-wizard__steps ${formcontainer.stepCompleteIcon ? 'a-wizard__custom-icon' : ''}">
+                	<li data-sly-repeat.stepLabel="${formcontainer.stepLabel}" class="wizard-step a-wizard__step--incomplete ${stepLabelList.first ? 'a-wizard-step--active':''}" data-wizard="${stepLabelList.index}">
+                        <span class="${formcontainer.stepCompleteIcon ? 'd-block' : 'd-none'}">
+                            <em class="a-wizard__icon ${formcontainer.stepCompleteIcon}" aria-hidden="true"></em>
+                        </span>
+						<span class="a-wizard__steps--icon ${formcontainer.stepCompleteIcon ? 'default-fallback-icon' : ''}"></span>
+                        <span class="a-wizard__label">${stepLabel @ i18n}</span>
+                    </li>
+                </ul>
+			</div>
+            <sly data-sly-repeat.stepLabels="${formcontainer.stepLabel}">
+                <fieldset class="o-wizard__content ${wcmmode.edit ? 'd-block' : ''}" data-wizarditem="${stepLabelsList.index}">
+                	<legend>&nbsp;</legend>
+                    <sly data-sly-test.col="${'step-{0}' @ format=[stepLabelsList.count]}"/>
+                    <div data-sly-test="${wcmmode.edit}" class="cq-placeholder" data-emptytext="Step-${stepLabelsList.count} wizard content"></div>
+                    <sly data-sly-test.nextbutton="${'step-nextbutton-{0}' @ format=[stepLabelsList.index]}"/>
+                    <sly data-sly-test.prevbutton="${'step-prevbutton-{0}' @ format=[stepLabelsList.index]}"/>
+                    <sly data-sly-resource="${col @ resourceType='wcm/foundation/components/parsys'}"></sly>
+                   	<div class="o-wizard__btn">
+                   		<div class="button-div o-wizard__btn--back" data-sly-test="${!stepLabelsList.first}">
+                            <sly data-sly-resource="${prevbutton @ resourceType=formcontainer.buttonProxyPath,decoration=true}"></sly>
+                        </div>
+
+                        <div class="button-div justify-content-end" data-sly-test="${!stepLabelsList.last}">
+                            <sly data-sly-resource="${nextbutton @ resourceType=formcontainer.buttonProxyPath,decoration=true}"></sly>
+                        </div>
+
+                        <div class="button-div justify-content-end" data-sly-test="${stepLabelsList.last}">
+							<sly data-sly-test="${formcontainer.submit}" data-sly-resource="${'wizard-submit' @ resourceType=formcontainer.buttonProxyPath,decoration=true}"></sly>
+                        </div>
+                  	</div>
+                </fieldset>
+            </sly>
+   		</div>       
+</sly>

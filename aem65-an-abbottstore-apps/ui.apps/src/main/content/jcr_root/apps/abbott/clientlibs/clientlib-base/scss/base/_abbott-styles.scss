@@ -1,0 +1,93 @@
+@import "./functions";
+@import "./mixins";
+@import "./variables";
+
+// Customize .container for ipad devices
+@media (min-width: 768px) and (max-width: 1200px) {
+  .container {
+    max-width: 100%;
+  }
+}
+
+input[type=number] {
+  appearance: textfield;
+  -moz-appearance: textfield;
+  -webkit-appearance: textfield;
+}
+
+input[type="radio"]:focus {
+  outline: none;
+}
+
+select:focus {
+  outline: none;
+}
+
+.abbott-container {
+  padding: 0;
+  width: 100%;
+
+  @include media-breakpoint-down(sm) {
+    overflow: hidden;
+  }
+}
+
+.app-message {
+  display: none;
+  font-size: 13px;
+  line-height: 16px;
+  margin: 10px 0;
+  padding: 8px 16px 8px 40px;
+  position: relative;
+
+  &.success {
+    background: lighten($mountain-meadow, 55%);
+    border: 1px solid lighten($mountain-meadow, 40%);
+    color: $mountain-meadow;
+    display: block;
+  }
+
+  &.error {
+    background: $we-peep;
+    color: $monza;
+    display: block;
+  }
+
+  i {
+    bottom: 0;
+    font-size: 28px;
+    left: 5px;
+    position: absolute;
+
+    @include media-breakpoint-down(sm) {
+      top: 8px;
+    }
+  }
+}
+
+// Generic Spacing classes for margin
+.abbott-margin{
+  @each $space-value in $abbott-spacing {
+    &-top-#{$space-value}{
+      margin-top: #{$space-value}#{rem};
+    }
+
+    &-bottom-#{$space-value}{
+      margin-bottom: #{$space-value}#{rem};
+    }
+  }
+}
+
+.column-control {
+  overflow: hidden;
+}
+
+.overflow-visible {
+  overflow: visible;
+}
+
+@include media-breakpoint-between(sm, md) {
+  .container {
+    max-width: none;
+  }
+}

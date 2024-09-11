@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Button"
+    sling:resourceType="cq/gui/components/authoring/dialog"
+    extraClientlibs="[abbott-platform.button.clientlibs]">
+    <content
+        granite:class="cmp-button__editor"
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                maximized="{Boolean}true">
+                <items jcr:primaryType="nt:unstructured">
+                    <properties
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Properties"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:hideChildren="[text,iconpicker,action,urlContainer,modalContainer]">
+                                            <buttonType
+                                                granite:class="cq-dialog-dropdown-showhide"
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:orderBefore="id"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                fieldDescription="Select a button type from the list. Each button type has a predefined function."
+                                                fieldLabel="Button Type"
+                                                id="buttonType"
+                                                name="./buttonType">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <withDestination
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="Call To Action"
+                                                        value="withDestination"/>
+                                                    <withoutDestination
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="Form Button"
+                                                        value="withoutDestination"/>
+                                                    <imageButton
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="Image Button"
+                                                        value="imageButton"/>
+                                                    <cancelButton
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="Cancel Button"
+                                                        value="cancelButton"/>
+                                                    <continueButton
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="Continue Button"
+                                                        value="continueButton"/>
+                                                </items>
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    cq-dialog-dropdown-showhide-target=".type-showhide-target"/>
+                                            </buttonType>
+                                            <textContainer
+                                                granite:class="type-showhide-target hide"
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:orderBefore="id"
+                                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <text
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                        fieldLabel="Button Text"
+                                                        id="text"
+                                                        name="./jcr:title"/>
+                                                    <hideButtonText
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                        fieldDescription="If checked, the button text will not be displayed"
+                                                        name="./hideButtonText"
+                                                        text="Hide Button Text"
+                                                        uncheckedValue="{Boolean}false"
+                                                        value="{Boolean}true"/>
+                                                </items>
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    showhidetargetvalue="withoutDestination,withDestination,continueButton,cancelButton"/>
+                                            </textContainer>
+                                            <formContainer
+                                                granite:class="type-showhide-target hide"
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:orderBefore="id"
+                                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <buttonName
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                        emptyText="Enter the text for button name attribute"
+                                                        fieldDescription="Enter the text which will be used as 'name' attribute"
+                                                        fieldLabel="Button Name"
+                                                        id="buttonName"
+                                                        name="./buttonName"/>
+                                                    <formButtonType
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                        fieldLabel="Form Button Type"
+                                                        id="formButtonType"
+                                                        name="./formButtonType">
+                                                        <items jcr:primaryType="nt:unstructured">
+                                                            <button
+                                                                jcr:primaryType="nt:unstructured"
+                                                                text="Button"
+                                                                value="button"/>
+                                                            <submit
+                                                                jcr:primaryType="nt:unstructured"
+                                                                text="Submit"
+                                                                value="submit"/>
+                                                            <reset
+                                                                jcr:primaryType="nt:unstructured"
+                                                                text="Reset"
+                                                                value="reset"/>
+                                                        </items>
+                                                    </formButtonType>
+                                                    <disabledButton
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                        fieldDescription="If checked, button is disabled"
+                                                        name="./disabledButton"
+                                                        text="Disable Button"
+                                                        value="{Boolean}true"/>
+                                                </items>
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    showhidetargetvalue="withoutDestination"/>
+                                            </formContainer>
+                                            <linkContainer
+                                                granite:class="hide type-showhide-target"
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:orderBefore="id"
+                                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <button-action
+                                                        granite:class="cq-dialog-dropdown-showhide"
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                        fieldDescription="Select a preferred way to open the destination url"
+                                                        fieldLabel="Button Action"
+                                                        id="action"
+                                                        name="./action"
+                                                        text="Button Action">
+                                                        <items jcr:primaryType="nt:unstructured">
+                                                            <blank
+                                                                jcr:primaryType="nt:unstructured"
+                                                                checked="{Boolean}true"
+                                                                text="Open link in new tab"
+                                                                value="_blank"/>
+                                                            <self
+                                                                jcr:primaryType="nt:unstructured"
+                                                                text="Open link in same tab"
+                                                                value="_self"/>
+                                                            <modal
+                                                                jcr:primaryType="nt:unstructured"
+                                                                text="Open pop-up modal"
+                                                                value="modal"/>
+                                                            <selftag
+                                                                jcr:primaryType="nt:unstructured"
+                                                                text="Focus to content of page"
+                                                                value="selfTag"/>
+                                                        </items>
+                                                        <granite:data
+                                                            jcr:primaryType="nt:unstructured"
+                                                            cq-dialog-dropdown-showhide-target=".action-showhide-target"/>
+                                                    </button-action>
+                                                    <link-url
+                                                        granite:class="hide action-showhide-target"
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                        <items jcr:primaryType="nt:unstructured">
+                                                            <link
+                                                                jcr:primaryType="nt:unstructured"
+                                                                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                                fieldDescription="Enter link to a content page, external URL or page anchor"
+                                                                fieldLabel="Destination/URL"
+                                                                name="./link"
+                                                                rootPath="/content"/>
+                                                        </items>
+                                                        <granite:data
+                                                            jcr:primaryType="nt:unstructured"
+                                                            showhidetargetvalue="_self,_blank,selfTag"/>
+                                                    </link-url>
+                                                    <external-link
+                                                        granite:class="hide action-showhide-target"
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                        <items jcr:primaryType="nt:unstructured">
+                                                            <external
+                                                                jcr:primaryType="nt:unstructured"
+                                                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                                fieldDescription="Check if the link entered is redirecting to a page outside of this site"
+                                                                name="./external"
+                                                                text="This is an external link"
+                                                                uncheckedValue="false"
+                                                                value="true"/>
+                                                        </items>
+                                                        <granite:data
+                                                            jcr:primaryType="nt:unstructured"
+                                                            showhidetargetvalue="_self,_blank"/>
+                                                    </external-link>
+                                                    <external-link-popup
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                        checked="{Boolean}true"
+                                                        fieldDescription="Show redirect confirmation popup for external link"
+                                                        name="./redirectConfirm"
+                                                        text="Confirm redirect popup"
+                                                        uncheckedValue="false"
+                                                        value="{Boolean}true"/>
+                                                    <modalContainer
+                                                        granite:class="hide action-showhide-target"
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                        <granite:data
+                                                            jcr:primaryType="nt:unstructured"
+                                                            showhidetargetvalue="modal"/>
+                                                        <items jcr:primaryType="nt:unstructured">
+                                                            <popUpUrl
+                                                                jcr:primaryType="nt:unstructured"
+                                                                sling:resourceType="cq/experience-fragments/editor/components/xffield"
+                                                                emptyText="Add the path for Pop up's experience fragment"
+                                                                fieldDescription="Select Experience Fragment Path for Pop-up"
+                                                                fieldLabel="Pop-up Modal URL Label"
+                                                                id="popUpUrl"
+                                                                name="./popUpUrl"/>
+                                                        </items>
+                                                    </modalContainer>
+                                                </items>
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    showhidetargetvalue="withDestination,imageButton,continueButton"/>
+                                            </linkContainer>
+                                            <imageContainer
+                                                granite:class="hide type-showhide-target"
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:orderBefore="id"
+                                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    showhidetargetvalue="imageButton"/>
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <image
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                        fieldDescription="Select the image"
+                                                        fieldLabel="Button Image"
+                                                        name="./image"
+                                                        rootPath="/content/dam"/>
+                                                    <altText
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                        fieldDescription="Enter image alt text"
+                                                        fieldLabel="Button Alt text"
+                                                        id="altText"
+                                                        name="./altText"/>
+                                                </items>
+                                            </imageContainer>
+                                             <id
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:hideResource="{Boolean}true"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                name="./id"/>
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </properties>
+                    <configItem
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="ID/Class Config"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <configTab
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="/libs/granite/ui/components/coral/foundation/include"
+                                                path="/apps/abbott-platform/components/core/customconfig/v1/customconfig/cq:dialog/content/items/tabs/items/configItem/items/columns/items/column"/>
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </configItem>
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>

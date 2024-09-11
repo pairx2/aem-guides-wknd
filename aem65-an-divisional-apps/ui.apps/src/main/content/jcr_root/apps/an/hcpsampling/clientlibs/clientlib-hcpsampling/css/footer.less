@@ -1,0 +1,100 @@
+@import "./global/mixins.less";
+@import './global/variables.less';
+
+.o-footer {
+    &__top {
+        padding-bottom:0;
+        @media @lg-up {
+            padding-bottom: var(--footer-top-section-padding-bottom);
+        }
+        .o-footer__link-wrapper {
+            &:first-child {
+                @media @xl-only {
+                    margin-right:4rem;
+                }
+            }
+        }
+        .m-link-stack {
+            &--title {
+                color: @color-white;
+            }
+            &--content {
+                @media @lg-down {
+                    padding-top: 2rem;
+                    padding-left:0;
+                }
+                &.three-column {
+                    @media @lg-up {
+                        columns: 3 auto;
+                        column-gap: 7rem;
+                    }
+                }
+
+                .a-link__text {
+                    font-family: @base-font-family;
+                    font-size: @font-size-16;
+                    color: @color-white;
+                }
+
+                a[href*='/secure'] {
+                    display:none;
+                    .logged-in & {
+                        display:inline-block;
+                    }
+                }
+            }
+
+            .abt-icon-down-arrow {
+                color: var(--footer-icon-color);
+                font-size: @font-size-10;
+            }
+        }
+    }
+
+    .horizontal-divider {
+        @media @lg-up {
+            margin:1rem 0;
+        }
+    }
+
+    &__bottom {
+
+        .o-footer__social-media {
+            display:none;
+        }
+
+        .o-footer__disclaimer-section {
+            padding-left:0;
+            .a-link {
+                &__text {
+                    font-family: @base-font-family;
+                    color: var(--footer-link-text-color);
+                }
+            }
+        }
+
+        p {
+            font-size: var(--footer-copyright-font-size) !important;
+            color: var(--footer-copyright-color);
+            line-height: var(--footer-copyright-line-height);
+        }
+
+        .o-footer__copyright {
+            margin: 0 0 var(--footer-spacing-l);
+
+            @media @lg-up {
+                margin: var(--footer-spacing-l) 0;
+            }
+        }
+    }
+}
+
+// to fix the allergy page popup
+.abbott-wrapper{
+    position: relative;
+    z-index: 2;
+} 
+.footer ~ .container {
+    height: 0 !important;
+    padding: 0 !important;
+}

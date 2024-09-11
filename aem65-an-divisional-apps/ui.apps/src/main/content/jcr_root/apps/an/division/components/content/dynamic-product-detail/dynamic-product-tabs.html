@@ -1,0 +1,79 @@
+<template data-sly-template.tab="${@ dynamicProductDetail, product}">
+    <div class="tabs p-md-0">
+        <div id="tabs-product-details" class="cmp-tabs a-tabs" data-cmp-is="tabs">
+            <nav class="nav nav-tabs cmp-tabs__tablist a-tabs__nav nav nav-tabs nav-fill a-tabs__nav a-tabs row"
+                aria-multiselectable="false">
+                <a data-sly-test="${product.availability}" id="availability_product-detail" data-toggle="tab" href="#tabs-availability-content"
+                    class="cmp-tabs__tab show active a-tabs__nav-link nav-item a-tabs__tab-pane tab-pane"
+                    aria-controls="tabs-availability-tab" aria-label="Active">
+                    <sly data-sly-list.info=${dynamicProductDetail.tabInformation}>
+                        <span data-sly-test="${infoList.index == 0 }" class="a-tabs__nav-text">${info.tabName @
+                            context='html'}</span>
+                    </sly>
+                </a>
+                <a data-sly-test="${product.servingSize}" id="nutrition_product-detail" data-toggle="tab" href="#tabs-nutrition-content"
+                    class="cmp-tabs__tab a-tabs__nav-link nav-item a-tabs__tab-pane tab-pane"
+                    aria-controls="tabs-nutrition-tab" aria-label="Active">
+                    <sly data-sly-list.info=${dynamicProductDetail.tabInformation}>
+                        <span data-sly-test="${infoList.index == 1}" class="a-tabs__nav-text">${info.tabName @
+                            context='html'}</span>
+                    </sly>
+                </a>
+                <a data-sly-test="${product.features || product.precautions}" id="product-info_product-detail" data-toggle="tab" href="#tabs-product-info-content"
+                    class="cmp-tabs__tab a-tabs__nav-link nav-item a-tabs__tab-pane tab-pane"
+                    aria-controls="tabs-product-info-tab" aria-label="Active">
+                    <sly data-sly-list.info=${dynamicProductDetail.tabInformation}>
+                        <span data-sly-test="${infoList.index == 2}" class="a-tabs__nav-text">${info.tabName @
+                            context='html'}</span>
+                    </sly>
+                </a>
+                <sly data-sly-list.ingredient="${product.ingredients}">
+                <a data-sly-test="${ingredient.ingredients != '' && ingredientList.index < 1}" id="ingredients_product-detail" data-toggle="tab" href="#tabs-ingredients-content"
+                    class="cmp-tabs__tab a-tabs__nav-link nav-item a-tabs__tab-pane tab-pane"
+                    aria-controls="tabs-ingredients-tab" aria-label="Active">
+                    <sly data-sly-list.info=${dynamicProductDetail.tabInformation}>
+                        <span data-sly-test="${infoList.index == 3}" class="a-tabs__nav-text">${info.tabName @
+                            context='html'}</span>
+                    </sly>
+                </a>
+				</sly>
+                <a data-sly-test="${product.instructions}" id="preparation_product-detail" data-toggle="tab" href="#tabs-preparation-content"
+                    class="cmp-tabs__tab a-tabs__nav-link nav-item a-tabs__tab-pane tab-pane"
+                    aria-controls="tabs-preparation-tab" aria-label="Active">
+                    <sly data-sly-list.info=${dynamicProductDetail.tabInformation}>
+                        <span data-sly-test="${infoList.index == 4}" class="a-tabs__nav-text">${info.tabName @
+                            context='html'}</span>
+                    </sly>
+                </a>
+            </nav>
+            <div class="a-tabs__content tab-content">
+                <div data-sly-test="${product.availability}" id="tabs-availability-content" role="tabpanel" aria-labelledby="tabs-availability-tab" tabindex="0"
+                    class="cmp-tabs__tabpanel a-tabs__tab-pane tab-pane " data-cmp-hook-tabs="tabpanel">
+                    <sly data-sly-use.availabilityTab="product-detail-tabs/availability.html"
+                        data-sly-call="${availabilityTab.available @ dynamicProductDetail= dynamicProductDetail, product= product}">
+                    </sly>
+                </div>
+                <div data-sly-test="${product.servingSize}" id="tabs-nutrition-content" role="tabpanel" aria-labelledby="tabs-nutrition-tab" tabindex="0"
+                    class="cmp-tabs__tabpanel a-tabs__tab-pane tab-pane " data-cmp-hook-tabs="tabpanel">
+                    <sly data-sly-use.nutritionsTab="product-detail-tabs/nutrition.html"
+                        data-sly-call="${nutritionsTab.nutritions @ product= product}"></sly>
+                </div>
+                <div data-sly-test="${product.features || product.precautions}" id="tabs-product-info-content" role="tabpanel" aria-labelledby="tabs-product-info-tab" tabindex="0"
+                    class="cmp-tabs__tabpanel a-tabs__tab-pane tab-pane " data-cmp-hook-tabs="tabpanel">
+                    <sly data-sly-use.productInfoTab="product-detail-tabs/product-information.html"
+                        data-sly-call="${productInfoTab.productInfo @ product= product}"></sly>
+                </div>
+                <div data-sly-test="${product.ingredients || product.availability}" id="tabs-ingredients-content" role="tabpanel" aria-labelledby="tabs-ingredients-tab" tabindex="0"
+                    class="cmp-tabs__tabpanel a-tabs__tab-pane tab-pane " data-cmp-hook-tabs="tabpanel">
+                    <sly data-sly-use.ingredientsTab="product-detail-tabs/ingredients.html"
+                        data-sly-call="${ingredientsTab.ingredient @ product= product}"></sly>
+                </div>
+                <div data-sly-test="${product.instructions}" id="tabs-preparation-content" role="tabpanel" aria-labelledby="tabs-preparation-tab" tabindex="0"
+                    class="cmp-tabs__tabpanel a-tabs__tab-pane tab-pane " data-cmp-hook-tabs="tabpanel">
+                    <sly data-sly-use.preparationTab="product-detail-tabs/preparation.html"
+                        data-sly-call="${preparationTab.prep @ product= product}"></sly>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

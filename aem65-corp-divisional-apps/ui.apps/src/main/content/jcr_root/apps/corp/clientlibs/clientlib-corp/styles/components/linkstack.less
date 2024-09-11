@@ -1,0 +1,715 @@
+/**********************************
+Link Stack Component
+**********************************/
+
+.linkstack {
+  // style system to change the text color, hide the dropdown icon and display the list items with horizantal space
+  &.linkstack--list-of-item {
+    .m-link-stack {
+      //  header text block overriding color, font size of global code
+      .m-link-stack--header .m-link-stack--title {
+        font-family: @font-brandon-grotesque-regular;
+        font-weight: 700;
+        --link-stack-h6-color: @abbott-bastille;
+        margin: 0;
+        text-transform: uppercase;
+      }
+
+      .m-link-stack--header .abt-icon-down-arrow {
+        // overriding global code for hiding the drop-down icon
+        display: none !important;
+      }
+
+      .m-link-stack--content {
+        display: block !important; //overriding global code to display list items permenently
+        padding: 0;
+
+        .a-link {
+          // li block to provide horizantal space between list items
+          margin-top: @spacer-35;
+
+          @media @lg-down {
+            margin-top: @spacer-17; //less space for mobile and tablet view
+          }
+
+          .a-link__text {
+            --link-stack-color: @abbott-blue;
+            font-weight: 700;
+            font-family: @font-brandon-grotesque-regular;
+            text-transform: uppercase;
+
+            &:hover {
+              --link-stack-color: @abbott-bastille;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  //style system to change the text color, background color, hover color, left padding,
+  &.linkstack--list-type {
+    width: 100%;
+
+    @media @md-up {
+      border-bottom: 1px solid @abbott-fog-gray;
+    }
+
+    .m-link-stack {
+      .m-link-stack--content {
+        .a-link {
+          display: inline-block;
+          height: 36px;
+          padding: 12px 9px 0;
+          font-size: @font-size-14;
+          margin-right: 0;
+          line-height: 0.875em;
+          text-transform: uppercase;
+          background-color: @abbott-pearl-gray;
+
+          &:hover {
+            background-color: var(--link-stack-list-type-hover-bg-color);
+
+            &:hover .a-link__text {
+              color: @black;
+            }
+          }
+
+          .a-link__text {
+            color: var(--link-stack-list-type-text-color);
+
+            &:hover {
+              color: @black !important;
+            }
+          }
+
+          //style system for active class
+          &.type-active-tab {
+            background: var(--link-stack-list-type-hover-bg-color);
+
+            .a-link__text {
+              color: @black;
+            }
+          }
+        }
+      }
+
+      //Style system for mobile devices
+      @media @md-down {
+        margin: 10px;
+
+        .abt-icon-down-arrow {
+          color: @abbott-light-blue !important;
+          -moz-transition: all 0.5s linear;
+          -webkit-transition: all 0.5s linear;
+          transition: all 0.5s linear;
+
+          &::before {
+            content: "\e907";
+            vertical-align: middle !important;
+          }
+        }
+
+        .rotate-arrow {
+          -moz-transform: rotate(180deg);
+          -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+        }
+
+        .m-link-stack--header {
+          padding: 10px;
+          width: 100%;
+          background: @abbott-navy-blue;
+        }
+
+        .m-link-stack--title {
+          color: @abbott-light-blue !important;
+        }
+
+        .m-link-stack--content > li:first-child {
+          display: none !important;
+        }
+
+        .m-link-stack--content {
+          width: 100%;
+          background: @abbott-pearl-gray;
+          padding-inline-start: 0px;
+
+          .a-link {
+            .a-link__text {
+              color: @black !important;
+            }
+          }
+        }
+      }
+
+      //media query to hide down arrow in header
+      @media @md-up {
+        .m-link-stack--header {
+          display: none;
+        }
+      }
+
+      //Style system for tablet view
+      @media @lg-only {
+        .m-link-stack--content {
+          padding-left: 0 !important;
+          display: block !important;
+
+          .a-link {
+            display: inline-block;
+            height: 36px;
+            padding: 12px 9px 0;
+            font-size: @font-size-14;
+            margin-right: 0;
+            line-height: 0.875em;
+            text-transform: uppercase;
+            background-color: @abbott-pearl-gray;
+
+            &:hover {
+              background-color: var(--link-stack-list-type-hover-bg-color);
+
+              &:hover .a-link__text {
+                color: @black;
+              }
+            }
+
+            .a-link__text {
+              color: var(--link-stack-list-type-text-color);
+
+              &:hover {
+                color: @black !important;
+              }
+            }
+
+            //style system for active class
+            &.type-active-tab {
+              background: var(--link-stack-list-type-hover-bg-color);
+
+              // .a-link__text {
+              // color: var(--link-stack-list-type-text-color); // Commented as it seems not required/ Need to check again.
+              // }
+            }
+          }
+        }
+      }
+    }
+
+    &.link-type--selected {
+      background-color: var(--link-stack-list-type-text-color);
+      color: var(--link-stack-list-type-text-color);
+    }
+  }
+
+  //style system to display Linkstack tabs same as desktop view in a mobile view,
+  &.linkstack--tabs {
+    width: 100%;
+    border-bottom: 1px solid @abbott-fog-gray;
+
+    .m-link-stack {
+      .m-link-stack--content {
+        padding-left: 0 !important;
+
+        .a-link {
+          display: inline-block;
+          height: 36px;
+          padding: 12px 9px 0;
+          font-size: @font-size-14;
+          margin-right: 0;
+          line-height: 0.875em;
+          text-transform: uppercase;
+          background-color: @abbott-pearl-gray;
+
+          &:hover {
+            background-color: var(--link-stack-list-type-hover-bg-color);
+
+            &:hover .a-link__text {
+              color: @black;
+            }
+          }
+
+          .a-link__text {
+            color: var(--link-stack-list-type-text-color);
+
+            &:hover {
+              color: @black !important;
+            }
+          }
+
+          //style system for active class
+          &.type-active-tab {
+            background: var(--link-stack-list-type-hover-bg-color);
+
+            .a-link__text {
+              color: @black;
+            }
+          }
+        }
+
+        @media @md-down {
+          .a-link {
+            padding: 12px 9px 0;
+            font-size: @font-size-12;
+          }
+        }
+      }
+    }
+
+    &.link-type--selected {
+      background-color: var(--link-stack-list-type-text-color);
+      color: var(--link-stack-list-type-text-color);
+    }
+  }
+
+  &.linkstack--list-type-red {
+    --link-stack-list-type-text-color: red;
+    --link-stack-list-type-bg-color: red;
+    --selected-bg: red;
+  }
+
+  &.type-text-color-yellow .a-link {
+    --link-stack-list-type-text-color: @abbott-yellow;
+    --link-stack-list-type-hover-bg-color: @abbott-yellow;
+  }
+
+  &.type-text-color-dark-yellow .a-link {
+    --link-stack-list-type-text-color: @abbott-dark-yellow;
+    --link-stack-list-type-hover-bg-color: @abbott-dark-yellow;
+  }
+
+  &.type-text-color-green .a-link {
+    --link-stack-list-type-text-color: @abbott-green;
+    --link-stack-list-type-hover-bg-color: @abbott-green;
+  }
+
+  &.type-text-color-dark-green .a-link {
+    --link-stack-list-type-text-color: @abbott-dark-green;
+    --link-stack-list-type-hover-bg-color: @abbott-dark-green;
+  }
+
+  &.type-text-color-fuscia .a-link {
+    --link-stack-list-type-text-color: @abbott-fuscia;
+    --link-stack-list-type-hover-bg-color: @abbott-fuscia;
+  }
+
+  &.type-text-color-dark-fuscia .a-link {
+    --link-stack-list-type-text-color: @abbott-dark-fuscia;
+    --link-stack-list-type-hover-bg-color: @abbott-dark-fuscia;
+  }
+
+  &.type-text-color-orange .a-link {
+    --link-stack-list-type-text-color: @abbott-orange;
+    --link-stack-list-type-hover-bg-color: @abbott-orange;
+  }
+
+  &.type-text-color-dark-orange .a-link {
+    --link-stack-list-type-text-color: @abbott-dark-orange;
+    --link-stack-list-type-hover-bg-color: @abbott-dark-orange;
+  }
+
+  &.type-text-color-cyan .a-link {
+    --link-stack-list-type-text-color: @abbott-cyan;
+    --link-stack-list-type-hover-bg-color: @abbott-cyan;
+  }
+
+  &.type-text-color-blue .a-link {
+    --link-stack-list-type-text-color: @abbott-blue;
+    --link-stack-list-type-hover-bg-color: @abbott-blue;
+  }
+
+  &.type-text-color-gray .a-link {
+    --link-stack-list-type-text-color: @abbott-gray;
+    --link-stack-list-type-hover-bg-color: @abbott-gray;
+  }
+
+  &.type-text-color-dark-gray .a-link {
+    --link-stack-list-type-text-color: @abbott-dark-gray;
+    --link-stack-list-type-hover-bg-color: @abbott-dark-gray;
+  }
+
+  &.type-text-color-light-gray .a-link {
+    --link-stack-list-type-text-color: @abbott-light-gray;
+    --link-stack-list-type-hover-bg-color: @abbott-light-gray;
+  }
+
+  &.type-text-color-white .a-link {
+    --link-stack-list-type-text-color: @white;
+    --link-stack-list-type-hover-bg-color: @white;
+  }
+
+  &.type-text-color-primary-blue .a-link {
+    --link-stack-list-type-text-color: @abbott-primary-blue;
+    --link-stack-list-type-hover-bg-color: @abbott-primary-blue;
+  }
+
+  &.type-text-color-dark-blue .a-link {
+    --link-stack-list-type-text-color: @abbott-dark-blue;
+    --link-stack-list-type-hover-bg-color: @abbott-dark-blue;
+  }
+
+  &.type-text-color-medium-blue .a-link {
+    --link-stack-list-type-text-color: @abbott-medium-blue;
+    --link-stack-list-type-hover-bg-color: @abbott-medium-blue;
+  }
+
+  &.type-text-color-dark-mint .a-link {
+    --link-stack-list-type-text-color: @abbott-mint;
+    --link-stack-list-type-hover-bg-color: @abbott-mint;
+  }
+
+  &.type-text-green--hover-black {
+    .a-link,
+    .a-link.type-active-tab {
+      .a-link__text {
+        color: @abbott-green !important;
+
+        &:hover {
+          color: @black !important;
+        }
+      }
+
+      --link-stack-list-type-hover-bg-color: @abbott-pearl-gray;
+    }
+
+    @media @md-down {
+      .m-link-stack {
+        margin-bottom: 0;
+
+        .m-link-stack--header {
+          display: none;
+        }
+
+        .m-link-stack--content.d-none {
+          display: block !important;
+          width: fit-content;
+
+          .a-link,
+          .a-link.type-active-tab {
+            display: block !important;
+
+            .a-link__text {
+              color: @abbott-green !important;
+
+              &:hover {
+                color: @black !important;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  //style system added to match list type multiple tabs look and feel
+  &.multiple-tabs-variation {
+    @media @md-down {
+      .m-link-stack {
+        border-bottom: 1px solid @abbott-pearl-gray;
+      }
+
+      .m-link-stack .m-link-stack--content.js-collapsable-links {
+        background: unset;
+        display: flex !important;
+
+        .a-link {
+          margin-right: 2px;
+        }
+      }
+    }
+  }
+
+  //style system added for left padding
+  &.type-left-spacing {
+    padding-left: 157.875px !important;
+  }
+
+  //style system to hide the icon
+
+  &.linkstack--icon-none {
+    .m-link-stack {
+      .m-link-stack--header .abt-icon-down-arrow {
+        // overriding global code for hiding the drop-down icon
+        display: none !important;
+        color: black;
+      }
+
+      .m-link-stack--content {
+        display: block !important; //overriding global code to display list items permenently
+      }
+    }
+  }
+
+  // mixin to define common properties used in linkstack--redesign-btn
+  .font-styles {
+    font-family: @font-brandon-grotesque-regular;
+    font-weight: 400;
+    line-height: 1.325;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  // style system to achieve same look and feel as 6.3 redesigned button component
+  &.linkstack--redesign-btn {
+    .m-link-stack {
+      .m-link-stack--header .m-link-stack--title {
+        .font-styles();
+        --link-stack-h6-color: @abbott-gray;
+        --link-stack-h6-font-size: @font-size-base;
+      }
+
+      .m-link-stack--content {
+        padding-top: 0;
+
+        @media @lg-down {
+          padding-left: 0;
+        }
+
+        .a-link {
+          .font-styles();
+          --link-font-size: @font-size-base;
+          margin-top: 0;
+        }
+      }
+
+      & a {
+        --link-stack-color: @abbott-gray;
+        padding-left: @spacer-10;
+        padding-right: @spacer-10;
+        padding-top: @spacer-5;
+
+        &:hover {
+          --link-stack-color: @abbott-primary-blue;
+        }
+      }
+
+      //class will be added based on js code functionality
+      & a.redesign-btn-link {
+        background-color: @abbott-primary-blue;
+        color: @white;
+      }
+    }
+  }
+
+  &.linkstack-active-tab {
+    .m-link-stack {
+      .m-link-stack--content {
+        @media @md-up {
+          display: flex !important;
+        }
+
+        .a-link {
+          display: inline-block;
+          border-bottom: solid 1px @abbott-dark-charcoal;
+          border-right: solid 1px @white;
+          background: @abbott-mega-menu-arrow-color;
+          width: ~"calc(100% / 3)";
+          list-style: none;
+          font-family: @font-brandon-grotesque-bold;
+          text-transform: uppercase;
+          text-align: center;
+          font-weight: normal;
+
+          &.link-stack-active-tab {
+            background: @abbott-mine-charcoal;
+
+            .a-link__text {
+              color: @white;
+              font-family: @font-brandon-grotesque-bold;
+              display: block;
+              padding: 9px 8px 5px;
+
+              // Japan site, China site, Vietnam site
+              html[lang*="ja"] &,
+              html[lang*="cn"] & {
+                font-family: @font-brandon-bold;
+              }
+              html[lang*="vi"] & {
+                font-family: @font-noto-sans-vi-regular;
+              }
+            }
+          }
+
+          .a-link__text {
+            color: @abbott-dark-charcoal;
+            font-family: @font-brandon-grotesque-bold;
+            display: block;
+            padding: 9px 8px 5px;
+
+            // Japan site, China site, Vietnam site
+            html[lang*="ja"] &,
+            html[lang*="cn"] & {
+              font-family: @font-brandon-bold;
+            }
+            html[lang*="vi"] & {
+              font-family: @font-noto-sans-vi-regular;
+            }
+          }
+        }
+      }
+    }
+
+    //Media query to make tabs responsible in mobile view
+    @media @md-down {
+      .m-link-stack {
+        .m-link-stack--content {
+          padding: 0 20px;
+
+          .a-link {
+            width: 100% !important;
+          }
+        }
+      }
+    }
+
+    @media (min-width: 810px) and (max-width: 915px) {
+      .m-link-stack {
+        .m-link-stack--content {
+          .a-link {
+            width: 32.4% !important;
+          }
+        }
+      }
+    }
+  }
+
+  //Style system for linkstack tabs style changes
+  &.linkstack-tabs {
+    &[class*="font-brandon-grotesque-"] {
+      .a-link__text {
+        padding-top: 15px !important;
+        padding-bottom: 9px !important;
+      }
+    }
+
+    border-bottom: 1px solid @abbott-fog-gray;
+    width: 100%;
+    z-index: 997;
+
+    @media @lg-up {
+      width: 85%;
+    }
+
+    @media @lg-only {
+      width: 90%;
+    }
+
+    @media @md-down {
+      .m-link-stack .m-link-stack--content .a-link .a-link__text {
+        font-size: 10px;
+        padding: 12px 6px;
+      }
+    }
+
+    @media @md-down {
+      border: unset !important;
+    }
+
+    .m-link-stack {
+      .m-link-stack--content {
+        padding-left: 0 !important;
+        display: block !important;
+
+        @media @md-up {
+          background-color: @white;
+        }
+
+        .a-link {
+          border-right: 1px solid @white;
+          display: inline-block;
+          height: 36px;
+          font-size: 14px;
+          margin-right: -3px;
+          line-height: 0.725em;
+          text-transform: uppercase;
+          background-color: @abbott-yellow !important;
+
+          @media @lg-up {
+            &:first-child {
+              border-right: 1px solid @white;
+            }
+          }
+
+          &:hover {
+            background-color: @abbott-dark-gray !important;
+
+            &:hover .a-link__text {
+              color: @abbott-yellow !important;
+            }
+          }
+
+          .a-link__text {
+            color: @abbott-dark-gray !important;
+            font-weight: normal;
+            padding: 14px 20px 12px;
+          }
+
+          //style system for active class
+          &.active-tab {
+            background: @abbott-dark-gray !important;
+            pointer-events: none !important;
+
+            .a-link__text {
+              color: @abbott-yellow !important;
+            }
+          }
+        }
+      }
+
+      @media @md-down {
+        .m-link-stack--content {
+          .a-link {
+            .a-link__text {
+              padding: 12px 3px;
+            }
+          }
+        }
+      }
+
+      @media @lg-only {
+        .m-link-stack--content {
+          .a-link {
+            &:nth-child(2) {
+              border-right: 1px solid @white;
+            }
+
+            .a-link__text {
+              padding: 13px 10px 16px;
+            }
+          }
+        }
+      }
+    }
+  }
+ // style system for link stack items on Edge Archive Page
+  &.linkstack-edgearchive {
+    .m-link-stack {
+      margin-top: -23px;
+      .a-link__text {
+        color: #017387 !important;
+        font-size: 1rem;
+        font-weight: normal;
+        line-height: 1.5rem;
+        margin-left: 40px;
+        display :list-item;
+        &:hover {
+          color: @abbott-bastille !important;
+        }
+        &::marker {
+          color: black !important;
+        }
+        @media only screen and (max-width: 912px) {
+          margin-left: 15px !important;
+         }
+      }
+    }
+    
+  }
+}
+#languagenavigation-size-adjustment {
+  .flag-icon {
+    @media @lg-up {
+      width: 1.8rem;
+      height: 0.625rem;
+    }
+  }
+}

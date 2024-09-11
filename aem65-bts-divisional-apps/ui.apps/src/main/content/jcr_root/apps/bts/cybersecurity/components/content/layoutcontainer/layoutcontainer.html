@@ -1,0 +1,60 @@
+<div data-sly-test="${wcmmode.edit}" class="cq-placeholder"
+	data-emptyText="Layout Container"></div>
+
+<sly data-sly-use.component="com.adobe.cq.wcm.core.components.models.Component">
+<sly data-sly-use.layout="com.abbott.aem.bts.cybersecurity.components.model.CyberSecurityLayoutContainer">
+<div id="${component.id}" class="container-fluid column-layout-container" style="background-image:url('${layout.fileReference @ context='uri'}');">
+	<section class="a-container">
+		<div class="container">
+			<div class="row a-container__layout-section">
+            	<sly data-sly-test="${layout.containerVariation == 'variation0'}">
+					<sly data-sly-list="${layout.columnList}"> <sly
+						data-sly-test.col="${'{0}' @ format=[itemList.count] }" />
+					<div
+						class="a-container__column col-12 col-sm-12 col-md-6 ${layout.columnCount != 3 && layout.columnCount != 5 && layout.columnCount != 6 ? 'col-lg-3' : 'col-lg-4'}"
+						data-sly-resource="${'par{0}' @ format=[itemList.count], path=col ,resourceType='wcm/foundation/components/parsys'}"></div>
+					</sly>
+                </sly>
+            <sly data-sly-test="${layout.containerVariation == 'variation1'}">
+            <div class="a-container__column col-lg-7 col-md-6 col-sm-12" data-sly-resource="${'var1-parsys1' @ resourceType='wcm/foundation/components/parsys', decoration=true}">
+            </div>
+            <div class="a-container__column col-lg-4 offset-lg-1  col-md-6 col-sm-12" data-sly-resource="${'var1-parsys2' @ resourceType='wcm/foundation/components/parsys', decoration=true}">
+            </div>
+         </sly>
+        <sly data-sly-test="${layout.containerVariation == 'variation2'}">
+            <div class="a-container__column col-lg-6 col-md-7 col-sm-12" data-sly-resource="${'var2-parsys1' @ resourceType='wcm/foundation/components/parsys', decoration=true}">
+            </div>
+            <div class="a-container__column col-lg-6 col-md-5 col-sm-12" data-sly-resource="${'var2-parsys2' @ resourceType='wcm/foundation/components/parsys', decoration=true}">
+            </div>
+        </sly>
+        <sly data-sly-test="${layout.containerVariation == 'variation3'}">
+            <div class="a-container__column col-lg-3 col-md-4 col-sm-6" data-sly-resource="${'var3-parsys1' @ resourceType='wcm/foundation/components/parsys', decoration=true}">
+            </div>
+            <div class="a-container__column col-lg-3 col-md-4 col-sm-6" data-sly-resource="${'var3-parsys2' @ resourceType='wcm/foundation/components/parsys', decoration=true}">
+            </div>
+            <div class="a-container__column col-lg-3 col-md-4 col-sm-6" data-sly-resource="${'var3-parsys3' @ resourceType='wcm/foundation/components/parsys', decoration=true}">
+            </div>
+            <div class="a-container__column col-lg-3 col-md-4 col-sm-6" data-sly-resource="${'var3-parsys4' @ resourceType='wcm/foundation/components/parsys', decoration=true}">
+            </div>
+        </sly>
+        <sly data-sly-test="${layout.containerVariation == 'variation4'}">
+            <div class="a-container__column col-lg-3 col-md-4 col-sm-12" data-sly-resource="${'var4-parsys1' @ resourceType='wcm/foundation/components/parsys', decoration=true}">
+            </div>
+            <div class="a-container__column col-lg-3 col-md-4 col-sm-12" data-sly-resource="${'var4-parsys2' @ resourceType='wcm/foundation/components/parsys', decoration=true}">
+            </div>
+            <div class="a-container__column col-lg-3 col-md-4 col-sm-12" data-sly-resource="${'var4-parsys3' @ resourceType='wcm/foundation/components/parsys', decoration=true}">
+            </div>
+            <div class="a-container__column col-lg-3 col-md-4 col-sm-12" data-sly-resource="${'var4-parsys4' @ resourceType='wcm/foundation/components/parsys', decoration=true}">
+            </div>
+        </sly>
+        <sly data-sly-test="${layout.containerVariation == 'variation5'}">
+            <div class="a-container__column col-lg-12 col-md-12 col-sm-12" data-sly-resource="${'var5-parsys1' @ resourceType='wcm/foundation/components/parsys', decoration=true}">
+            </div>
+         </sly>
+			</div>
+		</div>
+	</section>
+</div>
+</sly>
+</sly>
+

@@ -1,0 +1,55 @@
+<sly data-sly-use.templates="abbott/components/content/templates.html"/>
+<sly data-sly-test.addTitle = "${properties.anonymousLabel}" />
+<sly data-sly-use.storeUrlModel="${'com.abbott.aem.an.abbottstore.models.UrlServiceModel' @ themeType=inheritedPageProperties.themeType}"/>
+    <div class="container order-container d-none">
+        <div class="order-summary">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="order-summary--title trial-show">${properties.anonymousLabel}</div>
+              <div class="order-summary--title subscribe-show">${properties.loggedinLabel}</div>
+              <div class="order-summary--sub-title"><span class="plan-qty" id="summary-count">61</span> ${properties.purchaseText}</div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <table class="order-summary__table" aria-describedby="summary-count">
+                <tr class="trial-section">
+                  <th class="order-summary__table--heading total" id="order-summary-trial-price">Trial Price:</th>
+                  <td class="order-summary__table--data total">$<span class="trial-price">5.00</span></td>
+                </tr>
+                <tr>
+                  <th class="order-summary__table--heading total" id="order-summary-tax">Tax:</th>
+                  <td class="order-summary__table--data total">TBD</td>
+                </tr>
+                <tr>
+                  <th class="order-summary__table--heading total" id="order-summary-shipping">Shipping:</th>
+                  <td class="order-summary__table--data total">$<span class="shipping-price">5.00</span></td>
+                </tr>
+                <tr>
+                  <th class="order-summary__table--heading grand-total" id="order-summary-total">Total:</th>
+                  <td class="order-summary__table--data grand-total">$<span class="total-price">5.00</span></td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 text-center">
+              <button class="order-summary--btn start-plan" data-link-redirect="${storeUrlModel.registrationUrl}">Start my introductory trial</button>
+              <button class="order-summary--btn subscribe" data-link-redirect="${storeUrlModel.checkoutUrl}">Subscribe Now</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container subscription-summary-container d-none">
+        <div class="subscription-summary">
+          <div class="subscription-summary--title">Monthly Subscription</div>
+          <div class="subscription-summary--text">
+            <span>Following your introductory trial, you will be enrolled into a monthly subscription of 
+            <span class="sku-data">30</span> bottles/month for $</span><span class="subscription-price">45.00</span>
+            <span>+ tax & FREE shipping, Your monthly shipment will be:</span>
+          </div>
+          <div class="subscription-summary--item">30 Rich Chocolate
+          </div>
+        </div>
+      </div>
+ <sly data-sly-call="${templates.placeholder @ isEmpty= !addTitle}"></sly> 

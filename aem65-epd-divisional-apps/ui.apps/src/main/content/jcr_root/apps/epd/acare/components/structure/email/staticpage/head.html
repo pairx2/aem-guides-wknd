@@ -1,0 +1,82 @@
+<template data-sly-template.head="${ @ page }" data-sly-use.headlibRenderer="headlibs.html"
+          data-sly-use.clientLib="/libs/granite/sightly/templates/clientlib.html">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" >    
+    <meta data-sly-test.keywords="${page.keywords || properties['cq:tags']}" name="keywords" content="${keywords ? keywords : properties['cq:tags']}">
+    <meta data-sly-test.description="${properties['jcr:description']}" name="description" content="${description}">
+    <meta data-sly-test.contentCategory="${properties['cq:tags']}" name="contentCategory" content="${contentCategory}">
+    <meta data-sly-test.templateName="${page.templateName}" name="template" content="${templateName}">
+	<title>${page.title @context='html'}</title>
+    <!--/* For IE 9 and below. ICO should be 32x32 pixels in size */-->    		  
+	<link rel="icon" href="${inheritedPageProperties.siteFavicon @context='unsafe'}" type="image/x-icon" />
+    <link rel="shortcut icon" href="${inheritedPageProperties.siteFavicon @context='unsafe'}" type="image/x-icon" />
+	<style type="text/css">
+ /*common styles*/
+            .appleLink a, .appleLink { color: inherit !important; text-decoration: none !important; }
+            .Link a, .Link { color: #F5A32D !important; text-decoration: underline !important; }
+            #outlook a { padding: 0; }
+
+            /* Force Outlook to provide a "view in browser" menu link. */
+            .ExternalClass { width: 100%; background-color: #ffffff; }
+
+            /* Force Hotmail to display emails at full width */
+            .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div { line-height: 100%; }
+
+            /* Force Hotmail to display normal line spacing. */
+            .ReadMsgBody { width: 100%; background-color: #ffffff; }
+            .mobile-show { display: none; max-width: 0; }
+
+            /*tablet*/
+            @media only screen and (max-width:650px) {
+                .container { width: 100% !important; padding: 0 0 0 0; }
+                body[yahoo] .deviceWidth { width: 100% !important; padding: 0; }
+                body[yahoo] .center { text-align: center !important; }
+                /*global styles*/
+                .header-logo { padding-left: 0px !important; padding-right: 0px !important; }
+                .acare-logo{padding-left: 20px!important; width: 105px!important; max-width: 105px!important;}
+                .acare-logo img { width: 105px!important; max-width: 105px!important; }
+                .abbott-logo {padding-right: 32px!important; width: 87px!important; max-width: 87px!important;}
+                .abbott-logo img{ width: 87px!important; max-width: 87px!important;}
+                .global-md-btn {     min-width: 314px!important;    width: 314px!important;    max-width: 314px!important; }
+                .full-width { display: block;width: 100%!important; }
+                .blue-bar { font-size: 20px!important; line-height: 20px!important; }
+                .pad-right-0 { padding-right: 0!important; }
+                .pad-left-0 { padding-left: 0!important; }
+                .h1 { padding-right: 0!important; }
+                .pad-lr-10 { padding-left: 10px!important; padding-right: 10px!important; }
+                .pale-blue {padding-top: 30px;}
+                
+            }
+            /*mobile styles*/
+            @media only screen and  (max-width:479px) {
+                .container { width: 100%!important; padding: 0 0 0 0; }
+                body[yahoo] .container { width: 100% !important; padding: 0; }
+                body[yahoo] .deviceWidth { width: 100% !important; padding: 0; border: 0px; text-decoration: none; }
+                body[yahoo] .center { text-align: center !important; }
+                .mobile-bg { background-color: transparent; }                
+                .inner-container { width: 314px!important; padding: 0 0 0 0; margin: 0 auto; }
+                body[yahoo] .inner-container { width: 314px !important; padding: 0; margin: 0 auto;}
+                /*global styles*/
+                .header-logo { padding-left: 0px !important; padding-right: 0px !important; }
+                .acare-logo{padding-left: 20px!important; width: 105px!important; max-width: 105px!important;}
+                .acare-logo img { width: 105px!important; max-width: 105px!important; }
+                .abbott-logo {padding-right: 32px!important; width: 87px!important; max-width: 87px!important;}
+                .abbott-logo img{ width: 87px!important; max-width: 87px!important;}
+                .global-md-btn {     min-width: 314px!important;    width: 314px!important;    max-width: 314px!important; }
+                .full-width { display: block;width: 100%!important; }
+                .blue-bar { font-size: 20px!important; line-height: 20px!important; }
+                .pad-right-0 { padding-right: 0!important; }    
+                .pad-left-0 { padding-left: 0!important; }
+                .h1 { padding-right: 0!important; }
+                .pad-lr-10 { padding-left: 10px!important; padding-right: 10px!important; }
+                .pad-lr-none { padding-left: 0px!important; padding-right: 0px!important; }
+                .pale-blue {padding-top: 30px;}
+                .height-auto {height: auto!important;}
+                .mobile-show { display: block !important; width: 100% !important; max-width: none !important; }
+                .desktop-show { display: none; }
+            }
+        </style>
+</template>

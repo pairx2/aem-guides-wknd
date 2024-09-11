@@ -1,0 +1,7 @@
+<sly data-sly-use.tableCell="com.abbott.aem.platform.common.components.models.TableCell"/>
+<sly data-sly-test.editMode="${(wcmmode.edit || wcmmode.design)}"/>
+<div data-sly-element="${!wcmmode.edit ? tableCell.tableCellTag : 'div'}"
+ class="text-${tableCell.textAlignment} dt-text-bg-${tableCell.cellColor} dt-text-${tableCell.cellTextColor}">
+   ${(editMode && !tableCell.cellText) ? 'Configure Cell' : tableCell.cellText @ context='html'}
+
+</div>

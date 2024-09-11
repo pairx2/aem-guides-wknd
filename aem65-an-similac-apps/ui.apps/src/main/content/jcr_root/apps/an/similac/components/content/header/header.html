@@ -1,0 +1,86 @@
+<sly data-sly-use.templates="an/similac/components/content/templates.html" />
+<sly data-sly-test ="${properties.pwaHeader}">
+   <sly data-sly-include = "pwaHeader.html"/>
+</sly>
+<sly data-sly-test="${!properties.pwaHeader}">
+<sly data-sly-test="${properties.enableDisruptor}">
+<div><sly data-sly-resource="${'disruptor' @ resourceType='an/similac/components/content/disruptor'}"></sly></div></sly>
+<sly data-sly-use.headerModel="${'com.abbott.aem.an.similac.core.models.HeaderModel' @ headerResourcePath=currentPage.path}" />
+<sly data-sly-test="${resource.path}">
+<header>
+   <sly data-sly-include="commonHeaderConfig.html"/>
+   <nav class="second-nav bg-cerulean " aria-label="Top Nav">
+      <div class="container ">
+      	<sly data-sly-call="${templates.includeResource @ relativeResourcePath=resource.path, nodeName='navigation-top-1', slingResourceType='an/similac/components/content/navigation-top'}"/>
+      </div>
+   </nav>
+   <nav class="navbar navbar-expand-lg navbar-wrapper" aria-label="Primary Nav">
+      <div class="container">
+         <div class="nav-wrapper d-flex">
+            <div class="logo-section">
+				 <sly data-sly-call="${templates.includeResource @ relativeResourcePath=resource.path, nodeName='logo', slingResourceType='an/similac/components/content/logo'}"/>
+           </div>
+            <div class="nav-bar d-flex justify-content-end">
+               <div class="d-flex justify-content-end desktop-menu-update">
+                  <div class="navbar-collapse collapse " id="navbarSupportedContent">
+                     <sly data-sly-call="${templates.includeResource @ relativeResourcePath=resource.path, nodeName='nav-link', slingResourceType='an/similac/components/content/navigation-links'}" data-sly-unwrap/>
+
+                     <nav class="second-nav bg-cerulean d-lg-none" aria-label="Secondary Nav">
+                        <div class="container sm-nav">
+                              <sly data-sly-test.resourcePath="${'{0}{1}' @ format=[resource.path, '/navigation-top-1']}"/>
+                              <sly data-sly-use.resourceObj="${'com.abbott.aem.an.similac.core.models.ResourceValidation' @ resourcePath=resourcePath}">
+                              	<sly data-sly-test="${resourceObj.validResource}">
+                              		<sly data-sly-resource="${resourcePath @ selectors='topnav'}" data-sly-unwrap/>
+                              	</sly>
+                              </sly>
+                        </div>
+                     </nav>
+                  </div>
+                 <sly data-sly-test.reactID="${wcmmode.disabled ? 'user-Interact' : ''}"/>
+                 <sly data-sly-test="${!properties.checkoutHeader}">
+                  <ul class="util-nav d-flex justify-content-end no-gutters" id="${reactID}">
+                     <li id="open-search" class="nav-action text-center">
+                        <sly data-sly-call="${templates.includeResource @ relativeResourcePath=resource.path, nodeName='search', slingResourceType='an/similac/components/content/search'}"/>
+                     </li>
+                     <li class="nav-action text-center">
+                        <sly data-sly-call="${templates.includeResource @ relativeResourcePath=resource.path, nodeName='login', slingResourceType='an/similac/components/content/login'}"/>
+                     </li>
+                     <li class="nav-action text-center">
+                        <sly data-sly-call="${templates.includeResource @ relativeResourcePath=resource.path, nodeName='cart', slingResourceType='an/similac/components/content/cart'}"/>
+                     </li>
+                  </ul>
+                  </sly>
+                  <div id="hamburger" class="d-lg-none d-flex ">
+    							<span class="navbar-toggler collapsed" data-toggle="collapse" data-target=".navbar-collapse" data-target-2="#navbar" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    								<span class="sim-icons burger-icon" data-icon="menu-burger"></span><span class="sim-icons burger-close" data-icon="close-basic-01"></span> 
+    							</span>
+    						</div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </nav>
+   <div class="form-row search-box col-12 d-none">
+   <input type="hidden" id="search-page-url" value="${properties.searchLandingURL}"/>
+      <div class="input-group col" id="globalSearchHeader">
+         <div class="input-field">
+            <input id="input id" name="search" type="text" value="" placeholder="${properties.searchPlaceholderText}" >
+            <span class="sim-icons input-icon" data-icon="mag-glass-color"></span>
+         </div>
+      </div>
+   </div>
+   <sly data-sly-test="${!properties.checkoutHeader}">
+		<div id="overlay">
+			<div class="pie">
+				<div class="text-overlay"></div>
+			</div>
+		</div>
+	</sly>
+</header>
+<sly data-sly-include="commonHeader.html"/>
+</sly>
+<sly data-sly-test="${!headerModel.relativeHeaderPath}">
+<sly data-sly-call="${templates.placeholder @isEmpty = 'true', classAppend = '', emptyTextAppend = 'Please configure Header Component of the site.' }"/>
+</sly>
+</sly>
+<div class="clearfix"></div>

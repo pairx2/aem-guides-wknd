@@ -1,0 +1,815 @@
+@import "./global/variables.less";
+
+.table-chromosome {
+  @media (max-width: 767px) {
+    padding: @padding  !important;
+  }
+
+  #section-chromosome-table {
+    background-color: @color-grey;
+    padding: 45px 0 70px;
+
+    #chromosome-table {
+      text-align: -webkit-center;
+
+      @media (min-width: 768px) and (max-width: 1080px) {
+        max-width: 100% !important;
+      }
+
+      table {
+        tr {
+          td {
+            padding: 5px;
+
+            a {
+              &:hover {
+                .top {
+                  display: none;
+                }
+
+                .bottom {
+                  display: inline;
+                  border: 2px solid @color-charcoal;
+                }
+              }
+
+              .bottom {
+                display: none;
+              }
+
+              .top {
+                border: 2px solid @color-dark-gray1;
+
+                @media (max-width: 767px) {
+                  width: 100%;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.a-button--primary-v1 {
+  &.justify-content-end {
+    margin-top: 2% !important;
+    display: inline-block;
+    padding-bottom: 5% !important;
+  }
+}
+
+#chromosom-accordian {
+  min-height: 1000px;
+  width: 95%;
+  margin-left: 0;
+
+  .m-accordion__content-items {
+    margin-bottom: 15px;
+    border-bottom: 1px solid @color-black-c9;
+
+    .m-accordion__header {
+      min-height: 98px;
+
+      .m-accordion__icon-wrapper {
+        background-color: @color-light-blue;
+        width: 9%;
+
+        .m-accordion-toggle {
+          color: @color-white;
+
+          .abt-icon {
+            &.abt-icon-down-arrow {
+              display: inline !important;
+              color: @color-black;
+            }
+          }
+        }
+      }
+
+      .m-accordion__title-wrapper {
+        background-color: @color-grey;
+        border: 1px solid @color-black-c9;
+        border-bottom: 0;
+        border-top: 0;
+        padding: 10px 25px 20px;
+        width: 91%;
+
+        h6 {
+          font-weight: normal;
+          color: @color-gray-medium;
+          font-size: 14px;
+          font-family: "Brandon Grotesque", Calibri, Helvetica, Arial,
+            sans-serif;
+          line-height: 1.5rem;
+          height: 24px;
+        }
+
+        h3 {
+          font-size: 1.25rem;
+          line-height: 1.45rem;
+          color: @color-dark-charcoal;
+          text-transform: capitalize;
+        }
+      }
+    }
+
+    .m-accordion__body {
+      background-color: #f5f5f5;
+      border: solid 1px #999;
+      border-top: 0 none;
+      left: 9%;
+      padding: 0;
+      position: relative;
+      width: 91%;
+
+      .container {
+        width: 93%;
+        padding-top: 20px;
+
+        #probeorderscroll {
+          margin-top: 0%;
+        }
+
+        .a-link--icon {
+          margin-bottom: 5px;
+
+          a {
+            padding-left: 22px;
+            font-family: "Brandon Grotesque", Calibri, Helvetica, Arial,
+              sans-serif;
+            font-size: 1rem;
+            color: #009cde;
+
+            em {
+              font-size: 12px;
+              color: @primaryblueColor;
+              margin-top: 4px;
+              font-weight: bold;
+            }
+
+            &:focus {
+              color: #009cde !important;
+            }
+          }
+        }
+
+        table {
+          tr.th-heading {
+
+            th,
+            td {
+              background: @color-dark-gray;
+              color: @color-white;
+              font-size: 0.875rem;
+              padding: 5px 10px;
+              width: 170px;
+              text-align: center;
+            }
+          }
+
+          tr:not(:first-child) {
+            td:first-child {
+              text-align: center;
+            }
+
+            td {
+              padding: 8px 4px;
+              line-height: 18px;
+              &:first-child,&:last-child
+              {
+                text-align: center;
+              }
+              &:has(span.fluorophore-image)
+              {
+                text-align: center;
+              }
+            }
+          }
+        }
+
+        .probeID,
+        .probeinfo {
+          margin-bottom: 20px !important;
+
+          table {
+            @media screen and (min-width: 768px) and (max-width: 991px) {
+              display: block;
+              overflow-x: scroll;
+            }
+
+            tr {
+              &:not(.th-heading) {
+                td:nth-child(4) {
+                  text-align: center;
+                }
+
+                td:nth-child(5) {
+                  padding: 1px;
+                  text-align: center;
+
+                  a {
+                    font-weight: bold;
+
+                    .abt-icon {
+                      font-size: 14px;
+                      padding-right: 4px;
+                      font-weight: bold;
+                    }
+
+                    .a-link__inner-text {
+                      display: inline-block;
+                      font-size: 14px;
+                      margin-left: 0px;
+                    }
+
+                    &:focus {
+                      color: #009cde;
+                    }
+                  }
+                }
+              }
+            }
+
+            tr:nth-child(even) {
+              background-color: #fff;
+            }
+          }
+        }
+
+        .orderingInfo {
+          margin-top: 20px;
+          margin-bottom: 20px !important;
+
+          .ordering-title {
+            text-transform: capitalize;
+          }
+
+          table {
+            border: 0 none;
+
+            tr {
+              th {
+                background: transparent !important;
+                color: @color-black  !important;
+                font-size: 0.875rem !important;
+                padding: 1px 30px 1px 0 !important;
+              }
+
+              td {
+                text-align: left !important;
+
+                input[name="orderRadiobtn"] {
+                  margin-right: 5px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .accordionTitlebackground {
+    border-bottom: 0px solid @color-black-c9;
+  }
+
+  .cmp-accordion__panel {
+    .cmp-container {
+      padding: 0;
+    }
+  }
+}
+
+#chromosom {
+  max-width: 947px;
+
+  @media screen and (min-width: 991px) and (max-width: 1199px) {
+    max-width: 899px;
+  }
+
+  .columncontrol__column {
+    padding: 0;
+  }
+
+  .chromosome {
+    .container {
+      width: 100%;
+    }
+
+    #surface {
+      float: right;
+      height: 100% !important;
+
+      svg {
+        float: right;
+      }
+    }
+  }
+
+  .embed {
+    .default {
+      display: block;
+    }
+  }
+
+  .a-button--primary,
+  .a-button--secondary {
+    .a-link {
+      float: left;
+      margin-right: 7px;
+
+      .a-link--text {
+        background-color: @color-green-g1;
+        background-image: linear-gradient(to bottom, #7ccc6c 50%, #000000 50%);
+
+        span {
+          color: @color-black  !important;
+        }
+
+        &:hover {
+          color: @color-green-g1;
+          background-color: @color-black;
+          background-position: 0 -100%;
+          text-decoration: none;
+
+          span {
+            color: @color-green-g1  !important;
+          }
+        }
+      }
+    }
+  }
+
+  .a-button--primary-v1,
+  .a-button--primary-v2 {
+    a {
+      background-color: @color-charcoal;
+      background-image: linear-gradient(to bottom, #222731 50%, #d9d9d6 50%);
+
+      span {
+        color: @color-dark-gray1;
+      }
+
+      &:hover {
+        color: @color-charcoal;
+        background-color: @color-dark-gray1;
+        background-position: 0 -100%;
+        text-decoration: none;
+
+        span {
+          color: @color-charcoal  !important;
+        }
+      }
+    }
+  }
+
+  .button.disabled {
+    pointer-events: none;
+
+    .btn {
+      background-color: @color-gray-medium  !important;
+      background-image: none !important;
+
+      span {
+        color: #fff !important;
+      }
+    }
+  }
+
+  .accordion~.text {
+    width: 95%;
+  }
+}
+
+.fluorophore-image {
+  border-radius: 10px;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  margin-right: 5px;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.color1 {
+  background: #ff8d29;
+}
+
+.color2 {
+  background: #74c26a;
+}
+
+.color3 {
+  background: #e8112d;
+}
+
+.color4 {
+  background: #85daf4;
+}
+
+.color5 {
+  background: #ffbc3e;
+}
+
+.color7 {
+  background: #F7F726;
+}
+
+#chromosom .embed,
+.cmp-embed {
+  height: auto;
+  max-height: 1100px;
+}
+
+.parent-chromosomeSelector {
+  z-index: 973;
+
+  #section-chromosome-selector-bottom,
+  #section-chromosome-selector {
+    background: @color-charcoal;
+    margin-top: -44px;
+    padding: 9px 0;
+
+    .chromosome-selector {
+      position: relative;
+      left: 50%;
+      transform: translate(-50%, 4px);
+      padding-bottom: 0 !important;
+      width: 39%;
+      height: auto;
+      display: inline-block;
+
+      @media screen and (min-width: 992px) and (max-width: 1199px) {
+        width: 52%;
+      }
+
+      @media screen and (min-width: 768px) and (max-width: 991px) {
+        width: 65%;
+      }
+
+      .a-dropdown__title {
+        float: left;
+        color: @color-white;
+        font-weight: bold;
+        margin-right: 15px;
+        margin-top: 15px;
+      }
+
+      .a-dropdown__field {
+        text-align: left;
+        width: 100%;
+        max-width: 218px;
+        height: 45px;
+        border-radius: 0px;
+        float: left;
+
+        ul {
+          max-height: 300px;
+
+          li {
+            border-bottom: 0 none;
+
+            span {
+              padding: 6px 10px;
+              font-family: 'Brandon Grotesque', Calibri, Helvetica, Arial, sans-serif;
+              font-size: 16px;
+
+              a {
+                color: @color-charcoal;
+
+              }
+
+              em {
+                display: none;
+              }
+            }
+
+            &:hover {
+              background-color: #146ff8;
+
+              a {
+                text-decoration: none;
+                color: @color-white;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.chromosomePopup {
+  .mfp-image-holder {
+    .mfp-content {
+      background-color: @color-white;
+      padding: 30px;
+    }
+
+    .mfp-figure {
+      background-color: @color-white;
+
+      &::after {
+        box-shadow: none;
+        background: none;
+      }
+    }
+
+    .mfp-close {
+      background: @color-white;
+      z-index: 1050;
+      padding: 0;
+      width: 75%;
+      right: 16px;
+
+      &::before {
+        color: @color-black  !important;
+      }
+    }
+
+    figure {
+      &::before {
+        content: "PROBE MAP IMAGE";
+        position: absolute;
+        top: 26px;
+        color: #000;
+        font-weight: bold;
+        text-shadow: none;
+        font-size: 1.5rem;
+        line-height: 1.7rem;
+        z-index: 99999;
+      }
+
+      img {
+        width: 583px;
+      }
+    }
+  }
+}
+
+.lastBrackselement {
+  font-size: 14px;
+  color: #888b8d;
+}
+
+.generic-modal--image {
+  .modal-body {
+    #section-hybrid-image-popup {
+      #hybrid-image-popup {
+        .embed {
+          img {
+            width: auto;
+            height: auto;
+            max-width: 321px;
+          }
+        }
+
+        &:nth-child(2) {
+          img {
+            width: auto;
+            height: auto;
+          }
+        }
+      }
+    }
+  }
+
+  .modal-dialog {
+    max-width: fit-content !important;
+
+    .modal-content {
+      width: 600px;
+      overflow-x: hidden;
+      max-height: 450px;
+
+      .modal-body {
+        padding-bottom: 0 !important;
+
+        #hybrid-image-popup {
+          .title {
+            margin-bottom: 0;
+          }
+
+          .embed {
+            margin-bottom: 0;
+
+            img {
+
+              border-radius: 0;
+              margin-bottom: 0.7rem;
+            }
+
+            &:nth-child(2) {
+              img {
+                width: 321px;
+                height: 180px;
+              }
+            }
+          }
+
+          .text {
+            p {
+              padding-top: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.requestModal {
+  .a-checkbox__text {
+    display: block;
+  }
+}
+
+.dynamicChromosome {
+  #chromosom {
+    overflow: hidden;
+    max-width: 997px;
+    width: 80%;
+
+    @media screen and (min-width: 991px) and (max-width: 1199px) {
+      max-width: 899px;
+    }
+
+    .col-12.col-md-2.col-lg-2.columncontrol__column {
+      flex: 0 0 18.66667%;
+      max-width: 18.66667%;
+    }
+
+    .row {
+      -webkit-box-pack: start;
+      -ms-flex-pack: start;
+      justify-content: start;
+      flex-wrap: nowrap;
+    }
+  }
+
+  #chromosome-search-content {
+    padding-top: 55px;
+  }
+
+  .productinfo-table {
+    th {
+      font-weight: normal;
+    }
+  }
+
+  #chromosom-accordian 
+  {
+    .accordionTitlebackground 
+    {
+      border-bottom: 1px solid #888b8d;
+
+      &:has(.m-accordion__body.show)
+      {
+        border-bottom: 0px solid #888b8d;
+      }
+
+      &.removeBorder {
+        border-bottom: 0px solid #888b8d;
+      }
+    }
+
+    .productinfo-table {
+      tr:nth-child(even) {
+        background: #fff;
+      }
+
+      .fluorophore-image {
+        margin: 0;
+      }
+    }
+
+    .chromosome {
+      margin-bottom: 20px;
+    }
+
+    .probecontainer {
+      .vialName {
+        margin-top: 20px;
+      }
+    }
+  }
+}
+
+.requestChromosomeModal {
+  button[type="reset"] {
+    position: relative;
+    top: 2px;
+  }
+}
+
+.staticChromosome {
+  .accordion
+  {
+    .m-accordion__body {
+      position: relative;
+      left: 0;
+      background-color: @color-grey;
+      border: none;
+      width: 91.7%;
+      padding: 0px 0px 10px 0px;
+      .a-link
+        {
+          display: block;
+          &__text
+          {
+            margin-bottom: 3% !important;
+          }
+        }
+      @media screen and (min-width: 1025px) and (max-width: 1199px) {
+        left: 0;
+        width: 91.6%;
+      }
+  
+      @media screen and (min-width: 992px) and (max-width: 1024px) {
+        left: 0;
+      }
+  
+      @media screen and (min-width: 768px) and (max-width: 991px) {
+        left: 0;
+      }
+    }
+  }
+  
+
+  #chromosom {
+    .embed {
+      svg {
+        position: relative;
+        left: -27px;
+        top: 55px;
+        display: none;
+
+        @media screen and (min-width: 1025px) and (max-width: 1199px) {
+          left: -37px;
+        }
+
+        @media screen and (min-width: 992px) and (max-width: 1024px) {
+          left: -55px;
+        }
+
+        @media screen and (min-width: 768px) and (max-width: 991px) {
+          left: -84px;
+        }
+      }
+
+      .svgLineGreater3 {
+        top: 30px !important;
+      }
+
+      .svgLineGreater4 {
+        top: 88px !important;
+      }
+
+      .svgLineGreater6 {
+        top: 60px !important;
+      }
+
+      .svgLineGreater7 {
+        top: 195px !important;
+      }
+
+      .svgLineGreater9 {
+        top: 100px !important;
+      }
+
+      .svgLineGreater10 {
+        top: 140px !important;
+      }
+
+      .svgLineGreater13 {
+        top: 150px !important;
+      }
+
+      .svgLineGreater22 {
+        top: 280px !important;
+      }
+
+      .svgLineGreater26 {
+        top: 255px !important;
+      }
+
+      .default {
+        display: block;
+      }
+    }
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+#request-form-modal {
+  .a-button--primary-v1 {
+    .btn {
+      vertical-align: baseline;
+    }
+  }
+}

@@ -1,0 +1,31 @@
+<sly data-sly-template.title="${@ teaser}">
+
+<sly data-sly-use.analyticsConfig="${'com.abbott.aem.an.similac.core.models.AnalyticsConfigModel' @ pageName=currentPage.name, sectionTitle =teaser.title , linkName='title link'}" />
+<sly data-sly-test.eventCategory="${properties.eventCategory ? properties.eventCategory : 'callout'}"/>
+<sly data-sly-test.eventAction="${properties.eventAction ? properties.eventAction : 'click'}" />
+<sly data-sly-test.targetAttr="${properties.newTab ? '_blank' : '_self'}" />
+<sly data-sly-test.eventLabel="${properties.eventLabel ? properties.eventLabel : analyticsConfig.eventLabel}" />
+<sly data-sly-test.gtmValue="${'{0}{1}{2}{3}{4}' @ format=[eventCategory, '|',eventAction,'|',eventLabel]}" />
+
+
+	<div data-sly-test="${!properties.titleType}" data-sly-unwrap>
+    <h2 class="cmp-teaser__title" data-sly-test.title="${teaser.title}" data-sly-element="${teaser.titleType}">
+        <a class=" card-title cmp-teaser__title-link ${properties.titleClass} gtm-title" href="${teaser.linkURL}" data-gtm="${gtmValue}" target="${targetAttr}" data-sly-unwrap="${!teaser.linkURL || teaser.titleLinkHidden}">${title @context='html'}</a>
+    </h2>
+    </div>
+    <div data-sly-test="${properties.titleType == 'h3'}" data-sly-unwrap>
+    <h3 class="cmp-teaser__title" data-sly-test.title="${teaser.title}" >
+        <a class=" card-title cmp-teaser__title-link ${properties.titleClass} gtm-title" href="${teaser.linkURL}" data-gtm="${gtmValue}"  target="${targetAttr}" data-sly-unwrap="${!teaser.linkURL || teaser.titleLinkHidden}">${title @context='html'}</a>
+    </h3>
+    </div>
+    <div data-sly-test="${properties.titleType == 'h2'}" data-sly-unwrap>
+    <h2 class="cmp-teaser__title" data-sly-test.title="${teaser.title}" >
+        <a class=" card-title cmp-teaser__title-link ${properties.titleClass} gtm-title" href="${teaser.linkURL}" data-gtm="${gtmValue}"  target="${targetAttr}" data-sly-unwrap="${!teaser.linkURL || teaser.titleLinkHidden}">${title @context='html'}</a>
+    </h2>
+    </div>
+    <div data-sly-test="${properties.titleType == 'h1'}" data-sly-unwrap>
+    <h1 class="cmp-teaser__title" data-sly-test.title="${teaser.title}" >
+        <a class=" card-title cmp-teaser__title-link ${properties.titleClass} gtm-title" href="${teaser.linkURL}" data-gtm="${gtmValue}"  target="${targetAttr}" data-sly-unwrap="${!teaser.linkURL || teaser.titleLinkHidden}">${title @context='html'}</a>
+    </h1>
+    </div>
+</sly>

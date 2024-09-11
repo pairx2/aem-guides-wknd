@@ -1,0 +1,164 @@
+@import "../global/media-queries.less";
+@import "../global/variables.less";
+
+.videoplaylist
+{
+    @media @md-down{
+        padding-right: 0;
+        padding-left: 0;
+    }
+    .wistia-playlist-container{
+        padding: 0;
+        .wistia-playlist{
+            justify-content: flex-start;
+            &__main-title{
+                font-size: 27px;
+                font-family: @brandon-bold;
+                text-transform:uppercase;
+                font-weight: 300;
+                @media @md-down{
+                    font-size: 21px;
+                }
+            }
+            &__list-container{
+                width: 32%;
+                -ms-flex-preferred-size: 32%;
+                flex-basis: 32%;
+                padding-left: 0;
+                @media @lg-down{
+                   margin-top: 0;
+                }
+            }
+            &__video-content{
+                color: #004f71;
+                &:hover{
+                    color: #009cde;
+                    .wistia-playlist__video-title{
+                        color: #009cde !important;
+                    }
+                }
+            }
+            .wistia-playlist__video-item{
+                margin: 0;
+                padding: 7px 0;
+                &:hover{
+                    .wistia-playlist__video-title, .wistia-playlist__video-copy{
+                        color: #009cde;
+                    }
+                }
+                &:focus{
+                    border:0;
+                }
+                margin-bottom: 0;
+                @media @lg-down{
+                    flex-basis: 49.5%;
+                }
+            }
+            &__video-item.active{
+                background: #ececea;
+                padding: 5px 5px 10px 0 !important;
+                margin-bottom: 5px;
+                @media @lg-down{
+                    margin-bottom: 5px;
+                }
+                &:focus{
+                    border:0;
+                }
+                .wistia-playlist__video-icon{
+                    &::after{
+                        display: none;
+                    }
+                }
+                
+            }
+            &__video-title{
+                padding-top: 5px !important;
+                margin-bottom: 3px;
+                font-family: @brandon-bold;
+            }
+            &__video-copy{
+                p{
+                    font-weight: normal;
+                    font-family: @georgias;
+                    margin-bottom: 0;
+                    font-size: 16px;
+                }
+            }
+            &__main-button{
+                .new-btn{
+                    background-color: var(--button-primary-bg);
+                    color: var(--button-primary-color);
+                    line-height: 18px;
+                    padding: 10px 20px 5px 20px;
+                    &:hover{
+                        span{
+                            color: #009cde;
+                        }
+                    }
+                    span{
+                        padding: 6px 0px;
+                        text-transform: uppercase;
+                        @media @lg-down{
+                            margin-bottom: 0;
+                            padding: 0;
+                        }
+                    }
+ 
+                }
+            }
+            &__main-description{
+                p{
+                    line-height: 1.25em;
+                    margin-bottom: 28px;
+                    font-size: 1em;
+                    font-family: @georgias;
+                    color: @color-charcoal;
+                }  
+                @media @md-down{
+                    padding: 0;
+                }       
+            }
+            &__main-container{ 
+                margin-bottom: 30px;
+                 @media @md-down{
+                    padding-right: 0;
+                 }
+            }
+            &__list-items{
+                @media @lg-down{
+                    height: auto !important;
+                }
+            }
+            .wistia-playlist__video-icon{
+                width: 33.65% !important;
+            }
+            .wistia-playlist__video-content{
+                width: 63%;
+            }
+            &__main-video-image{
+                position: absolute;
+                width: 100%;
+                height: 100% !important;
+                z-index: 0;
+                top: 0;
+                &::before{
+                    width: 56px;
+                    height: 56px;
+                    
+                }
+                img{
+                     @media @md-down{
+                        width: 100%;
+                        height: 100% !important;
+                     }
+                }
+                
+            }
+            .wistia_responsive_wrapper {
+                iframe {
+                    width: 100%;
+                }
+            }
+        }
+    }
+} 

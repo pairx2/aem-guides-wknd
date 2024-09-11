@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<!-- ====================================================================== -->
+	<!-- P A R E N T   P R O J E C T   D E S C R I P T I O N -->
+	<!-- ====================================================================== -->
+	<parent>
+		<groupId>com.abbott.aem.ardx.division</groupId>
+		<artifactId>aem-ardx-divisional.reactor</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+
+	<!-- ====================================================================== -->
+	<!-- P R O J E C T   D E S C R I P T I O N -->
+	<!-- ====================================================================== -->
+
+	<artifactId>aem-ardx-divisional.ui.apps.structure</artifactId>
+	<packaging>content-package</packaging>
+	<name>${division} division - Repository Structure Package</name>
+	<description>
+        Empty package that defines the structure of the Adobe Experience Manager repository the Code packages in this project deploy into.
+        Any roots in the Code packages of this project should have their parent enumerated in the Filters list below.
+    </description>
+    
+    <properties>
+          <sonar.skip>true</sonar.skip>
+    </properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.jackrabbit</groupId>
+				<artifactId>filevault-package-maven-plugin</artifactId>
+				<extensions>true</extensions>
+				<configuration>
+					<properties>
+						<cloudManagerTarget>none</cloudManagerTarget>
+					</properties>
+					<filters>
+						<!-- Application root for the site -->
+						<filter>
+							<root>/apps/${division}</root>
+						</filter>
+						<filter>
+							<root>/apps/${division}/${site}</root>
+						</filter>
+					</filters>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

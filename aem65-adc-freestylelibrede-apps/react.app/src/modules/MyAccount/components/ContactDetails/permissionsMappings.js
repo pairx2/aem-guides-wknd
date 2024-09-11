@@ -1,0 +1,8 @@
+export const COMMUNICATION_CHANNELS = {
+	NEWS: {
+		EMAIL:'EMAIL',
+		SMS:'SMS',
+		PHONE:'PHONE',
+		MAIL:'MAIL'
+	}
+};

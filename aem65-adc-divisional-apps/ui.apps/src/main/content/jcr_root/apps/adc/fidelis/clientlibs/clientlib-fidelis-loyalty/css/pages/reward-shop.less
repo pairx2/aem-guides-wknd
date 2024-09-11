@@ -1,0 +1,139 @@
+@import '../mixin.less';
+@import '../media-queries.less';
+@import '../variables.less';
+/**
+ * Reward Shop - PAGE
+**/
+
+[id*=rewardProductCards] {
+    .button {
+        display: block;
+
+        .btn {
+            width: 100%;
+            &.disabled{
+                /* Targetting ipad 9th generation device to show disabled buttons */
+                @media screen and (min-width: 800px) and (max-width: 820px) and (orientation:portrait) {
+                    opacity: 1;
+                }
+                @media screen and (min-width: 1070px) and (max-width: 1090px) and (orientation:landscape) {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
+    .product-card {
+        .o-features-card__image {
+            filter: grayscale(1);
+        }
+
+        &.enabled-card {
+            .o-features-card__image {
+                filter: grayscale(0);
+            }
+        }
+    }
+}
+
+[id*=codeRedemptionForm] {
+    .form-label {
+        display: block !important;
+    }
+
+    .form-group {
+        margin-bottom: 0px;
+    }
+
+    .o-form-container__buttons {
+        .btn {
+            margin-top: 23px;
+        }
+    }
+    .o-form-container__error-msg{
+        display: none;
+    }
+    .o-form-container__success-msg{
+        margin: 2px 0 0;
+        text-align: left;
+        color: #52be08;
+        font-weight: normal;
+    }
+}
+#codeRedemptionContainer{
+    .formcontainer{
+        margin-bottom: 0px;
+    }
+    #apierror{
+        .text{margin: 0px;}
+    }
+    #apierrorContainer{
+        .container{
+            padding-left: 0px;
+        }
+    }
+}
+[class*=redeem-popup] {
+    padding: 0px;
+
+    [class*=redeem-no-address-state] {
+        .image--align-center {
+            margin: 0px;
+
+            img {
+                width: auto;
+            }
+        }
+    }
+
+    [id*=redeemItem] {
+        p:not(:last-child) {
+            margin-bottom: 0px;
+        }
+    }
+
+    .image--align-center {
+        img {
+            width: auto;
+        }
+    }
+
+    .custom-button-address {
+        @media @sm-up {
+            margin-right: 1rem;
+            width: 50% !important;
+        }
+    }
+    .o-wizard-container__success-msg, .o-wizard-container__error-msg{
+        display: none;
+    }
+    [id*=apierror] {
+        .text { 
+            p {
+                color:@color-danger
+            }
+        }
+    }
+    button[type="submit"]{
+        .abt-icon{
+            display: none;
+        }
+    }
+    .a-button--spinner{
+        button[type="submit"]{
+            .abt-icon{
+                display: inline-block;
+                float: none;
+            }
+        }
+    }
+    .o-wizard__container{
+        .o-wizard__btn{
+            .button-div{
+                @media @sm-up {
+                    width: 45%;
+                  }
+            }
+        }
+    }
+}

@@ -1,0 +1,336 @@
+
+
+.wpwl-label {
+	float: none !important;
+	color: @color-fsl-blue;
+	font-weight: @weight-medium;
+	font-size: 0.813rem;
+	width: 100% !important;
+	padding-left: .4rem;
+	line-height: 15px;
+
+	&-label-checkbox {
+		display: inline-block;
+		text-align: right;
+		margin-right: 1rem;
+		margin-left: 1rem;
+	}
+}
+
+@media (min-width: 480px) {
+	.wpwl-wrapper {
+		width: 100%;
+	}
+}
+
+
+.wpwl-wrapper {
+	&-submit {
+		margin-top: .5rem;
+	}
+
+	&-checkbox {
+		float: none !important;
+	}
+
+	&-registration-brand {
+		margin-right: 2rem !important;
+	}
+
+	&-registration-registrationId {
+		display: none;
+	}
+}
+
+.wpwl-button {
+	float: left;
+	margin-top: 1rem !important;
+	background-color: @color-fsl-blue !important;
+
+	&:hover, &:focus, &:active {
+		background-color: @color-fsl-blue !important;
+	}
+
+	.adc-icon {
+		margin-right: 1rem;
+	}
+
+	&[data-action="show-initial-forms"]{
+		display: none;
+	}
+}
+.wpwl-button-pay{
+	background-color: @color-fsl-blue !important ;
+	border-color: @color-fsl-blue !important;
+	letter-spacing: 1px;
+}
+
+.wpwl-control {
+	border-radius: 0.2rem !important;
+	height: 45px;
+	.font-size-rems(16);
+	padding: 10px;
+	border-color: @color-fsl-grey-3;
+}
+
+.wpwl-group {
+	margin-bottom: 20px;
+	.wpwl-wrapper {
+		width: 100%;
+	}
+	.wpwl-label{
+		padding-right:5px
+	}
+	&-registration {
+		vertical-align: middle;
+
+		&.wpwl-selected {
+			border-left: 0.3rem solid @color-fsl-blue !important;
+			border-right: 1px solid @color-fsl-blue !important;
+			border-top: 1px solid @color-fsl-blue !important;
+			border-bottom: 1px solid @color-fsl-blue !important;
+			border-radius: 0.5rem;
+		}
+	}
+
+	&-brand {
+		display: none;
+	}
+	&.wpwl-group-expiry{
+		float: left;
+		width: 49%;
+	}
+	&.wpwl-group-cvv{
+		float: right;
+		width: 47%;
+	}
+	&.wpwl-group-submit{
+		clear: both;
+	}
+}
+
+/**
+	Custom CSS
+ */
+
+.adc-payment {
+	.dirty {
+		input[type=checkbox]:not(:valid) + .checkbox-container__checkmark {
+			border: 1px solid @color-fsl-orange;
+			background-color: @color-fsl-orange--alpha-10;
+		}
+	}
+
+	&__title {
+		font-weight: 600 !important;
+	}
+
+	&__payon {
+		margin-top: 2rem;
+		margin-left: .7rem;
+		margin-right: .7rem;
+	}
+
+	&__form {
+	    display: table;
+        padding-bottom: 45px;
+		margin-top: 2rem;
+		transition: all 600ms ease-in-out;
+
+		&.closed {
+			max-height: 0vh;
+		}
+	}
+
+	&__payment-options {
+		position: relative;
+
+		& span {
+			content: "";
+			height: 24px;
+			width: 24px;
+			position: absolute;
+			cursor: pointer;
+			top: 50%;
+			transform: translateY(-50%);
+		}
+
+		.adc-carousel {
+			padding-top: 25px;
+
+			&__next {
+				right: -8%;
+				top: 55%;
+			}
+
+			&__prev {
+				left: -8%;
+				top: 55%;
+			}
+
+			&__item {
+				padding: 0 .5rem;
+			}
+		}
+	}
+
+	&__payment-option {
+		display: inline-block;
+		border: 1px solid @color-fsl-grey-3;
+		padding: 8px 1px;
+		border-radius: .5rem;
+		width: 100%;
+		height: 100%;
+		cursor: pointer;
+		vertical-align: middle;
+		position: relative;
+		text-align: center;
+		@media @mobile-break {
+			padding:8px 0px
+		}
+
+		.adc-icon {
+			position: absolute;
+			top: -9px;
+			right: -9px;
+			background-color: @color-fsl-white;
+		}
+
+		&.hidden {
+			display: none;
+		}
+
+		p {
+			text-align: center;
+			font-size: .75rem;
+			margin-bottom: .1rem;
+		}
+
+		img.brand {
+			text-align: center;
+			max-width: 80%;
+			margin-top: 5px;
+
+			&__multiple {
+				text-align: center;
+				margin-top: .5rem;
+			}
+
+			&.limit-height {
+				max-height: 40px;
+			}
+		}
+
+		&.expanded {
+			border-bottom: .2rem solid @color-fsl-blue;
+		}
+
+		.adc-spinner {
+			position: absolute;
+			top: -6px;
+			right: 5px;
+
+			span {
+				background: @color-fsl-blue;
+				border-radius: 12px;
+				padding: 2px;
+			}
+
+			& div:after {
+				background: @color-fsl-white;
+			}
+
+			& div {
+				position: relative;
+
+				&:after {
+					background: @color-fsl-white;
+				}
+			}
+
+		}
+	}
+
+	&__redirect {
+		margin: 0;
+		margin-bottom: 1rem;
+
+		&-title {
+			color: @color-fsl-blue;
+			margin-bottom: 1rem;
+		}
+	}
+
+	&__checkbox {
+		margin-left: .7rem;
+	}
+
+	&__paypal-wrapper {
+		max-width: 30em;
+		width: 100%;
+	}
+}
+
+.payment-display-edit {
+	.adc-carousel__prev {
+		left: -2.2rem;
+	}
+
+	.adc-carousel__next {
+		right: -2.2rem;
+	}
+}
+
+.adc-payment__saved-payments {
+	.adc-payment__saved-payment {
+		padding: .25rem 1rem;
+		border: 1px solid transparent;
+		border-left: 5px solid transparent;
+		position: relative;
+
+		.adc-icon--tick-circle {
+			position: absolute;
+			top: -9px;
+			right: -9px;
+			background-color: #ffffff;
+		}
+
+		&.selected {
+			border: 1px solid @color-fsl-blue;
+			border-left: 5px solid @color-fsl-blue;
+			padding: .25rem 1rem;
+			border-radius: 8px;
+		}
+
+		&:hover {
+			cursor: pointer;
+		}
+	}
+}
+.adc-tooltipbottom__content{
+	&.adc-paymentMethodInformation__tooltiptop--content{
+		width: 220px !important;
+		bottom: 115%;
+		margin-left:-25px;
+		&::after{
+			left: 10%;
+		}
+	}
+	&.adc-paymentInformation__content{
+		left: unset;
+		bottom: 140%;
+		margin-left: -6px;
+		width: 220px;
+		&::after{
+			left: 8%;
+		}
+	}
+	}
+
+	.expanded-disabled {
+		pointer-events: none;
+	}
+
+	.cursor-not-allowed {
+		cursor: not-allowed !important;
+	}

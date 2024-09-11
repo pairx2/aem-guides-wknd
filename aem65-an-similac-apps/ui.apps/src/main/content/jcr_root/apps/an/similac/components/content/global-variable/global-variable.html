@@ -1,0 +1,45 @@
+<sly data-sly-use.globalVarModel="${'com.abbott.aem.an.similac.core.models.GlobalVariableModel' @ errorPath=resource.path}"/>
+<sly data-sly-test.errorsAuthored="${globalVarModel.errorCodeData}" />
+<sly data-sly-test.displayTable="${globalVarModel.displayTable}" />
+<sly data-sly-test.errorURI="${globalVarModel.errorURI}" />
+
+<div class="cq-placeholder section" 
+	data-emptytext="Configure Global Variable Component in EDIT Mode" 
+    data-sly-test.author="${(wcmmode.edit || wcmmode.design) && (!errorsAuthored || !errorURI) && displayTable}" >
+</div>
+
+
+
+<sly data-sly-test="${displayTable}">
+	<h2>
+		Error Code Data
+	</h2>
+	<div data-sly-test="${!errorsAuthored}">
+		Please author error code data
+	</div>
+	<div>
+		<strong>Error Page URL: </strong>${errorURI @ context='uri'}
+	</div>
+	<table aria-describedby="Error Code Data for the registration and login forms" data-sly-test="${errorsAuthored}">
+		<thead>
+			<tr>
+				<th scope="col">
+					Error Code
+				</th>
+				<th scope="col">
+					Error Message
+				</th>
+			</tr>
+		</thead>
+		<tbody data-sly-list.errorInfo="${globalVarModel.errorCodeData}">
+			<tr>
+				<td>
+					${errorInfo.errorCode}
+				</td>
+				<td>
+					${errorInfo.errorMessage}
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</sly>

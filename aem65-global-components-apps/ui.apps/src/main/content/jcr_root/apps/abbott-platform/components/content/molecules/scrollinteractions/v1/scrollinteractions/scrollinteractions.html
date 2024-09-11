@@ -1,0 +1,15 @@
+<div class="container ${customConfig.className}"
+data-sly-use.scrollInteractions="com.abbott.aem.platform.common.components.models.ScrollInteractions"
+data-sly-use.componentProxy="com.abbott.aem.platform.common.components.models.ScrollInteractionsComponentProxy"
+data-sly-use.customConfig="com.abbott.aem.platform.common.components.models.CustomConfig"
+data-sly-use.template="core/wcm/components/commons/v1/templates.html"
+data-sly-use.layoutTemplate="abbott-platform/components/content/molecules/scrollinteractions/v1/scrollinteractions/layout.html"
+id="${scrollInteractions.id}">
+  <div class="row m-scroll-interactions__row">
+      <sly data-sly-test="${scrollInteractions.layout == 'mediaLeft'}"
+           data-sly-call="${layoutTemplate.mediaLeft @properties = properties, componentProxy = componentProxy}"/>
+      <sly data-sly-test="${scrollInteractions.layout == 'mediaRight'}"
+           data-sly-call="${layoutTemplate.mediaRight @properties = properties, componentProxy = componentProxy}"/>
+  </div>
+<sly data-sly-call="${template.placeholder @ isEmpty=true}"></sly>
+</div>

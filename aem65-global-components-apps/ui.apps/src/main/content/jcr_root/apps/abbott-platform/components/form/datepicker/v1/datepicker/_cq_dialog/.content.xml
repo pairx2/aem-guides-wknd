@@ -1,0 +1,535 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Date Picker"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/tabs">
+                <items jcr:primaryType="nt:unstructured">
+                    <properties
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Properties"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <datePickerType
+                                                granite:class="cq-dialog-dropdown-showhide"
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                fieldDescription="Select the type of date picker"
+                                                fieldLabel="Date Picker Type"
+                                                name="./datePickerType">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <singleDatePicker
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="Single Date Picker"
+                                                        value="singleDatePicker"/>
+                                                    <rangeDatePicker
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="Range Date Picker"
+                                                        value="rangeDatePicker"/>
+                                                </items>
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    cq-dialog-dropdown-showhide-target=".datePickerType-showhide-target"/>
+                                            </datePickerType>
+                                            <dateFormat
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                fieldDescription="Select the type of date format"
+                                                fieldLabel="Date Format"
+                                                name="./dateFormat">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <mmddyyyy
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="MM/DD/YYYY"
+                                                        value="MM/DD/YYYY"/>
+                                                    <ddmmyyyy
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="DD/MM/YYYY"
+                                                        value="DD/MM/YYYY"/>
+                                                    <yyyymmdd
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="YYYY/MM/DD"
+                                                        value="YYYY/MM/DD"/>
+                                                    <yyyyddmm
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="YYYY/DD/MM"
+                                                        value="YYYY/DD/MM"/>
+                                                    <dd-mm-yyyy
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="DD-MM-YYYY"
+                                                        value="DD-MM-YYYY"/>
+                                                    <mm-dd-yyyy
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="MM-DD-YYYY"
+                                                        value="MM-DD-YYYY"/>
+                                                    <yyyy-dd-mm
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="YYYY-DD-MM"
+                                                        value="YYYY-DD-MM"/>
+                                                    <yyyy-mm-dd
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="YYYY-MM-DD"
+                                                        value="YYYY-MM-DD"/>
+                                                </items>
+                                            </dateFormat>
+                                            <wrongFormatError
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldDescription="Add error message text for wrong format"
+                                                fieldLabel="Wrong Format Error Message Text"
+                                                name="./wrongFormatError"/>
+                                            <invalidDateError
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldDescription="Add error message text for invalid date"
+                                                fieldLabel="Invalid Date Error Message Text"
+                                                name="./invalidDateError"/>
+                                            <rangeDatePicker
+                                                granite:class="hide datePickerType-showhide-target"
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <invalidRangeError
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                        fieldDescription="Add error message text for invalid date range"
+                                                        fieldLabel="Invalid Range Error Message Text"
+                                                        name="./invalidRangeError"/>
+                                                    <labelFromDate
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                        fieldDescription="Enter label for Date Picker (From)"
+                                                        fieldLabel="Label for Date Picker (From)"
+                                                        name="./labelFromDate"/>
+                                                    <labelToDate
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                        fieldDescription="Enter label for Date Picker (To)"
+                                                        fieldLabel="Label for Date Picker (To)"
+                                                        name="./labelToDate"/>
+                                                    <nameFromDate
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                        fieldDescription="Enter the name for 'From' range date"
+                                                        fieldLabel="Name for Date Picker (From)"
+                                                        name="./nameFromDate"/>
+                                                    <nameToDate
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                        fieldDescription="Enter the name for 'To' range date"
+                                                        fieldLabel="Name for Date Picker (To)"
+                                                        name="./nameToDate"/>
+                                                </items>
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    showhidetargetvalue="rangeDatePicker"/>
+                                            </rangeDatePicker>
+                                            <singleDatePicker
+                                                granite:class="hide datePickerType-showhide-target"
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <labelSingleDatePicker
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                        fieldDescription="Enter the label for single date"
+                                                        fieldLabel="Label for Date Picker"
+                                                        name="./labelSingleDatePicker"/>
+                                                    <nameSingleDatePicker
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                        fieldDescription="Enter the name for single date"
+                                                        fieldLabel="Name for Date Picker"
+                                                        name="./nameSingleDatePicker"/>
+                                                </items>
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    showhidetargetvalue="singleDatePicker"/>
+                                            </singleDatePicker>
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </properties>
+                    <about
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="About"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <helpMessage
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldDescription="Enter help message"
+                                                fieldLabel="Help Message"
+                                                name="./helpMessage"/>
+                                            <rangeDatePicker
+                                                granite:class="hide datePickerType-showhide-target"
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <placeholderFromDate
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                        fieldDescription="Enter the Placeholder for 'From' range date"
+                                                        fieldLabel="Palceholder for Date Picker (From)"
+                                                        name="./placeholderFromDate"/>
+                                                    <placeholderToDate
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                        fieldDescription="Enter the placeholder for 'To' range date"
+                                                        fieldLabel="Palceholder for Date Picker (To)"
+                                                        name="./placeholderToDate"/>
+                                                </items>
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    showhidetargetvalue="rangeDatePicker"/>
+                                            </rangeDatePicker>
+                                            <singleDatePicker
+                                                granite:class="hide datePickerType-showhide-target"
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <placeholderSingleDatePicker
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                        fieldDescription="Enter the placeholder text for single date"
+                                                        fieldLabel="Placeholder text for Date Picker"
+                                                        name="./placeholderSingleDatePicker"/>
+                                                </items>
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    showhidetargetvalue="singleDatePicker"/>
+                                            </singleDatePicker>
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </about>
+                    <constraints
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Constraints"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <required
+                                                granite:class="cq-dialog-checkbox-showhide"
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                fieldDescription="Whether the user must fill in a value before submitting the form"
+                                                name="./required"
+                                                text="Required"
+                                                value="true">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <show
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="true"
+                                                        value="true"/>
+                                                </items>
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    cq-dialog-checkbox-showhide-target=".all-required-fields"/>
+                                            </required>
+                                            <required-fields
+                                                granite:class="hide all-required-fields"
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <requiredMessage
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
+                                                        fieldDescription="Message displayed as tooltip when submitting the form if the value is left empty"
+                                                        fieldLabel="Required Message"
+                                                        name="./requiredMessage"/>
+                                                </items>
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    showhidetargetvalue="true"/>
+                                            </required-fields>
+                                            <disableDateRequired
+                                                granite:class="cq-dialog-checkbox-showhide"
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                fieldDescription="Select this checkbox to see option to disable past or future date"
+                                                name="./disableDateRequired"
+                                                text="Disable Past or Future Dates?"
+                                                value="true">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <show
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="true"
+                                                        value="true"/>
+                                                </items>
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    cq-dialog-checkbox-showhide-target=".disable-date-field"/>
+                                            </disableDateRequired>
+                                            <disablePastFutureDateFields
+                                                granite:class="hide disable-date-field"
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <heading
+                                                        granite:class="coral-Heading coral-Heading--4"
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/heading"
+                                                        level="{Long}4"
+                                                        text="Options"/>
+                                                    <well
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/well">
+                                                        <items jcr:primaryType="nt:unstructured">
+                                                            <disabledDate
+                                                                granite:class="cq-dialog-dropdown-showhide"
+                                                                jcr:primaryType="nt:unstructured"
+                                                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                                name="./disabledDate">
+                                                                <items jcr:primaryType="nt:unstructured">
+                                                                    <hidePast
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        text="Disable Past Date"
+                                                                        value="past"/>
+                                                                    <hideFuture
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        text="Disable Future Date"
+                                                                        value="future"/>
+                                                                    <hidePastYears
+                                                                        granite:class="hide "
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        text="Disable Past Years"
+                                                                        value="pastYears"/>
+                                                                    <hideFutureDays
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        text="Disable Future Days"
+                                                                        value="futureDays"/>
+                                                                </items>
+                                                                <granite:data
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    cq-dialog-dropdown-showhide-target=".disabledDate-showhide-target"/>
+                                                            </disabledDate>
+                                                            <disablePastYears
+                                                                granite:class="hide disabledDate-showhide-target"
+                                                                jcr:primaryType="nt:unstructured"
+                                                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                                <items jcr:primaryType="nt:unstructured">
+                                                                    <numberOfYears
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                                                        fieldDescription="Disables number of years counting from present to past"
+                                                                        fieldLabel="Number of years to disable"
+                                                                        min="1"
+                                                                        name="./disabledYears"/>
+                                                                </items>
+                                                                <granite:data
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    showhidetargetvalue="pastYears"/>
+                                                            </disablePastYears>
+                                                            <disableFutureAfterMonths
+                                                                granite:class="hide disabledDate-showhide-target"
+                                                                jcr:primaryType="nt:unstructured"
+                                                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                                <items jcr:primaryType="nt:unstructured">
+                                                                    <disabledAfterMonths
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                                                        fieldDescription="Disables future date after the months entered"
+                                                                        fieldLabel="Number of months after which Calendar will be disabled"
+                                                                        min="1"
+                                                                        name="./disabledAfterMonths"/>
+                                                                    <disabledPastMonths
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                                        fieldDescription="If checked,disable Calendar in past along with future"
+                                                                        name="./disablePastinFutureCal"
+                                                                        text="Disable Calendar in past along with future"
+                                                                        uncheckedValue="{Boolean}false"
+                                                                        value="{Boolean}true"/>
+                                                                </items>
+                                                                <granite:data
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    showhidetargetvalue="future"/>
+                                                            </disableFutureAfterMonths>
+                                                            <disableFutureAfterDays
+                                                                granite:class="hide disabledDate-showhide-target"
+                                                                jcr:primaryType="nt:unstructured"
+                                                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                                <items jcr:primaryType="nt:unstructured">
+																    <datePickerType
+                                                                        granite:class="cq-dialog-dropdown-showhide"
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                                        fieldDescription="Select the type of date picker"
+                                                                        fieldLabel="Disable Dates"
+                                                                        name="./disabledDays">
+                                                                        <items jcr:primaryType="nt:unstructured">
+                                                                            <after
+                                                                                jcr:primaryType="nt:unstructured"
+                                                                                text="After Number Of Days"
+                                                                                value="disableAfterDates"/>
+                                                                            <before
+                                                                                jcr:primaryType="nt:unstructured"
+                                                                                text="Before Number Of Days"
+                                                                                value="disableBeforeDates"/>
+                                                                        </items>
+                                                                        <granite:data
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            cq-dialog-dropdown-showhide-target=".datebeforaefter-showhide-target"/>
+                                                                    </datePickerType>
+                                                                    <disabledAfterDays
+                                                                        granite:class="hide datebeforaefter-showhide-target"
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                                        <items jcr:primaryType="nt:unstructured">
+                                                                            <disableAfterDays
+                                                                                jcr:primaryType="nt:unstructured"
+                                                                                sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                                                                fieldDescription="Disables future date after the days entered"
+                                                                                fieldLabel="Number of days after which Calendar will be disabled"
+                                                                                min="1"
+                                                                                name="./disabledAfterDays"/>
+                                                                        </items>
+                                                                        <granite:data
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            showhidetargetvalue="disableAfterDates"/>
+                                                                    </disabledAfterDays>
+																	<disabledBeforeDays
+                                                                        granite:class="hide datebeforaefter-showhide-target"
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                                        <items jcr:primaryType="nt:unstructured">
+                                                                            <disableBeforeDays
+                                                                                jcr:primaryType="nt:unstructured"
+                                                                                sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                                                                fieldDescription="Disables future date before the months entered"
+                                                                                fieldLabel="Number of days before which Calendar will be disabled"
+                                                                                min="1"
+                                                                                name="./disabledBeforeDays"/>
+                                                                        </items>
+                                                                        <granite:data
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            showhidetargetvalue="disableBeforeDates"/>
+                                                                    </disabledBeforeDays>
+                                                                    <disablePastAndFutureDays
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                                        fieldDescription="If checked,disable Calendar in past along with future days"
+                                                                        name="./disablePastAndFutureDays"
+                                                                        text="Disable Calendar in past along with future days"
+                                                                        uncheckedValue="{Boolean}false"
+                                                                        value="{Boolean}true"/>
+                                                                </items>
+                                                                <granite:data
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    showhidetargetvalue="futureDays"/>
+                                                            </disableFutureAfterDays>
+                                                        </items>
+                                                    </well>
+                                                </items>
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    showhidetargetvalue="true"/>
+                                            </disablePastFutureDateFields>
+                                            <disableWeekend
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                fieldDescription="If checked, weekend(sat,sun)is disabled"
+                                                name="./disableWeekend"
+                                                text="Disable Weekend"
+                                                uncheckedValue="{Boolean}false"
+                                                value="{Boolean}true"/>
+											<disablemonthsdropdown
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                fieldDescription="If checked, Months dropdown will not appear."
+                                                name="./disableMonthsDropdown"
+                                                text="Disable Months Dropdown"
+                                                uncheckedValue="{Boolean}false"
+                                                value="{Boolean}true"/>
+											<disableyearsdropdown
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                fieldDescription="If checked, Years dropdown will not appear."
+                                                name="./disableYearsDropdown"
+                                                text="Disable Years Dropdown"
+                                                uncheckedValue="{Boolean}false"
+                                                value="{Boolean}true"/>
+                                            <dynamicDateRange
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                    fieldDescription="If checked, will read from and to date from localStorage (dateRange) and enable the respective dates between them"
+                                                    name="./dynamicDateRange"
+                                                    text="Dynamic Date Range"
+                                                    uncheckedValue="{Boolean}false"
+                                                    value="{Boolean}true"/>
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </constraints>     
+                     <configItem
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="ID/Class Config"
+                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                            margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                    margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <configTab
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="/libs/granite/ui/components/coral/foundation/include"
+                                                    path="/apps/abbott-platform/components/core/customconfig/v1/customconfig/cq:dialog/content/items/tabs/items/configItem/items/columns/items/column"/>
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </configItem>
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>

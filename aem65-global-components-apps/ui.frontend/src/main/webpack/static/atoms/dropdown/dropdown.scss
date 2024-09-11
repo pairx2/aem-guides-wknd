@@ -1,0 +1,190 @@
+.a-dropdown {
+	$self: &;
+	&__container {
+		
+		#{ $self }__title {
+			&-text:empty {
+				display: none;
+			}
+			&-text:empty + #{ $self }__title--required {
+				display: none;
+			}
+		}
+		
+		#{ $self }__field {
+			background: var(--dropdown-field-bg-color);
+			padding: var(--dropdown-field-padding);
+			border: var(--dropdown-field-border);
+			border-radius: var(--dropdown-field-border-radius);
+			position: relative;
+			width: 100%;
+			line-height: var(--dropdown-field-line-height);
+			min-height: var(--dropdown-field-height);
+			#{ $self }__placeholder {
+				@include copy(var(--dropdown-field-font-size), var(--dropdown-field-line-height), var(--dropdown-placeholder-color), none, normal);
+				word-break: break-all;
+			}
+
+			#{ $self }-selected {
+				@include copy(var(--dropdown-field-font-size), var(--dropdown-field-line-height), var(--dropdown-selected-color), none, normal);
+				word-break: break-all;
+			}
+
+			#{ $self }__menu {
+				background: var(--dropdown-menu-bg-color);
+				border-radius: var(--dropdown-menu-border-radius);
+				@include prefix(
+					box-shadow,
+          			var(--dropdown-menu-box-shadow),
+					moz webkit
+				);
+				margin-top: var(--dropdown-menu-margin-top);
+				max-height: var(--dropdown-menu-max-height);
+				display: none;
+				list-style: none;
+				padding-left: 0;
+				pointer-events: none;
+				@include setPosition(absolute, left 0 right 0 top 100%, 999);
+				overflow-y: auto;
+
+				li {
+					border-bottom: var(--dropdown-menu-list-border-bottom);
+
+					&:last-child {
+						border-bottom-color: transparent;
+					}
+
+					&.disabled {
+						pointer-events: none;
+
+						span {
+							color: var(--dropdown-placeholder-color);
+						}
+					}
+
+					span {
+						@include copy(var(--dropdown-field-font-size), var(--dropdown-field-line-height), var(--dropdown-selected-color), none, normal);
+						padding: var(--dropdown-menu-option-padding);
+						display: inline-block;
+						word-break: break-all;
+					}
+
+					&:focus {
+						outline:none;
+						box-shadow: var(--dropdown-field-box-shadow-focus);
+					}
+				}
+			}
+
+			&::after {
+				content: '\e907';
+				@include prefix(transform, "translateY(-50%)");
+				@include setPosition(absolute, right 1rem left auto top 50%);
+				font-family: var(--dropdown-icon-font-family);
+			}
+
+			&.active {
+				border-color: var(--dropdown-active-border-color);
+				box-shadow: var(--dropdown-field-box-shadow-focus);
+
+				#{ $self }__menu {
+					display: block;
+					pointer-events: auto;
+				}
+
+				&::after {
+					content: '\e917';
+				}
+			}
+
+			&.disabled {
+				background-color: var(--dropdown-disabled-bg-color);
+				border: var(--dropdown-disabled-border);
+				pointer-events: none;
+
+				#{ $self }-selected {
+					color: var(--dropdown-disabled-selected-color);
+				}
+			}
+		}
+
+		&.validation-require,
+		&.validation-error {
+			.dropdown-field {
+				border-color: var(--dropdown-error-border-color);
+			}
+		}
+
+		::-webkit-scrollbar {
+			width: 8px;
+			max-height: var(--dropdown-scroll-max-height);
+		}
+
+		::-webkit-scrollbar-track {
+			border: var(--dropdown-scroll-border);
+			border-radius: var(--dropdown-scroll-border-radius);
+		}
+
+		::-webkit-scrollbar-thumb {
+			background: var(--dropdown-scroll-bg-color);
+			border-radius: var(--dropdown-scroll-thumb-border-radius);
+		}
+
+		.hidden {
+			display: none;
+		}
+	}
+	&.validation-require {
+		#{ $self }__field {
+			border-color: var(--dropdown-error-border-color);
+		}
+		.form-group {
+			.form-label {
+				color: var(--dropdown-error-border-color);
+			}
+		}
+	}	
+	.options--hide-border & { 
+		#{ $self }__container { 
+			#{ $self }__field { 
+				#{ $self }__menu { 
+					li { 
+						border-bottom: none; 
+					} 
+				} 
+			} 
+		} 
+	}
+}
+
+.a-dropdown[data-required="true"] .a-dropdown__title--required {
+	display: inline-block;
+}
+
+.selectedColor{
+	border-bottom-color: transparent;
+	background-color: var(--dropdown-menu-option-hover-bg-color);
+}
+
+.options__asterik-pos--start {
+	.a-dropdown {
+		&__title {
+			display: flex;
+
+			&-text {
+				order: 2;
+			}
+
+			&--required {
+				order: 1;
+			}
+		}
+	}
+}
+.a-options-label--color-alternate{
+    .form-group .a-input{
+        &-label{
+            color: var(--dropdown-label-color);
+        }
+    }
+}

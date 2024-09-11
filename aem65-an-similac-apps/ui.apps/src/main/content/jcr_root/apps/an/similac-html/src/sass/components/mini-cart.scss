@@ -1,0 +1,314 @@
+@import "../common-imports";
+
+@include media-breakpoint-down(sm) {
+    .mini-cart-relative-portal > div {
+        width: 100%;
+        top: 133px !important;
+        right:0 !important;
+    }
+    }
+.minicart-logo {
+    position: relative;
+    &__badge {
+        position: absolute;
+        top: -12px;
+        right: 10px;
+        background-color: $tangerine;
+        border: 1px solid $tangerine;
+        border-radius: 20px;
+        min-width: 20px;
+        min-height: 20px;
+        max-width: 25px;
+        max-height: 23px;
+        line-height: 18px;
+        color: $white;
+        @include media-breakpoint-down(md) {
+            right: -12px;
+        }
+        @include media-breakpoint-down(sm) {
+            right: -10px;
+        }
+    }
+}
+
+.minicart-container {
+    display: none;
+    height: 100%;
+    position: fixed;
+    right: 0;
+    top: 0;
+    transform: translateX(100%);
+    transition: all 0.3s ease-in-out;
+    background-color: hsla(0, 0%, 100%, 0.75);
+    z-index: 9999;
+    opacity: 0;
+    &.active {
+        display: block;
+        transform: translateX(0);
+        opacity: 1;
+        transition: all 0.3s ease-in-out;
+    }
+    @include media-breakpoint-down(sm) {
+        position: relative;
+        width: 100%;
+        padding-bottom: 50px;
+    }
+}
+
+.field-level-loader {
+    .field-loader{
+        margin: 0;
+        align-items: center;
+    }
+}
+
+.minicart {
+    background-color: $light-blue;
+    width: 21.563rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 5px 0px 10px 1px $grey;
+    padding-bottom: 1.875rem;
+    @include media-breakpoint-down(sm) {
+        width: 93%;
+        height: auto;
+        min-height: 38.938rem;
+        margin-left: auto;
+    }
+    &-header {
+        background-color: $cerulean;
+        color: $white;
+        display: flex;
+        justify-content: center;
+        min-height: 3.125rem;
+        text-align: center;
+        &-title {
+            align-self: center;
+            color: $white;
+            font-family: $font-brandon-text-bold;
+            font-weight: bold;
+            font-size: 1.25rem;
+            line-height: 1.31;
+        }
+    }
+    &-close {
+        align-self: center;
+        color: $white;
+        cursor: pointer;
+        display: inline;
+        font-family: $font-roboto-reg;
+        font-size: 1.125rem;
+        font-weight: normal;
+        line-height: 1.31;
+        position: absolute;
+        right: 10px;
+        top: 13px;
+    }
+    &-products {
+        height: 100%;
+        // -ms-overflow-style: none;  Jira #AN_191-2757 - Issue reported no scrollbar load in IE, so commented.
+        overflow: hidden;
+        overflow-y: auto;
+        // overflow: -moz-scrollbars-none;
+        -webkit-overflow-scrolling: touch;
+        &::-webkit-scrollbar {
+            width: 6px !important;
+            background: $white1;
+            padding: 2px 0;
+        }
+        &::-webkit-scrollbar-thumb {
+            background: $grey;
+            border-radius: 4px;
+        }
+        &::-webkit-scrollbar-track {
+            background-color: $white1;
+            box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        }
+        @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+            margin-top: 2rem;
+        }
+        @include media-breakpoint-down(sm) {
+            height: 46vh;
+        }
+    }
+    &-products-list {
+        padding: 1.25rem 0.938rem;
+    }
+    &-item {
+        border-bottom: 1px solid $smalt;
+        display: flex;
+        margin-bottom: 0;
+        padding-bottom: 10px;
+        padding-top: 14px;
+        &:first-child {
+            padding-top: 0;
+        }
+        .product-image {
+            font-size: 0.625rem;
+            height: 75px;
+            width: 75px;
+            height: 4.6875rem;
+            width: 6.216rem;
+            margin: 0;
+            overflow: hidden;
+            img {
+                margin-bottom: 10px;
+                width: 100%;
+            }
+        }
+        .product {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding-left: 10px;
+            width: 100%;
+            .stepper-control {
+                display: flex;
+                align-items: center;
+                .sim-icons {
+                    cursor: pointer;
+                }
+                input {
+                    background-color: $white !important;
+                    margin: 0 0.625rem;
+                    cursor: default;
+                    width: 50%;
+                }
+            }
+            &-title {
+                font-family: $font-roboto-bold;
+                font-weight: bold;
+                padding: 0;
+                width: 90%;
+                color: $smalt !important;
+                font-size: 1.125rem;
+                line-height: 1.5rem;
+                margin-bottom: 0.5625rem;
+                &:hover {
+                    text-decoration: underline;
+                }
+                @media (max-width: 768px) {
+                    margin-bottom: 10px;
+                    width: 90%;
+                }
+            }
+            &-remove {
+                align-self: flex-end;
+                cursor: pointer;
+            }
+            &-details {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            &-quantity {
+                font-size: 1rem;
+                display: flex;
+                justify-content: space-between;
+                line-height: 17px;
+                width: 70%;
+                .quantity {
+                    &-label {
+                        align-self: center;
+                        font-size: 1rem;
+                        line-height: 1rem;
+                        margin-right: 1rem;
+                        color: $smalt;
+                    }
+                    &-decrease,
+                    &-increase {
+                        cursor: pointer;
+                        line-height: normal;
+                    }
+                }
+                @include media-breakpoint-down(sm) {
+                    width: 70%;
+                }
+            }
+            &-price {
+                color: $smalt;
+                font-family: $font-roboto-reg;
+                font-weight: normal;
+                font-size: 1rem;
+                line-height: 1.375rem;
+            }
+        }
+    }
+    &-footer {
+        background-color: $light-blue;
+        display: flex;
+        flex-direction: column;
+        margin-top: auto;
+        // min-height: 170px;
+        width: 100%;
+        z-index: 1;
+        &-subtotal {
+            background-color: $onahau;
+            color: $smalt;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 1.25rem;
+            width: 100%;
+            &-label,
+            &-price {
+                font-family: $font-roboto-bold;
+                font-weight: bold;
+                font-size: 1.125rem;
+                line-height: 1.375rem;
+            }
+            &-label{
+                max-width: 50%;
+                display: inline-block;
+            }
+            &-price {
+                float: right;
+            }
+        }
+        .goto-cart {
+            font-family: $font-roboto-reg;
+            font-weight: normal;
+            padding: 15px;
+            text-align: center;
+            a {
+                color: $mild_blue;
+                font-size: 1rem;
+                line-height: 1.375rem;
+            }
+        }
+        .checkout {
+            padding: 0 15px;
+            .btn {
+                width: 100%;
+            }
+            @include media-breakpoint-only(md) {
+                margin-bottom: 2.5rem;
+            }
+        }
+    }
+    &-subscription {
+        color: $smalt;
+        font-size: 1rem;
+        margin-bottom: 1rem;
+    }
+    &-message {
+        color: $smalt;
+        font-size: 1rem;
+        padding: 1rem;
+    }
+    &-empty {
+        text-align: center;
+        &__title {
+            font-family: $font-roboto-bold;
+            font-weight: bold;
+            color: $smalt;
+            font-size: 1rem;
+        }
+    }
+}
+.field-level-loader{
+    .field-loader.field-loader-addtocart-call{
+        display:none;
+    }
+    }

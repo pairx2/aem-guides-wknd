@@ -1,0 +1,747 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+	jcr:primaryType="nt:unstructured"
+	jcr:title="Page Configuration"
+	sling:resourceType="cq/gui/components/authoring/dialog"
+	helpPath="">
+	<content
+		granite:class="cq-dialog-content-page"
+		jcr:primaryType="nt:unstructured"
+		sling:resourceType="granite/ui/components/coral/foundation/container">
+		<items jcr:primaryType="nt:unstructured">
+			<tabs
+				jcr:primaryType="nt:unstructured"
+				sling:resourceType="granite/ui/components/coral/foundation/tabs"
+				maxmized="{Boolean}true">
+				<items jcr:primaryType="nt:unstructured">
+					<main
+						jcr:primaryType="nt:unstructured"
+						jcr:title="Site specific Configurations"
+						sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+						margin="{Boolean}true">
+						<items jcr:primaryType="nt:unstructured">
+							<header
+								jcr:primaryType="nt:unstructured"
+								sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+								<items jcr:primaryType="nt:unstructured">
+									<column
+										jcr:primaryType="nt:unstructured"
+										sling:resourceType="granite/ui/components/coral/foundation/container">
+										<items jcr:primaryType="nt:unstructured">
+											<section
+												jcr:primaryType="nt:unstructured"
+												jcr:title="Configuration"
+												sling:resourceType="granite/ui/components/coral/foundation/form/fieldset">
+												<items jcr:primaryType="nt:unstructured">
+													<iscommerce
+														jcr:primaryType="nt:unstructured"
+														sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+														text="Commerce Website"
+														fieldDescription="Check to enable access for Commerce Website"
+														value="{Boolean}true"
+														name="./isCommerce"/>
+													<vendorclientlibs
+														jcr:primaryType="nt:unstructured"
+														sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+														fieldDescription="Please include the clientlibs category name for the library files such as bootstrap,jquery etc"
+														fieldLabel="Vendor Clientlibs"
+														name="./vendorclientlibs">
+														<granite:data
+															jcr:primaryType="nt:unstructured"
+															allowBulkEdit="{Boolean}true"
+															cq-msm-lockable="vendorclientlibs"/>
+													</vendorclientlibs>
+													<projectclientlibs
+														jcr:primaryType="nt:unstructured"
+														sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+														fieldDescription="Please include the clientlibs category name for the project specific files"
+														fieldLabel="Project Clientlibs"
+														name="./projectclientlibs">
+														<granite:data
+															jcr:primaryType="nt:unstructured"
+															allowBulkEdit="{Boolean}true"
+															cq-msm-lockable="projectclientlibs"/>
+													</projectclientlibs>
+													<componentclientlibs
+														jcr:primaryType="nt:unstructured"
+														sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+														composite="{Boolean}false"
+														fieldLabel="Component Clientlibs">
+														<field
+															jcr:primaryType="nt:unstructured"
+															sling:resourceType="granite/ui/components/coral/foundation/container"
+															name="./componentclientlibs">
+															<items jcr:primaryType="nt:unstructured">
+																<column
+																	jcr:primaryType="nt:unstructured"
+																	sling:resourceType="granite/ui/components/coral/foundation/container">
+																	<items jcr:primaryType="nt:unstructured">
+																		<clientlibs
+																			jcr:primaryType="nt:unstructured"
+																			sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+																			fieldDescription="Please include the component level clientlibs category name "
+																			fieldLabel="Component Clientlibs"
+																			name="./componentclientlibs"
+																			required="{Boolean}true"/>
+																	</items>
+																</column>
+															</items>
+															<granite:data
+																jcr:primaryType="nt:unstructured"
+																allowBulkEdit="{Boolean}true"
+																cq-msm-lockable="componentclientlibs"/>
+														</field>
+													</componentclientlibs>
+													<newrelicclientlibs
+														jcr:primaryType="nt:unstructured"
+														sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+														fieldDescription="Please include the newrelicclientlibs  category name"
+														fieldLabel="New Relic Clientlibs"
+														name="./newrelicclientlibs">
+														<granite:data
+															jcr:primaryType="nt:unstructured"
+															allowBulkEdit="{Boolean}true"
+															cq-msm-lockable="newrelicclientlibs"/>
+													</newrelicclientlibs>
+													<hideSvgIcon
+														jcr:primaryType="nt:unstructured"
+														sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+														fieldDescription="Check to Hide the SVG Icon"
+														name="./hideSvgIcon"
+														text="Hide SVG Icon"
+														value="{Boolean}true">
+														<granite:data
+															jcr:primaryType="nt:unstructured"
+															allowBulkEdit="{Boolean}true"
+															cq-msm-lockable="hideSvgIcon"/>
+													</hideSvgIcon>
+													<favicon
+														jcr:primaryType="nt:unstructured"
+														sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+														fieldDescription="Please browse for the fav icon path"
+														fieldLabel="Fav Icon"
+														name="./favicons">
+														<granite:data
+															jcr:primaryType="nt:unstructured"
+															allowBulkEdit="{Boolean}true"
+															cq-msm-lockable="favicons"/>
+													</favicon>
+													<chatbotscript
+														jcr:primaryType="nt:unstructured"
+														sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
+														fieldDescription="Please enter the chatbot script"
+														fieldLabel="Chatbot Script"
+														name="./chatbotscript">
+														<granite:data
+															jcr:primaryType="nt:unstructured"
+															allowBulkEdit="{Boolean}true"
+															cq-msm-lockable="chatbotscript"/>
+													</chatbotscript>
+													<header
+														jcr:primaryType="nt:unstructured"
+														sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+														fieldDescription="Please author header pages"
+														fieldLabel="Header Config Path"
+														name="./headerpath">
+														<granite:data
+															jcr:primaryType="nt:unstructured"
+															allowBulkEdit="{Boolean}true"
+															cq-msm-lockable="headerpath"/>
+													</header>
+													<footer
+														jcr:primaryType="nt:unstructured"
+														sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+														fieldDescription="Please author footer pages"
+														fieldLabel="Footer Config Path"
+														name="./footerpath">
+														<granite:data
+															jcr:primaryType="nt:unstructured"
+															allowBulkEdit="{Boolean}true"
+															cq-msm-lockable="footerpath"/>
+													</footer>
+													<popup
+														jcr:primaryType="nt:unstructured"
+														sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+														fieldDescription="Please author the Pop up XF page"
+														fieldLabel="Popup XF Page "
+														name="./popuppath">
+														<granite:data
+															jcr:primaryType="nt:unstructured"
+															allowBulkEdit="{Boolean}true"
+															cq-msm-lockable="popuppath"/>
+													</popup>
+													<global-variable
+														jcr:primaryType="nt:unstructured"
+														sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+														fieldDescription="Please author Global Variable page path"
+														fieldLabel="Global Variable Config Path"
+														name="./globalVarPath">
+														<granite:data
+															jcr:primaryType="nt:unstructured"
+															allowBulkEdit="{Boolean}true"
+															cq-msm-lockable="globalVarPath"/>
+													</global-variable>
+													<captchascript
+														jcr:primaryType="nt:unstructured"
+														sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
+														fieldDescription="Please enter the Catptcha script"
+														fieldLabel="Captcha Script"
+														name="./captchaScript">
+														<granite:data
+															jcr:primaryType="nt:unstructured"
+															allowBulkEdit="{Boolean}true"
+															cq-msm-lockable="captchaScript"/>
+													</captchascript>
+													<generatenutritionfacts
+														jcr:primaryType="nt:unstructured"
+														sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+														fieldDescription="Check to Generate the Nutrition Facts"
+														name="./generateNutritionFacts"
+														text="Generate Nutrition Facts"
+														value="{Boolean}true">
+														<granite:data
+															jcr:primaryType="nt:unstructured"
+															allowBulkEdit="{Boolean}true"
+															cq-msm-lockable="generateNutritionFacts"/>
+													</generatenutritionfacts>
+                                                    <googleapiscript
+														jcr:primaryType="nt:unstructured"
+														sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
+														fieldDescription="Please enter the Google API script"
+														fieldLabel="Google API Script"
+														name="./googleapiscript">
+														<granite:data
+															jcr:primaryType="nt:unstructured"
+															allowBulkEdit="{Boolean}true"
+															cq-msm-lockable="googleapiscript"/>
+													</googleapiscript>
+													<bvscript
+														jcr:primaryType="nt:unstructured"
+														sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
+														fieldDescription="Please enter the BV script"
+														fieldLabel="BV Script"
+														name="./bvscript">
+														<granite:data
+															jcr:primaryType="nt:unstructured"
+															allowBulkEdit="{Boolean}true"
+															cq-msm-lockable="bvscript"/>
+													</bvscript>
+													<googleapiscript
+														jcr:primaryType="nt:unstructured"
+														sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
+														fieldDescription="Please enter the Google API script"
+														fieldLabel="Googel API Script"
+														name="./googleApiScript">
+														<granite:data
+															jcr:primaryType="nt:unstructured"
+															allowBulkEdit="{Boolean}true"
+															cq-msm-lockable="googleApiScript"/>
+													</googleapiscript>
+                                                  	<gigyascript
+														jcr:primaryType="nt:unstructured"
+														sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
+														fieldDescription="Please enter the Gigya API script"
+														fieldLabel="Gigya API Script"
+														name="./gigyascript">
+														<granite:data
+															jcr:primaryType="nt:unstructured"
+															allowBulkEdit="{Boolean}true"
+															cq-msm-lockable="gigyascript"/>
+													</gigyascript>
+													<googleapiid
+														jcr:primaryType="nt:unstructured"
+														sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+														fieldLabel="Google API ID"
+														name="./googleapiid">
+														<granite:data
+															jcr:primaryType="nt:unstructured"
+															allowBulkEdit="{Boolean}true"
+															cq-msm-lockable="googleapiid"/>
+													</googleapiid>
+                                                    <socialbuttonscript
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
+                                                        fieldDescription="Please enter the Social Button script"
+                                                        fieldLabel="Social Button Script"
+                                                        name="./socialButtonScript">
+                                                        <granite:data
+                                                            jcr:primaryType="nt:unstructured"
+                                                            allowBulkEdit="{Boolean}true"
+                                                            cq-msm-lockable="socialButtonScript"/>
+                                                    </socialbuttonscript>
+                                                    <hidesocialbuttons
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                        fieldDescription="Check to Hide the Social buttons on the Page"
+                                                        name="./hideSocialButton"
+                                                        text="Hide Social Buttons"
+                                                        value="{Boolean}true">
+                                                        <granite:data
+                                                            jcr:primaryType="nt:unstructured"
+                                                            allowBulkEdit="{Boolean}true"
+                                                            cq-msm-lockable="hideSocialButton"/>
+                                                    </hidesocialbuttons>
+													<securedPage
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                        fieldDescription="Check to identify the page is secured"
+                                                        name="./securedPage"
+                                                        text="Secured Page"
+                                                        value="{Boolean}true"/>
+                                                    <sessionRedirectPage
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                        fieldDescription="Redirect page for session expire"
+                                                        fieldLabel="Redirect Page for Session Expire"
+                                                        name="./sessionRedirectPage"/>
+													<onLoginHide
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                        fieldDescription="Check if the page is Login / Registration / Forgot Password / Change Password"
+                                                        name="./onLoginHide"
+                                                        text="Check if the page is Login / Registration / Forgot Password / Change Password"
+                                                        value="{Boolean}true"/>
+													<onLoginRedirect
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                        fieldDescription="Redirect Page for Login / Registration / Forgot Password / Change Password when the user is loggedin"
+                                                        fieldLabel="Redirect Page for Login / Registration / Forgot Password / Change Password"
+                                                        name="./onLoginRedirect"/>
+													<hideinmicrosite
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                        fieldDescription="Check to Hide this Page in microsite header"
+                                                        name="./hideInMicrosite"
+                                                        text="Hide in Microsite"
+                                                        value="{Boolean}true">
+                                                        <granite:data
+                                                            jcr:primaryType="nt:unstructured"
+                                                            allowBulkEdit="{Boolean}true"
+                                                            cq-msm-lockable="hideInMicrosite"/>
+                                                    </hideinmicrosite>
+													<cookieMsg
+														jcr:primaryType="nt:unstructured"
+														sling:resourceType="cq/gui/components/authoring/dialog/richtext"
+														fieldDescription="Enter the text to be displayed when cookies are disabled"
+														fieldLabel="Cookies Disabled Message"
+														name="./cookieMsg"
+														removeSingleParagraphContainer="{Boolean}true"
+														useFixedInlineToolbar="{Boolean}true">
+														<uiSettings
+															jcr:primaryType="nt:unstructured"
+															sling:resourceSuperType="/apps/an/similac/components/common/dialogs/standardrte/uiSettings"/>
+														<rtePlugins
+															jcr:primaryType="nt:unstructured"
+															sling:resourceSuperType="/apps/an/similac/components/common/dialogs/standardrte/rtePlugins"/>
+													</cookieMsg>
+													<jsMsg
+														jcr:primaryType="nt:unstructured"
+														sling:resourceType="cq/gui/components/authoring/dialog/richtext"
+														fieldDescription="Enter the text to be displayed when JavaScript is disabled"
+														fieldLabel="Javascript Disabled Message"
+														name="./jsMsg"
+														removeSingleParagraphContainer="{Boolean}true"
+														useFixedInlineToolbar="{Boolean}true">
+														<uiSettings
+															jcr:primaryType="nt:unstructured"
+															sling:resourceSuperType="/apps/an/similac/components/common/dialogs/standardrte/uiSettings"/>
+														<rtePlugins
+															jcr:primaryType="nt:unstructured"
+															sling:resourceSuperType="/apps/an/similac/components/common/dialogs/standardrte/rtePlugins"/>
+													</jsMsg>
+													<facebookVerification
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                        fieldDescription="Please enter the Facebook domain verification code"
+                                                        fieldLabel="Facebook Domain Verification"
+                                                        name="./facebookVerification">
+                                                        <granite:data
+                                                            jcr:primaryType="nt:unstructured"
+                                                            allowBulkEdit="{Boolean}true"
+                                                            cq-msm-lockable="facebookVerification"/>
+                                                    </facebookVerification>
+													<superscript
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
+                                                        fieldDescription="Please enter the Superscript indicators"
+                                                        fieldLabel="Superscript Indicators"
+                                                        name="./superScript">
+                                                        <granite:data
+                                                            jcr:primaryType="nt:unstructured"
+                                                            allowBulkEdit="{Boolean}true"
+                                                            cq-msm-lockable="superScript"/>
+                                                    </superscript>
+													<hreflang
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
+                                                        fieldDescription="Please enter the hreflang links"
+                                                        fieldLabel="HrefLang Links"
+                                                        name="./hrefLangLinks"/>
+												</items>
+											</section>
+										</items>
+									</column>
+								</items>
+							</header>
+						</items>
+					</main>
+					<seo
+						jcr:primaryType="nt:unstructured"
+						jcr:title="SEO Configurations"
+						sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+						margin="{Boolean}true">
+						<items jcr:primaryType="nt:unstructured">
+							<column
+								jcr:primaryType="nt:unstructured"
+								sling:resourceType="granite/ui/components/coral/foundation/container"
+								margin="{Boolean}true">
+								<items jcr:primaryType="nt:unstructured">
+									<generalinfo
+										jcr:primaryType="nt:unstructured"
+										jcr:title="General Tags"
+										sling:resourceType="granite/ui/components/coral/foundation/form/fieldset">
+										<items jcr:primaryType="nt:unstructured">
+											<robots
+												jcr:primaryType="nt:unstructured"
+												sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+												fieldLabel="X-Robots-Tag"
+												renderReadOnly="{Boolean}true">
+												<field
+													jcr:primaryType="nt:unstructured"
+													sling:resourceType="granite/ui/components/coral/foundation/form/select"
+													name="./robotseo"
+													required="{Boolean}true">
+													<items jcr:primaryType="nt:unstructured">
+														<option1
+															jcr:primaryType="nt:unstructured"
+															text="all"
+															value="all"/>
+														<option2
+															jcr:primaryType="nt:unstructured"
+															text="noindex"
+															value="noindex"/>
+														<option3
+															jcr:primaryType="nt:unstructured"
+															text="nofollow"
+															value="nofollow"/>
+														<option4
+															jcr:primaryType="nt:unstructured"
+															text="none"
+															value="none"/>
+														<option5
+															jcr:primaryType="nt:unstructured"
+															text="noarchive"
+															value="noarchive"/>
+														<option6
+															jcr:primaryType="nt:unstructured"
+															text="nosnippet"
+															value="nosnippet"/>
+														<option7
+															jcr:primaryType="nt:unstructured"
+															text="notranslate"
+															value="notranslate"/>
+														<option8
+															jcr:primaryType="nt:unstructured"
+															text="noimageindex"
+															value="noimageindex"/>
+														<option9
+															jcr:primaryType="nt:unstructured"
+															text="unavailable_after"
+															value="unavailable_after"/>
+														<option10
+															jcr:primaryType="nt:unstructured"
+															text="index"
+															value="index"/>
+														<option11
+															jcr:primaryType="nt:unstructured"
+															text="follow"
+															value="follow"/>
+													</items>
+												</field>
+											</robots>
+											<canonical
+												jcr:primaryType="nt:unstructured"
+												sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+												fieldLabel="Canonical URL"
+												name="./canonicalurl"/>
+										</items>
+									</generalinfo>
+									<facebooktags
+										jcr:primaryType="nt:unstructured"
+										jcr:title="Open graph Tags"
+										sling:resourceType="granite/ui/components/coral/foundation/form/fieldset">
+										<items jcr:primaryType="nt:unstructured">
+											<title
+												jcr:primaryType="nt:unstructured"
+												sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+												fieldLabel="Title"
+												name="./fbtitle"/>
+											<description
+												jcr:primaryType="nt:unstructured"
+												sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+												fieldLabel="Description"
+												name="./fbdescription"/>
+											<site-name
+												jcr:primaryType="nt:unstructured"
+												sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+												fieldLabel="Site Name"
+												name="./fbsitename"/>
+											<fbappid
+												jcr:primaryType="nt:unstructured"
+												sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+												fieldLabel="Facebook pixel App ID"
+												name="./fbpixelid"/>
+											<ogimage
+												jcr:primaryType="nt:unstructured"
+												sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+												fieldLabel="Custom image for FB"
+												name="./ogimage"
+												rootPath="/content"/>
+											<ogImageType
+												jcr:primaryType="nt:unstructured"
+												sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+												fieldLabel="Image Type"
+												name="./ogImageType"/>
+											<ogImageWidth
+												jcr:primaryType="nt:unstructured"
+												sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+												fieldLabel="Image Width"
+												name="./ogImageWidth"/>
+											<ogImageHeight
+												jcr:primaryType="nt:unstructured"
+												sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+												fieldLabel="Image Height"
+												name="./ogImageHeight"/>
+											<fbtype
+												jcr:primaryType="nt:unstructured"
+												sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+												fieldLabel="Type"
+												name="./fbtype"/>
+										</items>
+									</facebooktags>
+									<schemaScript
+										jcr:primaryType="nt:unstructured"
+										sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
+										fieldDescription="Please enter the Schema script"
+										fieldLabel="Schema Script"
+										name="./schemaScript">
+										<granite:data
+											jcr:primaryType="nt:unstructured"
+											allowBulkEdit="{Boolean}true"
+											cq-msm-lockable="schemaScript"/>
+									</schemaScript>
+								</items>
+							</column>
+						</items>
+					</seo>
+					<analytics
+						jcr:primaryType="nt:unstructured"
+						jcr:title="Analytics Configurations"
+						sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+						margin="{Boolean}true">
+						<items jcr:primaryType="nt:unstructured">
+							<column
+							jcr:primaryType="nt:unstructured"
+							sling:resourceType="granite/ui/components/coral/foundation/container"
+							margin="{Boolean}true">
+								<items jcr:primaryType="nt:unstructured">
+									<gtm-script
+										jcr:primaryType="nt:unstructured"
+										sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
+										fieldDescription="Please enter the GTM script"
+										fieldLabel="GTM Script"
+										name="./gtmscript">
+										<granite:data
+											jcr:primaryType="nt:unstructured"
+											allowBulkEdit="{Boolean}true"
+											cq-msm-lockable="gtmscript"/>
+									</gtm-script>
+									<gtm-iframe-script
+										jcr:primaryType="nt:unstructured"
+										sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
+										fieldDescription="Please enter the GTM Container Iframscript"
+										fieldLabel="GTM Iframe Script"
+										name="./gtmiframescript">
+										<granite:data
+											jcr:primaryType="nt:unstructured"
+											allowBulkEdit="{Boolean}true"
+											cq-msm-lockable="gtmiframescript"/>
+									</gtm-iframe-script>
+									<adobe-launch-script
+										jcr:primaryType="nt:unstructured"
+										sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
+										fieldDescription="Please enter the Adobe Launch script"
+										fieldLabel="Adobe Launch Script"
+										name="./adobelaunchscript">
+										<granite:data
+											jcr:primaryType="nt:unstructured"
+											allowBulkEdit="{Boolean}true"
+											cq-msm-lockable="adobelaunchscript"/>
+									</adobe-launch-script>
+									<bugherd-launch-script
+										jcr:primaryType="nt:unstructured"
+										sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
+										fieldDescription="Please enter the Bugherd script"
+										fieldLabel="Bugherd Script"
+										name="./bugherdscript">
+										<granite:data
+											jcr:primaryType="nt:unstructured"
+											allowBulkEdit="{Boolean}true"
+											cq-msm-lockable="bugherdscript"/>
+									</bugherd-launch-script>
+								</items>
+							</column>
+						</items>
+					</analytics>
+					<priceSpider
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Price Spider"
+                        sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <column
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                                        margin="{Boolean}true">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <psAccount
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldDescription="Enter the Price Spider Account"
+                                                fieldLabel="Price Spider Account"
+                                                name="./psAccount"/>
+                                            <psConfig
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldDescription="Enter the Price Spider Config"
+                                                fieldLabel="Price Spider Config"
+                                                name="./psConfig"/>
+                                            <psCountry
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldDescription="Enter the Price Spider Country"
+                                                fieldLabel="Price Spider Country"
+                                                name="./psCountry"/>
+                                            <psLang
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldDescription="Enter the Price Spider Language"
+                                                fieldLabel="Price Spider Language"
+                                                name="./psLanguage"/>
+                                            <psScript
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
+                                                fieldDescription="Enter the Price Spider Script"
+                                                fieldLabel="Price Spider Script"
+                                                name="./priceSpiderScript"/>
+                                        </items>
+                                    </column>
+                                </items>
+                            </column>
+                        </items>
+                    </priceSpider>
+					<productsConfig
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Products Config"
+                        sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <column
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                                        margin="{Boolean}true">
+                                        <items jcr:primaryType="nt:unstructured">                                             
+											<placeholdertext
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldDescription="Enter placeholder text for Delivery dropdown"
+                                                fieldLabel="Dropdown Placeholder text"
+                                                name="./placeholderText"/>
+                                            <errormessage
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldDescription="Enter error message for Delivery dropdown"
+                                                fieldLabel="Delivery Frequency Error Message "
+                                                name="./deliveryErrorMessage"/>
+                                        </items>
+                                    </column>
+                                </items>
+                            </column>
+                        </items>
+                    </productsConfig>
+					<pwaConfig
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="PWA Config"
+                        sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <column
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                                        margin="{Boolean}true">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <pwaAppName
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldDescription="Enter the PWA App Name"
+                                                fieldLabel="PWA App Name"
+                                                name="./pwaAppName"/>
+											 <pwaAppBarColorCode
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldDescription="Enter the PWA App Bar Color Code"
+                                                fieldLabel="PWA App Bar Color Code"
+                                                name="./pwaAppBarColorCode"/>
+											 <pwaAppThemeColor
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldDescription="Enter the PWA App Theme Color Code"
+                                                fieldLabel="PWA App Theme Code"
+                                                name="./pwaAppThemeColor"/>
+											<pwaAppTitle
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldDescription="Enter the PWA Title"
+                                                fieldLabel="PWA App Title"
+                                                name="./pwaAppTitle"/>
+											<pwaAppIconMobile
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                fieldDescription="Enter the PWA App Mobile Icon"
+                                                fieldLabel="PWA App Mobile Icon"
+                                                name="./pwaAppIconMobile"/>
+											<pwaAppIconDesktop
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                fieldDescription="Enter the PWA App Desktop Icon"
+                                                fieldLabel="PWA App Desktop Icon"
+                                                name="./pwaAppIconDesktop"/>
+											<pwaAppIconTab
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                fieldDescription="Enter the PWA App Desktop Icon"
+                                                fieldLabel="PWA App Tab Icon"
+                                                name="./pwaAppIconTab"/>
+                                        </items>
+                                    </column>
+                                </items>
+                            </column>
+                        </items>
+                    </pwaConfig>
+               	</items>
+			</tabs>
+		</items>
+	</content>
+</jcr:root>

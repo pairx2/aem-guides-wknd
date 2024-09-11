@@ -1,0 +1,96 @@
+<sly data-sly-use.videocarousel="com.abbott.aem.cv.division.core.components.models.VideoCarousel"
+data-sly-use.commonsTemplates="core/wcm/components/commons/v1/templates.html"
+data-sly-use.component="com.adobe.cq.wcm.core.components.models.Component"/>
+<script async src="https://video.limelight.com/player/limelightjs-player.js?orgId=b0029788f6f3415db64a9cf5452f5200"></script>
+    <div class="o-video-carousel-container richtext text" data-js-component="o-video-carousel-section" id="${component.id}">
+        <div class="o-video-carousel-heading cmp-text" >
+            <sly data-sly-test="${videocarousel.title}">	
+	           ${videocarousel.title @ context='html'}
+            </sly>
+            <sly data-sly-test="${videocarousel.description}">
+	           ${videocarousel.description @ context='html'}
+            </sly>
+        </div>
+      <div class="o-video-screen">
+        <!-- iframe -->
+        <!-- lime light -->
+        <!-- Brightcove -->
+      </div>
+      <div class="o-video-card-section">
+      <sly data-sly-list.item="${videocarousel.chapterlist}">
+        <div class="o-video-title" >
+            <h3 class="o-video-title-heading">${item.chapterTitle}</h3>
+            <p>${item.chapterDescription}</p>
+        </div>
+      </sly>
+        <div
+        class="o-video-card-carousel"
+        mobile-dot="true"
+        desktop-dot="true"
+        data-left-icon="${videocarousel.iconLeft}"
+        data-right-icon="${videocarousel.iconRight}"
+        data-slide-show="3"
+        data-slide-scroll="${videocarousel.cardsPerScroll}"
+      >
+        <div class="slickSlider">
+         <sly data-sly-list.item="${videocarousel.chapterlist}">
+          <div
+            class="o-video-card"
+            data-video-type="${item.videoType}"
+            data-video-src="${item.videoURL}"
+            data-media-id="${item.mediaID}"
+            data-player="${item.limelightPlayerID}"
+            data-orgId="${item.orgID}"
+            data-account="${item.videoCarouselAccountID}"
+            data-player-id="${item.videoCarouselBrightPlayerID}" data-embed="default"
+            data-video-id="${item.videoCarouselBrightVideoID}"
+            data-toggle="modal" data-target="#video${resource.path.hashCode}"
+            data-unique-id="${item.uniqueId}"
+          >
+
+            <div class="o-video-card-img">
+             <sly data-sly-test="${item.altValueFromDAM}">
+              <sly data-sly-test="${!item.isDecorative}">
+				<div class="play-icon">
+                    <i aria-hidden="true" class="abt-icon abt-icon-play2 video-carousel-button"></i>
+                </div>
+                <img src="${item.chapterImage}" alt="${item.altText || true}" />
+              </sly>
+              <sly data-sly-test="${item.isDecorative}">
+			  <div class="play-icon">
+                    <i aria-hidden="true" class="abt-icon abt-icon-play2 video-carousel-button"></i>
+                </div>
+                <img src="${item.chapterImage}" alt="" />
+              </sly>
+             </sly>
+             <sly data-sly-test="${!item.altValueFromDAM}">
+              <sly data-sly-test="${!item.isDecorative}">
+			  <div class="play-icon">
+                    <i aria-hidden="true" class="abt-icon abt-icon-play2 video-carousel-button"></i>
+                </div>
+                  <img src="${item.chapterImage}" alt="${item.alt || true}" />
+              </sly>
+              <sly data-sly-test="${item.isDecorative}">
+			  <div class="play-icon">
+                    <i aria-hidden="true" class="abt-icon abt-icon-play2 video-carousel-button"></i>
+                </div>
+                  <img src="${item.chapterImage}" alt="" />
+              </sly>
+             </sly>
+            </div>
+            <div class="o-video-card-content">
+              <h3 class="o-video-card-content-heading">${item.chapterTitle}</h3>
+              <p>${item.chapterDescription}</p>
+            </div>
+          </div>
+        </sly>
+        </div>
+      </div>
+      </div>
+</div>
+
+<div class="m-popup m-videocarousel-popup" data-toggle="modal" data-target="#video${resource.path.hashCode}">
+   <div class="m-popup-content">
+   </div>
+</div>
+<sly data-sly-call="${commonsTemplates.placeholder @ isEmpty = !videocarousel.title}" />

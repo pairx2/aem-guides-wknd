@@ -1,0 +1,32 @@
+- DEF groupPrefix="APP-Adobe-AEM-DM-ALL"
+
+- group_config:
+     
+    - ${groupPrefix}-platform-developer:
+
+       - name: Platform Developer
+         isMemberOf: base-developer
+         externalId: "${groupPrefix}-platform-developer;ims"
+
+
+- ace_config:
+
+    - ${groupPrefix}-platform-developer:
+
+       - path: /
+         permission: allow
+         actions: acl_read
+         
+       - path: /etc/packages
+         permission: allow
+         actions: modify,create,delete,replicate
+       
+       - path: /home
+         permission: allow
+         actions: read,acl_read
+         
+       # so that platform developer can view the system user permissions
+       - path: /home/users/system
+         permission: allow
+         actions: read,acl_read
+         

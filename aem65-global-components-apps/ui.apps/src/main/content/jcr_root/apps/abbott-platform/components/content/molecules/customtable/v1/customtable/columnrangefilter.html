@@ -1,0 +1,115 @@
+<!-- Template for Range filter with field component -->
+<sly data-sly-template.columnrangefilter="${@ rangefilterfieldlabel,minRangeLabel, maxRangeLabel, closeText,tableId, index}">
+   <div class="m-custom-table_drop-down__range--label" tabindex="0" data-label="${rangefilterfieldlabel}">
+      ${rangefilterfieldlabel}
+   </div>
+   <div class="m-custom-table_drop-down__range--modal">
+   <div class="fields text aem-GridColumn aem-GridColumn--default--12">
+   <div class="a-input-field mt-0" data-required="false">
+      <div class="form-group a-form-grp" data-component="input-field">
+         <label class="form-label a-input-label"><span class="a-input-field__label">${minRangeLabel}</span></label>
+         <div class="input-group a-input-grp">
+            <input class="form-control a-input-control" autocomplete="off" aria-label="${minRangeLabel}" type="number" id="form-text-${tableId}-${index}" name="min-range">
+         </div>
+      </div>
+   </div>
+</div>
+
+<div class="fields text aem-GridColumn aem-GridColumn--default--12">
+   <div class="a-input-field mt-0" data-required="false">
+      <div class="form-group a-form-grp" data-component="input-field">
+         <label class="form-label a-input-label"><span class="a-input-field__label">${maxRangeLabel}</span></label>
+         <div class="input-group a-input-grp">
+            <input class="form-control a-input-control" autocomplete="off" aria-label="${maxRangeLabel}" type="number" id="form-text-${tableId}-${index}" name="max-range">
+         </div>
+      </div>
+   </div>
+</div>
+
+<div class="a-link">
+   <a aria-label="${closeText}" data-cmp-clickable="true" role="link"
+      class="a-link__text ${wcmmode.edit ? 'p-6' :''}" href="javascript:void(0);">
+   <span class="a-link__inner-text">${closeText}</span>
+   </a>
+</div>
+</div>
+</sly>
+<!-- Template for Range filter with datepicker component -->
+<sly data-sly-template.columndaterangefilter="${@ rangefilterdatepickerlabel, minRangeLabel, maxRangeLabel, closeText,tableId, index}">
+   <div class="m-custom-table_drop-down__range--label" tabindex="0" data-label=" ${rangefilterdatepickerlabel}">
+      ${rangefilterdatepickerlabel}
+   </div>
+   <div class="m-custom-table_drop-down__range--modal">
+   <div class="datepicker aem-GridColumn aem-GridColumn--default--12">
+   <div class="a-date-picker a-date-picker--range" data-js-component="date-picker" data-type="range"
+      data-date-format="YYYY-MM-DD" data-disable-date="future" data-disabled-years="0" data-disabled-aftermonths="0"
+      data-disabled-afterdays="0" data-enable-dropdown-month="true" data-enable-dropdown-year="true">
+      <div class="a-date-picker__input-start">
+         <div class="a-input-field" data-required="false">
+            <div class="form-group a-form-grp">
+               <label class="form-label a-input-label">${minRangeLabel}
+               <span class="a-input-field--required">*</span>
+               </label>
+               <div class="input-group a-input-grp right-icon">
+                  <input class="form-control a-input-control a-date-picker__input-start" aria-label="${minRangeLabel}" type="text"
+                     placeholder="YYYY-MM-DD" name="min-range" autocomplete="off" maxlength="10" id="form-date-${tableId}-${index}">
+                  <span class="icon icon-right default-icon">
+                  <em class="abt-icon-calendar" aria-hidden="true">
+                  </em>
+                  </span>
+                  <span class="icon icon-right focused-icon">
+                  <em class="abt-icon-calendar-focus" aria-hidden="true">
+                  </em>
+                  </span>
+               </div>
+               <div class="a-date-picker__input-hidden" aria-hidden="true">
+                  <input type="text" class="hidden-start-date" autocomplete="off">
+                  <div class="litepicker-backdrop"></div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="a-date-picker__input-end">
+         <div class="a-input-field" data-required="false">
+            <div class="form-group a-form-grp">
+               <label class="form-label a-input-label">${maxRangeLabel}
+               <span class="a-input-field--required">*</span>
+               </label>
+               <div class="input-group a-input-grp right-icon">
+                  <input class="form-control a-input-control a-date-picker__input-end" aria-label="${maxRangeLabel}" type="text"
+                     placeholder="YYYY-MM-DD" name="max-range" autocomplete="off" maxlength="10" id="form-date-${tableId}-${index}">
+                  <span class="icon icon-right default-icon">
+                  <em class="abt-icon-calendar" aria-hidden="true">
+                  </em>
+                  </span>
+                  <span class="icon icon-right focused-icon">
+                  <em class="abt-icon-calendar-focus" aria-hidden="true">
+                  </em>
+                  </span>
+               </div>
+               <div class="a-date-picker__input-hidden" aria-hidden="true">
+                  <input type="text" class="hidden-end-date" autocomplete="off">
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="a-input-field a-input-field--help-msg">
+         <div class="form-group a-form-grp">
+            <span class="form-text a-input-field--text-help"></span>
+            <div class="a-date-picker--error">
+               <div class="a-date-picker--error-format">Invalid Format - Please enter in format YYYY-MM-DD</div>
+               <div class="a-date-picker--error-date">Invalid Date. Please select from Datepicker</div>
+               <div class="a-date-picker--error-range">Invalid Range. Please select from Datepicker</div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<div class="a-link">
+   <a aria-label="${closeText}" data-cmp-clickable="true" role="link"
+      class="a-link__text ${wcmmode.edit ? 'p-6' :''}" href="javascript:void(0);">
+	  <span class="a-link__inner-text">${closeText}</span>
+   </a>
+</div>
+</div>
+</sly>

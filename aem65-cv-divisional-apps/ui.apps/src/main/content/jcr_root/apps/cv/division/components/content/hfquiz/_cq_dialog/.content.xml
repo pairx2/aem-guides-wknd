@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Heart Failure Quiz Component"
+    sling:resourceType="cq/gui/components/authoring/dialog"
+    extraClientlibs="[hfquiz.clientlibs]">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                maximized="{Boolean}true">
+                <items jcr:primaryType="nt:unstructured">
+                    <tab1
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Details"
+                        sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <column
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <typeofpage
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/radiogroup"
+                                        fieldLabel="Type of Page"
+                                        required="true"
+                                        name="./typeOfPage"
+                                        text="Type of Page">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <question
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/radio"
+                                                renderReadOnly="{Boolean}true"
+                                                text="Question"
+                                                value="question"/>
+                                            <results
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/radio"
+                                                renderReadOnly="{Boolean}true"
+                                                text="Results"
+                                                value="results"/>
+                                        </items>
+                                    </typeofpage>
+                                    <results1
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                        fieldDescription="Add URL to re-direct to results page for qualification."
+                                        fieldLabel="URL for Results 1"
+                                        required="true"
+                                        name="./results1"
+                                        rootPath="/content/cv"/>
+                                    <results2
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                        fieldDescription="Add URL to re-direct to results page for non-qualification."
+                                        fieldLabel="URL for Results 2"
+                                        required="true"
+                                        name="./results2"
+                                        rootPath="/content/cv"/>
+                                    <id
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="ID"
+                                        name="./componentId"/>
+                                    <top-margin
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                        fieldDescription="Add top margin of 48px for the component "
+                                        fieldLabel="Top Margin"
+                                        name="./topmargin"
+                                        text="Top Margin"
+                                        value="add-margin-top  "/>
+                                    <bottom-margin
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                        fieldDescription="Add bottom margin of 48px for the component "
+                                        fieldLabel=" Bottom Margin"
+                                        name="./bottommargin"
+                                        text="Bottom Margin"
+                                        value="add-margin-bottom "/>
+                                </items>
+                            </column>
+                        </items>
+                    </tab1>
+                    <tab2
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Quiz Questions Details Path 1"
+                        sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                        fieldDescription="You can enter a maximum of 6 quiz questions"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <column
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <questionpanels
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                        composite="{Boolean}true"
+                                        validation="HFQ-multifield-validate"
+                                        fieldLabel="Select Items">
+                                        <field
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/fieldset"
+                                            name="./yesQuestionsQuizPanel">
+                                            <items jcr:primaryType="nt:unstructured">
+                                                <column
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                    <items jcr:primaryType="nt:unstructured">
+                                                        <question-text
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                            fieldLabel="Question Text"
+                                                            required="true"
+                                                            name="./questionText"/>
+                                                        <image
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                            fieldLabel="Question Image"
+                                                            fieldDescription="Optimal image size for desktop."
+                                                            name="./questionImagePath"
+                                                            required="true"
+                                                            rootPath="/content/dam/cv"/>
+                                                        <alttext
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                            fieldLabel="Image Alt Text"
+                                                            required="true"
+                                                            name="./imageAltText"/>
+                                                    </items>
+                                                </column>
+                                            </items>
+                                        </field>
+                                        <granite:data
+                                            jcr:primaryType="nt:unstructured"
+                                            componentname="hfquiz"
+                                            maxlinksallowed="6"/>
+                                    </questionpanels>
+                                </items>
+                            </column>
+                        </items>
+                    </tab2>
+                    <tab3
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Quiz Questions Details Path 2"
+                        sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                        fieldDescription="You can enter a maximum of 8 quiz questions"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <column
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <questionpanels
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                        composite="{Boolean}true"
+                                        validation="HFQ-multifield-validate"
+                                        fieldLabel="Select Items">
+                                        <field
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/fieldset"
+                                            name="./noQuestionsQuizPanel">
+                                            <items jcr:primaryType="nt:unstructured">
+                                                <column
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                    <items jcr:primaryType="nt:unstructured">
+                                                        <question-text
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                            fieldLabel="Question Text"
+                                                            name="./questionText"/>
+                                                        <image
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                            fieldLabel="Question Image"
+                                                            fieldDescription="Optimal image size for desktop."
+                                                            name="./questionImagePath"
+                                                            rootPath="/content/dam/cv"/>
+                                                        <alttext
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                            fieldLabel="Image Alt Text"
+                                                            name="./imageAltText"/>
+                                                    </items>
+                                                </column>
+                                            </items>
+                                        </field>
+                                        <granite:data
+                                            jcr:primaryType="nt:unstructured"
+                                            componentname="hfquiz"
+                                            maxlinksallowed="8"/>
+                                    </questionpanels>
+                                </items>
+                            </column>
+                        </items>
+                    </tab3>
+                    <tab4
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Quiz Answers Details"
+                        sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <column
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <button1-label
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Label for Radio Button 1 - Yes"
+                                        name="./button1Label"/>
+                                    <button2-label
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Label for Radio Button 2 - No"
+                                        name="./button2Label"/>
+                                    <button3-label
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Label for Radio Button 3 - I Don't Know"
+                                        name="./button3Label"/>
+                                    <previous-label
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Label for Previous Button"
+                                        name="./previousLabel"/>
+                                    <next-label
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Label for Next Button"
+                                        name="./nextLabel"/>
+                                </items>
+                            </column>
+                        </items>
+                    </tab4>
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>

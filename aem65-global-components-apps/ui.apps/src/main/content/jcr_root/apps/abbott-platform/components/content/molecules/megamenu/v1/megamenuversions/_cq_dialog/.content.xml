@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Mega Menu"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                maximized="{Boolean}true">
+                <items jcr:primaryType="nt:unstructured">
+                    <properties
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Properties"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <primaryLink
+                                                jcr:primaryType="nt:unstructured"
+                                                jcr:title="Primary Navigation"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/fieldset">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <link_fieldset
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/fieldset">
+                                                        <items
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceSuperType="abbott-platform/components/content/molecules/megamenu/v1/megamenu/link_fieldset/items">
+                                                            <link
+                                                                granite:hide="${!cqDesign.enablePrimaryLink}"
+                                                                jcr:primaryType="nt:unstructured"
+                                                                sling:resourceType="cq/gui/components/coral/common/form/pagefield"/>
+                                                            <action
+                                                                granite:hide="${!cqDesign.enablePrimaryLink}"
+                                                                jcr:primaryType="nt:unstructured"/>
+                                                            <external
+                                                                granite:hide="${!cqDesign.enablePrimaryLink}"
+                                                                jcr:primaryType="nt:unstructured"/>
+                                                        </items>
+                                                    </link_fieldset>
+                                                    <seemore_fieldset
+                                                        granite:hide="${!cqDesign.enablePrimarySeeMore}"
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/well">
+                                                        <items
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceSuperType="abbott-platform/components/content/molecules/megamenu/v1/megamenu/seemore_fieldset/items"/>
+                                                    </seemore_fieldset>
+                                                </items>
+                                            </primaryLink>
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </properties>
+                    <menuitems
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Menu Items"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items
+                            granite:hide="${cqDesign.disableSecondary}"
+                            jcr:primaryType="nt:unstructured">
+                            <column
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <secondaryNavItems
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                        composite="{Boolean}true"
+                                        fieldLabel="Secondary Navigation">
+                                        <field
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/accordion"
+                                            name="./secondaryNavItems"
+                                            variant="quiet">
+                                            <items jcr:primaryType="nt:unstructured">
+                                                <column
+                                                    jcr:primaryType="nt:unstructured"
+                                                    jcr:title="Secondary Item"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                    <items jcr:primaryType="nt:unstructured">
+                                                        <link_fieldset
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/fieldset">
+                                                            <items
+                                                                jcr:primaryType="nt:unstructured"
+                                                                sling:resourceSuperType="/apps/abbott-platform/components/content/molecules/megamenu/v1/megamenu/link_fieldset/items">
+                                                                <subtitle
+                                                                    granite:hide="${!cqDesign.enableSecondarySubtitle}"
+                                                                    jcr:primaryType="nt:unstructured"/>
+                                                            </items>
+                                                        </link_fieldset>
+                                                        <image_fieldset
+                                                            granite:hide="${!cqDesign.enableSecondaryImage}"
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/well">
+                                                            <items
+                                                                jcr:primaryType="nt:unstructured"
+                                                                sling:resourceSuperType="abbott-platform/components/content/molecules/megamenu/v1/megamenu/image_fieldset/items">
+                                                                <badgeRequired
+                                                                    granite:class="cq-dialog-checkbox-showhide-multifield"
+                                                                    jcr:primaryType="nt:unstructured">
+                                                                    <granite:data
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        cq-dialog-checkbox-showhide-target=".badgeFields-showhide-sec-target"/>
+                                                                </badgeRequired>
+                                                                <badgefields
+                                                                    granite:class="hide badgeFields-showhide-sec-target"
+                                                                    jcr:primaryType="nt:unstructured"/>
+                                                            </items>
+                                                        </image_fieldset>
+                                                        <seemore_fieldset
+                                                            granite:hide="${!cqDesign.enableSecondarySeeMore}"
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/well">
+                                                            <items
+                                                                jcr:primaryType="nt:unstructured"
+                                                                sling:resourceSuperType="abbott-platform/components/content/molecules/megamenu/v1/megamenu/seemore_fieldset/items"/>
+                                                        </seemore_fieldset>
+                                                        <tertiaryNavItems
+                                                            granite:hide="${cqDesign.disableTertairy}"
+                                                            jcr:primaryType="nt:unstructured"
+                                                            sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                                            composite="{Boolean}true"
+                                                            fieldLabel="Tertiary Navigation">
+                                                            <field
+                                                                jcr:primaryType="nt:unstructured"
+                                                                sling:resourceType="granite/ui/components/coral/foundation/accordion"
+                                                                multiple="{Boolean}true"
+                                                                name="./tertiaryNavItems"
+                                                                variant="default">
+                                                                <items jcr:primaryType="nt:unstructured">
+                                                                    <column
+                                                                        jcr:primaryType="nt:unstructured"
+                                                                        jcr:title="Tertiary Item"
+                                                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                                        <items jcr:primaryType="nt:unstructured">
+                                                                            <link_fieldset
+                                                                                jcr:primaryType="nt:unstructured"
+                                                                                sling:resourceType="granite/ui/components/coral/foundation/form/fieldset">
+                                                                                <items
+                                                                                    jcr:primaryType="nt:unstructured"
+                                                                                    sling:resourceSuperType="abbott-platform/components/content/molecules/megamenu/v1/megamenu/link_fieldset/items">
+                                                                                    <subtitle
+                                                                                        granite:hide="${!cqDesign.enableTertiarySubtitle}"
+                                                                                        jcr:primaryType="nt:unstructured"/>
+                                                                                </items>
+                                                                            </link_fieldset>
+                                                                            <image_fieldset
+                                                                                granite:hide="${!cqDesign.enableTertiaryImage}"
+                                                                                jcr:primaryType="nt:unstructured"
+                                                                                sling:resourceType="granite/ui/components/coral/foundation/well">
+                                                                                <items
+                                                                                    jcr:primaryType="nt:unstructured"
+                                                                                    sling:resourceSuperType="abbott-platform/components/content/molecules/megamenu/v1/megamenu/image_fieldset/items">
+                                                                                    <badgeRequired
+                                                                                        granite:class="cq-dialog-checkbox-showhide-multifield"
+                                                                                        jcr:primaryType="nt:unstructured">
+                                                                                        <granite:data
+                                                                                            jcr:primaryType="nt:unstructured"
+                                                                                            cq-dialog-checkbox-showhide-target=".badgeFields-showhide-ter-target"/>
+                                                                                    </badgeRequired>
+                                                                                    <badgefields
+                                                                                        granite:class="hide badgeFields-showhide-ter-target"
+                                                                                        jcr:primaryType="nt:unstructured"/>
+                                                                                </items>
+                                                                            </image_fieldset>
+                                                                        </items>
+                                                                    </column>
+                                                                </items>
+                                                            </field>
+                                                        </tertiaryNavItems>
+                                                    </items>
+                                                </column>
+                                            </items>
+                                        </field>
+                                    </secondaryNavItems>
+                                </items>
+                            </column>
+                        </items>
+                    </menuitems>
+                   <configItem
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="ID/Class Config"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <configTab
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="/libs/granite/ui/components/coral/foundation/include"
+                                                path="/apps/abbott-platform/components/core/customconfig/v1/customconfig/cq:dialog/content/items/tabs/items/configItem/items/columns/items/column"/>
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </configItem>
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>

@@ -1,0 +1,73 @@
+<div data-sly-use.tabs="com.abbott.aem.platform.common.components.models.CustomTabs"
+   data-sly-use.customConfig="com.abbott.aem.platform.common.components.models.CustomConfig"
+   data-sly-use.template="core/wcm/components/commons/v1/templates.html" 
+   id="${tabs.id}" 
+   class="cmp-tabs a-tabs m-cards-tab ${customConfig.className} "
+   data-cmp-is="tabs" 
+   data-cmp-data-layer="${tabs.data.json}" >
+
+   <nav 
+      role="tablist" 
+      class="cmp-tabs__tablist m-cards-tab__nav nav nav-fill row"
+      aria-label="${tabs.accessibilityLabel}"
+      aria-multiselectable="false"
+      data-sly-test="${tabs.items && tabs.items.size > 0}" 
+      data-sly-list.tab="${tabs.items}"
+      data-js-component="${wcmmode.edit ? '' : 'cards-tab'}" 
+      data-no-indicators="true"
+      data-responsive="true"
+      data-cards-per-screen="4"
+      data-cards-per-scroll="1"
+      data-tablet-cards-per-screen="4" 
+      data-tablet-cards-per-scroll="1" 
+      data-mobile-cards-per-screen="2" 
+      data-mobile-cards-per-scroll="1">
+      
+      <sly data-sly-test.isActive="${tab.name == tabs.activeItem}" />
+      <a role="tab" id="${tab.id}-tab"
+         class="cmp-tabs__tab${isActive ? ' cmp-tabs__tab--active show active' : ''} m-cards-tab__nav-item nav-item tab-pane"
+         aria-controls="${tab.id}" tabindex="${isActive ? '0' : '-1'}" 
+         aria-label="${tab.title}" href="#${tab.id}"
+         data-cmp-hook-tabs="tab" data-toggle="tab">
+         <sly data-sly-test="${properties.listFrom =='cardtabicon'}">
+            <sly data-sly-test="${tabs.icons}">
+               <span class="m-cards-tab__icon m-cards-tab__icon-active" data-sly-list.icon="${tabs.icons}">
+                  <em aria-hidden="${isActive ? 'true' : 'false'}" class="abt-icon ${icon.activeIcon}"
+                     style="color:${icon.activeColor @context ='styleToken' };"
+                     data-sly-test="${iconList.index==tabList.index}">
+                  </em>
+               </span>
+               <span class="m-cards-tab__icon m-cards-tab__icon-inactive" data-sly-list.icon="${tabs.icons}">
+                  <em aria-hidden="${isActive ? 'true' : 'false'}" class="abt-icon ${icon.inactiveIcon}"
+                     style="color:${icon.inactiveColor @context ='styleToken' };"
+                     data-sly-test="${iconList.index==tabList.index}">
+                  </em>
+               </span>
+            </sly>
+         </sly>
+         <sly data-sly-test="${properties.listFrom =='cardtabimage'}">
+            <sly data-sly-test="${tabs.tabImage}">
+               <span class="m-cards-tab__image" data-sly-list.images="${tabs.tabImage}">
+                  <img class="img-fluid" src=${images.fileReference} alt="${tab.title}" data-sly-test="${imagesList.index==tabList.index}"/>
+               </span>
+            </sly>
+         </sly>
+         <span class="m-cards-tab__nav-text">
+            ${tab.title}
+         </span>
+      </a>
+   </nav>
+   <div class="m-cards-tab__content tab-content">
+      <div id="${item.id}" role="tabpanel" aria-labelledby="${item.id}" tabindex="0"
+         class="cmp-tabs__tabpanel${item.name == tabs.activeItem ? ' cmp-tabs__tabpanel--active active' : ''} m-cards-tab__tab-pane a-tabs__tab-pane tab-pane"
+         data-cmp-hook-tabs="tabpanel" 
+         data-cmp-data-layer="${item.data.json}" 
+         data-sly-repeat.item="${tabs.items}"
+         data-sly-resource="${item.name @ decorationTagName='div'}">
+      </div>
+   </div>
+   <sly data-sly-resource="${resource.path @ resourceType='wcm/foundation/components/parsys/newpar', appendPath='/*', decorationTagName='div', cssClassName='new section aem-Grid-newComponent'}"
+   data-sly-test="${(wcmmode.edit || wcmmode.preview) && tabs.items.size < 1}">
+   </sly>
+</div>
+<sly data-sly-call="${template.placeholder @ isEmpty=!tabs.items}"></sly>

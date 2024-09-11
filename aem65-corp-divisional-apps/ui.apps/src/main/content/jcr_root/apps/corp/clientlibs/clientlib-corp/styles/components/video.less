@@ -1,0 +1,198 @@
+/**********************************
+Video Component
+**********************************/
+
+.video {
+
+  // Align video to the left
+  &.video-align--left {
+    .m-video {
+      margin-left: 0;
+    }
+  }
+
+  // Align video to the right
+  &.video-align--right {
+    .m-video {
+      margin-right: 0;
+    }
+  }
+
+  // Limelight video to appear like audio
+  &.video-variation--audio {
+    padding-bottom: 5.5rem !important;
+    padding-top: 0;
+
+    .m-video {
+      height: 45px;
+      width: 290px;
+
+      .a-video .a-video__player {
+        padding-bottom: 45px;
+
+        .brightCove-video-wrapper {
+          .brightCove-video {
+            padding-bottom: 12%;
+            max-width: 290px;
+
+            @media @lg-down {
+              padding-bottom: 30%;
+              max-width: 90%;
+            }
+
+            .vjs-poster {
+              display: inline-block;
+              background-image: url("/content/dam/corp/abbott/en-us/corpnewsroom/play-button-icon/audio-thumbnail.png");
+              vertical-align: middle;
+              background-repeat: no-repeat;
+              background-position: 50% 50%;
+              background-size: contain;
+
+              img {
+                display: none;
+              }
+            }
+            .vjs-big-play-button {
+              display: none;
+            }
+            .vjs-control-bar {
+              z-index: 1;
+              .vjs-progress-control,
+              .vjs-current-time,
+              .vjs-time-divider,
+              .vjs-duration,
+              .vjs-fullscreen-control {
+                display: block;
+              }
+              .vjs-volume-panel {
+                .vjs-volume-control {
+                  display: block;
+                }
+              }
+            }
+          }
+        }
+
+        .limeLight-video-wrapper {
+          padding-bottom: 0;
+
+          .limelight-player {
+            padding-bottom: 100px;
+          }
+        }
+
+        .limeLight-video .limelight-player {
+          height: 45px !important;
+          width: 290px !important;
+          float: left;
+
+          .video-js {
+            &.vjs-limelight {
+              padding-bottom: 30%;
+            }
+          }
+
+          .vjs-limelight-big-play {
+            font-size: 20em !important;
+            display: none !important;
+            color: transparent !important;
+            text-shadow: none;
+          }
+        }
+      }
+    }
+  }
+
+  &.video-popup__no-border {
+    padding-top: 0 !important;
+
+    .m-video {
+      .a-video__player {
+        .play-icon {
+          .btn {
+            color: transparent;
+            background: url("/content/dam/corp/abbott/en-us/corpnewsroom/play-button-icon/play-btn.png");
+            background-size: contain;
+          }
+        }
+      }
+    }
+  }
+
+  .m-video {
+    .global-video-embedDam {
+      .play-icon {
+        position: absolute;
+        z-index: 1;
+        width: 100%;
+
+        .btn {
+          color: transparent;
+          background: url("/content/dam/corp/abbott/en-us/corpnewsroom/play-button-icon/play-btn.png");
+          background-size: contain;
+        }
+      }
+    }
+
+    .global-video {
+      .play-icon {
+        position: absolute;
+        z-index: 100;
+      }
+
+      .limeLight-video {
+        .vjs-limelight-viewport {
+          .vjs-limelight-big-play {
+            color: transparent;
+            background: url("/content/dam/corp/abbott/en-us/corpnewsroom/play-button-icon/play-btn.png");
+            background-size: contain;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            padding: 0 20px;
+            cursor: pointer;
+            text-align: center;
+            width: 64px;
+            height: 64px;
+            border-radius: 30px;
+
+            &::before {
+              display: none;
+              z-index: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &.article-page-banner-variation {
+    .a-video {
+      .a-video__player {
+        padding-bottom: 45%;
+      }
+    }
+  }
+
+  .vjs-poster {
+    z-index: 1;
+  }
+
+  .vjs-big-play-button {
+    color: transparent;
+    background: url("/content/dam/corp/abbott/en-us/corpnewsroom/play-button-icon/play-btn.png");
+    background-size: contain;
+    z-index: 1;
+  }
+}
+
+.columncontrol {
+  .video {
+    &.container {
+      padding-left: 0;
+    }
+  }
+}

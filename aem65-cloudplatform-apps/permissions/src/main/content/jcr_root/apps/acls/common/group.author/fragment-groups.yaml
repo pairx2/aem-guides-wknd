@@ -1,0 +1,68 @@
+- group_config:
+
+    - fragment-workflows:
+
+       - name: Fragment Workflows
+         isMemberOf: everyone
+         path: /home/groups/platform/base
+         
+- ace_config:
+
+    - fragment-workflows:
+    
+       - path: /var/workflow
+         permission: allow
+         privileges: jcr:lockManagement,jcr:read,jcr:versionManagement,rep:write
+
+       - path: /var/workflow/models
+         permission: deny
+         privileges: jcr:lockManagement,jcr:versionManagement,rep:write
+
+       - path: /var/workflow/models
+         permission: deny
+         privileges: jcr:read
+         restrictions:
+           rep:glob: /*
+
+       - path: /var/workflow/models
+         permission: allow
+         privileges: rep:readProperties
+         
+       # Added this rule to enable language copy feature
+       - path: /var/workflow/models/wcm-translation
+         permission: allow
+         privileges: jcr:read
+         
+       # Added this rule to fix issue with Manage publication
+       - path: /var/workflow/models
+         permission: allow
+         privileges: jcr:read
+         restrictions:         
+           rep:glob: /scheduled_*
+       
+       - path: /var/statistics/workflows
+         permission: allow
+         privileges: jcr:read
+
+       - path: /etc/workflow
+         permission: allow
+         privileges: jcr:read
+
+       - path: /etc/workflow/models
+         permission: deny
+         privileges: jcr:read
+         restrictions:
+           rep:glob: /*
+
+       - path: /etc/workflow/models
+         permission: allow
+         privileges: rep:readProperties
+
+       - path: /etc/workflow/instances
+         permission: allow
+         privileges: jcr:lockManagement,jcr:versionManagement,rep:write
+
+       - path: /etc/workflow/packages
+         permission: allow
+         privileges: jcr:lockManagement,jcr:versionManagement,rep:write
+         

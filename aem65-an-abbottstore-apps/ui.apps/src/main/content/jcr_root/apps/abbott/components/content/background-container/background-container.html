@@ -1,0 +1,30 @@
+<sly data-sly-use.backgroundContainer="com.abbott.aem.an.abbottstore.models.BackgroundContainerModel" data-sly-use.spacingOptions="com.abbott.aem.an.abbottstore.models.SpacingModel">
+   <sly data-sly-use.templates="abbott/components/content/templates.html"/>
+   <div class="cmp-card-container" id="${backgroundContainer.id}">
+      <div class="card-img-container d-block mx-auto ${spacingOptions.spacing == 'default-spacing' ? spacingOptions.defaultSpacing : ''}" data-sly-test="${backgroundContainer.backgroundStyle == 'image'}" data-sly-test.image="${backgroundContainer.bgImage}" style="background-image:url(${backgroundContainer.bgImage @ context='uri' });${spacingOptions.spacing == 'custom-spacing' ? spacingOptions.customSpacing : '' @ context = 'styleString'}">
+         <div class="${properties.isContainer ? 'container' : '' @ context = 'styleString'}">
+            <div class="row">
+               <div class="col-12">
+                  <div class="overlay-element">
+                     <sly data-sly-resource="${ @path='cardCon', resourceType='foundation/components/parsys'}" ></sly>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class = "${properties.hideSection ? 'd-none' : '' @ context = 'styleString'}">
+      	<div class="card-color-container d-block mx-auto ${spacingOptions.spacing == 'default-spacing' ? spacingOptions.defaultSpacing : ''}" data-sly-test="${backgroundContainer.backgroundStyle == 'color'}" data-value="${backgroundContainer.bgColor @context='uri'}" style="background-color: ${backgroundContainer.bgColor @context='uri'}; ${spacingOptions.spacing == 'custom-spacing' ? spacingOptions.customSpacing : '' @ context = 'styleString'}">
+         	<div class="${properties.isContainer ? 'container' : '' @ context = 'styleString'}">
+           	 	<div class="row">
+               		<div class="col-12">
+                      <div class="overlay-element">
+                         <sly data-sly-resource="${ @path='cardCon', resourceType='foundation/components/parsys'}" ></sly>
+                      </div>
+               		</div>
+            	</div>
+         	</div>
+      	</div>
+      </div>
+   </div>
+   <sly data-sly-call="${templates.placeholder @ isEmpty = !backgroundContainer.backgroundStyle}"></sly>
+</sly>

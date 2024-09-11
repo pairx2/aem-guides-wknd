@@ -1,0 +1,62 @@
+
+	<div class="container-fluid redgeber-form">
+	<sly data-sly-test="${wcmmode.edit}">
+   		<p data-emptytext="Configure ${component.title}" class="cq-placeholder"></p>
+	</sly>
+	<div class="container">
+		<div class="row">
+            <div data-sly-use.queModel="com.abbott.aem.adc.freestylelibrede.models.RatgeberFormModel" data-sly-unwrap>
+
+                <div data-sly-test="${queModel.questionsList}" data-sly-unwrap>
+     	            <div class="col-sm-2 form-question--number">
+                         	 <p class="form-question__elem">1</p>
+                       </div>
+   					<div class="col-sm-8 form-question--div">
+						<div class="progress">
+      							<div class="progress-bar active" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+      							<p class="form-question__elem1"></p>
+    					</div>
+						<form id="user_form" novalidate action="" method="">
+							<div data-sly-list.questions="${queModel.questionsList}">
+								<fieldset class="questionset">
+
+									<legend><p class="form-question__elem2">${questions.question}</p></legend>
+
+										<div data-sly-test="${questions.ansList}" data-sly-unwrap>
+											<div data-sly-list.answers="${questions.ansList}" data-sly-unwrap>
+												<div class="form-check form-check-inline">
+												  <input class="form-check-input" type="radio" value="${answers.value}">
+													  <label class="form-check-label"> ${answers.answer} </label>
+												</div>
+											</div>
+										</div>
+
+										<div data-sly-test ="${questions.noAnswerText && questions.yesAnswerText}" data-sly-unwrap>
+
+													<div class="form-check form-check-inline col-sm-6 form-check--option form-check-radiobtn text-center">
+													  <input class="form-check-input" type="radio" value="${questions.yesAnswerValue}">
+													  <label class="form-check-label">${questions.yesAnswerText}</label>
+													</div>
+													<div class="form-check form-check-inline col-sm-6 form-check--option form text-center">
+													  <input class="form-check-input" type="radio" value="${questions.noAnswerValue}">
+													  <label class="form-check-label">${questions.noAnswerText}</label>
+													</div>
+
+										</div>
+
+										<br>
+										<br>
+										<input type="button" name="previous" class="multilque-pre-btn adc-button adc-button-secondary" value="${queModel.prevButtonLabel}" /> 
+										<input type="button" name="next" class="multilque-next-btn adc-button adc-button-primary  float-right" value="${queModel.nextButtonLabel}" />
+										<input type="button" name="next" class="multilque-submit-btn adc-button adc-button-primary  float-right" value="${queModel.submitButtonLabel}" />
+								</fieldset>
+							</div>
+                            	<div class="multilque-submittext">${queModel.resultText @ context="html"}</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+

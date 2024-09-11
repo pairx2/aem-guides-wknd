@@ -1,0 +1,23 @@
+<sly data-sly-use.cards="com.abbott.aem.platform.common.components.models.Cards" data-sly-use.customConfig="com.abbott.aem.platform.common.components.models.CustomConfig" data-sly-use.link="com.abbott.aem.platform.common.components.models.Link" data-sly-use.imageTemplate="image.html">
+  <div class="m-popup" data-toggle="modal" data-target="#${cards.id}-modal">
+    <div id="${component.id}" class="${customConfig.className}">
+      <a data-sly-unwrap="${!cards.clickable}" class="m-card-link" data-disable-child-links href="javascript:void(0)" target="${cards.action}">
+        <div class="m-card__media">
+          <sly data-sly-call="${imageTemplate.image @ cards=cards}"></sly>
+        </div>
+        <div class="m-card__body">
+          <h2 class="m-card__title h4">${cards.title @ context="html"}</h2>
+          <div class="m-card__description">${cards.description @ context="html"}</div>
+          <sly data-sly-test.clickable="${!cards.clickable}">
+            <sly data-sly-test="${properties.ctaOne=='link'}" data-sly-resource=" ${@path='cta1' ,resourceType=cards.linkProxyPath, decorationTagName='div'}"> </sly>
+            <sly data-sly-test="${properties.ctaOne=='download'}" data-sly-resource="${@path='cta1',resourceType=cards.downloadProxyPath, decorationTagName='div'}"> </sly>
+            <sly data-sly-test="${properties.ctaTwo=='link'}" data-sly-resource="${@path='cta2' ,resourceType=cards.linkProxyPath, decorationTagName='div'}"> </sly>
+            <sly data-sly-test="${properties.ctaTwo=='download'}" data-sly-resource="${@path='cta2',resourceType=cards.downloadProxyPath, decorationTagName='div'}"> </sly>
+          </sly>
+          <sly data-sly-test="${cards.clickable}" data-sly-resource="${@path='nonClickableLink' ,resourceType=cards.nonClickableLinkProxyPath, decoration=true}" /> </div>
+      </a>
+    </div>
+    <div class="m-popup-content">
+      <sly data-sly-test="${cards.expFragPathVideo}" data-sly-resource="${@path=cards.expFragPathVideo, selectors='content', wcmmode='disabled'}" /> </div>
+  </div>
+</sly>

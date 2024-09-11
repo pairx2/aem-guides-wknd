@@ -1,0 +1,152 @@
+@import "./global/mixins.less";
+@import './global/variables.less';
+
+.a-button {
+    .btn {
+        --button-border-radius: 500px;
+        --button-box-shadow: 0;
+        --button-font-size: @font-size-18;
+        --button-padding: 15px 32px;
+        --button-padding-md: 15px 32px;
+    	--button-padding-sm: 5px 32px;
+        --button-line-height: 1;
+
+         @media @lg-down {
+   		   --button-font-size: @font-size-16;
+        }	
+    }
+
+    &--primary-v1,
+    &--primary-v2 {
+        --button-primary-color: #212121 !important;
+        --button-primary-v1-bg: #EFEFEF !important;
+        --button-primary-v1-icon-bg: #C58A35;
+        --button-primary-v2-icon-bg: #159BD7;
+        --button-icon-width: 65px;
+        --button-icon-width-md: 63px;
+
+        .btn {
+    		--button-border-radius: 8px;
+
+            background: var(--button-primary-v1-bg);
+            width: 100%;
+        	max-width: 540px;
+            text-align: left;
+            text-transform: none;
+            padding-left: 16px;
+            padding-right: var(--button-icon-width);
+            color: var(--button-primary-color) !important;
+            padding-top: 21px;
+            padding-bottom: 21px;
+            font-size: @font-size-base;
+            font-weight: 700;
+            line-height: 20px;
+
+            @media @md-up {
+            	padding-left: 21px;
+            	min-height: 64px;
+            	padding-right: var(--button-icon-width-md);
+            }
+
+            &:hover {
+				background: var(--button-primary-v1-bg);
+            	color: var(--button-primary-color) !important;
+            }
+
+            .abt-icon {
+                background: var(--button-primary-v1-icon-bg);
+                width: var(--button-icon-width-md);
+                height: 100%;
+                right: 0;
+                top: 0;
+                border-top-right-radius: var(--button-border-radius);
+                border-bottom-right-radius: var(--button-border-radius);
+                color: #fff;
+                opacity: 0.7;
+
+                @media @md-up {
+                    width: var(--button-icon-width);
+                }
+
+                &.abt-icon-arrow-right:before {
+                    content: "\e913";
+                    position: absolute;
+                    left: 50%;
+                    width: 18px;
+                    top: 50%;
+                    transform: translate(-50%, -50%);
+                }
+            }
+        }
+    }
+
+    &--primary-v2 {
+        .btn {
+    		.abt-icon {
+                background: var(--button-primary-v2-icon-bg);
+            }
+        }
+    }
+
+    &--full-width-mobile,
+    .m-popup {
+        .a-link {
+            width: 100%;
+        }
+    }
+	
+	&--primary {
+		.btn {
+			@media @md-max {
+				line-height: 1rem;
+			}
+		}
+	}
+}
+
+#ph-quick-access {
+	> .row {
+		.columncontrol__column {
+			&:first-child {
+				padding-left: 0;
+            }
+
+            &:last-child {
+				padding-right: 0;
+            }
+
+            @media @md-down {
+				padding-left: 0;
+                padding-right: 0;
+            }
+        }
+    }
+}
+
+// products flavor button
+.flavor-button{
+	@media @md-up {
+        padding: 0;
+	}
+    .columncontrol__column{
+        @media @md-down {
+            margin: 0 !important;
+        }
+        @media @lg-only {
+            padding-right: 0;
+        }
+        .button{
+            @media @md-up {
+                display: inline-block;
+            }
+            .btn{
+                @media @md-up {
+                    margin-right: 15px;
+                }
+                @media @lg-only {
+                    padding: 15px 20px;
+                }
+            }
+        }
+    }
+}

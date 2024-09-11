@@ -1,0 +1,16 @@
+<sly data-sly-test="${inheritedPageProperties.globalVarPath}">
+    <sly data-sly-test.errorDictPath="${'{0}{1}' @ format=[inheritedPageProperties.globalVarPath, '/jcr:content/root/global_variable']}">
+		<sly data-sly-use.globalVarModel="${'com.abbott.aem.an.similac.core.models.GlobalVariableModel' @ errorPath=errorDictPath}"/>
+		<sly data-sly-test="${globalVarModel.errorCodeJson}">
+			<script>
+				var errorCodeData = Object.freeze(JSON.parse("${globalVarModel.errorCodeJson @ context='scriptString'}"));
+			</script>
+		</sly>
+	</sly>
+</sly>
+<sly data-sly-use.logoutModel="${'com.abbott.aem.an.similac.core.models.LogoutModel'}">
+	<script>
+		function onloadCallback() { };			
+		var jsonAppData = Object.freeze(JSON.parse("${logoutModel.logoutConfigJson @ context='scriptString'}"));
+	</script> 
+</sly>

@@ -1,0 +1,56 @@
+<main class="favorites-container">
+    <div class="container"> 
+        <div class="favorites-products">
+            <header class="favorites-header">
+                <div class ="title" data-sly-resource="${'title' @resourceType='bts/cybersecurity/components/content/title'}">
+                </div>
+                <div class="favorites-header__buttons">
+                    <button type="button" class="favorites-btn__list" data-type="list">
+                        <em class="abt-icon abt-icon-hambuerger-menu"></em>
+                    </button>
+                    <button type="button" class="favorites-btn__grid" data-type="grid">
+                        <em class="abt-icon abt-icon-squares"></em>
+                    </button>
+                </div>
+            </header>    
+            <div class="favorites-products-wrapper">
+                <div id="favorites-products-wrapper" class="row product-card">
+
+                </div> 
+                <div class="fav-loading-screen screen-loader">
+					<img src="${properties.loadingImage}" alt="${properties.altTextLoadingImage}"/>
+                    <span>${'favoriteslist.favText'@i18n}</span>
+                </div>
+                <div class="fav-no-result-screen screen-loader d-none">
+					<img src="${properties.noResultsImage}" alt="${properties.altTextNoResultsImage}"/>
+                    <span>${'favoriteslist.noResultText'@i18n}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<template id="product-card-template">
+    <div class="product-card__grid-view col-md-4 col-lg-3">
+        <div class="m-card__body m-card__hasImage">
+            <img src="{{IMAGE}}" class="m-card__image product-list__image" onerror="this.src='/content/dam/bts/cybersecurity/us/en/images/product-tile/defaultimage.jpeg'"
+                 alt="{{TITLE}}" />
+            <h2 class="m-card__title h4">{{TITLE}}</h2>
+            <div class="m-card__meta-data">
+                <p class="m-card__product-type">{{TYPE}}</p>
+            </div>
+            <div class="m-card-button-wrapper">
+                <div class="m-card__btn--download">
+                    <a role="link" data-href="{{LINK_PATH}}" target="_self" aria-label="{{TITLE}}">
+                        ${'button.moreDetails'@i18n}
+                    </a>
+                </div>
+                <div class="m-card__btn--favourite">
+                    <button type="button" data-id="{{PRODUCT_ID}}">
+                        <em class="abt-icon {{HEART_ICON}}"></em>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,32 @@
+<div data-sly-use.button="com.abbott.aem.platform.common.components.models.FloatingActionButton"
+
+  data-sly-use.component="com.adobe.cq.wcm.core.components.models.Component" 
+
+  data-sly-use.customConfig="com.abbott.aem.platform.common.components.models.CustomConfig"
+
+  id="${component.id}" class="${customConfig.className}"
+  
+  data-sly-use.template="core/wcm/components/commons/v1/templates.html">
+
+<sly data-sly-test="${button.buttonType == 'nobutton'}" data-sly-include="floatingactionbutton_nobutton.html" />
+
+<sly data-sly-test="${button.buttonType == 'url' && !button.redirectConfirm}" data-sly-include="floatingactionbutton_targetaction.html"/>
+
+<sly data-sly-test="${button.buttonType == 'url'  && button.redirectConfirm}" data-sly-include="floatingactionbutton_external.html"/>
+
+<sly data-sly-test="${button.buttonType == 'anchor'}" data-sly-include="floatingactionbutton_anchorname.html" />
+
+<sly data-sly-test="${button.buttonType == 'video'}" data-sly-include="floatingactionbutton_videoplayid.html" />
+
+<sly data-sly-test="${button.buttonType == 'ytvideo'}" data-sly-include="floatingactionbutton_ytvideoid.html" />
+
+<sly data-sly-test="${button.buttonType == 'clicktocall'}" data-sly-include="floatingactionbutton_clickcal.html" />
+
+<sly data-sly-test="${button.buttonType == 'asset'}" data-sly-include="floatingactionbutton_asset.html" />
+
+<sly data-sly-test="${button.buttonType == 'popupmodal'}" data-sly-include="floatingactionbutton_popupmodal.html" />
+
+</div>
+
+<sly data-sly-call="${template.placeholder @ isEmpty=!floatingactionbutton.buttonText}"></sly>
+

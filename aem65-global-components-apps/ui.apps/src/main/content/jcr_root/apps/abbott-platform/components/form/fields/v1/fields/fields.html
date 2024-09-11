@@ -1,0 +1,54 @@
+<sly data-sly-use.fields="com.abbott.aem.platform.common.components.models.Fields"
+data-sly-use.customConfig="com.abbott.aem.platform.common.components.models.CustomConfig"
+	data-sly-use.template="core/wcm/components/commons/v1/templates.html"
+	class="fields-section-wrapper ${wcmmode.edit ? 'fields-comp-edit' : ''}">
+	<sly data-sly-test.isPasswordPolicy="${fields.passwordPolicyRequired ? 'true' : 'false'}"></sly>
+	<sly data-sly-test.isConfirmPassword="${fields.confirmPassword ? 'true' : 'false'}"></sly>
+	<div class="a-input-field mt-0 ${customConfig.className}" data-required="${fields.required ? 'true': 'false'}" 
+	data-sly-attribute.data-password-policy="${fields.type == 'password' ? isPasswordPolicy : ''}"
+	data-sly-attribute.data-component-type="${fields.type == 'password' ? 'input-field-password': ''}"
+	data-sly-attribute.data-confirm-password="${fields.type == 'password' ? isConfirmPassword : ''}">
+		<div class="form-group a-form-grp" data-component="input-field">
+			<div class="form-label__align" data-sly-unwrap="${!fields.enableTooltip}">
+				<label data-sly-test="${!fields.hideTitle}" class="form-label a-input-label"><span class="a-input-field__label">${fields.title}</span><span data-sly-test.fieldRequired="${fields.required}" class="a-input-field--required">*</span></label>
+				<label data-sly-test="${fields.hideTitle && fields.required}" class="form-label a-input-label"><span data-sly-test.fieldRequired="${fields.required}" class="a-input-field--required">*</span></label>
+				<sly data-sly-test="${fields.enableTooltip}" data-sly-resource="${'tooltip__inline' @ resourceType=fields.tooltipsProxyPath,decoration=true}"></sly>				 						
+			</div>
+			<sly data-sly-test.isRegexRequired="${fields.regexRequired  && fields.regexPattern}"></sly>
+			<sly data-sly-test.isTextarea="${fields.type == 'textarea'}">
+				<div class="input-group a-input-grp">
+					<sly data-sly-test.isRegexRequired="${isRegexRequired}">
+						<textarea class=" form-control a-input-control" rows="${fields.rows}"
+							aria-label="${fields.title}" placeholder="${fields.placeholder}" name="${fields.name}"
+							id="${fields.id}" required="${fields.required}" readonly="${fields.readOnly}"
+							data-regex="${fields.regexPattern}">${fields.value}</textarea>
+					</sly>
+					<sly data-sly-test="${!isRegexRequired}">
+						<textarea class=" form-control a-input-control" rows="${fields.rows}"
+							aria-label="${fields.title}" placeholder="${fields.placeholder}" name="${fields.name}"
+							id="${fields.id}" required="${fields.required}"
+							readonly="${fields.readOnly}">${fields.value}</textarea>
+					</sly>
+				</div>
+			</sly>
+			<sly data-sly-test="${!isTextarea}">
+				<!--/* no icon variation start */-->
+				<sly data-sly-test="${fields.fieldIcon == 'no-icon'}" data-sly-include="fields-no-icon.html" />
+				<!--/* double icon variation */-->
+				<sly data-sly-test="${fields.fieldIcon == 'double-icon'}" data-sly-include="fields-double-icon.html" />
+				<!--/* right icon start */-->
+				<sly data-sly-test="${fields.fieldIcon == 'right-icon'}" data-sly-include="fields-right-icon.html" />
+				<!--/* left icon */-->
+				<sly data-sly-test="${fields.fieldIcon == 'left-icon'}" data-sly-include="fields-left-icon.html" />
+			</sly>
+			<sly data-sly-test.passwordPolicyRequired="${fields.passwordPolicyRequired}" data-sly-include="fields-input-password-strength.html" />
+			<sly data-sly-test="${!passwordPolicyRequired}">
+				<span data-sly-test="${fields.helpMessage}" class="form-text a-input-field--text-help">${fields.helpMessage}</span>
+				<span class="form-text a-input-field--text-error"><em class="abt-icon abt-icon-exclamation"></em>${fields.validationErrorMessage}</span>
+				<span data-sly-test="${fieldRequired}" class="form-text a-input-field--text-require"><em class="abt-icon abt-icon-exclamation"></em>${fields.requiredMessage}</span>
+				<span data-sly-test="${isRegexRequired}" class="form-text a-input-field--text-regex"><em class="abt-icon abt-icon-exclamation"></em>${fields.regexErrorMessage}</span>
+			</sly>
+		</div>
+	</div>
+</sly>
+<sly data-sly-call="${template.placeholder @ isEmpty=!fields.name}"></sly>

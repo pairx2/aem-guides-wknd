@@ -1,0 +1,13 @@
+<sly data-sly-use.tabs="com.adobe.cq.wcm.core.components.models.Tabs"
+     data-sly-use.templates="core/wcm/components/commons/v1/templates.html"    data-cmp-is="tabs">
+     <sly  data-sly-test="${wcmmode.edit}" data-sly-repeat.item="${tabs.items}"
+         data-sly-resource="${item.name @ decorationTagName='div'}"
+         role="tabpanel"
+         data-cmp-hook-tabs="tabpanel"></sly>
+    <sly  data-sly-test="${!wcmmode.edit}" data-sly-repeat.item="${tabs.items}"
+         data-sly-resource="${item.name}"
+         role="tabpanel"
+         data-cmp-hook-tabs="tabpanel"></sly>
+    <sly data-sly-resource="${resource.path @ resourceType='wcm/foundation/components/parsys/newpar', appendPath='/*', decorationTagName='div', cssClassName='new section aem-Grid-newComponent'}"
+         data-sly-test="${(wcmmode.edit || wcmmode.preview) && tabs.items.size < 1}"></sly>
+</sly>

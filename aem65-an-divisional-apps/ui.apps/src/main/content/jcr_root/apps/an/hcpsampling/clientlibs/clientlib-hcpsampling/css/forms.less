@@ -1,0 +1,261 @@
+@import './global/variables.less';
+@import "./global/mixins.less";
+
+.a-checkbox {
+  margin-bottom: 1rem;
+  &__text {
+    > a {
+      color:@color-light-blue2;
+    }
+  }
+}
+
+
+// My Account
+#myAccountForm {
+  .fields {
+    .a-input-field {
+      .form-group {
+        .a-input-control {
+          font-size: var(--input-field-font-size);
+
+          &:disabled, &[readonly] {
+            background-color: @color-transparent;
+            border-color: @color-transparent;
+            padding: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Change Password
+#changePassword {
+  > .title, > .text {
+    margin:1.5rem 0;
+  }
+  > .formcontainer {
+    margin-top:1.5rem;
+  }
+}
+
+// Login / Verify Key
+#loginPageForm, #verifyKeyContainer, #verifyKeySuccess, #verifyKeySuccessLoggedIn {
+  display: none;
+
+  .aem-AuthorLayer-Edit & {
+    display: block;
+  }
+}
+
+#loginPageForm {
+  > .experiencefragment {
+
+    .a-input-field {
+      .a-input-control {
+        font-size:@font-size-16;
+      }
+    }
+
+    button[type='submit'] {
+        width:100%;
+        margin-bottom:1rem;
+    }
+
+    .cmp-text {
+      p {
+          margin-bottom:0;
+      }
+        
+      a {
+          .tt-upper;
+          font-family:@base-font-family-bold;
+          font-size: @font-size-14;
+      }
+    }
+  }
+}
+
+// Errors
+.o-form-container__error-msg {
+  margin: 0;
+  display: none;
+  color: red;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+}
+
+.o-form-container__error-msg,
+.o-form-container__success-msg {
+  margin-top: 15px;
+}
+
+[id^=apiError] {
+  display: none;
+
+  .aem-AuthorLayer-Edit & {
+    display: block;
+  }
+
+  .cmp-text {
+    display: none;
+    font-size: var(--form-container-font-size);
+    line-height: var(--form-container-line-height);
+    color: var(--form-container-error-color);
+
+    p {
+      font-size: var(--form-container-font-size);
+      line-height: var(--form-container-line-height);
+      color: var(--form-container-error-color);
+    }
+
+    .aem-AuthorLayer-Edit & {
+      display: block;
+    }
+  }
+
+  .xf-content-height {
+    min-height: initial;
+  }
+}
+
+// Experience Fragment spacing within form
+.form-container .responsivegrid .aem-Grid>.aem-GridColumn:not(.experiencefragment) {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+// Registration
+#registrationLongForm {
+  display: none;
+  .aem-AuthorLayer-Edit & {
+    display: block;
+  }
+}
+
+#alreadyRegisteredModal {
+  display: none;
+}
+
+#registration .input-group .abt-icon {
+  display: none;
+}
+
+#registration {
+  .a-input-field {
+    .a-input-control {
+      font-size:@font-size-16;
+    }
+  }
+    fieldset{
+
+   h2{
+       text-transform:capitalize;
+   }
+    }
+}
+
+#success-shown{
+  display:none;
+}
+
+#registrationHeader{
+  h6{
+text-transform:uppercase;
+  }
+
+ h2{
+     text-transform:capitalize;
+ }
+}
+
+// Wrapper container in responsive grid
+.responsivegrid {
+  > .aem-Grid {
+    .container.a-container {
+      @media @lg-up {
+        padding-left:0;
+        padding-right:0;
+      }
+    }
+  }
+}
+
+.root {
+  .o-form-container {
+    max-width: 345px;
+  }
+
+  #connectExpertForm {
+    max-width: initial;
+  }
+
+  .o-form-container__buttons {
+    .a-button:last-child {
+      margin: 0 0 0 var(--form-button-spacer);
+    }
+
+    .a-button:first-child {
+      margin: 0 var(--form-button-spacer) 0 0;
+    }
+  }
+
+  .o-form-container__outer .container {
+    padding-left:0;
+    padding-right:0;
+  }
+}
+
+// Password Tooltip Label
+.tooltip-pwd-label {
+  white-space: nowrap;
+}
+
+// Password Strength Positioning + Styles
+.a-input-field {
+  .form-group {
+    .a-input-control {
+      font-size: var(--input-field-font-size) !important;
+    }
+    .a-input-password-strength {
+      display:flex;
+      flex-flow: column nowrap;
+      justify-content: flex-start;
+      align-items: flex-start;
+    
+      .form-row:not(.password-progressbar){
+        flex-direction:column;
+      }
+    
+      .password-progressbar {
+        width:100%;
+        order:2;
+      }
+    
+      .tooltip-pwd-label {
+        font-size: var(--input-field-password-tooltip-font-size) !important;
+        margin-top: var(--input-field-help-text-margin-bottom);
+        margin-bottom: var(--input-field-help-text-margin-bottom);
+      }
+    }
+  }
+}
+
+.text{
+  p.email-error{
+    color:var(--form-container-error-color) !important;
+  }
+}
+
+.text{
+  p.abbott-user-error{
+      color:var(--form-container-error-color) !important;
+  a{
+    color:var(--form-container-error-color) !important;
+    font-size: 16px;
+    text-decoration: underline;
+  }    
+  }
+} 

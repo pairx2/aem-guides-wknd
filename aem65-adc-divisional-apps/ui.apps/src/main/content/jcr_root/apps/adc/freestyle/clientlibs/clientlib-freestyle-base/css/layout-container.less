@@ -1,0 +1,68 @@
+@import './global/media-queries.less';
+@import './global/mixin.less';
+@import './global/variables.less';
+
+.m-layout-container {
+  margin: 0 auto;
+
+  @media @sm-up {
+    max-width: @sm-width;
+  }
+
+  @media @md-up {
+    max-width: @md-width;
+  }
+
+  @media @xl-only {
+    max-width: 100%;
+  }
+
+  @media @xl-up {
+    max-width: @xl-width;
+  }
+
+  .column-layout-container {
+    @media @sm-up {
+      padding-right: 0;
+      padding-left: 0;
+    }
+
+    .section-info {
+      margin-bottom: @spacer-40;
+    }
+    
+    .section-title .cmp-title__text {
+      font-size: @spacer-24;
+      line-height: @spacer-32;
+    }
+
+    .a-container {
+      &__column {
+        padding-top: 0;
+
+        > .m-tile-list,
+        > .promosection,
+        > .productsection,
+        > .contentsection,
+        > .ctasection,
+        > .accordion,
+        > .video {
+          padding-top: 0; // override paddings from theme1
+          padding-bottom: 0; // override paddings from theme1
+        }
+      }
+      //overriding styles from adc library
+      & .col-lg-4 {
+        @media @lg-up {
+          padding-left: @spacer-15;
+          padding-right: @spacer-15;
+        }
+      }
+    }
+  }
+
+  .cmp-container > & {
+    margin-right: -(@spacer-15);
+    margin-left: -(@spacer-15);
+  }
+}

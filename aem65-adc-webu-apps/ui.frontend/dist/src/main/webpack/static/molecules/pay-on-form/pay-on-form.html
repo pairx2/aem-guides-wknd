@@ -1,0 +1,307 @@
+<main>
+  <h3 class="display-md font-weight-light my-3">Hero Banner Fluid Container</h3>
+  <div class="stg-code">
+    <!-- Pay-on form start -->
+    <div class="payoncheckout">
+      <div
+        class="m-payon-form js-payon-checkout"
+        data-endpoint="https://test.oppwa.com/v1/paymentWidgets.js"
+      >
+        <div>
+          <script
+            src="https://test.oppwa.com/v1/static/afd49fe2ce2663eea0aced44633683a0/js/static.min.js"
+            async=""
+          ></script>
+          <script>
+            var wpwlOptions = {
+              style: "plain",
+              showCVVHint: true,
+              brandDetection: true,
+              onReady: function () {
+                var allowedCCtypes = "AMEX VISA MASTER DISCOVER";
+                var allowedCCtypesArray = allowedCCtypes.split(" ");
+                var firstBrand = $(".wpwl-brand:first")
+                  .clone()
+                  .removeAttr("class")
+                  .attr(
+                    "class",
+                    "wpwl-brand-card wpwl-brand-custom wpwl-brand-" +
+                      allowedCCtypesArray[0]
+                  );
+                $(".wpwl-brand:first").after($(firstBrand));
+                for (let i = 1; i < allowedCCtypesArray.length; i++) {
+                  var brand = $(firstBrand)
+                    .clone()
+                    .addClass("wpwl-brand-" + allowedCCtypesArray[i]);
+                  $(".wpwl-brand:first").after($(brand));
+                }
+                $(".wpwl-group-brand").prepend(
+                  "<h3 class='wpwl-title'>secure-card-payment</h3>"
+                );
+              },
+              onChangeBrand: function (e) {
+                $(".wpwl-brand-custom").css("opacity", "0.3");
+                $(".wpwl-brand-" + e).css("opacity", "1");
+              },
+            };
+          </script>
+        </div>
+        <div>
+          <script src="https://test.oppwa.com/v1/paymentWidgets.js?checkoutId=B0ED517A8CB6146456B9B26905723B05.uat01-vm-tx04"></script>
+        </div>
+        <div
+          id="card_1250007313560"
+          class="wpwl-container wpwl-container-card wpwl-clearfix"
+          style=""
+        >
+          <form
+            class="wpwl-form wpwl-form-card wpwl-clearfix"
+            action="https://test.oppwa.com/v1/checkouts/B0ED517A8CB6146456B9B26905723B05.uat01-vm-tx04/payment"
+            method="POST"
+            target="card_1250007313560"
+            lang="en"
+            accept-charset="UTF-8"
+            data-action="submit-payment-card"
+          >
+            <div class="wpwl-group wpwl-group-brand wpwl-clearfix">
+              <h3 class="wpwl-title">secure-card-payment</h3>
+              <div
+                class="wpwl-label wpwl-label-brand"
+                name="wpwl-label-paymentBrand"
+              >
+                Brand
+              </div>
+              <div class="wpwl-wrapper wpwl-wrapper-brand">
+                <select
+                  class="wpwl-control wpwl-control-brand"
+                  name="paymentBrand"
+                  aria-label="Brand"
+                >
+                  <option value="AMEX">American Express</option>
+                  <option value="VISA">Visa</option>
+                  <option value="MASTER">Mastercard</option>
+                  <option value="DISCOVER">Discover</option>
+                </select>
+              </div>
+              <div
+                class="wpwl-brand wpwl-brand-AMEX wpwl-brand-card"
+                style="opacity: 1"
+              ></div>
+              <div
+                style="opacity: 1"
+                class="wpwl-brand-card wpwl-brand-custom wpwl-brand-AMEX wpwl-brand-DISCOVER"
+              ></div>
+              <div
+                style="opacity: 1"
+                class="wpwl-brand-card wpwl-brand-custom wpwl-brand-AMEX wpwl-brand-MASTER"
+              ></div>
+              <div
+                style="opacity: 1"
+                class="wpwl-brand-card wpwl-brand-custom wpwl-brand-AMEX wpwl-brand-VISA"
+              ></div>
+              <div
+                style="opacity: 1"
+                class="wpwl-brand-card wpwl-brand-custom wpwl-brand-AMEX"
+              ></div>
+            </div>
+            <div class="wpwl-group wpwl-group-cardNumber wpwl-clearfix">
+              <div
+                class="wpwl-label wpwl-label-cardNumber"
+                name="wpwl-label-card.number"
+              >
+                Card Number
+              </div>
+              <div class="wpwl-wrapper wpwl-wrapper-cardNumber">
+                <iframe
+                  class="wpwl-control wpwl-control-iframe wpwl-control-cardNumber"
+                  frameborder="0"
+                  name="card.number"
+                  placeholder="Card Number"
+                  scrolling="no"
+                  src="https://test.oppwa.com/v1/pciIframe.html?checkoutId=B0ED517A8CB6146456B9B26905723B05.uat01-vm-tx04"
+                  aria-label="Card Number"
+                  title="Card Number"
+                  style=""
+                ></iframe>
+              </div>
+            </div>
+            <div class="wpwl-group wpwl-group-expiry wpwl-clearfix">
+              <div class="wpwl-label wpwl-label-expiry">Expiry Date</div>
+              <div class="wpwl-wrapper wpwl-wrapper-expiry">
+                <input
+                  class="wpwl-control wpwl-control-expiry"
+                  data-action="blur-card-expiry"
+                  placeholder="MM / YY"
+                  type="tel"
+                  value=""
+                  aria-label="Expiry Date"
+                  autocomplete="off"
+                />
+              </div>
+            </div>
+            <div class="wpwl-group wpwl-group-cardHolder wpwl-clearfix">
+              <div
+                class="wpwl-label wpwl-label-cardHolder"
+                name="wpwl-label-card.holder"
+              >
+                Card holder
+              </div>
+              <div class="wpwl-wrapper wpwl-wrapper-cardHolder">
+                <input
+                  class="wpwl-control wpwl-control-cardHolder"
+                  name="card.holder"
+                  placeholder="Card holder"
+                  type="text"
+                  value=""
+                  aria-label="Card holder"
+                  autocomplete="off"
+                />
+              </div>
+            </div>
+            <div class="wpwl-group wpwl-group-cvv wpwl-clearfix">
+              <div class="wpwl-label wpwl-label-cvv" name="wpwl-label-card.cvv">
+                CVV
+              </div>
+              <div class="wpwl-wrapper wpwl-wrapper-cvv">
+                <iframe
+                  class="wpwl-control wpwl-control-iframe wpwl-control-cvv"
+                  frameborder="0"
+                  name="card.cvv"
+                  placeholder="CVV"
+                  scrolling="no"
+                  data-maxlength="4"
+                  src="https://test.oppwa.com/v1/pciIframe.html?checkoutId=B0ED517A8CB6146456B9B26905723B05.uat01-vm-tx04"
+                  aria-label="CVV"
+                  title="CVV"
+                  style=""
+                ></iframe>
+                <div
+                  class="wpwl-icon ui-state-default ui-corner-all"
+                  data-action="toggle-popover"
+                >
+                  <span class="ui-icon ui-icon-help"></span>
+                </div>
+                <div class="wpwl-popover wpwl-top" role="tooltip">
+                  <div class="wpwl-img wpwl-brand-whereIsMyCVV-AMEX"></div>
+                  <div class="wpwl-popover-content">
+                    The 4 digits on the front of your card.
+                  </div>
+                  <div class="wpwl-arrow"></div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="wpwl-group wpwl-group-mobilePhoneCountryCode wpwl-clearfix"
+              style="display: none"
+            >
+              <div
+                class="wpwl-label wpwl-label-mobilePhoneCountryCode"
+                name="wpwl-label-customParameters[MOBILE_COUNTRY_CODE]"
+              >
+                Country code
+              </div>
+              <div class="wpwl-wrapper wpwl-wrapper-mobilePhoneCountryCode">
+                <input
+                  class="wpwl-control wpwl-control-mobilePhoneCountryCode"
+                  name="customParameters[MOBILE_COUNTRY_CODE]"
+                  placeholder="Country code"
+                  type="text"
+                  value=""
+                  maxlength="5"
+                  aria-label="Country code"
+                  autocomplete="off"
+                  disabled=""
+                />
+              </div>
+            </div>
+            <div
+              class="wpwl-group wpwl-group-mobilePhoneNumber wpwl-clearfix"
+              style="display: none"
+            >
+              <div
+                class="wpwl-label wpwl-label-mobilePhoneNumber"
+                name="wpwl-label-customer.mobile"
+              >
+                Mobile phone number
+              </div>
+              <div class="wpwl-wrapper wpwl-wrapper-mobilePhoneNumber">
+                <input
+                  class="wpwl-control wpwl-control-mobilePhoneNumber"
+                  name="customer.mobile"
+                  placeholder="Mobile phone number"
+                  type="text"
+                  value=""
+                  maxlength="12"
+                  aria-label="Mobile phone number"
+                  autocomplete="off"
+                  disabled=""
+                />
+              </div>
+            </div>
+            <div
+              class="wpwl-group wpwl-group-birthDate wpwl-clearfix"
+              style="display: none"
+            >
+              <div
+                class="wpwl-label wpwl-label-birthDate"
+                name="wpwl-label-widgetBirthDate"
+              >
+                Date of birth
+              </div>
+              <div class="wpwl-wrapper wpwl-wrapper-birthDate">
+                <input
+                  class="wpwl-control wpwl-control-birthDate"
+                  name="widgetBirthDate"
+                  placeholder="DD / MM / YYYY"
+                  type="text"
+                  value=""
+                  aria-label="Date of birth"
+                  autocomplete="off"
+                  disabled=""
+                />
+              </div>
+            </div>
+            <div class="wpwl-group wpwl-group-submit wpwl-clearfix">
+              <div class="wpwl-wrapper wpwl-wrapper-submit">
+                <button
+                  class="wpwl-button wpwl-button-pay"
+                  type="submit"
+                  aria-label="Pay now"
+                >
+                  Pay now
+                </button>
+              </div>
+            </div>
+            <input name="shopperResultUrl" type="hidden" /><input
+              name="forceUtf8"
+              type="hidden"
+              value="&amp;#9760;"
+            /><input
+              name="shopOrigin"
+              type="hidden"
+              value="http://localhost:4502"
+            /><input name="card.expiryMonth" type="hidden" value="" /><input
+              name="card.expiryYear"
+              type="hidden"
+              value=""
+            />
+          </form>
+          <iframe
+            name="card_1250007313560"
+            class="wpwl-target"
+            src="about:blank"
+            frameborder="0"
+            style="display: none"
+          ></iframe>
+        </div>
+        <iframe
+          class="wpwl-control wpwl-control-iframe wpwl-control-internalRequestIframe disabled"
+          style="display: none"
+          name="internalRequest"
+          src="https://test.oppwa.com/v1/internalRequestIframe.html"
+        ></iframe>
+      </div>
+    </div>
+    <!-- Pay-on form ends -->
+  </div>
+</main>

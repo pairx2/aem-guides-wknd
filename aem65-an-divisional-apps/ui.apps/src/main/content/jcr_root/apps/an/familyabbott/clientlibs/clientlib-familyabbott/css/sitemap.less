@@ -1,0 +1,46 @@
+@import "./global/mixins.less";
+@import './global/variables.less';
+
+
+ #ph-sitemap {
+     li {
+         &.cmp-navigation__item {
+             &--level-0{
+                 list-style-type : none !important;
+                 padding-bottom :  24px;
+                 & > a{
+                     font-size : @font-size-24;
+                     line-height : 32px;
+                     font-weight : bold;
+
+                     &:hover{
+                    text-decoration: none !important;
+                } 
+                }
+                ul{
+                    padding-top : 16px;
+                    padding-left: 30px;
+                }
+            }
+             & [class*="--level-"] {
+                 padding-bottom :10px;
+                 list-style-type : disc;
+                 a {
+                     font-size : @font-size-14;
+                     line-height: 20px;
+                     color : @color-text-body;
+                     text-decoration: underline;
+                     font-weight:bold;
+                }
+            }
+             &--level-1 ul {
+                 padding-left :20px;
+            }
+        }
+    }
+    @media @sm-down{
+    .cmp-navigation__group{
+            padding-left : 0px;
+        }
+    }
+}

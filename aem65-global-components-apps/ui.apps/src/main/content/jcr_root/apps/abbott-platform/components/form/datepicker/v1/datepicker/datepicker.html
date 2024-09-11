@@ -1,0 +1,37 @@
+<sly data-sly-use.datePicker="${'com.abbott.aem.platform.common.components.models.DatePicker' }"
+    data-sly-use.customConfig="com.abbott.aem.platform.common.components.models.CustomConfig"
+	 data-sly-use.template="core/wcm/components/commons/v1/templates.html">
+    <!--/* Date Picker Starts here */-->
+    <div data-sly-test="${datePicker.datePickerType=='singleDatePicker'}" class="a-date-picker a-date-picker--single ${customConfig.className}"
+         data-js-component="date-picker" data-type="single" data-date-format="${datePicker.dateFormat}"
+         data-disable-date="${datePicker.disableDateRequired ? datePicker.disabledDate : ''}"
+         data-disabled-years="${datePicker.disabledYears > 0 ? datePicker.disabledYears : 0}"
+         data-disabled-weekend="${datePicker.disableWeekend ? datePicker.disableWeekend : false}"
+         data-disabled-aftermonths="${datePicker.disabledAfterMonths > 0 ? datePicker.disabledAfterMonths : 0}"
+		 data-disabled-pastinfuturecal="${datePicker.disablePastinFutureCal ? datePicker.disablePastinFutureCal : false}"
+		 data-disabled-afterdays="${datePicker.disabledDays=='disableAfterDates' ? (datePicker.disabledAfterDays > 0 ? datePicker.disabledAfterDays : 0) :''}"
+		 data-disabled-pastandfuturedays="${datePicker.disablePastAndFutureDays ? datePicker.disablePastAndFutureDays : false}"		 
+		 data-enable-dropdown-month="${datePicker.disableMonthsDropdown ? 'false' : 'true'}"
+		 data-enable-dropdown-year="${datePicker.disableYearsDropdown ? 'false' : 'true'}"
+		 data-dynamic-date-range="${datePicker.dynamicDateRange ? 'true' : 'false'}"
+		 data-disabled-beforedays="${datePicker.disabledDays=='disableBeforeDates' ? (datePicker.disabledBeforeDays > 0 ? datePicker.disabledBeforeDays : 0) : ''}">
+		<sly data-sly-include="single-date-picker.html"></sly>
+    </div>
+
+    <div data-sly-test="${datePicker.datePickerType=='rangeDatePicker'}" class="a-date-picker a-date-picker--range ${customConfig.className}"
+         data-js-component="date-picker" data-type="range" data-date-format="${datePicker.dateFormat}"
+         data-disable-date="${datePicker.disableDateRequired ? datePicker.disabledDate : ''}"
+         data-disabled-years="${datePicker.disabledYears > 0 ? datePicker.disabledYears : 0}"
+         data-disabled-weekend="${datePicker.disableWeekend ? datePicker.disableWeekend : false}"
+         data-disabled-aftermonths="${datePicker.disabledAfterMonths > 0 ? datePicker.disabledAfterMonths : 0}"
+         data-disabled-pastinfuturecal="${datePicker.disablePastinFutureCal ? datePicker.disablePastinFutureCal : false}"
+		 data-disabled-afterdays="${datePicker.disabledDays=='disableAfterDates' ? (datePicker.disabledAfterDays > 0 ? datePicker.disabledAfterDays : 0) :''}"
+		 data-disabled-pastandfuturedays="${datePicker.disablePastAndFutureDays ? datePicker.disablePastAndFutureDays : false}"         
+		 data-enable-dropdown-month="${datePicker.disableMonthsDropdown ? 'false' : 'true'}"
+		 data-enable-dropdown-year="${datePicker.disableYearsDropdown ? 'false' : 'true'}"
+		 data-dynamic-date-range="${datePicker.dynamicDateRange ? 'true' : 'false'}"
+		 data-disabled-beforedays="${datePicker.disabledDays=='disableBeforeDates' ? (datePicker.disabledBeforeDays > 0 ? datePicker.disabledBeforeDays : 0) : ''}">
+		<sly data-sly-include="range-date-picker.html"></sly>
+    </div>
+</sly>
+<sly data-sly-call="${template.placeholder @ isEmpty=!datePicker.datePickerType}"></sly>

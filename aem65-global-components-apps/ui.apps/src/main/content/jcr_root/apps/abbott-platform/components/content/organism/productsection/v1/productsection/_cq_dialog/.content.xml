@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Product Section"
+    sling:resourceType="cq/gui/components/authoring/dialog"
+    extraClientlibs="cq.authoring.dialog">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                maximized="{Boolean}true">
+                <items jcr:primaryType="nt:unstructured">
+                    <texttab
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Title &amp; Text"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <title
+												jcr:primaryType="nt:unstructured"
+												sling:resourceType="cq/gui/components/authoring/dialog/richtext"
+												fieldDescription="A title to display as the headline for the Product section."
+												fieldLabel="Title"
+												name="./title"
+												removeSingleParagraphContainer="{Boolean}true"
+												useFixedInlineToolbar="{Boolean}true">
+												<rtePlugins
+													jcr:primaryType="nt:unstructured"
+													sling:resourceSuperType="/apps/abbott-platform/components/core/text/v1/text/rtePlugins"/>
+												<uiSettings
+													jcr:primaryType="nt:unstructured"
+													sling:resourceSuperType="/apps/abbott-platform/components/core/text/v1/text/uiSettings"/>
+												<htmlRules 
+													jcr:primaryType="nt:unstructured"
+													sling:resourceSuperType="/apps/abbott-platform/components/core/text/v1/text/htmlRules"/>
+											</title>
+                                            <description
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="cq/gui/components/authoring/dialog/richtext"
+                                                fieldDescription="A description to display as the subheadline for the Product section."
+                                                fieldLabel="Description"
+                                                name="./description"
+                                                useFixedInlineToolbar="{Boolean}true">
+                                                <rtePlugins
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceSuperType="abbott-platform/components/core/text/v1/text/rtePlugins"/>
+                                                <uiSettings
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceSuperType="abbott-platform/components/core/text/v1/text/uiSettings"/>
+                                                <htmlRules 
+													jcr:primaryType="nt:unstructured"
+													sling:resourceSuperType="abbott-platform/components/core/text/v1/text/htmlRules"/>
+                                            </description>
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </texttab>
+                    <imagetab
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Image &amp; Video"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <productSectionType
+                                                granite:class="cq-dialog-dropdown-showhide"
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:orderBefore="id"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                fieldDescription="Please select Product Section type"
+                                                fieldLabel="Product Section Type"
+                                                id="productSectionType"
+                                                name="./productSectionType"
+                                                text="Product Section Type">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <image
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="Image"
+                                                        value="image"/>
+                                                    <video
+                                                        jcr:primaryType="nt:unstructured"
+                                                        text="Video"
+                                                        value="video"/>
+                                                </items>
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    cq-dialog-dropdown-showhide-target=".action-showhide-target"/>
+                                            </productSectionType>
+                                            <imageContainer
+                                                granite:class="hide action-showhide-target"
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:orderBefore="id"
+                                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <imageSize
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/form/radiogroup"
+                                                        fieldLabel="Image Size"
+                                                        fieldDescription="Please select Image Size"
+                                                        name="./imageSize"
+                                                        required="{Boolean}true"
+                                                        title="Image Size"
+                                                        vertical="{Boolean}true">
+                                                        <items jcr:primaryType="nt:unstructured">
+                                                            <option1
+                                                                jcr:primaryType="nt:unstructured"
+                                                                checked="{Boolean}true"
+                                                                text="Small Size"
+                                                                value="small"/>
+                                                            <option2
+                                                                jcr:primaryType="nt:unstructured"
+                                                                text="Large Size"
+                                                                value="large"/>
+                                                        </items>
+                                                    </imageSize>
+                                                </items>
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    showhidetargetvalue="image"/>
+                                            </imageContainer>
+                                            <videoContainer
+                                                granite:class="hide action-showhide-target"
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:orderBefore="id"
+                                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                                <items jcr:primaryType="nt:unstructured"/>
+                                                <granite:data
+                                                    jcr:primaryType="nt:unstructured"
+                                                    showhidetargetvalue="video"/>
+                                            </videoContainer>
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </imagetab>
+                    <buttonstab
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Buttons &amp; Actions"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <buttonCount
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/numberfield"
+                                                fieldDescription="Please specify number of buttons required"
+                                                fieldLabel="Product Button Count"
+                                                max="{Long}2"
+                                                min="{Long}0"
+                                                name="./buttonCount"/>
+                                            <badgeChecked
+                                                granite:class="product-badge-check"
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                fieldDescription="Please check the box if badge is required for image"
+                                                name="./badgeChecked"
+                                                text="Is Badge Required?"
+                                                value="{Boolean}true"/>
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </buttonstab>
+					<gradient
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="/libs/granite/ui/components/coral/foundation/include"
+                        path="abbott-platform/components/core/backgroundoptions/v1/backgroundoptions/cq:dialog/content/items/tabs/items/gradient"/>
+                    <configItem
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="ID/Class Config"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <configTab
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="/libs/granite/ui/components/coral/foundation/include"
+                                                path="/apps/abbott-platform/components/core/customconfig/v1/customconfig/cq:dialog/content/items/tabs/items/configItem/items/columns/items/column"/>
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </configItem>
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>

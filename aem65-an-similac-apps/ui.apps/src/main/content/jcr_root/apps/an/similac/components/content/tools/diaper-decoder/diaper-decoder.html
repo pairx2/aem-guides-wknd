@@ -1,0 +1,56 @@
+<div  class="cq-placeholder section"  data-emptytext="Configure diaper Component in EDIT Mode" data-sly-test.author="${(wcmmode.edit || wcmmode.design)}" ></div>
+
+
+<div class="diaper-decoder container">
+	<h1 class="diaper-decoder__title">${properties.decoderTitle}</h1>
+	<p class="diaper-decoder__title1">${properties.decoderDescription @context='html'}</p>
+	<p class="diaper-decoder__title2">${properties.subTitle}</p>
+	<sly data-sly-list.decoderMulti="${resource.getChildren}">
+		<sly data-sly-test="${decoderMulti.name == 'diaperLinks'}">
+			<div class="diaper-tool-wrapper">
+				<span id="prevNav" class="sim-icons prev-nav" data-icon="left-nav-disabled">
+					<svg viewBox="0 0 100 100" class="sim-icon">
+						<use href="#icon-left-nav-disabled"></use>
+					</svg>
+				</span>
+				<div class="bx-wrapper" style="max-width: 736px;">
+					<div class="bx-viewport" aria-live="polite" style="width: 100%; overflow: hidden; position: relative; height: 88px;">
+						<ul class="diaper-tool" style="width: 12215%; position: relative; transition-duration: 0.2s; transform: translate3d(-40px, 0px, 0px);" data-sly-list.child="${decoderMulti.getChildren}">
+
+                         <sly data-sly-use.analyticsConfig="${'com.abbott.aem.an.similac.core.models.AnalyticsConfigModel' @ sectionTitle ='diaper decoder', linkName=child.imageTitle}" />
+                          <sly data-sly-test.eventCategory="${properties.eventCategory ? properties.eventCategory : 'tool'}"/>
+                           <sly data-sly-test.eventAction="${properties.eventAction ? properties.eventAction : 'interaction'}" />
+                            <sly data-sly-test.eventLabel="${properties.eventLabel ? properties.eventLabel : analyticsConfig.eventLabel}" />
+                            <sly data-sly-test.gtmValueTitle="${'{0}{1}{2}{3}{4}' @ format=[eventCategory, '|',eventAction,'|',eventLabel]}" />
+							<li class="decoder-img-wrap" id="decoder-content-${childList.index}" style="float: left; list-style: none; position: relative; width: 184px;" aria-hidden="false">
+								<div class="decoder-img">
+									<img src="${child.imageUrl}" title="${child.imageTitle}" alt="${child.imageTitle}" data-gtm="${gtmValueTitle @context='attribute'}">
+								</div>
+							</li>
+						</ul>
+						</div>
+						<div class="bx-controls bx-has-controls-direction">
+							<div class="bx-controls-direction">
+								<a class="bx-prev" href="">Prev</a>
+								<a class="bx-next" href="">Next</a>
+							</div>
+						</div>
+					</div>
+					<span id="nextNav" class="sim-icons next-nav" data-icon="right-nav">
+						<svg viewBox="0 0 100 100" class="sim-icon">
+							<use href="#icon-right-nav"></use>
+						</svg>
+					</span>
+				</div>
+				<div class="diaper-decoder-section">
+					<sly data-sly-list.child="${decoderMulti.getChildren}" >
+						<sly data-sly-test.contentPar="${'{0}{1}{2}{3}{4}' @ format=['decoder', '-','content','-',childList.index]}" />
+						<div class="diaper-decoder-content ${childList.index== 0?'active':''} ">
+							<sly data-sly-resource="${contentPar @ resourceType='an/similac/components/content/tools/decoder-content'}"></sly>
+						</div>
+					</sly>
+				</div>
+			</sly>
+		</sly>
+	</div>
+	<div class="clearfix"></div>

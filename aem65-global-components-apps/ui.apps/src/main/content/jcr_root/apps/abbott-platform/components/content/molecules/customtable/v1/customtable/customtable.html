@@ -1,0 +1,166 @@
+<sly data-sly-use.template="core/wcm/components/commons/v1/templates.html" />
+<sly data-sly-use.customTable="com.abbott.aem.platform.common.components.models.CustomTable"
+     data-sly-use.columndropdownTemplate="columndropdown.html"
+     data-sly-use.columnrangefilterTemplate="columnrangefilter.html"
+     data-sly-use.component="com.adobe.cq.wcm.core.components.models.Component"
+     data-sly-use.customConfig="com.abbott.aem.platform.common.components.models.CustomConfig"
+>
+    <sly data-sly-use.i18n_showText="${'com.abbott.aem.cloud.platform.core.models.I18nFetcher' @ key = 'show-text'}" />
+    <sly data-sly-use.i18n_perPageText="${'com.abbott.aem.cloud.platform.core.models.I18nFetcher' @ key = 'per-page-text'}" />
+
+    <!-- Data table start here -->
+    <section id="${component.id}" class="m-custom-table ${customConfig.className}" data-js-component="customtable" >
+
+        <input type="hidden" name="eslDataSourceMethodAction" value="${customTable.eslDataSourceMethodAction}" />
+        <input type="hidden" name="eslDataSource" value="${customTable.tableDataSource}" />
+        <input type="hidden" name="jsonDataSource" value="${customTable.jsonPath}" />
+        <input type="hidden" name="dataSourceType" value="${customTable.dataSourceType}" />
+        <input type="hidden" name="tableRowCount" value="${customTable.tableRowCount || '12'}" />
+        <input type="hidden" name="noResultsFoundText" value="${customTable.noTableDataFoundText}" />
+        <input type="hidden" name="paginationEnabled" value="${customTable.enablePagination ? 'true' : 'false'}" />
+        <input type="hidden" name="columnKeyErrText" value="${customTable.invalidCoulumnKeyText}" />
+        <input type="hidden" name="showText" value="${i18n_showText.title}" />
+        <input type="hidden" name="perPageText" value="${i18n_perPageText.title}" />
+        <input type="hidden" name="updateRequest" value="${customTable.updateRequest}" />
+        <input type="hidden" name="updateCreatedRow" value="${customTable.updateCreatedRow}" />
+        <input type="hidden" name="enableBulkSelect" value="${customTable.enableBulkSelect ? 'true' : 'false'}" />
+        <input type="hidden" name="updateResponse" value="${customTable.updateResponse}" />
+        <input type="hidden" name="disableDefaultSorting" value="${customTable.disableDefaultSorting ? 'true' : 'false'}" />
+
+        <sly data-sly-test="${customTable.editTableRowResult}">
+            <div class="edit-row-pop-up"
+                 data-sly-resource="${'edit-row-record' @ resourceType=customTable.linkProxyPath,decoration=true}">
+            </div>
+        </sly>
+        <sly data-sly-test="${customTable.deleteTableRowResult}">
+            <div class="delete-row-pop-up"
+                 data-sly-resource="${'delete-row-record' @ resourceType=customTable.linkProxyPath,decoration=true}">
+            </div>
+        </sly>
+
+        <section class="m-custom-table__header">
+            <div class="row">
+                <sly data-sly-test="${customTable.enableBulkSelect}">
+                    <div class="col m-custom-table__header--select">
+                        <div class="a-checkbox a-checkbox--vertical">
+                            <label class="a-checkbox__label">
+                                <span class="a-checkbox__text"></span>
+                                <input type="checkbox" class="a-checkbox__input" id="selectAllRowCheckbox" name="selectAllRowCheckbox">
+                                <span class="a-checkbox__custom" tabindex="0" role="checkbox"></span>
+                            </label>
+                        </div>
+                       <div id="selectedRowCallbackBtn" class="m-custom-table__header--select-btn">${customTable.bulkSelectLabelText}</div>
+                    </div>
+                </sly>
+                <sly data-sly-test="${customTable.enableSearch}">
+                    <div class="col-12 col-sm-4 col-md-6 col-lg-4 form-group m-custom-table__search">
+                        <!-- SEARCH BAR CODE -->
+                        <div class="m-custom-table__search-bar">
+                            <div class="m-custom-table__search-bar__container">
+                                <div class="m-custom-table__search-bar__input">
+                                    <input name="search-input"
+                                           class="form-control m-custom-table__search-bar__input-field" autocomplete="off"
+                                           type="search" placeholder="${customTable.searchLabelText}"
+                                           aria-label="Search" />
+                                    <a class="m-custom-table__search-bar__close" href="#" tabindex="0" role="img"
+                                       aria-role="button" aria-label="Clear Search">
+                                        <em class="abt-icon abt-icon-cancel"></em>
+                                    </a>
+                                </div>
+                                <div class="m-custom-table__search-bar__icon">
+                                    <em aria-hidden="true" class="abt-icon abt-icon-search"></em>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- SEARCH BAR CODE -->
+                    </div>
+                </sly>
+                <div class="m-custom-table__additional_headers">
+
+                    <sly data-sly-test="${customTable.enableDownloadButton}">
+                        <div class="m-custom-table__header-btn-download">
+                            <sly data-sly-resource="${'add-download-button' @ resourceType=customTable.buttonProxyPath,decoration=true}" />
+                        </div>
+                        <input type="hidden" name="downloadDataSource" value="${customTable.downloadDataSource}" />
+                    </sly>
+
+                    <sly data-sly-test="${customTable.enablePrimaryButton}">
+                        <div class="m-custom-table__header-btn-addnew">
+                            <!--Button Starts-->
+                            <sly
+                                    data-sly-resource="${'add-primary-button' @ resourceType=customTable.buttonProxyPath,decoration=true}" />
+                            <!--Button Ends-->
+                        </div>
+                    </sly>
+
+                    <sly data-sly-test="${customTable.enableLink}">
+                        <div class="m-custom-table__header-usergroup">
+                            <div class="m-custom-table__header-usergroup-text">
+                                <sly data-sly-resource="${'add-link' @ resourceType=customTable.linkProxyPath,decoration=true}" />
+                            </div>
+                        </div>
+                    </sly>
+
+                    <sly data-sly-list.tableColumns="${customTable.tableColumnlist}">
+                        <sly data-sly-test="${tableColumns.enableColFilter}">
+                            <div class="m-custom-table_drop-down__filter m-custom-table_drop-down__filter--col-${customTable.enableBulkSelect ? customTable.colIndex : tableColumnsList.index}">
+                                <sly data-sly-call="${columndropdownTemplate.columndropdown @ dropdown=dropdown}"></sly>
+                            </div>
+                        </sly>
+                        <sly>${customTable.incrementColIndex}</sly>
+                    </sly>
+                    <!-- Range filter HTML -->
+                    <sly data-sly-list.tableColumns="${customTable.tableColumnlist}">
+                        <sly data-sly-test="${tableColumns.enableRangeFilter}">
+                            <sly data-sly-test="${tableColumns.rangeFilterType == 'field'}">
+                                <div class="m-custom-table_drop-down__range a-dropdown m-custom-table_drop-down__range--col-${customTable.enableBulkSelect ? customTable.rangeFilterColIndex : tableColumnsList.index}">
+                                    <sly data-sly-use.columnrangefilterTemplate="columnrangefilter.html" data-sly-call="${columnrangefilterTemplate.columnrangefilter @ rangefilterfieldlabel=tableColumns.rangeFilterLabelText,minRangeLabel=tableColumns.minRangeLabelText,maxRangeLabel=tableColumns.maxRangeLabelText,closeText=tableColumns.closeText, tableId=component.id ,index= customTable.enableBulkSelect ? customTable.rangeFilterColIndex : tableColumnsList.index}"></sly>
+                                </div>
+                            </sly>
+                            <sly data-sly-test="${tableColumns.rangeFilterType == 'datepicker'}">
+                                <div class="m-custom-table_drop-down__range a-dropdown m-custom-table_drop-down__range--col-${customTable.enableBulkSelect ? customTable.rangeFilterColIndex : tableColumnsList.index}">
+                                    <sly data-sly-use.columnrangefilterTemplate="columnrangefilter.html" data-sly-call="${columnrangefilterTemplate.columndaterangefilter @ rangefilterdatepickerlabel=tableColumns.rangeFilterLabelText,minRangeLabel=tableColumns.minRangeLabelText,maxRangeLabel=tableColumns.maxRangeLabelText,closeText=tableColumns.closeText, tableId=component.id, index= customTable.enableBulkSelect ? customTable.rangeFilterColIndex : tableColumnsList.index}"></sly>
+                                </div>
+                            </sly>
+                        </sly>
+                        <sly>${customTable.incrementColIndexForRangeFilter}</sly>
+                    </sly>
+                    <!-- Range filter HTML end-->
+
+                    <sly data-sly-test="${customTable.enableReset}">
+                        <div class="m-custom-table__header-btn-reset">
+                            <div class="a-link">
+                                <a aria-label="${customTable.resetText}" data-cmp-clickable="true" role="link"
+                                   class="a-link__text ${wcmmode.edit ? 'p-6' :''}"
+                                   href="javascript:void(0);">
+                                    <span class="a-link__inner-text">${customTable.resetText}</span>
+                                </a>
+                            </div>
+                        </div>
+                    </sly>
+
+                </div>
+            </div>
+        </section>
+        <div class="m-custom-table__content table-responsive">
+            <table class="m-custom-table__table table" aria-describedby="custom-table">
+                <thead>
+                <tr>
+                    <sly data-sly-test="${customTable.enableBulkSelect}">
+                        <th class="m-custom-table__table-heading" scope="col" data-name="selectCheckBox"></th>
+                    </sly>
+                    <sly data-sly-list.tableColumns="${customTable.tableColumnlist}">
+                        <th class="m-custom-table__table-heading" scope="col" data-name="${tableColumns.columnKey}" data-filter-required="${tableColumns.enableColFilter}" data-filter-all-text="${tableColumns.filterLabelText}" data-range-required="${tableColumns.enableRangeFilter}" data-range-label="${tableColumns.rangeFilterLabelText}" data-visibility="${tableColumns.enableHiddenColFilter}">
+                            ${tableColumns.columnLabel}</th>
+                    </sly>
+                    <sly data-sly-test="${customTable.editTableRowResult || customTable.deleteTableRowResult}">
+                        <th class="m-custom-table__table-heading m-custom-table__table--action" scope="col">&nbsp;</th>
+                    </sly>
+                </tr>
+                </thead>
+            </table>
+        </div>
+    </section>
+</sly>
+<sly data-sly-call="${template.placeholder @ isEmpty=!text}" />

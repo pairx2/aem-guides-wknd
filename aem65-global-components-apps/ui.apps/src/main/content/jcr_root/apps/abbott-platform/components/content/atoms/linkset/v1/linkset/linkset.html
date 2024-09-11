@@ -1,0 +1,13 @@
+<div data-sly-test="${wcmmode.edit}" class="cq-placeholder link-comp" data-emptyText="LinkSet"></div>
+<sly data-sly-use.counter="com.abbott.aem.platform.common.components.models.LinkSet" />
+<div class="a-link" data-sly-use.linkexternaltemplate="abbott-platform/components/content/atoms/link/v1/link/linkexternaltemplate.html"
+		  data-sly-use.linknormaltemplate="abbott-platform/components/content/atoms/link/v1/link/linknormaltemplate.html">
+
+
+	<sly data-sly-test="${counter.external}">
+		<sly data-sly-call="${linkexternaltemplate.item @ id=counter.id, url=counter.link, action=counter.action, text=counter.text, data=counter.data}"></sly>
+	</sly>
+
+		<div data-sly-test="${!counter.external}" data-sly-call="${linknormaltemplate.item @ id=counter.id, url=counter.link, action=counter.action, text=counter.text, data=counter.data }"></div>
+
+ </div>

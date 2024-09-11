@@ -1,0 +1,35 @@
+<sly data-sly-use.ctalink="${'com.abbott.aem.an.similac.core.models.LinkHelperModel' @ href=properties.ctaLink}" />
+<sly data-sly-use.analyticsConfig="${'com.abbott.aem.an.similac.core.models.AnalyticsConfigModel' @ pageName=currentPage.name, sectionTitle = properties.ctaLabel, linkName='link'}" />
+<div style="padding-top: 1.925rem;">
+    <div class="row">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8">
+            <div class="row" style="margin-bottom: 1.565rem;">
+                <div class="col-md-12 col-xs-12 d-none d-md-block">
+                    <div class="register-btn">
+                    	<a href="${ctalink.linkHref}" target="${properties.newWindow ? '_blank' : '_self'}" data-gtm = "sign-in|click|${analyticsConfig.eventLabel @context='attribute'}" >
+                        	<button type="button" class="btn btn-secondary col-lg-5 col-md-6 col-xs-12">${properties.ctaLabel}
+                            <span class="sim-icons" data-icon="arrow-fill-right"></span></button>
+						</a>
+                    </div>
+                </div>
+				 <div class="col-xs-12 d-block d-md-none register-link">
+                    <div>
+                        <p>${properties.ctaLabel}
+                            <a href="${ctalink.linkHref}" target="${properties.newWindow ? '_blank' : '_self'}" data-gtm = "sign-in|click|${analyticsConfig.eventLabel @context='attribute'}">
+                                Sign in
+                            </a>
+                        </p>
+            </div>
+                </div>
+            </div>			
+            <div class="row">                  
+                 <div class="col-md-12 col-xs-12">
+                     <div id="registration">
+                     </div>         
+                 </div>
+             </div>
+            <div class="col-lg-1"></div>
+        </div>
+    </div>
+</div>

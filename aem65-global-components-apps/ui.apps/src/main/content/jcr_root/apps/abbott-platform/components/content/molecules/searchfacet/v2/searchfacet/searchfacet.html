@@ -1,0 +1,80 @@
+<sly data-sly-use.searchFacetObj="com.abbott.aem.platform.common.components.models.SearchFacet"
+data-sly-use.customConfig="com.abbott.aem.platform.common.components.models.CustomConfig"
+data-sly-use.component="com.adobe.cq.wcm.core.components.models.Component"
+    data-sly-use.templates="core/wcm/components/commons/v1/templates.html">
+
+    <div id="${component.id}"  class="m-link-stack m-link-stack-faq js-m-link-stack m-0 m-searchfacet ${customConfig.className}" data-js-component="default-link-stack">
+        <div class="container search-facet-container" hidden>
+            <div class="row">
+				<div class="col-6 col-md-6 col-sm-6 m-searchfacet__filter-back" id="backToResult">
+                <em class="abt-icon abt-icon-left-arrow m-searchfacet__back-icon" aria-hidden="true"></em>${properties.mobileBackLabel}</div>
+                <div class="col-6 col-md-6 col-sm-6 m-searchfacet__clear-all" id="reloadResultPage">${properties.mobileClearAllLabel}</div>
+                <div class="filter-title">
+                    <h4>${properties.mobileFiterLabel}</h4> 
+                    <hr />
+                </div>
+                <div class="col-12 m-search-category">
+                    <div class="search-filter m-search-category__search-filter" data-sly-test="${searchFacetObj.isSearchBarEnable}">
+                        <input type="text" name="search-filter" id="search-filter"
+                            placeholder="${searchFacetObj.searchPlaceholder}">
+                            <em class="abt-icon abt-icon-search search-icon" aria-hidden="true"></em>
+                    </div>
+                    <sly data-sly-test.enableRetainFilters="${searchFacetObj.retainFilters}"/>
+                    <input type="hidden" id="retain-filters" name="retain-filters" value="${enableRetainFilters ? 'true' : 'false'}"/>
+                    <sly data-sly-test.isTagSearchFacet="${properties.isTagFacet == 'true'}"/>
+                    <input type="hidden" id="is-tag-search-facet" name="tag-search-facet" value="${isTagSearchFacet ? 'true' : 'false'}"/>
+                    <sly data-sly-list.searchFacetItem="${searchFacetObj.searchFacetProperties}">
+                        <sly data-sly-test.tagFacetName="${['categorytagfacets',searchFacetItemList.index] @join='-'}"/>
+                        <div class="m-link-stack--header section-heading m-search-category__header m-search-category__section-heading" data-category-name="${isTagSearchFacet ? tagFacetName : searchFacetItem.fieldName}" hidden>
+                            <h5 class="m-link-stack--title m-search-category__title">${isTagSearchFacet ? searchFacetItem.tagFacetTitle : searchFacetItem.title}</h5>
+                        </div>
+                        <div class="m-link-stack--dropdown m-search-category__form"
+                            data-field-name="${isTagSearchFacet ? tagFacetName : searchFacetItem.fieldName}"
+                            data-tag-field-name="${isTagSearchFacet ? tagFacetName : false}"
+                            data-is-multiple="${searchFacetItem.isMultiple}"
+							data-is-sort="${searchFacetItem.isSortingEnable}"
+                        	data-sort-by-order="${searchFacetItem.defaultSortingOrder}"
+							data-is-truncation-enable="${searchFacetItem.isTruncationEnable}"
+                            data-is-primary="${searchFacetItem.isPrimary}"
+                            data-is-secondary="${searchFacetItem.isSecondary}">
+                            <template class="facet-temp">
+                                <div class="faq-link search-category-item m-search-category__link m-search-category__item">
+                                    <div data-sly-test="${searchFacetItem.isMultiple == 'true'}"
+                                        class="a-checkbox a-checkbox--horizontal search-category-data m-search-category__data"
+                                        aria-label="{link-text}">
+                                        <label class="a-checkbox__label" for="{link-text}">
+                                            <span class="a-checkbox__text">{link-text}</span>
+                                            <input type="checkbox" class="a-checkbox__input" name="{link-text}" id="{link-text}"
+                                                data-required="true">
+                                            <span class="a-checkbox__custom"></span>
+                                        </label>
+                                    </div>
+                                    <div data-sly-test="${searchFacetItem.isMultiple == 'false'}" class="a-link">
+                                        <a class="a-link__text" aria-label="{link-text}" role="link"
+                                            data-id="">{link-text}</a>
+                                    </div>
+                                </div>
+                            </template>
+                            <span
+                                class="m-link-stack--dropdown-value m-search-category__formvalue">${searchFacetItem.title}</span>
+                            <div
+                                class="js-faq-links m-link-stack--content m-search-category__js--links m-search-category__content d-none d-sm-block list-item pb-0">
+                            </div>
+                        </div>
+                        <div class="view-all m-search-category__view-all"
+                            data-sly-test="${searchFacetItem.isTruncationEnable == 'true'}">
+                            <!-- This will be created as a dialog property -->
+                            <a href="javascript:;" class="list-collapsed"><span>View All</span><em class="abt-icon abt-icon-down-arrow m-down-icon" aria-hidden="true"></em></a>
+                        </div>
+                        <input data-sly-test="${isTagSearchFacet}" type="hidden" name="${searchFacetItem.tagFacetTitle}" id="${tagFacetName}" value="${searchFacetItem.allTagFacets}"/>
+                     </sly>
+                    <div class="apply-button m-search-category__apply-button d-md-none">
+                        <!-- This will be created as a dialog property -->
+                        <button type="button" class="btn btn-primary">Apply</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</sly>
+<sly data-sly-call="${templates.placeholder @ isEmpty=searchFacetObj.searchPlaceholder}"></sly>

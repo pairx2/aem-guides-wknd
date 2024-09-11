@@ -1,0 +1,12 @@
+<sly data-sly-use.footer="com.abbott.aem.platform.common.components.models.Footer">
+   <ul class="o-footer__disclaimer-section">
+      <sly data-sly-list.disclaimer="${footer.listOfDisclaimer}">
+         <sly class="${wcmmode.edit ? 'disclaimers-section-edit' : ''}">
+            <sly data-sly-test.col="${ '{0}{1}' @format=['disclaimers_section_link_', disclaimerList.index] }" />
+            <li class="a-link ${col}">
+               <sly data-sly-resource="${@path=col, resourceType=footer.linkProxyPath}" />
+            </li>
+         </sly>
+      </sly>
+   </ul>
+</sly>

@@ -1,0 +1,196 @@
+<sly data-sly-use.templates="an/similac/components/content/templates.html" />
+<sly data-sly-use.obj="${'com.abbott.aem.an.similac.core.models.PopulateVariationsModel' @ resourcePath=currentPage.path}" data-sly-test="${obj}">
+<sly data-sly-use.config="${'com.abbott.aem.an.similac.core.models.SimilacConfigModel'}"/>
+<sly data-sly-test.sizeVariation="${obj.variationPageList}">
+	<sly data-sly-list.key="${sizeVariation}">
+    	<input type="hidden" id="size-key-${key}" data-variation-page-path="${sizeVariation[key] @ context='uri'}"  data-sly-test="${sizeVariation[key] @ context='uri'}"/>
+	</sly>
+</sly>
+<input type="hidden" id="stock-labels" data-backorder="${'Back Order' @ i18n, context='html'}" data-out-of-stock="${'Out of Stock' @ i18n, context='html'}" data-in-stock="${'In Stock' @ i18n, context='html'}" />
+<input type="hidden" value=${config.storeUrl} />
+<input type="hidden" value=${config.storeName} />
+<div class="container">
+   <div class="row">
+      <div class="col-12 col-md-6 m-left-s">
+         <!--/* PDP-CAROUSEL-SLIDER */-->
+         <sly data-sly-resource="${'image-slider' @ resourceType='an/similac/components/content/products/image-slider'}"/>
+      </div>
+      <div class="col-12 col-md-6 col-lg-6 col-xl-4 m-right-s">
+	  <sly data-sly-use.analyticsConfig="${'com.abbott.aem.an.similac.core.models.AnalyticsConfigModel' @ sectionTitle = pageProperties.meta_title}" />    
+         <section class="pdp-info" id="pdp-info" aria-label="loading" aria-hidden="true" data-product-name="${analyticsConfig.eventLabel @ context='attribute'}">
+            <h1 class="pdp-info__title">
+               ${pageProperties.meta_title @ context='html'}
+            </h1>
+			<sly data-sly-test ="${pageProperties.amazon_purchase == '0'}">
+            <div class="d-flex">
+               <div class="pdp-info__rating" data-sly-test="${pageProperties.bazaar_voice}">
+                  <div data-bv-show="rating_summary" data-bv-product-id="${pageProperties.bazaar_voice @ context='attribute'}">
+				  </div>
+               </div>
+            </div>
+            <div class="pdp-info__price mb-4">
+               <p class="pdp-info__list-price d-none  mt-3 mb-2">${(properties.regularPriceLabel ? properties.regularPriceLabel : 'Regular Price:') @ i18n, context='html'} $<span id="list-price"></span></p>
+               <div class="clearfix">
+                  <div class="float-left">
+                     <p class="pdp-info__price-text m-0">$<span id="current-price">${ '#.00' @ format=pageProperties.price}</span></p>
+                     <p class="pdp-info__pack-detail m-0">
+                        <sly data-sly-test="${pageProperties.size_or_weight && pageProperties.size_or_weight != 'null'}">
+                           ${pageProperties.size_or_weight}
+                        </sly>
+                        <sly data-sly-test.value="${pageProperties.case_of_product && pageProperties.size_or_weight && pageProperties.size_or_weight != 'null' && pageProperties.case_of_product != 'null'}">
+                           /
+                        </sly>
+                        <sly data-sly-test="${pageProperties.case_of_product && pageProperties.case_of_product != 'null'}">
+                           ${pageProperties.case_of_product}
+                        </sly>
+                     </p>
+                  </div>
+                  <div class="float-right text-right mt-2">
+                     <p class="pdp-info__in-stock mb-0" id="stock-status"></p>
+                     <p class="pdp-info__sku m-0" id="pdp-sku" data-sku="${pageProperties.sku @ context='attribute'}">${'SKU# ' @ i18n, context='html'}${pageProperties.sku @ context='text'}</p>
+                  </div>
+               </div>
+            </div>
+            <sly data-sly-test="${pageProperties.order_on_call == '1'}">
+				<div class="pdp-info__dd">
+				   <sly data-sly-test="${obj.sizeValueList}">
+					  <label for="pdp-Size" class="pdp-info__dd-title d-block m-0">${currentStyle.sizeLabel}</label>
+					  <div class="pdp-info__dd-select">
+						 <select data-prop="size" id="pdp-Size" class="pdp-info__dd-select-control is-prop-field">
+							<sly data-sly-list.sizekeyName="${obj.sizeValueList}">
+							   <option data-sly-test="${sizekeyName != 'jcr:primaryType'}" value=${sizekeyName}>${obj.sizeValueList[sizekeyName]}</option>
+							</sly>
+						 </select>
+					  </div>
+				   </sly>
+				</div>
+				<div class="retailer-purchase">
+					 <sly data-sly-test="${pageProperties.message}">
+						 ${pageProperties.message @ context = 'html'}
+					 </sly>
+				 </div>
+			</sly>
+            <sly data-sly-test="${!pageProperties.order_on_call || pageProperties.order_on_call == '0'}">
+			<sly data-sly-test="${pageProperties.message}">
+			<div class="out-of-content">
+			  ${pageProperties.message @ context = 'html'}					 
+			</div>
+			</sly>
+            <label for="radio-one-time" class="abbott-radio ">
+            <input type="radio" id="radio-one-time" name="buy-type" class="abbott-radio__input" value="one-time"  checked  />
+            <span class="abbott-radio__label">${'One-Time Purchase' @ i18n, context='html'}<span id=""></span></span>
+            </label>
+			<div class="row">
+				<div class="col-12 mt-4 pdp-info__msg" id="subscriptionMessage">
+
+			  </div>
+			</div>
+            <div class="row out-ofstoke-hide"> 
+               <div class="col-12 mt-4"> 
+                     <div class="pdp-info__dd " data-sly-test="${obj.flavourList && obj.flavourDropdownFlag}">
+                        <label for="pdp-Flavors" class="pdp-info__dd-title d-block m-0">${'Flavors' @ i18n, context='html'}</label>
+                        <div class="custom-select-wrapper ">
+                           <span class="sim-icons" data-icon="arrow-down-color"></span>
+                           <select id="pdp-Flavors" class="custom-select is-prop-field" data-iconpos="noicon">
+                              <sly data-sly-list.flavourskeyName="${obj.flavourList}">
+                                 <option  value=${flavourskeyName} data-sly-test="${flavourskeyName != 'jcr:primaryType'  && flavourskeyName != 'jcr:mixinTypes' && flavourskeyName != 'cq:lastRolledout' && flavourskeyName != 'cq:lastRolledoutBy'}">${obj.flavoursValues[flavourskeyName]}</option>
+                              </sly>
+                           </select>
+                        </div>
+                     </div>
+                     <div class="pdp-info__dd " data-sly-test="${obj.sizeValueList}">
+                        <label for="pdp-Size" class="pdp-info__dd-title d-block m-0">${'Size' @ i18n, context='html'}</label>
+                        <div class="custom-select-wrapper">
+                           <span class="sim-icons" data-icon="arrow-down-color"></span>
+                           <select id="pdp-size" class="custom-select is-prop-field" data-iconpos="noicon">
+                              <sly data-sly-list.sizekeyName="${obj.sizeValueList}">
+                                 <option  value=${sizekeyName} data-sly-test="${sizekeyName != 'jcr:primaryType' && sizekeyName != 'jcr:mixinTypes' && sizekeyName != 'cq:lastRolledout' && sizekeyName != 'cq:lastRolledoutBy'}">
+                                 	${obj.sizeValueList[sizekeyName]}</option>
+                              </sly>
+                           </select>
+                        </div>
+                     </div>
+               </div>
+            </div>
+			<sly id="pdp-sku" data-sly-test.sku="${pageProperties.sku @ context='attribute'}" />			
+            <div class="pdp-info__buy-type-one-time">
+               <div class="row out-ofstoke-hide">
+                  <div class="col-5 col-md-5 col-lg-6 col-xl-5 mt-4">
+                     <div class="quantity-update">
+                        <p class="quantity-update__title m-0">
+                           ${'Enter Quantity' @ i18n, context='html'}
+                        </p>
+                        <div class="input-group mb-3 stepper-control ">
+                           <div class="input-group-prepend">
+                              <button class="btn btn-remove-one-item" type="button">
+                              <span class="sim-icons" data-icon="minus"></span>
+                              </button>
+                           </div>
+                           <input type="text" value="1" min="1" max="10" class="form-control text-center text-number" aria-label="" aria-describedby="basic-addon1"/>
+                           <div class="input-group-append">
+                              <button class="btn btn-add-one-item" type="button">
+                              <span class="sim-icons" data-icon="add"></span>            
+                              </button>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <a id="btn-cart" class="btn btn-primary mt-3">${'Add To Cart' @ i18n, context='html'}</a>			   
+               <a href="${currentStyle.findRetailerUrl  @extension='html'}#sku-${sku}" id="" class="btn btn-secondary mt-3">${'Find a Retailer' @ i18n, context='html'}</a>
+            </div>
+			<sly data-sly-test.isSchedule="${obj.subscriptionID == '2' || obj.subscriptionID == '3'}"> 
+				<div class="pdp-info__buy-type-subscribe  mt-1 d-none">
+				   <div class="row out-ofstoke-hide">
+					  <div class="col-5 col-md-5 col-lg-6 col-xl-5 mt-4">
+						 <div class="quantity-update">
+							<p class="quantity-update__title m-0">
+							   ${'Enter Quantity' @ i18n, context='html'}
+							</p>
+							<div class="input-group mb-3 stepper-control ">
+							   <div class="input-group-prepend">
+								  <button class="btn btn-remove-one-item" type="button">
+								  <span class="sim-icons" data-icon="minus"></span>
+								  </button>
+							   </div>
+							   <input type="text" value="1" min="1" max="10" class="form-control text-center text-number" aria-label="" aria-describedby="basic-addon1"/>
+							   <div class="input-group-append">
+								  <button class="btn btn-add-one-item" type="button">
+								  <span class="sim-icons" data-icon="add"></span>            
+								  </button>
+							   </div>
+							</div>
+						 </div>
+					  </div>
+					  <div class="col-7 col-md-7 col-lg-6 mt-4 delivery-frequency" data-sly-test="${obj.subscriptionMap}">
+						 <div class="pdp-info__dd">
+							<label for="pdp-Duration" class="pdp-info__dd-title d-block m-0">${'Delivery Every * :' @ i18n, context='html'}</label>
+							<div class="custom-select-wrapper">
+							   <span class="sim-icons" data-icon="arrow-down-color"></span>
+							   <select id="pdp-duration" class="custom-select " data-iconpos="noicon">
+							   <option value="">${inheritedPageProperties.placeholderText}</option>
+								<sly data-sly-list.subscriptionkeyName="${obj.subscriptionMap}">
+								   <option  value=${subscriptionkeyName} data-sly-test="${subscriptionkeyName != 'jcr:primaryType' && subscriptionkeyName != 'jcr:mixinTypes' && subscriptionkeyName != 'cq:lastRolledout' && subscriptionkeyName != 'cq:lastRolledoutBy'}">${obj.subscriptionMap[subscriptionkeyName]}</option>
+								</sly>                             
+							   </select>
+							</div>
+						 </div>
+					  </div>
+					  <div class="col-12 col-md-12 col-lg-12 mt-4 error-msg-delivery similac-error-group">${inheritedPageProperties.deliveryErrorMessage}</div>
+				   </div>
+				   <a href="javascript:;" id="btn-schedule" class="btn btn-primary mt-3">${'Schedule Now' @ i18n, context='html'}</a>
+				<a href="${currentStyle.findRetailerUrl  @extension='html'}#sku-${sku}" id="find-retailer-buy-type-subscribe" class="btn btn-secondary mt-3 d-none">${'Find a Retailer' @ i18n, context='html'}</a>				   
+				</div>
+			</sly>
+			</sly>
+			</sly>
+            <sly data-sly-test ="${pageProperties.amazon_purchase == '1'}">
+			<div id="pdp-sku" data-sku="${pageProperties.sku @ context='attribute'}">
+				${pageProperties.message @ context='html'}
+			</div>
+            </sly>
+           
+         </section>
+      </div>
+   </div>
+</div>

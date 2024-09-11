@@ -1,0 +1,37 @@
+<template data-sly-template.item="${@ item='The navigation item', navCount}"
+   data-sly-use.groupTemplate="group.html"
+   data-sly-use.itemContentTemplate="itemContent.html"
+   data-sly-use.noItemContentTemplate ="noItemContent.html">
+
+  <sly data-sly-test.listChildren="${item.children.size}" />
+  <sly data-sly-test = "${!properties.microSiteHeader}">
+  	<ul data-sly-unwrap >
+      <li  class="nav-item dropdown" data-sly-test="${item.level == 0}">
+         <sly data-sly-call="${itemContentTemplate.itemContent @ item = item, index=navCount}" data-sly-test="${listChildren > 0}"></sly>
+	         <sly data-sly-call="${noItemContentTemplate.noItemContent @ item = item, index=navCount}" data-sly-test="${listChildren == 0}"></sly>
+
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown${navCount}" data-sly-test="${listChildren > 0}">
+               <sly data-sly-call="${groupTemplate.group @ items = item.children}"></sly>
+            </ul>
+      </li>
+      <li  class="dropdown-item" data-sly-test="${item.level == 1}">
+         <sly data-sly-call="${itemContentTemplate.itemContent @ item = item, index=navCount}"></sly>
+      </li>
+   </sly>
+    <sly data-sly-test = "${properties.microSiteHeader}">
+       <sly data-sly-test = "${!item.page.properties['hideInMicrosite']}">
+      <ul data-sly-unwrap >
+      <li  class="nav-item dropdown" data-sly-test="${item.level == 0}">
+         <sly data-sly-call="${itemContentTemplate.itemContent @ item = item, index=navCount}" data-sly-test="${listChildren > 0}"></sly>
+	         <sly data-sly-call="${noItemContentTemplate.noItemContent @ item = item, index=navCount}" data-sly-test="${listChildren == 0}"></sly>
+
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown${navCount}" data-sly-test="${listChildren > 0}">
+               <sly data-sly-call="${groupTemplate.group @ items = item.children}"></sly>
+            </ul>
+      </li>
+      <li  class="dropdown-item" data-sly-test="${item.level == 1}">
+         <sly data-sly-call="${itemContentTemplate.itemContent @ item = item, index=navCount}"></sly>
+      </li>
+   </sly>
+   </sly>
+</template>

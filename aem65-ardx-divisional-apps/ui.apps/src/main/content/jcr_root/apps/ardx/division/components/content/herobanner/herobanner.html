@@ -1,0 +1,64 @@
+<sly data-sly-use.heroBanner="com.abbott.aem.platform.common.components.models.HeroBanner"
+   data-sly-use.heroColor="com.abbott.aem.ardx.division.core.components.models.HeroBannerArdx"
+   data-sly-use.component="com.adobe.cq.wcm.core.components.models.Component"
+   data-sly-use.customConfig="com.abbott.aem.platform.common.components.models.CustomConfig"
+   data-sly-use.imageTemplate="core/wcm/components/teaser/v1/teaser/image.html"
+   data-sly-use.templates="core/wcm/components/commons/v1/templates.html"
+   data-cmp-data-layer="${heroBanner.data.json}">
+   <section id="section_${component.id}" class="${customConfig.className}">
+      <style>
+         #section_${component.id @context='styleToken'} {
+         --hero-start-color: ${heroBanner.startColor @context='styleToken'};
+         --hero-start-position: ${heroBanner.startColorPosition  @context='styleToken'}%;
+         --hero-end-color: ${heroBanner.endColor  @context='styleToken'};
+         --hero-end-position: ${heroBanner.endColorPosition  @context='styleToken'}%;
+         }
+      </style>
+      <div class="container" data-js-component="hero-v2">
+         <div class="row no-gutters">
+			   <div class="m-hero__content" data-animated="${properties.animateTextEntry}" data-bgcolor="${heroColor.backgroundColor @context='styleToken'}">
+               <img data-sly-test="${heroBanner.imageAboveContent}" src="${heroBanner.imageAboveContent}" loading="lazy" class="m-hero__content-image"  alt="${(heroBanner.altText ? heroBanner.altText : (properties.alt ? properties.alt : 'Content Image'))}" />
+               <p class="m-hero__title h6" data-precolor="${heroColor.preTitleColor @context='styleToken'}">${heroBanner.pretitle @context='html'} </p>
+               <h1 class="m-hero__header h1-hero" data-titlecolor="${heroColor.titleColor @context='styleToken'}">${heroBanner.title @context='html'} </h1>
+               <h2 data-sly-test="${heroBanner.subtitle}" class="m-hero__subtitle h2-hero" data-subtitlecolor="${heroColor.subTitleColor @context='styleToken'}">${heroBanner.subtitle @context='html'}</h2>
+               <div class="m-hero__body" data-descriptioncolor="${heroColor.descriptionColor @context='styleToken'}">${heroBanner.description @context='html'}</div>
+               <!--/* Buttons Section */-->
+               <sly data-sly-include="herobanner_buttons.html"></sly>
+            </div>
+            <div class="m-hero__media ${heroBanner.parallaxImage ? 'm-hero__parallax-wrapper' : ''}">
+               <div class='m-hero__image d-none d-lg-block d-md-none d-sm-none d-xl-block'>
+                     <img data-sly-test="${heroBanner.fileReference}" src="${heroBanner.fileReference}" loading="lazy" class="cmp-image__image" itemprop="contentUrl" data-cmp-hook-image="image" 
+                        alt="${heroBanner.altText ? heroBanner.altText : properties.alt}" />
+                  </div>
+               <div data-sly-test="${heroBanner.tabletImage}">
+                  <div class='m-hero__image d-none d-lg-none d-sm-none d-md-block d-xl-none'>
+                     <img data-sly-test="${heroBanner.tabletImage}" data-sly-test="${heroBanner.tabletImage}" src="${heroBanner.tabletImage}" loading="lazy" class="cmp-image__image" itemprop="contentUrl" data-cmp-hook-image="image" 
+                        alt="${heroBanner.altText ? heroBanner.altText : properties.alt}" />
+                        <!--/* Above code change is to fix the alt text issue.This will work for new as well as already authored pages */-->
+                  </div>
+               </div>
+               <div data-sly-test="${!heroBanner.tabletImage}">
+                  <div class='m-hero__image d-none d-lg-none d-sm-none d-md-block d-xl-none'>
+                     <img data-sly-test="${heroBanner.fileReference}" src="${heroBanner.fileReference}" loading="lazy" class="cmp-image__image" itemprop="contentUrl" data-cmp-hook-image="image" 
+                        alt="${heroBanner.altText ? heroBanner.altText : properties.alt}" />
+                  </div>
+               </div>
+               <div data-sly-test="${heroBanner.mobileImage}">
+                  <div class='m-hero__image d-lg-none d-sm-block d-xl-none d-md-none'>
+                     <img data-sly-test="${heroBanner.mobileImage}" src="${heroBanner.mobileImage}" loading="lazy" class="cmp-image__image" itemprop="contentUrl" data-cmp-hook-image="image" 
+                        alt="${heroBanner.altText ? heroBanner.altText : properties.alt}" />
+                  </div>
+               </div>
+               <div data-sly-test="${!heroBanner.mobileImage}">
+                  <div class='m-hero__image d-lg-none d-sm-block d-xl-none d-md-none'>
+                     <img data-sly-test="${heroBanner.fileReference}" src="${heroBanner.fileReference}" loading="lazy" class="cmp-image__image" itemprop="contentUrl" data-cmp-hook-image="image" 
+                        alt="${heroBanner.altText ? heroBanner.altText : properties.alt}" />
+                  </div>
+               </div>
+			      <img src="${heroBanner.parallaxImage}" loading="lazy" class="m-hero__parallax-image" data-sly-test="${heroBanner.parallaxImage}" alt="${(heroBanner.altText ? heroBanner.altText : (properties.alt ? properties.alt :'parallax'))}" />
+            </div>
+         </div>
+      </div>
+      <sly data-sly-call="${templates.placeholder @ isEmpty=!heroBanner.title}"></sly>
+   </section>
+</sly>

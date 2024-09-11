@@ -1,0 +1,50 @@
+<sly data-sly-use.templates="an/similac/components/content/templates.html"/>
+<sly data-sly-use.listLinks="${'com.abbott.aem.an.similac.core.models.MultiFieldReaderModel'}" />
+<sly data-sly-use.selectorCheck="${'com.abbott.aem.an.similac.core.models.ResourceValidation' @ resourcePath=resource.path}"/>
+
+<sly data-sly-use.analyticsConfigStrongMoms="${'com.abbott.aem.an.similac.core.models.AnalyticsConfigModel' @ pageName=currentPage.name, sectionTitle =properties.strongMomsText , linkName='header link'}" />
+<sly data-sly-test.eventCategory="${properties.eventCategory ? properties.eventCategory : 'sign-up'}"/>
+<sly data-sly-test.eventAction="${properties.eventAction ? properties.eventAction : 'click'}" />
+<sly data-sly-test.eventLabel="${properties.eventLabel ? properties.eventLabel : analyticsConfigStrongMoms.eventLabel}" />
+<sly data-sly-test.gtmValue="${'{0}{1}{2}{3}{4}' @ format=[eventCategory, '|',eventAction,'|',eventLabel]}" />
+
+
+<ul class="${selectorCheck.enabled?'second-nav-list d-flex flex-column show-not-ends':'second-nav-list d-flex justify-content-between justify-content-lg-end show-ends'}">
+	<li class="nav-item d-none" data-login="true">
+		<a data-name-pattern="Welcome ${properties.welcomePattern @context='attribute'}" data-sly-test="${properties.welcomePattern @context='attribute'}" > Welcome user X</a>
+	</li>
+	<li class="nav-item d-none" data-login="true">
+		<a href="${properties.signoutLink}" target="${properties.signOutTarget ? '_blank' : '_self'}" data-fun="signOut"  data-sly-test="${properties.signOutText}">${properties.signOutText}</a>
+	</li>
+    
+	<sly data-sly-test="${properties.strongMomsText}">
+	<li class="nav-item show-in-header" data-login="false">
+    <sly data-sly-use.linkHelper="${'com.abbott.aem.an.similac.core.models.LinkHelperModel' @ href=properties.strongMomLink}" />
+		<a x-cq-linkchecker="skip" href="${linkHelper.linkHrefDomain}"  data-gtm="${gtmValue @context='attribute'}" target="${properties.strongMomTarget ? '_blank' : '_self'}">${properties.strongMomsText @context='html'}</a>
+	</li>
+	</sly>
+    
+    <sly data-sly-repeat.listLink="${listLinks.links.listChildren}">
+	   <sly data-sly-use.analyticsConfig="${'com.abbott.aem.an.similac.core.models.AnalyticsConfigModel' @  sectionTitle =listLink.ctaLabel , linkName='header link'}" />
+		<sly data-sly-use.linkHelper="${'com.abbott.aem.an.similac.core.models.LinkHelperModel' @ href=listLink.ctaLink}" />
+		<li class="nav-item">
+			<a  x-cq-linkchecker="skip" href="${linkHelper.linkHrefDomain}" data-gtm="${listLink.ctaTarget ? 'external-link' : 'internal-link'}|click|${analyticsConfig.eventLabel @context='attribute'}" target="${listLink.ctaTarget ? '_blank' : '_self'}">${listLink.ctaLabel  @  context='html'}</a>
+		</li>
+	</sly>
+	<sly data-sly-resource="${'langnav' @ resourceType='an/similac/components/content/languagenavigation'}"></sly>
+	<sly data-sly-use.linkHelper="${'com.abbott.aem.an.similac.core.models.LinkHelperModel' @ href=properties.ctaLink}" />
+	<sly data-sly-use.analyticsConfigHcp="${'com.abbott.aem.an.similac.core.models.AnalyticsConfigModel' @  sectionTitle =properties.ctaLabel , linkName='header link'}" />
+    <sly data-sly-test="${properties.ctaLabel}">
+	<li class="nav-item forhcp">
+		<a x-cq-linkchecker="skip" href="${linkHelper.linkHrefDomain}" data-gtm="${properties.ctaTarget ? 'external-link' : 'internal-link'}|click|${analyticsConfigHcp.eventLabel @context='attribute'}"target="${properties.ctaTarget ? '_blank' : '_self'}">${properties.ctaLabel @ context='html'}</a>
+	</li>
+    </sly>
+	<sly data-sly-use.linkHelper="${'com.abbott.aem.an.similac.core.models.LinkHelperModel' @ href=properties.redirectionLink}" />
+	<sly data-sly-use.analyticsConfigLogo="${'com.abbott.aem.an.similac.core.models.AnalyticsConfigModel' @  sectionTitle ='abbott logo' , linkName='header link'}" />
+	<li  class="nav-item header-logo ${properties.checkoutHeader? 'logo-align' : ''}">
+		<a x-cq-linkchecker="skip" href="${linkHelper.linkHrefDomain}" data-gtm="${properties.redirectionTarget ? 'external-link' : 'internal-link'}|click|${analyticsConfigLogo.eventLabel @context='attribute'}" target="${properties.redirectionTarget ? '_blank' : '_self'}">
+			<img src="${linkHelper.linkDomain}/${properties.logoImage}"  alt="${properties.altText || true}" data-sly-test="${properties.logoImage}">
+			</a>
+		</li>
+	</ul>
+	<sly data-sly-call="${templates.placeholder @ isEmpty= !listLinks.links}"></sly> 

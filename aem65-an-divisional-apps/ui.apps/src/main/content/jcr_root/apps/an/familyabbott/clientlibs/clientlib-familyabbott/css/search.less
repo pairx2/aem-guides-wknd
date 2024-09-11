@@ -1,0 +1,108 @@
+@import "./global/mixins.less";
+@import './global/variables.less';
+
+.o-search-res {
+    --search-results-search-bar-spacing: 30px 0 0;
+    --search-results-border-bottom: 1px solid @color-rule;
+
+    div[class*="col-"] {
+		padding-left: 0;
+        padding-right: 0;
+    }
+
+    .m-search-bar {
+        --searchbar-input-border: 1px solid @color-icon-grey;
+        --searchbar-input-font-size: @font-size-14;
+        --searchbar-input-line-height: @font-size-20;
+        --searchbar-autocomplete-item-selected-bg: @color-rule;
+    	--searchbar-autocomplete-item-hover-bg: @color-rule;
+
+        max-width: 680px;
+    	margin: auto;
+
+        @media @md-down {
+            margin: 0;
+        }
+
+        &__button {
+            flex: none;
+
+            .a-button .btn {
+                border-radius: 4px !important;
+            }
+        }
+
+        &__input {
+			width: 100%;
+        }
+
+        &__container {
+			max-width: 680px;
+        }
+
+        .search__heading {
+            min-width: 100%;
+            max-width: 680px;
+        }
+
+        &__autocomplete {
+			display: none !important;
+        }
+
+        &__input-field {
+            &, &:focus {
+            	outline: none !important;
+                box-shadow: none !important;
+            }
+        }
+    }
+
+    &__container {
+        max-width: 680px;
+        margin: auto;
+        
+        div[class*="col-md"] {
+			padding: 0;
+            margin: 0;
+            max-width: 100%;
+            flex: 1;
+        }
+    }
+
+    .o-cards-carousel {
+		display: none;
+    }
+
+    &__header-title {
+        font-size: @font-size-24;
+        line-height: 29px;
+    }
+
+    &__results {
+        .a-result {
+            --result-title-font-size: @font-size-18; 
+          	--result-title-line-height: 24px;
+           	--result-title-margin: 32px 0 16px;
+            --result-border-bottom: 1px solid @color-rule;
+             --result-desc-margin-bottom: 32px;
+
+            &__description {
+                font-size: @font-size-18;
+                line-height: 24px;
+				color: @color-text-body !important;
+
+
+                @media @md-down {
+       				font-size: @font-size-16;
+                    margin-bottom: 16px !important;
+                }
+            }
+
+        }
+    }
+
+    .a-pagination {
+        display: flex;
+        justify-content: center;
+    }
+}

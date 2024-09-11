@@ -1,0 +1,46 @@
+@import 'customtable.scss';
+
+html[dir='rtl'] .m-custom-table {
+    &__search {
+        &-bar {
+            &__input {
+                margin-left: var(--customtable-searchbar-input-margin-right);
+                margin-right: 0;
+
+                &-field {
+                    @include rem(
+                        padding,
+                        var(--customtable-searchbar-rtl-input-padding)
+                    );
+                }
+            }
+
+            &__close {
+                @include setPosition(absolute, left 11px top 50% right auto, 3);
+            }
+
+            &__icon {
+                @include setPosition(
+                    absolute,
+                    left auto right var(--customtable-searchbar-input-margin-right) top 50%,
+                    3);
+            }
+        }
+    }
+
+    .dataTables_wrapper {
+
+        .dataTables_paginate {
+            margin-left: 0 !important;
+            margin-right: auto !important;
+
+            ul.pagination li {
+
+                &.previous,
+                &.next {
+                    transform: scale(-1);
+                }
+            }
+        }
+    }
+}

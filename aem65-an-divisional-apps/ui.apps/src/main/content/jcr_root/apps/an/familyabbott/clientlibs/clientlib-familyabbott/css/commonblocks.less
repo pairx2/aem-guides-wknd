@@ -1,0 +1,98 @@
+@import "./global/mixins.less";
+@import './global/variables.less';
+
+#ph-common-blocks {
+    .columncontrol {
+        &, &__column {
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+    
+            @media @md-up {
+                margin-bottom: 0;
+            }
+    
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        + .columncontrol {
+            @media @md-up {
+                margin-top: 3.5rem;
+            }
+        }
+    }
+
+    &, &--small {
+        .m-card {
+            --card-box-shadow: none;
+            --card-title-color: #184577;
+            --card-link-color: #184577;
+            --card-description-color-light: @color-text-body;
+            --card-border: none;
+            --card-border-radius: 0;
+            --card-media-height: 120px;
+            --card-media-width: 100%;
+
+            text-align: center;
+
+            &__media {
+                width: var(--card-media-width);
+                height: var(--card-media-height);
+                margin: 0 auto;
+            }
+    
+            &__title {
+                font-size: @font-size-24;
+                line-height: 29px;
+                color: var(--card-title-color);
+                margin-bottom: 0;
+            }
+
+            &__description {
+                margin-top: 8px;
+            }
+
+            p, a {
+                font-size: @font-size-16;
+                line-height: 25px;
+                color: @color-text-body;
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+            
+            a {
+                text-decoration: underline;
+            }
+
+            .a-link {
+                a {
+                    color: var(--card-link-color);
+                }
+            }
+        }
+    }
+
+    &--small {
+        @media @md-up {
+        	margin: 0 -30px;
+
+            &.container {
+                margin: 0 -15px;
+    			width: calc(~"100% + 30px");
+            }
+        }
+
+        .m-card {
+            --card-body-padding: 1rem 0 0;
+            --card-media-height: 80px;
+
+            &__title {
+                font-size: @font-size-18;
+                line-height: 24px;
+            }
+        }
+    }
+}

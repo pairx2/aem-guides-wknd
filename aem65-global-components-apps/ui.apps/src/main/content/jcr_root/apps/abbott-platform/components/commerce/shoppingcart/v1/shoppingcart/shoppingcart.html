@@ -1,0 +1,33 @@
+<!--/* Shopping Cart Component Start */-->
+<sly data-sly-use.miniCartModel="com.abbott.aem.platform.common.components.models.commerce.MiniCart"
+  data-sly-use.commonTemplates="core/wcm/components/commons/v1/templates.html"></sly>
+
+<div class="${wcmmode.edit ? 'm-shoppingcart__on-edit-mode' :'m-shoppingcart m-minicart shoppingcart__container'} js-shoppingcart">
+  <div class="m-shoppingcart__main">
+    <div class="m-shoppingcart__content">
+
+      <div id="empty-cart-msg" class="m-shoppingcart__content-above ${!wcmmode.edit? 'd-none' :''}">
+        <div class="m-alert">
+          <em aria-hidden="true" class="${miniCartModel.icon} m-alert__icon"></em>
+          ${miniCartModel.emptyCartMessage @ context = "html"}
+        </div>
+        <div class="m-minicart__button-list" data-sly-test.btnList="${miniCartModel.listOfButtons}"
+          data-sly-list.btnItem="${btnList}">
+        </div>
+      </div>
+
+      <div id="shoppingcart" data-icon="${miniCartModel.icon}" data-header="${miniCartModel.header}"
+        data-read-allowed="${miniCartModel.readAllowed}" data-cart-header="${miniCartModel.cartHeader}"
+        data-price-to-show="${miniCartModel.priceToShow}" data-shopping-cart="true" data-enable-tax="${miniCartModel.enableTax}"
+        data-delete-class="abt-icon abt-icon-only abt-icon-delete abt-icon-${inheritedPageproperties.siteName}-delete" 
+        data-incompatible-product-message="${miniCartModel.incompatibleProductMessage}"></div>
+
+      <div id="below-cart-msg" class="m-minicart__bottom m-shoppingcart__content-above" 
+        data-sly-resource="${'container' @ resourceType='wcm/foundation/components/parsys'}">
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<sly data-sly-call="${commonTemplates.placeholder @ isEmpty=!miniCartModel.icon}"></sly>

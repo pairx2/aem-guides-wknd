@@ -1,0 +1,265 @@
+<sly data-sly-use.templates="abbott/components/content/templates.html" /> 
+
+<input type="hidden" id="wcmmode" data-value="${wcmmode}" />
+<input type="hidden" id="product-visibility" data-value="${pageProperties.visibility}" />
+<input type="hidden" id="product-price" data-value="${pageProperties.price}" />
+
+<sly data-sly-use.obj="${'com.abbott.aem.an.abbottstore.models.PopulateVariationsModel' @ resourcePath=currentPage.path}">
+<input type="hidden" id="stock-labels" data-backorder="${currentStyle.backOrder}" data-out-of-stock="${currentStyle.outOfStock}" data-in-stock="${currentStyle.inStock}" />
+<div class="container" data-sly-test.abbottTheme="${inheritedPageProperties.themeType == 'abbott.abbottstore'}">
+   <div class="row">
+      <div class="col-12 col-md-7">
+         <!--/* PDP-CAROUSEL-SLIDER */-->
+         <sly
+            data-sly-resource="${'image-slider' @ resourceType='abbott/components/content/image-slider'}"
+            />
+      </div>
+      <div class="col-12 col-md-5">
+         <section class="placeholder__pdp" id="placeholder" aria-label="loading" aria-hidden="true">
+            <div class="placeholder__pdp-title"></div>
+            <div class="placeholder__pdp-title"></div>
+            <div class="row">
+               <div class="col-5">
+                     <div class="placeholder__pdp-title mb-1 mr-5"></div>
+                     <div class="placeholder__pdp-text"></div>
+               </div>
+               <div class="col-4 offset-3 pt-2">
+                  <div class="placeholder__pdp-text"></div>
+                  <div class="placeholder__pdp-text ml-3"></div>
+               </div>
+            </div>
+            <div class="row mt-4">
+               <div class="col-3">
+                  <div class="placeholder__pdp-text"></div>
+               </div>
+            </div>
+            <div class="placeholder__pdp-dropdown"></div>
+            <div class="row mt-4">
+               <div class="col-3">
+                  <div class="placeholder__pdp-text"></div>
+               </div>
+            </div>
+            <div class="placeholder__pdp-dropdown"></div>
+            <div class="placeholder__pdp-title"></div>
+            <div class="placeholder__pdp-title mb-4"></div>
+            <div class="row">
+               <div class="col-6">
+                  <div class="placeholder__pdp-qty"></div>
+               </div>
+            </div>
+            <div class="placeholder__pdp-qty mt-4"></div>
+         </section>
+
+         <section class="pdp-info d-none" id="pdp-info" aria-label="loading" aria-hidden="true">
+            <h1 class="pdp-info__title">
+               ${pageProperties.name}
+            </h1>
+            <div class="pdp-info__price mb-4">
+               <p class="pdp-info__list-price d-none mt-3 mb-2">REGULAR PRICE: <span class="pdp-info_list-price-value">$<span id="list-price"></span></span></p>
+               <div class="clearfix">
+                  <div class="float-left">
+                     <p class="pdp-info__price-text m-0">$<span id="current-price">${pageProperties.special_price ? pageProperties.special_price : pageProperties.price }</span></p>
+                     <p class="pdp-info__pack-detail m-0">
+						 <sly data-sly-test="${pageProperties.size_or_weight && pageProperties.size_or_weight != 'null'}">
+							${pageProperties.size_or_weight}
+						 </sly>
+						 <sly data-sly-test.value="${pageProperties.case_of_product && pageProperties.size_or_weight && pageProperties.size_or_weight != 'null' && pageProperties.case_of_product != 'null'}">
+							/
+						 </sly>
+						 <sly data-sly-test="${pageProperties.case_of_product && pageProperties.case_of_product != 'null'}">
+							${pageProperties.case_of_product}
+						 </sly>
+					 </p>
+                  </div>
+                  <div class="float-right text-right">
+                     <p class="pdp-info__in-stock m-0" id="stock-status">${currentStyle.inStock}</p>
+                     <p class="pdp-info__sku m-0" id="pdp-sku" data-sku="${pageProperties.sku}">SKU#: ${pageProperties.sku}</p>
+                  </div>
+               </div>
+            </div>
+			 <div id="case1">
+				<div class="pdp-info__dd">
+				   <sly data-sly-test="${obj.sizeValues}">
+					  <label for="pdp-Size" class="pdp-info__dd-title d-block m-0">${currentStyle.sizeLabel}</label>
+					  <div class="pdp-info__dd-select">
+						 <select data-prop="size" id="pdp-Size" class="pdp-info__dd-select-control is-prop-field">
+							<sly data-sly-list.sizekeyName="${obj.sizeValues}">
+							   <option data-sly-test="${sizekeyName != 'jcr:primaryType'}" value=${sizekeyName}>${obj.sizeValues[sizekeyName]}</option>
+							</sly>
+						 </select>
+					  </div>
+				   </sly>
+				</div>
+				<div class="call-to-order meta-blue-text">
+					 <sly data-sly-test="${pageProperties.message}">
+						 ${pageProperties.message @ context = 'html'}
+						 <sly data-sly-test="${pageProperties.mmrf_link}">
+							 <a href='${pageProperties.mmrf_link}' download> <u>${pageProperties.mmrf_label}</u></a>
+						 </sly>
+					 </sly>
+				 </div>
+			 </div>
+			 <div id="case2">
+				<div class="pdp-info-medic" data-sly-test="${pageProperties.metabolic_state && pageProperties.metabolic_state != 'null'}">
+				   ${pageProperties.metabolic_state @ context = 'html'}
+					 <label for="medic-confirmation" class="medic-confirmation-label"><input type="checkbox" name="metabolic_state" id='medic-confirmation' class="medic-confirmation-input"/>I Confirm</label>
+				</div>
+				<div class="meta-blue-text">
+				 <sly data-sly-test="${pageProperties.message}">
+					 ${pageProperties.message @ context = 'html'}
+					 <sly data-sly-test="${pageProperties.mmrf_link}">
+						 <a href='${pageProperties.mmrf_link}' download> <u>${pageProperties.mmrf_label}</u></a>
+					 </sly>
+				 </sly>
+				 </div>
+				 <div class="pdp-info__dd">
+				   <sly data-sly-test="${obj.flavoursValues}">
+					  <label for="pdp-Flavors" class="pdp-info__dd-title d-block m-0">${currentStyle.flavors}</label>
+					  <div class="pdp-info__dd-select">
+						 <select data-prop="flavor" id="pdp-Flavors" class="pdp-info__dd-select-control is-prop-field">
+							<sly data-sly-list.flavourskeyName="${obj.flavoursValues}">
+							   <option data-sly-test="${flavourskeyName != 'jcr:primaryType'}" value=${flavourskeyName}>${obj.flavoursValues[flavourskeyName]}</option>
+							</sly>
+						 </select>
+					  </div>
+				   </sly>
+				</div>
+				<div class="pdp-info__dd">
+				   <sly data-sly-test="${obj.sizeValues}">
+					  <label for="pdp-Size" class="pdp-info__dd-title d-block m-0">${currentStyle.sizeLabel}</label>
+					  <div class="pdp-info__dd-select">
+						 <select data-prop="size" id="pdp-Size" class="pdp-info__dd-select-control is-prop-field">
+							<sly data-sly-list.sizekeyName="${obj.sizeValues}">
+							   <option data-sly-test="${sizekeyName != 'jcr:primaryType'}" value=${sizekeyName}>${obj.sizeValues[sizekeyName]}</option>
+							</sly>
+						 </select>
+					  </div>
+				   </sly>
+				</div>
+				<sly data-sly-test.isSchedule="${obj.subscriptionID == '2' || obj.subscriptionID == '3'}"> 
+					<div class="pdp-info__buy-type">
+					   <label for="radio-subscribe" class="abbott-radio m-0">
+						  <input type="radio" id="radio-subscribe" name="buy-type" class="abbott-radio__input" value="schedule" />
+						  <span class="abbott-radio__label">${currentStyle.schedule} <span id="save-on-subscribe"></span></span>
+					   </label>
+					   <div class="pdp-info__buy-type-content d-none mt-1">
+						  <div class="row">
+							 <div class="col-5 col-md-5 col-lg-4">
+								<div class="quanity-update">
+								   <p class="quanity-update__title m-0">
+									  ${currentStyle.quantity}
+								   </p>
+								   <div class="input-group mb-3 quanity-update-control">
+									  <div class="input-group-prepend">
+										 <button class="btn btn-remove-one-item" type="button">
+										 -
+										 </button>
+									  </div>
+									  <input type="number" value="1" min="1" max="10" class="form-control text-center" aria-label="" aria-describedby="basic-addon1"/>
+									  <div class="input-group-append">
+										 <button class="btn btn-add-one-item" type="button">
+										 +
+										 </button>
+									  </div>
+								   </div>
+								</div>
+							 </div>
+							 <div class="col-7 col-md-7 col-lg-6 ml-auto">
+								<div class="pdp-info__dd m-0">
+								   <label for="pdp-Duration" class="pdp-info__dd-title d-block m-0">${currentStyle.deliveryWeeks}</label>
+								   <div class="pdp-info__dd-select">
+									  <select name="" id="pdp-Duration" class="pdp-info__dd-select-control">
+										<sly data-sly-list.subscriptionkeyName="${obj.subscriptionMap}">
+										   <option data-sly-test="${subscriptionkeyName != 'jcr:primaryType'}" value=${subscriptionkeyName}>${obj.subscriptionMap[subscriptionkeyName]}</option>
+										</sly>
+									  </select>
+								   </div>
+								</div>
+							 </div>
+						  </div>
+						  <div class="abbott-btn--primary my-3">
+							 <button class="btn btn-block" id="btn-schedule">${currentStyle.scheduleNow}</button>
+						  </div>
+					   </div>
+					</div>
+				</sly>
+				<sly data-sly-test.isSchedule="${obj.subscriptionID == '1' || obj.subscriptionID == '2'}"> 
+                <div class="pdp-info__buy-type">
+				   <sly data-sly-test="${obj.subscriptionID == '2'}">
+					   <label for="radio-one-time" class="abbott-radio">
+						 <input  type="radio" id="radio-one-time" name="buy-type" class="abbott-radio__input" value="one-time" checked />
+						 <span class="abbott-radio__label">${currentStyle.oneTimePurchase}</span>
+					   </label>
+				   </sly>
+                   <div class="pdp-info__buy-type-content">
+                      <div class="row">
+                         <div class="col-6 col-md-9 col-lg-6">
+                            <div class="input-group input-group-lg mb-3 mt-3 quanity-update-control">
+                               <div class="input-group-prepend">
+                                  <button class="btn btn-remove-one-item" type="button">
+                                  -
+                                  </button>
+                               </div>
+                               <input type="number" value="1" min="1" max="10" class="form-control text-center" aria-label="" aria-describedby="basic-addon1"/>
+                               <div class="input-group-append">
+                                  <button class="btn btn-add-one-item" type="button">
+                                  +
+                                  </button>
+                               </div>
+                            </div>
+                         </div>
+                      </div>
+                      <div class="abbott-btn--primary my-4">
+                         <button class="btn btn-block" id="btn-cart">${currentStyle.addToCart}</button>
+                      </div>
+                   </div>
+                </div>
+             </sly>
+			 </div>
+		 </section>
+      </div>
+   </div>
+</div>
+<section 
+	class="gs-pdp"
+	data-name="${obj.glucernaProperties['name']}"
+	data-sku="${obj.glucernaProperties['sku']}"
+	data-brand="${obj.glucernaProperties['brand']}"
+	data-flavor="${obj.glucernaProperties['product_flavor']}"
+	data-form="${obj.glucernaProperties['product_form']}"
+	data-sly-test.glucernaTheme="${inheritedPageProperties.themeType == 'abbott.glucerna'}">
+   <div class="pdp-info__head">
+      ${pageProperties.name} Product Detail
+   </div>
+   <div class="container">
+      <div class="row my-3 mx-0 pt-md-5 product-info-container">
+         <div class="col-12 col-md-7 pb-4">
+            <sly data-sly-resource="${'image-slider' @ resourceType='abbott/components/content/image-slider'}" />
+		 </div>
+         <div class="col-12 col-md-5">
+            <h1 class="pdp-info__title">${pageProperties.name} - ${obj.flavoursValues[obj.selectedFlavorID]}</h1>
+            <div class="pdp-info__dd">
+               <label for="pdp-Flavors" class="pdp-info__dd-title d-block m-0"
+                  >${currentStyle.flavors}</label
+                  >
+               <div class="pdp-info__dd-select">
+                  <select data-prop="flavor" id="pdp-Flavors" class="pdp-info__dd-select-control is-prop-field">
+                     <sly data-sly-list.flavourskeyName="${obj.flavoursValues}">
+                        <option data-sly-test="${flavourskeyName != 'jcr:primaryType'}" value=${flavourskeyName}>${obj.flavoursValues[flavourskeyName]}</option>
+                     </sly>
+                  </select>
+               </div>
+            </div>
+            <div class="abbott-btn--primary my-4">
+				<a class="action__trail-subscribe subscribe-loggedin d-none" href="${currentStyle.glucernanCtaUrl  @extension='html'}">
+                    ${currentStyle.subscribeLabel}
+                </a>
+                <a class="action__trail-subscribe subscribe-loggedout" href="${currentStyle.glucernanCtaUrl  @extension='html'}">
+                  ${currentStyle.loggedOutText}
+   				 </a>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+<sly data-sly-call="${templates.placeholder @ isEmpty= !(abbottTheme || glucernaTheme)}"></sly>

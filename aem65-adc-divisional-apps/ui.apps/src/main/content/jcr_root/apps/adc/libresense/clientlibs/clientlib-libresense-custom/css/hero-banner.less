@@ -1,0 +1,282 @@
+@import "./global/media-queries.less";
+@import "./global/variables.less";
+@import "./global/mixin.less";
+
+.m-hero {
+  max-width: @xxl-width;
+  margin: 0 auto !important;
+  background-color: @color-white;
+  padding-top: 0;
+  padding-bottom: 0;
+
+  //To show rollOutFirstSec image for animation below the herobanner
+  overflow: visible;
+  z-index: 1;
+
+  &.m-hero--media-start,
+  &.m-hero--content-end {
+    section {
+      @media @lg-up {
+        min-height: 640px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        &.rolloutFirstSecAnime {
+          justify-content: start;
+        }
+      }
+      
+      @media only print {
+        height: 320px;
+        padding: 0;
+      }
+    }
+  }
+
+  section {
+    padding: @spacer-20 @spacer-15 0;
+
+    @media @lg-down {
+      padding: 0 @spacer-15;
+    }
+    @media @lg-up {
+      .m-hero--content-end& {
+        background: linear-gradient(90deg, transparent 50%, @color-white 100%);
+        margin-top: @spacer-10;
+        .rolloutThirdSecAnime& {
+          margin-top: 0;
+        }
+      }
+    }
+  }
+
+  &&--full-width {
+    .container {
+      @media @lg-down {
+        max-width: @full-width;
+        padding: 0; // animation adjustment for small screen
+      }
+
+      .m-hero__content {
+        @media @lg-down {
+          position: inherit;
+          padding: @spacer-40 0;
+        }
+
+        .m-hero--content-end& {
+          @media @sm-up {
+            padding: @spacer-40 @spacer-32;
+          }
+          @media @lg-up {
+            max-width: 450px;
+            right: 0;
+            padding-top: 55px;
+            padding-left: @spacer-25;
+
+            .rolloutThirdSecAnime& {
+              right: 0;
+              padding: @spacer-40 0;
+            }
+          }
+
+          @media @xl-only {
+            max-width: 400px;
+          }
+
+          @media only screen and (min-width: 1300px) {
+            .rolloutThirdSecAnime& {
+              padding: @spacer-40 @spacer-24;
+            }
+          }
+          @media @xl-up {
+            right: 7%;
+          }
+
+          @media @lg-down {
+            width: @full-width;
+          }
+        }
+
+        .m-hero__header {
+          font-family: @bold;
+          .font-style(@spacer-60, @spacer-68, @spacer-3);
+
+          @media @lg-down {
+            position: absolute;
+            top: @spacer-40;
+            width: auto;
+            padding-right: @spacer-15;
+            .font-style(@spacer-40, @spacer-54, 1.55px);
+          }
+          
+          @media @lg-only {
+            max-width: 540px;
+
+            [lang="fr-LU"] &,
+            [lang="fr-FR"] &,
+            [lang="fr-CH"] &{
+              top: @spacer-20;
+            }
+          }
+
+          @media @md-down {
+            max-width: 350px;
+          }
+
+          .m-hero--content-end& {
+            color: @color-dark-cerulean;
+            .font-style(@spacer-40, @spacer-49, 1.87px);
+
+            @media @lg-up {
+              width: 461px;
+            }
+
+            @media only screen and (min-width: 1300px) {
+              width: 512px;
+            }
+
+            @media @lg-down {
+              right: @spacer-30;
+              width: 350px;
+              text-align: right;
+              padding-right: 0;
+              top: @spacer-30;
+              .font-style(@spacer-30, @spacer-40, 1.4px);
+            }
+
+            @media @sm-down {
+              text-align: left;
+              width: auto;
+              max-width: none;
+              right: auto;
+
+              .rolloutSecondSecAnime& {
+                color: @color-white;
+              }
+            }
+          }
+
+          .m-hero--text-align-center& {
+            color: @color-cerulean;
+            width: 722px;
+            max-width: @full-width;
+            margin: @spacer-60 auto 0;
+            .font-style(@spacer-40, @spacer-50, 1.87px);
+
+            @media @lg-down {
+              margin-top: 0;
+            }
+
+            @media @md-down {
+              width: auto;
+              .font-style(@spacer-30, @spacer-40, 1.4px);
+            }
+          }
+
+          .rolloutFirstSecWrapper& {
+            @media @lg-up {
+              width: 630px;
+              max-width: 630px;
+              .font-style(@spacer-42, @spacer-45, 2.8px);
+
+              [lang="en"] &,
+              [lang="en-US"] &,
+              [lang="de-AT"] &  {
+                padding-top: @spacer-60;
+              }
+            }
+
+            @media only screen and (min-width: 620px) and (max-width: 767.98px) {
+              .font-style(@spacer-30, @spacer-35, 1.55px);
+            }
+          }
+        }
+
+        .m-hero__body {
+          p {
+            font-family: @regular;
+            .font-style(@spacer-22, @spacer-30, 0.69px);
+
+            @media @lg-down {
+              color: @color-charcoal;
+              .font-style(@spacer-18, @spacer-26, 0.56px);
+            }
+
+            .m-hero--text-align-center& {
+              color: @color-charcoal;
+              .font-style(@spacer-18, @spacer-28, 0.56px);
+              
+              @media @lg-up {
+                width: 644px;
+                margin: 0 auto;
+              }
+            }
+          }
+        }
+
+        .m-hero--content-center&{
+          @media @lg-up{
+            width: @full-width;
+          }
+        }
+      }
+
+      .m-hero__media {
+        .m-hero__image {
+          @media @lg-down {
+            position: relative;
+
+            .cmp-image__image {
+              position: inherit;
+            }
+          }
+
+          .cmp-image__image {
+            @media @md-down {
+              min-height: 557px;
+            }
+
+            .m-hero--content-end& {
+              @media @lg-up {
+                width: calc(@full-width ~"-" @spacer-70);
+                left: 50%;
+                transform: translateX(-50%);
+                object-fit: contain;
+                top: @spacer-5;
+                .rolloutThirdSecAnime& {
+                  object-fit: cover;
+                  top: 0;
+                }
+              }
+            }
+
+            .rolloutFirstSecWrapper&,
+            .rolloutSecondSecAnime& {
+              @media only screen and (min-width: 620px) and (max-width: 767.98px) {
+                min-height: 311px; //adjustment for animation image position
+              }
+            }
+
+            .rolloutFourthSecAnime& {
+              @media @lg-only {
+                max-height: 416px; //adjustment for animation image position
+              }
+              @media only screen and (min-width: 620px) and (max-width: 767.98px) {
+                min-height: 377px; //adjustment for animation image position
+              }
+            }
+          }
+        }
+      }
+    }
+
+    &.m-hero--text-align-center {
+      min-height: 779px;
+
+      section {
+        padding-top: 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,374 @@
+#myfreestyle-my-account-my-cards {
+  [data-conditional-variable='cardsError'] {
+    [data-conditional-case='error'] {
+      .m-alert {
+        background-color: var(--alert-danger-color);
+        padding: @spacer-12 @spacer-16;
+
+        &__icon {
+          color: var(--alert-danger-icon-color);
+        }
+      }
+    }
+
+    [data-conditional-case='activeSubscription'] {
+      .m-alert {
+        background-color: var(--alert-danger-color);
+        padding: @spacer-12 @spacer-16;
+
+        &__icon {
+          color: var(--alert-danger-icon-color);
+        }
+      }
+    }
+
+    [data-conditional-case='noCards'] {
+      .m-alert {
+        --alert-info-color: #E6F7FD;
+        --alert-info-icon-color: #000;
+        background-color: var(--alert-info-color);
+        padding: @spacer-12 @spacer-16;
+
+        &__para {
+          h4 {
+            font-size: @spacer-16;
+            font-weight: 700;
+          }
+        }
+
+        &__icon {
+          color: var(--alert-info-icon-color);
+        }
+      }
+    }
+  }
+
+  .m-alert {
+    --alert-padding: 0;
+    --alert-para-color: @gray-darkest-color;
+    margin: @spacer-40 0;
+
+    &__icon {
+      font-size: @spacer-24;
+      margin-right: 8px;
+    }
+
+    &__content {
+      padding-right: 0;
+    }
+
+    &__para {
+      h4 {
+        font-size: @spacer-14;
+        line-height: @spacer-20;
+        margin-bottom: 0.25rem;
+        font-weight: 400;
+        max-width: 350px;
+      }
+
+      p:last-child {
+        margin: 0;
+      }
+    }
+
+  }
+
+  .m-form-data {
+    margin: 0 0 @spacer-24;
+    background-color: @white-color;
+
+    @media @md-up {
+      margin-bottom: @spacer-40;
+    }
+
+    &__container {
+      flex-direction: column;
+
+      @media @md-up {
+        flex-direction: row;
+        padding: 12px;
+        align-items: center;
+      }
+
+      .payment-card-default {
+        width: 60%;
+
+        @media @md-down {
+          width: auto;
+        }
+
+        .payment-card-subLayout {
+          display: flex;
+          align-items: center;
+
+          @media @md-down {
+            justify-content: space-evenly;
+            padding: 12px 0;
+          }
+
+          .payment-card-logo {
+            max-width: 47px;
+
+          }
+
+          .card-element {
+            padding-left: 24px;
+
+            @media @md-down {
+              padding-left: unset;
+              font-size: 14px;
+            }
+
+            .expired-card {
+              color: var(--danger-color);
+            }
+          }
+        }
+      }
+    }
+
+    &__list {
+      padding: @spacer-24;
+      font-size: @spacer-18;
+      line-height: @spacer-24;
+      display: none;
+    }
+
+    &__buttons {
+      padding: @spacer-24;
+
+      @media @md-up {
+        padding: unset;
+        flex-direction: row;
+        align-items: center;
+      }
+
+      @media @md-down {
+        flex-direction: row;
+        padding: 0 6px;
+        align-items: center;
+        justify-content: flex-end;
+      }
+
+      .a-button {
+        &--icon-right {
+          .btn {
+            flex-direction: row-reverse;
+            padding: 5px;
+
+            .abt-icon {
+              margin-left: 0.25rem;
+            }
+          }
+        }
+
+        &--danger {
+          .btn {
+            background-color: transparent;
+            color: var(--button-danger-bg);
+            padding: 0.375rem 0 0.375rem 0.75rem;
+            border: none;
+
+            &:hover {
+              box-shadow: none;
+
+              .abt-icon:before {
+                color: var(--button-danger-bg);
+              }
+            }
+          }
+        }
+      }
+
+      .btn {
+        text-transform: none;
+        font-size: @spacer-14;
+        line-height: @spacer-20;
+        display: flex;
+        align-items: center;
+        color: @primary-color;
+
+        &:hover {
+          background-color: transparent;
+
+          .abt-icon:before {
+            color: @primary-color;
+          }
+        }
+
+        .abt-icon {
+          position: relative;
+          right: unset;
+          left: unset;
+          margin-right: 0.25rem;
+          font-size: @spacer;
+        }
+
+        span {
+          padding: 0;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+
+  #my-cards-add {
+    font-size: @spacer-20;
+    letter-spacing: 0.078125rem;
+    display: flex;
+    align-items: center;
+
+    .abt-icon {
+      position: relative;
+      right: unset;
+      left: unset;
+      margin-right: 0.75rem;
+      font-size: @spacer-24;
+    }
+
+    span {
+      padding-left: 0;
+    }
+  }
+
+  .row {
+    .columncontrol__column {
+      @media @lg-only {
+        flex: 0 0 100%;
+        max-width: 100%;
+        margin: auto;
+      }
+
+      &:nth-child(2) {
+        @media @md-down {
+          padding: 0;
+        }
+
+        >div:nth-child(1) {
+          @media @md-down {
+            margin: 0;
+          }
+        }
+
+        >div:nth-child(2) {
+          padding: 0;
+        }
+      }
+    }
+
+    >div:first-child {
+      @media @md-down {
+        margin: 0;
+      }
+    }
+  }
+
+  @media @lg-only {
+    padding: 0;
+  }
+
+}
+
+#my-cards-delete-modal {
+  --modal-footer-padding-y: 0;
+
+  .generic-modal {
+    &__content {
+      &-body {
+        .abt-icon {
+          color: var(--modal-danger-icon-color);
+          font-size: @spacer-24;
+        }
+      }
+    }
+
+    &__text {
+      h3 {
+        margin: 0;
+        font-size: @spacer-18;
+        line-height: @spacer-24;
+      }
+    }
+  }
+
+  .o-form-container {
+    &__buttons {
+      margin-bottom: 0;
+
+      .a-button {
+        margin-bottom: @spacer;
+
+        >div {
+          width: 100%;
+
+          @media @md-up {
+            width: auto;
+          }
+        }
+      }
+
+      .btn {
+        font-size: @spacer-16;
+        line-height: @spacer-18;
+      }
+    }
+  }
+}
+
+#my-card-delete-modal {
+  .modal-body {
+    h3 {
+      color: @danger-red-color;
+    }
+    .container {
+      padding: 0px;
+      margin: 0px;
+    }
+  }
+
+  .formdata {
+    .m-form-data {
+      border: none;
+
+      &__header {
+        display: none;
+      }
+
+      .checkout-form-data {
+        .m-form-data__list {
+          padding: 0px;
+          margin: 0px;
+        }
+      }
+    }
+  }
+}
+
+#my-other-card-delete-modal {
+  .modal-body {
+    h3 {
+      color: @danger-red-color;
+    }
+    .container {
+      padding: 0px;
+      margin: 0px;
+    }
+  }
+
+  .formdata {
+    .m-form-data {
+      border: none;
+
+      &__header {
+        display: none;
+      }
+
+      .checkout-form-data {
+        .m-form-data__list {
+          padding: 0px;
+          margin: 0px;
+        }
+      }
+    }
+  }
+}

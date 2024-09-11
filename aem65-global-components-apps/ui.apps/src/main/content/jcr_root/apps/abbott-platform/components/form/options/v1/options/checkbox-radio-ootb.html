@@ -1,0 +1,22 @@
+<sly data-sly-use.options="com.abbott.aem.platform.common.components.models.FormOptions">
+	<sly data-sly-test="${options.type.value == 'checkbox' || options.type.value == 'radio'}">
+        <label class="a-${options.type.value}-label" for="${options.id}">
+			<span class="a-${options.type.value}__title-text">${options.title}</span><span class="a-dropdown__title--required" data-sly-test="${options.formOptionsIsRequired}">*</span>
+		</label>
+		<sly data-sly-repeat.optionItem="${options.items}">
+			<div class="a-${options.type.value} a-${options.type.value}--${options.optionAlignStyle} a-${options.type.value}--${optionItem.initialState}"
+				data-sly-attribute.isRequired="${options.formOptionsIsRequired}">
+				<sly data-sly-test.uniqueId="${optionItem.getUniqueId}" />
+				<label class="a-${options.type.value}__label" for="${uniqueId}">
+					<span class="a-${options.type.value}__text" id="${optionItem.value}">${optionItem.text @context='html'}</span>
+					<input type="${options.type.value}" class="a-${options.type.value}__input"
+						disabled="${optionItem.disabled}" checked="${optionItem.selected}"
+						checked-disabled="${optionItem.checkedDisabled}" value="${optionItem.value}"
+						name="${options.name}" indeterminate="${optionItem.indeterminate}" error="${optionItem.error}"
+						id="${uniqueId}" data-required="${options.formOptionsIsRequired}"/>
+					<span class="a-${options.type.value}__custom" aria-labelledby="${optionItem.value}" tabindex="0" role="${options.type.value}" aria-checked="${optionItem.selected}"></span>
+				</label>
+			</div>
+		</sly>
+	</sly>
+</sly>

@@ -1,0 +1,126 @@
+.pagination-group {
+	
+	display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+
+	.screen-below(@screen-sm, {
+		flex-direction: column;
+	});
+
+	.pagesize, .product-pagination {
+		.screen-below(@screen-sm, {
+			margin-bottom: 20px;
+			text-align: center;
+		});	
+	}
+
+	.a-pagination {
+
+		&__pages{
+			margin: 0;
+			padding: 0;
+			border: @pagination-border;
+			border-radius: @pagination-border-radius;
+			display: inline-flex;
+			list-style: none;
+
+			a > * {
+				pointer-events: none;
+			}
+		}
+
+		&__link {
+			display: block;
+			color: @color-dark-grey-100;
+			text-decoration: @pagination-text-decoration;
+		 	font-size: @pagination-font-size;
+			line-height: @pagination-link-line-height;
+			padding: 12px 14px 10px 14px;
+			border-left: @pagination-border-width solid @pagination-border-color;
+			border-right:  @pagination-border-width solid @pagination-border-color;
+		
+			&:hover {
+			background-color: @color-yellow;
+			text-decoration: @pagination-text-decoration;
+			color: @color-primary;
+			}
+		
+		}
+
+		&--hide {
+			display: none;
+		}
+
+		&--previous, &--next {
+			display: flex;
+			align-items: stretch;
+		
+			&__link {
+			display: flex;
+			align-items: center;
+			}
+		
+			[class*=icon] {
+			height: @pagination-link-icon-size;
+			&:before {
+				width: @pagination-link-icon-size;
+				height: @pagination-link-icon-size;
+			}
+			}
+		}
+
+		&--previous{
+			.a-pagination__link  {
+				border-top-left-radius: @pagination-border-radius;
+			    border-bottom-left-radius: @pagination-border-radius;
+			&:hover {
+				border-left-color: @pagination-border-color;
+				border-top-left-radius: @pagination-border-radius;
+			    border-bottom-left-radius: @pagination-border-radius;
+			}
+			}
+		}
+		
+		&--next{
+			.a-pagination__link {
+		    border-top-right-radius: @pagination-border-radius;
+			border-bottom-right-radius: @pagination-border-radius;
+			
+			&:hover {
+				border-right-color: @pagination-border-color;
+				border-top-right-radius: @pagination-border-radius;
+				border-bottom-right-radius: @pagination-border-radius;
+			}
+			}
+		}
+
+		&--active {
+			position: relative;
+
+			.a-pagination__link {
+				color: @color-primary;
+			}
+
+			&:after{
+				content: '';
+				position: absolute;
+				height: @pagination-active-link-after-height;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				background-color: @color-blue;
+				color: @color-primary;
+			}
+		}
+	}
+}
+.disabled-link {
+	pointer-events: none;
+	background-color: transparent;
+	&__ellipse{
+		pointer-events: none;
+		background-color: transparent;
+	}
+} 
+

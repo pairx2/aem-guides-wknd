@@ -1,0 +1,13 @@
+<sly
+	data-sly-use.related="com.abbott.aem.corp.division.core.components.models.RelatedArticle"
+	data-sly-use.component="com.adobe.cq.wcm.core.components.models.Component"
+	data-sly-use.template="core/wcm/components/commons/v1/templates.html"
+	data-sly-test.text="${related.relatedLabel}"
+	data-cmp-data-layer="${related.data.json}" id="${component.id}" />
+
+<sly data-sly-test="${related.articleType == 'article' || !related.enableManualArticleMethod}"
+	data-sly-include="relatedcontent_article.html" />
+<sly data-sly-test="${related.articleType != 'article' && related.enableManualArticleMethod}"
+	data-sly-include="relatedcontent_video.html" />
+<sly
+	data-sly-call="${template.placeholder @ isEmpty=!text, classAppend='cmp-title'}"></sly>

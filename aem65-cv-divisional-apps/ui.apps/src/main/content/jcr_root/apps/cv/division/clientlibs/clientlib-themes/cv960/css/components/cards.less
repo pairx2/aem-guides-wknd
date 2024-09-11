@@ -1,0 +1,65 @@
+@import "../variables.less";
+@import "../mixin.less";
+@import "../media-queries.less";
+
+
+.m-card {
+    &:hover{
+        background-color: @color-snow-gray;
+    }
+    &--horizontal {
+        @include media-breakpoint-down(sm) {
+            justify-content: space-between;
+        }
+        .m-popup{
+            @include media-breakpoint-down(sm) {
+                width: 100%;
+            }
+          }
+    }
+    &.m-card-default {
+        background-color: var(--card-media-end-light);
+        &:hover {
+          background-color: @color-snow-gray;
+        }
+      }
+      &.m-card__media--bg--dark {
+        .m-card__media {
+          background-color: @color-navy-blue;
+        }
+      }
+      &.m-card__media--bg--light {
+        .m-card__media {
+          background-color: @color-ice-blue;
+        }
+      }
+      &.m-card-dark {
+        background-color: @color-navy-blue;
+        color: var(--card-media-end-light);
+    
+        .m-card__description p {
+          color: var(--card-media-end-light);
+        }
+    
+        .m-card__title {
+          color: @color-Blizzard-Blue;
+        }
+    
+        &:hover {
+          background-color: @color-snow-gray;
+          color: $color-black;
+          .m-card__description p {
+            color: @color-charcoal;
+          }
+          .m-card__title {
+            color: @color-cvlink;
+          }
+        }
+      }
+      &.m-card-light {
+        background-color: @color-ice-blue;
+        &:hover {
+          background-color: @color-snow-gray;
+        }
+      }
+}

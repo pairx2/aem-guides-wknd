@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Text and Image (ARDX)"
+    sling:resourceType="cq/gui/components/authoring/dialog"
+    extraClientlibs="[textimage.clientlibs]">
+    <content
+        granite:class="tabselection"
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                maximized="{Boolean}true">
+                <items jcr:primaryType="nt:unstructured">
+                    <imageDetails
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Image Details"
+                        sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <column
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <imageAsset
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="cq/gui/components/authoring/dialog/fileupload"
+                                        allowUpload="{Boolean}false"
+                                        autoStart="{Boolean}false"
+                                        class="cq-droptarget"
+                                        fieldLabel="Image Asset"
+                                        fileNameParameter="./fileName"
+                                        fileReferenceParameter="./imageAsset"
+                                        mimeTypes="[image/gif,image/jpeg,image/png,image/tiff,image/svg+xml]"
+                                        multiple="{Boolean}false"
+                                        name="./desktopImage"
+                                        title="Upload Image Asset"
+                                        uploadUrl="${suffix.path}"
+                                        useHTML5="{Boolean}true"/>
+                                    <desktopImageCheckboxWidget
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                            checked="false"
+                                            fieldDescription="If checked, file path value will override the drag and drop image"
+                                            name="./imageAssetPicker"
+                                            text="Enable the checkbox to author image asset via file path"
+                                            uncheckedValue="{Boolean}false"
+                                            value="{Boolean}true">
+                                    </desktopImageCheckboxWidget>
+                                    <imageAssetPathField
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                            fieldDescription="Select the image to be displayed."
+                                            fieldLabel="Image Asset Path"
+                                            name="./imageAssetPathField"
+                                            rootPath="/content/dam/ardx"/>
+                                    <tabletImage
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="cq/gui/components/authoring/dialog/fileupload"
+                                        allowUpload="{Boolean}false"
+                                        autoStart="{Boolean}false"
+                                        class="cq-droptarget"
+                                        fieldLabel="Tablet Image"
+                                        fileNameParameter="./fileName2"
+                                        fileReferenceParameter="./tabletImage"
+                                        mimeTypes="[image/gif,image/jpeg,image/png,image/tiff,image/svg+xml]"
+                                        multiple="{Boolean}false"
+                                        name="./file2"
+                                        title="Upload Image Asset"
+                                        uploadUrl="${suffix.path}"
+                                        useHTML5="{Boolean}true"/>
+                                    <tabletImageCheckboxWidget
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                            fieldDescription="If checked, file path value will override the drag and drop image"
+                                            name="./tabletImageAssetPicker"
+                                            text="Enable the checkbox to author Tablet Image asset via file path"
+                                            uncheckedValue="{Boolean}false"
+                                            value="{Boolean}true">
+                                    </tabletImageCheckboxWidget>
+                                    <tabletImagePathField
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                            fieldDescription="Select the image to be displayed."
+                                            fieldLabel="Tablet Image Asset Path"
+                                            name="./tabletImagePathField"
+                                            rootPath="/content/dam/ardx"
+                                            uncheckedValue="{Boolean}false"
+                                            value="{Boolean}true"/>
+                                    <mobileImage
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="cq/gui/components/authoring/dialog/fileupload"
+                                        allowUpload="{Boolean}false"
+                                        autoStart="{Boolean}false"
+                                        class="cq-droptarget"
+                                        fieldLabel="Mobile Image"
+                                        fileNameParameter="./fileName3"
+                                        fileReferenceParameter="./mobileImage"
+                                        mimeTypes="[image/gif,image/jpeg,image/png,image/tiff,image/svg+xml]"
+                                        multiple="{Boolean}false"
+                                        name="./file3"
+                                        title="Upload Image Asset"
+                                        uploadUrl="${suffix.path}"
+                                        useHTML5="{Boolean}true"/>
+                                    <mobileImageCheckboxWidget
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                            fieldDescription="If checked, file path value will override the drag and drop image"
+                                            name="./mobileImageAssetPicker"
+                                            text="Enable the checkbox to author Mobile Image asset via file path"
+                                            uncheckedValue="{Boolean}false"
+                                            value="{Boolean}true"/>
+                                    <mobileImagePathField
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                            fieldDescription="Select the image to be displayed."
+                                            fieldLabel="Mobile Image Asset Path"
+                                            name="./mobileImagePathField"
+                                            rootPath="/content/dam/ardx"
+                                            uncheckedValue="{Boolean}false"
+                                            value="{Boolean}true"/>
+                                    <noWrapUpText
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                        fieldDescription="Check if wrap text around image not required."
+                                        name="./noWrapUpText"
+                                        text="Don't wrap text around image?"
+                                        uncheckedValue="true"
+                                        value="false"/>
+                                    <fullWidthImage
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                        fieldDescription="Check to make image fullwidth in m"
+                                        name="./fullWidthImage"
+                                        text="Expand image to full width in mobile?"
+                                        uncheckedValue="false"
+                                        value="true"/>
+                                    <decorative
+                                        granite:class="cq-dialog-checkbox-showhide"
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                        fieldDescription="Check if the image should be ignored by assistive technology and therefore does not require an alternative text. This applies to decorative images only."
+                                        name="./decorative"
+                                        text="Image is decorative"
+                                        uncheckedValue="false"
+                                        value="{Boolean}true">
+                                        <granite:data
+                                            jcr:primaryType="nt:unstructured"
+                                            cq-dialog-checkbox-showhide-target=".togglefield"/>
+                                    </decorative>
+                                    <container
+                                        granite:class="togglefield"
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:orderBefore="id"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <altText
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                fieldDescription="Alternate text for image"
+                                                fieldLabel="Alt Text"
+                                                name="./altText"/>
+                                        </items>
+                                        <granite:data
+                                            jcr:primaryType="nt:unstructured"
+                                            showhidetargetvalue=""/>
+                                    </container>
+                                    <imageTitle
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldDescription="Title for image, it will be displayed when hover on image."
+                                        fieldLabel="Image Title"
+                                        name="./imageTitle"/>
+                                    <imageCta
+                                        granite:class="cq-dialog-dropdown-showhide"
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                        fieldLabel="Image URL action"
+                                        name="./imageCta">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <none
+                                                jcr:primaryType="nt:unstructured"
+                                                text="None"
+                                                value="none"/>
+                                            <imageUrl
+                                                jcr:primaryType="nt:unstructured"
+                                                text="Open URL"
+                                                value="imageUrl"/>
+                                            <modalPopup
+                                                jcr:primaryType="nt:unstructured"
+                                                text="Modal Popup"
+                                                value="modalPopup"/>
+                                        </items>
+                                        <granite:data
+                                            jcr:primaryType="nt:unstructured"
+                                            cq-dialog-dropdown-showhide-target=".imagetype-showhide-target"/>
+                                    </imageCta>
+                                    <targetAction
+                                        granite:class="imagetype-showhide-target"
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <targetUrl
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                fieldDescription="Internal page (or) external URL that needs to be redirected upon button click. Please mention http/https by domain for external Link."
+                                                fieldLabel="Target URL"
+                                                name="./targetUrl"
+                                                rootPath="/content/ardx"/>
+											<external
+												jcr:primaryType="nt:unstructured"												
+												sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+												name="./external"
+												text="Is External Link?"
+												uncheckedValue="false"
+												value="true"/>												
+                                            <targetUrlNewWindow
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                name="./targetUrlNewWindow"
+                                                text="Open Target URL in new window?"
+                                                value="true"/>
+                                        </items>
+                                        <granite:data
+                                            jcr:primaryType="nt:unstructured"
+                                            showhidetargetvalue="imageUrl"/>
+                                    </targetAction>
+                                    <fullScreenPopupCheckbox
+                                        granite:class="imagetype-showhide-target"
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <fullscreenPopup
+                                                jcr:primaryType="nt:unstructured"
+                                                sling:resourceType="granite/ui/components/coral/foundation/form/checkbox"
+                                                fieldDescription="Check if fullscreen popup required."
+                                                name="./fullScreenPopup"
+                                                text="Is this a fullscreen pop up for all screen sizes?"
+                                                uncheckedValue="false"
+                                                value="true"/>
+                                        </items>
+                                        <granite:data
+                                            jcr:primaryType="nt:unstructured"
+                                            showhidetargetvalue="modalPopup"/>
+                                    </fullScreenPopupCheckbox>
+                                    <imagePlacement
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                        fieldDescription="On mobile and within Column Control, the image will only appear above/below text. Right =Below; Left=Above"
+                                        fieldLabel="Image Placement"
+                                        name="./imagePlacement"
+                                        value="position-right">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <right
+                                                jcr:primaryType="nt:unstructured"
+                                                text="Right"
+                                                value="position-right"/>
+                                            <left
+                                                jcr:primaryType="nt:unstructured"
+                                                text="Left"
+                                                value="position-left"/>
+                                            <above
+                                                jcr:primaryType="nt:unstructured"
+                                                text="Above"
+                                                value="position-above"/>
+                                            <below
+                                                jcr:primaryType="nt:unstructured"
+                                                text="Below"
+                                                value="position-below"/>
+                                        </items>
+                                    </imagePlacement>
+                                    <imageAlignment
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                        fieldDescription="Align the image left, right and center."
+                                        fieldLabel="Image Alignment"
+                                        name="./imageAlignment"
+                                        value="center">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <leftAligned
+                                                jcr:primaryType="nt:unstructured"
+                                                text="Left"
+                                                value="image--alignment-left"/>
+                                            <rightAligned
+                                                jcr:primaryType="nt:unstructured"
+                                                text="Right"
+                                                value="image--alignment-right"/>
+                                            <centerAligned
+                                                jcr:primaryType="nt:unstructured"
+                                                text="Center"
+                                                value="image--alignment-center"/>
+                                        </items>
+                                    </imageAlignment>
+                                </items>
+                            </column>
+                        </items>
+                    </imageDetails>
+                    <textdetailstab
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Text Content"
+                        sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <column
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <richtext
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="/libs/granite/ui/components/coral/foundation/include"
+                                        path="abbott-platform/components/content/atoms/text/v1/text/cq:dialog/content/items/tabs/items/properties/items/columns/items/column/items/text"/>
+                                </items>
+                            </column>
+                        </items>
+                    </textdetailstab>
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>

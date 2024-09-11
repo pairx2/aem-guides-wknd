@@ -1,0 +1,32 @@
+# Environment types in [DEV,QA,STG,PRD]
+- DEF environmentType=$[env:AB_ACL_ENVIRONMENT_TYPE;default=PRD]
+
+- DEF groupPrefix="APP-Adobe-AEM-DM-${environmentType}"
+
+- DEF divisions=[an]
+
+- group_config:
+
+    - FOR division IN ${divisions}:
+
+        - ${groupPrefix}-${division}-pim-approvers:
+
+           - name: ${upperCase(division)} PIM Approvers
+             isMemberOf: workflow-users
+             path: /home/groups/${division}
+             externalId: "${groupPrefix}-${division}-pim-approvers;ims"
+             description: PIM Approvers for ${upperCase(division)} division
+             
+             
+- ace_config:
+
+    - FOR division IN ${divisions}:
+
+        - ${groupPrefix}-${division}-pim-approvers:
+      
+           # Added this rule to fix issue with accessing workflow
+           - path: /var/workflow/models
+             permission: allow
+             privileges: jcr:read
+             restrictions:         
+               rep:glob: /abbott-global-workflow*

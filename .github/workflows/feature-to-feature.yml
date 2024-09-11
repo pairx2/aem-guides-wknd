@@ -61,6 +61,12 @@ jobs:
           java-version: "11"
           distribution: "temurin"
           architecture: x64
+      - name: Set up Maven settings
+        run: |
+          mkdir -p ~/.m2
+          echo "${{ secrets.SETTINGS_XML }}" > ~/.m2/settings.xml
+        env:
+          SETTINGS_XML: ${{ secrets.SETTINGS_XML }}
       - name: Build with Maven
         run: mvn clean package
       - name: Setup CLI

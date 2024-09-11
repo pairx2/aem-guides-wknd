@@ -32,13 +32,6 @@ jobs:
             distribution: 'temurin' # See 'Supported distributions' for available options
             java-version: ${{ matrix.java }}
 
-      - name: Set up Maven settings
-        run: |
-          mkdir -p ~/.m2
-          echo "${{ secrets.SETTINGS_XML }}" > ~/.m2/settings.xml
-        env:
-          SETTINGS_XML: ${{ secrets.SETTINGS_XML }}
-
       # Set up dependency cache
       - name: Cache local Maven repository
         uses: actions/cache@v4
@@ -68,8 +61,14 @@ jobs:
           java-version: "11"
           distribution: "temurin"
           architecture: x64
+          server-id: artifactory
+          server-username: ARTIFACTORY_USERNAME_REF
+          server-password: ARTIFACTORY_TOKEN_REF
       - name: Build with Maven
         run: mvn clean package
+        env:
+          ARTIFACTORY_TOKEN_REF: ${{secrets.ARTIFACTORY_TOKEN}}
+          ARTIFACTORY_USERNAME_REF: ${{secrets.ARTIFACTORY_USERNAME}}
       - name: Setup CLI
         uses: adobe/aio-cli-setup-action@1.3.0
         with:

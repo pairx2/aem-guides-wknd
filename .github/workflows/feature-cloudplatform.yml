@@ -65,19 +65,19 @@ jobs:
           server-username: ARTIFACTORY_USERNAME_REF
           server-password: ARTIFACTORY_TOKEN_REF
       - name: Build adc module with Maven
-        run: mvn -pl aem65-adc-divisional-apps clean package
+        run: mvn -pl aem65-adc-divisional-apps/all clean package
         env:
           ARTIFACTORY_TOKEN_REF: ${{secrets.ARTIFACTORY_TOKEN}}
           ARTIFACTORY_USERNAME_REF: ${{secrets.ARTIFACTORY_USERNAME}}
         if: github.ref == 'refs/heads/feature/adc-div-deploy'
       - name: Build cv module with Maven
-        run: mvn -pl aem65-cv-divisional-apps clean package
+        run: mvn -pl aem65-cv-divisional-apps/all clean package
         env:
           ARTIFACTORY_TOKEN_REF: ${{secrets.ARTIFACTORY_TOKEN}}
           ARTIFACTORY_USERNAME_REF: ${{secrets.ARTIFACTORY_USERNAME}}
         if: github.ref == 'refs/heads/feature/cv-div-deploy'  
       - name: Build cloudplatform module with Maven
-        run: mvn -pl aem65-cloudplatform-apps clean package
+        run: mvn -pl aem65-cloudplatform-apps/all clean package
         env:
           ARTIFACTORY_TOKEN_REF: ${{secrets.ARTIFACTORY_TOKEN}}
           ARTIFACTORY_USERNAME_REF: ${{secrets.ARTIFACTORY_USERNAME}}
